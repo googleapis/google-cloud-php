@@ -23,12 +23,33 @@ class CreateProjectRequest extends \Google\Protobuf\Internal\Message
      * fails.
      * If the `parent` field is set, the `resourcemanager.projects.create`
      * permission is checked on the parent resource. If no parent is set and
-     * the authorization credentials belong to an Organziation, the parent
+     * the authorization credentials belong to an Organization, the parent
      * will be set to that Organization.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Project project = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project = null;
+
+    /**
+     * @param \Google\Cloud\ResourceManager\V3\Project $project Required. The Project to create.
+     *
+     *                                                          Project ID is required. If the requested ID is unavailable, the request
+     *                                                          fails.
+     *
+     *                                                          If the `parent` field is set, the `resourcemanager.projects.create`
+     *                                                          permission is checked on the parent resource. If no parent is set and
+     *                                                          the authorization credentials belong to an Organization, the parent
+     *                                                          will be set to that Organization.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\CreateProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\Project $project): self
+    {
+        return (new self())
+            ->setProject($project);
+    }
 
     /**
      * Constructor.
@@ -42,7 +63,7 @@ class CreateProjectRequest extends \Google\Protobuf\Internal\Message
      *           fails.
      *           If the `parent` field is set, the `resourcemanager.projects.create`
      *           permission is checked on the parent resource. If no parent is set and
-     *           the authorization credentials belong to an Organziation, the parent
+     *           the authorization credentials belong to an Organization, the parent
      *           will be set to that Organization.
      * }
      */
@@ -57,7 +78,7 @@ class CreateProjectRequest extends \Google\Protobuf\Internal\Message
      * fails.
      * If the `parent` field is set, the `resourcemanager.projects.create`
      * permission is checked on the parent resource. If no parent is set and
-     * the authorization credentials belong to an Organziation, the parent
+     * the authorization credentials belong to an Organization, the parent
      * will be set to that Organization.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Project project = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -84,7 +105,7 @@ class CreateProjectRequest extends \Google\Protobuf\Internal\Message
      * fails.
      * If the `parent` field is set, the `resourcemanager.projects.create`
      * permission is checked on the parent resource. If no parent is set and
-     * the authorization credentials belong to an Organziation, the parent
+     * the authorization credentials belong to an Organization, the parent
      * will be set to that Organization.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Project project = 1 [(.google.api.field_behavior) = REQUIRED];</code>

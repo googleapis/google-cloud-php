@@ -17,13 +17,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExecutionTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
+     * User-provided labels are shared with Google's billing system, so they can
+     * be used to filter, or break down billing charges by team, component,
+     * environment, state, etc. For more information, visit
+     * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     * https://cloud.google.com/run/docs/configuring/labels.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      */
     private $labels;
     /**
-     * KRM-style annotations for the resource.
+     * Unstructured key value map that may be set by external tools to store and
+     * arbitrary metadata. They are not queryable and should be preserved
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 ExecutionTemplate.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 2;</code>
      */
@@ -43,15 +61,14 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the desired number of tasks the execution should run.
      * Setting to 1 means that parallelism is limited to 1 and the success of
-     * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * that task signals the success of the execution. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 task_count = 4;</code>
      */
     private $task_count = 0;
     /**
-     * Required. Describes the task(s) that will be created when executing an execution.
+     * Required. Describes the task(s) that will be created when executing an
+     * execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,9 +81,27 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           KRM-style labels for the resource.
+     *           Unstructured key value map that can be used to organize and categorize
+     *           objects.
+     *           User-provided labels are shared with Google's billing system, so they can
+     *           be used to filter, or break down billing charges by team, component,
+     *           environment, state, etc. For more information, visit
+     *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     *           https://cloud.google.com/run/docs/configuring/labels.
+     *           <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system labels in v1 now have a
+     *           corresponding field in v2 ExecutionTemplate.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           KRM-style annotations for the resource.
+     *           Unstructured key value map that may be set by external tools to store and
+     *           arbitrary metadata. They are not queryable and should be preserved
+     *           when modifying objects.
+     *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system annotations in v1 now
+     *           have a corresponding field in v2 ExecutionTemplate.
+     *           <p>This field follows Kubernetes annotations' namespacing, limits, and
+     *           rules.
      *     @type int $parallelism
      *           Specifies the maximum desired number of tasks the execution should run at
      *           given time. Must be <= task_count.
@@ -78,11 +113,10 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *     @type int $task_count
      *           Specifies the desired number of tasks the execution should run.
      *           Setting to 1 means that parallelism is limited to 1 and the success of
-     *           that task signals the success of the execution.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     *           that task signals the success of the execution. Defaults to 1.
      *     @type \Google\Cloud\Run\V2\TaskTemplate $template
-     *           Required. Describes the task(s) that will be created when executing an execution.
+     *           Required. Describes the task(s) that will be created when executing an
+     *           execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,7 +125,17 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
+     * User-provided labels are shared with Google's billing system, so they can
+     * be used to filter, or break down billing charges by team, component,
+     * environment, state, etc. For more information, visit
+     * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     * https://cloud.google.com/run/docs/configuring/labels.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -102,7 +146,17 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
+     * User-provided labels are shared with Google's billing system, so they can
+     * be used to filter, or break down billing charges by team, component,
+     * environment, state, etc. For more information, visit
+     * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
+     * https://cloud.google.com/run/docs/configuring/labels.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 ExecutionTemplate.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -117,7 +171,15 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Unstructured key value map that may be set by external tools to store and
+     * arbitrary metadata. They are not queryable and should be preserved
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 ExecutionTemplate.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -128,7 +190,15 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Unstructured key value map that may be set by external tools to store and
+     * arbitrary metadata. They are not queryable and should be preserved
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system annotations in v1 now
+     * have a corresponding field in v2 ExecutionTemplate.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -183,9 +253,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the desired number of tasks the execution should run.
      * Setting to 1 means that parallelism is limited to 1 and the success of
-     * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * that task signals the success of the execution. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 task_count = 4;</code>
      * @return int
@@ -198,9 +266,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the desired number of tasks the execution should run.
      * Setting to 1 means that parallelism is limited to 1 and the success of
-     * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * that task signals the success of the execution. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 task_count = 4;</code>
      * @param int $var
@@ -215,7 +281,8 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Describes the task(s) that will be created when executing an execution.
+     * Required. Describes the task(s) that will be created when executing an
+     * execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Run\V2\TaskTemplate|null
@@ -236,7 +303,8 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Describes the task(s) that will be created when executing an execution.
+     * Required. Describes the task(s) that will be created when executing an
+     * execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Run\V2\TaskTemplate $var

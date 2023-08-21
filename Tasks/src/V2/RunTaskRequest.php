@@ -24,10 +24,10 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2.Task] will be returned.
+     * By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC];
+     * not all information is retrieved by default because some data, such as
      * payloads, might be desirable to return only when needed because
      * of its large size or because of the sensitivity of data that it
      * contains.
@@ -40,6 +40,21 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
     private $response_view = 0;
 
     /**
+     * @param string $name Required. The task name. For example:
+     *                     `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *                     Please see {@see CloudTasksClient::taskName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Tasks\V2\RunTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -49,10 +64,10 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      *           Required. The task name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *     @type int $response_view
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2.Task] will be
-     *           returned.
-     *           By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2.Task] will be returned.
+     *           By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC];
+     *           not all information is retrieved by default because some data, such as
      *           payloads, might be desirable to return only when needed because
      *           of its large size or because of the sensitivity of data that it
      *           contains.
@@ -95,10 +110,10 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2.Task] will be returned.
+     * By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC];
+     * not all information is retrieved by default because some data, such as
      * payloads, might be desirable to return only when needed because
      * of its large size or because of the sensitivity of data that it
      * contains.
@@ -115,10 +130,10 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2.Task] will be returned.
+     * By default response_view is [BASIC][google.cloud.tasks.v2.Task.View.BASIC];
+     * not all information is retrieved by default because some data, such as
      * payloads, might be desirable to return only when needed because
      * of its large size or because of the sensitivity of data that it
      * contains.

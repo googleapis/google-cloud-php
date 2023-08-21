@@ -16,13 +16,13 @@ class Domain
         }
         $pool->internalAddGeneratedFile(
             '
-­
+¬
  google/appengine/v1/domain.protogoogle.appengine.v1",
 AuthorizedDomain
 name (	
 
-id (	B½
-com.google.appengine.v1BDomainProtoPZ<google.golang.org/genproto/googleapis/appengine/v1;appengineªGoogle.Cloud.AppEngine.V1ÊGoogle\\Cloud\\AppEngine\\V1êGoogle::Cloud::AppEngine::V1bproto3'
+id (	B¼
+com.google.appengine.v1BDomainProtoPZ;cloud.google.com/go/appengine/apiv1/appenginepb;appenginepbªGoogle.Cloud.AppEngine.V1ÊGoogle\\Cloud\\AppEngine\\V1êGoogle::Cloud::AppEngine::V1bproto3'
         , true);
 
         static::$is_initialized = true;

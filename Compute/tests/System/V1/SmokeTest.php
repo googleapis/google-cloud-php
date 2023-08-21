@@ -31,7 +31,6 @@ use Google\Cloud\Compute\V1\NetworkInterface;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ShieldedInstanceConfig;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group compute
@@ -39,8 +38,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SmokeTest extends SystemTestCase
 {
-    use ExpectException;
-
     const ZONE = 'us-central1-a';
     const IMAGE = 'projects/debian-cloud/global/images/family/debian-10';
 

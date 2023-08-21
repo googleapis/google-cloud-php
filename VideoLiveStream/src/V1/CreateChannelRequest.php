@@ -54,6 +54,27 @@ class CreateChannelRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                    $parent    Required. The parent location for the resource, in the form of:
+     *                                                             `projects/{project}/locations/{location}`. Please see
+     *                                                             {@see LivestreamServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\LiveStream\V1\Channel $channel   Required. The channel resource to be created.
+     * @param string                                    $channelId Required. The ID of the channel resource to be created.
+     *                                                             This value must be 1-63 characters, begin and end with `[a-z0-9]`,
+     *                                                             could contain dashes (-) in between.
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\CreateChannelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\LiveStream\V1\Channel $channel, string $channelId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setChannel($channel)
+            ->setChannelId($channelId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

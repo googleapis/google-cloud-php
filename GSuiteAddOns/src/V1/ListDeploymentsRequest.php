@@ -42,6 +42,22 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Name of the project in which to create the deployment.
+     *
+     *                       Example: `projects/my_project`. Please see
+     *                       {@see GSuiteAddOnsClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GSuiteAddOns\V1\ListDeploymentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

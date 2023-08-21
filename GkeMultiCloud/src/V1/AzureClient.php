@@ -11,9 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * `AzureClient` resources hold client authentication information needed by the
  * Anthos Multi-Cloud API to manage Azure resources on your Azure subscription.
- * When an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] is created, an `AzureClient` resource needs to be
- * provided and all operations on Azure resources associated to that cluster
- * will authenticate to Azure services using the given client.
+ * When an [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] is
+ * created, an `AzureClient` resource needs to be provided and all operations on
+ * Azure resources associated to that cluster will authenticate to Azure
+ * services using the given client.
  * `AzureClient` resources are immutable and cannot be modified upon creation.
  * Each `AzureClient` resource is bound to a single Azure Active Directory
  * Application and tenant.
@@ -45,6 +46,12 @@ class AzureClient extends \Google\Protobuf\Internal\Message
      */
     private $application_id = '';
     /**
+     * Output only. If set, there are currently pending changes to the client.
+     *
+     * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $reconciling = false;
+    /**
      * Optional. Annotations on the resource.
      * This field has the same restrictions as Kubernetes annotations.
      * The total size of all keys and values combined is limited to 256k.
@@ -75,6 +82,12 @@ class AzureClient extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
+    /**
+     * Output only. The time at which this client was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_time = null;
 
     /**
      * Constructor.
@@ -92,6 +105,8 @@ class AzureClient extends \Google\Protobuf\Internal\Message
      *           Required. The Azure Active Directory Tenant ID.
      *     @type string $application_id
      *           Required. The Azure Active Directory Application ID.
+     *     @type bool $reconciling
+     *           Output only. If set, there are currently pending changes to the client.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. Annotations on the resource.
      *           This field has the same restrictions as Kubernetes annotations.
@@ -107,6 +122,8 @@ class AzureClient extends \Google\Protobuf\Internal\Message
      *           Output only. A globally unique identifier for the client.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which this resource was created.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The time at which this client was last updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,6 +213,32 @@ class AzureClient extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->application_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If set, there are currently pending changes to the client.
+     *
+     * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getReconciling()
+    {
+        return $this->reconciling;
+    }
+
+    /**
+     * Output only. If set, there are currently pending changes to the client.
+     *
+     * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReconciling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reconciling = $var;
 
         return $this;
     }
@@ -324,6 +367,42 @@ class AzureClient extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time at which this client was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The time at which this client was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [Documents.ReloadDocument][google.cloud.dialogflow.v2.Documents.ReloadDocument].
+ * Request message for
+ * [Documents.ReloadDocument][google.cloud.dialogflow.v2.Documents.ReloadDocument].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ReloadDocumentRequest</code>
  */
@@ -31,13 +32,35 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $import_gcs_custom_metadata = false;
     /**
-     * Optional. When enabled, the reload request is to apply partial update to the smart
-     * messaging allowlist.
+     * Optional. When enabled, the reload request is to apply partial update to
+     * the smart messaging allowlist.
      *
      * Generated from protobuf field <code>bool smart_messaging_partial_update = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $smart_messaging_partial_update = false;
     protected $source;
+
+    /**
+     * @param string $name       Required. The name of the document to reload.
+     *                           Format: `projects/<Project ID>/locations/<Location
+     *                           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     *                           Please see {@see DocumentsClient::documentName()} for help formatting this field.
+     * @param string $contentUri Optional. The path of gcs source file for reloading document content. For
+     *                           now, only gcs uri is supported.
+     *
+     *                           For documents stored in Google Cloud Storage, these URIs must have
+     *                           the form `gs://<bucket-name>/<object-name>`.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ReloadDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $contentUri): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setContentUri($contentUri);
+    }
 
     /**
      * Constructor.
@@ -50,16 +73,16 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      *     @type string $content_uri
-     *           Optional. The path of gcs source file for reloading document content. For now,
-     *           only gcs uri is supported.
+     *           Optional. The path of gcs source file for reloading document content. For
+     *           now, only gcs uri is supported.
      *           For documents stored in Google Cloud Storage, these URIs must have
      *           the form `gs://<bucket-name>/<object-name>`.
      *     @type bool $import_gcs_custom_metadata
      *           Optional. Whether to import custom metadata from Google Cloud Storage.
      *           Only valid when the document source is Google Cloud Storage URI.
      *     @type bool $smart_messaging_partial_update
-     *           Optional. When enabled, the reload request is to apply partial update to the smart
-     *           messaging allowlist.
+     *           Optional. When enabled, the reload request is to apply partial update to
+     *           the smart messaging allowlist.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,8 +121,8 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The path of gcs source file for reloading document content. For now,
-     * only gcs uri is supported.
+     * Optional. The path of gcs source file for reloading document content. For
+     * now, only gcs uri is supported.
      * For documents stored in Google Cloud Storage, these URIs must have
      * the form `gs://<bucket-name>/<object-name>`.
      *
@@ -117,8 +140,8 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The path of gcs source file for reloading document content. For now,
-     * only gcs uri is supported.
+     * Optional. The path of gcs source file for reloading document content. For
+     * now, only gcs uri is supported.
      * For documents stored in Google Cloud Storage, these URIs must have
      * the form `gs://<bucket-name>/<object-name>`.
      *
@@ -163,8 +186,8 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When enabled, the reload request is to apply partial update to the smart
-     * messaging allowlist.
+     * Optional. When enabled, the reload request is to apply partial update to
+     * the smart messaging allowlist.
      *
      * Generated from protobuf field <code>bool smart_messaging_partial_update = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -175,8 +198,8 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When enabled, the reload request is to apply partial update to the smart
-     * messaging allowlist.
+     * Optional. When enabled, the reload request is to apply partial update to
+     * the smart messaging allowlist.
      *
      * Generated from protobuf field <code>bool smart_messaging_partial_update = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

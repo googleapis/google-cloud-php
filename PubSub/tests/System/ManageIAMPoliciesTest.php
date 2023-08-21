@@ -23,9 +23,9 @@ namespace Google\Cloud\PubSub\Tests\System;
  */
 class ManageIAMPoliciesTest extends PubSubTestCase
 {
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
         self::skipIfEmulatorUsed('Emulator does not implement IAM functions.');
     }
 

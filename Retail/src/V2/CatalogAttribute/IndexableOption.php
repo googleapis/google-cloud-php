@@ -14,8 +14,7 @@ use UnexpectedValueException;
 class IndexableOption
 {
     /**
-     * Value used when unset. Defaults to
-     * [INDEXABLE_ENABLED][google.cloud.retail.v2.CatalogAttribute.IndexableOption.INDEXABLE_ENABLED].
+     * Value used when unset.
      *
      * Generated from protobuf enum <code>INDEXABLE_OPTION_UNSPECIFIED = 0;</code>
      */

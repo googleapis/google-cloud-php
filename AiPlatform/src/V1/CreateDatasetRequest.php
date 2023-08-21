@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.CreateDataset][google.cloud.aiplatform.v1.DatasetService.CreateDataset].
+ * Request message for
+ * [DatasetService.CreateDataset][google.cloud.aiplatform.v1.DatasetService.CreateDataset].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateDatasetRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Dataset dataset = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dataset = null;
+
+    /**
+     * @param string                              $parent  Required. The resource name of the Location to create the Dataset in.
+     *                                                     Format: `projects/{project}/locations/{location}`
+     *                                                     Please see {@see DatasetServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Dataset $dataset Required. The Dataset to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateDatasetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Dataset $dataset): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDataset($dataset);
+    }
 
     /**
      * Constructor.

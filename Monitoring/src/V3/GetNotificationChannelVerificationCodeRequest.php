@@ -39,6 +39,22 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
     private $expire_time = null;
 
     /**
+     * @param string $name Required. The notification channel for which a verification code is to be generated
+     *                     and retrieved. This must name a channel that is already verified; if
+     *                     the specified channel is not verified, the request will fail. Please see
+     *                     {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

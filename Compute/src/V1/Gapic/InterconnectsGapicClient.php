@@ -26,7 +26,6 @@ namespace Google\Cloud\Compute\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -87,34 +86,27 @@ use Google\Cloud\Compute\V1\SetLabelsInterconnectRequest;
  *     $interconnectsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\InterconnectsClient} to use the new surface.
  */
 class InterconnectsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.compute.v1.Interconnects';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'compute.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -142,17 +134,13 @@ class InterconnectsGapicClient
         ];
     }
 
-    /**
-     * Implements GapicClientTrait::defaultTransport.
-     */
+    /** Implements GapicClientTrait::defaultTransport. */
     private static function defaultTransport()
     {
         return 'rest';
     }
 
-    /**
-     * Implements GapicClientTrait::getSupportedTransports.
-     */
+    /** Implements GapicClientTrait::getSupportedTransports. */
     private static function getSupportedTransports()
     {
         return [
@@ -170,9 +158,7 @@ class InterconnectsGapicClient
         return $this->operationsClient;
     }
 
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
+    /** Return the default longrunning operation descriptor config. */
     private function getDefaultOperationDescriptor()
     {
         return [
@@ -215,9 +201,6 @@ class InterconnectsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
@@ -246,7 +229,7 @@ class InterconnectsGapicClient
      *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -271,7 +254,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Deletes the specified interconnect.
+     * Deletes the specified Interconnect.
      *
      * Sample code:
      * ```
@@ -343,7 +326,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Returns the specified interconnect. Get a list of available interconnects by making a list() request.
+     * Returns the specified Interconnect. Get a list of available Interconnects by making a list() request.
      *
      * Sample code:
      * ```
@@ -386,7 +369,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Returns the interconnectDiagnostics for the specified interconnect.
+     * Returns the interconnectDiagnostics for the specified Interconnect.
      *
      * Sample code:
      * ```
@@ -429,7 +412,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Creates a Interconnect in the specified project using the data included in the request.
+     * Creates an Interconnect in the specified project using the data included in the request.
      *
      * Sample code:
      * ```
@@ -500,7 +483,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Retrieves the list of interconnect available to the specified project.
+     * Retrieves the list of Interconnects available to the specified project.
      *
      * Sample code:
      * ```
@@ -584,7 +567,7 @@ class InterconnectsGapicClient
     }
 
     /**
-     * Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified Interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * Sample code:
      * ```

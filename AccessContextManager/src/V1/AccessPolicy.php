@@ -41,6 +41,25 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      */
     private $title = '';
     /**
+     * The scopes of a policy define which resources an ACM policy can restrict,
+     * and where ACM resources can be referenced.
+     * For example, a policy with scopes=["folders/123"] has the following
+     * behavior:
+     * - vpcsc perimeters can only restrict projects within folders/123
+     * - access levels can only be referenced by resources within folders/123.
+     * If empty, there are no limitations on which resources can be restricted by
+     * an ACM policy, and there are no limitations on where ACM resources can be
+     * referenced.
+     * Only one policy can include a given scope (attempting to create a second
+     * policy which includes "folders/123" will result in an error).
+     * Currently, scopes cannot be modified after a policy is created.
+     * Currently, policies can only have a single scope.
+     * Format: list of `folders/{folder_number}` or `projects/{project_number}`
+     *
+     * Generated from protobuf field <code>repeated string scopes = 7;</code>
+     */
+    private $scopes;
+    /**
      * Output only. Time the `AccessPolicy` was created in UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
@@ -77,6 +96,21 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      *           `organizations/{organization_id}`
      *     @type string $title
      *           Required. Human readable title. Does not affect behavior.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *           The scopes of a policy define which resources an ACM policy can restrict,
+     *           and where ACM resources can be referenced.
+     *           For example, a policy with scopes=["folders/123"] has the following
+     *           behavior:
+     *           - vpcsc perimeters can only restrict projects within folders/123
+     *           - access levels can only be referenced by resources within folders/123.
+     *           If empty, there are no limitations on which resources can be restricted by
+     *           an ACM policy, and there are no limitations on where ACM resources can be
+     *           referenced.
+     *           Only one policy can include a given scope (attempting to create a second
+     *           policy which includes "folders/123" will result in an error).
+     *           Currently, scopes cannot be modified after a policy is created.
+     *           Currently, policies can only have a single scope.
+     *           Format: list of `folders/{folder_number}` or `projects/{project_number}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time the `AccessPolicy` was created in UTC.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -173,6 +207,58 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * The scopes of a policy define which resources an ACM policy can restrict,
+     * and where ACM resources can be referenced.
+     * For example, a policy with scopes=["folders/123"] has the following
+     * behavior:
+     * - vpcsc perimeters can only restrict projects within folders/123
+     * - access levels can only be referenced by resources within folders/123.
+     * If empty, there are no limitations on which resources can be restricted by
+     * an ACM policy, and there are no limitations on where ACM resources can be
+     * referenced.
+     * Only one policy can include a given scope (attempting to create a second
+     * policy which includes "folders/123" will result in an error).
+     * Currently, scopes cannot be modified after a policy is created.
+     * Currently, policies can only have a single scope.
+     * Format: list of `folders/{folder_number}` or `projects/{project_number}`
+     *
+     * Generated from protobuf field <code>repeated string scopes = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getScopes()
+    {
+        return $this->scopes;
+    }
+
+    /**
+     * The scopes of a policy define which resources an ACM policy can restrict,
+     * and where ACM resources can be referenced.
+     * For example, a policy with scopes=["folders/123"] has the following
+     * behavior:
+     * - vpcsc perimeters can only restrict projects within folders/123
+     * - access levels can only be referenced by resources within folders/123.
+     * If empty, there are no limitations on which resources can be restricted by
+     * an ACM policy, and there are no limitations on where ACM resources can be
+     * referenced.
+     * Only one policy can include a given scope (attempting to create a second
+     * policy which includes "folders/123" will result in an error).
+     * Currently, scopes cannot be modified after a policy is created.
+     * Currently, policies can only have a single scope.
+     * Format: list of `folders/{folder_number}` or `projects/{project_number}`
+     *
+     * Generated from protobuf field <code>repeated string scopes = 7;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setScopes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->scopes = $arr;
 
         return $this;
     }

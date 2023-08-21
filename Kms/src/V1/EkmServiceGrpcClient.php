@@ -98,4 +98,55 @@ class EkmServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Returns the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+     * for a given project and location.
+     * @param \Google\Cloud\Kms\V1\GetEkmConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEkmConfig(\Google\Cloud\Kms\V1\GetEkmConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.EkmService/GetEkmConfig',
+        $argument,
+        ['\Google\Cloud\Kms\V1\EkmConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+     * for a given project and location.
+     * @param \Google\Cloud\Kms\V1\UpdateEkmConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateEkmConfig(\Google\Cloud\Kms\V1\UpdateEkmConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.EkmService/UpdateEkmConfig',
+        $argument,
+        ['\Google\Cloud\Kms\V1\EkmConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Verifies that Cloud KMS can successfully connect to the external key
+     * manager specified by an [EkmConnection][google.cloud.kms.v1.EkmConnection].
+     * If there is an error connecting to the EKM, this method returns a
+     * FAILED_PRECONDITION status containing structured information as described
+     * at https://cloud.google.com/kms/docs/reference/ekm_errors.
+     * @param \Google\Cloud\Kms\V1\VerifyConnectivityRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function VerifyConnectivity(\Google\Cloud\Kms\V1\VerifyConnectivityRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.EkmService/VerifyConnectivity',
+        $argument,
+        ['\Google\Cloud\Kms\V1\VerifyConnectivityResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

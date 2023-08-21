@@ -16,9 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Data Access Report is requested for this property.
-     * For example if "123" is your GA4 property ID, then entity should be
-     * "properties/123".
+     * The Data Access Report supports requesting at the property level or account
+     * level. If requested at the account level, Data Access Reports include all
+     * access for all properties under that account.
+     * To request at the property level, entity should be for example
+     * 'properties/123' if "123" is your GA4 property ID. To request at the
+     * account level, entity should be for example 'accounts/1234' if "1234" is
+     * your GA4 Account ID.
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      */
@@ -48,7 +52,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      */
     private $date_ranges;
     /**
-     * Dimension filters allow you to restrict report response to specific
+     * Dimension filters let you restrict report response to specific
      * dimension values which match the filter. For example, filtering on access
      * records of a single user. To learn more, see [Fundamentals of Dimension
      * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
@@ -110,7 +114,8 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
     private $order_bys;
     /**
      * Toggles whether to return the current state of this Analytics Property's
-     * quota. Quota is returned in [AccessQuota](#AccessQuota).
+     * quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
+     * requests, this field must be false.
      *
      * Generated from protobuf field <code>bool return_entity_quota = 11;</code>
      */
@@ -123,9 +128,13 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $entity
-     *           The Data Access Report is requested for this property.
-     *           For example if "123" is your GA4 property ID, then entity should be
-     *           "properties/123".
+     *           The Data Access Report supports requesting at the property level or account
+     *           level. If requested at the account level, Data Access Reports include all
+     *           access for all properties under that account.
+     *           To request at the property level, entity should be for example
+     *           'properties/123' if "123" is your GA4 property ID. To request at the
+     *           account level, entity should be for example 'accounts/1234' if "1234" is
+     *           your GA4 Account ID.
      *     @type array<\Google\Analytics\Admin\V1alpha\AccessDimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           The dimensions requested and displayed in the response. Requests are
      *           allowed up to 9 dimensions.
@@ -139,7 +148,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *           included in the response rows for both date ranges. Requests are allowed up
      *           to 2 date ranges.
      *     @type \Google\Analytics\Admin\V1alpha\AccessFilterExpression $dimension_filter
-     *           Dimension filters allow you to restrict report response to specific
+     *           Dimension filters let you restrict report response to specific
      *           dimension values which match the filter. For example, filtering on access
      *           records of a single user. To learn more, see [Fundamentals of Dimension
      *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
@@ -177,7 +186,8 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *           Specifies how rows are ordered in the response.
      *     @type bool $return_entity_quota
      *           Toggles whether to return the current state of this Analytics Property's
-     *           quota. Quota is returned in [AccessQuota](#AccessQuota).
+     *           quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
+     *           requests, this field must be false.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,9 +196,13 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Data Access Report is requested for this property.
-     * For example if "123" is your GA4 property ID, then entity should be
-     * "properties/123".
+     * The Data Access Report supports requesting at the property level or account
+     * level. If requested at the account level, Data Access Reports include all
+     * access for all properties under that account.
+     * To request at the property level, entity should be for example
+     * 'properties/123' if "123" is your GA4 property ID. To request at the
+     * account level, entity should be for example 'accounts/1234' if "1234" is
+     * your GA4 Account ID.
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      * @return string
@@ -199,9 +213,13 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Data Access Report is requested for this property.
-     * For example if "123" is your GA4 property ID, then entity should be
-     * "properties/123".
+     * The Data Access Report supports requesting at the property level or account
+     * level. If requested at the account level, Data Access Reports include all
+     * access for all properties under that account.
+     * To request at the property level, entity should be for example
+     * 'properties/123' if "123" is your GA4 property ID. To request at the
+     * account level, entity should be for example 'accounts/1234' if "1234" is
+     * your GA4 Account ID.
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      * @param string $var
@@ -306,7 +324,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Dimension filters allow you to restrict report response to specific
+     * Dimension filters let you restrict report response to specific
      * dimension values which match the filter. For example, filtering on access
      * records of a single user. To learn more, see [Fundamentals of Dimension
      * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
@@ -331,7 +349,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Dimension filters allow you to restrict report response to specific
+     * Dimension filters let you restrict report response to specific
      * dimension values which match the filter. For example, filtering on access
      * records of a single user. To learn more, see [Fundamentals of Dimension
      * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
@@ -533,7 +551,8 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Toggles whether to return the current state of this Analytics Property's
-     * quota. Quota is returned in [AccessQuota](#AccessQuota).
+     * quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
+     * requests, this field must be false.
      *
      * Generated from protobuf field <code>bool return_entity_quota = 11;</code>
      * @return bool
@@ -545,7 +564,8 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Toggles whether to return the current state of this Analytics Property's
-     * quota. Quota is returned in [AccessQuota](#AccessQuota).
+     * quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
+     * requests, this field must be false.
      *
      * Generated from protobuf field <code>bool return_entity_quota = 11;</code>
      * @param bool $var

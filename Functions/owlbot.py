@@ -34,7 +34,8 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "**/[A-Z]*_*.php"
+        src / "**/[A-Z]*_*.php",
+        src / "**/*GrpcClient.php",
     ]
 )
 
@@ -47,23 +48,6 @@ s.replace(
     + "\n",
     '')
 
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
 
 ### [START] protoc backwards compatibility fixes
 
@@ -74,12 +58,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 ### [END] protoc backwards compatibility fixes
 

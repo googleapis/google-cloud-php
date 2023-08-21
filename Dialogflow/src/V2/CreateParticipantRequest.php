@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Participants.CreateParticipant][google.cloud.dialogflow.v2.Participants.CreateParticipant].
+ * The request message for
+ * [Participants.CreateParticipant][google.cloud.dialogflow.v2.Participants.CreateParticipant].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateParticipantRequest</code>
  */
@@ -29,6 +30,24 @@ class CreateParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant participant = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $participant = null;
+
+    /**
+     * @param string                                  $parent      Required. Resource identifier of the conversation adding the participant.
+     *                                                             Format: `projects/<Project ID>/locations/<Location
+     *                                                             ID>/conversations/<Conversation ID>`. Please see
+     *                                                             {@see ParticipantsClient::conversationName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Participant $participant Required. The participant to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateParticipantRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Participant $participant): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setParticipant($participant);
+    }
 
     /**
      * Constructor.

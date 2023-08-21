@@ -18,6 +18,7 @@ class PipelineService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\PipelineJob::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\TrainingPipeline::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
@@ -25,8 +26,8 @@ class PipelineService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-æ!
-1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¨
+Œ"
+1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¨
 CreateTrainingPipelineRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationL
@@ -89,8 +90,8 @@ page_token (	
 ListPipelineJobs3.google.cloud.aiplatform.v1.ListPipelineJobsRequest4.google.cloud.aiplatform.v1.ListPipelineJobsResponse"A‚Óä“20/v1/{parent=projects/*/locations/*}/pipelineJobsÚAparentÜ
 DeletePipelineJob4.google.cloud.aiplatform.v1.DeletePipelineJobRequest.google.longrunning.Operation"r‚Óä“2*0/v1/{name=projects/*/locations/*/pipelineJobs/*}ÚAnameÊA0
 google.protobuf.EmptyDeleteOperationMetadata¬
-CancelPipelineJob4.google.cloud.aiplatform.v1.CancelPipelineJobRequest.google.protobuf.Empty"I‚Óä“<"7/v1/{name=projects/*/locations/*/pipelineJobs/*}:cancel:*ÚAnameMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
-com.google.cloud.aiplatform.v1BPipelineServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+CancelPipelineJob4.google.cloud.aiplatform.v1.CancelPipelineJobRequest.google.protobuf.Empty"I‚Óä“<"7/v1/{name=projects/*/locations/*/pipelineJobs/*}:cancel:*ÚAnameMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
+com.google.cloud.aiplatform.v1BPipelineServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

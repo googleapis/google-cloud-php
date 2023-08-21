@@ -20,8 +20,8 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * of third party principal) making the request. For third party identity
      * callers, the `principal_subject` field is populated instead of this field.
      * For privacy reasons, the principal email address is sometimes redacted.
-     * For more information, see
-     * https://cloud.google.com/logging/docs/audit#user-id.
+     * For more information, see [Caller identities in audit
+     * logs](https://cloud.google.com/logging/docs/audit#user-id).
      *
      * Generated from protobuf field <code>string principal_email = 1;</code>
      */
@@ -80,8 +80,8 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      *           of third party principal) making the request. For third party identity
      *           callers, the `principal_subject` field is populated instead of this field.
      *           For privacy reasons, the principal email address is sometimes redacted.
-     *           For more information, see
-     *           https://cloud.google.com/logging/docs/audit#user-id.
+     *           For more information, see [Caller identities in audit
+     *           logs](https://cloud.google.com/logging/docs/audit#user-id).
      *     @type string $authority_selector
      *           The authority selector specified by the requestor, if any.
      *           It is not guaranteed that the principal was allowed to use this authority.
@@ -95,7 +95,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      *           credentials for authenticating the service account making the request.
      *           This is a scheme-less URI full resource name. For example:
      *           "//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}"
-     *     @type \Google\Cloud\Audit\ServiceAccountDelegationInfo[]|\Google\Protobuf\Internal\RepeatedField $service_account_delegation_info
+     *     @type array<\Google\Cloud\Audit\ServiceAccountDelegationInfo>|\Google\Protobuf\Internal\RepeatedField $service_account_delegation_info
      *           Identity delegation history of an authenticated service account that makes
      *           the request. It contains information on the real authorities that try to
      *           access GCP resources by delegating on a service account. When multiple
@@ -116,8 +116,8 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * of third party principal) making the request. For third party identity
      * callers, the `principal_subject` field is populated instead of this field.
      * For privacy reasons, the principal email address is sometimes redacted.
-     * For more information, see
-     * https://cloud.google.com/logging/docs/audit#user-id.
+     * For more information, see [Caller identities in audit
+     * logs](https://cloud.google.com/logging/docs/audit#user-id).
      *
      * Generated from protobuf field <code>string principal_email = 1;</code>
      * @return string
@@ -132,8 +132,8 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * of third party principal) making the request. For third party identity
      * callers, the `principal_subject` field is populated instead of this field.
      * For privacy reasons, the principal email address is sometimes redacted.
-     * For more information, see
-     * https://cloud.google.com/logging/docs/audit#user-id.
+     * For more information, see [Caller identities in audit
+     * logs](https://cloud.google.com/logging/docs/audit#user-id).
      *
      * Generated from protobuf field <code>string principal_email = 1;</code>
      * @param string $var
@@ -186,7 +186,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getThirdPartyPrincipal()
     {
-        return isset($this->third_party_principal) ? $this->third_party_principal : null;
+        return $this->third_party_principal;
     }
 
     public function hasThirdPartyPrincipal()
@@ -272,7 +272,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * ordering of the identity delegation events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.ServiceAccountDelegationInfo service_account_delegation_info = 6;</code>
-     * @param \Google\Cloud\Audit\ServiceAccountDelegationInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Audit\ServiceAccountDelegationInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAccountDelegationInfo($var)

@@ -17,14 +17,14 @@ class Container
         \GPBMetadata\Google\Cloud\Securitycenter\V1\Label::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¶
+´
 .google/cloud/securitycenter/v1/container.protogoogle.cloud.securitycenter.v1"o
 	Container
 name (	
 uri (	
 image_id (	5
-labels (2%.google.cloud.securitycenter.v1.LabelBê
-"com.google.cloud.securitycenter.v1BContainerProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+labels (2%.google.cloud.securitycenter.v1.LabelBè
+"com.google.cloud.securitycenter.v1BContainerProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

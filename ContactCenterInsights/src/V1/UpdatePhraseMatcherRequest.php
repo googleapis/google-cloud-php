@@ -29,6 +29,21 @@ class UpdatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phraseMatcher Required. The new values for the phrase matcher.
+     * @param \Google\Protobuf\FieldMask                           $updateMask    The list of fields to be updated.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phraseMatcher, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setPhraseMatcher($phraseMatcher)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

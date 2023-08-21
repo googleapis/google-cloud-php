@@ -9,22 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints].
+ * Request message for
+ * [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListIndexEndpointsRequest</code>
  */
 class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Location from which to list the IndexEndpoints.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location from which to list the
+     * IndexEndpoints. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. An expression for filtering the results of the request. For field names
-     * both snake_case and camelCase are supported.
+     * Optional. An expression for filtering the results of the request. For field
+     * names both snake_case and camelCase are supported.
      *   * `index_endpoint` supports = and !=. `index_endpoint` represents the
      *      IndexEndpoint ID, ie. the last segment of the IndexEndpoint's
      *      [resourcename][google.cloud.aiplatform.v1.IndexEndpoint.name].
@@ -52,8 +53,10 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token] of the previous
-     * [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints] call.
+     * [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token]
+     * of the previous
+     * [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -66,17 +69,32 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The resource name of the Location from which to list the
+     *                       IndexEndpoints. Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see IndexEndpointServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListIndexEndpointsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the Location from which to list the IndexEndpoints.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The resource name of the Location from which to list the
+     *           IndexEndpoints. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
-     *           Optional. An expression for filtering the results of the request. For field names
-     *           both snake_case and camelCase are supported.
+     *           Optional. An expression for filtering the results of the request. For field
+     *           names both snake_case and camelCase are supported.
      *             * `index_endpoint` supports = and !=. `index_endpoint` represents the
      *                IndexEndpoint ID, ie. the last segment of the IndexEndpoint's
      *                [resourcename][google.cloud.aiplatform.v1.IndexEndpoint.name].
@@ -96,8 +114,10 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. The standard list page token.
      *           Typically obtained via
-     *           [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token] of the previous
-     *           [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints] call.
+     *           [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token]
+     *           of the previous
+     *           [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Optional. Mask specifying which fields to read.
      * }
@@ -108,8 +128,8 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location from which to list the IndexEndpoints.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location from which to list the
+     * IndexEndpoints. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -120,8 +140,8 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location from which to list the IndexEndpoints.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location from which to list the
+     * IndexEndpoints. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -136,8 +156,8 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request. For field names
-     * both snake_case and camelCase are supported.
+     * Optional. An expression for filtering the results of the request. For field
+     * names both snake_case and camelCase are supported.
      *   * `index_endpoint` supports = and !=. `index_endpoint` represents the
      *      IndexEndpoint ID, ie. the last segment of the IndexEndpoint's
      *      [resourcename][google.cloud.aiplatform.v1.IndexEndpoint.name].
@@ -162,8 +182,8 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request. For field names
-     * both snake_case and camelCase are supported.
+     * Optional. An expression for filtering the results of the request. For field
+     * names both snake_case and camelCase are supported.
      *   * `index_endpoint` supports = and !=. `index_endpoint` represents the
      *      IndexEndpoint ID, ie. the last segment of the IndexEndpoint's
      *      [resourcename][google.cloud.aiplatform.v1.IndexEndpoint.name].
@@ -220,8 +240,10 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token] of the previous
-     * [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints] call.
+     * [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token]
+     * of the previous
+     * [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -234,8 +256,10 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token] of the previous
-     * [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints] call.
+     * [ListIndexEndpointsResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexEndpointsResponse.next_page_token]
+     * of the previous
+     * [IndexEndpointService.ListIndexEndpoints][google.cloud.aiplatform.v1.IndexEndpointService.ListIndexEndpoints]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

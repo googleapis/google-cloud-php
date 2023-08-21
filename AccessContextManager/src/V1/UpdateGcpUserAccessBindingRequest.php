@@ -35,6 +35,27 @@ class UpdateGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
     private $update_mask = null;
 
     /**
+     * @param \Google\Identity\AccessContextManager\V1\GcpUserAccessBinding $gcpUserAccessBinding Required. [GcpUserAccessBinding]
+     *                                                                                            [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
+     * @param \Google\Protobuf\FieldMask                                    $updateMask           Required. Only the fields specified in this mask are updated. Because name and
+     *                                                                                            group_key cannot be changed, update_mask is required and must always be:
+     *
+     *                                                                                            update_mask {
+     *                                                                                            paths: "access_levels"
+     *                                                                                            }
+     *
+     * @return \Google\Identity\AccessContextManager\V1\UpdateGcpUserAccessBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Identity\AccessContextManager\V1\GcpUserAccessBinding $gcpUserAccessBinding, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setGcpUserAccessBinding($gcpUserAccessBinding)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

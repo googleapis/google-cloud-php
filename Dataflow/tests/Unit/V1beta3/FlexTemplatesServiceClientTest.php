@@ -25,7 +25,6 @@ namespace Google\Cloud\Dataflow\Tests\Unit\V1beta3;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataflow\V1beta3\FlexTemplatesServiceClient;
 use Google\Cloud\Dataflow\V1beta3\LaunchFlexTemplateResponse;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class FlexTemplatesServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FlexTemplatesServiceClient
-     */
+    /** @return FlexTemplatesServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class FlexTemplatesServiceClientTest extends GeneratedTest
         return new FlexTemplatesServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function launchFlexTemplateTest()
     {
         $transport = $this->createTransport();
@@ -89,9 +80,7 @@ class FlexTemplatesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function launchFlexTemplateExceptionTest()
     {
         $transport = $this->createTransport();

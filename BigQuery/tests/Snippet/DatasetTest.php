@@ -25,17 +25,20 @@ use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class DatasetTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $identity;
     private $connection;
     private $mapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->mapper = new ValueMapper(false);
         $this->identity = ['datasetId' => 'id', 'projectId' => 'projectId'];

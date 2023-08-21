@@ -40,7 +40,7 @@ class StorageTestCase extends SystemTestCase
     protected static $mainBucketName;
     private static $hasSetUp = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

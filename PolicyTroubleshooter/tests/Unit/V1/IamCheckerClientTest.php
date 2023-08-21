@@ -25,7 +25,6 @@ namespace Google\Cloud\PolicyTroubleshooter\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\PolicyTroubleshooter\V1\IamCheckerClient;
 use Google\Cloud\PolicyTroubleshooter\V1\TroubleshootIamPolicyResponse;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class IamCheckerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return IamCheckerClient
-     */
+    /** @return IamCheckerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class IamCheckerClientTest extends GeneratedTest
         return new IamCheckerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function troubleshootIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -89,9 +80,7 @@ class IamCheckerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function troubleshootIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();

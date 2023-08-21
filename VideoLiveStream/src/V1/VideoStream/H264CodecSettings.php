@@ -30,8 +30,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      */
     private $height_pixels = 0;
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less
-     * than or equal to 60. Will default to the input frame rate if larger
+     * Required. The target video frame rate in frames per second (FPS). Must be
+     * less than or equal to 60. Will default to the input frame rate if larger
      * than the input frame rate. The API will generate an output FPS that is
      * divisible by the input FPS, and smaller or equal to the target FPS. See
      * [Calculating frame
@@ -58,7 +58,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     private $allow_open_gop = false;
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     * greater than zero. The default is equal to [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
+     * greater than zero. The default is equal to
+     * [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 9;</code>
      */
@@ -89,8 +90,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     private $b_pyramid = false;
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
-     * zero. Must be less than [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count] if set. The default
-     * is 0.
+     * zero. Must be less than
+     * [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     * if set. The default is 0.
      *
      * Generated from protobuf field <code>int32 b_frame_count = 13;</code>
      */
@@ -112,7 +114,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * The available options are [FFmpeg-compatible Profile
      * Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Profile).
      * Note that certain values for this field may cause the
-     * transcoder to override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     * transcoder to override other fields you set in the
+     * [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
      * message.
      *
      * Generated from protobuf field <code>string profile = 15;</code>
@@ -123,7 +126,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * [FFmpeg-compatible Encode
      * Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune)
      * Note that certain values for this field may cause the transcoder to
-     * override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings] message.
+     * override other fields you set in the
+     * [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     * message.
      *
      * Generated from protobuf field <code>string tune = 16;</code>
      */
@@ -143,8 +148,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           Required. The height of the video in pixels. Must be an even integer.
      *           Valid range is [180, 1080].
      *     @type float $frame_rate
-     *           Required. The target video frame rate in frames per second (FPS). Must be less
-     *           than or equal to 60. Will default to the input frame rate if larger
+     *           Required. The target video frame rate in frames per second (FPS). Must be
+     *           less than or equal to 60. Will default to the input frame rate if larger
      *           than the input frame rate. The API will generate an output FPS that is
      *           divisible by the input FPS, and smaller or equal to the target FPS. See
      *           [Calculating frame
@@ -166,13 +171,15 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $gop_duration
      *           Select the GOP size based on the specified duration. The default is
      *           `2s`. Note that `gopDuration` must be less than or equal to
-     *           [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration], and
-     *           [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration] must be divisible
-     *           by `gopDuration`. Valid range is [2s, 20s].
+     *           [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration],
+     *           and
+     *           [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration]
+     *           must be divisible by `gopDuration`. Valid range is [2s, 20s].
      *           All video streams in the same channel must have the same GOP size.
      *     @type int $vbv_size_bits
      *           Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     *           greater than zero. The default is equal to [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
+     *           greater than zero. The default is equal to
+     *           [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *     @type int $vbv_fullness_bits
      *           Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
      *           Must be greater than zero. The default is equal to 90% of
@@ -187,8 +194,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           on all decoders. The default is `false`.
      *     @type int $b_frame_count
      *           The number of consecutive B-frames. Must be greater than or equal to
-     *           zero. Must be less than [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count] if set. The default
-     *           is 0.
+     *           zero. Must be less than
+     *           [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     *           if set. The default is 0.
      *     @type float $aq_strength
      *           Specify the intensity of the adaptive quantizer (AQ). Must be between 0
      *           and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A
@@ -202,14 +210,17 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           The available options are [FFmpeg-compatible Profile
      *           Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Profile).
      *           Note that certain values for this field may cause the
-     *           transcoder to override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     *           transcoder to override other fields you set in the
+     *           [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
      *           message.
      *     @type string $tune
      *           Enforces the specified codec tune. The available options are
      *           [FFmpeg-compatible Encode
      *           Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune)
      *           Note that certain values for this field may cause the transcoder to
-     *           override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings] message.
+     *           override other fields you set in the
+     *           [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     *           message.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,8 +285,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less
-     * than or equal to 60. Will default to the input frame rate if larger
+     * Required. The target video frame rate in frames per second (FPS). Must be
+     * less than or equal to 60. Will default to the input frame rate if larger
      * than the input frame rate. The API will generate an output FPS that is
      * divisible by the input FPS, and smaller or equal to the target FPS. See
      * [Calculating frame
@@ -291,8 +302,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less
-     * than or equal to 60. Will default to the input frame rate if larger
+     * Required. The target video frame rate in frames per second (FPS). Must be
+     * less than or equal to 60. Will default to the input frame rate if larger
      * than the input frame rate. The API will generate an output FPS that is
      * divisible by the input FPS, and smaller or equal to the target FPS. See
      * [Calculating frame
@@ -411,9 +422,10 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Select the GOP size based on the specified duration. The default is
      * `2s`. Note that `gopDuration` must be less than or equal to
-     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration], and
-     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration] must be divisible
-     * by `gopDuration`. Valid range is [2s, 20s].
+     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration],
+     * and
+     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration]
+     * must be divisible by `gopDuration`. Valid range is [2s, 20s].
      * All video streams in the same channel must have the same GOP size.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration gop_duration = 8;</code>
@@ -432,9 +444,10 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Select the GOP size based on the specified duration. The default is
      * `2s`. Note that `gopDuration` must be less than or equal to
-     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration], and
-     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration] must be divisible
-     * by `gopDuration`. Valid range is [2s, 20s].
+     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration],
+     * and
+     * [segment_duration][google.cloud.video.livestream.v1.SegmentSettings.segment_duration]
+     * must be divisible by `gopDuration`. Valid range is [2s, 20s].
      * All video streams in the same channel must have the same GOP size.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration gop_duration = 8;</code>
@@ -451,7 +464,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     * greater than zero. The default is equal to [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
+     * greater than zero. The default is equal to
+     * [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 9;</code>
      * @return int
@@ -463,7 +477,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     * greater than zero. The default is equal to [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
+     * greater than zero. The default is equal to
+     * [bitrate_bps][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 9;</code>
      * @param int $var
@@ -569,8 +584,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
-     * zero. Must be less than [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count] if set. The default
-     * is 0.
+     * zero. Must be less than
+     * [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     * if set. The default is 0.
      *
      * Generated from protobuf field <code>int32 b_frame_count = 13;</code>
      * @return int
@@ -582,8 +598,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
-     * zero. Must be less than [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count] if set. The default
-     * is 0.
+     * zero. Must be less than
+     * [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     * if set. The default is 0.
      *
      * Generated from protobuf field <code>int32 b_frame_count = 13;</code>
      * @param int $var
@@ -636,7 +653,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * The available options are [FFmpeg-compatible Profile
      * Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Profile).
      * Note that certain values for this field may cause the
-     * transcoder to override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     * transcoder to override other fields you set in the
+     * [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
      * message.
      *
      * Generated from protobuf field <code>string profile = 15;</code>
@@ -656,7 +674,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * The available options are [FFmpeg-compatible Profile
      * Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Profile).
      * Note that certain values for this field may cause the
-     * transcoder to override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     * transcoder to override other fields you set in the
+     * [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
      * message.
      *
      * Generated from protobuf field <code>string profile = 15;</code>
@@ -676,7 +695,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * [FFmpeg-compatible Encode
      * Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune)
      * Note that certain values for this field may cause the transcoder to
-     * override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings] message.
+     * override other fields you set in the
+     * [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     * message.
      *
      * Generated from protobuf field <code>string tune = 16;</code>
      * @return string
@@ -691,7 +712,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * [FFmpeg-compatible Encode
      * Options](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune)
      * Note that certain values for this field may cause the transcoder to
-     * override other fields you set in the [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings] message.
+     * override other fields you set in the
+     * [H264CodecSettings][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings]
+     * message.
      *
      * Generated from protobuf field <code>string tune = 16;</code>
      * @param string $var

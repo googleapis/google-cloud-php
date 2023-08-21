@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message of [ModelService.ExportModel][google.cloud.aiplatform.v1.ModelService.ExportModel] operation.
+ * Response message of
+ * [ModelService.ExportModel][google.cloud.aiplatform.v1.ModelService.ExportModel]
+ * operation.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExportModelResponse</code>
  */

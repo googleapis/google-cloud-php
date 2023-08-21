@@ -46,7 +46,7 @@ class LanguageClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '0.27.0';
+    const VERSION = '0.31.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -455,9 +455,7 @@ class LanguageClient
      */
     public function annotateText($content, array $options = [])
     {
-        $features = isset($options['features'])
-            ? $options['features']
-            : array_values($this->featureShortNames);
+        $features = $options['features'] ?? array_values($this->featureShortNames);
         $options['features'] = $this->normalizeFeatures($features);
 
         return new Annotation(

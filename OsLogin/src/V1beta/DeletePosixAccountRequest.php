@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A reference to the POSIX account to update. POSIX accounts are identified
-     * by the project ID they are associated with. A reference to the POSIX
-     * account is in format `users/{user}/projects/{project}`.
+     * Required. A reference to the POSIX account to update. POSIX accounts are
+     * identified by the project ID they are associated with. A reference to the
+     * POSIX account is in format `users/{user}/projects/{project}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,9 +31,9 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. A reference to the POSIX account to update. POSIX accounts are identified
-     *           by the project ID they are associated with. A reference to the POSIX
-     *           account is in format `users/{user}/projects/{project}`.
+     *           Required. A reference to the POSIX account to update. POSIX accounts are
+     *           identified by the project ID they are associated with. A reference to the
+     *           POSIX account is in format `users/{user}/projects/{project}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +42,9 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A reference to the POSIX account to update. POSIX accounts are identified
-     * by the project ID they are associated with. A reference to the POSIX
-     * account is in format `users/{user}/projects/{project}`.
+     * Required. A reference to the POSIX account to update. POSIX accounts are
+     * identified by the project ID they are associated with. A reference to the
+     * POSIX account is in format `users/{user}/projects/{project}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -55,9 +55,9 @@ class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A reference to the POSIX account to update. POSIX accounts are identified
-     * by the project ID they are associated with. A reference to the POSIX
-     * account is in format `users/{user}/projects/{project}`.
+     * Required. A reference to the POSIX account to update. POSIX accounts are
+     * identified by the project ID they are associated with. A reference to the
+     * POSIX account is in format `users/{user}/projects/{project}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

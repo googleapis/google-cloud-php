@@ -62,6 +62,28 @@ class CreateAppGatewayRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                             $parent       Required. The resource project name of the AppGateway location using the
+     *                                                                         form: `projects/{project_id}/locations/{location_id}`
+     *                                                                         Please see {@see AppGatewaysServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway $appGateway   Required. A BeyondCorp AppGateway resource.
+     * @param string                                             $appGatewayId Optional. User-settable AppGateway resource ID.
+     *                                                                         * Must start with a letter.
+     *                                                                         * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
+     *                                                                         * Must end with a number or a letter.
+     *
+     * @return \Google\Cloud\BeyondCorp\AppGateways\V1\CreateAppGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway $appGateway, string $appGatewayId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAppGateway($appGateway)
+            ->setAppGatewayId($appGatewayId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

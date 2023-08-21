@@ -25,7 +25,6 @@ namespace Google\Cloud\TextToSpeech\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class TextToSpeechClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TextToSpeechClient
-     */
+    /** @return TextToSpeechClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class TextToSpeechClientTest extends GeneratedTest
         return new TextToSpeechClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVoicesTest()
     {
         $transport = $this->createTransport();
@@ -94,9 +85,7 @@ class TextToSpeechClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVoicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -127,9 +116,7 @@ class TextToSpeechClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function synthesizeSpeechTest()
     {
         $transport = $this->createTransport();
@@ -166,9 +153,7 @@ class TextToSpeechClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function synthesizeSpeechExceptionTest()
     {
         $transport = $this->createTransport();

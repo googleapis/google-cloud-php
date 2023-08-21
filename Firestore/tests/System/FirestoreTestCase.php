@@ -25,13 +25,16 @@ use Google\Cloud\Firestore\FirestoreClient;
 class FirestoreTestCase extends SystemTestCase
 {
     const COLLECTION_NAME = 'system-test';
+    const TEST_DB_NAME = 'system-tests-named-db';
 
     protected static $client;
+    protected static $multiDbClient;
     protected static $collection;
+    protected static $multiDbCollection;
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -43,9 +46,14 @@ class FirestoreTestCase extends SystemTestCase
         self::$client = new FirestoreClient([
             'keyFilePath' => $keyFilePath
         ]);
+        self::$multiDbClient = new FirestoreClient([
+            'keyFilePath' => $keyFilePath,
+            'database' => self::TEST_DB_NAME
+        ]);
         self::$collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$multiDbCollection = self::$multiDbClient->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add(self::$collection);
-
+        self::$localDeletionQueue->add(self::$multiDbCollection);
 
         self::$hasSetUp = true;
     }
@@ -73,5 +81,12 @@ class FirestoreTestCase extends SystemTestCase
                 });
             }
         });
+    }
+
+    public static function skipEmulatorTests()
+    {
+        if ((bool) getenv("FIRESTORE_EMULATOR_HOST")) {
+            self::markTestSkipped('This test is not supported by the emulator.');
+        }
     }
 }

@@ -27,6 +27,18 @@ return [
             ],
         ],
         'google.cloud.metastore.v1.DataprocMetastore' => [
+            'AlterMetadataResourceLocation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:alterLocation',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/services/*}/backups',
@@ -172,6 +184,30 @@ return [
                     ],
                 ],
             ],
+            'MoveTableToDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:moveTableToDatabase',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryMetadata' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:queryMetadata',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreService' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:restore',
@@ -226,6 +262,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/services/*/backups/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/federations/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -245,6 +285,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/services/*/backups/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/federations/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -258,6 +303,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/services/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/federations/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -268,6 +320,18 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
@@ -303,4 +367,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

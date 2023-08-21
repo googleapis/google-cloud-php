@@ -115,6 +115,4 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChangeOfferPurchase::class, \Google\Cloud\Channel\V1\ListPurchasableOffersRequest_ChangeOfferPurchase::class);
 

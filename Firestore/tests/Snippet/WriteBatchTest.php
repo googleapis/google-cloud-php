@@ -26,6 +26,7 @@ use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -34,6 +35,7 @@ use Prophecy\Argument;
 class WriteBatchTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const DATABASE = 'projects/example_project/databases/(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
@@ -41,7 +43,7 @@ class WriteBatchTest extends SnippetTestCase
     private $connection;
     private $batch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->batch = TestHelpers::stub(WriteBatch::class, [

@@ -23,15 +23,12 @@
 namespace Google\Cloud\Dataproc\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\ListWorkflowTemplatesResponse;
 use Google\Cloud\Dataproc\V1\WorkflowTemplate;
-
 use Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement;
 use Google\Cloud\Dataproc\V1\WorkflowTemplateServiceClient;
 use Google\LongRunning\GetOperationRequest;
@@ -48,25 +45,19 @@ use stdClass;
  */
 class WorkflowTemplateServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return WorkflowTemplateServiceClient
-     */
+    /** @return WorkflowTemplateServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -75,9 +66,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         return new WorkflowTemplateServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWorkflowTemplateTest()
     {
         $transport = $this->createTransport();
@@ -117,9 +106,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWorkflowTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -159,9 +146,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkflowTemplateTest()
     {
         $transport = $this->createTransport();
@@ -185,9 +170,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkflowTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -220,9 +203,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkflowTemplateTest()
     {
         $transport = $this->createTransport();
@@ -253,9 +234,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkflowTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -288,14 +267,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function instantiateInlineWorkflowTemplateTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -361,14 +338,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function instantiateInlineWorkflowTemplateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -425,14 +400,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function instantiateWorkflowTemplateTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -489,14 +462,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function instantiateWorkflowTemplateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -546,9 +517,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkflowTemplatesTest()
     {
         $transport = $this->createTransport();
@@ -583,9 +552,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkflowTemplatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -618,9 +585,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateWorkflowTemplateTest()
     {
         $transport = $this->createTransport();
@@ -657,9 +622,7 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateWorkflowTemplateExceptionTest()
     {
         $transport = $this->createTransport();

@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [KeyUsage][google.cloud.security.privateca.v1.KeyUsage] describes key usage values that may appear in an X.509
- * certificate.
+ * A [KeyUsage][google.cloud.security.privateca.v1.KeyUsage] describes key usage
+ * values that may appear in an X.509 certificate.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.KeyUsage</code>
  */
@@ -30,7 +30,8 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
     private $extended_key_usage = null;
     /**
      * Used to describe extended key usages that are not listed in the
-     * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions] message.
+     * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]
+     * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId unknown_extended_key_usages = 3;</code>
      */
@@ -48,7 +49,8 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      *           Detailed scenarios in which a key may be used.
      *     @type array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $unknown_extended_key_usages
      *           Used to describe extended key usages that are not listed in the
-     *           [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions] message.
+     *           [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]
+     *           message.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,7 +132,8 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
 
     /**
      * Used to describe extended key usages that are not listed in the
-     * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions] message.
+     * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]
+     * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId unknown_extended_key_usages = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -142,7 +145,8 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
 
     /**
      * Used to describe extended key usages that are not listed in the
-     * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions] message.
+     * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]
+     * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId unknown_extended_key_usages = 3;</code>
      * @param array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $var

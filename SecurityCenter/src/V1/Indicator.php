@@ -9,17 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents what's commonly known as an Indicator of compromise (IoC) in
+ * Represents what's commonly known as an _indicator of compromise_ (IoC) in
  * computer forensics. This is an artifact observed on a network or in an
  * operating system that, with high confidence, indicates a computer intrusion.
- * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+ * For more information, see [Indicator of
+ * compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Indicator</code>
  */
 class Indicator extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of ip addresses associated to the Finding.
+     * The list of IP addresses that are associated with the finding.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 1;</code>
      */
@@ -51,7 +52,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
-     *           List of ip addresses associated to the Finding.
+     *           The list of IP addresses that are associated with the finding.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
      *           List of domains associated to the Finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature>|\Google\Protobuf\Internal\RepeatedField $signatures
@@ -67,7 +68,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of ip addresses associated to the Finding.
+     * The list of IP addresses that are associated with the finding.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -78,7 +79,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of ip addresses associated to the Finding.
+     * The list of IP addresses that are associated with the finding.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 1;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

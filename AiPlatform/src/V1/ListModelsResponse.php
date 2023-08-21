@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels]
+ * Response message for
+ * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels]
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListModelsResponse</code>
  */
@@ -23,7 +24,9 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
     private $models;
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,7 +42,9 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      *           List of Models in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
-     *           Pass to [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token] to obtain that page.
+     *           Pass to
+     *           [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +80,9 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -87,7 +94,9 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token] to obtain that page.
+     * Pass to
+     * [ListModelsRequest.page_token][google.cloud.aiplatform.v1.ListModelsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

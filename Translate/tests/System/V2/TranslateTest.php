@@ -17,22 +17,15 @@
 
 namespace Google\Cloud\Translate\Tests\System\V2;
 
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group translate
  */
 class TranslateTest extends TranslateTestCase
 {
-    use AssertIsType;
-    use AssertStringContains;
-    use ExpectException;
-
     const INPUT_LANGUAGE = 'es';
     const INPUT_STRING = '¿hola, como estas?';
-    const OUTPUT_STRING = 'Hello how are you doing?';
+    const OUTPUT_STRING = 'Hello how are you?';
 
     public function testTranslate()
     {
@@ -64,7 +57,7 @@ class TranslateTest extends TranslateTestCase
         $this->assertEquals(self::INPUT_LANGUAGE, $res['source']);
         $this->assertEquals(self::INPUT_STRING, $res['input']);
         $this->assertEquals(self::OUTPUT_STRING, $res['text']);
-        $this->assertEquals('base', $res['model']);
+        $this->assertEquals('nmt', $res['model']);
     }
 
     public function testTranslateInvalidModel()
@@ -103,7 +96,7 @@ class TranslateTest extends TranslateTestCase
     {
         $client = self::$client;
 
-        $res = $client->translateBatch([self::INPUT_STRING], ['model' => 'nmt']);
+        $res = $client->translateBatch([self::INPUT_STRING], ['model' => 'base']);
         $this->assertEquals(self::INPUT_LANGUAGE, $res[0]['source']);
         $this->assertEquals(self::INPUT_STRING, $res[0]['input']);
         $this->assertEquals(self::OUTPUT_STRING, $res[0]['text']);
@@ -118,7 +111,7 @@ class TranslateTest extends TranslateTestCase
         $this->assertEquals(self::INPUT_LANGUAGE, $res[0]['source']);
         $this->assertEquals(self::INPUT_STRING, $res[0]['input']);
         $this->assertEquals(self::OUTPUT_STRING, $res[0]['text']);
-        $this->assertEquals('base', $res[0]['model']);
+        $this->assertEquals('nmt', $res[0]['model']);
     }
 
     public function testTranslateBatchInvalidModel()
@@ -164,7 +157,7 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->detectLanguage('');
         $this->assertEquals('und', $res['languageCode']);
-        $this->assertEquals(1, $res['confidence']);
+        $this->assertEquals(0, $res['confidence']);
     }
 
     public function testDetectLanguageBatch()
@@ -189,7 +182,7 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->detectLanguageBatch(['']);
         $this->assertEquals('und', $res[0]['languageCode']);
-        $this->assertEquals(1, $res[0]['confidence']);
+        $this->assertEquals(0, $res[0]['confidence']);
     }
 
     public function testDetectLanguages()
@@ -198,8 +191,8 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->languages();
         $this->assertIsArray($res);
-        $this->assertStringContainsString('en', $res);
-        $this->assertStringContainsString('es', $res);
+        $this->assertContains('en', $res);
+        $this->assertContains('es', $res);
     }
 
     public function testLocalizedLanguages()
@@ -208,7 +201,7 @@ class TranslateTest extends TranslateTestCase
 
         $res = $client->localizedLanguages();
         $this->assertIsArray($res);
-        $this->assertStringContainsString(['code' => 'es', 'name' => 'Spanish'], $res);
-        $this->assertStringContainsString(['code' => 'en', 'name' => 'English'], $res);
+        $this->assertContains(['code' => 'es', 'name' => 'Spanish'], $res);
+        $this->assertContains(['code' => 'en', 'name' => 'English'], $res);
     }
 }

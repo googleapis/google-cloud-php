@@ -19,21 +19,21 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Defines whether instances have Secure Boot enabled.
      *
-     * Generated from protobuf field <code>bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_secure_boot = false;
+    private $enable_secure_boot = null;
     /**
      * Optional. Defines whether instances have the vTPM enabled.
      *
-     * Generated from protobuf field <code>bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_vtpm = false;
+    private $enable_vtpm = null;
     /**
      * Optional. Defines whether instances have integrity monitoring enabled.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_integrity_monitoring = false;
+    private $enable_integrity_monitoring = null;
 
     /**
      * Constructor.
@@ -57,18 +57,28 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Defines whether instances have Secure Boot enabled.
      *
-     * Generated from protobuf field <code>bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableSecureBoot()
     {
-        return $this->enable_secure_boot;
+        return isset($this->enable_secure_boot) ? $this->enable_secure_boot : false;
+    }
+
+    public function hasEnableSecureBoot()
+    {
+        return isset($this->enable_secure_boot);
+    }
+
+    public function clearEnableSecureBoot()
+    {
+        unset($this->enable_secure_boot);
     }
 
     /**
      * Optional. Defines whether instances have Secure Boot enabled.
      *
-     * Generated from protobuf field <code>bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -83,18 +93,28 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Defines whether instances have the vTPM enabled.
      *
-     * Generated from protobuf field <code>bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableVtpm()
     {
-        return $this->enable_vtpm;
+        return isset($this->enable_vtpm) ? $this->enable_vtpm : false;
+    }
+
+    public function hasEnableVtpm()
+    {
+        return isset($this->enable_vtpm);
+    }
+
+    public function clearEnableVtpm()
+    {
+        unset($this->enable_vtpm);
     }
 
     /**
      * Optional. Defines whether instances have the vTPM enabled.
      *
-     * Generated from protobuf field <code>bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -109,18 +129,28 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Defines whether instances have integrity monitoring enabled.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableIntegrityMonitoring()
     {
-        return $this->enable_integrity_monitoring;
+        return isset($this->enable_integrity_monitoring) ? $this->enable_integrity_monitoring : false;
+    }
+
+    public function hasEnableIntegrityMonitoring()
+    {
+        return isset($this->enable_integrity_monitoring);
+    }
+
+    public function clearEnableIntegrityMonitoring()
+    {
+        unset($this->enable_integrity_monitoring);
     }
 
     /**
      * Optional. Defines whether instances have integrity monitoring enabled.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

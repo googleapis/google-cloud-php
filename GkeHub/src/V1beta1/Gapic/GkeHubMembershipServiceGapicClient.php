@@ -29,10 +29,8 @@ namespace Google\Cloud\GkeHub\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -69,9 +67,11 @@ use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: The GKE Hub MembershipService handles the registration of many Kubernetes
- * clusters to Google Cloud, represented with the [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
+ * clusters to Google Cloud, represented with the
+ * [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
  *
- * GKE Hub is currently only available in the global region.
+ * GKE Hub is currently available in the global region and all regions in
+ * https://cloud.google.com/compute/docs/regions-zones.
  *
  * **Membership management may be non-trivial:** it is recommended to use one
  * of the Google-provided client libraries or tools where possible when working
@@ -90,7 +90,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -107,7 +107,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -128,29 +128,19 @@ class GkeHubMembershipServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkehub.v1beta1.GkeHubMembershipService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'gkehub.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -335,9 +325,6 @@ class GkeHubMembershipServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'gkehub.googleapis.com:443'.
@@ -367,7 +354,7 @@ class GkeHubMembershipServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -413,7 +400,7 @@ class GkeHubMembershipServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -430,7 +417,7 @@ class GkeHubMembershipServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -440,10 +427,10 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent (project and location) where the Memberships will be created.
-     *                                 Specified in the format `projects/&#42;/locations/*`.
-     * @param string     $membershipId Required. Client chosen ID for the membership. `membership_id` must be a valid RFC
-     *                                 1123 compliant DNS label:
+     * @param string     $parent       Required. The parent (project and location) where the Memberships will be
+     *                                 created. Specified in the format `projects/&#42;/locations/*`.
+     * @param string     $membershipId Required. Client chosen ID for the membership. `membership_id` must be a
+     *                                 valid RFC 1123 compliant DNS label:
      *
      *                                 1. At most 63 characters in length
      *                                 2. It must consist of lower case alphanumeric characters or `-`
@@ -558,6 +545,10 @@ class GkeHubMembershipServiceGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, any subresource from this Membership will also be
+     *           deleted. Otherwise, the request will only work if the Membership has no
+     *           subresource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -578,6 +569,10 @@ class GkeHubMembershipServiceGapicClient
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -602,15 +597,16 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The Membership resource name the Agent will associate with, in the format
-     *                             `projects/&#42;/locations/&#42;/memberships/*`.
+     * @param string $name         Required. The Membership resource name the Agent will associate with, in
+     *                             the format `projects/&#42;/locations/&#42;/memberships/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type ConnectAgent $connectAgent
      *           Optional. The connect agent to generate manifest for.
      *     @type string $version
-     *           Optional. The Connect agent version to use. Defaults to the most current version.
+     *           Optional. The Connect agent version to use. Defaults to the most current
+     *           version.
      *     @type bool $isUpgrade
      *           Optional. If true, generate the resources for upgrade only. Some resources
      *           generated only for installation (e.g. secrets) will be excluded.
@@ -799,8 +795,9 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project and location) where the Memberships will be listed.
-     *                             Specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The parent (project and location) where the Memberships will be
+     *                             listed. Specified in the format `projects/&#42;/locations/*`.
+     *                             `projects/&#42;/locations/-` list memberships in all the regions.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -814,8 +811,8 @@ class GkeHubMembershipServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Lists Memberships that match the filter expression, following the syntax
-     *           outlined in https://google.aip.dev/160.
+     *           Optional. Lists Memberships that match the filter expression, following the
+     *           syntax outlined in https://google.aip.dev/160.
      *
      *           Examples:
      *
@@ -890,7 +887,7 @@ class GkeHubMembershipServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -907,7 +904,7 @@ class GkeHubMembershipServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -919,8 +916,8 @@ class GkeHubMembershipServiceGapicClient
      *
      * @param string     $name         Required. The membership resource name in the format:
      *                                 `projects/[project_id]/locations/global/memberships/[membership_id]`
-     * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one field path must be specified in this
-     *                                 mask.
+     * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one field path must be
+     *                                 specified in this mask.
      * @param Membership $resource     Required. Only fields specified in update_mask are updated.
      *                                 If you specify a field in the update_mask but don't specify its value here
      *                                 that field will be deleted.
@@ -991,16 +988,17 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent             Required. The parent (project and location) where the Memberships will be created.
-     *                                   Specified in the format `projects/&#42;/locations/*`.
-     * @param string $intendedMembership Required. The intended membership name under the `parent`. This method only does
-     *                                   validation in anticipation of a CreateMembership call with the same name.
+     * @param string $parent             Required. The parent (project and location) where the Memberships will be
+     *                                   created. Specified in the format `projects/&#42;/locations/*`.
+     * @param string $intendedMembership Required. The intended membership name under the `parent`. This method only
+     *                                   does validation in anticipation of a CreateMembership call with the same
+     *                                   name.
      * @param array  $optionalArgs       {
      *     Optional.
      *
      *     @type string $crManifest
-     *           Optional. The YAML of the membership CR in the cluster. Empty if the membership
-     *           CR does not exist.
+     *           Optional. The YAML of the membership CR in the cluster. Empty if the
+     *           membership CR does not exist.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

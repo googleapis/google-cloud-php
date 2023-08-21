@@ -25,6 +25,20 @@ class GetProjectRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the project (for example, `projects/415104041262`). Please see
+     *                     {@see ProjectsClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\GetProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

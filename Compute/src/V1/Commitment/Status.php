@@ -24,6 +24,8 @@ class Status
      */
     const ACTIVE = 314733318;
     /**
+     * Deprecate CANCELED status. Will use separate status to differentiate cancel by mergeCud or manual cancellation.
+     *
      * Generated from protobuf enum <code>CANCELLED = 41957681;</code>
      */
     const CANCELLED = 41957681;

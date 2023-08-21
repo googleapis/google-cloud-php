@@ -21,7 +21,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 4;</code>
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -59,7 +59,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 4;</code>
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -70,7 +70,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 4;</code>
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

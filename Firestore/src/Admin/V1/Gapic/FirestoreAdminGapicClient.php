@@ -27,18 +27,15 @@ namespace Google\Cloud\Firestore\Admin\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
-
 use Google\ApiCore\Transport\TransportInterface;
-
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
@@ -100,30 +97,31 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $firestoreAdminClient = new FirestoreAdminClient();
  * try {
- *     $formattedParent = $firestoreAdminClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
- *     $index = new Index();
- *     $operationResponse = $firestoreAdminClient->createIndexLRO($formattedParent, $index);
+ *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
+ *     $database = new Database();
+ *     $databaseId = 'database_id';
+ *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $firestoreAdminClient->createIndexLRO($formattedParent, $index);
+ *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createIndex');
+ *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createDatabase');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -137,34 +135,28 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Firestore\Admin\V1\Client\FirestoreAdminClient} to use the new
+ * surface.
  */
 class FirestoreAdminGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.firestore.admin.v1.FirestoreAdmin';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'firestore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
@@ -436,9 +428,6 @@ class FirestoreAdminGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'firestore.googleapis.com:443'.
@@ -468,7 +457,7 @@ class FirestoreAdminGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -495,9 +484,85 @@ class FirestoreAdminGapicClient
     }
 
     /**
-     * Creates a composite index. This returns a [google.longrunning.Operation][google.longrunning.Operation]
-     * which may be used to track the status of the creation. The metadata for
-     * the operation will be the type [IndexOperationMetadata][google.firestore.admin.v1.IndexOperationMetadata].
+     * Create a database.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
+     *     $database = new Database();
+     *     $databaseId = 'database_id';
+     *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. A parent name of the form
+     *                               `projects/{project_id}`
+     * @param Database $database     Required. The Database to create.
+     * @param string   $databaseId   Required. The ID to use for the database, which will become the final
+     *                               component of the database's resource name.
+     *
+     *                               The value must be set to "(default)".
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createDatabase($parent, $database, $databaseId, array $optionalArgs = [])
+    {
+        $request = new CreateDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDatabase($database);
+        $request->setDatabaseId($databaseId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a composite index. This returns a
+     * [google.longrunning.Operation][google.longrunning.Operation] which may be
+     * used to track the status of the creation. The metadata for the operation
+     * will be the type
+     * [IndexOperationMetadata][google.firestore.admin.v1.IndexOperationMetadata].
      *
      * Sample code:
      * ```
@@ -509,7 +574,7 @@ class FirestoreAdminGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -526,7 +591,7 @@ class FirestoreAdminGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -624,7 +689,7 @@ class FirestoreAdminGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -641,7 +706,7 @@ class FirestoreAdminGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -943,10 +1008,12 @@ class FirestoreAdminGapicClient
     /**
      * Lists the field configuration and metadata for this database.
      *
-     * Currently, [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
-     * that have been explicitly overridden. To issue this query, call
-     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with the filter set to
-     * `indexConfig.usesAncestorConfig:false` .
+     * Currently,
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * only supports listing fields that have been explicitly overridden. To issue
+     * this query, call
+     * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     * with the filter set to `indexConfig.usesAncestorConfig:false` .
      *
      * Sample code:
      * ```
@@ -978,10 +1045,11 @@ class FirestoreAdminGapicClient
      *
      *     @type string $filter
      *           The filter to apply to list results. Currently,
-     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] only supports listing fields
-     *           that have been explicitly overridden. To issue this query, call
-     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields] with a filter that includes
-     *           `indexConfig.usesAncestorConfig:false` .
+     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     *           only supports listing fields that have been explicitly overridden. To issue
+     *           this query, call
+     *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
+     *           with a filter that includes `indexConfig.usesAncestorConfig:false` .
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1111,7 +1179,7 @@ class FirestoreAdminGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1128,7 +1196,7 @@ class FirestoreAdminGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1172,13 +1240,16 @@ class FirestoreAdminGapicClient
     /**
      * Updates a field configuration. Currently, field updates apply only to
      * single field index configuration. However, calls to
-     * [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField] should provide a field mask to avoid
-     * changing any configuration that the caller isn't aware of. The field mask
-     * should be specified as: `{ paths: "index_config" }`.
+     * [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField]
+     * should provide a field mask to avoid changing any configuration that the
+     * caller isn't aware of. The field mask should be specified as: `{ paths:
+     * "index_config" }`.
      *
-     * This call returns a [google.longrunning.Operation][google.longrunning.Operation] which may be used to
-     * track the status of the field update. The metadata for
-     * the operation will be the type [FieldOperationMetadata][google.firestore.admin.v1.FieldOperationMetadata].
+     * This call returns a
+     * [google.longrunning.Operation][google.longrunning.Operation] which may be
+     * used to track the status of the field update. The metadata for the
+     * operation will be the type
+     * [FieldOperationMetadata][google.firestore.admin.v1.FieldOperationMetadata].
      *
      * To configure the default field settings for the database, use
      * the special `Field` with resource name:
@@ -1193,7 +1264,7 @@ class FirestoreAdminGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1210,7 +1281,7 @@ class FirestoreAdminGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

@@ -55,6 +55,18 @@ class State
      * Generated from protobuf enum <code>ABORTED = 6;</code>
      */
     const ABORTED = 6;
+    /**
+     * The Job was skipped.
+     *
+     * Generated from protobuf enum <code>SKIPPED = 7;</code>
+     */
+    const SKIPPED = 7;
+    /**
+     * The Job was ignored.
+     *
+     * Generated from protobuf enum <code>IGNORED = 8;</code>
+     */
+    const IGNORED = 8;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -64,6 +76,8 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::ABORTED => 'ABORTED',
+        self::SKIPPED => 'SKIPPED',
+        self::IGNORED => 'IGNORED',
     ];
 
     public static function name($value)

@@ -24,6 +24,21 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the Instance to retrieve.
+     *                     Format: `projects/&#42;/locations/&#42;/instances/*`. Please see
+     *                     {@see ProvisioningClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\GetInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

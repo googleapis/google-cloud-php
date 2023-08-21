@@ -23,15 +23,12 @@
 namespace Google\Cloud\AIPlatform\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\ListPipelineJobsResponse;
 use Google\Cloud\AIPlatform\V1\ListTrainingPipelinesResponse;
-
 use Google\Cloud\AIPlatform\V1\PipelineJob;
 use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
 use Google\Cloud\AIPlatform\V1\TrainingPipeline;
@@ -54,25 +51,19 @@ use stdClass;
  */
 class PipelineServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PipelineServiceClient
-     */
+    /** @return PipelineServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,9 +72,7 @@ class PipelineServiceClientTest extends GeneratedTest
         return new PipelineServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelPipelineJobTest()
     {
         $transport = $this->createTransport();
@@ -107,9 +96,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelPipelineJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -142,9 +129,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelTrainingPipelineTest()
     {
         $transport = $this->createTransport();
@@ -168,9 +153,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelTrainingPipelineExceptionTest()
     {
         $transport = $this->createTransport();
@@ -203,9 +186,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPipelineJobTest()
     {
         $transport = $this->createTransport();
@@ -219,12 +200,14 @@ class PipelineServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
         $templateUri = 'templateUri-975637465';
+        $scheduleName = 'scheduleName1677633331';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setTemplateUri($templateUri);
+        $expectedResponse->setScheduleName($scheduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -243,9 +226,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPipelineJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -279,9 +260,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTrainingPipelineTest()
     {
         $transport = $this->createTransport();
@@ -325,9 +304,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTrainingPipelineExceptionTest()
     {
         $transport = $this->createTransport();
@@ -367,14 +344,12 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePipelineJobTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -431,14 +406,12 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePipelineJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -488,14 +461,12 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTrainingPipelineTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -552,14 +523,12 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTrainingPipelineExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -609,9 +578,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPipelineJobTest()
     {
         $transport = $this->createTransport();
@@ -625,12 +592,14 @@ class PipelineServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
         $templateUri = 'templateUri-975637465';
+        $scheduleName = 'scheduleName1677633331';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setTemplateUri($templateUri);
+        $expectedResponse->setScheduleName($scheduleName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
@@ -646,9 +615,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPipelineJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -681,9 +648,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTrainingPipelineTest()
     {
         $transport = $this->createTransport();
@@ -718,9 +683,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTrainingPipelineExceptionTest()
     {
         $transport = $this->createTransport();
@@ -753,9 +716,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPipelineJobsTest()
     {
         $transport = $this->createTransport();
@@ -790,9 +751,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPipelineJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -825,9 +784,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTrainingPipelinesTest()
     {
         $transport = $this->createTransport();
@@ -862,9 +819,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTrainingPipelinesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -897,9 +852,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -926,9 +879,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -959,9 +910,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -992,9 +941,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1025,9 +972,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1056,9 +1001,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1091,9 +1034,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1125,9 +1066,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1161,9 +1100,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1191,9 +1128,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

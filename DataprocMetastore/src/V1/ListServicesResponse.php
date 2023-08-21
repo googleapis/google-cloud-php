@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices].
+ * Response message for
+ * [DataprocMetastore.ListServices][google.cloud.metastore.v1.DataprocMetastore.ListServices].
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1.ListServicesResponse</code>
  */

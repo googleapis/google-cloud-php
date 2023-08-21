@@ -33,19 +33,41 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Strongly recommended for the best service experience. Be aware that it will
      * also increase latency when checking the status of a batch operation.
-     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, only the specified fields in
-     * [Job][google.cloud.talent.v4.Job] are updated. Otherwise all the fields are updated.
+     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     * is provided, only the specified fields in [Job][google.cloud.talent.v4.Job]
+     * are updated. Otherwise all the fields are updated.
      * A field mask to restrict the fields that are updated. Only
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
-     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, The [Job][google.cloud.talent.v4.Job] inside
+     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     * is provided, The [Job][google.cloud.talent.v4.Job] inside
      * [JobResult][JobOperationResult.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
-     * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields, which can yield a very
-     * large response.
+     * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
+     * which can yield a very large response.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param string                        $parent Required. The resource name of the tenant under which the job is created.
+     *
+     *                                              The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *                                              "projects/foo/tenants/bar". Please see
+     *                                              {@see JobServiceClient::tenantName()} for help formatting this field.
+     * @param \Google\Cloud\Talent\V4\Job[] $jobs   Required. The jobs to be updated.
+     *                                              A maximum of 200 jobs can be updated in a batch.
+     *
+     * @return \Google\Cloud\Talent\V4\BatchUpdateJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $jobs): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJobs($jobs);
+    }
 
     /**
      * Constructor.
@@ -63,15 +85,17 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Strongly recommended for the best service experience. Be aware that it will
      *           also increase latency when checking the status of a batch operation.
-     *           If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, only the specified fields in
-     *           [Job][google.cloud.talent.v4.Job] are updated. Otherwise all the fields are updated.
+     *           If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     *           is provided, only the specified fields in [Job][google.cloud.talent.v4.Job]
+     *           are updated. Otherwise all the fields are updated.
      *           A field mask to restrict the fields that are updated. Only
      *           top level fields of [Job][google.cloud.talent.v4.Job] are supported.
-     *           If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, The [Job][google.cloud.talent.v4.Job] inside
+     *           If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     *           is provided, The [Job][google.cloud.talent.v4.Job] inside
      *           [JobResult][JobOperationResult.JobResult]
      *           will only contains fields that is updated, plus the Id of the Job.
-     *           Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields, which can yield a very
-     *           large response.
+     *           Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
+     *           which can yield a very large response.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,15 +164,17 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Strongly recommended for the best service experience. Be aware that it will
      * also increase latency when checking the status of a batch operation.
-     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, only the specified fields in
-     * [Job][google.cloud.talent.v4.Job] are updated. Otherwise all the fields are updated.
+     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     * is provided, only the specified fields in [Job][google.cloud.talent.v4.Job]
+     * are updated. Otherwise all the fields are updated.
      * A field mask to restrict the fields that are updated. Only
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
-     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, The [Job][google.cloud.talent.v4.Job] inside
+     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     * is provided, The [Job][google.cloud.talent.v4.Job] inside
      * [JobResult][JobOperationResult.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
-     * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields, which can yield a very
-     * large response.
+     * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
+     * which can yield a very large response.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -171,15 +197,17 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Strongly recommended for the best service experience. Be aware that it will
      * also increase latency when checking the status of a batch operation.
-     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, only the specified fields in
-     * [Job][google.cloud.talent.v4.Job] are updated. Otherwise all the fields are updated.
+     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     * is provided, only the specified fields in [Job][google.cloud.talent.v4.Job]
+     * are updated. Otherwise all the fields are updated.
      * A field mask to restrict the fields that are updated. Only
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
-     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask] is provided, The [Job][google.cloud.talent.v4.Job] inside
+     * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
+     * is provided, The [Job][google.cloud.talent.v4.Job] inside
      * [JobResult][JobOperationResult.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
-     * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields, which can yield a very
-     * large response.
+     * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
+     * which can yield a very large response.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @param \Google\Protobuf\FieldMask $var

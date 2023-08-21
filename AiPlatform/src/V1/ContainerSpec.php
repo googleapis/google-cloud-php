@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ContainerSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The URI of a container image in the Container Registry that is to be run on
-     * each worker replica.
+     * Required. The URI of a container image in the Container Registry that is to
+     * be run on each worker replica.
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,8 +50,8 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image_uri
-     *           Required. The URI of a container image in the Container Registry that is to be run on
-     *           each worker replica.
+     *           Required. The URI of a container image in the Container Registry that is to
+     *           be run on each worker replica.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
      *           The command to be invoked when the container is started.
      *           It overrides the entrypoint instruction in Dockerfile when provided.
@@ -68,8 +68,8 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI of a container image in the Container Registry that is to be run on
-     * each worker replica.
+     * Required. The URI of a container image in the Container Registry that is to
+     * be run on each worker replica.
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -80,8 +80,8 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI of a container image in the Container Registry that is to be run on
-     * each worker replica.
+     * Required. The URI of a container image in the Container Registry that is to
+     * be run on each worker replica.
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

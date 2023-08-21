@@ -39,6 +39,12 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
      */
     private $instance_properties = null;
+    /**
+     * Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
+     *
+     * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
+     */
+    private $source_instance_template = null;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Indicates how many instances are in use.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationReservedInstanceProperties $instance_properties
      *           The instance properties for the reservation.
+     *     @type string $source_instance_template
+     *           Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +209,42 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationReservedInstanceProperties::class);
         $this->instance_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
+     *
+     * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
+     * @return string
+     */
+    public function getSourceInstanceTemplate()
+    {
+        return isset($this->source_instance_template) ? $this->source_instance_template : '';
+    }
+
+    public function hasSourceInstanceTemplate()
+    {
+        return isset($this->source_instance_template);
+    }
+
+    public function clearSourceInstanceTemplate()
+    {
+        unset($this->source_instance_template);
+    }
+
+    /**
+     * Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
+     *
+     * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceInstanceTemplate($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_instance_template = $var;
 
         return $this;
     }

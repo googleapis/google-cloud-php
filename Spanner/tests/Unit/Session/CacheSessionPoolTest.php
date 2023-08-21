@@ -24,13 +24,15 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\FulfilledPromise;
+use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionMethod;
 
 /**
  * @group spanner
@@ -38,8 +40,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class CacheSessionPoolTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
     const PROJECT_ID = 'project';
@@ -49,7 +51,7 @@ class CacheSessionPoolTest extends TestCase
     private $time;
     private $cacheKey;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
@@ -88,7 +90,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionUnableToSaveItem()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage(
             'Failed to save session pool data. This can often be related to ' .
             'your chosen cache implementation running out of memory. ' .
@@ -119,7 +121,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionWhenMaxCyclesMet()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $config = [
             'maxSessions' => 1,
@@ -145,7 +147,7 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireThrowsExceptionWithNoAvailableSessions()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $config = [
             'maxSessions' => 1,
@@ -191,6 +193,24 @@ class CacheSessionPoolTest extends TestCase
         $this->assertTrue($exceptionThrown);
     }
 
+    public function testAcquireIfCreateSessionCallFails()
+    {
+        $exceptionThrown = false;
+        $exceptionMessage = null;
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $pool->setDatabase($this->getDatabase(true));
+
+        try {
+            $pool->acquire();
+        } catch (\Exception $ex) {
+            $exceptionThrown = true;
+            $exceptionMessage = $ex->getMessage();
+        }
+
+        $this->assertTrue($exceptionThrown);
+        $this->assertSame($exceptionMessage, 'error');
+    }
+
     public function testRelease()
     {
         $cacheData = [
@@ -199,6 +219,7 @@ class CacheSessionPoolTest extends TestCase
                 'session' => [
                     'name' => 'session',
                     'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
                     'lastActive' => $this->time
                 ]
             ],
@@ -210,7 +231,8 @@ class CacheSessionPoolTest extends TestCase
             'queue' => [
                 [
                     'name' => 'session',
-                    'expiration' => $this->time + 3600
+                    'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
                 ]
             ],
             'inUse' => [],
@@ -360,38 +382,92 @@ class CacheSessionPoolTest extends TestCase
         $this->assertEquals($expectedCreationCount, $response);
     }
 
-    public function testClearPool()
+    /**
+     * @dataProvider clearPoolTestDataProvider
+     */
+    public function testClearPool($cacheData, $willDeleteSessions, $expectedValue)
     {
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
-        $pool->setDatabase($this->getDatabase());
-        $pool->clear();
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool($cacheData), [], $this->time);
+        $pool->setDatabase($this->getDatabase(false, $willDeleteSessions));
+        $res = $pool->clear();
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
             sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
-
+        $this->assertEquals($expectedValue, $res);
+        // cached sessions should always be cleared
         $this->assertNull($actualCacheData);
     }
 
-    public function testReleaseSessionAfterClearingPoolSucceeds()
+    public function testDeleteSessionsForNoWait()
     {
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
-        $pool->setDatabase($this->getDatabase());
-        $session = $pool->acquire();
-        $itemPool = $pool->cacheItemPool();
-        $pool->clear();
-        $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
-        )->get();
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), [], $this->time);
+        $deleteSessions = new ReflectionMethod($pool, 'deleteSessions');
+        $deleteSessions->setAccessible(true);
+        $res = $deleteSessions->invoke($pool, [], false);
 
-        $this->assertNull($cacheData);
+        $this->assertTrue($res);
+    }
 
-        $pool->release($session);
-        $cacheData = $itemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
-        )->get();
+    public function testDeleteSessionsForNoSessions()
+    {
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), [], $this->time);
+        $deleteSessions = new ReflectionMethod($pool, 'deleteSessions');
+        $deleteSessions->setAccessible(true);
+        $res = $deleteSessions->invoke($pool, [], true);
 
-        $this->assertNull($cacheData);
+        $this->assertTrue($res);
+    }
+
+    public function clearPoolTestDataProvider()
+    {
+        $cacheData = [
+            'queue' => [
+                'session' => [
+                    'name' => 'session',
+                    'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
+                    'lastActive' => $this->time
+                ]
+            ],
+            'inUse' => [
+                'session' => [
+                    'name' => 'session',
+                    'expiration' => $this->time + 3600,
+                    'creation' => $this->time,
+                    'lastActive' => $this->time
+                ]
+            ],
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
+        ];
+        return [
+            // Set #0: null sessions in cache
+            [
+              null,
+              true,
+              true
+            ],
+            // Set #1: null sessions in cache
+            [
+              null,
+              false,
+              true
+            ],
+            // Set #2: clear returns false if delete session returns false
+            [
+              $cacheData,
+              false,
+              false
+            ],
+            // Set #3: clear returns true if delete session returns true
+            [
+              $cacheData,
+              true,
+              true
+            ],
+        ];
     }
 
     /**
@@ -427,6 +503,7 @@ class CacheSessionPoolTest extends TestCase
                         'session0' => [
                             'name' => 'session0',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -443,7 +520,8 @@ class CacheSessionPoolTest extends TestCase
                     'queue' => [
                         [
                             'name' => 'expired',
-                            'expiration' => $time - 3000
+                            'expiration' => $time - 3000,
+                            'creation' => $time
                         ]
                     ],
                     'inUse' => [],
@@ -457,6 +535,7 @@ class CacheSessionPoolTest extends TestCase
                         'session0' => [
                             'name' => 'session0',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -476,6 +555,7 @@ class CacheSessionPoolTest extends TestCase
                         'alreadyCheckedOut' => [
                             'name' => 'alreadyCheckedOut',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -489,11 +569,13 @@ class CacheSessionPoolTest extends TestCase
                         'session0' => [
                             'name' => 'session0',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ],
                         'alreadyCheckedOut' => [
                             'name' => 'alreadyCheckedOut',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -512,11 +594,13 @@ class CacheSessionPoolTest extends TestCase
                         'expiredInUse1' => [
                             'name' => 'expiredInUse1',
                             'expiration' => $time - 5000,
+                            'creation' => $time,
                             'lastActive' => $time - 1201
                         ],
                         'expiredInUse2' => [
                             'name' => 'expiredInUse2',
                             'expiration' => $time - 5000,
+                            'creation' => $time,
                             'lastActive' => $time - 3601
                         ]
                     ],
@@ -532,6 +616,7 @@ class CacheSessionPoolTest extends TestCase
                         'session0' => [
                             'name' => 'session0',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -548,7 +633,8 @@ class CacheSessionPoolTest extends TestCase
                     'queue' => [
                         [
                             'name' => 'session',
-                            'expiration' => $time + 3600
+                            'expiration' => $time + 3600,
+                            'creation' => $time,
                         ]
                     ],
                     'inUse' => [],
@@ -562,6 +648,7 @@ class CacheSessionPoolTest extends TestCase
                         'session' => [
                             'name' => 'session',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -578,11 +665,13 @@ class CacheSessionPoolTest extends TestCase
                     'queue' => [
                         [
                             'name' => 'expiresSoon',
-                            'expiration' => $time + 1500
+                            'expiration' => $time + 1500,
+                            'creation' => $time,
                         ],
                         [
                             'name' => 'session',
-                            'expiration' => $time + 3600
+                            'expiration' => $time + 3600,
+                            'creation' => $time,
                         ]
                     ],
                     'inUse' => [],
@@ -596,6 +685,7 @@ class CacheSessionPoolTest extends TestCase
                         'session' => [
                             'name' => 'session',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -614,6 +704,7 @@ class CacheSessionPoolTest extends TestCase
                         'inactiveInUse1' => [
                             'name' => 'inactiveInUse1',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time - 1201
                         ]
                     ],
@@ -627,6 +718,7 @@ class CacheSessionPoolTest extends TestCase
                         'inactiveInUse1' => [
                             'name' => 'inactiveInUse1',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -643,19 +735,23 @@ class CacheSessionPoolTest extends TestCase
                     'queue' => [
                         [
                             'name' => 'session1',
-                            'expiration' => $time + 3600
+                            'expiration' => $time + 3600,
+                            'creation' => $time,
                         ],
                         [
                             'name' => 'session2',
-                            'expiration' => $time + 3600
+                            'expiration' => $time + 3600,
+                            'creation' => $time,
                         ],
                         [
                             'name' => 'session3',
-                            'expiration' => $time + 3600
+                            'expiration' => $time + 3600,
+                            'creation' => $time,
                         ],
                         [
                             'name' => 'session4',
-                            'expiration' => $time + 3600
+                            'expiration' => $time + 3600,
+                            'creation' => $time,
                         ]
                     ],
                     'inUse' => [],
@@ -669,6 +765,7 @@ class CacheSessionPoolTest extends TestCase
                         'session1' => [
                             'name' => 'session1',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -678,6 +775,7 @@ class CacheSessionPoolTest extends TestCase
                 ],
                 $time
             ],
+            // Set #8: With labels
             [
                 [
                     'labels' => [
@@ -691,6 +789,7 @@ class CacheSessionPoolTest extends TestCase
                         'session0' => [
                             'name' => 'session0',
                             'expiration' => $time + 3600,
+                            'creation' => $time,
                             'lastActive' => $time
                         ]
                     ],
@@ -699,7 +798,58 @@ class CacheSessionPoolTest extends TestCase
                     'maxInUseSessions' => 1
                 ],
                 $time
-            ]
+              ],
+              // Set #9: Session expires in 28 days
+              [
+                  [],
+                  [
+                      'queue' => [
+                          [
+                              'name' => 'expiredSession',
+                              'expiration' => $time + 3600,
+                              'creation' => $time
+                                  - CacheSessionPool::DURATION_SESSION_LIFETIME,
+                          ],
+                          [
+                              'name' => 'expiresSoon',
+                              'expiration' => $time + 3600,
+                              'creation' => $time + 3600
+                                  - CacheSessionPool::DURATION_SESSION_LIFETIME,
+                          ],
+                          [
+                              'name' => 'activeSession',
+                              'expiration' => $time + 3600,
+                              'creation' => $time,
+                          ]
+                      ],
+                      'inUse' => [],
+                      'toCreate' => [],
+                      'windowStart' => $time,
+                      'maxInUseSessions' => 1
+                  ],
+                  [
+                      'queue' => [
+                          [
+                              'name' => 'activeSession',
+                              'expiration' => $time + 3600,
+                              'creation' => $time,
+                          ]
+                      ],
+                      'inUse' => [
+                          'expiresSoon' => [
+                              'name' => 'expiresSoon',
+                              'expiration' => $time + 3600,
+                              'creation' => $time + 3600
+                                  - CacheSessionPool::DURATION_SESSION_LIFETIME,
+                              'lastActive' => $time
+                          ]
+                      ],
+                      'toCreate' => [],
+                      'windowStart' => $time,
+                      'maxInUseSessions' => 1
+                  ],
+                  $time
+              ],
         ];
     }
 
@@ -708,20 +858,23 @@ class CacheSessionPoolTest extends TestCase
         $database = $this->prophesize(DatabaseStub::class);
         $session = $this->prophesize(SessionStub::class);
         $connection = $this->prophesize(Grpc::class);
-        $promise = $this->prophesize(PromiseInterface::class);
 
         $session->expiration()
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
-        $promise->wait()
-            ->willReturn(null);
-        $connection->deleteSessionAsync(Argument::any())
-            ->willReturn($promise->reveal());
-
         if ($willDeleteSessions) {
             $session->delete()
-                ->willReturn(null);
+            ->willReturn(null);
+            $connection->deleteSessionAsync(Argument::any())
+                ->willReturn(new FulfilledPromise(
+                    new DumbObject()
+                ));
+        } else {
+            $connection->deleteSessionAsync(Argument::any())
+                ->willReturn(new RejectedPromise(
+                    new DumbObject()
+                ));
         }
         $database->connection()
             ->willReturn($connection->reveal());
@@ -790,6 +943,7 @@ class CacheSessionPoolTest extends TestCase
         return [
             'name' => basename($name),
             'expiration' => $this->time + 3600 - $age,
+            'creation' => $this->time,
         ];
     }
 
@@ -877,14 +1031,42 @@ class CacheSessionPoolTest extends TestCase
 
     public function testMaintainNoDatabase()
     {
-        $this->expectException('\LogicException');
+        $this->expectException(\LogicException::class);
 
         $cache = $this->getCacheItemPool();
         $pool = new CacheSessionPoolStub($cache, [], $this->time);
         $pool->maintain();
     }
 
-     /**
+    /**
+     * @dataProvider maintainDataProvider
+     */
+    public function testMaintainServerDeletedSessions(
+        $maintainInterval,
+        $initialItems,
+        $expectedItems,
+        $config = [],
+        $data = []
+    ) {
+        $cacheData = $this->cacheData($initialItems, $maintainInterval);
+        $expiredTime = $this->time - 28*24*60*60; // 28 days
+        foreach ($cacheData['queue'] as $k => $v) {
+            $cacheData['queue'][$k]['creation'] = $expiredTime;
+        }
+        // all expired sessions should be deleted
+        $expectedItems = [];
+
+        $cache = $this->getCacheItemPool($data + $cacheData);
+        $config += ['minSessions' => count($initialItems)];
+        $pool = new CacheSessionPoolStub($cache, $config, $this->time);
+        $pool->setDatabase($this->getDatabase());
+        $pool->maintain();
+        $data = $pool->cacheItemPool()->getItem($this->cacheKey)->get();
+        $expectedQueue = $this->queue($expectedItems);
+        $this->assertEquals($expectedQueue, $data['queue']);
+    }
+
+    /**
      * @dataProvider maintainDataProvider
      */
     public function testMaintainQueue($maintainInterval, $initialItems, $expectedItems, $config = [], $data = [])
@@ -961,10 +1143,12 @@ class CacheSessionPoolTest extends TestCase
                 [
                     'name' => 'existing1',
                     'expiration' => $this->time + 3000,
+                    'creation' => $this->time,
                 ],
                 [
                     'name' => 'existing2',
                     'expiration' => $this->time + 3000,
+                    'creation' => $this->time,
                 ],
             ],
             'inUse' => [],
@@ -987,6 +1171,33 @@ class CacheSessionPoolTest extends TestCase
         $this->assertCount(9, $queue);
         $this->assertEquals($this->time + 3000, $queue[0]['expiration']);
         $this->assertEquals($this->time + 3600, $queue[1]['expiration']);
+    }
+
+    public function testSessionPoolDatabaseRole()
+    {
+        $initialData = $this->cacheData([]);
+        $config = ['minSessions' => 1, 'databaseRole' => 'Reader'];
+        $cache = $this->getCacheItemPool($initialData);
+        $pool = new CacheSessionPoolStub($cache, $config, $this->time);
+        $database = $this->prophesize(DatabaseStub::class);
+        $database->identity()
+        ->willReturn([
+            'projectId' => self::PROJECT_ID,
+            'database' => self::DATABASE_NAME,
+            'instance' => self::INSTANCE_NAME
+        ]);
+        $database->name()
+            ->willReturn(self::DATABASE_NAME);
+        $connection = $this->prophesize(Grpc::class);
+        $connection->batchCreateSessions(['database' => self::DATABASE_NAME,
+            'sessionTemplate' => ['labels' => [], 'creator_role' => 'Reader'], 'sessionCount' => 1])
+            ->shouldBeCalled()
+            ->willReturn(['session' => array(['name' => 'session', 'expirtation' => $this->time])]);
+        $database->connection()
+            ->willReturn($connection->reveal());
+        $pool->setDatabase($database->reveal());
+
+        $pool->warmup();
     }
 }
 
@@ -1035,6 +1246,11 @@ class DumbObject
     public function __call($name, $args)
     {
         return $this;
+    }
+
+    public function serializeToString()
+    {
+        return '';
     }
 }
 //@codingStandardsIgnoreEnd

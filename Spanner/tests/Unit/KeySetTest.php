@@ -19,15 +19,16 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
  */
 class KeySetTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     public function testAddRange()
     {
@@ -123,14 +124,14 @@ class KeySetTest extends TestCase
 
     public function testInvalidKeys()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new KeySet(['keys' => 'foo']);
     }
 
     public function testInvalidAll()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new KeySet(['all' => 1]);
     }

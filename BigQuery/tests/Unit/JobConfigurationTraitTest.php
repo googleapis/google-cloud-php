@@ -19,8 +19,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\JobConfigurationTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -28,15 +27,13 @@ use Ramsey\Uuid\Uuid;
  */
 class JobConfigurationTraitTest extends TestCase
 {
-    use AssertIsType;
-
     const PROJECT_ID = 'project-id';
     const JOB_ID = '1234';
     const LOCATION = 'asia-northeast1';
 
     private $trait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->trait = TestHelpers::impl(JobConfigurationTrait::class);
     }

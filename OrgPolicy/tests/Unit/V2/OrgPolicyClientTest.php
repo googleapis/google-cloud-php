@@ -23,11 +23,9 @@
 namespace Google\Cloud\OrgPolicy\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\OrgPolicy\V2\Constraint;
 use Google\Cloud\OrgPolicy\V2\ListConstraintsResponse;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesResponse;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class OrgPolicyClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return OrgPolicyClient
-     */
+    /** @return OrgPolicyClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class OrgPolicyClientTest extends GeneratedTest
         return new OrgPolicyClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPolicyTest()
     {
         $transport = $this->createTransport();
@@ -103,9 +93,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -139,9 +127,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePolicyTest()
     {
         $transport = $this->createTransport();
@@ -165,9 +151,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -200,9 +184,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEffectivePolicyTest()
     {
         $transport = $this->createTransport();
@@ -229,9 +211,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEffectivePolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -264,9 +244,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyTest()
     {
         $transport = $this->createTransport();
@@ -293,9 +271,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -328,9 +304,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConstraintsTest()
     {
         $transport = $this->createTransport();
@@ -365,9 +339,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConstraintsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -400,9 +372,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -437,9 +407,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -472,9 +440,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePolicyTest()
     {
         $transport = $this->createTransport();
@@ -501,9 +467,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePolicyExceptionTest()
     {
         $transport = $this->createTransport();

@@ -130,6 +130,11 @@
                                 "getMigratingVm"
                             ]
                         },
+                        "GetReplicationCycle": {
+                            "methods": [
+                                "getReplicationCycle"
+                            ]
+                        },
                         "GetSource": {
                             "methods": [
                                 "getSource"
@@ -168,6 +173,11 @@
                         "ListMigratingVms": {
                             "methods": [
                                 "listMigratingVms"
+                            ]
+                        },
+                        "ListReplicationCycles": {
+                            "methods": [
+                                "listReplicationCycles"
                             ]
                         },
                         "ListSources": {
@@ -228,6 +238,16 @@
                         "UpgradeAppliance": {
                             "methods": [
                                 "upgradeAppliance"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }

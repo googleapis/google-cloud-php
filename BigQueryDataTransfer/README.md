@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-bigquerydatatransfer/v/stable)](https://packagist.org/packages/google/cloud-bigquerydatatransfer) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigquerydatatransfer.svg)](https://packagist.org/packages/google/cloud-bigquerydatatransfer)
 
-* [API Documentation](https://googleapis.github.io/google-cloud-php/#/docs/cloud-bigquerydatatransfer/latest)
+* [API Documentation](https://cloud.google.com/php/docs/reference/cloud-bigquerydatatransfer/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

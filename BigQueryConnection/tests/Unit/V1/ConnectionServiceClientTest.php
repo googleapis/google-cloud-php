@@ -23,11 +23,9 @@
 namespace Google\Cloud\BigQuery\Connection\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\BigQuery\Connection\V1\Connection;
 use Google\Cloud\BigQuery\Connection\V1\ConnectionServiceClient;
 use Google\Cloud\BigQuery\Connection\V1\ListConnectionsResponse;
@@ -45,25 +43,19 @@ use stdClass;
  */
 class ConnectionServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ConnectionServiceClient
-     */
+    /** @return ConnectionServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +64,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         return new ConnectionServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConnectionTest()
     {
         $transport = $this->createTransport();
@@ -114,9 +104,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConnectionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -150,9 +138,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConnectionTest()
     {
         $transport = $this->createTransport();
@@ -176,9 +162,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConnectionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +195,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectionTest()
     {
         $transport = $this->createTransport();
@@ -250,9 +232,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -285,9 +265,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -316,9 +294,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -351,9 +327,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectionsTest()
     {
         $transport = $this->createTransport();
@@ -391,9 +365,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -427,9 +399,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -461,9 +431,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -497,9 +465,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -527,9 +493,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -563,9 +527,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateConnectionTest()
     {
         $transport = $this->createTransport();
@@ -608,9 +570,7 @@ class ConnectionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateConnectionExceptionTest()
     {
         $transport = $this->createTransport();

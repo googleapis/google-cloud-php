@@ -36,6 +36,22 @@ class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The project from which ProductSets should be listed.
+     *
+     *                       Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+     *                       {@see ProductSearchClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Vision\V1\ListProductSetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

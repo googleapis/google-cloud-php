@@ -23,8 +23,8 @@ class CompletionService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˜
-/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"Õ
+˝
+/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"›
 CompleteQueryRequest6
 catalog (	B%‡A˙A
 retail.googleapis.com/Catalog
@@ -34,7 +34,9 @@ visitor_id (	
 language_codes (	
 device_type (	
 dataset (	
-max_suggestions ("Ö
+max_suggestions (
+entity
+ (	"Ö
 CompleteQueryResponseZ
 completion_results (2>.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
 attribution_token (	_
@@ -52,8 +54,8 @@ attributes (2N.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
 CompletionService≥
 CompleteQuery,.google.cloud.retail.v2.CompleteQueryRequest-.google.cloud.retail.v2.CompleteQueryResponse"EÇ”‰ì?=/v2/{catalog=projects/*/locations/*/catalogs/*}:completeQueryõ
 ImportCompletionData3.google.cloud.retail.v2.ImportCompletionDataRequest.google.longrunning.Operation"ÆÇ”‰ìI"D/v2/{parent=projects/*/locations/*/catalogs/*}/completionData:import:* A\\
-3google.cloud.retail.v2.ImportCompletionDataResponse%google.cloud.retail.v2.ImportMetadataI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÀ
-com.google.cloud.retail.v2BCompletionServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
+3google.cloud.retail.v2.ImportCompletionDataResponse%google.cloud.retail.v2.ImportMetadataI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB¡
+com.google.cloud.retail.v2BCompletionServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

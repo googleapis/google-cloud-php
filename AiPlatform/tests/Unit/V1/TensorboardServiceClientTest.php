@@ -27,19 +27,19 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\BatchCreateTensorboardRunsResponse;
 use Google\Cloud\AIPlatform\V1\BatchCreateTensorboardTimeSeriesResponse;
-
 use Google\Cloud\AIPlatform\V1\BatchReadTensorboardTimeSeriesDataResponse;
 use Google\Cloud\AIPlatform\V1\ExportTensorboardTimeSeriesDataResponse;
 use Google\Cloud\AIPlatform\V1\ListTensorboardExperimentsResponse;
 use Google\Cloud\AIPlatform\V1\ListTensorboardRunsResponse;
-use Google\Cloud\AIPlatform\V1\ListTensorboardsResponse;
 use Google\Cloud\AIPlatform\V1\ListTensorboardTimeSeriesResponse;
+use Google\Cloud\AIPlatform\V1\ListTensorboardsResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataResponse;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataResponse;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse;
 use Google\Cloud\AIPlatform\V1\Tensorboard;
 use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
 use Google\Cloud\AIPlatform\V1\TensorboardRun;
@@ -68,25 +68,19 @@ use stdClass;
  */
 class TensorboardServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TensorboardServiceClient
-     */
+    /** @return TensorboardServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -95,9 +89,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         return new TensorboardServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateTensorboardRunsTest()
     {
         $transport = $this->createTransport();
@@ -125,9 +117,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateTensorboardRunsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -161,9 +151,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateTensorboardTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -191,9 +179,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateTensorboardTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -227,9 +213,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchReadTensorboardTimeSeriesDataTest()
     {
         $transport = $this->createTransport();
@@ -259,9 +243,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchReadTensorboardTimeSeriesDataExceptionTest()
     {
         $transport = $this->createTransport();
@@ -297,14 +279,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -326,6 +306,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $blobStoragePathPrefix = 'blobStoragePathPrefix566154374';
         $runCount = 485221797;
         $etag = 'etag3123477';
+        $isDefault = true;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -333,6 +314,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setBlobStoragePathPrefix($blobStoragePathPrefix);
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setIsDefault($isDefault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -378,14 +360,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -438,9 +418,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardExperimentTest()
     {
         $transport = $this->createTransport();
@@ -478,9 +456,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardExperimentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -514,9 +490,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardRunTest()
     {
         $transport = $this->createTransport();
@@ -557,9 +531,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -596,9 +568,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -642,9 +612,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTensorboardTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -682,14 +650,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -746,14 +712,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -803,14 +767,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardExperimentTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -867,14 +829,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardExperimentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -924,14 +884,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardRunTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -988,14 +946,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardRunExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1045,14 +1001,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardTimeSeriesTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1109,14 +1063,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTensorboardTimeSeriesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1166,9 +1118,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportTensorboardTimeSeriesDataTest()
     {
         $transport = $this->createTransport();
@@ -1203,9 +1153,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportTensorboardTimeSeriesDataExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1238,9 +1186,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardTest()
     {
         $transport = $this->createTransport();
@@ -1255,6 +1201,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $blobStoragePathPrefix = 'blobStoragePathPrefix566154374';
         $runCount = 485221797;
         $etag = 'etag3123477';
+        $isDefault = true;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1262,6 +1209,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setBlobStoragePathPrefix($blobStoragePathPrefix);
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setIsDefault($isDefault);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
@@ -1277,9 +1225,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1312,9 +1258,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardExperimentTest()
     {
         $transport = $this->createTransport();
@@ -1349,9 +1293,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardExperimentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1384,9 +1326,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardRunTest()
     {
         $transport = $this->createTransport();
@@ -1419,9 +1359,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1454,9 +1392,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -1493,9 +1429,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorboardTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1528,9 +1462,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardExperimentsTest()
     {
         $transport = $this->createTransport();
@@ -1565,9 +1497,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardExperimentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1600,9 +1530,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardRunsTest()
     {
         $transport = $this->createTransport();
@@ -1637,9 +1565,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardRunsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1672,9 +1598,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -1709,9 +1633,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1744,9 +1666,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardsTest()
     {
         $transport = $this->createTransport();
@@ -1781,9 +1701,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorboardsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1816,9 +1734,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readTensorboardBlobDataTest()
     {
         $transport = $this->createTransport();
@@ -1853,9 +1769,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readTensorboardBlobDataExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1890,9 +1804,67 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function readTensorboardSizeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $storageSizeByte = 126045758;
+        $expectedResponse = new ReadTensorboardSizeResponse();
+        $expectedResponse->setStorageSizeByte($storageSizeByte);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->readTensorboardSize($formattedTensorboard);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardSize', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboard();
+        $this->assertProtobufEquals($formattedTensorboard, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function readTensorboardSizeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        try {
+            $gapicClient->readTensorboardSize($formattedTensorboard);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function readTensorboardTimeSeriesDataTest()
     {
         $transport = $this->createTransport();
@@ -1917,9 +1889,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readTensorboardTimeSeriesDataExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1952,14 +1922,70 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function readTensorboardUsageTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ReadTensorboardUsageResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->readTensorboardUsage($formattedTensorboard);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardUsage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboard();
+        $this->assertProtobufEquals($formattedTensorboard, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function readTensorboardUsageExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        try {
+            $gapicClient->readTensorboardUsage($formattedTensorboard);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateTensorboardTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1981,6 +2007,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $blobStoragePathPrefix = 'blobStoragePathPrefix566154374';
         $runCount = 485221797;
         $etag = 'etag3123477';
+        $isDefault = true;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1988,6 +2015,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setBlobStoragePathPrefix($blobStoragePathPrefix);
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setIsDefault($isDefault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2033,14 +2061,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTensorboardExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2093,9 +2119,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTensorboardExperimentTest()
     {
         $transport = $this->createTransport();
@@ -2133,9 +2157,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTensorboardExperimentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2169,9 +2191,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTensorboardRunTest()
     {
         $transport = $this->createTransport();
@@ -2209,9 +2229,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTensorboardRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2247,9 +2265,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTensorboardTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -2293,9 +2309,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTensorboardTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2333,9 +2347,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeTensorboardExperimentDataTest()
     {
         $transport = $this->createTransport();
@@ -2363,9 +2375,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeTensorboardExperimentDataExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2399,9 +2409,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeTensorboardRunDataTest()
     {
         $transport = $this->createTransport();
@@ -2429,9 +2437,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeTensorboardRunDataExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2465,9 +2471,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -2494,9 +2498,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2527,9 +2529,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -2560,9 +2560,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2593,9 +2591,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2624,9 +2620,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2659,9 +2653,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2693,9 +2685,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2729,9 +2719,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -2759,9 +2747,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

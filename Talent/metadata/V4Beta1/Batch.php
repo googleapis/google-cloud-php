@@ -16,10 +16,10 @@ class Batch
         }
         $pool->internalAddGeneratedFile(
             '
-È
-\'google/cloud/talent/v4beta1/batch.protogoogle.cloud.talent.v4beta1Bx
+¾
+\'google/cloud/talent/v4beta1/batch.protogoogle.cloud.talent.v4beta1Bn
 com.google.cloud.talent.v4beta1B
-BatchProtoPZAgoogle.golang.org/genproto/googleapis/cloud/talent/v4beta1;talent¢CTSbproto3'
+BatchProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

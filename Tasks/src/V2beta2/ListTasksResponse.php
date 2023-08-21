@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for listing tasks using [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks].
+ * Response message for listing tasks using
+ * [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.ListTasksResponse</code>
  */
@@ -24,7 +25,8 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token to retrieve next page of results.
      * To return the next page of results, call
-     * [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this value as the
+     * [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this
+     * value as the
      * [page_token][google.cloud.tasks.v2beta2.ListTasksRequest.page_token].
      * If the next_page_token is empty, there are no more results.
      *
@@ -43,7 +45,8 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
      *           To return the next page of results, call
-     *           [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this value as the
+     *           [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this
+     *           value as the
      *           [page_token][google.cloud.tasks.v2beta2.ListTasksRequest.page_token].
      *           If the next_page_token is empty, there are no more results.
      * }
@@ -82,7 +85,8 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token to retrieve next page of results.
      * To return the next page of results, call
-     * [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this value as the
+     * [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this
+     * value as the
      * [page_token][google.cloud.tasks.v2beta2.ListTasksRequest.page_token].
      * If the next_page_token is empty, there are no more results.
      *
@@ -97,7 +101,8 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token to retrieve next page of results.
      * To return the next page of results, call
-     * [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this value as the
+     * [ListTasks][google.cloud.tasks.v2beta2.CloudTasks.ListTasks] with this
+     * value as the
      * [page_token][google.cloud.tasks.v2beta2.ListTasksRequest.page_token].
      * If the next_page_token is empty, there are no more results.
      *

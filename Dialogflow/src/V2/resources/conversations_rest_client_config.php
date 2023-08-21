@@ -41,6 +41,26 @@ return [
                     ],
                 ],
             ],
+            'GenerateStatelessSummary' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{stateless_conversation.parent=projects/*}/suggestions:generateStatelessSummary',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{stateless_conversation.parent=projects/*/locations/*}/suggestions:generateStatelessSummary',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'stateless_conversation.parent' => [
+                        'getters' => [
+                            'getStatelessConversation',
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/conversations/*}',
@@ -88,6 +108,25 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SuggestConversationSummary' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation=projects/*/conversations/*}/suggestions:suggestConversationSummary',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}/suggestions:suggestConversationSummary',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
                         ],
                     ],
                 ],
@@ -171,4 +210,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

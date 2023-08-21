@@ -18,8 +18,8 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\BigNumeric;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
@@ -27,14 +27,12 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class BigNumericTest extends TestCase
 {
-    use ExpectException;
-
     /**
      * @dataProvider invalidValueProvider
      */
     public function testInvalidValues($value)
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new BigNumeric($value);
     }

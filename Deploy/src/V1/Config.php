@@ -22,16 +22,16 @@ class Config extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. All supported versions of Skaffold.
+     * All supported versions of Skaffold.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldVersion supported_versions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldVersion supported_versions = 2;</code>
      */
     private $supported_versions;
     /**
-     * Output only. Default Skaffold version that is assigned when a Release is created without
+     * Default Skaffold version that is assigned when a Release is created without
      * specifying a Skaffold version.
      *
-     * Generated from protobuf field <code>string default_skaffold_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string default_skaffold_version = 3;</code>
      */
     private $default_skaffold_version = '';
 
@@ -44,9 +44,9 @@ class Config extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the configuration.
      *     @type array<\Google\Cloud\Deploy\V1\SkaffoldVersion>|\Google\Protobuf\Internal\RepeatedField $supported_versions
-     *           Output only. All supported versions of Skaffold.
+     *           All supported versions of Skaffold.
      *     @type string $default_skaffold_version
-     *           Output only. Default Skaffold version that is assigned when a Release is created without
+     *           Default Skaffold version that is assigned when a Release is created without
      *           specifying a Skaffold version.
      * }
      */
@@ -82,9 +82,9 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. All supported versions of Skaffold.
+     * All supported versions of Skaffold.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldVersion supported_versions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldVersion supported_versions = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSupportedVersions()
@@ -93,9 +93,9 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. All supported versions of Skaffold.
+     * All supported versions of Skaffold.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldVersion supported_versions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldVersion supported_versions = 2;</code>
      * @param array<\Google\Cloud\Deploy\V1\SkaffoldVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -108,10 +108,10 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Default Skaffold version that is assigned when a Release is created without
+     * Default Skaffold version that is assigned when a Release is created without
      * specifying a Skaffold version.
      *
-     * Generated from protobuf field <code>string default_skaffold_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string default_skaffold_version = 3;</code>
      * @return string
      */
     public function getDefaultSkaffoldVersion()
@@ -120,10 +120,10 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Default Skaffold version that is assigned when a Release is created without
+     * Default Skaffold version that is assigned when a Release is created without
      * specifying a Skaffold version.
      *
-     * Generated from protobuf field <code>string default_skaffold_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string default_skaffold_version = 3;</code>
      * @param string $var
      * @return $this
      */

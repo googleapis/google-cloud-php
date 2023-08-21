@@ -35,6 +35,27 @@ class GetInventoryRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. API resource name for inventory resource.
+     *
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/instances/{instance}/inventory`
+     *
+     *                     For `{project}`, either `project-number` or `project-id` can be provided.
+     *                     For `{instance}`, either Compute Engine  `instance-id` or `instance-name`
+     *                     can be provided. Please see
+     *                     {@see OsConfigZonalServiceClient::inventoryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsConfig\V1\GetInventoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

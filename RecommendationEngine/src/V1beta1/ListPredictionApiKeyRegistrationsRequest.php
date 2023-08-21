@@ -37,6 +37,21 @@ class ListPredictionApiKeyRegistrationsRequest extends \Google\Protobuf\Internal
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent placement resource name such as
+     *                       `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
+     *                       Please see {@see PredictionApiKeyRegistryClient::eventStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

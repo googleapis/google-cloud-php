@@ -21,11 +21,12 @@ class Batch
         \GPBMetadata\Google\Cloud\Batch\V1\Job::initOnce();
         \GPBMetadata\Google\Cloud\Batch\V1\Task::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-À
-!google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"›
+é
+!google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"›
 CreateJobRequest0
 parent (	B àAúAbatch.googleapis.com/Job
 job_id (	,
@@ -39,10 +40,11 @@ request_id (	BàA"?
 name (	
 reason (	BàA
 
-request_id (	BàA"X
+request_id (	BàA"o
 ListJobsRequest
 parent (	
-filter (	
+filter (	
+order_by (	BàA
 	page_size (
 
 page_token (	"j
@@ -79,9 +81,9 @@ page_token (	"m
 google.protobuf.Empty\'google.cloud.batch.v1.OperationMetadata–
 ListJobs&.google.cloud.batch.v1.ListJobsRequest\'.google.cloud.batch.v1.ListJobsResponse"9‚Óä“*(/v1/{parent=projects/*/locations/*}/jobsÚAparent›
 GetTask%.google.cloud.batch.v1.GetTaskRequest.google.cloud.batch.v1.Task"L‚Óä“?=/v1/{name=projects/*/locations/*/jobs/*/taskGroups/*/tasks/*}ÚAname®
-	ListTasks\'.google.cloud.batch.v1.ListTasksRequest(.google.cloud.batch.v1.ListTasksResponse"N‚Óä“?=/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasksÚAparentHÊAbatch.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¶
+	ListTasks\'.google.cloud.batch.v1.ListTasksRequest(.google.cloud.batch.v1.ListTasksResponse"N‚Óä“?=/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasksÚAparentHÊAbatch.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB«
 com.google.cloud.batch.v1B
-BatchProtoPZ:google.golang.org/genproto/googleapis/cloud/batch/v1;batch¢GCBªGoogle.Cloud.Batch.V1ÊGoogle\\Cloud\\Batch\\V1êGoogle::Cloud::Batch::V1bproto3'
+BatchProtoPZ/cloud.google.com/go/batch/apiv1/batchpb;batchpb¢GCBªGoogle.Cloud.Batch.V1ÊGoogle\\Cloud\\Batch\\V1êGoogle::Cloud::Batch::V1bproto3'
         , true);
 
         static::$is_initialized = true;

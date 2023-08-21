@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReplicaPlacement extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. For a given replica, the ARM ID of the subnet where the control plane VM is
-     * deployed. Make sure it's a subnet under the virtual network in the cluster
-     * configuration.
+     * Required. For a given replica, the ARM ID of the subnet where the control
+     * plane VM is deployed. Make sure it's a subnet under the virtual network in
+     * the cluster configuration.
      *
      * Generated from protobuf field <code>string subnet_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $subnet_id = '';
     /**
-     * Required. For a given replica, the Azure availability zone where to provision the
-     * control plane VM and the ETCD disk.
+     * Required. For a given replica, the Azure availability zone where to
+     * provision the control plane VM and the ETCD disk.
      *
      * Generated from protobuf field <code>string azure_availability_zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,12 +38,12 @@ class ReplicaPlacement extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subnet_id
-     *           Required. For a given replica, the ARM ID of the subnet where the control plane VM is
-     *           deployed. Make sure it's a subnet under the virtual network in the cluster
-     *           configuration.
+     *           Required. For a given replica, the ARM ID of the subnet where the control
+     *           plane VM is deployed. Make sure it's a subnet under the virtual network in
+     *           the cluster configuration.
      *     @type string $azure_availability_zone
-     *           Required. For a given replica, the Azure availability zone where to provision the
-     *           control plane VM and the ETCD disk.
+     *           Required. For a given replica, the Azure availability zone where to
+     *           provision the control plane VM and the ETCD disk.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,9 +52,9 @@ class ReplicaPlacement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. For a given replica, the ARM ID of the subnet where the control plane VM is
-     * deployed. Make sure it's a subnet under the virtual network in the cluster
-     * configuration.
+     * Required. For a given replica, the ARM ID of the subnet where the control
+     * plane VM is deployed. Make sure it's a subnet under the virtual network in
+     * the cluster configuration.
      *
      * Generated from protobuf field <code>string subnet_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -65,9 +65,9 @@ class ReplicaPlacement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. For a given replica, the ARM ID of the subnet where the control plane VM is
-     * deployed. Make sure it's a subnet under the virtual network in the cluster
-     * configuration.
+     * Required. For a given replica, the ARM ID of the subnet where the control
+     * plane VM is deployed. Make sure it's a subnet under the virtual network in
+     * the cluster configuration.
      *
      * Generated from protobuf field <code>string subnet_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -82,8 +82,8 @@ class ReplicaPlacement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. For a given replica, the Azure availability zone where to provision the
-     * control plane VM and the ETCD disk.
+     * Required. For a given replica, the Azure availability zone where to
+     * provision the control plane VM and the ETCD disk.
      *
      * Generated from protobuf field <code>string azure_availability_zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -94,8 +94,8 @@ class ReplicaPlacement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. For a given replica, the Azure availability zone where to provision the
-     * control plane VM and the ETCD disk.
+     * Required. For a given replica, the Azure availability zone where to
+     * provision the control plane VM and the ETCD disk.
      *
      * Generated from protobuf field <code>string azure_availability_zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

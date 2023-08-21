@@ -27,14 +27,15 @@
 namespace Google\Cloud\Tasks\V2beta2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
@@ -42,7 +43,13 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Tasks\V2beta2\AcknowledgeTaskRequest;
+use Google\Cloud\Tasks\V2beta2\BufferTaskRequest;
+use Google\Cloud\Tasks\V2beta2\BufferTaskResponse;
 use Google\Cloud\Tasks\V2beta2\CancelLeaseRequest;
 use Google\Cloud\Tasks\V2beta2\CreateQueueRequest;
 use Google\Cloud\Tasks\V2beta2\CreateTaskRequest;
@@ -65,6 +72,7 @@ use Google\Cloud\Tasks\V2beta2\RunTaskRequest;
 use Google\Cloud\Tasks\V2beta2\Task;
 use Google\Cloud\Tasks\V2beta2\Task\View;
 use Google\Cloud\Tasks\V2beta2\UpdateQueueRequest;
+use Google\Cloud\Tasks\V2beta2\UploadQueueYamlRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -99,34 +107,25 @@ class CloudTasksGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.tasks.v2beta2.CloudTasks';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudtasks.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static $locationNameTemplate;
+    private static $projectNameTemplate;
 
     private static $queueNameTemplate;
 
@@ -332,9 +331,6 @@ class CloudTasksGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudtasks.googleapis.com:443'.
@@ -364,7 +360,7 @@ class CloudTasksGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -395,12 +391,13 @@ class CloudTasksGapicClient
      * Acknowledges a pull task.
      *
      * The worker, that is, the entity that
-     * [leased][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] this task must call this method
-     * to indicate that the work associated with the task has finished.
+     * [leased][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] this task must
+     * call this method to indicate that the work associated with the task has
+     * finished.
      *
      * The worker must acknowledge a task within the
-     * [lease_duration][google.cloud.tasks.v2beta2.LeaseTasksRequest.lease_duration] or the lease
-     * will expire and the task will become available to be leased
+     * [lease_duration][google.cloud.tasks.v2beta2.LeaseTasksRequest.lease_duration]
+     * or the lease will expire and the task will become available to be leased
      * again. After the task is acknowledged, it will not be returned
      * by a later [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks],
      * [GetTask][google.cloud.tasks.v2beta2.CloudTasks.GetTask], or
@@ -423,8 +420,8 @@ class CloudTasksGapicClient
      * @param Timestamp $scheduleTime Required. The task's current schedule time, available in the
      *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *                                [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     *                                to ensure that your worker currently holds the lease.
+     *                                [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *                                This restriction is to ensure that your worker currently holds the lease.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -451,12 +448,83 @@ class CloudTasksGapicClient
     }
 
     /**
+     * Creates and buffers a new task without the need to explicitly define a Task
+     * message. The queue must have [HTTP
+     * target][google.cloud.tasks.v2beta2.HttpTarget]. To create the task with a
+     * custom ID, use the following format and set TASK_ID to your desired ID:
+     * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer
+     * To create the task with an automatically generated ID, use the following
+     * format:
+     * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer.
+     * Note: This feature is in its experimental stage. You must request access to
+     * the API through the [Cloud Tasks BufferTask Experiment Signup
+     * form](https://forms.gle/X8Zr5hiXH5tTGFqh8).
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     $formattedQueue = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+     *     $response = $cloudTasksClient->bufferTask($formattedQueue);
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param string $queue        Required. The parent queue name. For example:
+     *                             projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *
+     *                             The queue must already exist.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $taskId
+     *           Optional. Task ID for the task being created. If not provided, a random
+     *           task ID is assigned to the task.
+     *     @type HttpBody $body
+     *           Optional. Body of the HTTP request.
+     *
+     *           The body can take any generic value. The value is written to the
+     *           [HttpRequest][payload] of the [Task].
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Tasks\V2beta2\BufferTaskResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function bufferTask($queue, array $optionalArgs = [])
+    {
+        $request = new BufferTaskRequest();
+        $requestParamHeaders = [];
+        $request->setQueue($queue);
+        $requestParamHeaders['queue'] = $queue;
+        if (isset($optionalArgs['taskId'])) {
+            $request->setTaskId($optionalArgs['taskId']);
+            $requestParamHeaders['task_id'] = $optionalArgs['taskId'];
+        }
+
+        if (isset($optionalArgs['body'])) {
+            $request->setBody($optionalArgs['body']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('BufferTask', BufferTaskResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Cancel a pull task's lease.
      *
      * The worker can use this method to cancel a task's lease by
-     * setting its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] to now. This will
-     * make the task available to be leased to the next caller of
-     * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks].
+     * setting its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time]
+     * to now. This will make the task available to be leased to the next caller
+     * of [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks].
      *
      * Sample code:
      * ```
@@ -475,24 +543,25 @@ class CloudTasksGapicClient
      * @param Timestamp $scheduleTime Required. The task's current schedule time, available in the
      *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *                                [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     *                                to ensure that your worker currently holds the lease.
+     *                                [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *                                This restriction is to ensure that your worker currently holds the lease.
      * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type int $responseView
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
      *
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
      *
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -526,8 +595,8 @@ class CloudTasksGapicClient
      * Creates a queue.
      *
      * Queues created with this method allow tasks to live for a maximum of 31
-     * days. After a task is 31 days old, the task will be deleted regardless of whether
-     * it was dispatched or not.
+     * days. After a task is 31 days old, the task will be deleted regardless of
+     * whether it was dispatched or not.
      *
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
@@ -556,7 +625,8 @@ class CloudTasksGapicClient
      *                             [ListLocations][google.cloud.location.Locations.ListLocations].
      * @param Queue  $queue        Required. The queue to create.
      *
-     *                             [Queue's name][google.cloud.tasks.v2beta2.Queue.name] cannot be the same as an existing queue.
+     *                             [Queue's name][google.cloud.tasks.v2beta2.Queue.name] cannot be the same as
+     *                             an existing queue.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -589,9 +659,11 @@ class CloudTasksGapicClient
      *
      * Tasks cannot be updated after creation; there is no UpdateTask command.
      *
-     * * For [App Engine queues][google.cloud.tasks.v2beta2.AppEngineHttpTarget], the maximum task size is
+     * * For [App Engine queues][google.cloud.tasks.v2beta2.AppEngineHttpTarget],
+     * the maximum task size is
      * 100KB.
-     * * For [pull queues][google.cloud.tasks.v2beta2.PullTarget], the maximum task size is 1MB.
+     * * For [pull queues][google.cloud.tasks.v2beta2.PullTarget], the maximum
+     * task size is 1MB.
      *
      * Sample code:
      * ```
@@ -613,13 +685,13 @@ class CloudTasksGapicClient
      *
      *                             Task names have the following format:
      *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
-     *                             The user can optionally specify a task [name][google.cloud.tasks.v2beta2.Task.name]. If a
-     *                             name is not specified then the system will generate a random
-     *                             unique task id, which will be set in the task returned in the
-     *                             [response][google.cloud.tasks.v2beta2.Task.name].
+     *                             The user can optionally specify a task
+     *                             [name][google.cloud.tasks.v2beta2.Task.name]. If a name is not specified
+     *                             then the system will generate a random unique task id, which will be set in
+     *                             the task returned in the [response][google.cloud.tasks.v2beta2.Task.name].
      *
-     *                             If [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] is not set or is in the
-     *                             past then Cloud Tasks will set it to the current time.
+     *                             If [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] is not
+     *                             set or is in the past then Cloud Tasks will set it to the current time.
      *
      *                             Task De-duplication:
      *
@@ -628,16 +700,16 @@ class CloudTasksGapicClient
      *                             that was deleted or completed recently then the call will fail
      *                             with [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS].
      *                             If the task's queue was created using Cloud Tasks, then another task with
-     *                             the same name can't be created for ~1hour after the original task was
+     *                             the same name can't be created for ~1 hour after the original task was
      *                             deleted or completed. If the task's queue was created using queue.yaml or
      *                             queue.xml, then another task with the same name can't be created
-     *                             for ~9days after the original task was deleted or completed.
+     *                             for ~9 days after the original task was deleted or completed.
      *
      *                             Because there is an extra lookup cost to identify duplicate task
-     *                             names, these [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask] calls have significantly
-     *                             increased latency. Using hashed strings for the task id or for
-     *                             the prefix of the task id is recommended. Choosing task ids that
-     *                             are sequential or have sequential prefixes, for example using a
+     *                             names, these [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask]
+     *                             calls have significantly increased latency. Using hashed strings for the
+     *                             task id or for the prefix of the task id is recommended. Choosing task ids
+     *                             that are sequential or have sequential prefixes, for example using a
      *                             timestamp, causes an increase in latency and error rates in all
      *                             task commands. The infrastructure relies on an approximately
      *                             uniform distribution of task ids to store and serve tasks
@@ -646,18 +718,19 @@ class CloudTasksGapicClient
      *     Optional.
      *
      *     @type int $responseView
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
      *
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
      *
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -784,9 +857,9 @@ class CloudTasksGapicClient
     }
 
     /**
-     * Gets the access control policy for a [Queue][google.cloud.tasks.v2beta2.Queue].
-     * Returns an empty policy if the resource exists and does not have a policy
-     * set.
+     * Gets the access control policy for a
+     * [Queue][google.cloud.tasks.v2beta2.Queue]. Returns an empty policy if the
+     * resource exists and does not have a policy set.
      *
      * Authorization requires the following
      * [Google IAM](https://cloud.google.com/iam) permission on the specified
@@ -860,8 +933,8 @@ class CloudTasksGapicClient
      *     Optional.
      *
      *     @type FieldMask $readMask
-     *           Optional. Read mask is used for a more granular control over what the API returns.
-     *           If the mask is not present all fields will be returned except
+     *           Optional. Read mask is used for a more granular control over what the API
+     *           returns. If the mask is not present all fields will be returned except
      *           [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
      *           specified in the mask.
      *     @type RetrySettings|array $retrySettings
@@ -911,18 +984,19 @@ class CloudTasksGapicClient
      *     Optional.
      *
      *     @type int $responseView
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
      *
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
      *
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -957,18 +1031,19 @@ class CloudTasksGapicClient
      *
      * This method is invoked by the worker to obtain a lease. The
      * worker must acknowledge the task via
-     * [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask] after they have
-     * performed the work associated with the task.
+     * [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask]
+     * after they have performed the work associated with the task.
      *
-     * The [payload][google.cloud.tasks.v2beta2.PullMessage.payload] is intended to store data that
-     * the worker needs to perform the work associated with the task. To
-     * return the payloads in the [response][google.cloud.tasks.v2beta2.LeaseTasksResponse], set
-     * [response_view][google.cloud.tasks.v2beta2.LeaseTasksRequest.response_view] to
-     * [FULL][google.cloud.tasks.v2beta2.Task.View.FULL].
+     * The [payload][google.cloud.tasks.v2beta2.PullMessage.payload] is intended
+     * to store data that the worker needs to perform the work associated with the
+     * task. To return the payloads in the
+     * [response][google.cloud.tasks.v2beta2.LeaseTasksResponse], set
+     * [response_view][google.cloud.tasks.v2beta2.LeaseTasksRequest.response_view]
+     * to [FULL][google.cloud.tasks.v2beta2.Task.View.FULL].
      *
-     * A maximum of 10 qps of [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks]
-     * requests are allowed per
-     * queue. [RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
+     * A maximum of 10 qps of
+     * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] requests are
+     * allowed per queue. [RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
      * is returned when this limit is
      * exceeded. [RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
      * is also returned when
@@ -991,20 +1066,23 @@ class CloudTasksGapicClient
      *                                `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      * @param Duration $leaseDuration Required. The duration of the lease.
      *
-     *                                Each task returned in the [response][google.cloud.tasks.v2beta2.LeaseTasksResponse] will
-     *                                have its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] set to the current
-     *                                time plus the `lease_duration`. The task is leased until its
-     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time]; thus, the task will not be
-     *                                returned to another [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call
-     *                                before its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
+     *                                Each task returned in the
+     *                                [response][google.cloud.tasks.v2beta2.LeaseTasksResponse] will have its
+     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] set to the
+     *                                current time plus the `lease_duration`. The task is leased until its
+     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time]; thus, the
+     *                                task will not be returned to another
+     *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call before
+     *                                its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
      *
      *
      *                                After the worker has successfully finished the work associated
      *                                with the task, the worker must call via
-     *                                [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask] before the
-     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time]. Otherwise the task will be
-     *                                returned to a later [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call so
-     *                                that another worker can retry it.
+     *                                [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask]
+     *                                before the [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
+     *                                Otherwise the task will be returned to a later
+     *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call so that
+     *                                another worker can retry it.
      *
      *                                The maximum lease duration is 1 week.
      *                                `lease_duration` will be truncated to the nearest second.
@@ -1019,34 +1097,37 @@ class CloudTasksGapicClient
      *
      *           The largest that `max_tasks` can be is 1000.
      *
-     *           The maximum total size of a [lease tasks response][google.cloud.tasks.v2beta2.LeaseTasksResponse] is
-     *           32 MB. If the sum of all task sizes requested reaches this limit,
-     *           fewer tasks than requested are returned.
+     *           The maximum total size of a [lease tasks
+     *           response][google.cloud.tasks.v2beta2.LeaseTasksResponse] is 32 MB. If the
+     *           sum of all task sizes requested reaches this limit, fewer tasks than
+     *           requested are returned.
      *     @type int $responseView
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
      *
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
      *
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type string $filter
      *           `filter` can be used to specify a subset of tasks to lease.
      *
      *           When `filter` is set to `tag=<my-tag>` then the
-     *           [response][google.cloud.tasks.v2beta2.LeaseTasksResponse] will contain only tasks whose
-     *           [tag][google.cloud.tasks.v2beta2.PullMessage.tag] is equal to `<my-tag>`. `<my-tag>` must be
-     *           less than 500 characters.
+     *           [response][google.cloud.tasks.v2beta2.LeaseTasksResponse] will contain only
+     *           tasks whose [tag][google.cloud.tasks.v2beta2.PullMessage.tag] is equal to
+     *           `<my-tag>`. `<my-tag>` must be less than 500 characters.
      *
      *           When `filter` is set to `tag_function=oldest_tag()`, only tasks which have
      *           the same tag as the task with the oldest
-     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] will be returned.
+     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] will be
+     *           returned.
      *
      *           Grammar Syntax:
      *
@@ -1064,8 +1145,9 @@ class CloudTasksGapicClient
      *           [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
      *           only UTF-8 encoded tags can be used in Cloud Tasks. Tag which
      *           aren't UTF-8 encoded can't be used in the
-     *           [filter][google.cloud.tasks.v2beta2.LeaseTasksRequest.filter] and the task's
-     *           [tag][google.cloud.tasks.v2beta2.PullMessage.tag] will be displayed as empty in Cloud Tasks.
+     *           [filter][google.cloud.tasks.v2beta2.LeaseTasksRequest.filter] and the
+     *           task's [tag][google.cloud.tasks.v2beta2.PullMessage.tag] will be displayed
+     *           as empty in Cloud Tasks.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1136,11 +1218,10 @@ class CloudTasksGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           `filter` can be used to specify a subset of queues. Any [Queue][google.cloud.tasks.v2beta2.Queue]
-     *           field can be used as a filter and several operators as supported.
-     *           For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
-     *           described in
-     *           [Stackdriver's Advanced Logs
+     *           `filter` can be used to specify a subset of queues. Any
+     *           [Queue][google.cloud.tasks.v2beta2.Queue] field can be used as a filter and
+     *           several operators as supported. For example: `<=, <, >=, >, !=, =, :`. The
+     *           filter syntax is the same as described in [Stackdriver's Advanced Logs
      *           Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      *
      *           Sample filter "app_engine_http_target: *".
@@ -1157,8 +1238,8 @@ class CloudTasksGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type FieldMask $readMask
-     *           Optional. Read mask is used for a more granular control over what the API returns.
-     *           If the mask is not present all fields will be returned except
+     *           Optional. Read mask is used for a more granular control over what the API
+     *           returns. If the mask is not present all fields will be returned except
      *           [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
      *           specified in the mask.
      *     @type RetrySettings|array $retrySettings
@@ -1203,10 +1284,10 @@ class CloudTasksGapicClient
     /**
      * Lists the tasks in a queue.
      *
-     * By default, only the [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC] view is retrieved
-     * due to performance considerations;
-     * [response_view][google.cloud.tasks.v2beta2.ListTasksRequest.response_view] controls the
-     * subset of information which is returned.
+     * By default, only the [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]
+     * view is retrieved due to performance considerations;
+     * [response_view][google.cloud.tasks.v2beta2.ListTasksRequest.response_view]
+     * controls the subset of information which is returned.
      *
      * The tasks may be returned in any order. The ordering may change at any
      * time.
@@ -1240,18 +1321,19 @@ class CloudTasksGapicClient
      *     Optional.
      *
      *     @type int $responseView
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
      *
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
      *
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
@@ -1302,9 +1384,10 @@ class CloudTasksGapicClient
      *
      * If a queue is paused then the system will stop dispatching tasks
      * until the queue is resumed via
-     * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue]. Tasks can still be added
-     * when the queue is paused. A queue is paused if its
-     * [state][google.cloud.tasks.v2beta2.Queue.state] is [PAUSED][google.cloud.tasks.v2beta2.Queue.State.PAUSED].
+     * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue]. Tasks can
+     * still be added when the queue is paused. A queue is paused if its
+     * [state][google.cloud.tasks.v2beta2.Queue.state] is
+     * [PAUSED][google.cloud.tasks.v2beta2.Queue.State.PAUSED].
      *
      * Sample code:
      * ```
@@ -1397,7 +1480,8 @@ class CloudTasksGapicClient
      *
      * The worker can use this method to extend the lease by a new
      * duration, starting from now. The new task lease will be
-     * returned in the task's [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
+     * returned in the task's
+     * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
      *
      * Sample code:
      * ```
@@ -1417,8 +1501,8 @@ class CloudTasksGapicClient
      * @param Timestamp $scheduleTime  Required. The task's current schedule time, available in the
      *                                 [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      *                                 [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *                                 [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     *                                 to ensure that your worker currently holds the lease.
+     *                                 [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *                                 This restriction is to ensure that your worker currently holds the lease.
      * @param Duration  $leaseDuration Required. The desired new lease duration, starting from now.
      *
      *
@@ -1428,18 +1512,19 @@ class CloudTasksGapicClient
      *     Optional.
      *
      *     @type int $responseView
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
      *
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
      *
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1475,9 +1560,11 @@ class CloudTasksGapicClient
      *
      * This method resumes a queue after it has been
      * [PAUSED][google.cloud.tasks.v2beta2.Queue.State.PAUSED] or
-     * [DISABLED][google.cloud.tasks.v2beta2.Queue.State.DISABLED]. The state of a queue is stored
-     * in the queue's [state][google.cloud.tasks.v2beta2.Queue.state]; after calling this method it
-     * will be set to [RUNNING][google.cloud.tasks.v2beta2.Queue.State.RUNNING].
+     * [DISABLED][google.cloud.tasks.v2beta2.Queue.State.DISABLED]. The state of a
+     * queue is stored in the queue's
+     * [state][google.cloud.tasks.v2beta2.Queue.state]; after calling this method
+     * it will be set to
+     * [RUNNING][google.cloud.tasks.v2beta2.Queue.State.RUNNING].
      *
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
@@ -1528,30 +1615,33 @@ class CloudTasksGapicClient
      * Forces a task to run now.
      *
      * When this method is called, Cloud Tasks will dispatch the task, even if
-     * the task is already running, the queue has reached its [RateLimits][google.cloud.tasks.v2beta2.RateLimits] or
-     * is [PAUSED][google.cloud.tasks.v2beta2.Queue.State.PAUSED].
+     * the task is already running, the queue has reached its
+     * [RateLimits][google.cloud.tasks.v2beta2.RateLimits] or is
+     * [PAUSED][google.cloud.tasks.v2beta2.Queue.State.PAUSED].
      *
      * This command is meant to be used for manual debugging. For
-     * example, [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] can be used to retry a failed
-     * task after a fix has been made or to manually force a task to be
-     * dispatched now.
+     * example, [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] can be
+     * used to retry a failed task after a fix has been made or to manually force
+     * a task to be dispatched now.
      *
      * The dispatched task is returned. That is, the task that is returned
-     * contains the [status][google.cloud.tasks.v2beta2.Task.status] after the task is dispatched but
-     * before the task is received by its target.
+     * contains the [status][google.cloud.tasks.v2beta2.Task.status] after the
+     * task is dispatched but before the task is received by its target.
      *
      * If Cloud Tasks receives a successful response from the task's
      * target, then the task will be deleted; otherwise the task's
-     * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] will be reset to the time that
-     * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] was called plus the retry delay specified
-     * in the queue's [RetryConfig][google.cloud.tasks.v2beta2.RetryConfig].
+     * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] will be
+     * reset to the time that
+     * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] was called plus
+     * the retry delay specified in the queue's
+     * [RetryConfig][google.cloud.tasks.v2beta2.RetryConfig].
      *
      * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] returns
      * [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
      * task that has already succeeded or permanently failed.
      *
-     * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] cannot be called on a
-     * [pull task][google.cloud.tasks.v2beta2.PullMessage].
+     * [RunTask][google.cloud.tasks.v2beta2.CloudTasks.RunTask] cannot be called
+     * on a [pull task][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Sample code:
      * ```
@@ -1570,18 +1660,19 @@ class CloudTasksGapicClient
      *     Optional.
      *
      *     @type int $responseView
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
      *
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
      *
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Tasks\V2beta2\Task\View}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1611,8 +1702,8 @@ class CloudTasksGapicClient
     }
 
     /**
-     * Sets the access control policy for a [Queue][google.cloud.tasks.v2beta2.Queue]. Replaces any existing
-     * policy.
+     * Sets the access control policy for a
+     * [Queue][google.cloud.tasks.v2beta2.Queue]. Replaces any existing policy.
      *
      * Note: The Cloud Console does not check queue-level IAM permissions yet.
      * Project-level permissions are required to use the Cloud Console.
@@ -1679,9 +1770,10 @@ class CloudTasksGapicClient
     }
 
     /**
-     * Returns permissions that a caller has on a [Queue][google.cloud.tasks.v2beta2.Queue].
-     * If the resource does not exist, this will return an empty set of
-     * permissions, not a [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
+     * Returns permissions that a caller has on a
+     * [Queue][google.cloud.tasks.v2beta2.Queue]. If the resource does not exist,
+     * this will return an empty set of permissions, not a
+     * [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
      *
      * Note: This operation is designed to be used for building permission-aware
      * UIs and command-line tools, not for authorization checking. This operation
@@ -1739,8 +1831,8 @@ class CloudTasksGapicClient
      * the queue if it does exist.
      *
      * Queues created with this method allow tasks to live for a maximum of 31
-     * days. After a task is 31 days old, the task will be deleted regardless of whether
-     * it was dispatched or not.
+     * days. After a task is 31 days old, the task will be deleted regardless of
+     * whether it was dispatched or not.
      *
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
@@ -1762,11 +1854,13 @@ class CloudTasksGapicClient
      *
      * @param Queue $queue        Required. The queue to create or update.
      *
-     *                            The queue's [name][google.cloud.tasks.v2beta2.Queue.name] must be specified.
+     *                            The queue's [name][google.cloud.tasks.v2beta2.Queue.name] must be
+     *                            specified.
      *
      *                            Output only fields cannot be modified using UpdateQueue.
      *                            Any value specified for an output only field will be ignored.
-     *                            The queue's [name][google.cloud.tasks.v2beta2.Queue.name] cannot be changed.
+     *                            The queue's [name][google.cloud.tasks.v2beta2.Queue.name] cannot be
+     *                            changed.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -1799,5 +1893,175 @@ class CloudTasksGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateQueue', Queue::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Update queue list by uploading a queue.yaml file.
+     *
+     * The queue.yaml file is supplied in the request body as a YAML encoded
+     * string. This method was added to support gcloud clients versions before
+     * 322.0.0. New clients should use CreateQueue instead of this method.
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     $appId = 'app_id';
+     *     $cloudTasksClient->uploadQueueYaml($appId);
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param string $appId        Required. The App ID is supplied as an HTTP parameter. Unlike internal
+     *                             usage of App ID, it does not include a region prefix. Rather, the App ID
+     *                             represents the Project ID against which to make the request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type HttpBody $httpBody
+     *           The http body contains the queue.yaml file which used to update queue lists
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function uploadQueueYaml($appId, array $optionalArgs = [])
+    {
+        $request = new UploadQueueYamlRequest();
+        $request->setAppId($appId);
+        if (isset($optionalArgs['httpBody'])) {
+            $request->setHttpBody($optionalArgs['httpBody']);
+        }
+
+        return $this->startCall('UploadQueueYaml', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     $response = $cloudTasksClient->getLocation();
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $cloudTasksClient = new CloudTasksClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudTasksClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudTasksClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudTasksClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 }

@@ -30,6 +30,21 @@ class GetSettingRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     *                     requirements. Please see
+     *                     {@see ResourceSettingsServiceClient::settingName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceSettings\V1\GetSettingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

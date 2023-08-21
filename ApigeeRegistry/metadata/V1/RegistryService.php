@@ -24,7 +24,7 @@ class RegistryService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ôr
+òr
 5google/cloud/apigeeregistry/v1/registry_service.protogoogle.cloud.apigeeregistry.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto4google/cloud/apigeeregistry/v1/registry_models.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ƒ
 ListApisRequest9
 parent (	B)àAúA#!apigeeregistry.googleapis.com/Api
@@ -225,8 +225,8 @@ GetApiSpec1.google.cloud.apigeeregistry.v1.GetApiSpecRequest\'.google.cloud.ap
 GetArtifactContents:.google.cloud.apigeeregistry.v1.GetArtifactContentsRequest.google.api.HttpBody"…‚Óä“÷9/v1/{name=projects/*/locations/*/artifacts/*}:getContentsZB@/v1/{name=projects/*/locations/*/apis/*/artifacts/*}:getContentsZMK/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}:getContentsZUS/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}:getContentsZPN/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}:getContentsÚAname†
 CreateArtifact5.google.cloud.apigeeregistry.v1.CreateArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"’‚Óä“í"-/v1/{parent=projects/*/locations/*}/artifacts:artifactZ@"4/v1/{parent=projects/*/locations/*/apis/*}/artifacts:artifactZK"?/v1/{parent=projects/*/locations/*/apis/*/versions/*}/artifacts:artifactZS"G/v1/{parent=projects/*/locations/*/apis/*/versions/*/specs/*}/artifacts:artifactZN"B/v1/{parent=projects/*/locations/*/apis/*/deployments/*}/artifacts:artifactÚAparent,artifact,artifact_id¢
 ReplaceArtifact6.google.cloud.apigeeregistry.v1.ReplaceArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"¬‚Óä“š6/v1/{artifact.name=projects/*/locations/*/artifacts/*}:artifactZI=/v1/{artifact.name=projects/*/locations/*/apis/*/artifacts/*}:artifactZTH/v1/{artifact.name=projects/*/locations/*/apis/*/versions/*/artifacts/*}:artifactZ\\P/v1/{artifact.name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}:artifactZWK/v1/{artifact.name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}:artifactÚAartifact«
-DeleteArtifact5.google.cloud.apigeeregistry.v1.DeleteArtifactRequest.google.protobuf.Empty"É‚Óä“»*-/v1/{name=projects/*/locations/*/artifacts/*}Z6*4/v1/{name=projects/*/locations/*/apis/*/artifacts/*}ZA*?/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}ZI*G/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}ZD*B/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}ÚAnameQÊAapigeeregistry.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBð
-"com.google.cloud.apigeeregistry.v1BRegistryServiceProtoPZLgoogle.golang.org/genproto/googleapis/cloud/apigeeregistry/v1;apigeeregistryªGoogle.Cloud.ApigeeRegistry.V1ÊGoogle\\Cloud\\ApigeeRegistry\\V1ê!Google::Cloud::ApigeeRegistry::V1bproto3'
+DeleteArtifact5.google.cloud.apigeeregistry.v1.DeleteArtifactRequest.google.protobuf.Empty"É‚Óä“»*-/v1/{name=projects/*/locations/*/artifacts/*}Z6*4/v1/{name=projects/*/locations/*/apis/*/artifacts/*}ZA*?/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}ZI*G/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}ZD*B/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}ÚAnameQÊAapigeeregistry.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBî
+"com.google.cloud.apigeeregistry.v1BRegistryServiceProtoPZJcloud.google.com/go/apigeeregistry/apiv1/apigeeregistrypb;apigeeregistrypbªGoogle.Cloud.ApigeeRegistry.V1ÊGoogle\\Cloud\\ApigeeRegistry\\V1ê!Google::Cloud::ApigeeRegistry::V1bproto3'
         , true);
 
         static::$is_initialized = true;

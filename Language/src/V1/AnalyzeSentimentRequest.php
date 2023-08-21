@@ -29,6 +29,35 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
     private $encoding_type = 0;
 
     /**
+     * @param \Google\Cloud\Language\V1\Document $document     Required. Input document.
+     * @param int                                $encodingType The encoding type used by the API to calculate sentence offsets.
+     *                                                         For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
+     *
+     * @return \Google\Cloud\Language\V1\AnalyzeSentimentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Language\V1\Document $document, int $encodingType): self
+    {
+        return (new self())
+            ->setDocument($document)
+            ->setEncodingType($encodingType);
+    }
+
+    /**
+     * @param \Google\Cloud\Language\V1\Document $document Required. Input document.
+     *
+     * @return \Google\Cloud\Language\V1\AnalyzeSentimentRequest
+     *
+     * @experimental
+     */
+    public static function buildFromDocument(\Google\Cloud\Language\V1\Document $document): self
+    {
+        return (new self())
+            ->setDocument($document);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

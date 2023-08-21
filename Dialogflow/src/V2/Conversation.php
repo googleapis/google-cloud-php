@@ -42,8 +42,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     private $conversation_profile = '';
     /**
-     * Output only. It will not be empty if the conversation is to be connected over
-     * telephony.
+     * Output only. It will not be empty if the conversation is to be connected
+     * over telephony.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationPhoneNumber phone_number = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -65,12 +65,15 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
-     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]; Otherwise, defaults to
+     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
+     * Otherwise, defaults to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set but explicitly sets conversation_stage to
-     * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE], it skips
-     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE] stage and directly goes to
+     * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE],
+     * it skips
+     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]
+     * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
@@ -95,8 +98,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversationProfiles/<Conversation Profile ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\ConversationPhoneNumber $phone_number
-     *           Output only. It will not be empty if the conversation is to be connected over
-     *           telephony.
+     *           Output only. It will not be empty if the conversation is to be connected
+     *           over telephony.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. The time the conversation was started.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -106,12 +109,15 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           human agent is handling the conversation.
      *           If the conversation is created with the conversation profile that has
      *           Dialogflow config set, defaults to
-     *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]; Otherwise, defaults to
+     *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
+     *           Otherwise, defaults to
      *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *           If the conversation is created with the conversation profile that has
      *           Dialogflow config set but explicitly sets conversation_stage to
-     *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE], it skips
-     *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE] stage and directly goes to
+     *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE],
+     *           it skips
+     *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]
+     *           stage and directly goes to
      *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      * }
      */
@@ -209,8 +215,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. It will not be empty if the conversation is to be connected over
-     * telephony.
+     * Output only. It will not be empty if the conversation is to be connected
+     * over telephony.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationPhoneNumber phone_number = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dialogflow\V2\ConversationPhoneNumber|null
@@ -231,8 +237,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. It will not be empty if the conversation is to be connected over
-     * telephony.
+     * Output only. It will not be empty if the conversation is to be connected
+     * over telephony.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationPhoneNumber phone_number = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dialogflow\V2\ConversationPhoneNumber $var
@@ -323,12 +329,15 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
-     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]; Otherwise, defaults to
+     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
+     * Otherwise, defaults to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set but explicitly sets conversation_stage to
-     * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE], it skips
-     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE] stage and directly goes to
+     * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE],
+     * it skips
+     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]
+     * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
@@ -344,12 +353,15 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
-     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]; Otherwise, defaults to
+     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
+     * Otherwise, defaults to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set but explicitly sets conversation_stage to
-     * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE], it skips
-     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE] stage and directly goes to
+     * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE],
+     * it skips
+     * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]
+     * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>

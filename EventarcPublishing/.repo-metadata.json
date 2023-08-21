@@ -1,6 +1,8 @@
 {
+    "language": "php",
     "distribution_name": "google/cloud-eventarc-publishing",
-    "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-eventarc-publishing/latest",
-    "library_type": "GAPIC_AUTO"
+    "release_level": "preview",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-eventarc-publishing/latest",
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "eventarcpublishing"
 }

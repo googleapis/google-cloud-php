@@ -32,6 +32,8 @@ class SqlExternalSyncSettingErrorType
      */
     const REPLICA_ALREADY_SETUP = 4;
     /**
+     * The replication user is missing privileges that are required.
+     *
      * Generated from protobuf enum <code>INSUFFICIENT_PRIVILEGE = 5;</code>
      */
     const INSUFFICIENT_PRIVILEGE = 5;
@@ -135,7 +137,7 @@ class SqlExternalSyncSettingErrorType
      */
     const UNSUPPORTED_DEFINER = 21;
     /**
-     * SQL Server &#64;&#64;SERVERNAME does not match actual host name
+     * SQL Server &#64;&#64;SERVERNAME does not match actual host name.
      *
      * Generated from protobuf enum <code>SQLSERVER_SERVERNAME_MISMATCH = 22;</code>
      */
@@ -164,6 +166,51 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>UNSUPPORTED_STORAGE_ENGINE = 26;</code>
      */
     const UNSUPPORTED_STORAGE_ENGINE = 26;
+    /**
+     * Source has tables with limited support
+     * eg: PostgreSQL tables without primary keys.
+     *
+     * Generated from protobuf enum <code>LIMITED_SUPPORT_TABLES = 27;</code>
+     */
+    const LIMITED_SUPPORT_TABLES = 27;
+    /**
+     * The replica instance contains existing data.
+     *
+     * Generated from protobuf enum <code>EXISTING_DATA_IN_REPLICA = 28;</code>
+     */
+    const EXISTING_DATA_IN_REPLICA = 28;
+    /**
+     * The replication user is missing privileges that are optional.
+     *
+     * Generated from protobuf enum <code>MISSING_OPTIONAL_PRIVILEGES = 29;</code>
+     */
+    const MISSING_OPTIONAL_PRIVILEGES = 29;
+    /**
+     * Additional BACKUP_ADMIN privilege is granted to the replication user
+     * which may lock source MySQL 8 instance for DDLs during initial sync.
+     *
+     * Generated from protobuf enum <code>RISKY_BACKUP_ADMIN_PRIVILEGE = 30;</code>
+     */
+    const RISKY_BACKUP_ADMIN_PRIVILEGE = 30;
+    /**
+     * The Cloud Storage bucket is missing necessary permissions.
+     *
+     * Generated from protobuf enum <code>INSUFFICIENT_GCS_PERMISSIONS = 31;</code>
+     */
+    const INSUFFICIENT_GCS_PERMISSIONS = 31;
+    /**
+     * The Cloud Storage bucket has an error in the file or contains invalid
+     * file information.
+     *
+     * Generated from protobuf enum <code>INVALID_FILE_INFO = 32;</code>
+     */
+    const INVALID_FILE_INFO = 32;
+    /**
+     * The source instance has unsupported database settings for migration.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_DATABASE_SETTINGS = 33;</code>
+     */
+    const UNSUPPORTED_DATABASE_SETTINGS = 33;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -193,6 +240,13 @@ class SqlExternalSyncSettingErrorType
         self::UNSUPPORTED_BINLOG_FORMAT => 'UNSUPPORTED_BINLOG_FORMAT',
         self::BINLOG_RETENTION_SETTING => 'BINLOG_RETENTION_SETTING',
         self::UNSUPPORTED_STORAGE_ENGINE => 'UNSUPPORTED_STORAGE_ENGINE',
+        self::LIMITED_SUPPORT_TABLES => 'LIMITED_SUPPORT_TABLES',
+        self::EXISTING_DATA_IN_REPLICA => 'EXISTING_DATA_IN_REPLICA',
+        self::MISSING_OPTIONAL_PRIVILEGES => 'MISSING_OPTIONAL_PRIVILEGES',
+        self::RISKY_BACKUP_ADMIN_PRIVILEGE => 'RISKY_BACKUP_ADMIN_PRIVILEGE',
+        self::INSUFFICIENT_GCS_PERMISSIONS => 'INSUFFICIENT_GCS_PERMISSIONS',
+        self::INVALID_FILE_INFO => 'INVALID_FILE_INFO',
+        self::UNSUPPORTED_DATABASE_SETTINGS => 'UNSUPPORTED_DATABASE_SETTINGS',
     ];
 
     public static function name($value)

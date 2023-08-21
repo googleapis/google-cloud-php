@@ -401,6 +401,25 @@ return [
                 'uriTemplate' => '/v1beta/accounts:provisionAccountTicket',
                 'body' => '*',
             ],
+            'RunAccessReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{entity=properties/*}:runAccessReport',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{entity=accounts/*}:runAccessReport',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'entity' => [
+                        'getters' => [
+                            'getEntity',
+                        ],
+                    ],
+                ],
+            ],
             'SearchChangeHistoryEvents' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{account=accounts/*}:searchChangeHistoryEvents',
@@ -540,4 +559,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

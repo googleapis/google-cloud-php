@@ -23,14 +23,11 @@
 namespace Google\Cloud\Run\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Run\V2\ListRevisionsResponse;
-
 use Google\Cloud\Run\V2\Revision;
 use Google\Cloud\Run\V2\RevisionsClient;
 use Google\LongRunning\GetOperationRequest;
@@ -46,25 +43,19 @@ use stdClass;
  */
 class RevisionsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RevisionsClient
-     */
+    /** @return RevisionsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,14 +64,12 @@ class RevisionsClientTest extends GeneratedTest
         return new RevisionsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRevisionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -106,6 +95,8 @@ class RevisionsClientTest extends GeneratedTest
         $reconciling = false;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
+        $sessionAffinity = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
@@ -118,6 +109,8 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -159,14 +152,12 @@ class RevisionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRevisionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -216,9 +207,7 @@ class RevisionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRevisionTest()
     {
         $transport = $this->createTransport();
@@ -237,6 +226,8 @@ class RevisionsClientTest extends GeneratedTest
         $reconciling = false;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
+        $sessionAffinity = false;
         $etag = 'etag3123477';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
@@ -249,6 +240,8 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -265,9 +258,7 @@ class RevisionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRevisionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -300,9 +291,7 @@ class RevisionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRevisionsTest()
     {
         $transport = $this->createTransport();
@@ -337,9 +326,7 @@ class RevisionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRevisionsExceptionTest()
     {
         $transport = $this->createTransport();

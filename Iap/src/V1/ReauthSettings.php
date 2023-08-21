@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReauthSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Reauth method required by the policy.
+     * Reauth method requested.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1;</code>
      */
@@ -43,7 +43,7 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $method
-     *           Reauth method required by the policy.
+     *           Reauth method requested.
      *     @type \Google\Protobuf\Duration $max_age
      *           Reauth session lifetime, how long before a user has to reauthenticate
      *           again.
@@ -58,7 +58,7 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reauth method required by the policy.
+     * Reauth method requested.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1;</code>
      * @return int
@@ -69,7 +69,7 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reauth method required by the policy.
+     * Reauth method requested.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1;</code>
      * @param int $var

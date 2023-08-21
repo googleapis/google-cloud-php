@@ -12,6 +12,21 @@ return [
                     'maxPollDelayMillis' => '10000',
                     'totalPollTimeoutMillis' => '900000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
             ],
             'DeleteCluster' => [
                 'longRunning' => [
@@ -21,6 +36,27 @@ return [
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '10000',
                     'totalPollTimeoutMillis' => '900000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'cluster_name',
+                        'fieldAccessors' => [
+                            'getClusterName',
+                        ],
+                    ],
                 ],
             ],
             'DiagnoseCluster' => [
@@ -32,6 +68,27 @@ return [
                     'maxPollDelayMillis' => '10000',
                     'totalPollTimeoutMillis' => '30000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'cluster_name',
+                        'fieldAccessors' => [
+                            'getClusterName',
+                        ],
+                    ],
+                ],
             ],
             'StartCluster' => [
                 'longRunning' => [
@@ -41,6 +98,27 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'cluster_name',
+                        'fieldAccessors' => [
+                            'getClusterName',
+                        ],
+                    ],
                 ],
             ],
             'StopCluster' => [
@@ -52,6 +130,27 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'cluster_name',
+                        'fieldAccessors' => [
+                            'getClusterName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateCluster' => [
                 'longRunning' => [
@@ -61,6 +160,51 @@ return [
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '10000',
                     'totalPollTimeoutMillis' => '900000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'cluster_name',
+                        'fieldAccessors' => [
+                            'getClusterName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCluster' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataproc\V1\Cluster',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'cluster_name',
+                        'fieldAccessors' => [
+                            'getClusterName',
+                        ],
+                    ],
                 ],
             ],
             'ListClusters' => [
@@ -72,6 +216,28 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getClusters',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataproc\V1\ListClustersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'templateMap' => [
+                'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
+                'clusterRegion' => 'projects/{project}/regions/{region}/clusters/{cluster}',
+                'nodeGroup' => 'projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}',
+                'service' => 'projects/{project}/locations/{location}/services/{service}',
             ],
         ],
     ],

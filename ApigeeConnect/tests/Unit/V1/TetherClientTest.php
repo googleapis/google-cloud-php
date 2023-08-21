@@ -23,11 +23,9 @@
 namespace Google\Cloud\ApigeeConnect\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ApigeeConnect\V1\EgressRequest;
 use Google\Cloud\ApigeeConnect\V1\EgressResponse;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class TetherClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TetherClient
-     */
+    /** @return TetherClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +61,7 @@ class TetherClientTest extends GeneratedTest
         return new TetherClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function egressTest()
     {
         $transport = $this->createTransport();
@@ -144,9 +134,7 @@ class TetherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function egressExceptionTest()
     {
         $transport = $this->createTransport();

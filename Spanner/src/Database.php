@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -37,6 +38,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Rpc\Code;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -170,6 +172,11 @@ class Database
     private $isRunningTransaction = false;
 
     /**
+     * @var string|null
+     */
+    private $databaseRole;
+
+    /**
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -185,6 +192,7 @@ class Database
      * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
      *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
+     * @param string $databaseRole The user created database role which creates the session.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -195,7 +203,8 @@ class Database
         $name,
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
-        array $info = []
+        array $info = [],
+        $databaseRole = ''
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -210,6 +219,7 @@ class Database
         }
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
+        $this->databaseRole = $databaseRole;
     }
 
     /**
@@ -406,7 +416,7 @@ class Database
     public function create(array $options = [])
     {
         $statements = $this->pluck('statements', $options, false) ?: [];
-        $dialect = isset($options['databaseDialect']) ? $options['databaseDialect'] : null;
+        $dialect = $options['databaseDialect'] ?? null;
 
         $createStatement = $this->getCreateDbStatement($dialect);
 
@@ -438,6 +448,43 @@ class Database
     public function restore($backup, array $options = [])
     {
         return $this->instance->createDatabaseFromBackup($this->name, $backup, $options);
+    }
+
+    /**
+     * Update an existing Cloud Spanner database.
+     *
+     * Example:
+     * ```
+     * $operation = $database->updateDatabase(['enableDropProtection' => true]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#updatedatabaserequest UpdateDatabaseRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type bool $enableDropProtection If `true`, delete operations for Database
+     *           and Instance will be blocked. **Defaults to** `false`.
+     * }
+     * @return LongRunningOperation<Database>
+     */
+    public function updateDatabase(array $options = [])
+    {
+        $fieldMask = [];
+        if (isset($options['enableDropProtection'])) {
+            $fieldMask[] = 'enable_drop_protection';
+        }
+        return $this->connection->updateDatabase([
+            'database' => [
+                'name' => $this->name,
+                'enableDropProtection' => $options['enableDropProtection'] ?? false,
+            ],
+            'updateMask' => [
+                'paths' => $fieldMask
+            ]
+        ] + $options);
     }
 
     /**
@@ -863,11 +910,16 @@ class Database
         };
 
         $delayFn = function (\Exception $e) {
-            if (!($e instanceof AbortedException)) {
-                throw $e;
+            if ($e instanceof AbortedException) {
+                return $e->getRetryDelay();
             }
-
-            return $e->getRetryDelay();
+            if ($e instanceof ServiceException &&
+                $e->getCode() === Code::INTERNAL &&
+                strpos($e->getMessage(), 'RST_STREAM') !== false
+            ) {
+                return $e->getRetryDelay();
+            }
+            throw $e;
         };
 
         $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {
@@ -2023,6 +2075,10 @@ class Database
             return $this->session = $this->sessionPool->acquire($context);
         }
 
+        if ($this->databaseRole !== null) {
+            $options['creator_role'] = $this->databaseRole;
+        }
+
         return $this->session = $this->operation->createSession($this->name, $options);
     }
 
@@ -2078,7 +2134,7 @@ class Database
 
     /**
      * Returns the 'CREATE DATABASE' statement as per the given database dialect
-     * 
+     *
      * @param string $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */

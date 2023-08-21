@@ -20,7 +20,7 @@ namespace Google\Cloud\OsLogin\Tests\System\V1beta;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 use Google\Cloud\OsLogin\V1beta\LoginProfile;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class OsLoginServiceClientTest extends TestCase
 {
@@ -31,7 +31,7 @@ class OsLoginServiceClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [self::$restClient],
@@ -39,7 +39,7 @@ class OsLoginServiceClientTest extends TestCase
         ];
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

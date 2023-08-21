@@ -26,16 +26,12 @@ namespace Google\Cloud\Datastore\Admin\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Datastore\Admin\V1\CreateIndexRequest;
@@ -53,14 +49,10 @@ use Google\LongRunning\Operation;
 /**
  * Service Description: Google Cloud Datastore Admin API
  *
- *
  * The Datastore Admin API provides several admin services for Cloud Datastore.
  *
- * -----------------------------------------------------------------------------
- * ## Concepts
- *
- * Project, namespace, kind, and entity as defined in the Google Cloud Datastore
- * API.
+ * Concepts: Project, namespace, kind, and entity as defined in the Google Cloud
+ * Datastore API.
  *
  * Operation: An Operation represents work being performed in the background.
  *
@@ -68,50 +60,40 @@ use Google\LongRunning\Operation;
  * specified as a combination of kinds and namespaces (either or both of which
  * may be all).
  *
- * -----------------------------------------------------------------------------
- * ## Services
+ * Export/Import Service:
  *
- * # Export/Import
- *
- * The Export/Import service provides the ability to copy all or a subset of
+ * - The Export/Import service provides the ability to copy all or a subset of
  * entities to/from Google Cloud Storage.
- *
- * Exported data may be imported into Cloud Datastore for any Google Cloud
+ * - Exported data may be imported into Cloud Datastore for any Google Cloud
  * Platform project. It is not restricted to the export source project. It is
  * possible to export from one project and then import into another.
- *
- * Exported data can also be loaded into Google BigQuery for analysis.
- *
- * Exports and imports are performed asynchronously. An Operation resource is
+ * - Exported data can also be loaded into Google BigQuery for analysis.
+ * - Exports and imports are performed asynchronously. An Operation resource is
  * created for each export/import. The state (including any errors encountered)
  * of the export/import may be queried via the Operation resource.
  *
- * # Index
+ * Index Service:
  *
- * The index service manages Cloud Datastore composite indexes.
- *
- * Index creation and deletion are performed asynchronously.
+ * - The index service manages Cloud Datastore composite indexes.
+ * - Index creation and deletion are performed asynchronously.
  * An Operation resource is created for each such asynchronous operation.
  * The state of the operation (including any errors encountered)
  * may be queried via the Operation resource.
  *
- * # Operation
+ * Operation Service:
  *
- * The Operations collection provides a record of actions performed for the
+ * - The Operations collection provides a record of actions performed for the
  * specified project (including any operations in progress). Operations are not
  * created directly but through calls on other collections or resources.
- *
- * An operation that is not yet done may be cancelled. The request to cancel is
- * asynchronous and the operation may continue to run for some time after the
+ * - An operation that is not yet done may be cancelled. The request to cancel
+ * is asynchronous and the operation may continue to run for some time after the
  * request to cancel is made.
- *
- * An operation that is done may be deleted so that it is no longer listed as
+ * - An operation that is done may be deleted so that it is no longer listed as
  * part of the Operation collection.
- *
- * ListOperations returns all pending operations, but not completed operations.
- *
- * Operations are created by service DatastoreAdmin,
- * but are accessed via service google.longrunning.Operations.
+ * - ListOperations returns all pending operations, but not completed
+ * operations.
+ * - Operations are created by service DatastoreAdmin, but are accessed via
+ * service google.longrunning.Operations.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -123,7 +105,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -140,7 +122,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -149,34 +131,28 @@ use Google\LongRunning\Operation;
  *     $datastoreAdminClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient} to use the new
+ * surface.
  */
 class DatastoreAdminGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.datastore.admin.v1.DatastoreAdmin';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'datastore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
@@ -250,9 +226,6 @@ class DatastoreAdminGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'datastore.googleapis.com:443'.
@@ -282,7 +255,7 @@ class DatastoreAdminGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -311,9 +284,9 @@ class DatastoreAdminGapicClient
     /**
      * Creates the specified index.
      * A newly created index's initial state is `CREATING`. On completion of the
-     * returned [google.longrunning.Operation][google.longrunning.Operation], the state will be `READY`.
-     * If the index already exists, the call will return an `ALREADY_EXISTS`
-     * status.
+     * returned [google.longrunning.Operation][google.longrunning.Operation], the
+     * state will be `READY`. If the index already exists, the call will return an
+     * `ALREADY_EXISTS` status.
      *
      * During index creation, the process could result in an error, in which
      * case the index will move to the `ERROR` state. The process can be recovered
@@ -332,7 +305,7 @@ class DatastoreAdminGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -349,7 +322,7 @@ class DatastoreAdminGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -409,7 +382,8 @@ class DatastoreAdminGapicClient
      * An index can only be deleted if it is in a `READY` or `ERROR` state. On
      * successful execution of the request, the index will be in a `DELETING`
      * [state][google.datastore.admin.v1.Index.State]. And on completion of the
-     * returned [google.longrunning.Operation][google.longrunning.Operation], the index will be removed.
+     * returned [google.longrunning.Operation][google.longrunning.Operation], the
+     * index will be removed.
      *
      * During index deletion, the process could result in an error, in which
      * case the index will move to the `ERROR` state. The process can be recovered
@@ -424,7 +398,7 @@ class DatastoreAdminGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -441,7 +415,7 @@ class DatastoreAdminGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -516,7 +490,7 @@ class DatastoreAdminGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -533,7 +507,7 @@ class DatastoreAdminGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -557,8 +531,8 @@ class DatastoreAdminGapicClient
      *
      *                                The resulting files will be nested deeper than the specified URL prefix.
      *                                The final output URL will be provided in the
-     *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url] field. That
-     *                                value should be used for subsequent ImportEntities operations.
+     *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+     *                                field. That value should be used for subsequent ImportEntities operations.
      *
      *                                By nesting the data files deeper, the same Cloud Storage bucket can be used
      *                                in multiple ExportEntities operations without conflict.
@@ -712,8 +686,9 @@ class DatastoreAdminGapicClient
      * ```
      *
      * @param string $projectId    Required. Project ID against which to make the request.
-     * @param string $inputUrl     Required. The full resource URL of the external storage location. Currently, only
-     *                             Google Cloud Storage is supported. So input_url should be of the form:
+     * @param string $inputUrl     Required. The full resource URL of the external storage location.
+     *                             Currently, only Google Cloud Storage is supported. So input_url should be
+     *                             of the form:
      *                             `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
      *                             `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
      *                             an optional Cloud Storage namespace path (this is not a Cloud Datastore

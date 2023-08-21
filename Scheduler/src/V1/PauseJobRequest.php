@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PauseJob][google.cloud.scheduler.v1.CloudScheduler.PauseJob].
+ * Request message for
+ * [PauseJob][google.cloud.scheduler.v1.CloudScheduler.PauseJob].
  *
  * Generated from protobuf message <code>google.cloud.scheduler.v1.PauseJobRequest</code>
  */
@@ -22,6 +23,21 @@ class PauseJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The job name. For example:
+     *                     `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see
+     *                     {@see CloudSchedulerClient::jobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Scheduler\V1\PauseJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

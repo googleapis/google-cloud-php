@@ -28,7 +28,7 @@ class SpecialistPool extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the SpecialistPool.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * This field should be unique on project-level.
      *
@@ -70,7 +70,7 @@ class SpecialistPool extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the SpecialistPool.
      *     @type string $display_name
      *           Required. The user-defined name of the SpecialistPool.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *           This field should be unique on project-level.
      *     @type int $specialist_managers_count
@@ -116,7 +116,7 @@ class SpecialistPool extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the SpecialistPool.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * This field should be unique on project-level.
      *
@@ -130,7 +130,7 @@ class SpecialistPool extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the SpecialistPool.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * This field should be unique on project-level.
      *

@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices].
+ * Request message for
+ * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListModelEvaluationSlicesRequest</code>
  */
 class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the ModelEvaluation to list the ModelEvaluationSlices
-     * from. Format:
+     * Required. The resource name of the ModelEvaluation to list the
+     * ModelEvaluationSlices from. Format:
      * `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -39,8 +40,10 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token] of the previous
-     * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] call.
+     * [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -53,14 +56,30 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The resource name of the ModelEvaluation to list the
+     *                       ModelEvaluationSlices from. Format:
+     *                       `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     *                       Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the ModelEvaluation to list the ModelEvaluationSlices
-     *           from. Format:
+     *           Required. The resource name of the ModelEvaluation to list the
+     *           ModelEvaluationSlices from. Format:
      *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      *     @type string $filter
      *           The standard list filter.
@@ -70,8 +89,10 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token] of the previous
-     *           [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] call.
+     *           [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token]
+     *           of the previous
+     *           [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
      * }
@@ -82,8 +103,8 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the ModelEvaluation to list the ModelEvaluationSlices
-     * from. Format:
+     * Required. The resource name of the ModelEvaluation to list the
+     * ModelEvaluationSlices from. Format:
      * `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -95,8 +116,8 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the ModelEvaluation to list the ModelEvaluationSlices
-     * from. Format:
+     * Required. The resource name of the ModelEvaluation to list the
+     * ModelEvaluationSlices from. Format:
      * `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -168,8 +189,10 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token] of the previous
-     * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] call.
+     * [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -182,8 +205,10 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token] of the previous
-     * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] call.
+     * [ListModelEvaluationSlicesResponse.next_page_token][google.cloud.aiplatform.v1.ListModelEvaluationSlicesResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

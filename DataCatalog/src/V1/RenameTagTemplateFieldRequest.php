@@ -23,11 +23,29 @@ class RenameTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The new ID of this tag template field. For example, `my_new_field`.
+     * Required. The new ID of this tag template field. For example,
+     * `my_new_field`.
      *
      * Generated from protobuf field <code>string new_tag_template_field_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $new_tag_template_field_id = '';
+
+    /**
+     * @param string $name                  Required. The name of the tag template field. Please see
+     *                                      {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
+     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example,
+     *                                      `my_new_field`.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $newTagTemplateFieldId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNewTagTemplateFieldId($newTagTemplateFieldId);
+    }
 
     /**
      * Constructor.
@@ -38,7 +56,8 @@ class RenameTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the tag template field.
      *     @type string $new_tag_template_field_id
-     *           Required. The new ID of this tag template field. For example, `my_new_field`.
+     *           Required. The new ID of this tag template field. For example,
+     *           `my_new_field`.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +92,8 @@ class RenameTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new ID of this tag template field. For example, `my_new_field`.
+     * Required. The new ID of this tag template field. For example,
+     * `my_new_field`.
      *
      * Generated from protobuf field <code>string new_tag_template_field_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -84,7 +104,8 @@ class RenameTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new ID of this tag template field. For example, `my_new_field`.
+     * Required. The new ID of this tag template field. For example,
+     * `my_new_field`.
      *
      * Generated from protobuf field <code>string new_tag_template_field_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

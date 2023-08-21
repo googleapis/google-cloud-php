@@ -27,11 +27,12 @@ class MetadataService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\MetadataStore::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Þo
-1google/cloud/aiplatform/v1/metadata_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/artifact.proto(google/cloud/aiplatform/v1/context.proto&google/cloud/aiplatform/v1/event.proto*google/cloud/aiplatform/v1/execution.proto1google/cloud/aiplatform/v1/lineage_subgraph.proto0google/cloud/aiplatform/v1/metadata_schema.proto/google/cloud/aiplatform/v1/metadata_store.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"º
+õo
+1google/cloud/aiplatform/v1/metadata_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/artifact.proto(google/cloud/aiplatform/v1/context.proto&google/cloud/aiplatform/v1/event.proto*google/cloud/aiplatform/v1/execution.proto1google/cloud/aiplatform/v1/lineage_subgraph.proto0google/cloud/aiplatform/v1/metadata_schema.proto/google/cloud/aiplatform/v1/metadata_store.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"º
 CreateMetadataStoreRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationF
@@ -263,8 +264,8 @@ GetContext-.google.cloud.aiplatform.v1.GetContextRequest#.google.cloud.aiplatf
 CreateMetadataSchema7.google.cloud.aiplatform.v1.CreateMetadataSchemaRequest*.google.cloud.aiplatform.v1.MetadataSchema"‰‚Óä“W"D/v1/{parent=projects/*/locations/*/metadataStores/*}/metadataSchemas:metadata_schemaÚA)parent,metadata_schema,metadata_schema_idÊ
 GetMetadataSchema4.google.cloud.aiplatform.v1.GetMetadataSchemaRequest*.google.cloud.aiplatform.v1.MetadataSchema"S‚Óä“FD/v1/{name=projects/*/locations/*/metadataStores/*/metadataSchemas/*}ÚAnameÝ
 ListMetadataSchemas6.google.cloud.aiplatform.v1.ListMetadataSchemasRequest7.google.cloud.aiplatform.v1.ListMetadataSchemasResponse"U‚Óä“FD/v1/{parent=projects/*/locations/*/metadataStores/*}/metadataSchemasÚAparent€
-QueryArtifactLineageSubgraph?.google.cloud.aiplatform.v1.QueryArtifactLineageSubgraphRequest+.google.cloud.aiplatform.v1.LineageSubgraph"r‚Óä“a_/v1/{artifact=projects/*/locations/*/metadataStores/*/artifacts/*}:queryArtifactLineageSubgraphÚAartifactMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
-com.google.cloud.aiplatform.v1BMetadataServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+QueryArtifactLineageSubgraph?.google.cloud.aiplatform.v1.QueryArtifactLineageSubgraphRequest+.google.cloud.aiplatform.v1.LineageSubgraph"r‚Óä“a_/v1/{artifact=projects/*/locations/*/metadataStores/*/artifacts/*}:queryArtifactLineageSubgraphÚAartifactMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
+com.google.cloud.aiplatform.v1BMetadataServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

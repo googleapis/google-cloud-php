@@ -29,6 +29,21 @@ class GetGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $forwardingRule Name of the ForwardingRule resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetGlobalForwardingRuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $forwardingRule): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setForwardingRule($forwardingRule);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

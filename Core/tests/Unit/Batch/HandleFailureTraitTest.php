@@ -19,8 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\HandleFailureTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -28,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class HandleFailureTraitTest extends TestCase
 {
-    use ExpectException;
-
     private $impl;
     private $testDir;
 
@@ -43,7 +40,7 @@ class HandleFailureTraitTest extends TestCase
         return rmdir($dir);
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(HandleFailureTrait::class);
         $this->testDir = sprintf(
@@ -55,7 +52,7 @@ class HandleFailureTraitTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         $this->delTree($this->testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
@@ -69,7 +66,7 @@ class HandleFailureTraitTest extends TestCase
         if (0 === posix_getuid()) {
             $this->markTestSkipped('Cannot test init failure as root');
         }
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/bad/write/dir');
         $this->impl->call('initFailureFile');
@@ -103,17 +100,33 @@ class HandleFailureTraitTest extends TestCase
         );
     }
 
-    public function testHandleFailure()
+    /**
+     * @dataProvider handleFailureCases
+     */
+    public function testHandleFailure($key, $item)
     {
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . $this->testDir);
         $this->impl->call('initFailureFile');
-        $this->impl->handleFailure(1, array('apple', 'orange'));
+        $this->impl->handleFailure($key, $item);
         $files = $this->impl->call('getFailedFiles');
         $this->assertCount(1, $files);
-        $unserialized = unserialize(file_get_contents($files[0]));
+        $fp = fopen($files[0], 'r');
+        $unserializedData = [];
+        while ($line = fgets($fp)) {
+            $unserializedData += unserialize(json_decode($line));
+        }
+        @fclose($fp);
         $this->assertEquals(
-            array(1 => array('apple', 'orange')),
-            $unserialized
+            array($key => $item),
+            $unserializedData
         );
+    }
+
+    public function handleFailureCases()
+    {
+        return [
+            [1, array('apple', 'orange')],
+            [2, array('apple' . PHP_EOL, 'orange')]
+        ];
     }
 }

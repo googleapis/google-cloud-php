@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Timestamp;
 
 /**
@@ -27,20 +28,28 @@ use Google\Cloud\Spanner\Timestamp;
  */
 class TransactionTest extends SpannerTestCase
 {
+    use DatabaseRoleTrait;
+
     const TABLE_NAME = 'Transactions';
 
     private static $row = [];
 
     private static $tableName;
+    private static $id1;
+    private static $isSetup = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        if (self::$isSetup) {
+            return;
+        }
+        parent::setUpBeforeClass();
 
         self::$tableName = uniqid(self::TABLE_NAME);
+        self::$id1 = rand(1000, 9999);
 
         self::$row = [
-            'id' => rand(1000, 9999),
+            'id' => self::$id1,
             'name' => uniqid(self::TESTING_PREFIX),
             'birthday' => new Date(new \DateTime('2000-01-01'))
         ];
@@ -49,10 +58,11 @@ class TransactionTest extends SpannerTestCase
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::$tableName . ' (
-                id INT64 NOT NULL,
-                number INT64 NOT NULL
-            ) PRIMARY KEY (id)'
+                    id INT64 NOT NULL,
+                    number INT64 NOT NULL
+                ) PRIMARY KEY (id)'
         )->pollUntilComplete();
+        self::$isSetup = true;
     }
 
     public function testRunTransaction()
@@ -217,6 +227,43 @@ class TransactionTest extends SpannerTestCase
         $this->assertInstanceOf(Timestamp::class, $snapshot->readTimestamp());
     }
 
+    /**
+     * @dataProvider insertDbProvider
+     */
+    public function testRunTransactionWithDbRole($db, $values, $expected)
+    {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+
+        $error = null;
+        $row = $this->getRow();
+        $row['name'] = 'Doug';
+
+        $db->runTransaction(function ($t) use ($row) {
+            $t->update(self::TEST_TABLE_NAME, $row);
+            $t->commit();
+        });
+        $row = $this->getRow();
+        $this->assertEquals('Doug', $row['name']);
+
+        try {
+            $db->runTransaction(function ($t) use ($values) {
+                $id = rand(1, 346464);
+                $t->insert(self::TEST_TABLE_NAME, $values);
+
+                $t->commit();
+            });
+        } catch (ServiceException $e) {
+            $error = $e;
+        }
+
+        if ($expected === null) {
+            $this->assertEquals($error, $expected);
+        } else {
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+        }
+    }
+
     private function readArgs()
     {
         return [
@@ -225,5 +272,17 @@ class TransactionTest extends SpannerTestCase
             ]),
             array_keys(self::$row)
         ];
+    }
+
+    private function getRow()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT id, name FROM ' . self::TEST_TABLE_NAME . ' WHERE id=@id', [
+            'parameters' => [
+                'id' => self::$id1
+            ]
+        ]);
+
+        return $res->rows()->current();
     }
 }

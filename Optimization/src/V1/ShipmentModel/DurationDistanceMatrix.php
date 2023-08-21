@@ -18,7 +18,8 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
 {
     /**
      * Specifies the rows of the duration and distance matrix. It must have as
-     * many elements as [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
+     * many elements as
+     * [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.DurationDistanceMatrix.Row rows = 1;</code>
      */
@@ -44,7 +45,8 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Specifies the rows of the duration and distance matrix. It must have as
-     *           many elements as [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
+     *           many elements as
+     *           [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *     @type string $vehicle_start_tag
      *           Tag defining to which vehicles this duration and distance matrix applies.
      *           If empty, this applies to all vehicles, and there can only be a single
@@ -62,7 +64,8 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the rows of the duration and distance matrix. It must have as
-     * many elements as [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
+     * many elements as
+     * [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.DurationDistanceMatrix.Row rows = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -74,7 +77,8 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the rows of the duration and distance matrix. It must have as
-     * many elements as [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
+     * many elements as
+     * [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.DurationDistanceMatrix.Row rows = 1;</code>
      * @param array<\Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $var

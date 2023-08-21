@@ -36,7 +36,7 @@ php.owlbot_main(
     dest=dest,
     copy_excludes=[
         src / "*/src/V1/SpannerClient.php",
-        src / "*/src/V1/TransactionOptions/ReadOnly.php",
+        src / "*/proto/src/Google/Cloud/Spanner/V1/TransactionOptions/ReadOnly.php",
     ]
 )
 
@@ -45,6 +45,7 @@ admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Database/v1").resol
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic', merge=php._merge)
+s.move(admin_library / f'src/V1/Client', 'src/Admin/Database/V1/Client', merge=php._merge)
 s.move(admin_library / f'src/V1/resources', f'src/Admin/Database/V1/resources', merge=php._merge)
 
 # copy proto files to src also
@@ -59,6 +60,7 @@ admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Instance/v1").resol
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic', merge=php._merge)
+s.move(admin_library / f'src/V1/Client', 'src/Admin/Instance/V1/Client', merge=php._merge)
 s.move(admin_library / f'src/V1/resources', f'src/Admin/Instance/V1/resources', merge=php._merge)
 
 # copy proto files to src also
@@ -68,23 +70,6 @@ s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance', merge=php._me
 # copy GPBMetadata file to metadata
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/', merge=php._merge)
 
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
 
 # Fix test namespaces
 s.replace(
@@ -116,73 +101,6 @@ s.replace(
     + "\n",
     '')
 
-## START fixing commit() breaking change
-
-# move $mutations back into commit() signature
-s.replace(
-    "src/*/Gapic/SpannerGapicClient.php",
-    re.escape("public function commit($session, array $optionalArgs = [])"),
-    "public function commit($session, $mutations, array $optionalArgs = [])"
-)
-
-# set request value from signature rather than optional args
-s.replace(
-    "src/*/Gapic/SpannerGapicClient.php",
-    re.escape("""if (isset($optionalArgs['mutations'])) {
-            $request->setMutations($optionalArgs['mutations']);
-        }""" + "\n"),
-    "$request->setMutations($mutations);"
-)
-
-# fix sample code
-s.replace(
-    "src/*/Gapic/SpannerGapicClient.php",
-    re.escape("""$formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-     *     $response = $spannerClient->commit($formattedSession);"""),
-    """$formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-     *     $mutation = new \\\Google\\\Cloud\\\Spanner\\\V1\\\Mutation();
-     *     $response = $spannerClient->commit($formattedSession, [$mutation]);"""
-)
-
-# remove $mutations from optional args documentation
-s.replace(
-    "src/*/Gapic/SpannerGapicClient.php",
-    re.escape("""@type Mutation[] $mutations
-     *          The mutations to be executed when this transaction commits. All
-     *          mutations are applied atomically, in the order they appear in
-     *          this list.
-     *     """),
-     ""
-)
-
-# add $mutations to parameter documentation
-s.replace(
-    "src/*/Gapic/SpannerGapicClient.php",
-    re.escape("""@param string $session      Required. The session in which the transaction to be committed is running.
-     * @param array  $optionalArgs {"""),
-    """@param string     $session      Required. The session in which the transaction to be committed is running.
-     * @param Mutation[] $mutations    The mutations to be executed when this transaction commits. All
-     *                                 mutations are applied atomically, in the order they appear in
-     *                                 this list.
-     * @param array      $optionalArgs {"""
-)
-
-# fix test commitTest()
-s.replace(
-    "tests/Unit/V1/SpannerClientTest.php",
-    re.escape("$response = $client->commit($formattedSession);"),
-    """$mutation = new \\\Google\\\Cloud\\\Spanner\\\V1\\\Mutation();
-        $response = $client->commit($formattedSession, [$mutation]);"""
-)
-
-# fix test commitExceptionTest()
-s.replace(
-    "tests/Unit/V1/SpannerClientTest.php",
-    re.escape("$client->commit($formattedSession);"),
-    """$mutation = new \\\Google\\\Cloud\\\Spanner\\\V1\\\Mutation();
-            $client->commit($formattedSession, [$mutation]);"""
-)
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
@@ -192,12 +110,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

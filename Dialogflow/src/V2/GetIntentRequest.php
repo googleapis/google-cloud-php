@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Intents.GetIntent][google.cloud.dialogflow.v2.Intents.GetIntent].
+ * The request message for
+ * [Intents.GetIntent][google.cloud.dialogflow.v2.Intents.GetIntent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetIntentRequest</code>
  */
@@ -38,6 +39,42 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $intent_view = 0;
+
+    /**
+     * @param string $name Required. The name of the intent.
+     *                     Format: `projects/<Project ID>/agent/intents/<Intent ID>`. Please see
+     *                     {@see IntentsClient::intentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
+     * @param string $name         Required. The name of the intent.
+     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`. Please see
+     *                             {@see IntentsClient::intentName()} for help formatting this field.
+     * @param string $languageCode Optional. The language used to access language-specific data.
+     *                             If not specified, the agent's default language is used.
+     *                             For more information, see
+     *                             [Multilingual intent and entity
+     *                             data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetIntentRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameLanguageCode(string $name, string $languageCode): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setLanguageCode($languageCode);
+    }
 
     /**
      * Constructor.

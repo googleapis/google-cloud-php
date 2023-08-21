@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/analytics-admin/v/stable)](https://packagist.org/packages/google/analytics-admin) [![Packagist](https://img.shields.io/packagist/dm/google/analytics-admin.svg)](https://packagist.org/packages/google/analytics-admin)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/analytics-admin/latest/analyticsadmin/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/analytics-admin/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -39,7 +39,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
 
 $client = new AnalyticsAdminServiceClient();
 

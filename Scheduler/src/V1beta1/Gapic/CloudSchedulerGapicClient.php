@@ -27,15 +27,19 @@
 namespace Google\Cloud\Scheduler\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Scheduler\V1beta1\CreateJobRequest;
 use Google\Cloud\Scheduler\V1beta1\DeleteJobRequest;
 use Google\Cloud\Scheduler\V1beta1\GetJobRequest;
@@ -78,29 +82,19 @@ class CloudSchedulerGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.scheduler.v1beta1.CloudScheduler';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudscheduler.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -108,6 +102,8 @@ class CloudSchedulerGapicClient
     private static $jobNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $topicNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -148,12 +144,22 @@ class CloudSchedulerGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'job' => self::getJobNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
             ];
         }
 
@@ -201,11 +207,31 @@ class CloudSchedulerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     *
+     * @experimental
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -250,9 +276,6 @@ class CloudSchedulerGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudscheduler.googleapis.com:443'.
@@ -282,7 +305,7 @@ class CloudSchedulerGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -327,7 +350,8 @@ class CloudSchedulerGapicClient
      * @param string $parent       Required. The location name. For example:
      *                             `projects/PROJECT_ID/locations/LOCATION_ID`.
      * @param Job    $job          Required. The job to add. The user can optionally specify a name for the
-     *                             job in [name][google.cloud.scheduler.v1beta1.Job.name]. [name][google.cloud.scheduler.v1beta1.Job.name] cannot be the same as an
+     *                             job in [name][google.cloud.scheduler.v1beta1.Job.name].
+     *                             [name][google.cloud.scheduler.v1beta1.Job.name] cannot be the same as an
      *                             existing job. If a name is not specified then the system will
      *                             generate a random unique name that will be returned
      *                             ([name][google.cloud.scheduler.v1beta1.Job.name]) in the response.
@@ -377,6 +401,10 @@ class CloudSchedulerGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $legacyAppEngineCron
+     *           This field is used to manage the legacy App Engine Cron jobs using the
+     *           Cloud Scheduler API. If the field is set to true, the job in the __cron
+     *           queue with the corresponding name will be deleted instead.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -393,6 +421,10 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['legacyAppEngineCron'])) {
+            $request->setLegacyAppEngineCron($optionalArgs['legacyAppEngineCron']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -471,6 +503,15 @@ class CloudSchedulerGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $filter
+     *           `filter` can be used to specify a subset of jobs.
+     *
+     *           If `filter` equals `target_config="HttpConfig"`, then the http
+     *           target jobs are retrieved. If `filter` equals
+     *           `target_config="PubSubConfig"`, then the Pub/Sub target jobs are
+     *           retrieved. If `filter` equals `labels.foo=value1
+     *           labels.foo=value2` then only jobs which are labeled with
+     *           foo=value1 AND foo=value2 will be returned.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -480,6 +521,10 @@ class CloudSchedulerGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type bool $legacyAppEngineCron
+     *           This field is used to manage the legacy App Engine Cron jobs using the
+     *           Cloud Scheduler API. If the field is set to true, the jobs in the __cron
+     *           queue will be listed instead.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -498,12 +543,20 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['legacyAppEngineCron'])) {
+            $request->setLegacyAppEngineCron($optionalArgs['legacyAppEngineCron']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -515,10 +568,14 @@ class CloudSchedulerGapicClient
      * Pauses a job.
      *
      * If a job is paused then the system will stop executing the job
-     * until it is re-enabled via [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
-     * state of the job is stored in [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it
-     * will be set to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A job must be in [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]
-     * to be paused.
+     * until it is re-enabled via
+     * [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
+     * state of the job is stored in
+     * [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it will be set
+     * to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A
+     * job must be in
+     * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED] to be
+     * paused.
      *
      * Sample code:
      * ```
@@ -562,10 +619,15 @@ class CloudSchedulerGapicClient
     /**
      * Resume a job.
      *
-     * This method reenables a job after it has been [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
-     * state of a job is stored in [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this method it
-     * will be set to [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A job must be in
-     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be resumed.
+     * This method reenables a job after it has been
+     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
+     * state of a job is stored in
+     * [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this
+     * method it will be set to
+     * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A
+     * job must be in
+     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be
+     * resumed.
      *
      * Sample code:
      * ```
@@ -628,6 +690,10 @@ class CloudSchedulerGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $legacyAppEngineCron
+     *           This field is used to manage the legacy App Engine Cron jobs using the
+     *           Cloud Scheduler API. If the field is set to true, the job in the __cron
+     *           queue with the corresponding name will be forced to run instead.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -646,6 +712,10 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['legacyAppEngineCron'])) {
+            $request->setLegacyAppEngineCron($optionalArgs['legacyAppEngineCron']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RunJob', Job::class, $optionalArgs, $request)->wait();
@@ -654,13 +724,14 @@ class CloudSchedulerGapicClient
     /**
      * Updates a job.
      *
-     * If successful, the updated [Job][google.cloud.scheduler.v1beta1.Job] is returned. If the job does
-     * not exist, `NOT_FOUND` is returned.
+     * If successful, the updated [Job][google.cloud.scheduler.v1beta1.Job] is
+     * returned. If the job does not exist, `NOT_FOUND` is returned.
      *
      * If UpdateJob does not successfully return, it is possible for the
-     * job to be in an [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1beta1.Job.State.UPDATE_FAILED] state. A job in this state may
-     * not be executed. If this happens, retry the UpdateJob request
-     * until a successful response is received.
+     * job to be in an
+     * [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1beta1.Job.State.UPDATE_FAILED]
+     * state. A job in this state may not be executed. If this happens, retry the
+     * UpdateJob request until a successful response is received.
      *
      * Sample code:
      * ```
@@ -673,7 +744,8 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param Job   $job          Required. The new job properties. [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
+     * @param Job   $job          Required. The new job properties.
+     *                            [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
      *
      *                            Output only fields cannot be modified using UpdateJob.
      *                            Any value specified for an output only field will be ignored.
@@ -707,5 +779,128 @@ class CloudSchedulerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateJob', Job::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $cloudSchedulerClient = new CloudSchedulerClient();
+     * try {
+     *     $response = $cloudSchedulerClient->getLocation();
+     * } finally {
+     *     $cloudSchedulerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $cloudSchedulerClient = new CloudSchedulerClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudSchedulerClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudSchedulerClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudSchedulerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 }

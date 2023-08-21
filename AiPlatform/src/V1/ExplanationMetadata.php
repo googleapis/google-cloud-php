@@ -16,15 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExplanationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Map from feature names to feature input metadata. Keys are the name of the
-     * features. Values are the specification of the feature.
+     * Required. Map from feature names to feature input metadata. Keys are the
+     * name of the features. Values are the specification of the feature.
      * An empty InputMetadata is valid. It describes a text feature which has the
-     * name specified as the key in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs]. The baseline
-     * of the empty feature is chosen by Vertex AI.
+     * name specified as the key in
+     * [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * The baseline of the empty feature is chosen by Vertex AI.
      * For Vertex AI-provided Tensorflow images, the key can be any friendly
      * name of the feature. Once specified,
-     * [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] are keyed by
-     * this key (if not grouped with another feature).
+     * [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     * are keyed by this key (if not grouped with another feature).
      * For custom images, the key must match with the key in
      * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances].
      *
@@ -44,7 +45,8 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
     private $outputs;
     /**
      * Points to a YAML file stored on Google Cloud Storage describing the format
-     * of the [feature attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     * of the [feature
+     * attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      * The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * AutoML tabular Models always have this field populated by Vertex AI.
@@ -69,15 +71,16 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $inputs
-     *           Required. Map from feature names to feature input metadata. Keys are the name of the
-     *           features. Values are the specification of the feature.
+     *           Required. Map from feature names to feature input metadata. Keys are the
+     *           name of the features. Values are the specification of the feature.
      *           An empty InputMetadata is valid. It describes a text feature which has the
-     *           name specified as the key in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs]. The baseline
-     *           of the empty feature is chosen by Vertex AI.
+     *           name specified as the key in
+     *           [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     *           The baseline of the empty feature is chosen by Vertex AI.
      *           For Vertex AI-provided Tensorflow images, the key can be any friendly
      *           name of the feature. Once specified,
-     *           [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] are keyed by
-     *           this key (if not grouped with another feature).
+     *           [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     *           are keyed by this key (if not grouped with another feature).
      *           For custom images, the key must match with the key in
      *           [instance][google.cloud.aiplatform.v1.ExplainRequest.instances].
      *     @type array|\Google\Protobuf\Internal\MapField $outputs
@@ -89,7 +92,8 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
      *           Currently only one key is allowed.
      *     @type string $feature_attributions_schema_uri
      *           Points to a YAML file stored on Google Cloud Storage describing the format
-     *           of the [feature attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     *           of the [feature
+     *           attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      *           The schema is defined as an OpenAPI 3.0.2 [Schema
      *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *           AutoML tabular Models always have this field populated by Vertex AI.
@@ -106,15 +110,16 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Map from feature names to feature input metadata. Keys are the name of the
-     * features. Values are the specification of the feature.
+     * Required. Map from feature names to feature input metadata. Keys are the
+     * name of the features. Values are the specification of the feature.
      * An empty InputMetadata is valid. It describes a text feature which has the
-     * name specified as the key in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs]. The baseline
-     * of the empty feature is chosen by Vertex AI.
+     * name specified as the key in
+     * [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * The baseline of the empty feature is chosen by Vertex AI.
      * For Vertex AI-provided Tensorflow images, the key can be any friendly
      * name of the feature. Once specified,
-     * [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] are keyed by
-     * this key (if not grouped with another feature).
+     * [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     * are keyed by this key (if not grouped with another feature).
      * For custom images, the key must match with the key in
      * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances].
      *
@@ -127,15 +132,16 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Map from feature names to feature input metadata. Keys are the name of the
-     * features. Values are the specification of the feature.
+     * Required. Map from feature names to feature input metadata. Keys are the
+     * name of the features. Values are the specification of the feature.
      * An empty InputMetadata is valid. It describes a text feature which has the
-     * name specified as the key in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs]. The baseline
-     * of the empty feature is chosen by Vertex AI.
+     * name specified as the key in
+     * [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * The baseline of the empty feature is chosen by Vertex AI.
      * For Vertex AI-provided Tensorflow images, the key can be any friendly
      * name of the feature. Once specified,
-     * [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] are keyed by
-     * this key (if not grouped with another feature).
+     * [featureAttributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     * are keyed by this key (if not grouped with another feature).
      * For custom images, the key must match with the key in
      * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances].
      *
@@ -189,7 +195,8 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Points to a YAML file stored on Google Cloud Storage describing the format
-     * of the [feature attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     * of the [feature
+     * attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      * The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * AutoML tabular Models always have this field populated by Vertex AI.
@@ -207,7 +214,8 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Points to a YAML file stored on Google Cloud Storage describing the format
-     * of the [feature attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     * of the [feature
+     * attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      * The schema is defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      * AutoML tabular Models always have this field populated by Vertex AI.

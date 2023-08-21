@@ -24,8 +24,8 @@ class Processor extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
-     * To get a list of processors types, see
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
+     * To get a list of processor types, see
      * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *
      * Generated from protobuf field <code>string type = 2;</code>
@@ -50,7 +50,8 @@ class Processor extends \Google\Protobuf\Internal\Message
      */
     private $default_processor_version = '';
     /**
-     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     * Output only. Immutable. The http endpoint that can be called to invoke
+     * processing.
      *
      * Generated from protobuf field <code>string process_endpoint = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -62,8 +63,8 @@ class Processor extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * The KMS key used for encryption/decryption in CMEK scenarios.
-     * See https://cloud.google.com/security-key-management.
+     * The [KMS key](https://cloud.google.com/security-key-management) used for
+     * encryption and decryption in CMEK scenarios.
      *
      * Generated from protobuf field <code>string kms_key_name = 8;</code>
      */
@@ -79,8 +80,8 @@ class Processor extends \Google\Protobuf\Internal\Message
      *           Output only. Immutable. The resource name of the processor.
      *           Format: `projects/{project}/locations/{location}/processors/{processor}`
      *     @type string $type
-     *           The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
-     *           To get a list of processors types, see
+     *           The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
+     *           To get a list of processor types, see
      *           [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *     @type string $display_name
      *           The display name of the processor.
@@ -89,12 +90,13 @@ class Processor extends \Google\Protobuf\Internal\Message
      *     @type string $default_processor_version
      *           The default processor version.
      *     @type string $process_endpoint
-     *           Output only. Immutable. The http endpoint that can be called to invoke processing.
+     *           Output only. Immutable. The http endpoint that can be called to invoke
+     *           processing.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time the processor was created.
      *     @type string $kms_key_name
-     *           The KMS key used for encryption/decryption in CMEK scenarios.
-     *           See https://cloud.google.com/security-key-management.
+     *           The [KMS key](https://cloud.google.com/security-key-management) used for
+     *           encryption and decryption in CMEK scenarios.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,8 +133,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
-     * To get a list of processors types, see
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
+     * To get a list of processor types, see
      * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *
      * Generated from protobuf field <code>string type = 2;</code>
@@ -144,8 +146,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
-     * To get a list of processors types, see
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
+     * To get a list of processor types, see
      * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *
      * Generated from protobuf field <code>string type = 2;</code>
@@ -239,7 +241,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     * Output only. Immutable. The http endpoint that can be called to invoke
+     * processing.
      *
      * Generated from protobuf field <code>string process_endpoint = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -250,7 +253,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     * Output only. Immutable. The http endpoint that can be called to invoke
+     * processing.
      *
      * Generated from protobuf field <code>string process_endpoint = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -301,8 +305,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The KMS key used for encryption/decryption in CMEK scenarios.
-     * See https://cloud.google.com/security-key-management.
+     * The [KMS key](https://cloud.google.com/security-key-management) used for
+     * encryption and decryption in CMEK scenarios.
      *
      * Generated from protobuf field <code>string kms_key_name = 8;</code>
      * @return string
@@ -313,8 +317,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The KMS key used for encryption/decryption in CMEK scenarios.
-     * See https://cloud.google.com/security-key-management.
+     * The [KMS key](https://cloud.google.com/security-key-management) used for
+     * encryption and decryption in CMEK scenarios.
      *
      * Generated from protobuf field <code>string kms_key_name = 8;</code>
      * @param string $var

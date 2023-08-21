@@ -25,8 +25,9 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * The results of applying each [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform], in the
-     * same order.
+     * The results of applying each
+     * [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform],
+     * in the same order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value transform_results = 2;</code>
      */
@@ -44,8 +45,9 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      *           If the write did not actually change the document, this will be the
      *           previous update_time.
      *     @type array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $transform_results
-     *           The results of applying each [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform], in the
-     *           same order.
+     *           The results of applying each
+     *           [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform],
+     *           in the same order.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,8 +98,9 @@ class WriteResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The results of applying each [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform], in the
-     * same order.
+     * The results of applying each
+     * [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform],
+     * in the same order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value transform_results = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -108,8 +111,9 @@ class WriteResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The results of applying each [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform], in the
-     * same order.
+     * The results of applying each
+     * [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform],
+     * in the same order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value transform_results = 2;</code>
      * @param array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var

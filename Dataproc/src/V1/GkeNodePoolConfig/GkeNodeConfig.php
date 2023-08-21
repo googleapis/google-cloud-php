@@ -23,20 +23,28 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $machine_type = '';
     /**
-     * Optional. Whether the nodes are created as [preemptible VM
-     * instances](https://cloud.google.com/compute/docs/instances/preemptible).
-     *
-     * Generated from protobuf field <code>bool preemptible = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $preemptible = false;
-    /**
-     * Optional. The number of local SSD disks to attach to the node, which is limited by
-     * the maximum number of disks allowable per zone (see [Adding Local
-     * SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
+     * Optional. The number of local SSD disks to attach to the node, which is
+     * limited by the maximum number of disks allowable per zone (see [Adding
+     * Local SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $local_ssd_count = 0;
+    /**
+     * Optional. Whether the nodes are created as legacy [preemptible VM
+     * instances] (https://cloud.google.com/compute/docs/instances/preemptible).
+     * Also see
+     * [Spot][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot]
+     * VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot
+     * preemptible nodes cannot be used in a node pool with the `CONTROLLER`
+     * [role]
+     * (/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     * or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     * DEFAULT node pool will assume the CONTROLLER role).
+     *
+     * Generated from protobuf field <code>bool preemptible = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $preemptible = false;
     /**
      * Optional. A list of [hardware
      * accelerators](https://cloud.google.com/compute/docs/gpus) to attach to
@@ -55,6 +63,31 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string min_cpu_platform = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $min_cpu_platform = '';
+    /**
+     * Optional. The [Customer Managed Encryption Key (CMEK)]
+     * (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
+     * used to encrypt the boot disk attached to each node in the node pool.
+     * Specify the key using the following format:
+     * <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     *
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $boot_disk_kms_key = '';
+    /**
+     * Optional. Whether the nodes are created as [Spot VM instances]
+     * (https://cloud.google.com/compute/docs/instances/spot).
+     * Spot VMs are the latest update to legacy
+     * [preemptible
+     * VMs][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible].
+     * Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible
+     * nodes cannot be used in a node pool with the `CONTROLLER`
+     * [role](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     * or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     * DEFAULT node pool will assume the CONTROLLER role).
+     *
+     * Generated from protobuf field <code>bool spot = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $spot = false;
 
     /**
      * Constructor.
@@ -65,13 +98,21 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      *     @type string $machine_type
      *           Optional. The name of a Compute Engine [machine
      *           type](https://cloud.google.com/compute/docs/machine-types).
-     *     @type bool $preemptible
-     *           Optional. Whether the nodes are created as [preemptible VM
-     *           instances](https://cloud.google.com/compute/docs/instances/preemptible).
      *     @type int $local_ssd_count
-     *           Optional. The number of local SSD disks to attach to the node, which is limited by
-     *           the maximum number of disks allowable per zone (see [Adding Local
-     *           SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
+     *           Optional. The number of local SSD disks to attach to the node, which is
+     *           limited by the maximum number of disks allowable per zone (see [Adding
+     *           Local SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
+     *     @type bool $preemptible
+     *           Optional. Whether the nodes are created as legacy [preemptible VM
+     *           instances] (https://cloud.google.com/compute/docs/instances/preemptible).
+     *           Also see
+     *           [Spot][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot]
+     *           VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot
+     *           preemptible nodes cannot be used in a node pool with the `CONTROLLER`
+     *           [role]
+     *           (/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     *           or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     *           DEFAULT node pool will assume the CONTROLLER role).
      *     @type array<\Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           Optional. A list of [hardware
      *           accelerators](https://cloud.google.com/compute/docs/gpus) to attach to
@@ -82,6 +123,23 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      *           to be used by this instance. The instance may be scheduled on the
      *           specified or a newer CPU platform. Specify the friendly names of CPU
      *           platforms, such as "Intel Haswell"` or Intel Sandy Bridge".
+     *     @type string $boot_disk_kms_key
+     *           Optional. The [Customer Managed Encryption Key (CMEK)]
+     *           (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
+     *           used to encrypt the boot disk attached to each node in the node pool.
+     *           Specify the key using the following format:
+     *           <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     *     @type bool $spot
+     *           Optional. Whether the nodes are created as [Spot VM instances]
+     *           (https://cloud.google.com/compute/docs/instances/spot).
+     *           Spot VMs are the latest update to legacy
+     *           [preemptible
+     *           VMs][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible].
+     *           Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible
+     *           nodes cannot be used in a node pool with the `CONTROLLER`
+     *           [role](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     *           or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     *           DEFAULT node pool will assume the CONTROLLER role).
      * }
      */
     public function __construct($data = NULL) {
@@ -118,37 +176,9 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether the nodes are created as [preemptible VM
-     * instances](https://cloud.google.com/compute/docs/instances/preemptible).
-     *
-     * Generated from protobuf field <code>bool preemptible = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getPreemptible()
-    {
-        return $this->preemptible;
-    }
-
-    /**
-     * Optional. Whether the nodes are created as [preemptible VM
-     * instances](https://cloud.google.com/compute/docs/instances/preemptible).
-     *
-     * Generated from protobuf field <code>bool preemptible = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setPreemptible($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->preemptible = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The number of local SSD disks to attach to the node, which is limited by
-     * the maximum number of disks allowable per zone (see [Adding Local
-     * SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
+     * Optional. The number of local SSD disks to attach to the node, which is
+     * limited by the maximum number of disks allowable per zone (see [Adding
+     * Local SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -159,9 +189,9 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of local SSD disks to attach to the node, which is limited by
-     * the maximum number of disks allowable per zone (see [Adding Local
-     * SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
+     * Optional. The number of local SSD disks to attach to the node, which is
+     * limited by the maximum number of disks allowable per zone (see [Adding
+     * Local SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -171,6 +201,50 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->local_ssd_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the nodes are created as legacy [preemptible VM
+     * instances] (https://cloud.google.com/compute/docs/instances/preemptible).
+     * Also see
+     * [Spot][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot]
+     * VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot
+     * preemptible nodes cannot be used in a node pool with the `CONTROLLER`
+     * [role]
+     * (/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     * or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     * DEFAULT node pool will assume the CONTROLLER role).
+     *
+     * Generated from protobuf field <code>bool preemptible = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPreemptible()
+    {
+        return $this->preemptible;
+    }
+
+    /**
+     * Optional. Whether the nodes are created as legacy [preemptible VM
+     * instances] (https://cloud.google.com/compute/docs/instances/preemptible).
+     * Also see
+     * [Spot][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.spot]
+     * VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot
+     * preemptible nodes cannot be used in a node pool with the `CONTROLLER`
+     * [role]
+     * (/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     * or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     * DEFAULT node pool will assume the CONTROLLER role).
+     *
+     * Generated from protobuf field <code>bool preemptible = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPreemptible($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->preemptible = $var;
 
         return $this;
     }
@@ -235,6 +309,84 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->min_cpu_platform = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The [Customer Managed Encryption Key (CMEK)]
+     * (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
+     * used to encrypt the boot disk attached to each node in the node pool.
+     * Specify the key using the following format:
+     * <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     *
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBootDiskKmsKey()
+    {
+        return $this->boot_disk_kms_key;
+    }
+
+    /**
+     * Optional. The [Customer Managed Encryption Key (CMEK)]
+     * (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
+     * used to encrypt the boot disk attached to each node in the node pool.
+     * Specify the key using the following format:
+     * <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     *
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBootDiskKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->boot_disk_kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the nodes are created as [Spot VM instances]
+     * (https://cloud.google.com/compute/docs/instances/spot).
+     * Spot VMs are the latest update to legacy
+     * [preemptible
+     * VMs][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible].
+     * Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible
+     * nodes cannot be used in a node pool with the `CONTROLLER`
+     * [role](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     * or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     * DEFAULT node pool will assume the CONTROLLER role).
+     *
+     * Generated from protobuf field <code>bool spot = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSpot()
+    {
+        return $this->spot;
+    }
+
+    /**
+     * Optional. Whether the nodes are created as [Spot VM instances]
+     * (https://cloud.google.com/compute/docs/instances/spot).
+     * Spot VMs are the latest update to legacy
+     * [preemptible
+     * VMs][google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible].
+     * Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible
+     * nodes cannot be used in a node pool with the `CONTROLLER`
+     * [role](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
+     * or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
+     * DEFAULT node pool will assume the CONTROLLER role).
+     *
+     * Generated from protobuf field <code>bool spot = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSpot($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->spot = $var;
 
         return $this;
     }

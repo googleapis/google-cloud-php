@@ -35,6 +35,23 @@ class ValidateUrlMapRequest extends \Google\Protobuf\Internal\Message
     private $url_maps_validate_request_resource = null;
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $urlMap                         Name of the UrlMap resource to be validated as.
+     * @param \Google\Cloud\Compute\V1\UrlMapsValidateRequest $urlMapsValidateRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ValidateUrlMapRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $urlMap, \Google\Cloud\Compute\V1\UrlMapsValidateRequest $urlMapsValidateRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setUrlMap($urlMap)
+            ->setUrlMapsValidateRequestResource($urlMapsValidateRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

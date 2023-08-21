@@ -25,22 +25,22 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
  */
 class GrpcTraitTest extends TestCase
 {
-    use AssertStringContains;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $implementation;
     private $requestWrapper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -94,6 +94,31 @@ class GrpcTraitTest extends TestCase
         }, [$options]);
 
         $this->assertEquals($message, $actualResponse);
+    }
+
+    public function testSendsRequestWithRetryFunction()
+    {
+        $timesCalled = 0;
+        $options = [
+            'retries' => 1,
+            'grpcRetryFunction' => function (\Exception $ex) {
+                return $ex->getMessage() === 'test retry';
+            }
+        ];
+        $requestWrapper = new GrpcRequestWrapper();
+        $this->implementation->setRequestWrapper($requestWrapper);
+        $actualResponse = $this->implementation->send(
+            function () use (&$timesCalled) {
+                if (2 === ++$timesCalled) {
+                    // succeed on second try
+                    return;
+                }
+                throw new NotFoundException('test retry');
+            },
+            [$options]
+        );
+
+        $this->assertEquals(2, $timesCalled);
     }
 
     public function testSendsRequestNotFoundWhitelisted()

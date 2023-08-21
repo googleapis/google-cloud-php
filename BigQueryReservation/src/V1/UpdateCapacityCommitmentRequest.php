@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.UpdateCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.UpdateCapacityCommitment].
+ * The request for
+ * [ReservationService.UpdateCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.UpdateCapacityCommitment].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.UpdateCapacityCommitmentRequest</code>
  */
@@ -27,6 +28,21 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment Content of the capacity commitment to update.
+     * @param \Google\Protobuf\FieldMask                               $updateMask         Standard field mask for the set of fields to be updated.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCapacityCommitment($capacityCommitment)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

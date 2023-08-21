@@ -67,12 +67,16 @@ class Step extends \Google\Protobuf\Internal\Message
      *           The endpoint information in an intermediate state may differ with the
      *           initial input, as it might be modified by state like NAT,
      *           or Connection Proxy.
+     *     @type \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo $google_service
+     *           Display information of a Google service
      *     @type \Google\Cloud\NetworkManagement\V1\ForwardingRuleInfo $forwarding_rule
      *           Display information of a Compute Engine forwarding rule.
      *     @type \Google\Cloud\NetworkManagement\V1\VpnGatewayInfo $vpn_gateway
      *           Display information of a Compute Engine VPN gateway.
      *     @type \Google\Cloud\NetworkManagement\V1\VpnTunnelInfo $vpn_tunnel
      *           Display information of a Compute Engine VPN tunnel.
+     *     @type \Google\Cloud\NetworkManagement\V1\VpcConnectorInfo $vpc_connector
+     *           Display information of a VPC connector.
      *     @type \Google\Cloud\NetworkManagement\V1\DeliverInfo $deliver
      *           Display information of the final state "deliver" and reason.
      *     @type \Google\Cloud\NetworkManagement\V1\ForwardInfo $forward
@@ -89,6 +93,12 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a Google Kubernetes Engine cluster master.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudSQLInstanceInfo $cloud_sql_instance
      *           Display information of a Cloud SQL instance.
+     *     @type \Google\Cloud\NetworkManagement\V1\CloudFunctionInfo $cloud_function
+     *           Display information of a Cloud Function.
+     *     @type \Google\Cloud\NetworkManagement\V1\AppEngineVersionInfo $app_engine_version
+     *           Display information of an App Engine service version.
+     *     @type \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo $cloud_run_revision
+     *           Display information of a Cloud Run revision.
      * }
      */
     public function __construct($data = NULL) {
@@ -331,6 +341,37 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display information of a Google service
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GoogleServiceInfo google_service = 24;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo|null
+     */
+    public function getGoogleService()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasGoogleService()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Display information of a Google service
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GoogleServiceInfo google_service = 24;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo $var
+     * @return $this
+     */
+    public function setGoogleService($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\GoogleServiceInfo::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
      * Display information of a Compute Engine forwarding rule.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ForwardingRuleInfo forwarding_rule = 9;</code>
@@ -419,6 +460,37 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\VpnTunnelInfo::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a VPC connector.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.VpcConnectorInfo vpc_connector = 21;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\VpcConnectorInfo|null
+     */
+    public function getVpcConnector()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasVpcConnector()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * Display information of a VPC connector.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.VpcConnectorInfo vpc_connector = 21;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\VpcConnectorInfo $var
+     * @return $this
+     */
+    public function setVpcConnector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\VpcConnectorInfo::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }
@@ -667,6 +739,99 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\CloudSQLInstanceInfo::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Cloud Function.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudFunctionInfo cloud_function = 20;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\CloudFunctionInfo|null
+     */
+    public function getCloudFunction()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasCloudFunction()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * Display information of a Cloud Function.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudFunctionInfo cloud_function = 20;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\CloudFunctionInfo $var
+     * @return $this
+     */
+    public function setCloudFunction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\CloudFunctionInfo::class);
+        $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of an App Engine service version.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.AppEngineVersionInfo app_engine_version = 22;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\AppEngineVersionInfo|null
+     */
+    public function getAppEngineVersion()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasAppEngineVersion()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * Display information of an App Engine service version.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.AppEngineVersionInfo app_engine_version = 22;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\AppEngineVersionInfo $var
+     * @return $this
+     */
+    public function setAppEngineVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\AppEngineVersionInfo::class);
+        $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Cloud Run revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudRunRevisionInfo cloud_run_revision = 23;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo|null
+     */
+    public function getCloudRunRevision()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasCloudRunRevision()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * Display information of a Cloud Run revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudRunRevisionInfo cloud_run_revision = 23;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo $var
+     * @return $this
+     */
+    public function setCloudRunRevision($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo::class);
+        $this->writeOneof(23, $var);
 
         return $this;
     }

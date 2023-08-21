@@ -28,7 +28,7 @@ class Revision
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å
+◊
 "google/cloud/run/v2/revision.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"G
 GetRevisionRequest1
 name (	B#‡A˙A
@@ -46,15 +46,14 @@ page_token (	
 name (	B#‡A˙A
 run.googleapis.com/Revision
 validate_only (
-etag (	"¡
-
+etag (	"§
 Revision
 name (	B‡A
 uid (	B‡A
 
-generation (B‡A9
-labels (2).google.cloud.run.v2.Revision.LabelsEntryC
-annotations (2..google.cloud.run.v2.Revision.AnnotationsEntry4
+generation (B‡A>
+labels (2).google.cloud.run.v2.Revision.LabelsEntryB‡AH
+annotations (2..google.cloud.run.v2.Revision.AnnotationsEntryB‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A4
 delete_time (2.google.protobuf.TimestampB‡A4
@@ -74,12 +73,16 @@ containers (2.google.cloud.run.v2.Container,
 volumes (2.google.cloud.run.v2.VolumeH
 execution_environment (2).google.cloud.run.v2.ExecutionEnvironment>
 encryption_key (	B&˙A#
-!cloudkms.googleapis.com/CryptoKey
+!cloudkms.googleapis.com/CryptoKey\\
+ encryption_key_revocation_action (22.google.cloud.run.v2.EncryptionKeyRevocationActionC
+ encryption_key_shutdown_duration (2.google.protobuf.Duration
 reconciling (B‡A7
 
 conditions (2.google.cloud.run.v2.ConditionB‡A 
 observed_generation  (B‡A
-log_uri! (	B‡A
+log_uri! (	B‡A
+satisfies_pzs% (B‡A
+session_affinity& (
 etagc (	B‡A-
 LabelsEntry
 key (	
@@ -95,8 +98,8 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 parent$projects/*/locations/{location=*}/**⁄Aparent
 DeleteRevision*.google.cloud.run.v2.DeleteRevisionRequest.google.longrunning.Operation"íÇ”‰ì:*8/v2/{name=projects/*/locations/*/services/*/revisions/*}ä”‰ì.,
 name$projects/*/locations/{location=*}/**⁄Aname A
-RevisionRevisionF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBb
-com.google.cloud.run.v2BRevisionProtoPZ6google.golang.org/genproto/googleapis/cloud/run/v2;runbproto3'
+RevisionRevisionF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBU
+com.google.cloud.run.v2BRevisionProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
         static::$is_initialized = true;

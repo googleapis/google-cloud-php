@@ -29,8 +29,8 @@ class IssueAssignment extends \Google\Protobuf\Internal\Message
      */
     private $score = 0.0;
     /**
-     * Immutable. Display name of the assigned issue. This field is set at time of analyis
-     * and immutable since then.
+     * Immutable. Display name of the assigned issue. This field is set at time of
+     * analyis and immutable since then.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -48,8 +48,8 @@ class IssueAssignment extends \Google\Protobuf\Internal\Message
      *           Score indicating the likelihood of the issue assignment.
      *           currently bounded on [0,1].
      *     @type string $display_name
-     *           Immutable. Display name of the assigned issue. This field is set at time of analyis
-     *           and immutable since then.
+     *           Immutable. Display name of the assigned issue. This field is set at time of
+     *           analyis and immutable since then.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,8 +112,8 @@ class IssueAssignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Display name of the assigned issue. This field is set at time of analyis
-     * and immutable since then.
+     * Immutable. Display name of the assigned issue. This field is set at time of
+     * analyis and immutable since then.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -124,8 +124,8 @@ class IssueAssignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Display name of the assigned issue. This field is set at time of analyis
-     * and immutable since then.
+     * Immutable. Display name of the assigned issue. This field is set at time of
+     * analyis and immutable since then.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

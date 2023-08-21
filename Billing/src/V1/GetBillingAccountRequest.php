@@ -16,12 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetBillingAccountRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the billing account to retrieve. For example,
-     * `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account to retrieve. For
+     * example, `billingAccounts/012345-567890-ABCDEF`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The resource name of the billing account to retrieve. For
+     *                     example, `billingAccounts/012345-567890-ABCDEF`. Please see
+     *                     {@see CloudBillingClient::billingAccountName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Billing\V1\GetBillingAccountRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -30,8 +45,8 @@ class GetBillingAccountRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the billing account to retrieve. For example,
-     *           `billingAccounts/012345-567890-ABCDEF`.
+     *           Required. The resource name of the billing account to retrieve. For
+     *           example, `billingAccounts/012345-567890-ABCDEF`.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +55,8 @@ class GetBillingAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the billing account to retrieve. For example,
-     * `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account to retrieve. For
+     * example, `billingAccounts/012345-567890-ABCDEF`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +67,8 @@ class GetBillingAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the billing account to retrieve. For example,
-     * `billingAccounts/012345-567890-ABCDEF`.
+     * Required. The resource name of the billing account to retrieve. For
+     * example, `billingAccounts/012345-567890-ABCDEF`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

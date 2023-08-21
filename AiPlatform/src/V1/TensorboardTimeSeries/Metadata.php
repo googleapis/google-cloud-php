@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Metadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Max step index of all data points within a TensorboardTimeSeries.
+     * Output only. Max step index of all data points within a
+     * TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>int64 max_step = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -29,8 +30,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     private $max_wall_time = null;
     /**
-     * Output only. The largest blob sequence length (number of blobs) of all data points in
-     * this time series, if its ValueType is BLOB_SEQUENCE.
+     * Output only. The largest blob sequence length (number of blobs) of all
+     * data points in this time series, if its ValueType is BLOB_SEQUENCE.
      *
      * Generated from protobuf field <code>int64 max_blob_sequence_length = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -43,13 +44,14 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $max_step
-     *           Output only. Max step index of all data points within a TensorboardTimeSeries.
+     *           Output only. Max step index of all data points within a
+     *           TensorboardTimeSeries.
      *     @type \Google\Protobuf\Timestamp $max_wall_time
      *           Output only. Max wall clock timestamp of all data points within a
      *           TensorboardTimeSeries.
      *     @type int|string $max_blob_sequence_length
-     *           Output only. The largest blob sequence length (number of blobs) of all data points in
-     *           this time series, if its ValueType is BLOB_SEQUENCE.
+     *           Output only. The largest blob sequence length (number of blobs) of all
+     *           data points in this time series, if its ValueType is BLOB_SEQUENCE.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +60,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Max step index of all data points within a TensorboardTimeSeries.
+     * Output only. Max step index of all data points within a
+     * TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>int64 max_step = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -69,7 +72,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Max step index of all data points within a TensorboardTimeSeries.
+     * Output only. Max step index of all data points within a
+     * TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>int64 max_step = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -122,8 +126,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The largest blob sequence length (number of blobs) of all data points in
-     * this time series, if its ValueType is BLOB_SEQUENCE.
+     * Output only. The largest blob sequence length (number of blobs) of all
+     * data points in this time series, if its ValueType is BLOB_SEQUENCE.
      *
      * Generated from protobuf field <code>int64 max_blob_sequence_length = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -134,8 +138,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The largest blob sequence length (number of blobs) of all data points in
-     * this time series, if its ValueType is BLOB_SEQUENCE.
+     * Output only. The largest blob sequence length (number of blobs) of all
+     * data points in this time series, if its ValueType is BLOB_SEQUENCE.
      *
      * Generated from protobuf field <code>int64 max_blob_sequence_length = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var

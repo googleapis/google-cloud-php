@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class EntityView
 {
     /**
-     * The default unset value. The API will default to the FULL view.
+     * The default unset value. Return both table and fileset entities
+     * if unspecified.
      *
      * Generated from protobuf enum <code>ENTITY_VIEW_UNSPECIFIED = 0;</code>
      */

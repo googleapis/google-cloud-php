@@ -50,7 +50,7 @@ class BatchClientTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

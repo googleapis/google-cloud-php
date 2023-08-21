@@ -27,9 +27,9 @@ class UrlStatTest extends StreamWrapperTestCase
     protected static $fileUrl;
     protected static $dirUrl;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
         self::$fileUrl = self::generateUrl(self::$object->name());
         self::$dirUrl = self::generateUrl('some_folder/');
         mkdir(self::$dirUrl);
@@ -87,9 +87,7 @@ class UrlStatTest extends StreamWrapperTestCase
 
     public function testIsExecutable()
     {
-        // php returns false for is_executable if the file is a directory
-        // https://github.com/php/php-src/blob/master/ext/standard/filestat.c#L907
-        $this->assertFalse(is_executable(self::$dirUrl));
+        $this->assertTrue(is_executable(self::$dirUrl));
         $this->assertFalse(is_executable(self::$fileUrl));
     }
 

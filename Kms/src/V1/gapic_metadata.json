@@ -15,6 +15,11 @@
                                 "createEkmConnection"
                             ]
                         },
+                        "GetEkmConfig": {
+                            "methods": [
+                                "getEkmConfig"
+                            ]
+                        },
                         "GetEkmConnection": {
                             "methods": [
                                 "getEkmConnection"
@@ -25,9 +30,19 @@
                                 "listEkmConnections"
                             ]
                         },
+                        "UpdateEkmConfig": {
+                            "methods": [
+                                "updateEkmConfig"
+                            ]
+                        },
                         "UpdateEkmConnection": {
                             "methods": [
                                 "updateEkmConnection"
+                            ]
+                        },
+                        "VerifyConnectivity": {
+                            "methods": [
+                                "verifyConnectivity"
                             ]
                         },
                         "GetLocation": {
@@ -172,6 +187,16 @@
                         "MacVerify": {
                             "methods": [
                                 "macVerify"
+                            ]
+                        },
+                        "RawDecrypt": {
+                            "methods": [
+                                "rawDecrypt"
+                            ]
+                        },
+                        "RawEncrypt": {
+                            "methods": [
+                                "rawEncrypt"
                             ]
                         },
                         "RestoreCryptoKeyVersion": {

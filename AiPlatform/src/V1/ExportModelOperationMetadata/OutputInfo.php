@@ -17,16 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class OutputInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. If the Model artifact is being exported to Google Cloud Storage this is
-     * the full path of the directory created, into which the Model files are
-     * being written to.
+     * Output only. If the Model artifact is being exported to Google Cloud
+     * Storage this is the full path of the directory created, into which the
+     * Model files are being written to.
      *
      * Generated from protobuf field <code>string artifact_output_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $artifact_output_uri = '';
     /**
-     * Output only. If the Model image is being exported to Google Container Registry or
-     * Artifact Registry this is the full path of the image created.
+     * Output only. If the Model image is being exported to Google Container
+     * Registry or Artifact Registry this is the full path of the image created.
      *
      * Generated from protobuf field <code>string image_output_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -39,12 +39,12 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $artifact_output_uri
-     *           Output only. If the Model artifact is being exported to Google Cloud Storage this is
-     *           the full path of the directory created, into which the Model files are
-     *           being written to.
+     *           Output only. If the Model artifact is being exported to Google Cloud
+     *           Storage this is the full path of the directory created, into which the
+     *           Model files are being written to.
      *     @type string $image_output_uri
-     *           Output only. If the Model image is being exported to Google Container Registry or
-     *           Artifact Registry this is the full path of the image created.
+     *           Output only. If the Model image is being exported to Google Container
+     *           Registry or Artifact Registry this is the full path of the image created.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,9 +53,9 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the Model artifact is being exported to Google Cloud Storage this is
-     * the full path of the directory created, into which the Model files are
-     * being written to.
+     * Output only. If the Model artifact is being exported to Google Cloud
+     * Storage this is the full path of the directory created, into which the
+     * Model files are being written to.
      *
      * Generated from protobuf field <code>string artifact_output_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -66,9 +66,9 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the Model artifact is being exported to Google Cloud Storage this is
-     * the full path of the directory created, into which the Model files are
-     * being written to.
+     * Output only. If the Model artifact is being exported to Google Cloud
+     * Storage this is the full path of the directory created, into which the
+     * Model files are being written to.
      *
      * Generated from protobuf field <code>string artifact_output_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -83,8 +83,8 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the Model image is being exported to Google Container Registry or
-     * Artifact Registry this is the full path of the image created.
+     * Output only. If the Model image is being exported to Google Container
+     * Registry or Artifact Registry this is the full path of the image created.
      *
      * Generated from protobuf field <code>string image_output_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -95,8 +95,8 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the Model image is being exported to Google Container Registry or
-     * Artifact Registry this is the full path of the image created.
+     * Output only. If the Model image is being exported to Google Container
+     * Registry or Artifact Registry this is the full path of the image created.
      *
      * Generated from protobuf field <code>string image_output_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

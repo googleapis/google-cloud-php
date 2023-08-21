@@ -31,8 +31,8 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
 /**
  * Returns information about running and completed transfer runs.
  *
- * @param string $formattedParent Name of transfer configuration for which transfer runs should be retrieved.
- *                                Format of transfer configuration resource name is:
+ * @param string $formattedParent Name of transfer configuration for which transfer runs should be
+ *                                retrieved. Format of transfer configuration resource name is:
  *                                `projects/{project_id}/transferConfigs/{config_id}` or
  *                                `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`. Please see
  *                                {@see DataTransferServiceClient::transferConfigName()} for help formatting this field.

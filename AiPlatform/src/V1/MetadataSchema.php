@@ -30,9 +30,9 @@ class MetadataSchema extends \Google\Protobuf\Internal\Message
      */
     private $schema_version = '';
     /**
-     * Required. The raw YAML string representation of the MetadataSchema. The combination
-     * of [MetadataSchema.version] and the schema name given by `title` in
-     * [MetadataSchema.schema] must be unique within a MetadataStore.
+     * Required. The raw YAML string representation of the MetadataSchema. The
+     * combination of [MetadataSchema.version] and the schema name given by
+     * `title` in [MetadataSchema.schema] must be unique within a MetadataStore.
      * The schema is defined as an OpenAPI 3.0.2
      * [MetadataSchema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject)
@@ -73,9 +73,9 @@ class MetadataSchema extends \Google\Protobuf\Internal\Message
      *           the following regular expression: `^[0-9]+[.][0-9]+[.][0-9]+$`, which would
      *           allow to order/compare different versions. Example: 1.0.0, 1.0.1, etc.
      *     @type string $schema
-     *           Required. The raw YAML string representation of the MetadataSchema. The combination
-     *           of [MetadataSchema.version] and the schema name given by `title` in
-     *           [MetadataSchema.schema] must be unique within a MetadataStore.
+     *           Required. The raw YAML string representation of the MetadataSchema. The
+     *           combination of [MetadataSchema.version] and the schema name given by
+     *           `title` in [MetadataSchema.schema] must be unique within a MetadataStore.
      *           The schema is defined as an OpenAPI 3.0.2
      *           [MetadataSchema
      *           Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject)
@@ -150,9 +150,9 @@ class MetadataSchema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The raw YAML string representation of the MetadataSchema. The combination
-     * of [MetadataSchema.version] and the schema name given by `title` in
-     * [MetadataSchema.schema] must be unique within a MetadataStore.
+     * Required. The raw YAML string representation of the MetadataSchema. The
+     * combination of [MetadataSchema.version] and the schema name given by
+     * `title` in [MetadataSchema.schema] must be unique within a MetadataStore.
      * The schema is defined as an OpenAPI 3.0.2
      * [MetadataSchema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject)
@@ -166,9 +166,9 @@ class MetadataSchema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The raw YAML string representation of the MetadataSchema. The combination
-     * of [MetadataSchema.version] and the schema name given by `title` in
-     * [MetadataSchema.schema] must be unique within a MetadataStore.
+     * Required. The raw YAML string representation of the MetadataSchema. The
+     * combination of [MetadataSchema.version] and the schema name given by
+     * `title` in [MetadataSchema.schema] must be unique within a MetadataStore.
      * The schema is defined as an OpenAPI 3.0.2
      * [MetadataSchema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject)

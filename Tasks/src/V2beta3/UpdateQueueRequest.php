@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue].
+ * Request message for
+ * [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.UpdateQueueRequest</code>
  */
@@ -17,10 +18,12 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The queue to create or update.
-     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be specified.
+     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be
+     * specified.
      * Output only fields cannot be modified using UpdateQueue.
      * Any value specified for an output only field will be ignored.
-     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be changed.
+     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be
+     * changed.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,10 +44,12 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Tasks\V2beta3\Queue $queue
      *           Required. The queue to create or update.
-     *           The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be specified.
+     *           The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be
+     *           specified.
      *           Output only fields cannot be modified using UpdateQueue.
      *           Any value specified for an output only field will be ignored.
-     *           The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be changed.
+     *           The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be
+     *           changed.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           A mask used to specify which fields of the queue are being updated.
      *           If empty, then all fields will be updated.
@@ -57,10 +62,12 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The queue to create or update.
-     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be specified.
+     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be
+     * specified.
      * Output only fields cannot be modified using UpdateQueue.
      * Any value specified for an output only field will be ignored.
-     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be changed.
+     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be
+     * changed.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Tasks\V2beta3\Queue|null
@@ -82,10 +89,12 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The queue to create or update.
-     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be specified.
+     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be
+     * specified.
      * Output only fields cannot be modified using UpdateQueue.
      * Any value specified for an output only field will be ignored.
-     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be changed.
+     * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be
+     * changed.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Tasks\V2beta3\Queue $var

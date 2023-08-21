@@ -16,12 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Attribution extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Model predicted output if the input instance is constructed from the
-     * baselines of all the features defined in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * Output only. Model predicted output if the input instance is constructed
+     * from the baselines of all the features defined in
+     * [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      * The field name of the output is determined by the key in
      * [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      * If the Model's predicted output has multiple dimensions (rank > 1), this is
-     * the value in the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * the value in the output located by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      * If there are multiple baselines, their output values are averaged.
      *
      * Generated from protobuf field <code>double baseline_output_value = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -30,20 +32,25 @@ class Attribution extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Model predicted output on the corresponding [explanation
      * instance][ExplainRequest.instances]. The field name of the output is
-     * determined by the key in [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
+     * determined by the key in
+     * [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      * If the Model predicted output has multiple dimensions, this is the value in
-     * the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * the output located by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *
      * Generated from protobuf field <code>double instance_output_value = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $instance_output_value = 0.0;
     /**
-     * Output only. Attributions of each explained feature. Features are extracted from
-     * the [prediction instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according to
-     * [explanation metadata for inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * Output only. Attributions of each explained feature. Features are extracted
+     * from the [prediction
+     * instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according
+     * to [explanation metadata for
+     * inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      * The value is a struct, whose keys are the name of the feature. The values
-     * are how much the feature in the [instance][google.cloud.aiplatform.v1.ExplainRequest.instances]
-     * contributed to the predicted result.
+     * are how much the feature in the
+     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances] contributed
+     * to the predicted result.
      * The format of the value is determined by the feature's input format:
      *   * If the feature is a scalar value, the attribution value is a
      *     [floating number][google.protobuf.Value.number_value].
@@ -54,10 +61,13 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *     attribution value struct are the same as the keys in the feature
      *     struct. The formats of the values in the attribution struct are
      *     determined by the formats of the values in the feature struct.
-     * The [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri] field,
-     * pointed to by the [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
-     * [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] object, points to the schema file that
-     * describes the features and their attribution values (if it is populated).
+     * The
+     * [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri]
+     * field, pointed to by the
+     * [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
+     * [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     * object, points to the schema file that describes the features and their
+     * attribution values (if it is populated).
      *
      * Generated from protobuf field <code>.google.protobuf.Value feature_attributions = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -74,8 +84,9 @@ class Attribution extends \Google\Protobuf\Internal\Message
      */
     private $output_index;
     /**
-     * Output only. The display name of the output identified by [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For example,
-     * the predicted class name by a multi-classification Model.
+     * Output only. The display name of the output identified by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For
+     * example, the predicted class name by a multi-classification Model.
      * This field is only populated iff the Model predicts display names as a
      * separate field along with the explained output. The predicted display name
      * must has the same shape of the explained output, and can be located using
@@ -85,19 +96,25 @@ class Attribution extends \Google\Protobuf\Internal\Message
      */
     private $output_display_name = '';
     /**
-     * Output only. Error of [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] caused by approximation used in the
-     * explanation method. Lower value means more precise attributions.
+     * Output only. Error of
+     * [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     * caused by approximation used in the explanation method. Lower value means
+     * more precise attributions.
      * * For Sampled Shapley
      * [attribution][google.cloud.aiplatform.v1.ExplanationParameters.sampled_shapley_attribution],
-     * increasing [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count] might reduce
-     * the error.
+     * increasing
+     * [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count]
+     * might reduce the error.
      * * For Integrated Gradients
      * [attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution],
-     * increasing [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count] might
-     * reduce the error.
-     * * For [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
      * increasing
-     * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might reduce the error.
+     * [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count]
+     * might reduce the error.
+     * * For [XRAI
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
+     * increasing
+     * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
+     * reduce the error.
      * See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
      * for more information.
      *
@@ -119,26 +136,33 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $baseline_output_value
-     *           Output only. Model predicted output if the input instance is constructed from the
-     *           baselines of all the features defined in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     *           Output only. Model predicted output if the input instance is constructed
+     *           from the baselines of all the features defined in
+     *           [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      *           The field name of the output is determined by the key in
      *           [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      *           If the Model's predicted output has multiple dimensions (rank > 1), this is
-     *           the value in the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     *           the value in the output located by
+     *           [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *           If there are multiple baselines, their output values are averaged.
      *     @type float $instance_output_value
      *           Output only. Model predicted output on the corresponding [explanation
      *           instance][ExplainRequest.instances]. The field name of the output is
-     *           determined by the key in [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
+     *           determined by the key in
+     *           [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      *           If the Model predicted output has multiple dimensions, this is the value in
-     *           the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     *           the output located by
+     *           [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *     @type \Google\Protobuf\Value $feature_attributions
-     *           Output only. Attributions of each explained feature. Features are extracted from
-     *           the [prediction instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according to
-     *           [explanation metadata for inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     *           Output only. Attributions of each explained feature. Features are extracted
+     *           from the [prediction
+     *           instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according
+     *           to [explanation metadata for
+     *           inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      *           The value is a struct, whose keys are the name of the feature. The values
-     *           are how much the feature in the [instance][google.cloud.aiplatform.v1.ExplainRequest.instances]
-     *           contributed to the predicted result.
+     *           are how much the feature in the
+     *           [instance][google.cloud.aiplatform.v1.ExplainRequest.instances] contributed
+     *           to the predicted result.
      *           The format of the value is determined by the feature's input format:
      *             * If the feature is a scalar value, the attribution value is a
      *               [floating number][google.protobuf.Value.number_value].
@@ -149,10 +173,13 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *               attribution value struct are the same as the keys in the feature
      *               struct. The formats of the values in the attribution struct are
      *               determined by the formats of the values in the feature struct.
-     *           The [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri] field,
-     *           pointed to by the [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
-     *           [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] object, points to the schema file that
-     *           describes the features and their attribution values (if it is populated).
+     *           The
+     *           [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri]
+     *           field, pointed to by the
+     *           [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
+     *           [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     *           object, points to the schema file that describes the features and their
+     *           attribution values (if it is populated).
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $output_index
      *           Output only. The index that locates the explained prediction output.
      *           If the prediction output is a scalar value, output_index is not populated.
@@ -161,26 +188,33 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *           The i-th element in output_index is the element index of the i-th dimension
      *           of the output vector. Indices start from 0.
      *     @type string $output_display_name
-     *           Output only. The display name of the output identified by [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For example,
-     *           the predicted class name by a multi-classification Model.
+     *           Output only. The display name of the output identified by
+     *           [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For
+     *           example, the predicted class name by a multi-classification Model.
      *           This field is only populated iff the Model predicts display names as a
      *           separate field along with the explained output. The predicted display name
      *           must has the same shape of the explained output, and can be located using
      *           output_index.
      *     @type float $approximation_error
-     *           Output only. Error of [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] caused by approximation used in the
-     *           explanation method. Lower value means more precise attributions.
+     *           Output only. Error of
+     *           [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     *           caused by approximation used in the explanation method. Lower value means
+     *           more precise attributions.
      *           * For Sampled Shapley
      *           [attribution][google.cloud.aiplatform.v1.ExplanationParameters.sampled_shapley_attribution],
-     *           increasing [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count] might reduce
-     *           the error.
+     *           increasing
+     *           [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count]
+     *           might reduce the error.
      *           * For Integrated Gradients
      *           [attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution],
-     *           increasing [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count] might
-     *           reduce the error.
-     *           * For [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
      *           increasing
-     *           [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might reduce the error.
+     *           [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count]
+     *           might reduce the error.
+     *           * For [XRAI
+     *           attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
+     *           increasing
+     *           [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
+     *           reduce the error.
      *           See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
      *           for more information.
      *     @type string $output_name
@@ -194,12 +228,14 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Model predicted output if the input instance is constructed from the
-     * baselines of all the features defined in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * Output only. Model predicted output if the input instance is constructed
+     * from the baselines of all the features defined in
+     * [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      * The field name of the output is determined by the key in
      * [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      * If the Model's predicted output has multiple dimensions (rank > 1), this is
-     * the value in the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * the value in the output located by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      * If there are multiple baselines, their output values are averaged.
      *
      * Generated from protobuf field <code>double baseline_output_value = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -211,12 +247,14 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Model predicted output if the input instance is constructed from the
-     * baselines of all the features defined in [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * Output only. Model predicted output if the input instance is constructed
+     * from the baselines of all the features defined in
+     * [ExplanationMetadata.inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      * The field name of the output is determined by the key in
      * [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      * If the Model's predicted output has multiple dimensions (rank > 1), this is
-     * the value in the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * the value in the output located by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      * If there are multiple baselines, their output values are averaged.
      *
      * Generated from protobuf field <code>double baseline_output_value = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -234,9 +272,11 @@ class Attribution extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Model predicted output on the corresponding [explanation
      * instance][ExplainRequest.instances]. The field name of the output is
-     * determined by the key in [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
+     * determined by the key in
+     * [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      * If the Model predicted output has multiple dimensions, this is the value in
-     * the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * the output located by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *
      * Generated from protobuf field <code>double instance_output_value = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -249,9 +289,11 @@ class Attribution extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Model predicted output on the corresponding [explanation
      * instance][ExplainRequest.instances]. The field name of the output is
-     * determined by the key in [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
+     * determined by the key in
+     * [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      * If the Model predicted output has multiple dimensions, this is the value in
-     * the output located by [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * the output located by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *
      * Generated from protobuf field <code>double instance_output_value = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
@@ -266,12 +308,15 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Attributions of each explained feature. Features are extracted from
-     * the [prediction instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according to
-     * [explanation metadata for inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * Output only. Attributions of each explained feature. Features are extracted
+     * from the [prediction
+     * instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according
+     * to [explanation metadata for
+     * inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      * The value is a struct, whose keys are the name of the feature. The values
-     * are how much the feature in the [instance][google.cloud.aiplatform.v1.ExplainRequest.instances]
-     * contributed to the predicted result.
+     * are how much the feature in the
+     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances] contributed
+     * to the predicted result.
      * The format of the value is determined by the feature's input format:
      *   * If the feature is a scalar value, the attribution value is a
      *     [floating number][google.protobuf.Value.number_value].
@@ -282,10 +327,13 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *     attribution value struct are the same as the keys in the feature
      *     struct. The formats of the values in the attribution struct are
      *     determined by the formats of the values in the feature struct.
-     * The [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri] field,
-     * pointed to by the [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
-     * [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] object, points to the schema file that
-     * describes the features and their attribution values (if it is populated).
+     * The
+     * [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri]
+     * field, pointed to by the
+     * [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
+     * [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     * object, points to the schema file that describes the features and their
+     * attribution values (if it is populated).
      *
      * Generated from protobuf field <code>.google.protobuf.Value feature_attributions = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Value|null
@@ -306,12 +354,15 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Attributions of each explained feature. Features are extracted from
-     * the [prediction instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according to
-     * [explanation metadata for inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
+     * Output only. Attributions of each explained feature. Features are extracted
+     * from the [prediction
+     * instances][google.cloud.aiplatform.v1.ExplainRequest.instances] according
+     * to [explanation metadata for
+     * inputs][google.cloud.aiplatform.v1.ExplanationMetadata.inputs].
      * The value is a struct, whose keys are the name of the feature. The values
-     * are how much the feature in the [instance][google.cloud.aiplatform.v1.ExplainRequest.instances]
-     * contributed to the predicted result.
+     * are how much the feature in the
+     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances] contributed
+     * to the predicted result.
      * The format of the value is determined by the feature's input format:
      *   * If the feature is a scalar value, the attribution value is a
      *     [floating number][google.protobuf.Value.number_value].
@@ -322,10 +373,13 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *     attribution value struct are the same as the keys in the feature
      *     struct. The formats of the values in the attribution struct are
      *     determined by the formats of the values in the feature struct.
-     * The [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri] field,
-     * pointed to by the [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
-     * [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] object, points to the schema file that
-     * describes the features and their attribution values (if it is populated).
+     * The
+     * [ExplanationMetadata.feature_attributions_schema_uri][google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri]
+     * field, pointed to by the
+     * [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
+     * [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     * object, points to the schema file that describes the features and their
+     * attribution values (if it is populated).
      *
      * Generated from protobuf field <code>.google.protobuf.Value feature_attributions = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Value $var
@@ -376,8 +430,9 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The display name of the output identified by [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For example,
-     * the predicted class name by a multi-classification Model.
+     * Output only. The display name of the output identified by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For
+     * example, the predicted class name by a multi-classification Model.
      * This field is only populated iff the Model predicts display names as a
      * separate field along with the explained output. The predicted display name
      * must has the same shape of the explained output, and can be located using
@@ -392,8 +447,9 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The display name of the output identified by [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For example,
-     * the predicted class name by a multi-classification Model.
+     * Output only. The display name of the output identified by
+     * [output_index][google.cloud.aiplatform.v1.Attribution.output_index]. For
+     * example, the predicted class name by a multi-classification Model.
      * This field is only populated iff the Model predicts display names as a
      * separate field along with the explained output. The predicted display name
      * must has the same shape of the explained output, and can be located using
@@ -412,19 +468,25 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Error of [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] caused by approximation used in the
-     * explanation method. Lower value means more precise attributions.
+     * Output only. Error of
+     * [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     * caused by approximation used in the explanation method. Lower value means
+     * more precise attributions.
      * * For Sampled Shapley
      * [attribution][google.cloud.aiplatform.v1.ExplanationParameters.sampled_shapley_attribution],
-     * increasing [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count] might reduce
-     * the error.
+     * increasing
+     * [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count]
+     * might reduce the error.
      * * For Integrated Gradients
      * [attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution],
-     * increasing [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count] might
-     * reduce the error.
-     * * For [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
      * increasing
-     * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might reduce the error.
+     * [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count]
+     * might reduce the error.
+     * * For [XRAI
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
+     * increasing
+     * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
+     * reduce the error.
      * See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
      * for more information.
      *
@@ -437,19 +499,25 @@ class Attribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Error of [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions] caused by approximation used in the
-     * explanation method. Lower value means more precise attributions.
+     * Output only. Error of
+     * [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
+     * caused by approximation used in the explanation method. Lower value means
+     * more precise attributions.
      * * For Sampled Shapley
      * [attribution][google.cloud.aiplatform.v1.ExplanationParameters.sampled_shapley_attribution],
-     * increasing [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count] might reduce
-     * the error.
+     * increasing
+     * [path_count][google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count]
+     * might reduce the error.
      * * For Integrated Gradients
      * [attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution],
-     * increasing [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count] might
-     * reduce the error.
-     * * For [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
      * increasing
-     * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might reduce the error.
+     * [step_count][google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count]
+     * might reduce the error.
+     * * For [XRAI
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution],
+     * increasing
+     * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
+     * reduce the error.
      * See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
      * for more information.
      *

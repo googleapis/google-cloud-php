@@ -20,16 +20,17 @@ namespace Google\Cloud\Logging\Tests\Unit;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class LoggerTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     private $connection;
     private $formattedName = 'projects/myProjectId/logs/myLog';
@@ -41,7 +42,7 @@ class LoggerTest extends TestCase
     private $microtime = 315532800.000000;
     private $formattedTimestamp = '1980-01-01T00:00:00.000000Z';
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -192,7 +193,7 @@ class LoggerTest extends TestCase
 
     public function testCreateEntryThrowsExceptionWithInvalidData()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $logger = $this->getLogger($this->connection);
         $entry = $logger->entry(123123);

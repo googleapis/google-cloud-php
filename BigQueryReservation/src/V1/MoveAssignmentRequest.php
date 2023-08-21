@@ -36,6 +36,34 @@ class MoveAssignmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string destination_id = 3 [(.google.api.resource_reference) = {</code>
      */
     private $destination_id = '';
+    /**
+     * The optional assignment ID. A new assignment name is generated if this
+     * field is empty.
+     * This field can contain only lowercase alphanumeric characters or dashes.
+     * Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string assignment_id = 5;</code>
+     */
+    private $assignment_id = '';
+
+    /**
+     * @param string $name          Required. The resource name of the assignment,
+     *                              e.g.
+     *                              `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     *                              Please see {@see ReservationServiceClient::assignmentName()} for help formatting this field.
+     * @param string $destinationId The new reservation ID, e.g.:
+     *                              `projects/myotherproject/locations/US/reservations/team2-prod`
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $destinationId): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setDestinationId($destinationId);
+    }
 
     /**
      * Constructor.
@@ -50,6 +78,11 @@ class MoveAssignmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $destination_id
      *           The new reservation ID, e.g.:
      *             `projects/myotherproject/locations/US/reservations/team2-prod`
+     *     @type string $assignment_id
+     *           The optional assignment ID. A new assignment name is generated if this
+     *           field is empty.
+     *           This field can contain only lowercase alphanumeric characters or dashes.
+     *           Max length is 64 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +144,38 @@ class MoveAssignmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->destination_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The optional assignment ID. A new assignment name is generated if this
+     * field is empty.
+     * This field can contain only lowercase alphanumeric characters or dashes.
+     * Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string assignment_id = 5;</code>
+     * @return string
+     */
+    public function getAssignmentId()
+    {
+        return $this->assignment_id;
+    }
+
+    /**
+     * The optional assignment ID. A new assignment name is generated if this
+     * field is empty.
+     * This field can contain only lowercase alphanumeric characters or dashes.
+     * Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string assignment_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssignmentId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->assignment_id = $var;
 
         return $this;
     }

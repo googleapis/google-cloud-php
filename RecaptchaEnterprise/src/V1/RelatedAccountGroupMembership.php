@@ -25,7 +25,7 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
     /**
      * The unique stable hashed user identifier of the member. The identifier
      * corresponds to a `hashed_account_id` provided in a previous
-     * CreateAssessment or AnnotateAssessment call.
+     * `CreateAssessment` or `AnnotateAssessment` call.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 2;</code>
      */
@@ -43,7 +43,7 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
      *     @type string $hashed_account_id
      *           The unique stable hashed user identifier of the member. The identifier
      *           corresponds to a `hashed_account_id` provided in a previous
-     *           CreateAssessment or AnnotateAssessment call.
+     *           `CreateAssessment` or `AnnotateAssessment` call.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
     /**
      * The unique stable hashed user identifier of the member. The identifier
      * corresponds to a `hashed_account_id` provided in a previous
-     * CreateAssessment or AnnotateAssessment call.
+     * `CreateAssessment` or `AnnotateAssessment` call.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 2;</code>
      * @return string
@@ -95,7 +95,7 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
     /**
      * The unique stable hashed user identifier of the member. The identifier
      * corresponds to a `hashed_account_id` provided in a previous
-     * CreateAssessment or AnnotateAssessment call.
+     * `CreateAssessment` or `AnnotateAssessment` call.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 2;</code>
      * @param string $var

@@ -23,14 +23,11 @@
 namespace Google\Cloud\Run\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
-
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Run\V2\ListServicesResponse;
 use Google\Cloud\Run\V2\RevisionTemplate;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class ServicesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ServicesClient
-     */
+    /** @return ServicesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,14 +67,12 @@ class ServicesClientTest extends GeneratedTest
         return new ServicesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -111,6 +100,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -126,6 +116,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
@@ -176,14 +167,12 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -237,14 +226,12 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -272,6 +259,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Service();
@@ -287,6 +275,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
@@ -329,14 +318,12 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -386,9 +373,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -417,9 +402,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -452,9 +435,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceTest()
     {
         $transport = $this->createTransport();
@@ -475,6 +456,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -490,6 +472,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
@@ -507,9 +490,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -542,9 +523,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesTest()
     {
         $transport = $this->createTransport();
@@ -579,9 +558,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -614,9 +591,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -648,9 +623,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -684,9 +657,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -714,9 +685,7 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -750,14 +719,12 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -785,6 +752,7 @@ class ServicesClientTest extends GeneratedTest
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -800,6 +768,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
@@ -844,14 +813,12 @@ class ServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

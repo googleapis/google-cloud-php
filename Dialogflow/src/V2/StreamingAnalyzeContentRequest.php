@@ -10,28 +10,36 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The top-level message sent by the client to the
- * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent] method.
+ * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]
+ * method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain
  *     [participant][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.participant],
- *     [config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config] and optionally
- *     [query_params][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.query_params]. If you want
- *     to receive an audio response, it should also contain
+ *     [config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]
+ *     and optionally
+ *     [query_params][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.query_params].
+ *     If you want to receive an audio response, it should also contain
  *     [reply_audio_config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.reply_audio_config].
  *     The message must not contain
  *     [input][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input].
- * 2.  If [config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config] in the first message
- *     was set to [audio_config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config],
+ * 2.  If
+ * [config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config] in
+ * the first message
+ *     was set to
+ *     [audio_config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config],
  *     all subsequent messages must contain
- *     [input_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_audio] to continue
- *     with Speech recognition.
- *     However, note that:
+ *     [input_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_audio]
+ *     to continue with Speech recognition. However, note that:
  *     * Dialogflow will bill you for the audio so far.
  *     * Dialogflow discards all Speech recognition results in favor of the
  *       text input.
- *  3. If [StreamingAnalyzeContentRequest.config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config] in the first message was set
- *    to [StreamingAnalyzeContentRequest.text_config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.text_config], then the second message
- *    must contain only [input_text][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_text].
+ *  3. If
+ *  [StreamingAnalyzeContentRequest.config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]
+ *  in the first message was set
+ *    to
+ *    [StreamingAnalyzeContentRequest.text_config][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.text_config],
+ *    then the second message must contain only
+ *    [input_text][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_text].
  *    Moreover, you must not send more than two messages.
  *  After you sent all input, you must half-close or abort the request stream.
  *
@@ -88,6 +96,13 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12;</code>
      */
     private $enable_partial_automated_agent_reply = false;
+    /**
+     * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     * populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 19;</code>
+     */
+    private $enable_debugging_info = false;
     protected $config;
     protected $input;
 
@@ -139,6 +154,9 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           response stream still contains only one final response even if some
      *           `Fulfillment`s in Dialogflow virtual agent have been configured to return
      *           partial responses.
+     *     @type bool $enable_debugging_info
+     *           If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     *           populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -533,6 +551,34 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_partial_automated_agent_reply = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     * populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 19;</code>
+     * @return bool
+     */
+    public function getEnableDebuggingInfo()
+    {
+        return $this->enable_debugging_info;
+    }
+
+    /**
+     * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     * populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDebuggingInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_debugging_info = $var;
 
         return $this;
     }

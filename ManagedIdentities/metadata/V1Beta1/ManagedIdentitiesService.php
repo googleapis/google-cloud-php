@@ -24,7 +24,7 @@ class ManagedIdentitiesService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-„&
+…&
 Ggoogle/cloud/managedidentities/v1beta1/managed_identities_service.proto&google.cloud.managedidentities.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto5google/cloud/managedidentities/v1beta1/resource.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ü
 
 OpMetadata4
@@ -107,8 +107,8 @@ OpMetadataà
 ValidateTrust<.google.cloud.managedidentities.v1beta1.ValidateTrustRequest.google.longrunning.Operation"r‚Óä“H"C/v1beta1/{name=projects/*/locations/global/domains/*}:validateTrust:*ÚA
 name,trustÊA
 Domain
-OpMetadataTÊA managedidentities.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB«
-*com.google.cloud.managedidentities.v1beta1BManagedIdentitiesServiceProtoPZWgoogle.golang.org/genproto/googleapis/cloud/managedidentities/v1beta1;managedidentities¢GCMIª&Google.Cloud.ManagedIdentities.V1Beta1Ê&Google\\Cloud\\ManagedIdentities\\V1beta1ê)Google::Cloud::ManagedIdentities::V1beta1bproto3'
+OpMetadataTÊA managedidentities.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¬
+*com.google.cloud.managedidentities.v1beta1BManagedIdentitiesServiceProtoPZXcloud.google.com/go/managedidentities/apiv1beta1/managedidentitiespb;managedidentitiespb¢GCMIª&Google.Cloud.ManagedIdentities.V1Beta1Ê&Google\\Cloud\\ManagedIdentities\\V1beta1ê)Google::Cloud::ManagedIdentities::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

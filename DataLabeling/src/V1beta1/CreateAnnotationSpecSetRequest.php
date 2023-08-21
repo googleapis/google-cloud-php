@@ -32,6 +32,25 @@ class CreateAnnotationSpecSetRequest extends \Google\Protobuf\Internal\Message
     private $annotation_spec_set = null;
 
     /**
+     * @param string                                               $parent            Required. AnnotationSpecSet resource parent, format:
+     *                                                                                projects/{project_id}
+     *                                                                                Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\DataLabeling\V1beta1\AnnotationSpecSet $annotationSpecSet Required. Annotation spec set to create. Annotation specs must be included.
+     *                                                                                Only one annotation spec will be accepted for annotation specs with same
+     *                                                                                display_name.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\CreateAnnotationSpecSetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataLabeling\V1beta1\AnnotationSpecSet $annotationSpecSet): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAnnotationSpecSet($annotationSpecSet);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

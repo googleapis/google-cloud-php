@@ -31,6 +31,20 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. The repository's name. Please see
+     *                     {@see DataformClient::repositoryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

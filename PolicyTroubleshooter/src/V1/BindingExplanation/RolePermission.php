@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class RolePermission
 {
     /**
-     * Reserved for future use.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>ROLE_PERMISSION_UNSPECIFIED = 0;</code>
      */
@@ -66,6 +66,4 @@ class RolePermission
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RolePermission::class, \Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation_RolePermission::class);
 

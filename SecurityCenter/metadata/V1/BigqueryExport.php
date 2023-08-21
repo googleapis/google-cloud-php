@@ -19,7 +19,7 @@ class BigqueryExport
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ì
+Ê
 4google/cloud/securitycenter/v1/bigquery_export.protogoogle.cloud.securitycenter.v1google/api/resource.protogoogle/protobuf/timestamp.proto"½
 BigQueryExport
 name (	
@@ -30,8 +30,8 @@ class BigqueryExport
 update_time (2.google.protobuf.TimestampBàA
 most_recent_editor (	BàA
 	principal (	BàA:ÁêA½
-,securitycenter.googleapis.com/BigQueryExport5organizations/{organization}/bigQueryExports/{export})folders/{folder}/bigQueryExports/{export}+projects/{project}/bigQueryExports/{export}Bï
-"com.google.cloud.securitycenter.v1BBigQueryExportProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+,securitycenter.googleapis.com/BigQueryExport5organizations/{organization}/bigQueryExports/{export})folders/{folder}/bigQueryExports/{export}+projects/{project}/bigQueryExports/{export}Bí
+"com.google.cloud.securitycenter.v1BBigQueryExportProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

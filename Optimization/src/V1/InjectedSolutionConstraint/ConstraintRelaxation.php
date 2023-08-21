@@ -33,8 +33,9 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * most one constraint relaxation field is allowed empty
      * `vehicle_indices`. A vehicle index can only be listed once, even within
      * several `constraint_relaxations`.
-     * A vehicle index is mapped the same as [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index], if
-     * `interpret_injected_solutions_using_labels` is true (see `fields`
+     * A vehicle index is mapped the same as
+     * [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index],
+     * if `interpret_injected_solutions_using_labels` is true (see `fields`
      * comment).
      *
      * Generated from protobuf field <code>repeated int32 vehicle_indices = 2;</code>
@@ -58,8 +59,9 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      *           most one constraint relaxation field is allowed empty
      *           `vehicle_indices`. A vehicle index can only be listed once, even within
      *           several `constraint_relaxations`.
-     *           A vehicle index is mapped the same as [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index], if
-     *           `interpret_injected_solutions_using_labels` is true (see `fields`
+     *           A vehicle index is mapped the same as
+     *           [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index],
+     *           if `interpret_injected_solutions_using_labels` is true (see `fields`
      *           comment).
      * }
      */
@@ -104,8 +106,9 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * most one constraint relaxation field is allowed empty
      * `vehicle_indices`. A vehicle index can only be listed once, even within
      * several `constraint_relaxations`.
-     * A vehicle index is mapped the same as [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index], if
-     * `interpret_injected_solutions_using_labels` is true (see `fields`
+     * A vehicle index is mapped the same as
+     * [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index],
+     * if `interpret_injected_solutions_using_labels` is true (see `fields`
      * comment).
      *
      * Generated from protobuf field <code>repeated int32 vehicle_indices = 2;</code>
@@ -124,8 +127,9 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * most one constraint relaxation field is allowed empty
      * `vehicle_indices`. A vehicle index can only be listed once, even within
      * several `constraint_relaxations`.
-     * A vehicle index is mapped the same as [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index], if
-     * `interpret_injected_solutions_using_labels` is true (see `fields`
+     * A vehicle index is mapped the same as
+     * [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index],
+     * if `interpret_injected_solutions_using_labels` is true (see `fields`
      * comment).
      *
      * Generated from protobuf field <code>repeated int32 vehicle_indices = 2;</code>

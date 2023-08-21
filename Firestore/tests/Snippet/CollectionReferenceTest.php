@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -34,6 +35,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 class CollectionReferenceTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
@@ -42,7 +44,7 @@ class CollectionReferenceTest extends SnippetTestCase
     private $connection;
     private $collection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->collection = TestHelpers::stub(CollectionReference::class, [

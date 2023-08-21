@@ -25,7 +25,6 @@ namespace Google\Cloud\WebRisk\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints;
 use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffResponse;
@@ -43,25 +42,19 @@ use stdClass;
  */
 class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return WebRiskServiceV1Beta1Client
-     */
+    /** @return WebRiskServiceV1Beta1Client */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +63,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         return new WebRiskServiceV1Beta1Client($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function computeThreatListDiffTest()
     {
         $transport = $this->createTransport();
@@ -102,9 +93,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function computeThreatListDiffExceptionTest()
     {
         $transport = $this->createTransport();
@@ -138,9 +127,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchHashesTest()
     {
         $transport = $this->createTransport();
@@ -165,9 +152,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchHashesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -200,9 +185,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchUrisTest()
     {
         $transport = $this->createTransport();
@@ -230,9 +213,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchUrisExceptionTest()
     {
         $transport = $this->createTransport();

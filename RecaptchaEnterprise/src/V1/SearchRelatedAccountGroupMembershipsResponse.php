@@ -35,7 +35,7 @@ class SearchRelatedAccountGroupMembershipsResponse extends \Google\Protobuf\Inte
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership[]|\Google\Protobuf\Internal\RepeatedField $related_account_group_memberships
+     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership>|\Google\Protobuf\Internal\RepeatedField $related_account_group_memberships
      *           The queried memberships.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class SearchRelatedAccountGroupMembershipsResponse extends \Google\Protobuf\Inte
      * The queried memberships.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RelatedAccountGroupMembership related_account_group_memberships = 1;</code>
-     * @param \Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedAccountGroupMemberships($var)

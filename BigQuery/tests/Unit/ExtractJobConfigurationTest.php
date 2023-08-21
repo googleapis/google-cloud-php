@@ -20,13 +20,16 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Model;
 use Google\Cloud\BigQuery\Table;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class ExtractJobConfigurationTest extends TestCase
 {
+    use ProphecyTrait;
+
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';
     const TABLE_ID = 'my_table';
@@ -49,7 +52,7 @@ class ExtractJobConfigurationTest extends TestCase
 
     private $expectedConfig;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->expectedConfig = [
             'projectId' => self::PROJECT_ID,

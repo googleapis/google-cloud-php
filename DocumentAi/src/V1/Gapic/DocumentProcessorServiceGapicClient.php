@@ -47,24 +47,37 @@ use Google\Cloud\DocumentAI\V1\Document;
 use Google\Cloud\DocumentAI\V1\DocumentOutputConfig;
 use Google\Cloud\DocumentAI\V1\DocumentSchema;
 use Google\Cloud\DocumentAI\V1\EnableProcessorRequest;
+use Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\Evaluation;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
+use Google\Cloud\DocumentAI\V1\GcsDocument;
+use Google\Cloud\DocumentAI\V1\GetEvaluationRequest;
 use Google\Cloud\DocumentAI\V1\GetProcessorRequest;
+use Google\Cloud\DocumentAI\V1\GetProcessorTypeRequest;
 use Google\Cloud\DocumentAI\V1\GetProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\ListEvaluationsRequest;
+use Google\Cloud\DocumentAI\V1\ListEvaluationsResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorTypesResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorVersionsResponse;
 use Google\Cloud\DocumentAI\V1\ListProcessorsRequest;
 use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
+use Google\Cloud\DocumentAI\V1\ProcessOptions;
 use Google\Cloud\DocumentAI\V1\ProcessRequest;
 use Google\Cloud\DocumentAI\V1\ProcessResponse;
 use Google\Cloud\DocumentAI\V1\Processor;
+use Google\Cloud\DocumentAI\V1\ProcessorType;
 use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 use Google\Cloud\DocumentAI\V1\RawDocument;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority;
 use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -74,7 +87,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Service to call Cloud DocumentAI to process documents according to the
+ * Service Description: Service to call Document AI to process documents according to the
  * processor's definition. Processors are built using state-of-the-art Google
  * AI such as natural language, computer vision, and translation to extract
  * structured information from unstructured or semi-structured documents.
@@ -90,7 +103,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -107,7 +120,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -121,6 +134,10 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient} to use the
+ * new surface.
  */
 class DocumentProcessorServiceGapicClient
 {
@@ -143,11 +160,15 @@ class DocumentProcessorServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $evaluationNameTemplate;
+
     private static $humanReviewConfigNameTemplate;
 
     private static $locationNameTemplate;
 
     private static $processorNameTemplate;
+
+    private static $processorTypeNameTemplate;
 
     private static $processorVersionNameTemplate;
 
@@ -183,6 +204,17 @@ class DocumentProcessorServiceGapicClient
         ];
     }
 
+    private static function getEvaluationNameTemplate()
+    {
+        if (self::$evaluationNameTemplate == null) {
+            self::$evaluationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}/evaluations/{evaluation}'
+            );
+        }
+
+        return self::$evaluationNameTemplate;
+    }
+
     private static function getHumanReviewConfigNameTemplate()
     {
         if (self::$humanReviewConfigNameTemplate == null) {
@@ -216,6 +248,17 @@ class DocumentProcessorServiceGapicClient
         return self::$processorNameTemplate;
     }
 
+    private static function getProcessorTypeNameTemplate()
+    {
+        if (self::$processorTypeNameTemplate == null) {
+            self::$processorTypeNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/processorTypes/{processor_type}'
+            );
+        }
+
+        return self::$processorTypeNameTemplate;
+    }
+
     private static function getProcessorVersionNameTemplate()
     {
         if (self::$processorVersionNameTemplate == null) {
@@ -231,14 +274,44 @@ class DocumentProcessorServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'evaluation' => self::getEvaluationNameTemplate(),
                 'humanReviewConfig' => self::getHumanReviewConfigNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'processor' => self::getProcessorNameTemplate(),
+                'processorType' => self::getProcessorTypeNameTemplate(),
                 'processorVersion' => self::getProcessorVersionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a evaluation
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $processor
+     * @param string $processorVersion
+     * @param string $evaluation
+     *
+     * @return string The formatted evaluation resource.
+     */
+    public static function evaluationName(
+        $project,
+        $location,
+        $processor,
+        $processorVersion,
+        $evaluation
+    ) {
+        return self::getEvaluationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'processor' => $processor,
+            'processor_version' => $processorVersion,
+            'evaluation' => $evaluation,
+        ]);
     }
 
     /**
@@ -301,6 +374,28 @@ class DocumentProcessorServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * processor_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $processorType
+     *
+     * @return string The formatted processor_type resource.
+     */
+    public static function processorTypeName(
+        $project,
+        $location,
+        $processorType
+    ) {
+        return self::getProcessorTypeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'processor_type' => $processorType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * processor_version resource.
      *
      * @param string $project
@@ -328,9 +423,11 @@ class DocumentProcessorServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - evaluation: projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}/evaluations/{evaluation}
      * - humanReviewConfig: projects/{project}/locations/{location}/processors/{processor}/humanReviewConfig
      * - location: projects/{project}/locations/{location}
      * - processor: projects/{project}/locations/{location}/processors/{processor}
+     * - processorType: projects/{project}/locations/{location}/processorTypes/{processor_type}
      * - processorVersion: projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -413,9 +510,6 @@ class DocumentProcessorServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'documentai.googleapis.com:443'.
@@ -445,7 +539,7 @@ class DocumentProcessorServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -484,7 +578,7 @@ class DocumentProcessorServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -501,7 +595,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -511,7 +605,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     * @param string $name         Required. The resource name of
+     *                             [Processor][google.cloud.documentai.v1.Processor] or
      *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
      *                             or
@@ -520,12 +615,18 @@ class DocumentProcessorServiceGapicClient
      *     Optional.
      *
      *     @type BatchDocumentsInputConfig $inputDocuments
-     *           The input documents for batch process.
+     *           The input documents for the
+     *           [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     *           method.
      *     @type DocumentOutputConfig $documentOutputConfig
-     *           The overall output config for batch process.
+     *           The output configuration for the
+     *           [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
+     *           method.
      *     @type bool $skipHumanReview
-     *           Whether Human Review feature should be skipped for this request. Default to
-     *           false.
+     *           Whether human review should be skipped for this request. Default to
+     *           `false`.
+     *     @type ProcessOptions $processOptions
+     *           Inference-time options for the process API
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -556,6 +657,10 @@ class DocumentProcessorServiceGapicClient
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
         }
 
+        if (isset($optionalArgs['processOptions'])) {
+            $request->setProcessOptions($optionalArgs['processOptions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -571,8 +676,9 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Creates a processor from the type processor that the user chose.
-     * The processor will be at "ENABLED" state by default after its creation.
+     * Creates a processor from the
+     * [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
+     * processor will be at `ENABLED` state by default after its creation.
      *
      * Sample code:
      * ```
@@ -586,10 +692,13 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent (project and location) under which to create the processor.
-     *                                Format: `projects/{project}/locations/{location}`
-     * @param Processor $processor    Required. The processor to be created, requires [processor_type] and [display_name]
-     *                                to be set. Also, the processor is under CMEK if CMEK fields are set.
+     * @param string    $parent       Required. The parent (project and location) under which to create the
+     *                                processor. Format: `projects/{project}/locations/{location}`
+     * @param Processor $processor    Required. The processor to be created, requires
+     *                                [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     *                                [Processor.display_name]][] to be set. Also, the
+     *                                [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     *                                field must be set if the processor is under CMEK.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -783,7 +892,7 @@ class DocumentProcessorServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -800,7 +909,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -856,7 +965,7 @@ class DocumentProcessorServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -873,7 +982,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -929,7 +1038,7 @@ class DocumentProcessorServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -946,7 +1055,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -991,8 +1100,97 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Fetches processor types. Note that we do not use ListProcessorTypes here
-     * because it is not paginated.
+     * Evaluates a ProcessorVersion against annotated documents, producing an
+     * Evaluation.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedProcessorVersion = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->evaluateProcessorVersion($formattedProcessorVersion);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->evaluateProcessorVersion($formattedProcessorVersion);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'evaluateProcessorVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $processorVersion Required. The resource name of the
+     *                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     *                                 evaluate.
+     *                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     * @param array  $optionalArgs     {
+     *     Optional.
+     *
+     *     @type BatchDocumentsInputConfig $evaluationDocuments
+     *           Optional. The documents used in the evaluation. If unspecified, use the
+     *           processor's dataset as evaluation input.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function evaluateProcessorVersion(
+        $processorVersion,
+        array $optionalArgs = []
+    ) {
+        $request = new EvaluateProcessorVersionRequest();
+        $requestParamHeaders = [];
+        $request->setProcessorVersion($processorVersion);
+        $requestParamHeaders['processor_version'] = $processorVersion;
+        if (isset($optionalArgs['evaluationDocuments'])) {
+            $request->setEvaluationDocuments(
+                $optionalArgs['evaluationDocuments']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'EvaluateProcessorVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Fetches processor types. Note that we don't use
+     * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+     * here, because it isn't paginated.
      *
      * Sample code:
      * ```
@@ -1005,9 +1203,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project of processor type to list.
-     *                             The available processor types may depend on the allow-listing on projects.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The location of processor types to list.
+     *                             Format: `projects/{project}/locations/{location}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1036,6 +1233,56 @@ class DocumentProcessorServiceGapicClient
         return $this->startCall(
             'FetchProcessorTypes',
             FetchProcessorTypesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves a specific evaluation.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->evaluationName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]', '[EVALUATION]');
+     *     $response = $documentProcessorServiceClient->getEvaluation($formattedName);
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the
+     *                             [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DocumentAI\V1\Evaluation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEvaluation($name, array $optionalArgs = [])
+    {
+        $request = new GetEvaluationRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetEvaluation',
+            Evaluation::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1090,6 +1337,54 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
+     * Gets a processor type detail.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorTypeName('[PROJECT]', '[LOCATION]', '[PROCESSOR_TYPE]');
+     *     $response = $documentProcessorServiceClient->getProcessorType($formattedName);
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor type resource name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ProcessorType
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getProcessorType($name, array $optionalArgs = [])
+    {
+        $request = new GetProcessorTypeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProcessorType',
+            ProcessorType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets a processor version detail.
      *
      * Sample code:
@@ -1138,6 +1433,86 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
+     * Retrieves a set of evaluations for a given processor version.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedParent = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $documentProcessorServiceClient->listEvaluations($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $documentProcessorServiceClient->listEvaluations($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the
+     *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
+     *                             evaluations for.
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listEvaluations($parent, array $optionalArgs = [])
+    {
+        $request = new ListEvaluationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListEvaluations',
+            $optionalArgs,
+            ListEvaluationsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists the processor types that exist.
      *
      * Sample code:
@@ -1163,9 +1538,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location of processor type to list.
-     *                             The available processor types may depend on the allow-listing on projects.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The location of processor types to list.
+     *                             Format: `projects/{project}/locations/{location}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1242,8 +1616,9 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project, location and processor) to list all versions.
-     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`
+     * @param string $parent       Required. The parent (project, location and processor) to list all
+     *                             versions. Format:
+     *                             `projects/{project}/locations/{location}/processors/{processor}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1320,8 +1695,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project and location) which owns this collection of Processors.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The parent (project and location) which owns this collection of
+     *                             Processors. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1386,11 +1761,15 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * @param string $name         Required. The resource name of the
+     *                             [Processor][google.cloud.documentai.v1.Processor] or
      *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *                             to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     *                             its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     *                             `projects/{project}/locations/{location}/processors/{processor}`, or
+     *                             to use for processing. If a
+     *                             [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     *                             will use its [default
+     *                             version][google.cloud.documentai.v1.Processor.default_processor_version].
+     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                             or
      *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1399,13 +1778,18 @@ class DocumentProcessorServiceGapicClient
      *           An inline document proto.
      *     @type RawDocument $rawDocument
      *           A raw document content (bytes).
+     *     @type GcsDocument $gcsDocument
+     *           A raw document on Google Cloud Storage.
      *     @type bool $skipHumanReview
-     *           Whether Human Review feature should be skipped for this request. Default to
-     *           false.
+     *           Whether human review should be skipped for this request. Default to
+     *           `false`.
      *     @type FieldMask $fieldMask
-     *           Specifies which fields to include in ProcessResponse's document.
-     *           Only supports top level document and pages field so it must be in the form
-     *           of `{document_field_name}` or `pages.{page_field_name}`.
+     *           Specifies which fields to include in the
+     *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     *           output. Only supports top-level document and pages field, so it must be in
+     *           the form of `{document_field_name}` or `pages.{page_field_name}`.
+     *     @type ProcessOptions $processOptions
+     *           Inference-time options for the process API
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1430,12 +1814,20 @@ class DocumentProcessorServiceGapicClient
             $request->setRawDocument($optionalArgs['rawDocument']);
         }
 
+        if (isset($optionalArgs['gcsDocument'])) {
+            $request->setGcsDocument($optionalArgs['gcsDocument']);
+        }
+
         if (isset($optionalArgs['skipHumanReview'])) {
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
         }
 
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+
+        if (isset($optionalArgs['processOptions'])) {
+            $request->setProcessOptions($optionalArgs['processOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1465,7 +1857,7 @@ class DocumentProcessorServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1482,7 +1874,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1492,8 +1884,9 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $humanReviewConfig Required. The resource name of the HumanReviewConfig that the document will be
-     *                                  reviewed with.
+     * @param string $humanReviewConfig Required. The resource name of the
+     *                                  [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
+     *                                  document will be reviewed with.
      * @param array  $optionalArgs      {
      *     Optional.
      *
@@ -1555,8 +1948,10 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Set the default (active) version of a [Processor][google.cloud.documentai.v1.Processor] that will be used in
-     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] and
+     * Set the default (active) version of a
+     * [Processor][google.cloud.documentai.v1.Processor] that will be used in
+     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
+     * and
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
      *
      * Sample code:
@@ -1569,7 +1964,7 @@ class DocumentProcessorServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1586,7 +1981,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1596,9 +1991,12 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $processor               Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
-     * @param string $defaultProcessorVersion Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
-     *                                        Format:
+     * @param string $processor               Required. The resource name of the
+     *                                        [Processor][google.cloud.documentai.v1.Processor] to change default
+     *                                        version.
+     * @param string $defaultProcessorVersion Required. The resource name of child
+     *                                        [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
+     *                                        default. Format:
      *                                        `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      * @param array  $optionalArgs            {
      *     Optional.
@@ -1638,6 +2036,120 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
+     * Trains a new processor version.
+     * Operation metadata is returned as
+     * [TrainProcessorVersionMetadata][google.cloud.documentai.v1.TrainProcessorVersionMetadata].
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedParent = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $processorVersion = new ProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->trainProcessorVersion($formattedParent, $processorVersion);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->trainProcessorVersion($formattedParent, $processorVersion);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'trainProcessorVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string           $parent           Required. The parent (project, location and processor) to create the new
+     *                                           version for. Format:
+     *                                           `projects/{project}/locations/{location}/processors/{processor}`.
+     * @param ProcessorVersion $processorVersion Required. The processor version to be created.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type CustomDocumentExtractionOptions $customDocumentExtractionOptions
+     *           Options to control Custom Document Extraction (CDE) Processor.
+     *     @type DocumentSchema $documentSchema
+     *           Optional. The schema the processor version will be trained with.
+     *     @type InputData $inputData
+     *           Optional. The input data used to train the
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *     @type string $baseProcessorVersion
+     *           Optional. The processor version to use as a base for training. This
+     *           processor version must be a child of `parent`. Format:
+     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function trainProcessorVersion(
+        $parent,
+        $processorVersion,
+        array $optionalArgs = []
+    ) {
+        $request = new TrainProcessorVersionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setProcessorVersion($processorVersion);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['customDocumentExtractionOptions'])) {
+            $request->setCustomDocumentExtractionOptions(
+                $optionalArgs['customDocumentExtractionOptions']
+            );
+        }
+
+        if (isset($optionalArgs['documentSchema'])) {
+            $request->setDocumentSchema($optionalArgs['documentSchema']);
+        }
+
+        if (isset($optionalArgs['inputData'])) {
+            $request->setInputData($optionalArgs['inputData']);
+        }
+
+        if (isset($optionalArgs['baseProcessorVersion'])) {
+            $request->setBaseProcessorVersion(
+                $optionalArgs['baseProcessorVersion']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'TrainProcessorVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Undeploys the processor version.
      *
      * Sample code:
@@ -1649,7 +2161,7 @@ class DocumentProcessorServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1666,7 +2178,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

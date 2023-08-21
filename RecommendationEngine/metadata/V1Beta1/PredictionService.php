@@ -22,7 +22,7 @@ class PredictionService
         \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ã
+Ç
 Bgoogle/cloud/recommendationengine/v1beta1/prediction_service.proto)google.cloud.recommendationengine.v1beta1google/api/field_behavior.protogoogle/api/resource.proto:google/cloud/recommendationengine/v1beta1/user_event.protogoogle/protobuf/struct.protogoogle/api/client.proto"®
 PredictRequestC
 name (	B5àAúA/
@@ -60,8 +60,8 @@ page_token (	BàA
 key (	%
 value (2.google.protobuf.Value:82â
 PredictionServiceó
-Predict9.google.cloud.recommendationengine.v1beta1.PredictRequest:.google.cloud.recommendationengine.v1beta1.PredictResponse"q‚Óä“Y"T/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/placements/*}:predict:*ÚAname,user_eventWÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŸ
--com.google.cloud.recommendationengine.v1beta1PZ]google.golang.org/genproto/googleapis/cloud/recommendationengine/v1beta1;recommendationengine¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
+Predict9.google.cloud.recommendationengine.v1beta1.PredictRequest:.google.cloud.recommendationengine.v1beta1.PredictResponse"q‚Óä“Y"T/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/placements/*}:predict:*ÚAname,user_eventWÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB£
+-com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

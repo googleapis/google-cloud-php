@@ -16,14 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CsvOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The number of rows to interpret as header rows that should be skipped
-     * when reading data rows.
+     * Optional. The number of rows to interpret as header rows that should be
+     * skipped when reading data rows.
      *
      * Generated from protobuf field <code>int32 header_rows = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $header_rows = 0;
     /**
-     * Optional. The delimiter being used to separate values. This defaults to ','.
+     * Optional. The delimiter being used to separate values. This defaults to
+     * ','.
      *
      * Generated from protobuf field <code>string delimiter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,10 +50,11 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $header_rows
-     *           Optional. The number of rows to interpret as header rows that should be skipped
-     *           when reading data rows.
+     *           Optional. The number of rows to interpret as header rows that should be
+     *           skipped when reading data rows.
      *     @type string $delimiter
-     *           Optional. The delimiter being used to separate values. This defaults to ','.
+     *           Optional. The delimiter being used to separate values. This defaults to
+     *           ','.
      *     @type string $encoding
      *           Optional. The character encoding of the data. The default is UTF-8.
      *     @type bool $disable_type_inference
@@ -66,8 +68,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of rows to interpret as header rows that should be skipped
-     * when reading data rows.
+     * Optional. The number of rows to interpret as header rows that should be
+     * skipped when reading data rows.
      *
      * Generated from protobuf field <code>int32 header_rows = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -78,8 +80,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of rows to interpret as header rows that should be skipped
-     * when reading data rows.
+     * Optional. The number of rows to interpret as header rows that should be
+     * skipped when reading data rows.
      *
      * Generated from protobuf field <code>int32 header_rows = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -94,7 +96,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The delimiter being used to separate values. This defaults to ','.
+     * Optional. The delimiter being used to separate values. This defaults to
+     * ','.
      *
      * Generated from protobuf field <code>string delimiter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -105,7 +108,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The delimiter being used to separate values. This defaults to ','.
+     * Optional. The delimiter being used to separate values. This defaults to
+     * ','.
      *
      * Generated from protobuf field <code>string delimiter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

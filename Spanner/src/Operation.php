@@ -275,9 +275,7 @@ class Operation
             );
         }
 
-        $statsItem = isset($options['statsItem'])
-            ? $options['statsItem']
-            : 'rowCountExact';
+        $statsItem = $options['statsItem'] ?? 'rowCountExact';
 
         return $stats[$statsItem];
     }
@@ -461,9 +459,7 @@ class Operation
             'tag' => null
         ];
 
-        $options['isRetry'] = isset($options['isRetry'])
-            ? $options['isRetry']
-            : false;
+        $options['isRetry'] = $options['isRetry'] ?? false;
 
         return new Transaction($this, $session, $res['id'], $options['isRetry'], $options['tag']);
     }
@@ -553,6 +549,7 @@ class Operation
      *           labels can be associated with a given session. See
      *           https://goo.gl/xmQnxf for more information on and examples of
      *           labels.
+     *     @type string $creator_role The user created database role which creates the session.
      * }
      * @return Session
      */
@@ -561,7 +558,8 @@ class Operation
         $res = $this->connection->createSession([
             'database' => $databaseName,
             'session' => [
-                'labels' => $this->pluck('labels', $options, false) ?: []
+                'labels' => $this->pluck('labels', $options, false) ?: [],
+                'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
             ]
         ] + $options);
 

@@ -56,6 +56,45 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $parent Required. The resource name of the event_store under which the events are
+     *                       created. The format is
+     *                       `projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}`
+     *                       Please see {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
+     * @param string $filter Required. The filter string to specify the events to be deleted. Empty
+     *                       string filter is not allowed. This filter can also be used with
+     *                       ListUserEvents API to list events that will be deleted. The eligible fields
+     *                       for filtering are:
+     *                       * eventType - UserEvent.eventType field of type string.
+     *                       * eventTime - in ISO 8601 "zulu" format.
+     *                       * visitorId - field of type string. Specifying this will delete all events
+     *                       associated with a visitor.
+     *                       * userId - field of type string. Specifying this will delete all events
+     *                       associated with a user.
+     *                       Example 1: Deleting all events in a time range.
+     *                       `eventTime > "2012-04-23T18:25:43.511Z" eventTime <
+     *                       "2012-04-23T18:30:43.511Z"`
+     *                       Example 2: Deleting specific eventType in time range.
+     *                       `eventTime > "2012-04-23T18:25:43.511Z" eventType = "detail-page-view"`
+     *                       Example 3: Deleting all events for a specific visitor
+     *                       `visitorId = visitor1024`
+     *                       The filtering fields are assumed to have an implicit AND.
+     * @param bool   $force  Optional. The default value is false. Override this flag to true to
+     *                       actually perform the purge. If the field is not set to true, a sampling of
+     *                       events to be deleted will be returned.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter, bool $force): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter)
+            ->setForce($force);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

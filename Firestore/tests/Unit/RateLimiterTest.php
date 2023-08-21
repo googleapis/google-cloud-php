@@ -18,9 +18,8 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Firestore\RateLimiter;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
@@ -28,12 +27,10 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class RateLimiterTest extends TestCase
 {
-    use ExpectException;
-    use ExpectExceptionMessageMatches;
 
     private $rateLimiter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->rateLimiter = new RateLimiter(
             500, // initialCapacity
@@ -70,7 +67,7 @@ class RateLimiterTest extends TestCase
         $this->assertFalse($this->rateLimiter->tryMakeRequest(751, (5 * 60 + 3) * 1000));
 
         // Rejects requests made before lastRefillTime.
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Request time should not be before the last token refill time');
         $this->rateLimiter->tryMakeRequest(751, (5 * 60 + 2) * 1000);
     }

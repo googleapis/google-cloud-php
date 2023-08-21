@@ -20,18 +20,26 @@ class HealthState
      */
     const UNDEFINED_HEALTH_STATE = 0;
     /**
+     * Endpoint is being drained.
+     *
      * Generated from protobuf enum <code>DRAINING = 480455402;</code>
      */
     const DRAINING = 480455402;
     /**
+     * Endpoint is healthy.
+     *
      * Generated from protobuf enum <code>HEALTHY = 439801213;</code>
      */
     const HEALTHY = 439801213;
     /**
+     * Endpoint is unhealthy.
+     *
      * Generated from protobuf enum <code>UNHEALTHY = 462118084;</code>
      */
     const UNHEALTHY = 462118084;
     /**
+     * Health status of the endpoint is unknown.
+     *
      * Generated from protobuf enum <code>UNKNOWN = 433141802;</code>
      */
     const UNKNOWN = 433141802;

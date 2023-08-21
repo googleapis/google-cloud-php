@@ -23,6 +23,20 @@ class GetCloneJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the CloneJob. Please see
+     *                     {@see VmMigrationClient::cloneJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\GetCloneJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Contexts.CreateContext][google.cloud.dialogflow.v2.Contexts.CreateContext].
+ * The request message for
+ * [Contexts.CreateContext][google.cloud.dialogflow.v2.Contexts.CreateContext].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateContextRequest</code>
  */
@@ -32,6 +33,27 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $context = null;
+
+    /**
+     * @param string                              $parent  Required. The session to create a context for.
+     *                                                     Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                                                     `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                                                     ID>/sessions/<Session ID>`.
+     *                                                     If `Environment ID` is not specified, we assume default 'draft'
+     *                                                     environment. If `User ID` is not specified, we assume default '-' user. Please see
+     *                                                     {@see ContextsClient::sessionName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Context $context Required. The context to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateContextRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Context $context): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setContext($context);
+    }
 
     /**
      * Constructor.

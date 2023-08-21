@@ -46,6 +46,16 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 ets = 4;</code>
      */
     private $ets = 0;
+    /**
+     * An arbitrary serialized JSON string that contains necessary information
+     * that can comprise a user event. When this field is specified, the
+     * user_event field will be ignored. Note: line-delimited JSON is not
+     * supported, a single JSON only.
+     *
+     * Generated from protobuf field <code>string raw_json = 5;</code>
+     */
+    private $raw_json = '';
+    protected $conversion_rule;
 
     /**
      * Constructor.
@@ -53,6 +63,9 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $prebuilt_rule
+     *           The prebuilt rule name that can convert a specific type of raw_json.
+     *           For example: "ga4_bq" rule for the GA4 user event schema.
      *     @type string $parent
      *           Required. The parent catalog name, such as
      *           `projects/1234/locations/global/catalogs/default_catalog`.
@@ -68,11 +81,49 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *           The event timestamp in milliseconds. This prevents browser caching of
      *           otherwise identical get requests. The name is abbreviated to reduce the
      *           payload bytes.
+     *     @type string $raw_json
+     *           An arbitrary serialized JSON string that contains necessary information
+     *           that can comprise a user event. When this field is specified, the
+     *           user_event field will be ignored. Note: line-delimited JSON is not
+     *           supported, a single JSON only.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Retail\V2\UserEventService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The prebuilt rule name that can convert a specific type of raw_json.
+     * For example: "ga4_bq" rule for the GA4 user event schema.
+     *
+     * Generated from protobuf field <code>string prebuilt_rule = 6;</code>
+     * @return string
+     */
+    public function getPrebuiltRule()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasPrebuiltRule()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * The prebuilt rule name that can convert a specific type of raw_json.
+     * For example: "ga4_bq" rule for the GA4 user event schema.
+     *
+     * Generated from protobuf field <code>string prebuilt_rule = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrebuiltRule($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(6, $var);
+
+        return $this;
     }
 
     /**
@@ -191,6 +242,46 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
         $this->ets = $var;
 
         return $this;
+    }
+
+    /**
+     * An arbitrary serialized JSON string that contains necessary information
+     * that can comprise a user event. When this field is specified, the
+     * user_event field will be ignored. Note: line-delimited JSON is not
+     * supported, a single JSON only.
+     *
+     * Generated from protobuf field <code>string raw_json = 5;</code>
+     * @return string
+     */
+    public function getRawJson()
+    {
+        return $this->raw_json;
+    }
+
+    /**
+     * An arbitrary serialized JSON string that contains necessary information
+     * that can comprise a user event. When this field is specified, the
+     * user_event field will be ignored. Note: line-delimited JSON is not
+     * supported, a single JSON only.
+     *
+     * Generated from protobuf field <code>string raw_json = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRawJson($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->raw_json = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConversionRule()
+    {
+        return $this->whichOneof("conversion_rule");
     }
 
 }

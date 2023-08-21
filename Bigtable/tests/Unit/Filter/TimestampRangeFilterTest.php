@@ -20,7 +20,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter;
 use Google\Cloud\Bigtable\Filter\TimestampRangeFilter;
 use Google\Cloud\Bigtable\V2\TimestampRange;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -30,7 +30,7 @@ class TimestampRangeFilterTest extends TestCase
 {
     private $timestampRangeFilter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->timestampRangeFilter = new TimestampRangeFilter();
     }

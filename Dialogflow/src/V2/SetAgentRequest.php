@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Agents.SetAgent][google.cloud.dialogflow.v2.Agents.SetAgent].
+ * The request message for
+ * [Agents.SetAgent][google.cloud.dialogflow.v2.Agents.SetAgent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SetAgentRequest</code>
  */
@@ -27,6 +28,19 @@ class SetAgentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\Agent $agent Required. The agent to update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SetAgentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Agent $agent): self
+    {
+        return (new self())
+            ->setAgent($agent);
+    }
 
     /**
      * Constructor.

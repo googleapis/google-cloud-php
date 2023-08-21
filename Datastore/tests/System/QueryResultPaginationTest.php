@@ -24,15 +24,15 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  * @group datastore
  * @group datastore-query-pagination
  */
-class QueryResultPaginationTest extends DatastoreTestCase
+class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
 {
     private static $expectedTotal = 610;
     private static $parentKey;
     private static $testKind;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
         static $setUp = false;
         if ($setUp) {
             return;
@@ -51,7 +51,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
             $key->ancestorKey(self::$parentKey);
 
             $set[] = $client->entity($key, [
-                'a' => rand(1, 10)
+                'a' => rand(1, 10),
             ]);
 
             if (count($set) === 100) {
@@ -67,9 +67,9 @@ class QueryResultPaginationTest extends DatastoreTestCase
         $setUp = true;
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         $client = self::$restClient;
         $q = $client->query()
@@ -88,7 +88,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryPagination(DatastoreClient $client)
     {
@@ -101,7 +101,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPagination(DatastoreClient $client)
     {
@@ -113,7 +113,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryPaginationByPage(DatastoreClient $client)
     {
@@ -128,20 +128,57 @@ class QueryResultPaginationTest extends DatastoreTestCase
             $parentId
         );
         $q = $client->gqlQuery($queryString, [
-            'allowLiterals' => true
+            'allowLiterals' => true,
         ]);
 
         $this->assertQueryPageCount(self::$expectedTotal, $client, $q);
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testGqlQueryPaginationWithLimit(DatastoreClient $client)
+    {
+        $testLimit = 310;
+        $q = $client->gqlQuery(
+            sprintf('SELECT * FROM `%s` LIMIT %s', self::$testKind, $testLimit),
+            ['allowLiterals' => true]
+        );
+        $this->assertQueryCount($testLimit, $client, $q);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPaginationByPage(DatastoreClient $client)
     {
         $q = $client->query()->kind(self::$testKind);
 
         $this->assertQueryPageCount(self::$expectedTotal, $client, $q);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testQueryPaginationWithLimit(DatastoreClient $client)
+    {
+        $testLimit = 310;
+
+        $q = $client->query()->kind(self::$testKind)->limit($testLimit);
+
+        $this->assertQueryPageCount($testLimit, $client, $q);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testQueryPaginationWithStringLimit(DatastoreClient $client)
+    {
+        $testLimit = '310';
+
+        $q = $client->query()->kind(self::$testKind)->limit($testLimit);
+
+        $this->assertQueryPageCount($testLimit, $client, $q);
     }
 
     private function assertQueryCount($expected, DatastoreClient $client, QueryInterface $query)

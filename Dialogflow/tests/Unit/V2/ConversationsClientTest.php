@@ -25,13 +25,16 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Conversation;
+use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
 use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
 use Google\Cloud\Dialogflow\V2\ListMessagesResponse;
 use Google\Cloud\Dialogflow\V2\Message;
+use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Rpc\Code;
@@ -44,25 +47,19 @@ use stdClass;
  */
 class ConversationsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ConversationsClient
-     */
+    /** @return ConversationsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +68,7 @@ class ConversationsClientTest extends GeneratedTest
         return new ConversationsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeConversationTest()
     {
         $transport = $this->createTransport();
@@ -102,9 +97,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeConversationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -137,9 +130,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationTest()
     {
         $transport = $this->createTransport();
@@ -173,9 +164,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +200,85 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function generateStatelessSummaryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $latestMessage2 = 'latestMessage2-440913086';
+        $contextSize = 1116903569;
+        $expectedResponse = new GenerateStatelessSummaryResponse();
+        $expectedResponse->setLatestMessage($latestMessage2);
+        $expectedResponse->setContextSize($contextSize);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $statelessConversation = new MinimalConversation();
+        $statelessConversationMessages = [];
+        $statelessConversation->setMessages($statelessConversationMessages);
+        $statelessConversationParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $statelessConversation->setParent($statelessConversationParent);
+        $conversationProfile = new ConversationProfile();
+        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
+        $conversationProfile->setDisplayName($conversationProfileDisplayName);
+        $response = $gapicClient->generateStatelessSummary($statelessConversation, $conversationProfile);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Conversations/GenerateStatelessSummary', $actualFuncCall);
+        $actualValue = $actualRequestObject->getStatelessConversation();
+        $this->assertProtobufEquals($statelessConversation, $actualValue);
+        $actualValue = $actualRequestObject->getConversationProfile();
+        $this->assertProtobufEquals($conversationProfile, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateStatelessSummaryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $statelessConversation = new MinimalConversation();
+        $statelessConversationMessages = [];
+        $statelessConversation->setMessages($statelessConversationMessages);
+        $statelessConversationParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $statelessConversation->setParent($statelessConversationParent);
+        $conversationProfile = new ConversationProfile();
+        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
+        $conversationProfile->setDisplayName($conversationProfileDisplayName);
+        try {
+            $gapicClient->generateStatelessSummary($statelessConversation, $conversationProfile);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getConversationTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +307,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -277,9 +340,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationsTest()
     {
         $transport = $this->createTransport();
@@ -314,9 +375,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -349,9 +408,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMessagesTest()
     {
         $transport = $this->createTransport();
@@ -386,9 +443,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMessagesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -421,9 +476,69 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function suggestConversationSummaryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $latestMessage2 = 'latestMessage2-440913086';
+        $contextSize2 = 397491196;
+        $expectedResponse = new SuggestConversationSummaryResponse();
+        $expectedResponse->setLatestMessage($latestMessage2);
+        $expectedResponse->setContextSize($contextSize2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
+        $response = $gapicClient->suggestConversationSummary($formattedConversation);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Conversations/SuggestConversationSummary', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConversation();
+        $this->assertProtobufEquals($formattedConversation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function suggestConversationSummaryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
+        try {
+            $gapicClient->suggestConversationSummary($formattedConversation);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -450,9 +565,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -483,9 +596,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -516,9 +627,7 @@ class ConversationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

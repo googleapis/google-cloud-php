@@ -27,7 +27,7 @@ class ProductService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ß,
+Õ,
 ,google/cloud/retail/v2/product_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto$google/cloud/retail/v2/product.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"œ
 CreateProductRequest4
 parent (	B$àAúA
@@ -116,8 +116,8 @@ GetProduct).google.cloud.retail.v2.GetProductRequest.google.cloud.retail.v2.P
 AddLocalInventories2.google.cloud.retail.v2.AddLocalInventoriesRequest.google.longrunning.Operation"Ú‚Óä“_"Z/v2/{product=projects/*/locations/*/catalogs/*/branches/*/products/**}:addLocalInventories:*ÚAproductÊAh
 2google.cloud.retail.v2.AddLocalInventoriesResponse2google.cloud.retail.v2.AddLocalInventoriesMetadataÔ
 RemoveLocalInventories5.google.cloud.retail.v2.RemoveLocalInventoriesRequest.google.longrunning.Operation"ã‚Óä“b"]/v2/{product=projects/*/locations/*/catalogs/*/branches/*/products/**}:removeLocalInventories:*ÚAproductÊAn
-5google.cloud.retail.v2.RemoveLocalInventoriesResponse5google.cloud.retail.v2.RemoveLocalInventoriesMetadataIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÈ
-com.google.cloud.retail.v2BProductServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
+5google.cloud.retail.v2.RemoveLocalInventoriesResponse5google.cloud.retail.v2.RemoveLocalInventoriesMetadataIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¾
+com.google.cloud.retail.v2BProductServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

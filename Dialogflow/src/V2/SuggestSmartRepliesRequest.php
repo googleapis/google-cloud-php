@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Participants.SuggestSmartReplies][google.cloud.dialogflow.v2.Participants.SuggestSmartReplies].
+ * The request message for
+ * [Participants.SuggestSmartReplies][google.cloud.dialogflow.v2.Participants.SuggestSmartReplies].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SuggestSmartRepliesRequest</code>
  */
@@ -48,6 +49,22 @@ class SuggestSmartRepliesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
     private $context_size = 0;
+
+    /**
+     * @param string $parent Required. The name of the participant to fetch suggestion for.
+     *                       Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                       {@see ParticipantsClient::participantName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -27,10 +28,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
@@ -46,9 +44,10 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Google\Rpc\Code;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -56,9 +55,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class DatabaseTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
 
@@ -77,9 +76,10 @@ class DatabaseTest extends TestCase
     private $lroCallables;
     private $database;
     private $session;
+    private $databaseWithDatabaseRole;
 
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -121,7 +121,10 @@ class DatabaseTest extends TestCase
             $this->lroCallables,
             self::PROJECT,
             self::DATABASE,
-            $this->sessionPool->reveal()
+            $this->sessionPool->reveal(),
+            false,
+            [],
+            'Reader'
         ];
 
         $props = [
@@ -129,6 +132,8 @@ class DatabaseTest extends TestCase
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
+        $args[6] = null;
+        $this->databaseWithDatabaseRole = TestHelpers::stub(Database::class, $args, $props);
     }
 
     public function testName()
@@ -330,6 +335,27 @@ class DatabaseTest extends TestCase
     /**
      * @group spanner-admin
      */
+    public function testUpdateDatabase()
+    {
+        $this->connection->updateDatabase(Argument::allOf(
+            Argument::withEntry('database', [
+                'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+                'enableDropProtection' => true,
+            ]),
+            Argument::withEntry('updateMask', ['paths' => ['enable_drop_protection']])
+        ))->shouldBeCalledTimes(1)->willReturn([
+            'enableDropProtection' => true
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->database->updateDatabase(['enableDropProtection' => true]);
+        $this->assertTrue($res['enableDropProtection']);
+    }
+
+    /**
+     * @group spanner-admin
+     */
     public function testCreatePostgresDialect()
     {
         $createStatement = sprintf('CREATE DATABASE "%s"', self::DATABASE);
@@ -426,7 +452,7 @@ class DatabaseTest extends TestCase
             'statements' => $statements
         ])->willReturn([
             'name' => 'my-operation'
-        ]);
+        ])->shouldBeCalled();
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 
@@ -586,21 +612,21 @@ class DatabaseTest extends TestCase
 
     public function testSnapshotMinReadTimestamp()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->database->snapshot(['minReadTimestamp' => 'foo']);
     }
 
     public function testSnapshotMaxStaleness()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->database->snapshot(['maxStaleness' => 'foo']);
     }
 
     public function testSnapshotNestedTransaction()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -677,7 +703,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionNoCommit()
     {
-        $this->expectException('RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -713,7 +739,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionNestedTransaction()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -737,6 +763,31 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction(function ($t) {
             $this->database->runTransaction($this->noop());
         });
+    }
+
+    public function testRunTransactionShouldRetryOnRstStreamErrors()
+    {
+        $this->expectException(ServerException::class);
+        $this->expectExceptionMessage('RST_STREAM');
+        $err = new ServerException('RST_STREAM', Code::INTERNAL);
+
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            )
+        ))
+            ->shouldBeCalledTimes(3)
+            ->willThrow($err);
+
+        $this->database->runTransaction(function ($t) {
+            // do nothing
+        }, ['maxRetries' => 2]);
     }
 
     public function testRunTransactionRetry()
@@ -801,7 +852,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionAborted()
     {
-        $this->expectException('Google\Cloud\Core\Exception\AbortedException');
+        $this->expectException(AbortedException::class);
 
         $abort = new AbortedException('foo', 409, null, [
             [
@@ -883,7 +934,7 @@ class DatabaseTest extends TestCase
 
     public function testTransactionNestedTransaction()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
@@ -1214,7 +1265,7 @@ class DatabaseTest extends TestCase
 
     public function testExecuteBeginMaxStalenessFails()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->database->___setProperty('sessionPool', null);
         $this->database->___setProperty('session', $this->session);
@@ -1385,5 +1436,20 @@ class DatabaseTest extends TestCase
         return function () {
             return;
         };
+    }
+
+    public function testDBDatabaseRole()
+    {
+        $this->connection->createSession(Argument::withEntry(
+            'session',
+            ['labels' => [], 'creator_role' => 'Reader']
+        ))
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => $this->session->name()
+            ]);
+
+        $sql = 'SELECT * FROM Table';
+        $this->databaseWithDatabaseRole->execute($sql);
     }
 }

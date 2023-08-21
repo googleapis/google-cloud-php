@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KnowledgeBases.GetKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.GetKnowledgeBase].
+ * Request message for
+ * [KnowledgeBases.GetKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.GetKnowledgeBase].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetKnowledgeBaseRequest</code>
  */
@@ -23,6 +24,22 @@ class GetKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the knowledge base to retrieve.
+     *                     Format `projects/<Project ID>/locations/<Location
+     *                     ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+     *                     {@see KnowledgeBasesClient::knowledgeBaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetKnowledgeBaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

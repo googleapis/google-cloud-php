@@ -25,7 +25,7 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-†)
+ù)
 +google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ü
 ListSecretsRequestC
 parent (	B3‡A˙A-
@@ -107,8 +107,8 @@ total_size ("[
 DestroySecretVersion:.google.cloud.secretmanager.v1.DestroySecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"DÇ”‰ì7"2/v1/{name=projects/*/secrets/*/versions/*}:destroy:*⁄AnameÜ
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy";Ç”‰ì5"0/v1/{resource=projects/*/secrets/*}:setIamPolicy:*É
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"8Ç”‰ì20/v1/{resource=projects/*/secrets/*}:getIamPolicy¨
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"AÇ”‰ì;"6/v1/{resource=projects/*/secrets/*}:testIamPermissions:*P Asecretmanager.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÎ
-!com.google.cloud.secretmanager.v1BServiceProtoPZJgoogle.golang.org/genproto/googleapis/cloud/secretmanager/v1;secretmanager¯¢GSM™Google.Cloud.SecretManager.V1 Google\\Cloud\\SecretManager\\V1Í Google::Cloud::SecretManager::V1bproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"AÇ”‰ì;"6/v1/{resource=projects/*/secrets/*}:testIamPermissions:*P Asecretmanager.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBË
+!com.google.cloud.secretmanager.v1BServiceProtoPZGcloud.google.com/go/secretmanager/apiv1/secretmanagerpb;secretmanagerpb¯¢GSM™Google.Cloud.SecretManager.V1 Google\\Cloud\\SecretManager\\V1Í Google::Cloud::SecretManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

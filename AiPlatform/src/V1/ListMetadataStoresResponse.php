@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [MetadataService.ListMetadataStores][google.cloud.aiplatform.v1.MetadataService.ListMetadataStores].
+ * Response message for
+ * [MetadataService.ListMetadataStores][google.cloud.aiplatform.v1.MetadataService.ListMetadataStores].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListMetadataStoresResponse</code>
  */
@@ -23,8 +24,9 @@ class ListMetadataStoresResponse extends \Google\Protobuf\Internal\Message
     private $metadata_stores;
     /**
      * A token, which can be sent as
-     * [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token] to retrieve the next
-     * page. If this field is not populated, there are no subsequent pages.
+     * [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token]
+     * to retrieve the next page. If this field is not populated, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +42,9 @@ class ListMetadataStoresResponse extends \Google\Protobuf\Internal\Message
      *           The MetadataStores found for the Location.
      *     @type string $next_page_token
      *           A token, which can be sent as
-     *           [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token] to retrieve the next
-     *           page. If this field is not populated, there are no subsequent pages.
+     *           [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token]
+     *           to retrieve the next page. If this field is not populated, there are no
+     *           subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +80,9 @@ class ListMetadataStoresResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token, which can be sent as
-     * [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token] to retrieve the next
-     * page. If this field is not populated, there are no subsequent pages.
+     * [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token]
+     * to retrieve the next page. If this field is not populated, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +94,9 @@ class ListMetadataStoresResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token, which can be sent as
-     * [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token] to retrieve the next
-     * page. If this field is not populated, there are no subsequent pages.
+     * [ListMetadataStoresRequest.page_token][google.cloud.aiplatform.v1.ListMetadataStoresRequest.page_token]
+     * to retrieve the next page. If this field is not populated, there are no
+     * subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

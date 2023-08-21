@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Environments.ListEnvironments][google.cloud.dialogflow.v2.Environments.ListEnvironments].
+ * The request message for
+ * [Environments.ListEnvironments][google.cloud.dialogflow.v2.Environments.ListEnvironments].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListEnvironmentsRequest</code>
  */
@@ -25,8 +26,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of items to return in a single page. By default 100 and
-     * at most 1000.
+     * Optional. The maximum number of items to return in a single page. By
+     * default 100 and at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -37,6 +38,24 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The agent to list all environments from.
+     *                       Format:
+     *
+     *                       - `projects/<Project ID>/agent`
+     *                       - `projects/<Project ID>/locations/<Location ID>/agent`
+     *                       Please see {@see EnvironmentsClient::agentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListEnvironmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -50,8 +69,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/agent`
      *           - `projects/<Project ID>/locations/<Location ID>/agent`
      *     @type int $page_size
-     *           Optional. The maximum number of items to return in a single page. By default 100 and
-     *           at most 1000.
+     *           Optional. The maximum number of items to return in a single page. By
+     *           default 100 and at most 1000.
      *     @type string $page_token
      *           Optional. The next_page_token value returned from a previous list request.
      * }
@@ -94,8 +113,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return in a single page. By default 100 and
-     * at most 1000.
+     * Optional. The maximum number of items to return in a single page. By
+     * default 100 and at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -106,8 +125,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return in a single page. By default 100 and
-     * at most 1000.
+     * Optional. The maximum number of items to return in a single page. By
+     * default 100 and at most 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

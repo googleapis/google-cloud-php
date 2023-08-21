@@ -41,6 +41,23 @@ class DeleteRegionDiskRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  Name of the region for this request.
+     * @param string $disk    Name of the regional persistent disk to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $disk): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setDisk($disk);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

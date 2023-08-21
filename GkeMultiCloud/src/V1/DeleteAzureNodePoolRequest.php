@@ -9,14 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Delete message for `AzureClusters.DeleteNodePool` method.
+ * Delete message for `AzureClusters.DeleteAzureNodePool` method.
  *
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.DeleteAzureNodePoolRequest</code>
  */
 class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+     * Required. The resource name the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
      * `AzureNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -33,16 +34,19 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $validate_only = false;
     /**
-     * If set to true, and the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is
+     * not found, the request will succeed but no action will be taken on the
+     * server and a completed [Operation][google.longrunning.Operation] will be
+     * returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
     private $allow_missing = false;
     /**
-     * The current ETag of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
+     * The current ETag of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided ETag does not match the current etag of the node pool,
      * the request will fail and an ABORTED error will be returned.
@@ -52,13 +56,35 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The resource name the
+     *                     [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+     *
+     *                     `AzureNodePool` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud resource names. Please see
+     *                     {@see AzureClustersClient::azureNodePoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\DeleteAzureNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+     *           Required. The resource name the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
      *           `AzureNodePool` names are formatted as
      *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -67,12 +93,15 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           If set, only validate the request, but do not actually delete the node
      *           pool.
      *     @type bool $allow_missing
-     *           If set to true, and the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is
+     *           not found, the request will succeed but no action will be taken on the
+     *           server and a completed [Operation][google.longrunning.Operation] will be
+     *           returned.
      *           Useful for idempotent deletion.
      *     @type string $etag
-     *           The current ETag of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
+     *           The current ETag of the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
      *           Allows clients to perform deletions through optimistic concurrency control.
      *           If the provided ETag does not match the current etag of the node pool,
      *           the request will fail and an ABORTED error will be returned.
@@ -84,7 +113,8 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+     * Required. The resource name the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
      * `AzureNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -99,7 +129,8 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+     * Required. The resource name the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
      * `AzureNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -146,9 +177,11 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is
+     * not found, the request will succeed but no action will be taken on the
+     * server and a completed [Operation][google.longrunning.Operation] will be
+     * returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -160,9 +193,11 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is not found,
-     * the request will succeed but no action will be taken on the server and a
-     * completed [Operation][google.longrunning.Operation] will be returned.
+     * If set to true, and the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource is
+     * not found, the request will succeed but no action will be taken on the
+     * server and a completed [Operation][google.longrunning.Operation] will be
+     * returned.
      * Useful for idempotent deletion.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -178,7 +213,8 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current ETag of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
+     * The current ETag of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided ETag does not match the current etag of the node pool,
      * the request will fail and an ABORTED error will be returned.
@@ -192,7 +228,8 @@ class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current ETag of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
+     * The current ETag of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
      * Allows clients to perform deletions through optimistic concurrency control.
      * If the provided ETag does not match the current etag of the node pool,
      * the request will fail and an ABORTED error will be returned.

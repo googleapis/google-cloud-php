@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * An internal checker allows Uptime checks to run on private/internal GCP
  * resources.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.monitoring.v3.InternalChecker</code>
  */
 class InternalChecker extends \Google\Protobuf\Internal\Message
@@ -19,16 +20,16 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this InternalChecker. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
-     * `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
-     * Uptime check config associated with the internal checker.
+     * `[PROJECT_ID_OR_NUMBER]` is the Cloud Monitoring Metrics Scope project for
+     * the Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
      * The checker's human-readable name. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced.
+     * should be unique within a Cloud Monitoring Metrics Scope in order to make
+     * it easier to identify; however, uniqueness is not enforced.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
@@ -49,7 +50,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     private $gcp_zone = '';
     /**
      * The GCP project ID where the internal checker lives. Not necessary
-     * the same as the Workspace project.
+     * the same as the Metrics Scope project.
      *
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      */
@@ -70,12 +71,12 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A unique resource name for this InternalChecker. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
-     *           `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
-     *           Uptime check config associated with the internal checker.
+     *           `[PROJECT_ID_OR_NUMBER]` is the Cloud Monitoring Metrics Scope project for
+     *           the Uptime check config associated with the internal checker.
      *     @type string $display_name
      *           The checker's human-readable name. The display name
-     *           should be unique within a Stackdriver Workspace in order to make it easier
-     *           to identify; however, uniqueness is not enforced.
+     *           should be unique within a Cloud Monitoring Metrics Scope in order to make
+     *           it easier to identify; however, uniqueness is not enforced.
      *     @type string $network
      *           The [GCP VPC network](https://cloud.google.com/vpc/docs/vpc) where the
      *           internal resource lives (ex: "default").
@@ -84,7 +85,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *           internal Uptime checks, where internal_network is specified.
      *     @type string $peer_project_id
      *           The GCP project ID where the internal checker lives. Not necessary
-     *           the same as the Workspace project.
+     *           the same as the Metrics Scope project.
      *     @type int $state
      *           The current operational state of the internal checker.
      * }
@@ -97,8 +98,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this InternalChecker. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
-     * `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
-     * Uptime check config associated with the internal checker.
+     * `[PROJECT_ID_OR_NUMBER]` is the Cloud Monitoring Metrics Scope project for
+     * the Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -111,8 +112,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this InternalChecker. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID]
-     * `[PROJECT_ID_OR_NUMBER]` is the Stackdriver Workspace project for the
-     * Uptime check config associated with the internal checker.
+     * `[PROJECT_ID_OR_NUMBER]` is the Cloud Monitoring Metrics Scope project for
+     * the Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -128,8 +129,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
 
     /**
      * The checker's human-readable name. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced.
+     * should be unique within a Cloud Monitoring Metrics Scope in order to make
+     * it easier to identify; however, uniqueness is not enforced.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -141,8 +142,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
 
     /**
      * The checker's human-readable name. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced.
+     * should be unique within a Cloud Monitoring Metrics Scope in order to make
+     * it easier to identify; however, uniqueness is not enforced.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
@@ -214,7 +215,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
 
     /**
      * The GCP project ID where the internal checker lives. Not necessary
-     * the same as the Workspace project.
+     * the same as the Metrics Scope project.
      *
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      * @return string
@@ -226,7 +227,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
 
     /**
      * The GCP project ID where the internal checker lives. Not necessary
-     * the same as the Workspace project.
+     * the same as the Metrics Scope project.
      *
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      * @param string $var

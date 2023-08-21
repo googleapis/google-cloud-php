@@ -29,6 +29,21 @@ class GetGlobalNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
     private $project = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\GetGlobalNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $networkEndpointGroup): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetworkEndpointGroup($networkEndpointGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -22,9 +22,10 @@ use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -32,12 +33,13 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class BatchRunnerTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
+    private $batchConfig;
     private $configStorage;
     private $processor;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->configStorage = $this->prophesize(ConfigStorageInterface::class);
         $this->processor = $this->prophesize(ProcessItemInterface::class);
@@ -46,7 +48,7 @@ class BatchRunnerTest extends TestCase
 
     public function testRegisterJobClosure()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $runner = new BatchRunner(
             $this->configStorage->reveal(),

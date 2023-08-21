@@ -25,11 +25,10 @@ namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
 use Google\Cloud\RecommendationEngine\V1beta1\UserInfo;
 use Google\Rpc\Code;
@@ -42,25 +41,19 @@ use stdClass;
  */
 class PredictionServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PredictionServiceClient
-     */
+    /** @return PredictionServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +62,7 @@ class PredictionServiceClientTest extends GeneratedTest
         return new PredictionServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function predictTest()
     {
         $transport = $this->createTransport();
@@ -119,9 +110,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function predictExceptionTest()
     {
         $transport = $this->createTransport();

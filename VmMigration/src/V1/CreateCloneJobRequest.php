@@ -51,6 +51,24 @@ class CreateCloneJobRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                $parent     Required. The Clone's parent. Please see
+     *                                                          {@see VmMigrationClient::migratingVmName()} for help formatting this field.
+     * @param \Google\Cloud\VMMigration\V1\CloneJob $cloneJob   Required. The clone request body.
+     * @param string                                $cloneJobId Required. The clone job identifier.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CreateCloneJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VMMigration\V1\CloneJob $cloneJob, string $cloneJobId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCloneJob($cloneJob)
+            ->setCloneJobId($cloneJobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

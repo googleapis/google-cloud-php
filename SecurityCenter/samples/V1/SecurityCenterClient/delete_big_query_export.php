@@ -27,9 +27,9 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
- * Deletes an existing big query export.
+ * Deletes an existing BigQuery export.
  *
- * @param string $formattedName Name of the big query export to delete. Its format is
+ * @param string $formattedName The name of the BigQuery export to delete. Its format is
  *                              organizations/{organization}/bigQueryExports/{export_id},
  *                              folders/{folder}/bigQueryExports/{export_id}, or
  *                              projects/{project}/bigQueryExports/{export_id}

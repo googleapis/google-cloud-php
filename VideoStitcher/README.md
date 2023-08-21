@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-video-stitcher/v/stable)](https://packagist.org/packages/google/cloud-video-stitcher) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-video-stitcher.svg)](https://packagist.org/packages/google/cloud-video-stitcher)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-video-stitcher/latest/videostitcher/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-video-stitcher/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

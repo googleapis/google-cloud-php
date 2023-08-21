@@ -27,12 +27,10 @@ namespace Google\Cloud\Dialogflow\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -75,7 +73,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -92,7 +90,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -106,50 +104,52 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient} to use the new
+ * surface.
  */
 class ConversationModelsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dialogflow.v2.ConversationModels';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
     ];
 
+    private static $conversationDatasetNameTemplate;
+
     private static $conversationModelNameTemplate;
 
     private static $conversationModelEvaluationNameTemplate;
+
+    private static $documentNameTemplate;
 
     private static $projectConversationModelNameTemplate;
 
     private static $projectConversationModelEvaluationNameTemplate;
 
+    private static $projectKnowledgeBaseDocumentNameTemplate;
+
     private static $projectLocationConversationModelNameTemplate;
 
     private static $projectLocationConversationModelEvaluationNameTemplate;
+
+    private static $projectLocationKnowledgeBaseDocumentNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -174,6 +174,15 @@ class ConversationModelsGapicClient
         ];
     }
 
+    private static function getConversationDatasetNameTemplate()
+    {
+        if (self::$conversationDatasetNameTemplate == null) {
+            self::$conversationDatasetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationDatasets/{conversation_dataset}');
+        }
+
+        return self::$conversationDatasetNameTemplate;
+    }
+
     private static function getConversationModelNameTemplate()
     {
         if (self::$conversationModelNameTemplate == null) {
@@ -190,6 +199,15 @@ class ConversationModelsGapicClient
         }
 
         return self::$conversationModelEvaluationNameTemplate;
+    }
+
+    private static function getDocumentNameTemplate()
+    {
+        if (self::$documentNameTemplate == null) {
+            self::$documentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$documentNameTemplate;
     }
 
     private static function getProjectConversationModelNameTemplate()
@@ -210,6 +228,15 @@ class ConversationModelsGapicClient
         return self::$projectConversationModelEvaluationNameTemplate;
     }
 
+    private static function getProjectKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectKnowledgeBaseDocumentNameTemplate;
+    }
+
     private static function getProjectLocationConversationModelNameTemplate()
     {
         if (self::$projectLocationConversationModelNameTemplate == null) {
@@ -228,20 +255,52 @@ class ConversationModelsGapicClient
         return self::$projectLocationConversationModelEvaluationNameTemplate;
     }
 
+    private static function getProjectLocationKnowledgeBaseDocumentNameTemplate()
+    {
+        if (self::$projectLocationKnowledgeBaseDocumentNameTemplate == null) {
+            self::$projectLocationKnowledgeBaseDocumentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}');
+        }
+
+        return self::$projectLocationKnowledgeBaseDocumentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'conversationDataset' => self::getConversationDatasetNameTemplate(),
                 'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationModelEvaluation' => self::getConversationModelEvaluationNameTemplate(),
+                'document' => self::getDocumentNameTemplate(),
                 'projectConversationModel' => self::getProjectConversationModelNameTemplate(),
                 'projectConversationModelEvaluation' => self::getProjectConversationModelEvaluationNameTemplate(),
+                'projectKnowledgeBaseDocument' => self::getProjectKnowledgeBaseDocumentNameTemplate(),
                 'projectLocationConversationModel' => self::getProjectLocationConversationModelNameTemplate(),
                 'projectLocationConversationModelEvaluation' => self::getProjectLocationConversationModelEvaluationNameTemplate(),
+                'projectLocationKnowledgeBaseDocument' => self::getProjectLocationKnowledgeBaseDocumentNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * conversation_dataset resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversationDataset
+     *
+     * @return string The formatted conversation_dataset resource.
+     */
+    public static function conversationDatasetName($project, $location, $conversationDataset)
+    {
+        return self::getConversationDatasetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation_dataset' => $conversationDataset,
+        ]);
     }
 
     /**
@@ -283,6 +342,25 @@ class ConversationModelsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     */
+    public static function documentName($project, $knowledgeBase, $document)
+    {
+        return self::getDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_conversation_model resource.
      *
@@ -315,6 +393,25 @@ class ConversationModelsGapicClient
             'project' => $project,
             'conversation_model' => $conversationModel,
             'evaluation' => $evaluation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_knowledge_base_document resource.
+     */
+    public static function projectKnowledgeBaseDocumentName($project, $knowledgeBase, $document)
+    {
+        return self::getProjectKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
         ]);
     }
 
@@ -359,15 +456,40 @@ class ConversationModelsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_knowledge_base_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $knowledgeBase
+     * @param string $document
+     *
+     * @return string The formatted project_location_knowledge_base_document resource.
+     */
+    public static function projectLocationKnowledgeBaseDocumentName($project, $location, $knowledgeBase, $document)
+    {
+        return self::getProjectLocationKnowledgeBaseDocumentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'knowledge_base' => $knowledgeBase,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - conversationDataset: projects/{project}/locations/{location}/conversationDatasets/{conversation_dataset}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}
+     * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
      * - projectConversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}
+     * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationModelEvaluation: projects/{project}/locations/{location}/conversationModels/{conversation_model}/evaluations/{evaluation}
+     * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -439,9 +561,6 @@ class ConversationModelsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dialogflow.googleapis.com:443'.
@@ -471,7 +590,7 @@ class ConversationModelsGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -504,8 +623,10 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
-     * - `response`: [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
+     * - `metadata`:
+     * [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
+     * - `response`:
+     * [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
      *
      * Sample code:
      * ```
@@ -516,7 +637,7 @@ class ConversationModelsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -533,7 +654,7 @@ class ConversationModelsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -588,7 +709,7 @@ class ConversationModelsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -605,7 +726,7 @@ class ConversationModelsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -651,7 +772,8 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [DeleteConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationModelOperationMetadata]
+     * - `metadata`:
+     * [DeleteConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationModelOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
@@ -725,7 +847,8 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [DeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeployConversationModelOperationMetadata]
+     * - `metadata`:
+     * [DeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.DeployConversationModelOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
@@ -1018,7 +1141,8 @@ class ConversationModelsGapicClient
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [UndeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata]
+     * - `metadata`:
+     * [UndeployConversationModelOperationMetadata][google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *

@@ -68,6 +68,4 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SimpleResponses::class, \Google\Cloud\Dialogflow\V2\Intent_Message_SimpleResponses::class);
 

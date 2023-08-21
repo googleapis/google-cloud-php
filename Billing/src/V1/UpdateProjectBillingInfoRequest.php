@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the project associated with the billing information
-     * that you want to update. For example, `projects/tokyo-rain-123`.
+     * Required. The resource name of the project associated with the billing
+     * information that you want to update. For example,
+     * `projects/tokyo-rain-123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,14 +32,33 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     private $project_billing_info = null;
 
     /**
+     * @param string                                      $name               Required. The resource name of the project associated with the billing
+     *                                                                        information that you want to update. For example,
+     *                                                                        `projects/tokyo-rain-123`.
+     * @param \Google\Cloud\Billing\V1\ProjectBillingInfo $projectBillingInfo The new billing information for the project. Read-only fields are ignored;
+     *                                                                        thus, you can leave empty all fields except `billing_account_name`.
+     *
+     * @return \Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\Billing\V1\ProjectBillingInfo $projectBillingInfo): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setProjectBillingInfo($projectBillingInfo);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the project associated with the billing information
-     *           that you want to update. For example, `projects/tokyo-rain-123`.
+     *           Required. The resource name of the project associated with the billing
+     *           information that you want to update. For example,
+     *           `projects/tokyo-rain-123`.
      *     @type \Google\Cloud\Billing\V1\ProjectBillingInfo $project_billing_info
      *           The new billing information for the project. Read-only fields are ignored;
      *           thus, you can leave empty all fields except `billing_account_name`.
@@ -50,8 +70,9 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the project associated with the billing information
-     * that you want to update. For example, `projects/tokyo-rain-123`.
+     * Required. The resource name of the project associated with the billing
+     * information that you want to update. For example,
+     * `projects/tokyo-rain-123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,8 +83,9 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the project associated with the billing information
-     * that you want to update. For example, `projects/tokyo-rain-123`.
+     * Required. The resource name of the project associated with the billing
+     * information that you want to update. For example,
+     * `projects/tokyo-rain-123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

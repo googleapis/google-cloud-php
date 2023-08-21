@@ -18,11 +18,10 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -30,9 +29,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ManageObjectsTest extends StorageTestCase
 {
-    use AssertIsType;
-    use ExpectException;
-
     const DATA = 'data';
 
     public function testListsObjects()
@@ -58,6 +54,34 @@ class ManageObjectsTest extends StorageTestCase
         }
 
         $this->assertEquals($objectsToCreate, $foundObjects);
+    }
+
+    public function testListsObjectsWithMatchGlob()
+    {
+        $bucket = self::createBucket(self::$client, uniqid('matchglob-'));
+        $objectsToCreate = ["foo/bar", "foo/baz", "foo/foobar", "foobar"];
+        $matchGlobCases = [
+            'foo*bar' => ['foobar'],
+            'foo**bar' => ['foo/bar', 'foo/foobar', 'foobar'],
+            '**/foobar' => ['foo/foobar', 'foobar'],
+            '*/ba[rz]' => ['foo/bar', 'foo/baz'],
+            '*/ba[!a-y]' => ['foo/baz'],
+            '**/{foobar,baz}' => ['foo/baz', 'foo/foobar', 'foobar'],
+            'foo/{foo*,*baz}' => ['foo/baz', 'foo/foobar'],
+        ];
+
+        foreach ($objectsToCreate as $objectToCreate) {
+            $bucket->upload(self::DATA, ['name' => $objectToCreate]);
+        }
+
+        foreach ($matchGlobCases as $matchGlob => $expectedObjects) {
+            $objects = $bucket->objects(['matchGlob' => $matchGlob]);
+            $resultObjects = [];
+            foreach ($objects as $object) {
+                $resultObjects[] = $object->name();
+            }
+            $this->assertEquals($expectedObjects, $resultObjects);
+        }
     }
 
     public function testObjectExists()
@@ -220,7 +244,7 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testThrowsExceptionWhenDownloadsPrivateFileWithUnauthenticatedClient()
     {
-        $this->expectException('\Google\Cloud\Core\Exception\ServiceException');
+        $this->expectException(ServiceException::class);
         $this->expectExceptionCode(401);
 
         $objectName = uniqid(self::TESTING_PREFIX);

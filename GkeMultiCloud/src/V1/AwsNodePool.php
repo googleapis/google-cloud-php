@@ -26,7 +26,8 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The Kubernetes version to run on this node pool (e.g. `1.19.10-gke.1000`).
+     * Required. The Kubernetes version to run on this node pool (e.g.
+     * `1.19.10-gke.1000`).
      * You can list all supported versions on a given Google Cloud region by
      * calling
      * [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
@@ -112,6 +113,12 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MaxPodsConstraint max_pods_constraint = 27 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $max_pods_constraint = null;
+    /**
+     * Output only. A set of errors found in the node pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $errors;
 
     /**
      * Constructor.
@@ -126,7 +133,8 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *           For more details on Google Cloud resource names,
      *           see [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *     @type string $version
-     *           Required. The Kubernetes version to run on this node pool (e.g. `1.19.10-gke.1000`).
+     *           Required. The Kubernetes version to run on this node pool (e.g.
+     *           `1.19.10-gke.1000`).
      *           You can list all supported versions on a given Google Cloud region by
      *           calling
      *           [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
@@ -164,6 +172,8 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint $max_pods_constraint
      *           Required. The constraint on the maximum number of pods that can be run
      *           simultaneously on a node in the node pool.
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *           Output only. A set of errors found in the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,7 +216,8 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Kubernetes version to run on this node pool (e.g. `1.19.10-gke.1000`).
+     * Required. The Kubernetes version to run on this node pool (e.g.
+     * `1.19.10-gke.1000`).
      * You can list all supported versions on a given Google Cloud region by
      * calling
      * [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
@@ -220,7 +231,8 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Kubernetes version to run on this node pool (e.g. `1.19.10-gke.1000`).
+     * Required. The Kubernetes version to run on this node pool (e.g.
+     * `1.19.10-gke.1000`).
      * You can list all supported versions on a given Google Cloud region by
      * calling
      * [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
@@ -593,6 +605,32 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint::class);
         $this->max_pods_constraint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A set of errors found in the node pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * Output only. A set of errors found in the node pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError::class);
+        $this->errors = $arr;
 
         return $this;
     }

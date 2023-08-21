@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Environments.CreateEnvironment][google.cloud.dialogflow.v2.Environments.CreateEnvironment].
+ * The request message for
+ * [Environments.CreateEnvironment][google.cloud.dialogflow.v2.Environments.CreateEnvironment].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateEnvironmentRequest</code>
  */

@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MutateRowsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the table to which the mutations should be applied.
+     * Required. The unique name of the table to which the mutations should be
+     * applied.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,13 +41,59 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     private $entries;
 
     /**
+     * @param string                                              $tableName Required. The unique name of the table to which the mutations should be
+     *                                                                       applied. Please see
+     *                                                                       {@see BigtableClient::tableName()} for help formatting this field.
+     * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[] $entries   Required. The row keys and corresponding mutations to be applied in bulk.
+     *                                                                       Each entry is applied as an atomic mutation, but the entries may be
+     *                                                                       applied in arbitrary order (even between entries for the same row).
+     *                                                                       At least one entry must be specified, and in total the entries can
+     *                                                                       contain at most 100000 mutations.
+     *
+     * @return \Google\Cloud\Bigtable\V2\MutateRowsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tableName, array $entries): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setEntries($entries);
+    }
+
+    /**
+     * @param string                                              $tableName    Required. The unique name of the table to which the mutations should be
+     *                                                                          applied. Please see
+     *                                                                          {@see BigtableClient::tableName()} for help formatting this field.
+     * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[] $entries      Required. The row keys and corresponding mutations to be applied in bulk.
+     *                                                                          Each entry is applied as an atomic mutation, but the entries may be
+     *                                                                          applied in arbitrary order (even between entries for the same row).
+     *                                                                          At least one entry must be specified, and in total the entries can
+     *                                                                          contain at most 100000 mutations.
+     * @param string                                              $appProfileId This value specifies routing for replication. If not specified, the
+     *                                                                          "default" application profile will be used.
+     *
+     * @return \Google\Cloud\Bigtable\V2\MutateRowsRequest
+     *
+     * @experimental
+     */
+    public static function buildFromTableNameEntriesAppProfileId(string $tableName, array $entries, string $appProfileId): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setEntries($entries)
+            ->setAppProfileId($appProfileId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           Required. The unique name of the table to which the mutations should be applied.
+     *           Required. The unique name of the table to which the mutations should be
+     *           applied.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -64,7 +111,8 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the mutations should be applied.
+     * Required. The unique name of the table to which the mutations should be
+     * applied.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +123,8 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the mutations should be applied.
+     * Required. The unique name of the table to which the mutations should be
+     * applied.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Dataproc job for running [Apache Spark](http://spark.apache.org/)
+ * A Dataproc job for running [Apache Spark](https://spark.apache.org/)
  * applications on YARN.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SparkJob</code>

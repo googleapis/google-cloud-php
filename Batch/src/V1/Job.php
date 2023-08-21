@@ -30,7 +30,8 @@ class Job extends \Google\Protobuf\Internal\Message
     private $uid = '';
     /**
      * Priority of the Job.
-     * The valid value range is [0, 100).
+     * The valid value range is [0, 100). Default value is 0.
+     * Higher value indicates higher priority.
      * A job with higher priority value is more likely to run earlier if all other
      * requirements are satisfied.
      *
@@ -108,7 +109,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. A system generated unique ID (in UUID4 format) for the Job.
      *     @type int|string $priority
      *           Priority of the Job.
-     *           The valid value range is [0, 100).
+     *           The valid value range is [0, 100). Default value is 0.
+     *           Higher value indicates higher priority.
      *           A job with higher priority value is more likely to run earlier if all other
      *           requirements are satisfied.
      *     @type array<\Google\Cloud\Batch\V1\TaskGroup>|\Google\Protobuf\Internal\RepeatedField $task_groups
@@ -199,7 +201,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Priority of the Job.
-     * The valid value range is [0, 100).
+     * The valid value range is [0, 100). Default value is 0.
+     * Higher value indicates higher priority.
      * A job with higher priority value is more likely to run earlier if all other
      * requirements are satisfied.
      *
@@ -213,7 +216,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Priority of the Job.
-     * The valid value range is [0, 100).
+     * The valid value range is [0, 100). Default value is 0.
+     * Higher value indicates higher priority.
      * A job with higher priority value is more likely to run earlier if all other
      * requirements are satisfied.
      *

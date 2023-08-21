@@ -27,7 +27,6 @@ namespace Google\Cloud\Trace\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -48,11 +47,13 @@ use Google\Protobuf\Timestamp;
 use Google\Rpc\Status;
 
 /**
- * Service Description: This file describes an API for collecting and viewing traces and spans
- * within a trace.  A Trace is a collection of spans corresponding to a single
- * operation or set of operations for an application. A span is an individual
- * timed event which forms a node of the trace tree. A single trace may
- * contain span(s) from multiple services.
+ * Service Description: Service for collecting and viewing traces and spans within a trace.
+ *
+ * A trace is a collection of spans corresponding to a single
+ * operation or a set of operations in an application.
+ *
+ * A span is an individual timed event which forms a node of the trace tree.
+ * A single trace can contain spans from multiple services.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -72,34 +73,27 @@ use Google\Rpc\Status;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Trace\V2\Client\TraceServiceClient} to use the new surface.
  */
 class TraceServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.devtools.cloudtrace.v2.TraceService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudtrace.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/trace.append',
@@ -254,9 +248,6 @@ class TraceServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudtrace.googleapis.com:443'.
@@ -286,7 +277,7 @@ class TraceServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -312,7 +303,7 @@ class TraceServiceGapicClient
     }
 
     /**
-     * Sends new spans to new or existing traces. You cannot update
+     * Batch writes new spans to new or existing traces. You cannot update
      * existing spans.
      *
      * Sample code:
@@ -330,7 +321,7 @@ class TraceServiceGapicClient
      * @param string $name         Required. The name of the project where the spans belong. The format is
      *                             `projects/[PROJECT_ID]`.
      * @param Span[] $spans        Required. A list of new spans. The span names must not match existing
-     *                             spans, or the results are undefined.
+     *                             spans, otherwise the results are undefined.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -383,32 +374,36 @@ class TraceServiceGapicClient
      *
      * @param string            $name         Required. The resource name of the span in the following format:
      *
-     *                                        projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
+     *                                        * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]`
      *
-     *                                        [TRACE_ID] is a unique identifier for a trace within a project;
-     *                                        it is a 32-character hexadecimal encoding of a 16-byte array.
+     *                                        `[TRACE_ID]` is a unique identifier for a trace within a project;
+     *                                        it is a 32-character hexadecimal encoding of a 16-byte array. It should
+     *                                        not be zero.
      *
-     *                                        [SPAN_ID] is a unique identifier for a span within a trace; it
-     *                                        is a 16-character hexadecimal encoding of an 8-byte array.
-     * @param string            $spanId       Required. The [SPAN_ID] portion of the span's resource name.
+     *                                        `[SPAN_ID]` is a unique identifier for a span within a trace; it
+     *                                        is a 16-character hexadecimal encoding of an 8-byte array. It should not
+     *                                        be zero.
+     *                                        .
+     * @param string            $spanId       Required. The `[SPAN_ID]` portion of the span's resource name.
      * @param TruncatableString $displayName  Required. A description of the span's operation (up to 128 bytes).
-     *                                        Stackdriver Trace displays the description in the
-     *                                        Google Cloud Platform Console.
+     *                                        Cloud Trace displays the description in the
+     *                                        Cloud console.
      *                                        For example, the display name can be a qualified method name or a file name
      *                                        and a line number where the operation is called. A best practice is to use
      *                                        the same display name within an application and at the same call point.
      *                                        This makes it easier to correlate spans in different traces.
-     * @param Timestamp         $startTime    Required. The start time of the span. On the client side, this is the time kept by
-     *                                        the local machine where the span execution starts. On the server side, this
-     *                                        is the time when the server's application handler starts running.
-     * @param Timestamp         $endTime      Required. The end time of the span. On the client side, this is the time kept by
-     *                                        the local machine where the span execution ends. On the server side, this
-     *                                        is the time when the server application handler stops running.
+     * @param Timestamp         $startTime    Required. The start time of the span. On the client side, this is the time
+     *                                        kept by the local machine where the span execution starts. On the server
+     *                                        side, this is the time when the server's application handler starts
+     *                                        running.
+     * @param Timestamp         $endTime      Required. The end time of the span. On the client side, this is the time
+     *                                        kept by the local machine where the span execution ends. On the server
+     *                                        side, this is the time when the server application handler stops running.
      * @param array             $optionalArgs {
      *     Optional.
      *
      *     @type string $parentSpanId
-     *           The [SPAN_ID] of this span's parent span. If this is a root span,
+     *           The `[SPAN_ID]` of this span's parent span. If this is a root span,
      *           then this field must be empty.
      *     @type Attributes $attributes
      *           A set of attributes on the span. You can have up to 32 attributes per
@@ -425,15 +420,14 @@ class TraceServiceGapicClient
      *     @type BoolValue $sameProcessAsParentSpan
      *           Optional. Set this parameter to indicate whether this span is in
      *           the same process as its parent. If you do not set this parameter,
-     *           Stackdriver Trace is unable to take advantage of this helpful
-     *           information.
+     *           Trace is unable to take advantage of this helpful information.
      *     @type Int32Value $childSpanCount
      *           Optional. The number of child spans that were generated while this span
      *           was active. If set, allows implementation to detect missing child spans.
      *     @type int $spanKind
-     *           Optional. Distinguishes between spans generated in a particular context. For example,
-     *           two spans with the same name may be distinguished using `CLIENT` (caller)
-     *           and `SERVER` (callee) to identify an RPC call.
+     *           Optional. Distinguishes between spans generated in a particular context.
+     *           For example, two spans with the same name may be distinguished using
+     *           `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Trace\V2\Span\SpanKind}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an

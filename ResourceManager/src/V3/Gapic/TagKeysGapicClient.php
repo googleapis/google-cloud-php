@@ -27,10 +27,8 @@ namespace Google\Cloud\ResourceManager\V3\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -45,6 +43,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V3\CreateTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\DeleteTagKeyRequest;
+use Google\Cloud\ResourceManager\V3\GetNamespacedTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\GetTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\ListTagKeysRequest;
 use Google\Cloud\ResourceManager\V3\ListTagKeysResponse;
@@ -67,7 +66,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -84,7 +83,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -98,34 +97,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ResourceManager\V3\Client\TagKeysClient} to use the new surface.
  */
 class TagKeysGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.resourcemanager.v3.TagKeys';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudresourcemanager.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
@@ -267,9 +259,6 @@ class TagKeysGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudresourcemanager.googleapis.com:443'.
@@ -299,7 +288,7 @@ class TagKeysGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -328,8 +317,8 @@ class TagKeysGapicClient
     /**
      * Creates a new TagKey. If another request with the same parameters is
      * sent while the original request is in process, the second request
-     * will receive an error. A maximum of 300 TagKeys can exist under a parent at
-     * any given time.
+     * will receive an error. A maximum of 1000 TagKeys can exist under a parent
+     * at any given time.
      *
      * Sample code:
      * ```
@@ -340,7 +329,7 @@ class TagKeysGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -357,7 +346,7 @@ class TagKeysGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -367,14 +356,14 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param TagKey $tagKey       Required. The TagKey to be created. Only fields `short_name`, `description`,
-     *                             and `parent` are considered during the creation request.
+     * @param TagKey $tagKey       Required. The TagKey to be created. Only fields `short_name`,
+     *                             `description`, and `parent` are considered during the creation request.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set to true to perform validations necessary for creating the resource, but
-     *           not actually perform the action.
+     *           Optional. Set to true to perform validations necessary for creating the
+     *           resource, but not actually perform the action.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -409,7 +398,7 @@ class TagKeysGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -426,7 +415,7 @@ class TagKeysGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -436,18 +425,18 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of a TagKey to be deleted in the format `tagKeys/123`.
-     *                             The TagKey cannot be a parent of any existing TagValues or it will not be
-     *                             deleted successfully.
+     * @param string $name         Required. The resource name of a TagKey to be deleted in the format
+     *                             `tagKeys/123`. The TagKey cannot be a parent of any existing TagValues or
+     *                             it will not be deleted successfully.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set as true to perform validations necessary for deletion, but not actually
-     *           perform the action.
+     *           Optional. Set as true to perform validations necessary for deletion, but
+     *           not actually perform the action.
      *     @type string $etag
-     *           Optional. The etag known to the client for the expected state of the TagKey. This is
-     *           to be used for optimistic concurrency.
+     *           Optional. The etag known to the client for the expected state of the
+     *           TagKey. This is to be used for optimistic concurrency.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -530,6 +519,46 @@ class TagKeysGapicClient
     }
 
     /**
+     * Retrieves a TagKey by its namespaced name.
+     * This method will return `PERMISSION_DENIED` if the key does not exist
+     * or the user does not have permission to view it.
+     *
+     * Sample code:
+     * ```
+     * $tagKeysClient = new TagKeysClient();
+     * try {
+     *     $formattedName = $tagKeysClient->tagKeyName('[TAG_KEY]');
+     *     $response = $tagKeysClient->getNamespacedTagKey($formattedName);
+     * } finally {
+     *     $tagKeysClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A namespaced tag key name in the format
+     *                             `{parentId}/{tagKeyShort}`, such as `42/foo` for a key with short name
+     *                             "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short
+     *                             name "bar" under the project `r2-d2`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ResourceManager\V3\TagKey
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNamespacedTagKey($name, array $optionalArgs = [])
+    {
+        $request = new GetNamespacedTagKeyRequest();
+        $request->setName($name);
+        return $this->startCall('GetNamespacedTagKey', TagKey::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Retrieves a TagKey. This method will return `PERMISSION_DENIED` if the
      * key does not exist or the user does not have permission to view it.
      *
@@ -596,8 +625,9 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the new TagKey's parent.
-     *                             Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * @param string $parent       Required. The resource name of the TagKey's parent.
+     *                             Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     *                             `projects/{project_number}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -757,7 +787,7 @@ class TagKeysGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -774,7 +804,7 @@ class TagKeysGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -784,10 +814,10 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param TagKey $tagKey       Required. The new definition of the TagKey. Only the `description` and `etag` fields
-     *                             can be updated by this request. If the `etag` field is not empty, it
-     *                             must match the `etag` field of the existing tag key. Otherwise,
-     *                             `FAILED_PRECONDITION` will be returned.
+     * @param TagKey $tagKey       Required. The new definition of the TagKey. Only the `description` and
+     *                             `etag` fields can be updated by this request. If the `etag` field is not
+     *                             empty, it must match the `etag` field of the existing tag key. Otherwise,
+     *                             `ABORTED` will be returned.
      * @param array  $optionalArgs {
      *     Optional.
      *

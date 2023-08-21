@@ -25,7 +25,6 @@ namespace Google\Cloud\ServiceControl\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ServiceControl\V1\AllocateQuotaResponse;
 use Google\Cloud\ServiceControl\V1\QuotaControllerClient;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class QuotaControllerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return QuotaControllerClient
-     */
+    /** @return QuotaControllerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class QuotaControllerClientTest extends GeneratedTest
         return new QuotaControllerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function allocateQuotaTest()
     {
         $transport = $this->createTransport();
@@ -93,9 +84,7 @@ class QuotaControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function allocateQuotaExceptionTest()
     {
         $transport = $this->createTransport();

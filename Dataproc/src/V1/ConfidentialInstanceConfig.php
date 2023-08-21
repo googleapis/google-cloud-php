@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Defines whether the instance should have confidential compute enabled.
+     * Optional. Defines whether the instance should have confidential compute
+     * enabled.
      *
      * Generated from protobuf field <code>bool enable_confidential_compute = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -30,7 +31,8 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_confidential_compute
-     *           Optional. Defines whether the instance should have confidential compute enabled.
+     *           Optional. Defines whether the instance should have confidential compute
+     *           enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +41,8 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines whether the instance should have confidential compute enabled.
+     * Optional. Defines whether the instance should have confidential compute
+     * enabled.
      *
      * Generated from protobuf field <code>bool enable_confidential_compute = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -50,7 +53,8 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines whether the instance should have confidential compute enabled.
+     * Optional. Defines whether the instance should have confidential compute
+     * enabled.
      *
      * Generated from protobuf field <code>bool enable_confidential_compute = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

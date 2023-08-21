@@ -19,7 +19,10 @@ namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Geography;
+use Google\Cloud\BigQuery\Json;
 use Google\Cloud\BigQuery\Numeric;
+use Google\Cloud\BigQuery\Timestamp;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\ExponentialBackoff;
 use GuzzleHttp\Psr7\Utils;
 
@@ -33,11 +36,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     private static $expectedRows = 0;
     private $row;
+    private $legacyRow;
     private $geographyPattern;
 
-    public function set_up()
+    public function setUp(): void
     {
-        $this->row = [
+        $this->legacyRow = [
             'Name' => 'Dave',
             'Age' => 101,
             'Weight' => 100.5,
@@ -61,10 +65,18 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                 'NextVacation' => self::$client->date(new \DateTime('2020-10-11')),
                 'FavoriteTime' => new \DateTime('1920-01-01 15:15:12')
             ],
-            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('.123')],
-            'BiggerNumbers' => [new BigNumeric('.999999999999999999'), new BigNumeric('343343434343433434343.2')],
+            'FavoriteNumbers' => [new Numeric('0.123'), new Numeric('0.123')],
+            'BiggerNumbers' => [
+                new BigNumeric('0.999999999999999999'),
+                new BigNumeric('343343434343433434343.2')
+            ],
             'Location' => new Geography('POINT(12 34)'),
         ];
+        $this->row = $this->legacyRow;
+        $this->row['AddressJson'] = new Json(json_encode([
+            'City' => 'Bangalore',
+            'HouseNumber' => 1234
+        ]));
         $this->geographyPattern = '/POINT\\s*\\(\\s*12\\s+34\\s*\\)/';
     }
 
@@ -72,11 +84,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         self::$expectedRows++;
         $insertResponse = self::$table->insertRow($this->row);
+        $insertResponseLegacy = self::$legacyTable->insertRow($this->legacyRow);
         sleep(1);
         $rows = iterator_to_array(self::$table->rows());
-        $actualRow = $rows[0];
+        $actualRow = $rows[self::$expectedRows-1];
 
         $this->assertTrue($insertResponse->isSuccessful());
+        $this->assertTrue($insertResponseLegacy->isSuccessful());
         $this->assertCount(self::$expectedRows, $rows);
 
         $expectedRow = $this->row;
@@ -84,6 +98,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualBytes = $actualRow['Spells'][0]['Icon'];
         unset($expectedRow['Spells'][0]['Icon']);
         unset($actualRow['Spells'][0]['Icon']);
+        unset($actualRow['CreatedTimestamp']);
         $actualGeography = $actualRow['Location'];
         unset($expectedRow['Location'], $actualRow['Location']);
 
@@ -98,10 +113,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      */
     public function testRunQuery($useLegacySql)
     {
-        $queryString =  sprintf(
-            $useLegacySql
-                ? 'SELECT Name, Age, Weight, IsMagic, Spells.*, Location FROM [%s.%s]'
-                : 'SELECT Name, Age, Weight, IsMagic, Spells, Location FROM `%s.%s`',
+        $queryString = $useLegacySql ?
+        sprintf(
+            'SELECT Name, Age, Weight, IsMagic, Spells.*, Location FROM [%s.%s]',
+            self::$dataset->id(),
+            self::$legacyTable->id()
+        ) : sprintf(
+            'SELECT Name, Age, Weight, IsMagic, Spells, Location, AddressJson FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -155,16 +173,67 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         }
     }
 
+    public function testInsertRowToTableWithDefaultValueExpression()
+    {
+        $row = $this->row;
+        // unset default value expression fields so that they are populated automatically
+        unset(
+            $row['Name'],
+            $row['Age'],
+            $row['Weight'],
+            $row['IsMagic'],
+            $row['CreatedTimestamp']
+        );
+        self::$expectedRows++;
+        $insertResponse = self::$table->insertRow($row);
+        sleep(1);
+        $rows = iterator_to_array(self::$table->rows());
+
+        $this->assertTrue($insertResponse->isSuccessful());
+        $this->assertCount(self::$expectedRows, $rows);
+
+        $actualRow = $rows[self::$expectedRows-1];
+
+        $expectedRow = $this->row;
+        // default values from schema
+        $expectedRow['Name'] = 'Default Name';
+        $expectedRow['Age'] = 1;
+        $expectedRow['Weight'] = 0.5;
+        $expectedRow['IsMagic'] = false;
+
+        $expectedBytes = $expectedRow['Spells'][0]['Icon'];
+        $actualBytes = $actualRow['Spells'][0]['Icon'];
+        unset($expectedRow['Spells'][0]['Icon'], $actualRow['Spells'][0]['Icon']);
+
+        $actualGeography = $actualRow['Location'];
+        unset($expectedRow['Location'], $actualRow['Location']);
+
+        $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
+        $actualTimestamp = $actualRow['CreatedTimestamp'];
+        unset($actualRow['CreatedTimestamp']);
+
+        $this->assertEquals($expectedRow, $actualRow);
+        $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
+        $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
+        $this->assertEqualsWithDelta(
+            $expectedTimestamp->get()->getTimestamp(),
+            $actualTimestamp->get()->getTimestamp(),
+            10
+        );
+    }
+
     /**
      * @depends testInsertRowToTable
      * @dataProvider useLegacySqlProvider
      */
     public function testStartQuery($useLegacySql)
     {
-        $queryString = sprintf(
-            $useLegacySql
-                ? 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates.* FROM [%s.%s]'
-                : 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates FROM `%s.%s`',
+        $queryString = $useLegacySql ? sprintf(
+            'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates.* FROM [%s.%s]',
+            self::$dataset->id(),
+            self::$legacyTable->id()
+        ) : sprintf(
+            'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -315,6 +384,58 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         ];
 
         $this->assertEquals($expectedRows, $actualRows);
+    }
+
+    public function testRunQueryWithEmptyPositionalArrayParams()
+    {
+        $queryStr = sprintf(
+            'SELECT Name Location FROM `%s.%s` WHERE Age IN UNNEST(?)',
+            self::$dataset->id(),
+            self::$table->id()
+        );
+
+        $query = self::$client->query($queryStr)->parameters([
+            []
+        ])->setParamTypes(['INT64']);
+        $results = self::$client->runQuery($query);
+        $actualRows = iterator_to_array($results->rows());
+        $this->assertEquals(0, count($actualRows));
+
+
+        // Test the same w/o the call to setParamTypes
+        $query = self::$client->query($queryStr)->parameters([
+            []
+        ]);
+
+        // we expect an exception as we didn't use setParamTypes with an empty array
+        $this->expectException(BadRequestException::class);
+        $results = self::$client->runQuery($query);
+    }
+
+    public function testRunQueryWithEmptyNamedArrayParams()
+    {
+        // we expect an exception as we didn't use setParamTypes with an empty array
+        $this->expectException(BadRequestException::class);
+        $queryStr = sprintf(
+            'SELECT Name Location FROM `%s.%s` WHERE Age IN UNNEST(@ages)',
+            self::$dataset->id(),
+            self::$table->id()
+        );
+
+        $query = self::$client->query($queryStr)->parameters([
+            'ages' => []
+        ])->setParamTypes(['ages' => 'INT64']);
+        $results = self::$client->runQuery($query);
+        $actualRows = iterator_to_array($results->rows());
+        $this->assertEquals(0, count($actualRows));
+
+
+        // Test the same w/o the call to setParamTypes
+        $query = self::$client->query($queryStr)->parameters([
+            'ages' => []
+        ]);
+
+        self::$client->runQuery($query);
     }
 
     public function testStartQueryWithNamedParameters()
@@ -714,5 +835,91 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $qr = self::$client->runQuery($q);
         $rows = iterator_to_array($qr->rows());
         $this->assertEquals(50, $rows[0]['ct']);
+    }
+
+    /**
+     * @depends testInsertRowToTable
+     */
+    public function testJsonDatatype()
+    {
+        $rows = iterator_to_array(self::$table->rows());
+        $actualRow = $rows[self::$expectedRows-1];
+
+        $this->assertEquals(
+            json_decode($this->row['AddressJson'], true)['HouseNumber'],
+            json_decode($actualRow['AddressJson']->get(), true)['HouseNumber']
+        );
+        $this->assertEquals(
+            json_decode($this->row['AddressJson'], true)['City'],
+            json_decode($actualRow['AddressJson']->get(), true)['City']
+        );
+    }
+
+    /**
+     * @dataProvider invalidJsonProvider
+     */
+    public function testInsertInvalidJsonToTable($json)
+    {
+        $row = $this->row;
+        $row['AddressJson'] = $json;
+        $insertResponse = self::$table->insertRow($row);
+        $this->assertEquals(
+            $insertResponse->info()['insertErrors'][0]['errors'][0]['reason'],
+            "invalid"
+        );
+        $this->assertStringContainsString(
+            "syntax error while parsing",
+            $insertResponse->info()['insertErrors'][0]['errors'][0]['message']
+        );
+    }
+
+    /**
+     * @dataProvider validJsonProvider
+     */
+    public function testInsertValidJsonToTable($json)
+    {
+        $row = $this->row;
+        $row['AddressJson'] = $json;
+        $insertResponse = self::$table->insertRow($row);
+        $this->assertTrue($insertResponse->isSuccessful());
+    }
+
+    public function invalidJsonProvider()
+    {
+        return[
+            ['{'],
+            ['{key: "value"}'],
+            ['{"key": value}'],
+            ['{\'key\': \'value\'}'],
+            ['{"key": \'value\'}'],
+            ['{"key": "value" "key2": "value2"}'],
+            ['{"key": "value" "key2": "value2", "key3": "value3"}'],
+            ['{"key": "value"'],
+            ['["item1", "item2", "item3"'],
+            ['{"key": "value",}'],
+            ['["item1", "item2",]'],
+            ['{"number": 1.23.45}'],
+            ['{"number": 0x123}'],
+            ['\"just a string\"']
+        ];
+    }
+
+    public function validJsonProvider()
+    {
+        return[
+            [
+                '{"string": "value", "number": 123, "boolean": true,
+                    "array": [1, 2, 3], "object": {"nested": "value"}}'
+            ],
+            ['{}'],
+            [null],
+            [json_encode(1234)],
+            ['[1,2,3,4]'],
+            ['{"message": "This is a \"quote\""}'],
+            [
+                '{"string": "Hello, world!", "number": 42, "boolean": true,"nullValue":
+                    null, "array": [1, 2, 3], "object": {"nested": "value"}}'],
+            ['{"message": "Special characters: \u00A9 \u00AE \u00E7 \u20AC അ 😀"}']
+        ];
     }
 }

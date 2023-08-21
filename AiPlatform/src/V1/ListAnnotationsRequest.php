@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
+ * Request message for
+ * [DatasetService.ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListAnnotationsRequest</code>
  */
@@ -54,6 +55,22 @@ class ListAnnotationsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
+
+    /**
+     * @param string $parent Required. The resource name of the DataItem to list Annotations from.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}`
+     *                       Please see {@see DatasetServiceClient::dataItemName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListAnnotationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

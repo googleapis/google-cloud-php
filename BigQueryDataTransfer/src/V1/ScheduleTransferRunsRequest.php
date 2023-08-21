@@ -39,6 +39,28 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     private $end_time = null;
 
     /**
+     * @param string                     $parent    Required. Transfer configuration name in the form:
+     *                                              `projects/{project_id}/transferConfigs/{config_id}` or
+     *                                              `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`. Please see
+     *                                              {@see DataTransferServiceClient::transferConfigName()} for help formatting this field.
+     * @param \Google\Protobuf\Timestamp $startTime Required. Start time of the range of transfer runs. For example,
+     *                                              `"2017-05-25T00:00:00+00:00"`.
+     * @param \Google\Protobuf\Timestamp $endTime   Required. End time of the range of transfer runs. For example,
+     *                                              `"2017-05-30T00:00:00+00:00"`.
+     *
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Protobuf\Timestamp $startTime, \Google\Protobuf\Timestamp $endTime): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setStartTime($startTime)
+            ->setEndTime($endTime);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -22,6 +22,27 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $policy = null;
+    /**
+     * Field mask used to specify the fields to be overwritten in the policy
+     * by the set. The fields specified in the update_mask are relative to the
+     * policy, not the full request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     */
+    private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\OrgPolicy\V2\Policy $policy Required. `Policy` to update.
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\OrgPolicy\V2\Policy $policy): self
+    {
+        return (new self())
+            ->setPolicy($policy);
+    }
 
     /**
      * Constructor.
@@ -31,6 +52,10 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\OrgPolicy\V2\Policy $policy
      *           Required. `Policy` to update.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Field mask used to specify the fields to be overwritten in the policy
+     *           by the set. The fields specified in the update_mask are relative to the
+     *           policy, not the full request.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,6 +95,46 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OrgPolicy\V2\Policy::class);
         $this->policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Field mask used to specify the fields to be overwritten in the policy
+     * by the set. The fields specified in the update_mask are relative to the
+     * policy, not the full request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getUpdateMask()
+    {
+        return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * Field mask used to specify the fields to be overwritten in the policy
+     * by the set. The fields specified in the update_mask are relative to the
+     * policy, not the full request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->update_mask = $var;
 
         return $this;
     }

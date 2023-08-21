@@ -22,13 +22,33 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      */
     private $target_id = 0;
     /**
-     * The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     * The total count of documents that match
+     * [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
+     * The client can use the `unchanged_names` bloom filter to assist with
+     * this determination by testing ALL the document names against the filter;
+     * if the document name is NOT in the filter, it means the document no
+     * longer matches the target.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      */
     private $count = 0;
+    /**
+     * A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     * the resource names of ALL the documents that match
+     * [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * This bloom filter may be omitted at the server's discretion, such as if it
+     * is deemed that the client will not make use of it or if it is too
+     * computationally expensive to calculate or transmit. Clients must gracefully
+     * handle this field being absent by falling back to the logic used before
+     * this field existed; that is, re-add the target without a resume token to
+     * figure out which documents in the client's cache are out of sync.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.BloomFilter unchanged_names = 3;</code>
+     */
+    private $unchanged_names = null;
 
     /**
      * Constructor.
@@ -39,9 +59,25 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      *     @type int $target_id
      *           The target ID to which this filter applies.
      *     @type int $count
-     *           The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     *           The total count of documents that match
+     *           [target_id][google.firestore.v1.ExistenceFilter.target_id].
      *           If different from the count of documents in the client that match, the
      *           client must manually determine which documents no longer match the target.
+     *           The client can use the `unchanged_names` bloom filter to assist with
+     *           this determination by testing ALL the document names against the filter;
+     *           if the document name is NOT in the filter, it means the document no
+     *           longer matches the target.
+     *     @type \Google\Cloud\Firestore\V1\BloomFilter $unchanged_names
+     *           A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     *           the resource names of ALL the documents that match
+     *           [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           This bloom filter may be omitted at the server's discretion, such as if it
+     *           is deemed that the client will not make use of it or if it is too
+     *           computationally expensive to calculate or transmit. Clients must gracefully
+     *           handle this field being absent by falling back to the logic used before
+     *           this field existed; that is, re-add the target without a resume token to
+     *           figure out which documents in the client's cache are out of sync.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +112,14 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     * The total count of documents that match
+     * [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
+     * The client can use the `unchanged_names` bloom filter to assist with
+     * this determination by testing ALL the document names against the filter;
+     * if the document name is NOT in the filter, it means the document no
+     * longer matches the target.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      * @return int
@@ -89,9 +130,14 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     * The total count of documents that match
+     * [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
+     * The client can use the `unchanged_names` bloom filter to assist with
+     * this determination by testing ALL the document names against the filter;
+     * if the document name is NOT in the filter, it means the document no
+     * longer matches the target.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      * @param int $var
@@ -101,6 +147,60 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->count = $var;
+
+        return $this;
+    }
+
+    /**
+     * A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     * the resource names of ALL the documents that match
+     * [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * This bloom filter may be omitted at the server's discretion, such as if it
+     * is deemed that the client will not make use of it or if it is too
+     * computationally expensive to calculate or transmit. Clients must gracefully
+     * handle this field being absent by falling back to the logic used before
+     * this field existed; that is, re-add the target without a resume token to
+     * figure out which documents in the client's cache are out of sync.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.BloomFilter unchanged_names = 3;</code>
+     * @return \Google\Cloud\Firestore\V1\BloomFilter|null
+     */
+    public function getUnchangedNames()
+    {
+        return $this->unchanged_names;
+    }
+
+    public function hasUnchangedNames()
+    {
+        return isset($this->unchanged_names);
+    }
+
+    public function clearUnchangedNames()
+    {
+        unset($this->unchanged_names);
+    }
+
+    /**
+     * A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     * the resource names of ALL the documents that match
+     * [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * This bloom filter may be omitted at the server's discretion, such as if it
+     * is deemed that the client will not make use of it or if it is too
+     * computationally expensive to calculate or transmit. Clients must gracefully
+     * handle this field being absent by falling back to the logic used before
+     * this field existed; that is, re-add the target without a resume token to
+     * figure out which documents in the client's cache are out of sync.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.BloomFilter unchanged_names = 3;</code>
+     * @param \Google\Cloud\Firestore\V1\BloomFilter $var
+     * @return $this
+     */
+    public function setUnchangedNames($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\BloomFilter::class);
+        $this->unchanged_names = $var;
 
         return $this;
     }

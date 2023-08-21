@@ -59,6 +59,12 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string destination_network_uri = 7;</code>
      */
     private $destination_network_uri = '';
+    /**
+     * URI of the source telemetry agent this packet originates from.
+     *
+     * Generated from protobuf field <code>string source_agent_uri = 8;</code>
+     */
+    private $source_agent_uri = '';
 
     /**
      * Constructor.
@@ -80,6 +86,8 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
      *           URI of the network where this packet originates from.
      *     @type string $destination_network_uri
      *           URI of the network where this packet is sent to.
+     *     @type string $source_agent_uri
+     *           URI of the source telemetry agent this packet originates from.
      * }
      */
     public function __construct($data = NULL) {
@@ -265,6 +273,32 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->destination_network_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * URI of the source telemetry agent this packet originates from.
+     *
+     * Generated from protobuf field <code>string source_agent_uri = 8;</code>
+     * @return string
+     */
+    public function getSourceAgentUri()
+    {
+        return $this->source_agent_uri;
+    }
+
+    /**
+     * URI of the source telemetry agent this packet originates from.
+     *
+     * Generated from protobuf field <code>string source_agent_uri = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceAgentUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_agent_uri = $var;
 
         return $this;
     }

@@ -20,6 +20,13 @@ class Status
      */
     const STATUS_UNKNOWN = 0;
     /**
+     * Build has been created and is pending execution and queuing. It has not
+     * been queued.
+     *
+     * Generated from protobuf enum <code>PENDING = 10;</code>
+     */
+    const PENDING = 10;
+    /**
      * Build or step is queued; work has not yet begun.
      *
      * Generated from protobuf enum <code>QUEUED = 1;</code>
@@ -70,6 +77,7 @@ class Status
 
     private static $valueToName = [
         self::STATUS_UNKNOWN => 'STATUS_UNKNOWN',
+        self::PENDING => 'PENDING',
         self::QUEUED => 'QUEUED',
         self::WORKING => 'WORKING',
         self::SUCCESS => 'SUCCESS',
@@ -101,6 +109,4 @@ class Status
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Status::class, \Google\Cloud\Build\V1\Build_Status::class);
 

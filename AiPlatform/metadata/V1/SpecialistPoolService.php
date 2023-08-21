@@ -21,11 +21,12 @@ class SpecialistPoolService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\SpecialistPool::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë
-8google/cloud/aiplatform/v1/specialist_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto0google/cloud/aiplatform/v1/specialist_pool.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"¢
+â
+8google/cloud/aiplatform/v1/specialist_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto0google/cloud/aiplatform/v1/specialist_pool.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¢
 CreateSpecialistPoolRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationH
@@ -65,8 +66,8 @@ page_token (	-
 DeleteSpecialistPool7.google.cloud.aiplatform.v1.DeleteSpecialistPoolRequest.google.longrunning.Operation"u‚Óä“5*3/v1/{name=projects/*/locations/*/specialistPools/*}ÚAnameÊA0
 google.protobuf.EmptyDeleteOperationMetadata¥
 UpdateSpecialistPool7.google.cloud.aiplatform.v1.UpdateSpecialistPoolRequest.google.longrunning.Operation"´‚Óä“V2C/v1/{specialist_pool.name=projects/*/locations/*/specialistPools/*}:specialist_poolÚAspecialist_pool,update_maskÊA7
-SpecialistPool%UpdateSpecialistPoolOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÞ
-com.google.cloud.aiplatform.v1BSpecialistPoolServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+SpecialistPool%UpdateSpecialistPoolOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
+com.google.cloud.aiplatform.v1BSpecialistPoolServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

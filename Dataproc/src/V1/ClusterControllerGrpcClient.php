@@ -54,7 +54,8 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * Updates a cluster in a project. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
      * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
-     * The cluster must be in a [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+     * The cluster must be in a
+     * [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
      * is returned.
      * @param \Google\Cloud\Dataproc\V1\UpdateClusterRequest $argument input argument
      * @param array $metadata metadata

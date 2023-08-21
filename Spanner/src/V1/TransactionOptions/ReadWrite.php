@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class ReadWrite extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Read lock mode for the transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode read_lock_mode = 1;</code>
+     */
+    private $read_lock_mode = 0;
 
     /**
      * Constructor.
@@ -23,11 +29,39 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $read_lock_mode
+     *           Read lock mode for the transaction.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Transaction::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Read lock mode for the transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode read_lock_mode = 1;</code>
+     * @return int
+     */
+    public function getReadLockMode()
+    {
+        return $this->read_lock_mode;
+    }
+
+    /**
+     * Read lock mode for the transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode read_lock_mode = 1;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReadLockMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode::class);
+        $this->read_lock_mode = $var;
+
+        return $this;
     }
 
 }

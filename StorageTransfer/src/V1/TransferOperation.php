@@ -40,6 +40,12 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      */
     private $notification_config = null;
     /**
+     * Cloud Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 12;</code>
+     */
+    private $logging_config = null;
+    /**
      * Start time of this transfer execution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
@@ -90,6 +96,8 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      *           Transfer specification.
      *     @type \Google\Cloud\StorageTransfer\V1\NotificationConfig $notification_config
      *           Notification configuration.
+     *     @type \Google\Cloud\StorageTransfer\V1\LoggingConfig $logging_config
+     *           Cloud Logging configuration.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start time of this transfer execution.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -229,6 +237,42 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\NotificationConfig::class);
         $this->notification_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cloud Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 12;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\LoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Cloud Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 12;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\LoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\LoggingConfig::class);
+        $this->logging_config = $var;
 
         return $this;
     }

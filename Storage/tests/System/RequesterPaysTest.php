@@ -18,12 +18,13 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use GuzzleHttp\Client;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Exception\ClientException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -31,8 +32,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class RequesterPaysTest extends StorageTestCase
 {
-    use ExpectException;
-
     private static $requesterKeyFile;
     private static $requesterProject;
     private static $requesterEmail;
@@ -49,11 +48,11 @@ class RequesterPaysTest extends StorageTestCase
     private static $topic;
     private static $notificationId;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
-        $requesterKeyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
+        $requesterKeyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
         $ownerKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$requesterKeyFile = json_decode(file_get_contents($requesterKeyFilePath), true);
         self::$requesterEmail = self::$requesterKeyFile['client_email'];
@@ -152,7 +151,7 @@ class RequesterPaysTest extends StorageTestCase
      */
     public function testRequesterPaysMethodsWithoutUserProject(callable $call)
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $object = $bucket->object(self::$object1->name());
@@ -363,7 +362,7 @@ class RequesterPaysTest extends StorageTestCase
      */
     public function testUploadMethodsWithoutUserProject(callable $call)
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $call($bucket);
@@ -410,7 +409,7 @@ class RequesterPaysTest extends StorageTestCase
 
     public function testDeleteNotificationFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $bucket->notification(self::$notificationId)->delete();

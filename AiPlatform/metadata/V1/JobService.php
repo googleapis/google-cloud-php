@@ -23,6 +23,7 @@ class JobService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\DataLabelingJob::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\HyperparameterTuningJob::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\ModelDeploymentMonitoringJob::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\NasJob::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
@@ -30,8 +31,8 @@ class JobService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-’f
-,google/cloud/aiplatform/v1/job_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto5google/cloud/aiplatform/v1/batch_prediction_job.proto+google/cloud/aiplatform/v1/custom_job.proto2google/cloud/aiplatform/v1/data_labeling_job.proto:google/cloud/aiplatform/v1/hyperparameter_tuning_job.proto@google/cloud/aiplatform/v1/model_deployment_monitoring_job.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"“
+îx
+,google/cloud/aiplatform/v1/job_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto5google/cloud/aiplatform/v1/batch_prediction_job.proto+google/cloud/aiplatform/v1/custom_job.proto2google/cloud/aiplatform/v1/data_labeling_job.proto:google/cloud/aiplatform/v1/hyperparameter_tuning_job.proto@google/cloud/aiplatform/v1/model_deployment_monitoring_job.proto(google/cloud/aiplatform/v1/nas_job.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"“
 CreateCustomJobRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/Location>
@@ -105,7 +106,43 @@ $DeleteHyperparameterTuningJobRequestG
 1aiplatform.googleapis.com/HyperparameterTuningJob"o
 $CancelHyperparameterTuningJobRequestG
 name (	B9àAúA3
-1aiplatform.googleapis.com/HyperparameterTuningJob"¯
+1aiplatform.googleapis.com/HyperparameterTuningJob"Š
+CreateNasJobRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location8
+nas_job (2".google.cloud.aiplatform.v1.NasJobBàA"J
+GetNasJobRequest6
+name (	B(àAúA"
+ aiplatform.googleapis.com/NasJob"µ
+ListNasJobsRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location
+filter (	
+	page_size (
+
+page_token (	-
+	read_mask (2.google.protobuf.FieldMask"d
+ListNasJobsResponse4
+nas_jobs (2".google.cloud.aiplatform.v1.NasJob
+next_page_token (	"M
+DeleteNasJobRequest6
+name (	B(àAúA"
+ aiplatform.googleapis.com/NasJob"M
+CancelNasJobRequest6
+name (	B(àAúA"
+ aiplatform.googleapis.com/NasJob"Z
+GetNasTrialDetailRequest>
+name (	B0àAúA*
+(aiplatform.googleapis.com/NasTrialDetail"}
+ListNasTrialDetailsRequest8
+parent (	B(àAúA"
+ aiplatform.googleapis.com/NasJob
+	page_size (
+
+page_token (	"}
+ListNasTrialDetailsResponseE
+nas_trial_details (2*.google.cloud.aiplatform.v1.NasTrialDetail
+next_page_token (	"¯
 CreateBatchPredictionJobRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/LocationQ
@@ -180,7 +217,7 @@ page_token (	-
 name (	B>àAúA8
 6aiplatform.googleapis.com/ModelDeploymentMonitoringJob"…
 3UpdateModelDeploymentMonitoringJobOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2§5
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2ð?
 
 JobServiceÄ
 CreateCustomJob2.google.cloud.aiplatform.v1.CreateCustomJobRequest%.google.cloud.aiplatform.v1.CustomJob"V‚Óä“<"./v1/{parent=projects/*/locations/*}/customJobs:
@@ -201,7 +238,15 @@ custom_jobÚAparent,custom_job¥
 ListHyperparameterTuningJobs?.google.cloud.aiplatform.v1.ListHyperparameterTuningJobsRequest@.google.cloud.aiplatform.v1.ListHyperparameterTuningJobsResponse"M‚Óä“></v1/{parent=projects/*/locations/*}/hyperparameterTuningJobsÚAparent€
 DeleteHyperparameterTuningJob@.google.cloud.aiplatform.v1.DeleteHyperparameterTuningJobRequest.google.longrunning.Operation"~‚Óä“>*</v1/{name=projects/*/locations/*/hyperparameterTuningJobs/*}ÚAnameÊA0
 google.protobuf.EmptyDeleteOperationMetadataÐ
-CancelHyperparameterTuningJob@.google.cloud.aiplatform.v1.CancelHyperparameterTuningJobRequest.google.protobuf.Empty"U‚Óä“H"C/v1/{name=projects/*/locations/*/hyperparameterTuningJobs/*}:cancel:*ÚAnameü
+CancelHyperparameterTuningJob@.google.cloud.aiplatform.v1.CancelHyperparameterTuningJobRequest.google.protobuf.Empty"U‚Óä“H"C/v1/{name=projects/*/locations/*/hyperparameterTuningJobs/*}:cancel:*ÚAname²
+CreateNasJob/.google.cloud.aiplatform.v1.CreateNasJobRequest".google.cloud.aiplatform.v1.NasJob"M‚Óä“6"+/v1/{parent=projects/*/locations/*}/nasJobs:nas_jobÚAparent,nas_job™
+	GetNasJob,.google.cloud.aiplatform.v1.GetNasJobRequest".google.cloud.aiplatform.v1.NasJob":‚Óä“-+/v1/{name=projects/*/locations/*/nasJobs/*}ÚAname¬
+ListNasJobs..google.cloud.aiplatform.v1.ListNasJobsRequest/.google.cloud.aiplatform.v1.ListNasJobsResponse"<‚Óä“-+/v1/{parent=projects/*/locations/*}/nasJobsÚAparentÍ
+DeleteNasJob/.google.cloud.aiplatform.v1.DeleteNasJobRequest.google.longrunning.Operation"m‚Óä“-*+/v1/{name=projects/*/locations/*/nasJobs/*}ÚAnameÊA0
+google.protobuf.EmptyDeleteOperationMetadata
+CancelNasJob/.google.cloud.aiplatform.v1.CancelNasJobRequest.google.protobuf.Empty"D‚Óä“7"2/v1/{name=projects/*/locations/*/nasJobs/*}:cancel:*ÚAnameÃ
+GetNasTrialDetail4.google.cloud.aiplatform.v1.GetNasTrialDetailRequest*.google.cloud.aiplatform.v1.NasTrialDetail"L‚Óä“?=/v1/{name=projects/*/locations/*/nasJobs/*/nasTrialDetails/*}ÚAnameÖ
+ListNasTrialDetails6.google.cloud.aiplatform.v1.ListNasTrialDetailsRequest7.google.cloud.aiplatform.v1.ListNasTrialDetailsResponse"N‚Óä“?=/v1/{parent=projects/*/locations/*/nasJobs/*}/nasTrialDetailsÚAparentü
 CreateBatchPredictionJob;.google.cloud.aiplatform.v1.CreateBatchPredictionJobRequest..google.cloud.aiplatform.v1.BatchPredictionJob"s‚Óä“O"7/v1/{parent=projects/*/locations/*}/batchPredictionJobs:batch_prediction_jobÚAparent,batch_prediction_jobÉ
 GetBatchPredictionJob8.google.cloud.aiplatform.v1.GetBatchPredictionJobRequest..google.cloud.aiplatform.v1.BatchPredictionJob"F‚Óä“97/v1/{name=projects/*/locations/*/batchPredictionJobs/*}ÚAnameÜ
 ListBatchPredictionJobs:.google.cloud.aiplatform.v1.ListBatchPredictionJobsRequest;.google.cloud.aiplatform.v1.ListBatchPredictionJobsResponse"H‚Óä“97/v1/{parent=projects/*/locations/*}/batchPredictionJobsÚAparentñ
@@ -217,8 +262,8 @@ custom_jobÚAparent,custom_job¥
 "DeleteModelDeploymentMonitoringJobE.google.cloud.aiplatform.v1.DeleteModelDeploymentMonitoringJobRequest.google.longrunning.Operation"ƒ‚Óä“C*A/v1/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*}ÚAnameÊA0
 google.protobuf.EmptyDeleteOperationMetadataÜ
 !PauseModelDeploymentMonitoringJobD.google.cloud.aiplatform.v1.PauseModelDeploymentMonitoringJobRequest.google.protobuf.Empty"Y‚Óä“L"G/v1/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*}:pause:*ÚAnameß
-"ResumeModelDeploymentMonitoringJobE.google.cloud.aiplatform.v1.ResumeModelDeploymentMonitoringJobRequest.google.protobuf.Empty"Z‚Óä“M"H/v1/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*}:resume:*ÚAnameMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÓ
-com.google.cloud.aiplatform.v1BJobServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+"ResumeModelDeploymentMonitoringJobE.google.cloud.aiplatform.v1.ResumeModelDeploymentMonitoringJobRequest.google.protobuf.Empty"Z‚Óä“M"H/v1/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*}:resume:*ÚAname†ÊAaiplatform.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÍ
+com.google.cloud.aiplatform.v1BJobServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

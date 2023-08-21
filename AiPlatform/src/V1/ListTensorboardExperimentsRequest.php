@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments].
+ * Request message for
+ * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListTensorboardExperimentsRequest</code>
  */
 class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Tensorboard to list TensorboardExperiments.
-     * Format:
+     * Required. The resource name of the Tensorboard to list
+     * TensorboardExperiments. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,19 +33,19 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The maximum number of TensorboardExperiments to return. The service may
      * return fewer than this value. If unspecified, at most 50
-     * TensorboardExperiments will be returned. The maximum value is 1000; values
-     * above 1000 will be coerced to 1000.
+     * TensorboardExperiments are returned. The maximum value is 1000; values
+     * above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
      * A page token, received from a previous
-     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] call.
-     * Provide this to retrieve the subsequent page.
+     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] must
-     * match the call that provided the page token.
+     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -63,29 +64,45 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The resource name of the Tensorboard to list
+     *                       TensorboardExperiments. Format:
+     *                       `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     *                       Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListTensorboardExperimentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the Tensorboard to list TensorboardExperiments.
-     *           Format:
+     *           Required. The resource name of the Tensorboard to list
+     *           TensorboardExperiments. Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type string $filter
      *           Lists the TensorboardExperiments that match the filter expression.
      *     @type int $page_size
      *           The maximum number of TensorboardExperiments to return. The service may
      *           return fewer than this value. If unspecified, at most 50
-     *           TensorboardExperiments will be returned. The maximum value is 1000; values
-     *           above 1000 will be coerced to 1000.
+     *           TensorboardExperiments are returned. The maximum value is 1000; values
+     *           above 1000 are coerced to 1000.
      *     @type string $page_token
      *           A page token, received from a previous
-     *           [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] call.
-     *           Provide this to retrieve the subsequent page.
+     *           [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] must
-     *           match the call that provided the page token.
+     *           [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     *           must match the call that provided the page token.
      *     @type string $order_by
      *           Field to use to sort the list.
      *     @type \Google\Protobuf\FieldMask $read_mask
@@ -98,8 +115,8 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of the Tensorboard to list TensorboardExperiments.
-     * Format:
+     * Required. The resource name of the Tensorboard to list
+     * TensorboardExperiments. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -111,8 +128,8 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name of the Tensorboard to list TensorboardExperiments.
-     * Format:
+     * Required. The resource name of the Tensorboard to list
+     * TensorboardExperiments. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -156,8 +173,8 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The maximum number of TensorboardExperiments to return. The service may
      * return fewer than this value. If unspecified, at most 50
-     * TensorboardExperiments will be returned. The maximum value is 1000; values
-     * above 1000 will be coerced to 1000.
+     * TensorboardExperiments are returned. The maximum value is 1000; values
+     * above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -170,8 +187,8 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The maximum number of TensorboardExperiments to return. The service may
      * return fewer than this value. If unspecified, at most 50
-     * TensorboardExperiments will be returned. The maximum value is 1000; values
-     * above 1000 will be coerced to 1000.
+     * TensorboardExperiments are returned. The maximum value is 1000; values
+     * above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
@@ -187,11 +204,11 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * A page token, received from a previous
-     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] call.
-     * Provide this to retrieve the subsequent page.
+     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] must
-     * match the call that provided the page token.
+     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -203,11 +220,11 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * A page token, received from a previous
-     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] call.
-     * Provide this to retrieve the subsequent page.
+     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments] must
-     * match the call that provided the page token.
+     * [TensorboardService.ListTensorboardExperiments][google.cloud.aiplatform.v1.TensorboardService.ListTensorboardExperiments]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

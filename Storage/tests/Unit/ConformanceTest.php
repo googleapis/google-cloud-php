@@ -18,7 +18,7 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\StorageClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
@@ -28,7 +28,7 @@ class ConformanceTest extends TestCase
 {
     private static $cases;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         static $setup = false;
         if ($setup) {
@@ -146,7 +146,7 @@ class ConformanceTest extends TestCase
 
     public function signedUrlConformanceCases()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         // rekey with description for more useful error reporting.
         $out = [];
@@ -168,7 +168,7 @@ class ConformanceTest extends TestCase
 
     public function postPolicyConformanceCases()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         // rekey with description for more useful error reporting.
         $out = [];

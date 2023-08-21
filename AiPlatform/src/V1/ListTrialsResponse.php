@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [VizierService.ListTrials][google.cloud.aiplatform.v1.VizierService.ListTrials].
+ * Response message for
+ * [VizierService.ListTrials][google.cloud.aiplatform.v1.VizierService.ListTrials].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListTrialsResponse</code>
  */

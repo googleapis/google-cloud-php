@@ -17,9 +17,8 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-use Google\CRC32\CRC32;
+use Google\Cloud\Core\Exception\BadRequestException;
 use GuzzleHttp\Psr7\Utils;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class UploadObjectsTest extends StorageTestCase
 {
-    use ExpectException;
-
     public function testUploadsObjectFromStringWithMetadata()
     {
         $data = 'somedata';
@@ -131,13 +128,12 @@ class UploadObjectsTest extends StorageTestCase
 
     public function testCrc32cChecksumFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $path = __DIR__ . '/data/5mb.txt';
 
-        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
-        $crc32c->update('foobar');
-        $badChecksum = base64_encode($crc32c->hash(true));
+        $crc32c = hash('crc32c', 'foobar', true);
+        $badChecksum = base64_encode($crc32c);
 
         self::$bucket->upload($path, [
             'name' => uniqid(),

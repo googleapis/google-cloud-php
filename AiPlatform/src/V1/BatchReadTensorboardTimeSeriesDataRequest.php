@@ -17,22 +17,43 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Tensorboard containing TensorboardTimeSeries to
-     * read data from. Format:
+     * Required. The resource name of the Tensorboard containing
+     * TensorboardTimeSeries to read data from. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
-     * The TensorboardTimeSeries referenced by [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series] must be sub
-     * resources of this Tensorboard.
+     * The TensorboardTimeSeries referenced by
+     * [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     * must be sub resources of this Tensorboard.
      *
      * Generated from protobuf field <code>string tensorboard = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $tensorboard = '';
     /**
-     * Required. The resource names of the TensorboardTimeSeries to read data from. Format:
+     * Required. The resource names of the TensorboardTimeSeries to read data
+     * from. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *
      * Generated from protobuf field <code>repeated string time_series = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $time_series;
+
+    /**
+     * @param string $tensorboard Required. The resource name of the Tensorboard containing
+     *                            TensorboardTimeSeries to read data from. Format:
+     *                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
+     *                            The TensorboardTimeSeries referenced by
+     *                            [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     *                            must be sub resources of this Tensorboard. Please see
+     *                            {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchReadTensorboardTimeSeriesDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboard): self
+    {
+        return (new self())
+            ->setTensorboard($tensorboard);
+    }
 
     /**
      * Constructor.
@@ -41,13 +62,15 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type string $tensorboard
-     *           Required. The resource name of the Tensorboard containing TensorboardTimeSeries to
-     *           read data from. Format:
+     *           Required. The resource name of the Tensorboard containing
+     *           TensorboardTimeSeries to read data from. Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
-     *           The TensorboardTimeSeries referenced by [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series] must be sub
-     *           resources of this Tensorboard.
+     *           The TensorboardTimeSeries referenced by
+     *           [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     *           must be sub resources of this Tensorboard.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $time_series
-     *           Required. The resource names of the TensorboardTimeSeries to read data from. Format:
+     *           Required. The resource names of the TensorboardTimeSeries to read data
+     *           from. Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      * }
      */
@@ -57,11 +80,12 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The resource name of the Tensorboard containing TensorboardTimeSeries to
-     * read data from. Format:
+     * Required. The resource name of the Tensorboard containing
+     * TensorboardTimeSeries to read data from. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
-     * The TensorboardTimeSeries referenced by [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series] must be sub
-     * resources of this Tensorboard.
+     * The TensorboardTimeSeries referenced by
+     * [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     * must be sub resources of this Tensorboard.
      *
      * Generated from protobuf field <code>string tensorboard = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -72,11 +96,12 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The resource name of the Tensorboard containing TensorboardTimeSeries to
-     * read data from. Format:
+     * Required. The resource name of the Tensorboard containing
+     * TensorboardTimeSeries to read data from. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
-     * The TensorboardTimeSeries referenced by [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series] must be sub
-     * resources of this Tensorboard.
+     * The TensorboardTimeSeries referenced by
+     * [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     * must be sub resources of this Tensorboard.
      *
      * Generated from protobuf field <code>string tensorboard = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -91,7 +116,8 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The resource names of the TensorboardTimeSeries to read data from. Format:
+     * Required. The resource names of the TensorboardTimeSeries to read data
+     * from. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *
      * Generated from protobuf field <code>repeated string time_series = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -103,7 +129,8 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Required. The resource names of the TensorboardTimeSeries to read data from. Format:
+     * Required. The resource names of the TensorboardTimeSeries to read data
+     * from. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *
      * Generated from protobuf field <code>repeated string time_series = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

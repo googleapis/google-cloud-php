@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The new definition of the TagValue. Only fields `description` and `etag`
-     * fields can be updated by this request. If the `etag` field is nonempty, it
-     * must match the `etag` field of the existing ControlGroup. Otherwise,
-     * `FAILED_PRECONDITION` will be returned.
+     * Required. The new definition of the TagValue. Only fields `description` and
+     * `etag` fields can be updated by this request. If the `etag` field is
+     * nonempty, it must match the `etag` field of the existing ControlGroup.
+     * Otherwise, `ABORTED` will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,12 +31,30 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
     /**
-     * Optional. True to perform validations necessary for updating the resource, but not
-     * actually perform the action.
+     * Optional. True to perform validations necessary for updating the resource,
+     * but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
+
+    /**
+     * @param \Google\Cloud\ResourceManager\V3\TagValue $tagValue   Required. The new definition of the TagValue. Only fields `description` and
+     *                                                              `etag` fields can be updated by this request. If the `etag` field is
+     *                                                              nonempty, it must match the `etag` field of the existing ControlGroup.
+     *                                                              Otherwise, `ABORTED` will be returned.
+     * @param \Google\Protobuf\FieldMask                $updateMask Optional. Fields to be updated.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\UpdateTagValueRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\TagValue $tagValue, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTagValue($tagValue)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -45,15 +63,15 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ResourceManager\V3\TagValue $tag_value
-     *           Required. The new definition of the TagValue. Only fields `description` and `etag`
-     *           fields can be updated by this request. If the `etag` field is nonempty, it
-     *           must match the `etag` field of the existing ControlGroup. Otherwise,
-     *           `FAILED_PRECONDITION` will be returned.
+     *           Required. The new definition of the TagValue. Only fields `description` and
+     *           `etag` fields can be updated by this request. If the `etag` field is
+     *           nonempty, it must match the `etag` field of the existing ControlGroup.
+     *           Otherwise, `ABORTED` will be returned.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Fields to be updated.
      *     @type bool $validate_only
-     *           Optional. True to perform validations necessary for updating the resource, but not
-     *           actually perform the action.
+     *           Optional. True to perform validations necessary for updating the resource,
+     *           but not actually perform the action.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,10 +80,10 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new definition of the TagValue. Only fields `description` and `etag`
-     * fields can be updated by this request. If the `etag` field is nonempty, it
-     * must match the `etag` field of the existing ControlGroup. Otherwise,
-     * `FAILED_PRECONDITION` will be returned.
+     * Required. The new definition of the TagValue. Only fields `description` and
+     * `etag` fields can be updated by this request. If the `etag` field is
+     * nonempty, it must match the `etag` field of the existing ControlGroup.
+     * Otherwise, `ABORTED` will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ResourceManager\V3\TagValue|null
@@ -86,10 +104,10 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new definition of the TagValue. Only fields `description` and `etag`
-     * fields can be updated by this request. If the `etag` field is nonempty, it
-     * must match the `etag` field of the existing ControlGroup. Otherwise,
-     * `FAILED_PRECONDITION` will be returned.
+     * Required. The new definition of the TagValue. Only fields `description` and
+     * `etag` fields can be updated by this request. If the `etag` field is
+     * nonempty, it must match the `etag` field of the existing ControlGroup.
+     * Otherwise, `ABORTED` will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ResourceManager\V3\TagValue $var
@@ -140,8 +158,8 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True to perform validations necessary for updating the resource, but not
-     * actually perform the action.
+     * Optional. True to perform validations necessary for updating the resource,
+     * but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -152,8 +170,8 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. True to perform validations necessary for updating the resource, but not
-     * actually perform the action.
+     * Optional. True to perform validations necessary for updating the resource,
+     * but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

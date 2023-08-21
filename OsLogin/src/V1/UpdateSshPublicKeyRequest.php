@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,15 +37,53 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                                    $name         Required. The fingerprint of the public key to update. Public keys are
+     *                                                                identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                                                                is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
+     *                                                                {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
+     * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
+     *
+     * @return \Google\Cloud\OsLogin\V1\UpdateSshPublicKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSshPublicKey($sshPublicKey);
+    }
+
+    /**
+     * @param string                                    $name         Required. The fingerprint of the public key to update. Public keys are
+     *                                                                identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                                                                is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
+     *                                                                {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
+     * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
+     * @param \Google\Protobuf\FieldMask                $updateMask   Mask to control which fields get updated. Updates all if not present.
+     *
+     * @return \Google\Cloud\OsLogin\V1\UpdateSshPublicKeyRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameSshPublicKeyUpdateMask(string $name, \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSshPublicKey($sshPublicKey)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The fingerprint of the public key to update. Public keys are identified by
-     *           their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *           `users/{user}/sshPublicKeys/{fingerprint}`.
+     *           Required. The fingerprint of the public key to update. Public keys are
+     *           identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *           is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     @type \Google\Cloud\OsLogin\Common\SshPublicKey $ssh_public_key
      *           Required. The SSH public key and expiration time.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -58,9 +96,9 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -71,9 +109,9 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

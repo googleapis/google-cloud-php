@@ -31,7 +31,7 @@ class ListDebuggeesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Debugger\V2\Debuggee[]|\Google\Protobuf\Internal\RepeatedField $debuggees
+     *     @type array<\Google\Cloud\Debugger\V2\Debuggee>|\Google\Protobuf\Internal\RepeatedField $debuggees
      *           List of debuggees accessible to the calling user.
      *           The fields `debuggee.id` and `description` are guaranteed to be set.
      *           The `description` field is a human readable field provided by agents and
@@ -64,7 +64,7 @@ class ListDebuggeesResponse extends \Google\Protobuf\Internal\Message
      * can be displayed to users.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.Debuggee debuggees = 1;</code>
-     * @param \Google\Cloud\Debugger\V2\Debuggee[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\Debuggee>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDebuggees($var)

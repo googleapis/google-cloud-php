@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSlatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project to list slates, in the form of `projects/{project_number}`.
+     * Required. The project to list slates, in the form of
+     * `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -48,13 +49,29 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The project to list slates, in the form of
+     *                       `projects/{project_number}/locations/{location}`. Please see
+     *                       {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\ListSlatesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project to list slates, in the form of `projects/{project_number}`.
+     *           Required. The project to list slates, in the form of
+     *           `projects/{project_number}/locations/{location}`.
      *     @type int $page_size
      *           Requested page size. Server may return fewer items than requested.
      *           If unspecified, server will pick an appropriate default.
@@ -72,7 +89,8 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project to list slates, in the form of `projects/{project_number}`.
+     * Required. The project to list slates, in the form of
+     * `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -83,7 +101,8 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project to list slates, in the form of `projects/{project_number}`.
+     * Required. The project to list slates, in the form of
+     * `projects/{project_number}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

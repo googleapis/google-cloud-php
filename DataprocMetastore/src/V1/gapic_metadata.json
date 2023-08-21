@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "DataprocMetastoreGapicClient",
                     "rpcs": {
+                        "AlterMetadataResourceLocation": {
+                            "methods": [
+                                "alterMetadataResourceLocation"
+                            ]
+                        },
                         "CreateBackup": {
                             "methods": [
                                 "createBackup"
@@ -70,6 +75,16 @@
                                 "listServices"
                             ]
                         },
+                        "MoveTableToDatabase": {
+                            "methods": [
+                                "moveTableToDatabase"
+                            ]
+                        },
+                        "QueryMetadata": {
+                            "methods": [
+                                "queryMetadata"
+                            ]
+                        },
                         "RestoreService": {
                             "methods": [
                                 "restoreService"
@@ -83,6 +98,90 @@
                         "UpdateService": {
                             "methods": [
                                 "updateService"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataprocMetastoreFederation": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataprocMetastoreFederationGapicClient",
+                    "rpcs": {
+                        "CreateFederation": {
+                            "methods": [
+                                "createFederation"
+                            ]
+                        },
+                        "DeleteFederation": {
+                            "methods": [
+                                "deleteFederation"
+                            ]
+                        },
+                        "GetFederation": {
+                            "methods": [
+                                "getFederation"
+                            ]
+                        },
+                        "ListFederations": {
+                            "methods": [
+                                "listFederations"
+                            ]
+                        },
+                        "UpdateFederation": {
+                            "methods": [
+                                "updateFederation"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

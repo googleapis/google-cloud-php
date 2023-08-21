@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.ExportData][google.cloud.aiplatform.v1.DatasetService.ExportData].
+ * Request message for
+ * [DatasetService.ExportData][google.cloud.aiplatform.v1.DatasetService.ExportData].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExportDataRequest</code>
  */
@@ -29,6 +30,24 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportDataConfig export_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $export_config = null;
+
+    /**
+     * @param string                                       $name         Required. The name of the Dataset resource.
+     *                                                                   Format:
+     *                                                                   `projects/{project}/locations/{location}/datasets/{dataset}`
+     *                                                                   Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\ExportDataConfig $exportConfig Required. The desired output location.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ExportDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\AIPlatform\V1\ExportDataConfig $exportConfig): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setExportConfig($exportConfig);
+    }
 
     /**
      * Constructor.

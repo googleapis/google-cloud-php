@@ -35,6 +35,19 @@ class CloneRulesFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $source_firewall_policy = null;
 
     /**
+     * @param string $firewallPolicy Name of the firewall policy to update.
+     *
+     * @return \Google\Cloud\Compute\V1\CloneRulesFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $firewallPolicy): self
+    {
+        return (new self())
+            ->setFirewallPolicy($firewallPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

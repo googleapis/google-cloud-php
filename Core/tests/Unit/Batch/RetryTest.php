@@ -20,7 +20,8 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -28,6 +29,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class RetryTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $runner;
     private $job;
     private $retry;
@@ -43,7 +46,7 @@ class RetryTest extends TestCase
         return rmdir($dir);
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$testDir = sprintf(
             '%s/google-cloud-unit-test-%d',
@@ -53,46 +56,63 @@ class RetryTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         self::delTree(self::$testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->runner = $this->prophesize(BatchRunner::class);
         $this->job = $this->prophesize(BatchJob::class);
     }
 
-    public function testRetryAll()
+    /**
+     * @dataProvider retryAllCases
+     */
+    public function testRetryAll($key, $item)
     {
-        $this->job->callFunc(array('apple', 'orange'))
+        $this->job->callFunc($item)
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
-        $this->runner->getJobFromIdNum(1)
+        $this->runner->getJobFromIdNum($key)
             ->willReturn($this->job->reveal())
             ->shouldBeCalledTimes(1);
         $this->retry = new Retry($this->runner->reveal());
-        $this->retry->handleFailure(1, array('apple', 'orange'));
+        $this->retry->handleFailure($key, $item);
         $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
         $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
     }
 
-    public function testRetryAllWithSingleFailure()
+    /**
+     * @dataProvider retryAllCases
+     */
+    public function testRetryAllWithSingleFailure($key, $item)
     {
-        $this->job->callFunc(array('apple', 'orange'))
+        $this->job->callFunc($item)
             ->willReturn(false, true)
             ->shouldBeCalledTimes(2);
-        $this->runner->getJobFromIdNum(1)
+        $this->runner->getJobFromIdNum($key)
             ->willReturn($this->job->reveal())
             ->shouldBeCalledTimes(2);
         $this->retry = new Retry($this->runner->reveal());
-        $this->retry->handleFailure(1, array('apple', 'orange'));
+        $this->retry->handleFailure($key, $item);
         $this->retry->retryAll();
         $this->assertCount(1, glob(self::$testDir . '/failed-items*'));
         $this->retry->retryAll();
         $this->assertCount(0, glob(self::$testDir . '/failed-items*'));
+    }
+
+    public function retryAllCases()
+    {
+        return [
+            // To test past behaviour of just serializing data
+            [1, array('apple', 'orange')],
+            // To test updated behaviour of just serializing then
+            // json_encoding the data
+            [1, array('apple' . PHP_EOL, 'orange')],
+        ];
     }
 }

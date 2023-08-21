@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dialogflow\V2\ListSessionEntityTypesResponse;
 use Google\Cloud\Dialogflow\V2\SessionEntityType;
 use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode;
@@ -45,25 +43,19 @@ use stdClass;
  */
 class SessionEntityTypesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SessionEntityTypesClient
-     */
+    /** @return SessionEntityTypesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +64,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         return new SessionEntityTypesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
@@ -110,9 +100,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -152,9 +140,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
@@ -178,9 +164,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +197,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +224,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -277,9 +257,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSessionEntityTypesTest()
     {
         $transport = $this->createTransport();
@@ -314,9 +292,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSessionEntityTypesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -349,9 +325,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
@@ -384,9 +358,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -425,9 +397,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -454,9 +424,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -487,9 +455,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -520,9 +486,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

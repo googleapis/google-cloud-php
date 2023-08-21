@@ -18,12 +18,12 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
     /**
      * Duration of the segments in seconds. The default is `6s`. Note that
      * `segmentDuration` must be greater than or equal to
-     * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration], and
-     * `segmentDuration` must be divisible by
+     * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration],
+     * and `segmentDuration` must be divisible by
      * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration].
      * Valid range is [2s, 20s].
-     * All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in the same manifest must have the
-     * same segment duration.
+     * All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in
+     * the same manifest must have the same segment duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      */
@@ -38,12 +38,12 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $segment_duration
      *           Duration of the segments in seconds. The default is `6s`. Note that
      *           `segmentDuration` must be greater than or equal to
-     *           [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration], and
-     *           `segmentDuration` must be divisible by
+     *           [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration],
+     *           and `segmentDuration` must be divisible by
      *           [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration].
      *           Valid range is [2s, 20s].
-     *           All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in the same manifest must have the
-     *           same segment duration.
+     *           All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in
+     *           the same manifest must have the same segment duration.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,12 +54,12 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
     /**
      * Duration of the segments in seconds. The default is `6s`. Note that
      * `segmentDuration` must be greater than or equal to
-     * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration], and
-     * `segmentDuration` must be divisible by
+     * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration],
+     * and `segmentDuration` must be divisible by
      * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration].
      * Valid range is [2s, 20s].
-     * All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in the same manifest must have the
-     * same segment duration.
+     * All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in
+     * the same manifest must have the same segment duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      * @return \Google\Protobuf\Duration|null
@@ -82,12 +82,12 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
     /**
      * Duration of the segments in seconds. The default is `6s`. Note that
      * `segmentDuration` must be greater than or equal to
-     * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration], and
-     * `segmentDuration` must be divisible by
+     * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration],
+     * and `segmentDuration` must be divisible by
      * [gop_duration][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration].
      * Valid range is [2s, 20s].
-     * All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in the same manifest must have the
-     * same segment duration.
+     * All [mux_streams][google.cloud.video.livestream.v1.Manifest.mux_streams] in
+     * the same manifest must have the same segment duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      * @param \Google\Protobuf\Duration $var

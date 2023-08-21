@@ -21,6 +21,14 @@ class ModelSourceInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo.ModelSourceType source_type = 1;</code>
      */
     private $source_type = 0;
+    /**
+     * If this Model is copy of another Model. If true then
+     * [source_type][google.cloud.aiplatform.v1.ModelSourceInfo.source_type]
+     * pertains to the original.
+     *
+     * Generated from protobuf field <code>bool copy = 2;</code>
+     */
+    private $copy = false;
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class ModelSourceInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type int $source_type
      *           Type of the model source.
+     *     @type bool $copy
+     *           If this Model is copy of another Model. If true then
+     *           [source_type][google.cloud.aiplatform.v1.ModelSourceInfo.source_type]
+     *           pertains to the original.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +71,36 @@ class ModelSourceInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\ModelSourceInfo\ModelSourceType::class);
         $this->source_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * If this Model is copy of another Model. If true then
+     * [source_type][google.cloud.aiplatform.v1.ModelSourceInfo.source_type]
+     * pertains to the original.
+     *
+     * Generated from protobuf field <code>bool copy = 2;</code>
+     * @return bool
+     */
+    public function getCopy()
+    {
+        return $this->copy;
+    }
+
+    /**
+     * If this Model is copy of another Model. If true then
+     * [source_type][google.cloud.aiplatform.v1.ModelSourceInfo.source_type]
+     * pertains to the original.
+     *
+     * Generated from protobuf field <code>bool copy = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCopy($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->copy = $var;
 
         return $this;
     }

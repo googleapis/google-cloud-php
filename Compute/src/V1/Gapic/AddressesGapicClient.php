@@ -26,7 +26,6 @@ namespace Google\Cloud\Compute\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -42,7 +41,9 @@ use Google\Cloud\Compute\V1\DeleteAddressRequest;
 use Google\Cloud\Compute\V1\GetAddressRequest;
 use Google\Cloud\Compute\V1\InsertAddressRequest;
 use Google\Cloud\Compute\V1\ListAddressesRequest;
+use Google\Cloud\Compute\V1\MoveAddressRequest;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\RegionAddressesMoveRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
 use Google\Cloud\Compute\V1\SetLabelsAddressRequest;
@@ -74,34 +75,27 @@ use Google\Cloud\Compute\V1\SetLabelsAddressRequest;
  *     $addressesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\AddressesClient} to use the new surface.
  */
 class AddressesGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.compute.v1.Addresses';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'compute.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -129,17 +123,13 @@ class AddressesGapicClient
         ];
     }
 
-    /**
-     * Implements GapicClientTrait::defaultTransport.
-     */
+    /** Implements GapicClientTrait::defaultTransport. */
     private static function defaultTransport()
     {
         return 'rest';
     }
 
-    /**
-     * Implements GapicClientTrait::getSupportedTransports.
-     */
+    /** Implements GapicClientTrait::getSupportedTransports. */
     private static function getSupportedTransports()
     {
         return [
@@ -157,9 +147,7 @@ class AddressesGapicClient
         return $this->operationsClient;
     }
 
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
+    /** Return the default longrunning operation descriptor config. */
     private function getDefaultOperationDescriptor()
     {
         return [
@@ -203,9 +191,6 @@ class AddressesGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
@@ -234,7 +219,7 @@ class AddressesGapicClient
      *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -632,6 +617,85 @@ class AddressesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('List', $optionalArgs, AddressList::class, $request);
+    }
+
+    /**
+     * Moves the specified address resource.
+     *
+     * Sample code:
+     * ```
+     * $addressesClient = new AddressesClient();
+     * try {
+     *     $address = 'address';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionAddressesMoveRequestResource = new RegionAddressesMoveRequest();
+     *     $operationResponse = $addressesClient->move($address, $project, $region, $regionAddressesMoveRequestResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $addressesClient->move($address, $project, $region, $regionAddressesMoveRequestResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $addressesClient->resumeOperation($operationName, 'move');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $addressesClient->close();
+     * }
+     * ```
+     *
+     * @param string                     $address                            Name of the address resource to move.
+     * @param string                     $project                            Source project ID which the Address is moved from.
+     * @param string                     $region                             Name of the region for this request.
+     * @param RegionAddressesMoveRequest $regionAddressesMoveRequestResource The body resource for this request
+     * @param array                      $optionalArgs                       {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function move($address, $project, $region, $regionAddressesMoveRequestResource, array $optionalArgs = [])
+    {
+        $request = new MoveAddressRequest();
+        $requestParamHeaders = [];
+        $request->setAddress($address);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionAddressesMoveRequestResource($regionAddressesMoveRequestResource);
+        $requestParamHeaders['address'] = $address;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('Move', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**

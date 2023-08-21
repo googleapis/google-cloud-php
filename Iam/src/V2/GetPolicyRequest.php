@@ -29,6 +29,28 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the policy to retrieve. Format:
+     *                     `policies/{attachment_point}/denypolicies/{policy_id}`
+     *
+     *
+     *                     Use the URL-encoded full resource name, which means that the forward-slash
+     *                     character, `/`, must be written as `%2F`. For example,
+     *                     `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`.
+     *
+     *                     For organizations and folders, use the numeric ID in the full resource
+     *                     name. For projects, you can use the alphanumeric or the numeric ID.
+     *
+     * @return \Google\Cloud\Iam\V2\GetPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -29,6 +29,12 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
     private $field_mask = null;
+    /**
+     * Specifies the sharding config for the output document.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.ShardingConfig sharding_config = 3;</code>
+     */
+    private $sharding_config = null;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
      *           Specifies which fields to include in the output documents.
      *           Only supports top level document and pages field so it must be in the
      *           form of `{document_field_name}` or `pages.{page_field_name}`.
+     *     @type \Google\Cloud\DocumentAI\V1\DocumentOutputConfig\GcsOutputConfig\ShardingConfig $sharding_config
+     *           Specifies the sharding config for the output document.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +119,42 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->field_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the sharding config for the output document.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.ShardingConfig sharding_config = 3;</code>
+     * @return \Google\Cloud\DocumentAI\V1\DocumentOutputConfig\GcsOutputConfig\ShardingConfig|null
+     */
+    public function getShardingConfig()
+    {
+        return $this->sharding_config;
+    }
+
+    public function hasShardingConfig()
+    {
+        return isset($this->sharding_config);
+    }
+
+    public function clearShardingConfig()
+    {
+        unset($this->sharding_config);
+    }
+
+    /**
+     * Specifies the sharding config for the output document.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.ShardingConfig sharding_config = 3;</code>
+     * @param \Google\Cloud\DocumentAI\V1\DocumentOutputConfig\GcsOutputConfig\ShardingConfig $var
+     * @return $this
+     */
+    public function setShardingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\DocumentOutputConfig\GcsOutputConfig\ShardingConfig::class);
+        $this->sharding_config = $var;
 
         return $this;
     }

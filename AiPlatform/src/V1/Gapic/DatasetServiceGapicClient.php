@@ -27,10 +27,8 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -42,6 +40,7 @@ use Google\Cloud\AIPlatform\V1\AnnotationSpec;
 use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
+use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataConfig;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
@@ -56,6 +55,9 @@ use Google\Cloud\AIPlatform\V1\ListDatasetsRequest;
 use Google\Cloud\AIPlatform\V1\ListDatasetsResponse;
 use Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest;
 use Google\Cloud\AIPlatform\V1\ListSavedQueriesResponse;
+use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
+use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest\OrderByAnnotation;
+use Google\Cloud\AIPlatform\V1\SearchDataItemsResponse;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
@@ -71,8 +73,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: The service that handles the CRUD of Vertex AI Dataset and its child
- * resources.
+ * Service Description: The service that manages Vertex AI Dataset and its child resources.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -86,7 +87,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -103,7 +104,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -117,34 +118,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient} to use the new surface.
  */
 class DatasetServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.DatasetService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -156,6 +150,8 @@ class DatasetServiceGapicClient
     private static $datasetNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $savedQueryNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -230,6 +226,17 @@ class DatasetServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getSavedQueryNameTemplate()
+    {
+        if (self::$savedQueryNameTemplate == null) {
+            self::$savedQueryNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}'
+            );
+        }
+
+        return self::$savedQueryNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -238,6 +245,7 @@ class DatasetServiceGapicClient
                 'dataItem' => self::getDataItemNameTemplate(),
                 'dataset' => self::getDatasetNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'savedQuery' => self::getSavedQueryNameTemplate(),
             ];
         }
 
@@ -331,6 +339,31 @@ class DatasetServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a saved_query
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $savedQuery
+     *
+     * @return string The formatted saved_query resource.
+     */
+    public static function savedQueryName(
+        $project,
+        $location,
+        $dataset,
+        $savedQuery
+    ) {
+        return self::getSavedQueryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'saved_query' => $savedQuery,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -338,6 +371,7 @@ class DatasetServiceGapicClient
      * - dataItem: projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}
      * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
      * - location: projects/{project}/locations/{location}
+     * - savedQuery: projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -419,9 +453,6 @@ class DatasetServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -451,7 +482,7 @@ class DatasetServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -490,7 +521,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -507,7 +538,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -628,6 +659,79 @@ class DatasetServiceGapicClient
     }
 
     /**
+     * Deletes a SavedQuery.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedName = $datasetServiceClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
+     *     $operationResponse = $datasetServiceClient->deleteSavedQuery($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $datasetServiceClient->deleteSavedQuery($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'deleteSavedQuery');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the SavedQuery to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteSavedQuery($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSavedQueryRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteSavedQuery',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Exports data from a Dataset.
      *
      * Sample code:
@@ -640,7 +744,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -657,7 +761,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -828,7 +932,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -845,7 +949,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -858,8 +962,8 @@ class DatasetServiceGapicClient
      * @param string             $name          Required. The name of the Dataset resource.
      *                                          Format:
      *                                          `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param ImportDataConfig[] $importConfigs Required. The desired input locations. The contents of all input locations will be
-     *                                          imported in one batch.
+     * @param ImportDataConfig[] $importConfigs Required. The desired input locations. The contents of all input locations
+     *                                          will be imported in one batch.
      * @param array              $optionalArgs  {
      *     Optional.
      *
@@ -1304,6 +1408,174 @@ class DatasetServiceGapicClient
     }
 
     /**
+     * Searches DataItems in a Dataset.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedDataset = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $datasetServiceClient->searchDataItems($formattedDataset);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $datasetServiceClient->searchDataItems($formattedDataset);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $dataset      Required. The resource name of the Dataset from which to search DataItems.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/datasets/{dataset}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $orderByDataItem
+     *           A comma-separated list of data item fields to order by, sorted in
+     *           ascending order. Use "desc" after a field name for descending.
+     *     @type OrderByAnnotation $orderByAnnotation
+     *           Expression that allows ranking results based on annotation's property.
+     *     @type string $savedQuery
+     *           The resource name of a SavedQuery(annotation set in UI).
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}`
+     *           All of the search will be done in the context of this SavedQuery.
+     *     @type string $dataLabelingJob
+     *           The resource name of a DataLabelingJob.
+     *           Format:
+     *           `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
+     *           If this field is set, all of the search will be done in the context of
+     *           this DataLabelingJob.
+     *     @type string $dataItemFilter
+     *           An expression for filtering the DataItem that will be returned.
+     *
+     *           * `data_item_id` - for = or !=.
+     *           * `labeled` - for = or !=.
+     *           * `has_annotation(ANNOTATION_SPEC_ID)` - true only for DataItem that
+     *           have at least one annotation with annotation_spec_id =
+     *           `ANNOTATION_SPEC_ID` in the context of SavedQuery or DataLabelingJob.
+     *
+     *           For example:
+     *
+     *           * `data_item=1`
+     *           * `has_annotation(5)`
+     *     @type string $annotationsFilter
+     *           An expression for filtering the Annotations that will be returned per
+     *           DataItem.
+     *           * `annotation_spec_id` - for = or !=.
+     *     @type string[] $annotationFilters
+     *           An expression that specifies what Annotations will be returned per
+     *           DataItem. Annotations satisfied either of the conditions will be returned.
+     *           * `annotation_spec_id` - for = or !=.
+     *           Must specify `saved_query_id=` - saved query id that annotations should
+     *           belong to.
+     *     @type FieldMask $fieldMask
+     *           Mask specifying which fields of
+     *           [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
+     *     @type int $annotationsLimit
+     *           If set, only up to this many of Annotations will be returned per
+     *           DataItemView. The maximum value is 1000. If not set, the maximum value will
+     *           be used.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $orderBy
+     *           A comma-separated list of fields to order by, sorted in ascending order.
+     *           Use "desc" after a field name for descending.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchDataItems($dataset, array $optionalArgs = [])
+    {
+        $request = new SearchDataItemsRequest();
+        $requestParamHeaders = [];
+        $request->setDataset($dataset);
+        $requestParamHeaders['dataset'] = $dataset;
+        if (isset($optionalArgs['orderByDataItem'])) {
+            $request->setOrderByDataItem($optionalArgs['orderByDataItem']);
+        }
+
+        if (isset($optionalArgs['orderByAnnotation'])) {
+            $request->setOrderByAnnotation($optionalArgs['orderByAnnotation']);
+        }
+
+        if (isset($optionalArgs['savedQuery'])) {
+            $request->setSavedQuery($optionalArgs['savedQuery']);
+        }
+
+        if (isset($optionalArgs['dataLabelingJob'])) {
+            $request->setDataLabelingJob($optionalArgs['dataLabelingJob']);
+        }
+
+        if (isset($optionalArgs['dataItemFilter'])) {
+            $request->setDataItemFilter($optionalArgs['dataItemFilter']);
+        }
+
+        if (isset($optionalArgs['annotationsFilter'])) {
+            $request->setAnnotationsFilter($optionalArgs['annotationsFilter']);
+        }
+
+        if (isset($optionalArgs['annotationFilters'])) {
+            $request->setAnnotationFilters($optionalArgs['annotationFilters']);
+        }
+
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+
+        if (isset($optionalArgs['annotationsLimit'])) {
+            $request->setAnnotationsLimit($optionalArgs['annotationsLimit']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'SearchDataItems',
+            $optionalArgs,
+            SearchDataItemsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Updates a Dataset.
      *
      * Sample code:
@@ -1320,8 +1592,8 @@ class DatasetServiceGapicClient
      *
      * @param Dataset   $dataset      Required. The Dataset which replaces the resource on the server.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     *                                For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     *                                Updatable fields:
+     *                                For the `FieldMask` definition, see
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *
      *                                * `display_name`
      *                                * `description`

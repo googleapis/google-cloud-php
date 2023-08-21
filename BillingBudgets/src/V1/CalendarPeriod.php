@@ -17,6 +17,9 @@ use UnexpectedValueException;
 class CalendarPeriod
 {
     /**
+     * Calendar period is unset. This is the default if the budget is for a
+     * custom time period (CustomPeriod).
+     *
      * Generated from protobuf enum <code>CALENDAR_PERIOD_UNSPECIFIED = 0;</code>
      */
     const CALENDAR_PERIOD_UNSPECIFIED = 0;

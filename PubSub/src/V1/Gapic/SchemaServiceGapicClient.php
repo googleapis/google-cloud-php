@@ -27,7 +27,6 @@ namespace Google\Cloud\PubSub\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -41,13 +40,17 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\PubSub\V1\CommitSchemaRequest;
 use Google\Cloud\PubSub\V1\CreateSchemaRequest;
 use Google\Cloud\PubSub\V1\DeleteSchemaRequest;
+use Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest;
 use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\GetSchemaRequest;
-
+use Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest;
+use Google\Cloud\PubSub\V1\ListSchemaRevisionsResponse;
 use Google\Cloud\PubSub\V1\ListSchemasRequest;
 use Google\Cloud\PubSub\V1\ListSchemasResponse;
+use Google\Cloud\PubSub\V1\RollbackSchemaRequest;
 use Google\Cloud\PubSub\V1\Schema;
 use Google\Cloud\PubSub\V1\ValidateMessageRequest;
 use Google\Cloud\PubSub\V1\ValidateMessageResponse;
@@ -65,9 +68,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $schemaServiceClient = new SchemaServiceClient();
  * try {
- *     $formattedParent = $schemaServiceClient->projectName('[PROJECT]');
+ *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
  *     $schema = new Schema();
- *     $response = $schemaServiceClient->createSchema($formattedParent, $schema);
+ *     $response = $schemaServiceClient->commitSchema($formattedName, $schema);
  * } finally {
  *     $schemaServiceClient->close();
  * }
@@ -77,34 +80,27 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\PubSub\V1\Client\SchemaServiceClient} to use the new surface.
  */
 class SchemaServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.pubsub.v1.SchemaService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'pubsub.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/pubsub',
@@ -245,9 +241,6 @@ class SchemaServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'pubsub.googleapis.com:443'.
@@ -277,7 +270,7 @@ class SchemaServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -300,6 +293,49 @@ class SchemaServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Commits a new schema revision to an existing schema.
+     *
+     * Sample code:
+     * ```
+     * $schemaServiceClient = new SchemaServiceClient();
+     * try {
+     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
+     *     $schema = new Schema();
+     *     $response = $schemaServiceClient->commitSchema($formattedName, $schema);
+     * } finally {
+     *     $schemaServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the schema we are revising.
+     *                             Format is `projects/{project}/schemas/{schema}`.
+     * @param Schema $schema       Required. The schema revision to commit.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\PubSub\V1\Schema
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function commitSchema($name, $schema, array $optionalArgs = [])
+    {
+        $request = new CommitSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setSchema($schema);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CommitSchema', Schema::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -398,6 +434,53 @@ class SchemaServiceGapicClient
     }
 
     /**
+     * Deletes a specific schema revision.
+     *
+     * Sample code:
+     * ```
+     * $schemaServiceClient = new SchemaServiceClient();
+     * try {
+     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
+     *     $revisionId = 'revision_id';
+     *     $response = $schemaServiceClient->deleteSchemaRevision($formattedName, $revisionId);
+     * } finally {
+     *     $schemaServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the schema revision to be deleted, with a revision ID
+     *                             explicitly included.
+     *
+     *                             Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
+     * @param string $revisionId   Optional. This field is deprecated and should not be used for specifying
+     *                             the revision ID. The revision ID should be specified via the `name`
+     *                             parameter.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\PubSub\V1\Schema
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteSchemaRevision($name, $revisionId, array $optionalArgs = [])
+    {
+        $request = new DeleteSchemaRevisionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setRevisionId($revisionId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteSchemaRevision', Schema::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a schema.
      *
      * Sample code:
@@ -418,8 +501,7 @@ class SchemaServiceGapicClient
      *
      *     @type int $view
      *           The set of fields to return in the response. If not set, returns a Schema
-     *           with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
-     *           fields.
+     *           with all fields filled out. Set to `BASIC` to omit the `definition`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\PubSub\V1\SchemaView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -444,6 +526,83 @@ class SchemaServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSchema', Schema::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lists all schema revisions for the named schema.
+     *
+     * Sample code:
+     * ```
+     * $schemaServiceClient = new SchemaServiceClient();
+     * try {
+     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $schemaServiceClient->listSchemaRevisions($formattedName);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $schemaServiceClient->listSchemaRevisions($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $schemaServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the schema to list revisions for.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $view
+     *           The set of Schema fields to return in the response. If not set, returns
+     *           Schemas with `name` and `type`, but not `definition`. Set to `FULL` to
+     *           retrieve all fields.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\PubSub\V1\SchemaView}
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSchemaRevisions($name, array $optionalArgs = [])
+    {
+        $request = new ListSchemaRevisionsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSchemaRevisions', $optionalArgs, ListSchemaRevisionsResponse::class, $request);
     }
 
     /**
@@ -522,6 +681,51 @@ class SchemaServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListSchemas', $optionalArgs, ListSchemasResponse::class, $request);
+    }
+
+    /**
+     * Creates a new schema revision that is a copy of the provided revision_id.
+     *
+     * Sample code:
+     * ```
+     * $schemaServiceClient = new SchemaServiceClient();
+     * try {
+     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
+     *     $revisionId = 'revision_id';
+     *     $response = $schemaServiceClient->rollbackSchema($formattedName, $revisionId);
+     * } finally {
+     *     $schemaServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The schema being rolled back with revision id.
+     * @param string $revisionId   Required. The revision ID to roll back to.
+     *                             It must be a revision of the same schema.
+     *
+     *                             Example: c7cfa2a8
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\PubSub\V1\Schema
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rollbackSchema($name, $revisionId, array $optionalArgs = [])
+    {
+        $request = new RollbackSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setRevisionId($revisionId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RollbackSchema', Schema::class, $optionalArgs, $request)->wait();
     }
 
     /**

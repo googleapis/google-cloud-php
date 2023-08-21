@@ -17,14 +17,16 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The IP address of the caller.
-     * For caller from internet, this will be public IPv4 or IPv6 address.
-     * For caller from a Compute Engine VM with external IP address, this
-     * will be the VM's external IP address. For caller from a Compute
-     * Engine VM without external IP address, if the VM is in the same
-     * organization (or project) as the accessed resource, `caller_ip` will
-     * be the VM's internal IPv4 address, otherwise the `caller_ip` will be
-     * redacted to "gce-internal-ip".
-     * See https://cloud.google.com/compute/docs/vpc/ for more information.
+     * For a caller from the internet, this will be the public IPv4 or IPv6
+     * address. For calls made from inside Google's internal production network
+     * from one GCP service to another, `caller_ip` will be redacted to "private".
+     * For a caller from a Compute Engine VM with a external IP address,
+     * `caller_ip` will be the VM's external IP address. For a caller from a
+     * Compute Engine VM without a external IP address, if the VM is in the same
+     * organization (or project) as the accessed resource, `caller_ip` will be the
+     * VM's internal IPv4 address, otherwise `caller_ip` will be redacted to
+     * "gce-internal-ip". See https://cloud.google.com/compute/docs/vpc/ for more
+     * information.
      *
      * Generated from protobuf field <code>string caller_ip = 1;</code>
      */
@@ -85,14 +87,16 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type string $caller_ip
      *           The IP address of the caller.
-     *           For caller from internet, this will be public IPv4 or IPv6 address.
-     *           For caller from a Compute Engine VM with external IP address, this
-     *           will be the VM's external IP address. For caller from a Compute
-     *           Engine VM without external IP address, if the VM is in the same
-     *           organization (or project) as the accessed resource, `caller_ip` will
-     *           be the VM's internal IPv4 address, otherwise the `caller_ip` will be
-     *           redacted to "gce-internal-ip".
-     *           See https://cloud.google.com/compute/docs/vpc/ for more information.
+     *           For a caller from the internet, this will be the public IPv4 or IPv6
+     *           address. For calls made from inside Google's internal production network
+     *           from one GCP service to another, `caller_ip` will be redacted to "private".
+     *           For a caller from a Compute Engine VM with a external IP address,
+     *           `caller_ip` will be the VM's external IP address. For a caller from a
+     *           Compute Engine VM without a external IP address, if the VM is in the same
+     *           organization (or project) as the accessed resource, `caller_ip` will be the
+     *           VM's internal IPv4 address, otherwise `caller_ip` will be redacted to
+     *           "gce-internal-ip". See https://cloud.google.com/compute/docs/vpc/ for more
+     *           information.
      *     @type string $caller_supplied_user_agent
      *           The user agent of the caller.
      *           This information is not authenticated and should be treated accordingly.
@@ -133,14 +137,16 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP address of the caller.
-     * For caller from internet, this will be public IPv4 or IPv6 address.
-     * For caller from a Compute Engine VM with external IP address, this
-     * will be the VM's external IP address. For caller from a Compute
-     * Engine VM without external IP address, if the VM is in the same
-     * organization (or project) as the accessed resource, `caller_ip` will
-     * be the VM's internal IPv4 address, otherwise the `caller_ip` will be
-     * redacted to "gce-internal-ip".
-     * See https://cloud.google.com/compute/docs/vpc/ for more information.
+     * For a caller from the internet, this will be the public IPv4 or IPv6
+     * address. For calls made from inside Google's internal production network
+     * from one GCP service to another, `caller_ip` will be redacted to "private".
+     * For a caller from a Compute Engine VM with a external IP address,
+     * `caller_ip` will be the VM's external IP address. For a caller from a
+     * Compute Engine VM without a external IP address, if the VM is in the same
+     * organization (or project) as the accessed resource, `caller_ip` will be the
+     * VM's internal IPv4 address, otherwise `caller_ip` will be redacted to
+     * "gce-internal-ip". See https://cloud.google.com/compute/docs/vpc/ for more
+     * information.
      *
      * Generated from protobuf field <code>string caller_ip = 1;</code>
      * @return string
@@ -152,14 +158,16 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP address of the caller.
-     * For caller from internet, this will be public IPv4 or IPv6 address.
-     * For caller from a Compute Engine VM with external IP address, this
-     * will be the VM's external IP address. For caller from a Compute
-     * Engine VM without external IP address, if the VM is in the same
-     * organization (or project) as the accessed resource, `caller_ip` will
-     * be the VM's internal IPv4 address, otherwise the `caller_ip` will be
-     * redacted to "gce-internal-ip".
-     * See https://cloud.google.com/compute/docs/vpc/ for more information.
+     * For a caller from the internet, this will be the public IPv4 or IPv6
+     * address. For calls made from inside Google's internal production network
+     * from one GCP service to another, `caller_ip` will be redacted to "private".
+     * For a caller from a Compute Engine VM with a external IP address,
+     * `caller_ip` will be the VM's external IP address. For a caller from a
+     * Compute Engine VM without a external IP address, if the VM is in the same
+     * organization (or project) as the accessed resource, `caller_ip` will be the
+     * VM's internal IPv4 address, otherwise `caller_ip` will be redacted to
+     * "gce-internal-ip". See https://cloud.google.com/compute/docs/vpc/ for more
+     * information.
      *
      * Generated from protobuf field <code>string caller_ip = 1;</code>
      * @param string $var
@@ -266,7 +274,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRequestAttributes()
     {
-        return isset($this->request_attributes) ? $this->request_attributes : null;
+        return $this->request_attributes;
     }
 
     public function hasRequestAttributes()
@@ -311,7 +319,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDestinationAttributes()
     {
-        return isset($this->destination_attributes) ? $this->destination_attributes : null;
+        return $this->destination_attributes;
     }
 
     public function hasDestinationAttributes()

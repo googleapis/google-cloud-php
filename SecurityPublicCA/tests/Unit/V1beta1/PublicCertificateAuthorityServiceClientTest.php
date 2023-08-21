@@ -25,7 +25,6 @@ namespace Google\Cloud\Security\PublicCA\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey;
 use Google\Cloud\Security\PublicCA\V1beta1\PublicCertificateAuthorityServiceClient;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PublicCertificateAuthorityServiceClient
-     */
+    /** @return PublicCertificateAuthorityServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
         return new PublicCertificateAuthorityServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createExternalAccountKeyTest()
     {
         $transport = $this->createTransport();
@@ -102,9 +93,7 @@ class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createExternalAccountKeyExceptionTest()
     {
         $transport = $this->createTransport();

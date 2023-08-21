@@ -22,8 +22,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The new definition of the Folder. It must include the `name` field, which
-     * cannot be changed.
+     * Required. The new definition of the Folder. It must include the `name`
+     * field, which cannot be changed.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder folder = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,14 +37,31 @@ class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\Folder $folder     Required. The new definition of the Folder. It must include the `name`
+     *                                                            field, which cannot be changed.
+     * @param \Google\Protobuf\FieldMask              $updateMask Required. Fields to be updated.
+     *                                                            Only the `display_name` can be updated.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\UpdateFolderRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\Folder $folder, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFolder($folder)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ResourceManager\V3\Folder $folder
-     *           Required. The new definition of the Folder. It must include the `name` field, which
-     *           cannot be changed.
+     *           Required. The new definition of the Folder. It must include the `name`
+     *           field, which cannot be changed.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Fields to be updated.
      *           Only the `display_name` can be updated.
@@ -56,8 +73,8 @@ class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new definition of the Folder. It must include the `name` field, which
-     * cannot be changed.
+     * Required. The new definition of the Folder. It must include the `name`
+     * field, which cannot be changed.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder folder = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ResourceManager\V3\Folder|null
@@ -78,8 +95,8 @@ class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new definition of the Folder. It must include the `name` field, which
-     * cannot be changed.
+     * Required. The new definition of the Folder. It must include the `name`
+     * field, which cannot be changed.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder folder = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ResourceManager\V3\Folder $var

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Account Defender risk assessment.
+ * Account defender risk assessment.
  *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment</code>
  */
@@ -28,7 +28,7 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $labels
      *           Labels for this request.
      * }
      */
@@ -52,7 +52,7 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
      * Labels for this request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountDefenderLabel labels = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLabels($var)

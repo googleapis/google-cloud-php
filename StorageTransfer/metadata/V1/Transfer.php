@@ -23,7 +23,7 @@ class Transfer
         \GPBMetadata\Google\Storagetransfer\V1\TransferTypes::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‰"
+È"
 (google/storagetransfer/v1/transfer.protogoogle.storagetransfer.v1google/api/client.protogoogle/api/field_behavior.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto.google/storagetransfer/v1/transfer_types.proto"9
 GetGoogleServiceAccountRequest
 
@@ -102,8 +102,8 @@ agent_pool⁄Aagent_pool,update_maskó
 GetAgentPool..google.storagetransfer.v1.GetAgentPoolRequest$.google.storagetransfer.v1.AgentPool"1Ç”‰ì$"/v1/{name=projects/*/agentPools/*}⁄Aname≤
 ListAgentPools0.google.storagetransfer.v1.ListAgentPoolsRequest1.google.storagetransfer.v1.ListAgentPoolsResponse";Ç”‰ì(&/v1/projects/{project_id=*}/agentPools⁄A
 project_idè
-DeleteAgentPool1.google.storagetransfer.v1.DeleteAgentPoolRequest.google.protobuf.Empty"1Ç”‰ì$*"/v1/{name=projects/*/agentPools/*}⁄AnameR Astoragetransfer.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÍ
-#com.google.storagetransfer.v1.protoBTransferProtoZHgoogle.golang.org/genproto/googleapis/storagetransfer/v1;storagetransfer¯™Google.Cloud.StorageTransfer.V1 Google\\Cloud\\StorageTransfer\\V1Í"Google::Cloud::StorageTransfer::V1bproto3'
+DeleteAgentPool1.google.storagetransfer.v1.DeleteAgentPoolRequest.google.protobuf.Empty"1Ç”‰ì$*"/v1/{name=projects/*/agentPools/*}⁄AnameR Astoragetransfer.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÔ
+#com.google.storagetransfer.v1.protoBTransferProtoZMcloud.google.com/go/storagetransfer/apiv1/storagetransferpb;storagetransferpb¯™Google.Cloud.StorageTransfer.V1 Google\\Cloud\\StorageTransfer\\V1Í"Google::Cloud::StorageTransfer::V1bproto3'
         , true);
 
         static::$is_initialized = true;

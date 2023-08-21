@@ -41,6 +41,23 @@ class InsertRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                              $project            Project ID for this request.
+     * @param string                              $region             Name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\Commitment $commitmentResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\Commitment $commitmentResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setCommitmentResource($commitmentResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      */
     private $index = 0;
     /**
-     * Copy of the corresponding [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified in the
-     * `Shipment`.
+     * Copy of the corresponding
+     * [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified
+     * in the `Shipment`.
      *
      * Generated from protobuf field <code>string label = 2;</code>
      */
@@ -49,8 +50,9 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      *           The index corresponds to the index of the shipment in the source
      *           `ShipmentModel`.
      *     @type string $label
-     *           Copy of the corresponding [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified in the
-     *           `Shipment`.
+     *           Copy of the corresponding
+     *           [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified
+     *           in the `Shipment`.
      *     @type array<\Google\Cloud\Optimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $reasons
      *           A list of reasons that explain why the shipment was skipped. See comment
      *           above `Reason`.
@@ -90,8 +92,9 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Copy of the corresponding [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified in the
-     * `Shipment`.
+     * Copy of the corresponding
+     * [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified
+     * in the `Shipment`.
      *
      * Generated from protobuf field <code>string label = 2;</code>
      * @return string
@@ -102,8 +105,9 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Copy of the corresponding [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified in the
-     * `Shipment`.
+     * Copy of the corresponding
+     * [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified
+     * in the `Shipment`.
      *
      * Generated from protobuf field <code>string label = 2;</code>
      * @param string $var

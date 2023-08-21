@@ -25,9 +25,9 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
      */
     private $main_r_file_uri = '';
     /**
-     * Optional. The arguments to pass to the Spark driver. Do not include arguments
-     * that can be set as batch properties, such as `--conf`, since a collision
-     * can occur that causes an incorrect batch submission.
+     * Optional. The arguments to pass to the Spark driver. Do not include
+     * arguments that can be set as batch properties, such as `--conf`, since a
+     * collision can occur that causes an incorrect batch submission.
      *
      * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -58,9 +58,9 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
      *           Required. The HCFS URI of the main R file to use as the driver.
      *           Must be a `.R` or `.r` file.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
-     *           Optional. The arguments to pass to the Spark driver. Do not include arguments
-     *           that can be set as batch properties, such as `--conf`, since a collision
-     *           can occur that causes an incorrect batch submission.
+     *           Optional. The arguments to pass to the Spark driver. Do not include
+     *           arguments that can be set as batch properties, such as `--conf`, since a
+     *           collision can occur that causes an incorrect batch submission.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
      *           Optional. HCFS URIs of files to be placed in the working directory of
      *           each executor.
@@ -104,9 +104,9 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The arguments to pass to the Spark driver. Do not include arguments
-     * that can be set as batch properties, such as `--conf`, since a collision
-     * can occur that causes an incorrect batch submission.
+     * Optional. The arguments to pass to the Spark driver. Do not include
+     * arguments that can be set as batch properties, such as `--conf`, since a
+     * collision can occur that causes an incorrect batch submission.
      *
      * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -117,9 +117,9 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The arguments to pass to the Spark driver. Do not include arguments
-     * that can be set as batch properties, such as `--conf`, since a collision
-     * can occur that causes an incorrect batch submission.
+     * Optional. The arguments to pass to the Spark driver. Do not include
+     * arguments that can be set as batch properties, such as `--conf`, since a
+     * collision can occur that causes an incorrect batch submission.
      *
      * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

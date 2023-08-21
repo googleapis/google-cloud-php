@@ -29,7 +29,7 @@ class FileHashes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Build\V1\Hash[]|\Google\Protobuf\Internal\RepeatedField $file_hash
+     *     @type array<\Google\Cloud\Build\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $file_hash
      *           Collection of file hashes.
      * }
      */
@@ -53,7 +53,7 @@ class FileHashes extends \Google\Protobuf\Internal\Message
      * Collection of file hashes.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Hash file_hash = 1;</code>
-     * @param \Google\Cloud\Build\V1\Hash[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileHash($var)

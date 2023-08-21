@@ -15,17 +15,20 @@ use Google\Protobuf\Internal\GPBUtil;
  * response code ([`200` - `299`]), the task will be removed from the queue. If
  * any other HTTP response code is returned or no response is received, the
  * task will be retried according to the following:
- * * User-specified throttling: [retry configuration][google.cloud.tasks.v2beta3.Queue.retry_config],
- *   [rate limits][google.cloud.tasks.v2beta3.Queue.rate_limits], and the [queue's state][google.cloud.tasks.v2beta3.Queue.state].
+ * * User-specified throttling: [retry
+ * configuration][google.cloud.tasks.v2beta3.Queue.retry_config],
+ *   [rate limits][google.cloud.tasks.v2beta3.Queue.rate_limits], and the
+ *   [queue's state][google.cloud.tasks.v2beta3.Queue.state].
  * * System throttling: To prevent the worker from overloading, Cloud Tasks may
  *   temporarily reduce the queue's effective rate. User-specified settings
  *   will not be changed.
  *  System throttling happens because:
  *   * Cloud Tasks backs off on all errors. Normally the backoff specified in
- *     [rate limits][google.cloud.tasks.v2beta3.Queue.rate_limits] will be used. But if the worker returns
- *     `429` (Too Many Requests), `503` (Service Unavailable), or the rate of
- *     errors is high, Cloud Tasks will use a higher backoff rate. The retry
- *     specified in the `Retry-After` HTTP response header is considered.
+ *     [rate limits][google.cloud.tasks.v2beta3.Queue.rate_limits] will be used.
+ *     But if the worker returns `429` (Too Many Requests), `503` (Service
+ *     Unavailable), or the rate of errors is high, Cloud Tasks will use a
+ *     higher backoff rate. The retry specified in the `Retry-After` HTTP
+ *     response header is considered.
  *   * To prevent traffic spikes and to smooth sudden increases in traffic,
  *     dispatches ramp up slowly when the queue is newly created or idle and
  *     if large numbers of tasks suddenly become available to dispatch (due to
@@ -62,6 +65,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
+     * * Any header that is prefixed with "X-CloudTasks-" will be treated
+     * as service header. Service headers define properties of the task and are
+     * predefined in CloudTask.
      * * Host: This will be computed by Cloud Tasks and derived from
      *   [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      * * Content-Length: This will be computed by Cloud Tasks.
@@ -83,8 +89,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     * PUT, or PATCH. It is an error to set body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      */
@@ -115,6 +122,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *           These headers represent a subset of the headers that will accompany the
      *           task's HTTP request. Some HTTP request headers will be ignored or replaced.
      *           A partial list of headers that will be ignored or replaced is:
+     *           * Any header that is prefixed with "X-CloudTasks-" will be treated
+     *           as service header. Service headers define properties of the task and are
+     *           predefined in CloudTask.
      *           * Host: This will be computed by Cloud Tasks and derived from
      *             [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      *           * Content-Length: This will be computed by Cloud Tasks.
@@ -132,8 +142,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *     @type string $body
      *           HTTP request body.
      *           A request body is allowed only if the
-     *           [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     *           error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     *           [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     *           PUT, or PATCH. It is an error to set body on a task with an incompatible
+     *           [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *     @type \Google\Cloud\Tasks\V2beta3\OAuthToken $oauth_token
      *           If specified, an
      *           [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
@@ -228,6 +239,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
+     * * Any header that is prefixed with "X-CloudTasks-" will be treated
+     * as service header. Service headers define properties of the task and are
+     * predefined in CloudTask.
      * * Host: This will be computed by Cloud Tasks and derived from
      *   [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      * * Content-Length: This will be computed by Cloud Tasks.
@@ -259,6 +273,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
+     * * Any header that is prefixed with "X-CloudTasks-" will be treated
+     * as service header. Service headers define properties of the task and are
+     * predefined in CloudTask.
      * * Host: This will be computed by Cloud Tasks and derived from
      *   [HttpRequest.url][google.cloud.tasks.v2beta3.HttpRequest.url].
      * * Content-Length: This will be computed by Cloud Tasks.
@@ -289,8 +306,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     * PUT, or PATCH. It is an error to set body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      * @return string
@@ -303,8 +321,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     * PUT, or PATCH. It is an error to set body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      * @param string $var

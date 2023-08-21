@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-data-fusion/v/stable)](https://packagist.org/packages/google/cloud-data-fusion) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-data-fusion.svg)](https://packagist.org/packages/google/cloud-data-fusion)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-data-fusion/latest/datafusion/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-data-fusion/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

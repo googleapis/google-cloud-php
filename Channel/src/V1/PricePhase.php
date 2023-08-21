@@ -62,7 +62,7 @@ class PricePhase extends \Google\Protobuf\Internal\Message
      *           Defines first period for the phase.
      *     @type \Google\Cloud\Channel\V1\Price $price
      *           Price of the phase. Present if there are no price tiers.
-     *     @type \Google\Cloud\Channel\V1\PriceTier[]|\Google\Protobuf\Internal\RepeatedField $price_tiers
+     *     @type array<\Google\Cloud\Channel\V1\PriceTier>|\Google\Protobuf\Internal\RepeatedField $price_tiers
      *           Price by the resource tiers.
      * }
      */
@@ -200,7 +200,7 @@ class PricePhase extends \Google\Protobuf\Internal\Message
      * Price by the resource tiers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceTier price_tiers = 5;</code>
-     * @param \Google\Cloud\Channel\V1\PriceTier[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\PriceTier>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPriceTiers($var)

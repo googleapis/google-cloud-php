@@ -20,7 +20,7 @@ class RecommenderConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-þ
+ù
 4google/cloud/recommender/v1/recommender_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ó
 RecommenderConfig
 name (	_
@@ -35,8 +35,8 @@ class RecommenderConfig
 value (	:8:ÒêAÎ
 ,recommender.googleapis.com/RecommenderConfigIprojects/{project}/locations/{location}/recommenders/{recommender}/configSorganizations/{organization}/locations/{location}/recommenders/{recommender}/config"F
 RecommenderGenerationConfig\'
-params (2.google.protobuf.StructB¨
-com.google.cloud.recommender.v1BRecommenderConfigProtoPZFgoogle.golang.org/genproto/googleapis/cloud/recommender/v1;recommender¢CRECªGoogle.Cloud.Recommender.V1bproto3'
+params (2.google.protobuf.StructB£
+com.google.cloud.recommender.v1BRecommenderConfigProtoPZAcloud.google.com/go/recommender/apiv1/recommenderpb;recommenderpb¢CRECªGoogle.Cloud.Recommender.V1bproto3'
         , true);
 
         static::$is_initialized = true;

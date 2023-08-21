@@ -19,21 +19,18 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ServiceBuilder;
 use Composer\Autoload\ClassLoader;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
  */
 class ServicesNotFoundTest extends TestCase
 {
-    use ExpectException;
-
     private static $previousAutoloadFunc;
     private static $newAutoloadFunc;
     private static $cloud;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$cloud = new ServiceBuilder;
         foreach (spl_autoload_functions() as $function) {
@@ -49,7 +46,7 @@ class ServicesNotFoundTest extends TestCase
         }
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         spl_autoload_register(self::$previousAutoloadFunc);
         spl_autoload_unregister(self::$newAutoloadFunc);

@@ -19,15 +19,15 @@ class Operation
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-†
+€
 *google/cloud/aiplatform/v1/operation.protogoogle.cloud.aiplatform.v1google/protobuf/timestamp.protogoogle/rpc/status.proto"¹
 GenericOperationMetadata1
 partial_failures (2.google.rpc.StatusBàA4
 create_time (2.google.protobuf.TimestampBàA4
 update_time (2.google.protobuf.TimestampBàA"i
 DeleteOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadataBÒ
-com.google.cloud.aiplatform.v1BOperationProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadataBÌ
+com.google.cloud.aiplatform.v1BOperationProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

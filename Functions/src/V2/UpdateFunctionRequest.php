@@ -31,6 +31,23 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Functions\V2\PBFunction $function   Required. New version of the function.
+     * @param \Google\Protobuf\FieldMask            $updateMask The list of fields to be updated.
+     *                                                          If no field mask is provided, all provided fields in the request will be
+     *                                                          updated.
+     *
+     * @return \Google\Cloud\Functions\V2\UpdateFunctionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Functions\V2\PBFunction $function, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFunction($function)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

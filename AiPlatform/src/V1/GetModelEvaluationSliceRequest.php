@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.GetModelEvaluationSlice][google.cloud.aiplatform.v1.ModelService.GetModelEvaluationSlice].
+ * Request message for
+ * [ModelService.GetModelEvaluationSlice][google.cloud.aiplatform.v1.ModelService.GetModelEvaluationSlice].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetModelEvaluationSliceRequest</code>
  */
@@ -23,6 +24,22 @@ class GetModelEvaluationSliceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the ModelEvaluationSlice resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
+     *                     Please see {@see ModelServiceClient::modelEvaluationSliceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetModelEvaluationSliceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

@@ -59,6 +59,4 @@ class CustomerType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CustomerType::class, \Google\Cloud\Channel\V1\CloudIdentityInfo_CustomerType::class);
 

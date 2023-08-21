@@ -25,7 +25,6 @@ namespace Google\Cloud\Sql\Tests\Unit\V1beta4;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1beta4\BackupRun;
 use Google\Cloud\Sql\V1beta4\BackupRunsListResponse;
@@ -41,25 +40,19 @@ use stdClass;
  */
 class SqlBackupRunsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SqlBackupRunsServiceClient
-     */
+    /** @return SqlBackupRunsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -68,9 +61,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         return new SqlBackupRunsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $transport = $this->createTransport();
@@ -105,9 +96,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -138,9 +127,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -155,6 +142,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $instance2 = 'instance2902024968';
         $selfLink = 'selfLink-1691268851';
         $location = 'location1901043637';
+        $timeZone = 'timeZone36848094';
         $expectedResponse = new BackupRun();
         $expectedResponse->setKind($kind);
         $expectedResponse->setId($id2);
@@ -162,6 +150,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $expectedResponse->setInstance($instance2);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setLocation($location);
+        $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         $response = $gapicClient->get();
         $this->assertEquals($expectedResponse, $response);
@@ -173,9 +162,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -206,9 +193,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $transport = $this->createTransport();
@@ -243,9 +228,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $transport = $this->createTransport();
@@ -276,9 +259,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -303,9 +284,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();

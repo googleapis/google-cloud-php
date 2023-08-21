@@ -27,7 +27,8 @@ class InfrastructureSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\ComputeResources $compute
      *           Optional. Compute resources needed for analyze interactive workloads.
      *     @type \Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime $os_image
-     *           Required. Software Runtime Configuration for analyze interactive workloads.
+     *           Required. Software Runtime Configuration for analyze interactive
+     *           workloads.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,7 +68,8 @@ class InfrastructureSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Software Runtime Configuration for analyze interactive workloads.
+     * Required. Software Runtime Configuration for analyze interactive
+     * workloads.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.InfrastructureSpec.OsImageRuntime os_image = 100 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime|null
@@ -83,7 +85,8 @@ class InfrastructureSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Software Runtime Configuration for analyze interactive workloads.
+     * Required. Software Runtime Configuration for analyze interactive
+     * workloads.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.InfrastructureSpec.OsImageRuntime os_image = 100 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime $var

@@ -151,14 +151,10 @@ trait GetComponentsTrait
     private function getComponentComposer($libraryRootPath, $componentId, $defaultComposerPath = null)
     {
         if (!$defaultComposerPath) {
-            $defaultComposerPath = isset($this->defaultComponentComposer)
-                ? $this->defaultComponentComposer
-                : null;
+            $defaultComposerPath = $this->defaultComponentComposer ?? null;
         }
 
-        $componentsDir = isset($this->components)
-            ? $this->components
-            : $libraryRootPath;
+        $componentsDir = $this->components ?? $libraryRootPath;
 
         $components = $this->getComponents($libraryRootPath, $componentsDir, $defaultComposerPath);
 

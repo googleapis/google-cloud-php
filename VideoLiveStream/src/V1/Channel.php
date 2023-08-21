@@ -53,15 +53,18 @@ class Channel extends \Google\Protobuf\Internal\Message
      */
     private $input_attachments;
     /**
-     * Output only. The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that serves as the current input source. The
-     * first input in the [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments] is the initial input source.
+     * Output only. The
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     * that serves as the current input source. The first input in the
+     * [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments]
+     * is the initial input source.
      *
      * Generated from protobuf field <code>string active_input = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $active_input = '';
     /**
-     * Required. Information about the output (that is, the Cloud Storage bucket to store
-     * the generated live stream).
+     * Required. Information about the output (that is, the Cloud Storage bucket
+     * to store the generated live stream).
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Channel.Output output = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -97,8 +100,10 @@ class Channel extends \Google\Protobuf\Internal\Message
      */
     private $streaming_state = 0;
     /**
-     * Output only. A description of the reason for the streaming error. This property is
-     * always present when [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state] is
+     * Output only. A description of the reason for the streaming error. This
+     * property is always present when
+     * [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state]
+     * is
      * [STREAMING_ERROR][google.cloud.video.livestream.v1.Channel.StreamingState.STREAMING_ERROR].
      *
      * Generated from protobuf field <code>.google.rpc.Status streaming_error = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -110,6 +115,27 @@ class Channel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.LogConfig log_config = 19;</code>
      */
     private $log_config = null;
+    /**
+     * Configuration of timecode for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.TimecodeConfig timecode_config = 21;</code>
+     */
+    private $timecode_config = null;
+    /**
+     * Encryption configurations for this channel. Each configuration has an ID
+     * which is referred to by each MuxStream to indicate which configuration is
+     * used for that output.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24;</code>
+     */
+    private $encryptions;
+    /**
+     * The configuration for input sources defined in
+     * [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments].
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputConfig input_config = 25;</code>
+     */
+    private $input_config = null;
 
     /**
      * Constructor.
@@ -131,11 +157,14 @@ class Channel extends \Google\Protobuf\Internal\Message
      *           One channel can have multiple inputs as the input sources. Only one
      *           input can be selected as the input source at one time.
      *     @type string $active_input
-     *           Output only. The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that serves as the current input source. The
-     *           first input in the [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments] is the initial input source.
+     *           Output only. The
+     *           [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     *           that serves as the current input source. The first input in the
+     *           [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments]
+     *           is the initial input source.
      *     @type \Google\Cloud\Video\LiveStream\V1\Channel\Output $output
-     *           Required. Information about the output (that is, the Cloud Storage bucket to store
-     *           the generated live stream).
+     *           Required. Information about the output (that is, the Cloud Storage bucket
+     *           to store the generated live stream).
      *     @type array<\Google\Cloud\Video\LiveStream\V1\ElementaryStream>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
      *           List of elementary streams.
      *     @type array<\Google\Cloud\Video\LiveStream\V1\MuxStream>|\Google\Protobuf\Internal\RepeatedField $mux_streams
@@ -147,11 +176,22 @@ class Channel extends \Google\Protobuf\Internal\Message
      *     @type int $streaming_state
      *           Output only. State of the streaming operation.
      *     @type \Google\Rpc\Status $streaming_error
-     *           Output only. A description of the reason for the streaming error. This property is
-     *           always present when [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state] is
+     *           Output only. A description of the reason for the streaming error. This
+     *           property is always present when
+     *           [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state]
+     *           is
      *           [STREAMING_ERROR][google.cloud.video.livestream.v1.Channel.StreamingState.STREAMING_ERROR].
      *     @type \Google\Cloud\Video\LiveStream\V1\LogConfig $log_config
      *           Configuration of platform logs for this channel.
+     *     @type \Google\Cloud\Video\LiveStream\V1\TimecodeConfig $timecode_config
+     *           Configuration of timecode for this channel.
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $encryptions
+     *           Encryption configurations for this channel. Each configuration has an ID
+     *           which is referred to by each MuxStream to indicate which configuration is
+     *           used for that output.
+     *     @type \Google\Cloud\Video\LiveStream\V1\InputConfig $input_config
+     *           The configuration for input sources defined in
+     *           [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments].
      * }
      */
     public function __construct($data = NULL) {
@@ -316,8 +356,11 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that serves as the current input source. The
-     * first input in the [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments] is the initial input source.
+     * Output only. The
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     * that serves as the current input source. The first input in the
+     * [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments]
+     * is the initial input source.
      *
      * Generated from protobuf field <code>string active_input = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -328,8 +371,11 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that serves as the current input source. The
-     * first input in the [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments] is the initial input source.
+     * Output only. The
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     * that serves as the current input source. The first input in the
+     * [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments]
+     * is the initial input source.
      *
      * Generated from protobuf field <code>string active_input = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -344,8 +390,8 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Information about the output (that is, the Cloud Storage bucket to store
-     * the generated live stream).
+     * Required. Information about the output (that is, the Cloud Storage bucket
+     * to store the generated live stream).
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Channel.Output output = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Channel\Output|null
@@ -366,8 +412,8 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Information about the output (that is, the Cloud Storage bucket to store
-     * the generated live stream).
+     * Required. Information about the output (that is, the Cloud Storage bucket
+     * to store the generated live stream).
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Channel.Output output = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Channel\Output $var
@@ -512,8 +558,10 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A description of the reason for the streaming error. This property is
-     * always present when [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state] is
+     * Output only. A description of the reason for the streaming error. This
+     * property is always present when
+     * [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state]
+     * is
      * [STREAMING_ERROR][google.cloud.video.livestream.v1.Channel.StreamingState.STREAMING_ERROR].
      *
      * Generated from protobuf field <code>.google.rpc.Status streaming_error = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -535,8 +583,10 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A description of the reason for the streaming error. This property is
-     * always present when [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state] is
+     * Output only. A description of the reason for the streaming error. This
+     * property is always present when
+     * [streaming_state][google.cloud.video.livestream.v1.Channel.streaming_state]
+     * is
      * [STREAMING_ERROR][google.cloud.video.livestream.v1.Channel.StreamingState.STREAMING_ERROR].
      *
      * Generated from protobuf field <code>.google.rpc.Status streaming_error = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -583,6 +633,110 @@ class Channel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\LogConfig::class);
         $this->log_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration of timecode for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.TimecodeConfig timecode_config = 21;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\TimecodeConfig|null
+     */
+    public function getTimecodeConfig()
+    {
+        return $this->timecode_config;
+    }
+
+    public function hasTimecodeConfig()
+    {
+        return isset($this->timecode_config);
+    }
+
+    public function clearTimecodeConfig()
+    {
+        unset($this->timecode_config);
+    }
+
+    /**
+     * Configuration of timecode for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.TimecodeConfig timecode_config = 21;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\TimecodeConfig $var
+     * @return $this
+     */
+    public function setTimecodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\TimecodeConfig::class);
+        $this->timecode_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Encryption configurations for this channel. Each configuration has an ID
+     * which is referred to by each MuxStream to indicate which configuration is
+     * used for that output.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEncryptions()
+    {
+        return $this->encryptions;
+    }
+
+    /**
+     * Encryption configurations for this channel. Each configuration has an ID
+     * which is referred to by each MuxStream to indicate which configuration is
+     * used for that output.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24;</code>
+     * @param array<\Google\Cloud\Video\LiveStream\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEncryptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\LiveStream\V1\Encryption::class);
+        $this->encryptions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The configuration for input sources defined in
+     * [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments].
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputConfig input_config = 25;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\InputConfig|null
+     */
+    public function getInputConfig()
+    {
+        return $this->input_config;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
+    }
+
+    /**
+     * The configuration for input sources defined in
+     * [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments].
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputConfig input_config = 25;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\InputConfig $var
+     * @return $this
+     */
+    public function setInputConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\InputConfig::class);
+        $this->input_config = $var;
 
         return $this;
     }

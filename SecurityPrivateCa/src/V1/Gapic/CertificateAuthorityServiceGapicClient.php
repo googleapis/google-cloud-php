@@ -27,13 +27,10 @@ namespace Google\Cloud\Security\PrivateCA\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -79,10 +76,10 @@ use Google\Cloud\Security\PrivateCA\V1\ListCertificateAuthoritiesRequest;
 use Google\Cloud\Security\PrivateCA\V1\ListCertificateAuthoritiesResponse;
 use Google\Cloud\Security\PrivateCA\V1\ListCertificateRevocationListsRequest;
 use Google\Cloud\Security\PrivateCA\V1\ListCertificateRevocationListsResponse;
-use Google\Cloud\Security\PrivateCA\V1\ListCertificatesRequest;
-use Google\Cloud\Security\PrivateCA\V1\ListCertificatesResponse;
 use Google\Cloud\Security\PrivateCA\V1\ListCertificateTemplatesRequest;
 use Google\Cloud\Security\PrivateCA\V1\ListCertificateTemplatesResponse;
+use Google\Cloud\Security\PrivateCA\V1\ListCertificatesRequest;
+use Google\Cloud\Security\PrivateCA\V1\ListCertificatesResponse;
 use Google\Cloud\Security\PrivateCA\V1\RevocationReason;
 use Google\Cloud\Security\PrivateCA\V1\RevokeCertificateRequest;
 use Google\Cloud\Security\PrivateCA\V1\SubordinateConfig;
@@ -96,8 +93,9 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: [Certificate Authority Service][google.cloud.security.privateca.v1.CertificateAuthorityService] manages private
- * certificate authorities and issued certificates.
+ * Service Description: [Certificate Authority
+ * Service][google.cloud.security.privateca.v1.CertificateAuthorityService]
+ * manages private certificate authorities and issued certificates.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -112,7 +110,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -129,7 +127,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -143,34 +141,28 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient} to
+ * use the new surface.
  */
 class CertificateAuthorityServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.security.privateca.v1.CertificateAuthorityService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'privateca.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -481,9 +473,6 @@ class CertificateAuthorityServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'privateca.googleapis.com:443'.
@@ -513,7 +502,7 @@ class CertificateAuthorityServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -540,12 +529,16 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Activate a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that is in state
+     * Activate a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * that is in state
      * [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
-     * and is of type [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]. After
-     * the parent Certificate Authority signs a certificate signing request from
-     * [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr], this method can complete the activation
-     * process.
+     * and is of type
+     * [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+     * After the parent Certificate Authority signs a certificate signing request
+     * from
+     * [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
+     * this method can complete the activation process.
      *
      * Sample code:
      * ```
@@ -558,7 +551,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -575,7 +568,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -585,23 +578,24 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string            $name              Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *                                             format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
+     * @param string            $name              Required. The resource name for this
+     *                                             [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                                             in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      * @param string            $pemCaCertificate  Required. The signed CA certificate issued from
      *                                             [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1.FetchCertificateAuthorityCsrResponse.pem_csr].
-     * @param SubordinateConfig $subordinateConfig Required. Must include information about the issuer of 'pem_ca_certificate', and any
-     *                                             further issuers until the self-signed CA.
+     * @param SubordinateConfig $subordinateConfig Required. Must include information about the issuer of
+     *                                             'pem_ca_certificate', and any further issuers until the self-signed CA.
      * @param array             $optionalArgs      {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -649,7 +643,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -666,7 +660,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -677,21 +671,23 @@ class CertificateAuthorityServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the location associated with the
-     *                             [CaPool][google.cloud.security.privateca.v1.CaPool], in the format `projects/&#42;/locations/*`.
+     *                             [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
+     *                             `projects/&#42;/locations/*`.
      * @param string $caPoolId     Required. It must be unique within a location and match the regular
      *                             expression `[a-zA-Z0-9_-]{1,63}`
-     * @param CaPool $caPool       Required. A [CaPool][google.cloud.security.privateca.v1.CaPool] with initial field values.
+     * @param CaPool $caPool       Required. A [CaPool][google.cloud.security.privateca.v1.CaPool] with
+     *                             initial field values.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -726,7 +722,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Create a new [Certificate][google.cloud.security.privateca.v1.Certificate] in a given Project, Location from a particular
+     * Create a new [Certificate][google.cloud.security.privateca.v1.Certificate]
+     * in a given Project, Location from a particular
      * [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Sample code:
@@ -741,22 +738,26 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required. The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the [Certificate][google.cloud.security.privateca.v1.Certificate],
-     *                                  in the format `projects/&#42;/locations/&#42;/caPools/*`.
-     * @param Certificate $certificate  Required. A [Certificate][google.cloud.security.privateca.v1.Certificate] with initial field values.
+     * @param string      $parent       Required. The resource name of the
+     *                                  [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     *                                  [Certificate][google.cloud.security.privateca.v1.Certificate], in the
+     *                                  format `projects/&#42;/locations/&#42;/caPools/*`.
+     * @param Certificate $certificate  Required. A [Certificate][google.cloud.security.privateca.v1.Certificate]
+     *                                  with initial field values.
      * @param array       $optionalArgs {
      *     Optional.
      *
      *     @type string $certificateId
      *           Optional. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
-     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the Enterprise [CertificateAuthority.Tier][],
-     *           but is optional and its value is ignored otherwise.
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           in the Enterprise [CertificateAuthority.Tier][], but is optional and its
+     *           value is ignored otherwise.
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request ID,
@@ -767,21 +768,34 @@ class CertificateAuthorityServiceGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. If this is true, no [Certificate][google.cloud.security.privateca.v1.Certificate] resource will be persisted regardless
-     *           of the [CaPool][google.cloud.security.privateca.v1.CaPool]'s [tier][google.cloud.security.privateca.v1.CaPool.tier], and the returned [Certificate][google.cloud.security.privateca.v1.Certificate]
-     *           will not contain the [pem_certificate][google.cloud.security.privateca.v1.Certificate.pem_certificate] field.
+     *           Optional. If this is true, no
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] resource will
+     *           be persisted regardless of the
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool]'s
+     *           [tier][google.cloud.security.privateca.v1.CaPool.tier], and the returned
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] will not
+     *           contain the
+     *           [pem_certificate][google.cloud.security.privateca.v1.Certificate.pem_certificate]
+     *           field.
      *     @type string $issuingCertificateAuthorityId
-     *           Optional. The resource ID of the [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that should issue the
-     *           certificate.  This optional field will ignore the load-balancing scheme of
-     *           the Pool and directly issue the certificate from the CA with the specified
-     *           ID, contained in the same [CaPool][google.cloud.security.privateca.v1.CaPool] referenced by `parent`. Per-CA quota
-     *           rules apply. If left empty, a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] will be chosen from
-     *           the [CaPool][google.cloud.security.privateca.v1.CaPool] by the service. For example, to issue a [Certificate][google.cloud.security.privateca.v1.Certificate] from
-     *           a Certificate Authority with resource name
+     *           Optional. The resource ID of the
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           that should issue the certificate.  This optional field will ignore the
+     *           load-balancing scheme of the Pool and directly issue the certificate from
+     *           the CA with the specified ID, contained in the same
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool] referenced by `parent`.
+     *           Per-CA quota rules apply. If left empty, a
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           will be chosen from the [CaPool][google.cloud.security.privateca.v1.CaPool]
+     *           by the service. For example, to issue a
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] from a
+     *           Certificate Authority with resource name
      *           "projects/my-project/locations/us-central1/caPools/my-pool/certificateAuthorities/my-ca",
-     *           you can set the [parent][google.cloud.security.privateca.v1.CreateCertificateRequest.parent] to
-     *           "projects/my-project/locations/us-central1/caPools/my-pool" and the
-     *           [issuing_certificate_authority_id][google.cloud.security.privateca.v1.CreateCertificateRequest.issuing_certificate_authority_id] to "my-ca".
+     *           you can set the
+     *           [parent][google.cloud.security.privateca.v1.CreateCertificateRequest.parent]
+     *           to "projects/my-project/locations/us-central1/caPools/my-pool" and the
+     *           [issuing_certificate_authority_id][google.cloud.security.privateca.v1.CreateCertificateRequest.issuing_certificate_authority_id]
+     *           to "my-ca".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -821,7 +835,9 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Create a new [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in a given Project and Location.
+     * Create a new
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in a given Project and Location.
      *
      * Sample code:
      * ```
@@ -834,7 +850,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -851,7 +867,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -861,23 +877,26 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string               $parent                 Required. The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
-     *                                                     [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
-     *                                                     `projects/&#42;/locations/&#42;/caPools/*`.
+     * @param string               $parent                 Required. The resource name of the
+     *                                                     [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     *                                                     [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     *                                                     in the format `projects/&#42;/locations/&#42;/caPools/*`.
      * @param string               $certificateAuthorityId Required. It must be unique within a location and match the regular
      *                                                     expression `[a-zA-Z0-9_-]{1,63}`
-     * @param CertificateAuthority $certificateAuthority   Required. A [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] with initial field values.
+     * @param CertificateAuthority $certificateAuthority   Required. A
+     *                                                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                                                     with initial field values.
      * @param array                $optionalArgs           {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -912,7 +931,9 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Create a new [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] in a given Project and Location.
+     * Create a new
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     * in a given Project and Location.
      *
      * Sample code:
      * ```
@@ -925,7 +946,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -942,7 +963,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -953,22 +974,24 @@ class CertificateAuthorityServiceGapicClient
      * ```
      *
      * @param string              $parent                Required. The resource name of the location associated with the
-     *                                                   [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate], in the format
-     *                                                   `projects/&#42;/locations/*`.
+     *                                                   [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate],
+     *                                                   in the format `projects/&#42;/locations/*`.
      * @param string              $certificateTemplateId Required. It must be unique within a location and match the regular
      *                                                   expression `[a-zA-Z0-9_-]{1,63}`
-     * @param CertificateTemplate $certificateTemplate   Required. A [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] with initial field values.
+     * @param CertificateTemplate $certificateTemplate   Required. A
+     *                                                   [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *                                                   with initial field values.
      * @param array               $optionalArgs          {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -1039,25 +1062,31 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CaPool][google.cloud.security.privateca.v1.CaPool] in the
-     *                             format `projects/&#42;/locations/&#42;/caPools/*`.
+     * @param string $name         Required. The resource name for this
+     *                             [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     *                             `projects/&#42;/locations/&#42;/caPools/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $ignoreDependentResources
+     *           Optional. This field allows this pool to be deleted even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the pool will
+     *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1078,13 +1107,18 @@ class CertificateAuthorityServiceGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
+        if (isset($optionalArgs['ignoreDependentResources'])) {
+            $request->setIgnoreDependentResources($optionalArgs['ignoreDependentResources']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteCaPool', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
-     * Delete a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     * Delete a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * Sample code:
      * ```
@@ -1095,7 +1129,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1112,7 +1146,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1122,19 +1156,20 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
+     * @param string $name         Required. The resource name for this
+     *                             [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                             in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -1145,9 +1180,14 @@ class CertificateAuthorityServiceGapicClient
      *           Optional. This field allows the CA to be deleted even if the CA has
      *           active certs. Active certs include both unrevoked and unexpired certs.
      *     @type bool $skipGracePeriod
-     *           Optional. If this flag is set, the Certificate Authority will be deleted as soon as
-     *           possible without a 30-day grace period where undeletion would have been
-     *           allowed. If you proceed, there will be no way to recover this CA.
+     *           Optional. If this flag is set, the Certificate Authority will be deleted as
+     *           soon as possible without a 30-day grace period where undeletion would have
+     *           been allowed. If you proceed, there will be no way to recover this CA.
+     *     @type bool $ignoreDependentResources
+     *           Optional. This field allows this ca to be deleted even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1176,13 +1216,18 @@ class CertificateAuthorityServiceGapicClient
             $request->setSkipGracePeriod($optionalArgs['skipGracePeriod']);
         }
 
+        if (isset($optionalArgs['ignoreDependentResources'])) {
+            $request->setIgnoreDependentResources($optionalArgs['ignoreDependentResources']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteCertificateAuthority', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
-     * DeleteCertificateTemplate deletes a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+     * DeleteCertificateTemplate deletes a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * Sample code:
      * ```
@@ -1218,19 +1263,20 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] in the format
-     *                             `projects/&#42;/locations/&#42;/certificateTemplates/*`.
+     * @param string $name         Required. The resource name for this
+     *                             [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *                             in the format `projects/&#42;/locations/&#42;/certificateTemplates/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -1263,7 +1309,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Disable a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     * Disable a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * Sample code:
      * ```
@@ -1274,7 +1321,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1291,7 +1338,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1301,25 +1348,31 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
+     * @param string $name         Required. The resource name for this
+     *                             [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                             in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $ignoreDependentResources
+     *           Optional. This field allows this CA to be disabled even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1340,13 +1393,18 @@ class CertificateAuthorityServiceGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
+        if (isset($optionalArgs['ignoreDependentResources'])) {
+            $request->setIgnoreDependentResources($optionalArgs['ignoreDependentResources']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DisableCertificateAuthority', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
-     * Enable a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     * Enable a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * Sample code:
      * ```
@@ -1357,7 +1415,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1374,7 +1432,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1384,19 +1442,20 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
+     * @param string $name         Required. The resource name for this
+     *                             [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                             in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -1429,8 +1488,10 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * FetchCaCerts returns the current trust anchor for the [CaPool][google.cloud.security.privateca.v1.CaPool]. This will
-     * include CA certificate chains for all ACTIVE [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * FetchCaCerts returns the current trust anchor for the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
+     * certificate chains for all ACTIVE
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * resources in the [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Sample code:
@@ -1444,19 +1505,20 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $caPool       Required. The resource name for the [CaPool][google.cloud.security.privateca.v1.CaPool] in the
-     *                             format `projects/&#42;/locations/&#42;/caPools/*`.
+     * @param string $caPool       Required. The resource name for the
+     *                             [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     *                             `projects/&#42;/locations/&#42;/caPools/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -1489,13 +1551,17 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Fetch a certificate signing request (CSR) from a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * Fetch a certificate signing request (CSR) from a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * that is in state
      * [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
-     * and is of type [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]. The
-     * CSR must then be signed by the desired parent Certificate Authority, which
-     * could be another [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] resource, or could be an on-prem
-     * certificate authority. See also [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
+     * and is of type
+     * [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+     * The CSR must then be signed by the desired parent Certificate Authority,
+     * which could be another
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * resource, or could be an on-prem certificate authority. See also
+     * [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
      *
      * Sample code:
      * ```
@@ -1508,8 +1574,9 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
+     * @param string $name         Required. The resource name for this
+     *                             [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                             in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1548,7 +1615,8 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
+     * @param string $name         Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the
+     *                             [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1587,7 +1655,9 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1.Certificate.name] of the [Certificate][google.cloud.security.privateca.v1.Certificate] to get.
+     * @param string $name         Required. The [name][google.cloud.security.privateca.v1.Certificate.name]
+     *                             of the [Certificate][google.cloud.security.privateca.v1.Certificate] to
+     *                             get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1613,7 +1683,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Returns a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     * Returns a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * Sample code:
      * ```
@@ -1626,8 +1697,10 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] to
-     *                             get.
+     * @param string $name         Required. The
+     *                             [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
+     *                             [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                             to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1653,7 +1726,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Returns a [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * Returns a
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Sample code:
      * ```
@@ -1666,8 +1740,11 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1.CertificateRevocationList.name] of the
-     *                             [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] to get.
+     * @param string $name         Required. The
+     *                             [name][google.cloud.security.privateca.v1.CertificateRevocationList.name]
+     *                             of the
+     *                             [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     *                             to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1693,7 +1770,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Returns a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+     * Returns a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * Sample code:
      * ```
@@ -1706,8 +1784,10 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] to
-     *                             get.
+     * @param string $name         Required. The
+     *                             [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the
+     *                             [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *                             to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1815,7 +1895,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Lists [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
+     * Lists
+     * [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * Sample code:
      * ```
@@ -1840,9 +1921,10 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
-     *                             [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority], in the format
-     *                             `projects/&#42;/locations/&#42;/caPools/*`.
+     * @param string $parent       Required. The resource name of the
+     *                             [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     *                             [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
+     *                             in the format `projects/&#42;/locations/&#42;/caPools/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1897,7 +1979,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Lists [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * Lists
+     * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Sample code:
      * ```
@@ -1923,8 +2006,8 @@ class CertificateAuthorityServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the location associated with the
-     *                             [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList], in the format
-     *                             `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
+     *                             [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
+     *                             in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1979,7 +2062,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Lists [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
+     * Lists
+     * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * Sample code:
      * ```
@@ -2005,8 +2089,8 @@ class CertificateAuthorityServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the location associated with the
-     *                             [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate], in the format
-     *                             `projects/&#42;/locations/*`.
+     *                             [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate],
+     *                             in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2087,8 +2171,8 @@ class CertificateAuthorityServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the location associated with the
-     *                             [Certificates][google.cloud.security.privateca.v1.Certificate], in the format
-     *                             `projects/&#42;/locations/&#42;/caPools/*`.
+     *                             [Certificates][google.cloud.security.privateca.v1.Certificate], in the
+     *                             format `projects/&#42;/locations/&#42;/caPools/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2102,12 +2186,12 @@ class CertificateAuthorityServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Only include resources that match the filter in the response. For details
-     *           on supported filters and syntax, see [Certificates Filtering
+     *           Optional. Only include resources that match the filter in the response. For
+     *           details on supported filters and syntax, see [Certificates Filtering
      *           documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
      *     @type string $orderBy
-     *           Optional. Specify how the results should be sorted. For details on supported fields
-     *           and syntax, see [Certificates Sorting
+     *           Optional. Specify how the results should be sorted. For details on
+     *           supported fields and syntax, see [Certificates Sorting
      *           documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -2161,22 +2245,24 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [Certificate][google.cloud.security.privateca.v1.Certificate] in the
-     *                             format
+     * @param string $name         Required. The resource name for this
+     *                             [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      *                             `projects/&#42;/locations/&#42;/caPools/&#42;/certificates/*`.
-     * @param int    $reason       Required. The [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for revoking this certificate.
+     * @param int    $reason       Required. The
+     *                             [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
+     *                             revoking this certificate.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\Security\PrivateCA\V1\RevocationReason}
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -2210,7 +2296,9 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Undelete a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that has been deleted.
+     * Undelete a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * that has been deleted.
      *
      * Sample code:
      * ```
@@ -2221,7 +2309,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2238,7 +2326,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2248,19 +2336,20 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
+     * @param string $name         Required. The resource name for this
+     *                             [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                             in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -2305,7 +2394,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2322,7 +2411,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2332,19 +2421,20 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param CaPool    $caPool       Required. [CaPool][google.cloud.security.privateca.v1.CaPool] with updated values.
+     * @param CaPool    $caPool       Required. [CaPool][google.cloud.security.privateca.v1.CaPool] with updated
+     *                                values.
      * @param FieldMask $updateMask   Required. A list of fields to be updated in this request.
      * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -2378,7 +2468,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Update a [Certificate][google.cloud.security.privateca.v1.Certificate]. Currently, the only field you can update is the
+     * Update a [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * Currently, the only field you can update is the
      * [labels][google.cloud.security.privateca.v1.Certificate.labels] field.
      *
      * Sample code:
@@ -2393,19 +2484,20 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param Certificate $certificate  Required. [Certificate][google.cloud.security.privateca.v1.Certificate] with updated values.
+     * @param Certificate $certificate  Required. [Certificate][google.cloud.security.privateca.v1.Certificate]
+     *                                  with updated values.
      * @param FieldMask   $updateMask   Required. A list of fields to be updated in this request.
      * @param array       $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -2439,7 +2531,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Update a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     * Update a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *
      * Sample code:
      * ```
@@ -2451,7 +2544,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2468,7 +2561,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2478,19 +2571,21 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param CertificateAuthority $certificateAuthority Required. [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] with updated values.
+     * @param CertificateAuthority $certificateAuthority Required.
+     *                                                   [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                                                   with updated values.
      * @param FieldMask            $updateMask           Required. A list of fields to be updated in this request.
      * @param array                $optionalArgs         {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -2524,7 +2619,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Update a [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * Update a
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Sample code:
      * ```
@@ -2536,7 +2632,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2553,7 +2649,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2563,19 +2659,21 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param CertificateRevocationList $certificateRevocationList Required. [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] with updated values.
+     * @param CertificateRevocationList $certificateRevocationList Required.
+     *                                                             [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     *                                                             with updated values.
      * @param FieldMask                 $updateMask                Required. A list of fields to be updated in this request.
      * @param array                     $optionalArgs              {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -2609,7 +2707,8 @@ class CertificateAuthorityServiceGapicClient
     }
 
     /**
-     * Update a [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+     * Update a
+     * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
      *
      * Sample code:
      * ```
@@ -2621,7 +2720,7 @@ class CertificateAuthorityServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2638,7 +2737,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2648,19 +2747,21 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param CertificateTemplate $certificateTemplate Required. [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate] with updated values.
+     * @param CertificateTemplate $certificateTemplate Required.
+     *                                                 [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+     *                                                 with updated values.
      * @param FieldMask           $updateMask          Required. A list of fields to be updated in this request.
      * @param array               $optionalArgs        {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.

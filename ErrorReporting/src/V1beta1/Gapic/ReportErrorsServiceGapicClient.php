@@ -29,16 +29,15 @@ namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
+use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 
 /**
  * Service Description: An API for reporting error events.
@@ -62,35 +61,29 @@ use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ErrorReporting\V1beta1\Client\ReportErrorsServiceClient} to use
+ * the new surface.
+ *
  * @experimental
  */
 class ReportErrorsServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.devtools.clouderrorreporting.v1beta1.ReportErrorsService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'clouderrorreporting.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -204,9 +197,6 @@ class ReportErrorsServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'clouderrorreporting.googleapis.com:443'.
@@ -236,7 +226,7 @@ class ReportErrorsServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -278,9 +268,6 @@ class ReportErrorsServiceGapicClient
      * on Cloud Logging and doesn't analyze logs stored
      * in regional log buckets or logs routed to other Google Cloud projects.
      *
-     * For more information, see
-     * [Using Error Reporting with regionalized
-     * logs](https://cloud.google.com/error-reporting/docs/regionalization).
      *
      * Sample code:
      * ```

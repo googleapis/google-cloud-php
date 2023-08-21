@@ -47,6 +47,20 @@ class ListAnalysesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent resource of the analyses. Please see
+     *                       {@see ContactCenterInsightsClient::conversationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

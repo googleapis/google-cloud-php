@@ -159,7 +159,7 @@ class Session
      * @param int $expiration [optional] The Unix timestamp in seconds upon
      *        which the session will expire.  **Defaults to** now plus 60
      *        minutes.
-     * @return int
+     * @return void
      */
     public function setExpiration($expiration = null)
     {

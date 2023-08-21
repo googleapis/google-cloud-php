@@ -17,7 +17,8 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
 {
     /**
      * If true, the Cloud Spanner-selected read timestamp is included in
-     * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
+     * the [Transaction][google.spanner.v1.Transaction] message that describes
+     * the transaction.
      *
      * Generated from protobuf field <code>bool return_read_timestamp = 6;</code>
      */
@@ -76,7 +77,8 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
      *           timestamp negotiation overhead of `max_staleness`.
      *     @type bool $return_read_timestamp
      *           If true, the Cloud Spanner-selected read timestamp is included in
-     *           the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
+     *           the [Transaction][google.spanner.v1.Transaction] message that describes
+     *           the transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,7 +311,8 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
 
     /**
      * If true, the Cloud Spanner-selected read timestamp is included in
-     * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
+     * the [Transaction][google.spanner.v1.Transaction] message that describes
+     * the transaction.
      *
      * Generated from protobuf field <code>bool return_read_timestamp = 6;</code>
      * @return bool
@@ -321,7 +324,8 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
 
     /**
      * If true, the Cloud Spanner-selected read timestamp is included in
-     * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
+     * the [Transaction][google.spanner.v1.Transaction] message that describes
+     * the transaction.
      *
      * Generated from protobuf field <code>bool return_read_timestamp = 6;</code>
      * @param bool $var

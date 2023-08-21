@@ -31,7 +31,7 @@ class InterleaveFilterTest extends SnippetTestCase
 {
     private $interleaveFilter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->interleaveFilter = Filter::interleave();
     }

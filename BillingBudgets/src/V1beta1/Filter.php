@@ -20,19 +20,30 @@ class Filter extends \Google\Protobuf\Internal\Message
      * specifying that usage from only this set of projects should be
      * included in the budget. If omitted, the report will include all usage for
      * the billing account, regardless of which project the usage occurred on.
-     * Only zero or one project can be specified currently.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $projects;
     /**
-     * Optional. If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is INCLUDE_SPECIFIED_CREDITS, this is
-     * a list of credit types to be subtracted from gross cost to determine the
-     * spend for threshold calculations. See
-     * [a list of acceptable credit type
+     * Optional. A set of folder and organization names of the form
+     * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     * usage from only this set of folders and organizations should be included in
+     * the budget. If omitted, the report includes all usage for all
+     * organizations, regardless of which organization the usage occurred on.
+     *
+     * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_ancestors;
+    /**
+     * Optional. If
+     * [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     * is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be
+     * subtracted from gross cost to determine the spend for threshold
+     * calculations. See [a list of acceptable credit type
      * values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).
-     * If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is **not** INCLUDE_SPECIFIED_CREDITS,
-     * this field must be empty.
+     * If
+     * [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     * is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      *
      * Generated from protobuf field <code>repeated string credit_types = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,9 +66,9 @@ class Filter extends \Google\Protobuf\Internal\Message
      */
     private $services;
     /**
-     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying
-     * that usage from only this set of subaccounts should be included in the
-     * budget. If a subaccount is set to the name of the parent account,
+     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
+     * specifying that usage from only this set of subaccounts should be included
+     * in the budget. If a subaccount is set to the name of the parent account,
      * usage from the parent account will be included. If omitted, the
      * report will include usage from the parent account and all
      * subaccounts, if they exist.
@@ -66,9 +77,9 @@ class Filter extends \Google\Protobuf\Internal\Message
      */
     private $subaccounts;
     /**
-     * Optional. A single label and value pair specifying that usage from only this set of
-     * labeled resources should be included in the budget. If omitted, the
-     * report will include all labeled and unlabeled usage.
+     * Optional. A single label and value pair specifying that usage from only
+     * this set of labeled resources should be included in the budget. If omitted,
+     * the report will include all labeled and unlabeled usage.
      * An object containing a single `"key": value` pair. Example: `{ "name":
      * "wrench" }`.
      *  _Currently, multiple entries or multiple values per entry are not
@@ -90,15 +101,22 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           specifying that usage from only this set of projects should be
      *           included in the budget. If omitted, the report will include all usage for
      *           the billing account, regardless of which project the usage occurred on.
-     *           Only zero or one project can be specified currently.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_ancestors
+     *           Optional. A set of folder and organization names of the form
+     *           `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     *           usage from only this set of folders and organizations should be included in
+     *           the budget. If omitted, the report includes all usage for all
+     *           organizations, regardless of which organization the usage occurred on.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $credit_types
-     *           Optional. If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is INCLUDE_SPECIFIED_CREDITS, this is
-     *           a list of credit types to be subtracted from gross cost to determine the
-     *           spend for threshold calculations. See
-     *           [a list of acceptable credit type
+     *           Optional. If
+     *           [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     *           is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be
+     *           subtracted from gross cost to determine the spend for threshold
+     *           calculations. See [a list of acceptable credit type
      *           values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).
-     *           If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is **not** INCLUDE_SPECIFIED_CREDITS,
-     *           this field must be empty.
+     *           If
+     *           [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     *           is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      *     @type int $credit_types_treatment
      *           Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $services
@@ -109,16 +127,16 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           The service names are available through the Catalog API:
      *           https://cloud.google.com/billing/v1/how-tos/catalog-api.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subaccounts
-     *           Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying
-     *           that usage from only this set of subaccounts should be included in the
-     *           budget. If a subaccount is set to the name of the parent account,
+     *           Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
+     *           specifying that usage from only this set of subaccounts should be included
+     *           in the budget. If a subaccount is set to the name of the parent account,
      *           usage from the parent account will be included. If omitted, the
      *           report will include usage from the parent account and all
      *           subaccounts, if they exist.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. A single label and value pair specifying that usage from only this set of
-     *           labeled resources should be included in the budget. If omitted, the
-     *           report will include all labeled and unlabeled usage.
+     *           Optional. A single label and value pair specifying that usage from only
+     *           this set of labeled resources should be included in the budget. If omitted,
+     *           the report will include all labeled and unlabeled usage.
      *           An object containing a single `"key": value` pair. Example: `{ "name":
      *           "wrench" }`.
      *            _Currently, multiple entries or multiple values per entry are not
@@ -131,8 +149,8 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           September 30 when the current calendar month is July, August, September,
      *           so on.
      *     @type \Google\Cloud\Billing\Budgets\V1beta1\CustomPeriod $custom_period
-     *           Optional. Specifies to track usage from any start date (required) to any end date
-     *           (optional). This time period is static, it does not recur.
+     *           Optional. Specifies to track usage from any start date (required) to any
+     *           end date (optional). This time period is static, it does not recur.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,7 +163,6 @@ class Filter extends \Google\Protobuf\Internal\Message
      * specifying that usage from only this set of projects should be
      * included in the budget. If omitted, the report will include all usage for
      * the billing account, regardless of which project the usage occurred on.
-     * Only zero or one project can be specified currently.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -160,7 +177,6 @@ class Filter extends \Google\Protobuf\Internal\Message
      * specifying that usage from only this set of projects should be
      * included in the budget. If omitted, the report will include all usage for
      * the billing account, regardless of which project the usage occurred on.
-     * Only zero or one project can be specified currently.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -175,13 +191,49 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is INCLUDE_SPECIFIED_CREDITS, this is
-     * a list of credit types to be subtracted from gross cost to determine the
-     * spend for threshold calculations. See
-     * [a list of acceptable credit type
+     * Optional. A set of folder and organization names of the form
+     * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     * usage from only this set of folders and organizations should be included in
+     * the budget. If omitted, the report includes all usage for all
+     * organizations, regardless of which organization the usage occurred on.
+     *
+     * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResourceAncestors()
+    {
+        return $this->resource_ancestors;
+    }
+
+    /**
+     * Optional. A set of folder and organization names of the form
+     * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
+     * usage from only this set of folders and organizations should be included in
+     * the budget. If omitted, the report includes all usage for all
+     * organizations, regardless of which organization the usage occurred on.
+     *
+     * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResourceAncestors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_ancestors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If
+     * [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     * is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be
+     * subtracted from gross cost to determine the spend for threshold
+     * calculations. See [a list of acceptable credit type
      * values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).
-     * If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is **not** INCLUDE_SPECIFIED_CREDITS,
-     * this field must be empty.
+     * If
+     * [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     * is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      *
      * Generated from protobuf field <code>repeated string credit_types = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -192,13 +244,15 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is INCLUDE_SPECIFIED_CREDITS, this is
-     * a list of credit types to be subtracted from gross cost to determine the
-     * spend for threshold calculations. See
-     * [a list of acceptable credit type
+     * Optional. If
+     * [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     * is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be
+     * subtracted from gross cost to determine the spend for threshold
+     * calculations. See [a list of acceptable credit type
      * values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).
-     * If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is **not** INCLUDE_SPECIFIED_CREDITS,
-     * this field must be empty.
+     * If
+     * [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
+     * is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      *
      * Generated from protobuf field <code>repeated string credit_types = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -275,9 +329,9 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying
-     * that usage from only this set of subaccounts should be included in the
-     * budget. If a subaccount is set to the name of the parent account,
+     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
+     * specifying that usage from only this set of subaccounts should be included
+     * in the budget. If a subaccount is set to the name of the parent account,
      * usage from the parent account will be included. If omitted, the
      * report will include usage from the parent account and all
      * subaccounts, if they exist.
@@ -291,9 +345,9 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying
-     * that usage from only this set of subaccounts should be included in the
-     * budget. If a subaccount is set to the name of the parent account,
+     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
+     * specifying that usage from only this set of subaccounts should be included
+     * in the budget. If a subaccount is set to the name of the parent account,
      * usage from the parent account will be included. If omitted, the
      * report will include usage from the parent account and all
      * subaccounts, if they exist.
@@ -311,9 +365,9 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A single label and value pair specifying that usage from only this set of
-     * labeled resources should be included in the budget. If omitted, the
-     * report will include all labeled and unlabeled usage.
+     * Optional. A single label and value pair specifying that usage from only
+     * this set of labeled resources should be included in the budget. If omitted,
+     * the report will include all labeled and unlabeled usage.
      * An object containing a single `"key": value` pair. Example: `{ "name":
      * "wrench" }`.
      *  _Currently, multiple entries or multiple values per entry are not
@@ -328,9 +382,9 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A single label and value pair specifying that usage from only this set of
-     * labeled resources should be included in the budget. If omitted, the
-     * report will include all labeled and unlabeled usage.
+     * Optional. A single label and value pair specifying that usage from only
+     * this set of labeled resources should be included in the budget. If omitted,
+     * the report will include all labeled and unlabeled usage.
      * An object containing a single `"key": value` pair. Example: `{ "name":
      * "wrench" }`.
      *  _Currently, multiple entries or multiple values per entry are not
@@ -390,8 +444,8 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies to track usage from any start date (required) to any end date
-     * (optional). This time period is static, it does not recur.
+     * Optional. Specifies to track usage from any start date (required) to any
+     * end date (optional). This time period is static, it does not recur.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.CustomPeriod custom_period = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Billing\Budgets\V1beta1\CustomPeriod|null
@@ -407,8 +461,8 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies to track usage from any start date (required) to any end date
-     * (optional). This time period is static, it does not recur.
+     * Optional. Specifies to track usage from any start date (required) to any
+     * end date (optional). This time period is static, it does not recur.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.CustomPeriod custom_period = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Billing\Budgets\V1beta1\CustomPeriod $var

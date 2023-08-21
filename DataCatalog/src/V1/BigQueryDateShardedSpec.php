@@ -19,8 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The Data Catalog resource name of the dataset entry the current table
-     * belongs to. For example:
+     * Output only. The Data Catalog resource name of the dataset entry the
+     * current table belongs to. For example:
      * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -55,8 +55,8 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset
-     *           Output only. The Data Catalog resource name of the dataset entry the current table
-     *           belongs to. For example:
+     *           Output only. The Data Catalog resource name of the dataset entry the
+     *           current table belongs to. For example:
      *           `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *     @type string $table_prefix
      *           Output only. The table name prefix of the shards.
@@ -75,8 +75,8 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Data Catalog resource name of the dataset entry the current table
-     * belongs to. For example:
+     * Output only. The Data Catalog resource name of the dataset entry the
+     * current table belongs to. For example:
      * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -88,8 +88,8 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Data Catalog resource name of the dataset entry the current table
-     * belongs to. For example:
+     * Output only. The Data Catalog resource name of the dataset entry the
+     * current table belongs to. For example:
      * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>

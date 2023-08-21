@@ -27,7 +27,6 @@ namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -44,11 +43,11 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesResponse;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateDataExchangeRequest;
@@ -89,40 +88,36 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient} to use
+ * the new surface.
  */
 class AnalyticsHubServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.bigquery.analyticshub.v1.AnalyticsHubService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticshub.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigquery',
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static $dataExchangeNameTemplate;
+
+    private static $datasetNameTemplate;
 
     private static $listingNameTemplate;
 
@@ -169,6 +164,17 @@ class AnalyticsHubServiceGapicClient
         return self::$dataExchangeNameTemplate;
     }
 
+    private static function getDatasetNameTemplate()
+    {
+        if (self::$datasetNameTemplate == null) {
+            self::$datasetNameTemplate = new PathTemplate(
+                'projects/{project}/datasets/{dataset}'
+            );
+        }
+
+        return self::$datasetNameTemplate;
+    }
+
     private static function getListingNameTemplate()
     {
         if (self::$listingNameTemplate == null) {
@@ -196,6 +202,7 @@ class AnalyticsHubServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'dataExchange' => self::getDataExchangeNameTemplate(),
+                'dataset' => self::getDatasetNameTemplate(),
                 'listing' => self::getListingNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
@@ -220,6 +227,23 @@ class AnalyticsHubServiceGapicClient
             'project' => $project,
             'location' => $location,
             'data_exchange' => $dataExchange,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a dataset
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     *
+     * @return string The formatted dataset resource.
+     */
+    public static function datasetName($project, $dataset)
+    {
+        return self::getDatasetNameTemplate()->render([
+            'project' => $project,
+            'dataset' => $dataset,
         ]);
     }
 
@@ -270,6 +294,7 @@ class AnalyticsHubServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - dataExchange: projects/{project}/locations/{location}/dataExchanges/{data_exchange}
+     * - dataset: projects/{project}/datasets/{dataset}
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
      *

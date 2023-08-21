@@ -22,11 +22,13 @@ class AvroRows extends \Google\Protobuf\Internal\Message
      */
     private $serialized_binary_rows = '';
     /**
-     * The count of rows in the returning block.
+     * [Deprecated] The count of rows in the returning block.
+     * Please use the format-independent ReadRowsResponse.row_count instead.
      *
-     * Generated from protobuf field <code>int64 row_count = 2;</code>
+     * Generated from protobuf field <code>int64 row_count = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $row_count = 0;
+    protected $row_count = 0;
 
     /**
      * Constructor.
@@ -37,7 +39,8 @@ class AvroRows extends \Google\Protobuf\Internal\Message
      *     @type string $serialized_binary_rows
      *           Binary serialized rows in a block.
      *     @type int|string $row_count
-     *           The count of rows in the returning block.
+     *           [Deprecated] The count of rows in the returning block.
+     *           Please use the format-independent ReadRowsResponse.row_count instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,25 +75,31 @@ class AvroRows extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The count of rows in the returning block.
+     * [Deprecated] The count of rows in the returning block.
+     * Please use the format-independent ReadRowsResponse.row_count instead.
      *
-     * Generated from protobuf field <code>int64 row_count = 2;</code>
+     * Generated from protobuf field <code>int64 row_count = 2 [deprecated = true];</code>
      * @return int|string
+     * @deprecated
      */
     public function getRowCount()
     {
+        @trigger_error('row_count is deprecated.', E_USER_DEPRECATED);
         return $this->row_count;
     }
 
     /**
-     * The count of rows in the returning block.
+     * [Deprecated] The count of rows in the returning block.
+     * Please use the format-independent ReadRowsResponse.row_count instead.
      *
-     * Generated from protobuf field <code>int64 row_count = 2;</code>
+     * Generated from protobuf field <code>int64 row_count = 2 [deprecated = true];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setRowCount($var)
     {
+        @trigger_error('row_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->row_count = $var;
 

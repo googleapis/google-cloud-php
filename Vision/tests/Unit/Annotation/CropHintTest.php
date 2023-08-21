@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 
 use Google\Cloud\Vision\Annotation\CropHint;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group vision
@@ -28,7 +28,7 @@ class CropHintTest extends TestCase
     private $info;
     private $hint;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'boundingPoly' => ['foo' => 'bar'],

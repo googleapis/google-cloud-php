@@ -33,6 +33,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Max allowed time duration the Task may be active before the system will
      * actively try to mark it failed and kill associated containers. This applies
      * per attempt of a task, meaning each retry can run for the full timeout.
+     * Defaults to 600 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
      */
@@ -82,10 +83,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *           A list of Volumes to make available to containers.
      *     @type int $max_retries
      *           Number of retries allowed per Task, before marking this Task failed.
+     *           Defaults to 3.
      *     @type \Google\Protobuf\Duration $timeout
      *           Max allowed time duration the Task may be active before the system will
      *           actively try to mark it failed and kill associated containers. This applies
      *           per attempt of a task, meaning each retry can run for the full timeout.
+     *           Defaults to 600 seconds.
      *     @type string $service_account
      *           Email address of the IAM service account associated with the Task of a
      *           Job. The service account represents the identity of the
@@ -163,6 +166,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of retries allowed per Task, before marking this Task failed.
+     * Defaults to 3.
      *
      * Generated from protobuf field <code>int32 max_retries = 3;</code>
      * @return int
@@ -179,6 +183,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of retries allowed per Task, before marking this Task failed.
+     * Defaults to 3.
      *
      * Generated from protobuf field <code>int32 max_retries = 3;</code>
      * @param int $var
@@ -196,6 +201,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Max allowed time duration the Task may be active before the system will
      * actively try to mark it failed and kill associated containers. This applies
      * per attempt of a task, meaning each retry can run for the full timeout.
+     * Defaults to 600 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
      * @return \Google\Protobuf\Duration|null
@@ -219,6 +225,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Max allowed time duration the Task may be active before the system will
      * actively try to mark it failed and kill associated containers. This applies
      * per attempt of a task, meaning each retry can run for the full timeout.
+     * Defaults to 600 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
      * @param \Google\Protobuf\Duration $var

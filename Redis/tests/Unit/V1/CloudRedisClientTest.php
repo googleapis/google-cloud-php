@@ -23,18 +23,17 @@
 namespace Google\Cloud\Redis\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Redis\V1\CloudRedisClient;
 use Google\Cloud\Redis\V1\InputConfig;
-
 use Google\Cloud\Redis\V1\Instance;
-use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\InstanceAuthString;
+use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
 use Google\Cloud\Redis\V1\OutputConfig;
 use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType;
@@ -53,25 +52,19 @@ use stdClass;
  */
 class CloudRedisClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudRedisClient
-     */
+    /** @return CloudRedisClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -80,14 +73,12 @@ class CloudRedisClientTest extends GeneratedTest
         return new CloudRedisClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -121,6 +112,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -140,6 +133,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -192,14 +187,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -257,14 +250,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -321,14 +312,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -378,14 +367,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -419,6 +406,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -438,6 +427,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -481,14 +472,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -539,14 +528,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function failoverInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -580,6 +567,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -599,6 +588,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -639,14 +630,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function failoverInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -696,9 +685,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
@@ -725,6 +712,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -744,6 +733,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -759,9 +750,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -794,9 +783,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceAuthStringTest()
     {
         $transport = $this->createTransport();
@@ -823,9 +810,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceAuthStringExceptionTest()
     {
         $transport = $this->createTransport();
@@ -858,14 +843,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -899,6 +882,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -918,6 +903,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -961,14 +948,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1019,9 +1004,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
@@ -1056,9 +1039,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1091,14 +1072,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rescheduleMaintenanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1132,6 +1111,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1151,6 +1132,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1194,14 +1177,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rescheduleMaintenanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1252,14 +1233,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1293,6 +1272,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1312,6 +1293,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1361,14 +1344,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1425,14 +1406,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1466,6 +1445,8 @@ class CloudRedisClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
+        $customerManagedKey = 'customerManagedKey-1392642338';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1485,6 +1466,8 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
+        $expectedResponse->setCustomerManagedKey($customerManagedKey);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1528,14 +1511,12 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1584,5 +1565,125 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function getLocationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Location();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getLocation();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getLocationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listLocationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $locationsElement = new Location();
+        $locations = [
+            $locationsElement,
+        ];
+        $expectedResponse = new ListLocationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setLocations($locations);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->listLocations();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listLocationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

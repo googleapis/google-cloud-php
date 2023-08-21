@@ -16,15 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The BigQuery dataset where the query results will be saved. It has the
-     * format of "projects/{projectId}/datasets/{datasetId}".
+     * Required. The BigQuery dataset where the query results will be saved. It
+     * has the format of "projects/{projectId}/datasets/{datasetId}".
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dataset = '';
     /**
-     * Required. The BigQuery table where the query results will be saved. If this table
-     * does not exist, a new table with the given name will be created.
+     * Required. The BigQuery table where the query results will be saved. If
+     * this table does not exist, a new table with the given name will be
+     * created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,11 +52,12 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset
-     *           Required. The BigQuery dataset where the query results will be saved. It has the
-     *           format of "projects/{projectId}/datasets/{datasetId}".
+     *           Required. The BigQuery dataset where the query results will be saved. It
+     *           has the format of "projects/{projectId}/datasets/{datasetId}".
      *     @type string $table
-     *           Required. The BigQuery table where the query results will be saved. If this table
-     *           does not exist, a new table with the given name will be created.
+     *           Required. The BigQuery table where the query results will be saved. If
+     *           this table does not exist, a new table with the given name will be
+     *           created.
      *     @type string $write_disposition
      *           Specifies the action that occurs if the destination table or partition
      *           already exists. The following values are supported:
@@ -74,8 +76,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery dataset where the query results will be saved. It has the
-     * format of "projects/{projectId}/datasets/{datasetId}".
+     * Required. The BigQuery dataset where the query results will be saved. It
+     * has the format of "projects/{projectId}/datasets/{datasetId}".
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,8 +88,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery dataset where the query results will be saved. It has the
-     * format of "projects/{projectId}/datasets/{datasetId}".
+     * Required. The BigQuery dataset where the query results will be saved. It
+     * has the format of "projects/{projectId}/datasets/{datasetId}".
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -102,8 +104,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery table where the query results will be saved. If this table
-     * does not exist, a new table with the given name will be created.
+     * Required. The BigQuery table where the query results will be saved. If
+     * this table does not exist, a new table with the given name will be
+     * created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -114,8 +117,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery table where the query results will be saved. If this table
-     * does not exist, a new table with the given name will be created.
+     * Required. The BigQuery table where the query results will be saved. If
+     * this table does not exist, a new table with the given name will be
+     * created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

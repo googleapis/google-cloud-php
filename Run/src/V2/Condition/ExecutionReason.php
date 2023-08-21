@@ -38,12 +38,19 @@ class ExecutionReason
      * Generated from protobuf enum <code>CANCELLED = 3;</code>
      */
     const CANCELLED = 3;
+    /**
+     * The execution is in the process of being cancelled.
+     *
+     * Generated from protobuf enum <code>CANCELLING = 4;</code>
+     */
+    const CANCELLING = 4;
 
     private static $valueToName = [
         self::EXECUTION_REASON_UNDEFINED => 'EXECUTION_REASON_UNDEFINED',
         self::JOB_STATUS_SERVICE_POLLING_ERROR => 'JOB_STATUS_SERVICE_POLLING_ERROR',
         self::NON_ZERO_EXIT_CODE => 'NON_ZERO_EXIT_CODE',
         self::CANCELLED => 'CANCELLED',
+        self::CANCELLING => 'CANCELLING',
     ];
 
     public static function name($value)

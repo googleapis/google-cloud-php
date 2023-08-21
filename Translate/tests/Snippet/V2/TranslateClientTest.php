@@ -22,16 +22,19 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Translate\V2\Connection\ConnectionInterface;
 use Google\Cloud\Translate\V2\TranslateClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group translate
  */
 class TranslateClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(TranslateClient::class);

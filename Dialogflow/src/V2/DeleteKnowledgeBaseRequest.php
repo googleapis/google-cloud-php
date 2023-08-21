@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KnowledgeBases.DeleteKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.DeleteKnowledgeBase].
+ * Request message for
+ * [KnowledgeBases.DeleteKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.DeleteKnowledgeBase].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteKnowledgeBaseRequest</code>
  */
@@ -30,6 +31,22 @@ class DeleteKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $force = false;
+
+    /**
+     * @param string $name Required. The name of the knowledge base to delete.
+     *                     Format: `projects/<Project ID>/locations/<Location
+     *                     ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+     *                     {@see KnowledgeBasesClient::knowledgeBaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteKnowledgeBaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

@@ -24,6 +24,21 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the job to retrieve.
+     *                     Format: `projects/{project}/locations/{location}/jobs/{job}`
+     *                     Please see {@see TranscoderServiceClient::jobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Transcoder\V1\GetJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

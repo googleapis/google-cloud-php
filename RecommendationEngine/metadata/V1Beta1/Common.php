@@ -16,7 +16,7 @@ class Common
         }
         $pool->internalAddGeneratedFile(
             '
-¦
+ª
 6google/cloud/recommendationengine/v1beta1/common.proto)google.cloud.recommendationengine.v1beta1"–
 
 FeatureMapl
@@ -32,8 +32,8 @@ StringList
 value (2@.google.cloud.recommendationengine.v1beta1.FeatureMap.StringList:8y
 NumericalFeaturesEntry
 key (	N
-value (2?.google.cloud.recommendationengine.v1beta1.FeatureMap.FloatList:8BŸ
--com.google.cloud.recommendationengine.v1beta1PZ]google.golang.org/genproto/googleapis/cloud/recommendationengine/v1beta1;recommendationengine¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
+value (2?.google.cloud.recommendationengine.v1beta1.FeatureMap.FloatList:8B£
+-com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

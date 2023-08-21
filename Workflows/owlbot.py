@@ -41,41 +41,34 @@ php.owlbot_main(
     ]
 )
 
-executions_library = Path(f"../{php.STAGING_DIR}/Workflows/v1beta/Executions").resolve()
+for version in ['v1', 'v1beta']:
+    executions_library = Path(f"../{php.STAGING_DIR}/Workflows/Executions/{version}").resolve()
 
-# copy all src including partial veneer classes
-s.move(executions_library / 'src',
-       'src/Executions',
-       merge=preserve_copyright_year,
-       excludes=[
-           executions_library / "**/*_*.php"
-       ]
-)
-
-# copy proto files to src also
-s.move(executions_library / 'proto/src/Google/Cloud/Workflows',
-       'src/',
-       merge=preserve_copyright_year,
-       excludes=[
-           executions_library / "**/*_*.php"
-       ]
-)
-s.move(executions_library / 'tests/Unit',
-       'tests/Unit/Executions',
-       merge=preserve_copyright_year,
-       excludes=[
-           executions_library / "**/*_*.php"
-       ]
-)
-
-# copy GPBMetadata file to metadata
-s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
-       'metadata/',
-       merge=preserve_copyright_year,
-       excludes=[
-           executions_library / "**/*_*.php"
-       ]
-)
+    # copy all src including partial veneer classes
+    s.move(
+        executions_library / 'src',
+        'src/Executions',
+        merge=preserve_copyright_year,
+    )
+    # copy proto files to src also
+    s.move(
+        executions_library / 'proto/src/Google/Cloud/Workflows',
+        'src/',
+        merge=preserve_copyright_year,
+        excludes=[
+            executions_library / "**/*_*.php"
+        ]
+    )
+    s.move(
+        executions_library / 'tests/Unit',
+        'tests/Unit/Executions',
+        merge=preserve_copyright_year,
+    )
+    # copy GPBMetadata file to metadata
+    s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
+        'metadata/',
+        merge=preserve_copyright_year,
+    )
 
 # remove class_alias code
 s.replace(
@@ -92,23 +85,6 @@ s.replace(
     r'namespace Google\\Cloud\\Workflows\\Executions\\Tests\\Unit',
     r'namespace Google\\Cloud\\Workflows\\Tests\\Unit\\Executions')
 
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
 
 ### [START] protoc backwards compatibility fixes
 
@@ -119,12 +95,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

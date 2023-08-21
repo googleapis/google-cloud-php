@@ -32,6 +32,22 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
     protected $target;
 
     /**
+     * @param string $parent Required. The project and location in which the Products should be deleted.
+     *
+     *                       Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+     *                       {@see ProductSearchClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Vision\V1\PurgeProductsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

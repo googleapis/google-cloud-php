@@ -48,9 +48,8 @@ class TagValuesGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Retrieves TagValue. If the TagValue or namespaced name does not exist, or
-     * if the user does not have permission to view it, this method will return
-     * `PERMISSION_DENIED`.
+     * Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
+     * value does not exist or the user does not have permission to view it.
      * @param \Google\Cloud\ResourceManager\V3\GetTagValueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -65,9 +64,26 @@ class TagValuesGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Retrieves a TagValue by its namespaced name.
+     * This method will return `PERMISSION_DENIED` if the value does not exist
+     * or the user does not have permission to view it.
+     * @param \Google\Cloud\ResourceManager\V3\GetNamespacedTagValueRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetNamespacedTagValue(\Google\Cloud\ResourceManager\V3\GetNamespacedTagValueRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.resourcemanager.v3.TagValues/GetNamespacedTagValue',
+        $argument,
+        ['\Google\Cloud\ResourceManager\V3\TagValue', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a TagValue as a child of the specified TagKey. If a another
      * request with the same parameters is sent while the original request is in
-     * process the second request will receive an error. A maximum of 300
+     * process the second request will receive an error. A maximum of 1000
      * TagValues can exist under a TagKey at any given time.
      * @param \Google\Cloud\ResourceManager\V3\CreateTagValueRequest $argument input argument
      * @param array $metadata metadata

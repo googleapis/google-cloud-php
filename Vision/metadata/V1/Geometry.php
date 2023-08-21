@@ -16,7 +16,7 @@ class Geometry
         }
         $pool->internalAddGeneratedFile(
             '
-¿
+¸
 %google/cloud/vision/v1/geometry.protogoogle.cloud.vision.v1"
 Vertex	
 x (	
@@ -30,8 +30,8 @@ class Geometry
 Position	
 x (	
 y (	
-z (Bu
-com.google.cloud.vision.v1BGeometryProtoPZ<google.golang.org/genproto/googleapis/cloud/vision/v1;visionø¢GCVNbproto3'
+z (Bn
+com.google.cloud.vision.v1BGeometryProtoPZ5cloud.google.com/go/vision/v2/apiv1/visionpb;visionpbø¢GCVNbproto3'
         , true);
 
         static::$is_initialized = true;

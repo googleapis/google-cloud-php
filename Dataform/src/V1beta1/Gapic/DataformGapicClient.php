@@ -29,7 +29,6 @@ namespace Google\Cloud\Dataform\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -124,35 +123,28 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataform\V1beta1\Client\DataformClient} to use the new surface.
+ *
  * @experimental
  */
 class DataformGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dataform.v1beta1.Dataform';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dataform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -162,6 +154,8 @@ class DataformGapicClient
     private static $locationNameTemplate;
 
     private static $repositoryNameTemplate;
+
+    private static $secretVersionNameTemplate;
 
     private static $workflowInvocationNameTemplate;
 
@@ -227,6 +221,17 @@ class DataformGapicClient
         return self::$repositoryNameTemplate;
     }
 
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate(
+                'projects/{project}/secrets/{secret}/versions/{version}'
+            );
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
     private static function getWorkflowInvocationNameTemplate()
     {
         if (self::$workflowInvocationNameTemplate == null) {
@@ -256,6 +261,7 @@ class DataformGapicClient
                 'compilationResult' => self::getCompilationResultNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'repository' => self::getRepositoryNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
                 'workflowInvocation' => self::getWorkflowInvocationNameTemplate(),
                 'workspace' => self::getWorkspaceNameTemplate(),
             ];
@@ -333,6 +339,27 @@ class DataformGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     *
+     * @experimental
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * workflow_invocation resource.
      *
      * @param string $project
@@ -392,6 +419,7 @@ class DataformGapicClient
      * - compilationResult: projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}
      * - location: projects/{project}/locations/{location}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - workflowInvocation: projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}
      * - workspace: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}
      *
@@ -442,9 +470,6 @@ class DataformGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataform.googleapis.com:443'.
@@ -474,7 +499,7 @@ class DataformGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -2644,7 +2669,7 @@ class DataformGapicClient
      * try {
      *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
      *     $path = 'path';
-     *     $contents = '';
+     *     $contents = '...';
      *     $response = $dataformClient->writeFile($formattedWorkspace, $path, $contents);
      * } finally {
      *     $dataformClient->close();

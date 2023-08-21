@@ -23,15 +23,12 @@
 namespace Google\Cloud\Functions\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Functions\V2\FunctionServiceClient;
 use Google\Cloud\Functions\V2\GenerateDownloadUrlResponse;
-
 use Google\Cloud\Functions\V2\GenerateUploadUrlResponse;
 use Google\Cloud\Functions\V2\ListFunctionsResponse;
 use Google\Cloud\Functions\V2\ListRuntimesResponse;
@@ -54,25 +51,19 @@ use stdClass;
  */
 class FunctionServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FunctionServiceClient
-     */
+    /** @return FunctionServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,14 +72,12 @@ class FunctionServiceClientTest extends GeneratedTest
         return new FunctionServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFunctionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -106,9 +95,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $url = 'url116079';
+        $kmsKeyName = 'kmsKeyName2094986649';
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setUrl($url);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -152,14 +145,12 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFunctionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -210,14 +201,12 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFunctionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -274,14 +263,12 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFunctionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -331,9 +318,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateDownloadUrlTest()
     {
         $transport = $this->createTransport();
@@ -360,9 +345,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateDownloadUrlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -395,9 +378,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateUploadUrlTest()
     {
         $transport = $this->createTransport();
@@ -424,9 +405,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateUploadUrlExceptionTest()
     {
         $transport = $this->createTransport();
@@ -459,9 +438,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFunctionTest()
     {
         $transport = $this->createTransport();
@@ -472,9 +449,13 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
+        $url = 'url116079';
+        $kmsKeyName = 'kmsKeyName2094986649';
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setUrl($url);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
@@ -490,9 +471,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFunctionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -525,9 +504,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFunctionsTest()
     {
         $transport = $this->createTransport();
@@ -562,9 +539,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFunctionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -597,9 +572,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRuntimesTest()
     {
         $transport = $this->createTransport();
@@ -624,9 +597,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRuntimesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -659,14 +630,12 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFunctionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -684,9 +653,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $url = 'url116079';
+        $kmsKeyName = 'kmsKeyName2094986649';
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setUrl($url);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -727,14 +700,12 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFunctionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -784,9 +755,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +786,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -850,9 +817,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -881,9 +846,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -916,9 +879,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -950,9 +911,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -986,9 +945,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1016,9 +973,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

@@ -28,13 +28,13 @@ use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
 
 /**
- * Fetches processor types. Note that we do not use ListProcessorTypes here
- * because it is not paginated.
+ * Fetches processor types. Note that we don't use
+ * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+ * here, because it isn't paginated.
  *
- * @param string $formattedParent The project of processor type to list.
- *                                The available processor types may depend on the allow-listing on projects.
- *                                Format: `projects/{project}/locations/{location}`
- *                                Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The location of processor types to list.
+ *                                Format: `projects/{project}/locations/{location}`. Please see
+ *                                {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
  */
 function fetch_processor_types_sample(string $formattedParent): void
 {

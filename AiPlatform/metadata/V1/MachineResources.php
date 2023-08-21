@@ -18,7 +18,7 @@ class MachineResources
         \GPBMetadata\Google\Cloud\Aiplatform\V1\AcceleratorType::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ó	
+í	
 2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto"
 MachineSpec
 machine_type (	BàAJ
@@ -47,8 +47,8 @@ class MachineResources
 mount_point (	BàA"A
 AutoscalingMetricSpec
 metric_name (	BàA
-target (BÙ
-com.google.cloud.aiplatform.v1BMachineResourcesProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+target (BÓ
+com.google.cloud.aiplatform.v1BMachineResourcesProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

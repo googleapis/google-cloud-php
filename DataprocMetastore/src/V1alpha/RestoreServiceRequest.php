@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the metastore service to run restore, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to run
+     * restore, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $service = '';
     /**
-     * Required. The relative resource name of the metastore service backup to restore
-     * from, in the following form:
+     * Required. The relative resource name of the metastore service backup to
+     * restore from, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -38,10 +38,10 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
      */
     private $restore_type = 0;
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -60,20 +60,20 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service
-     *           Required. The relative resource name of the metastore service to run restore, in the
-     *           following form:
+     *           Required. The relative resource name of the metastore service to run
+     *           restore, in the following form:
      *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *     @type string $backup
-     *           Required. The relative resource name of the metastore service backup to restore
-     *           from, in the following form:
+     *           Required. The relative resource name of the metastore service backup to
+     *           restore from, in the following form:
      *           `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *     @type int $restore_type
      *           Optional. The type of restore. If unspecified, defaults to `METADATA_ONLY`.
      *     @type string $request_id
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
      *           the creation of duplicate commitments.
@@ -88,8 +88,8 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service to run restore, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to run
+     * restore, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -101,8 +101,8 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service to run restore, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to run
+     * restore, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -118,8 +118,8 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service backup to restore
-     * from, in the following form:
+     * Required. The relative resource name of the metastore service backup to
+     * restore from, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -131,8 +131,8 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service backup to restore
-     * from, in the following form:
+     * Required. The relative resource name of the metastore service backup to
+     * restore from, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -174,10 +174,10 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -194,10 +194,10 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.

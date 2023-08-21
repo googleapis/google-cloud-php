@@ -46,6 +46,29 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
     private $ignore_warnings = false;
 
     /**
+     * @param string                                     $parent       Required. The unique name of the instance in which to create the new app profile.
+     *                                                                 Values are of the form
+     *                                                                 `projects/{project}/instances/{instance}`. Please see
+     *                                                                 {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
+     * @param string                                     $appProfileId Required. The ID to be used when referring to the new app profile within its
+     *                                                                 instance, e.g., just `myprofile` rather than
+     *                                                                 `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile $appProfile   Required. The app profile to be created.
+     *                                                                 Fields marked `OutputOnly` will be ignored.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $appProfileId, \Google\Cloud\Bigtable\Admin\V2\AppProfile $appProfile): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAppProfileId($appProfileId)
+            ->setAppProfile($appProfile);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

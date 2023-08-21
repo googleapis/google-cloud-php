@@ -50,10 +50,26 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a CustomMetric resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\DataRetentionSettings $data_retention_settings
      *           A snapshot of a data retention settings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\SearchAds360Link $search_ads_360_link
+     *           A snapshot of a SearchAds360Link resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\DataStream $data_stream
      *           A snapshot of a DataStream resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\AttributionSettings $attribution_settings
      *           A snapshot of AttributionSettings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ExpandedDataSet $expanded_data_set
+     *           A snapshot of an ExpandedDataSet resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ChannelGroup $channel_group
+     *           A snapshot of a ChannelGroup resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\BigQueryLink $bigquery_link
+     *           A snapshot of a BigQuery link resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings $enhanced_measurement_settings
+     *           A snapshot of EnhancedMeasurementSettings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\AdSenseLink $adsense_link
+     *           A snapshot of an AdSenseLink resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\Audience $audience
+     *           A snapshot of an Audience resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\EventCreateRule $event_create_rule
+     *           A snapshot of an EventCreateRule resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -438,6 +454,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A snapshot of a SearchAds360Link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SearchAds360Link search_ads_360_link = 16;</code>
+     * @return \Google\Analytics\Admin\V1alpha\SearchAds360Link|null
+     */
+    public function getSearchAds360Link()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasSearchAds360Link()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * A snapshot of a SearchAds360Link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SearchAds360Link search_ads_360_link = 16;</code>
+     * @param \Google\Analytics\Admin\V1alpha\SearchAds360Link $var
+     * @return $this
+     */
+    public function setSearchAds360Link($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\SearchAds360Link::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
      * A snapshot of a DataStream resource in change history.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataStream data_stream = 18;</code>
@@ -495,6 +542,223 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\AttributionSettings::class);
         $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of an ExpandedDataSet resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_set = 21;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ExpandedDataSet|null
+     */
+    public function getExpandedDataSet()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasExpandedDataSet()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * A snapshot of an ExpandedDataSet resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_set = 21;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ExpandedDataSet $var
+     * @return $this
+     */
+    public function setExpandedDataSet($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ExpandedDataSet::class);
+        $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a ChannelGroup resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChannelGroup channel_group = 22;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ChannelGroup|null
+     */
+    public function getChannelGroup()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasChannelGroup()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * A snapshot of a ChannelGroup resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChannelGroup channel_group = 22;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ChannelGroup $var
+     * @return $this
+     */
+    public function setChannelGroup($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ChannelGroup::class);
+        $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a BigQuery link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.BigQueryLink bigquery_link = 23;</code>
+     * @return \Google\Analytics\Admin\V1alpha\BigQueryLink|null
+     */
+    public function getBigqueryLink()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasBigqueryLink()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * A snapshot of a BigQuery link resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.BigQueryLink bigquery_link = 23;</code>
+     * @param \Google\Analytics\Admin\V1alpha\BigQueryLink $var
+     * @return $this
+     */
+    public function setBigqueryLink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\BigQueryLink::class);
+        $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of EnhancedMeasurementSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EnhancedMeasurementSettings enhanced_measurement_settings = 24;</code>
+     * @return \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings|null
+     */
+    public function getEnhancedMeasurementSettings()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasEnhancedMeasurementSettings()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * A snapshot of EnhancedMeasurementSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EnhancedMeasurementSettings enhanced_measurement_settings = 24;</code>
+     * @param \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings $var
+     * @return $this
+     */
+    public function setEnhancedMeasurementSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of an AdSenseLink resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AdSenseLink adsense_link = 27;</code>
+     * @return \Google\Analytics\Admin\V1alpha\AdSenseLink|null
+     */
+    public function getAdsenseLink()
+    {
+        return $this->readOneof(27);
+    }
+
+    public function hasAdsenseLink()
+    {
+        return $this->hasOneof(27);
+    }
+
+    /**
+     * A snapshot of an AdSenseLink resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AdSenseLink adsense_link = 27;</code>
+     * @param \Google\Analytics\Admin\V1alpha\AdSenseLink $var
+     * @return $this
+     */
+    public function setAdsenseLink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\AdSenseLink::class);
+        $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of an Audience resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Audience audience = 28;</code>
+     * @return \Google\Analytics\Admin\V1alpha\Audience|null
+     */
+    public function getAudience()
+    {
+        return $this->readOneof(28);
+    }
+
+    public function hasAudience()
+    {
+        return $this->hasOneof(28);
+    }
+
+    /**
+     * A snapshot of an Audience resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Audience audience = 28;</code>
+     * @param \Google\Analytics\Admin\V1alpha\Audience $var
+     * @return $this
+     */
+    public function setAudience($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\Audience::class);
+        $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of an EventCreateRule resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EventCreateRule event_create_rule = 29;</code>
+     * @return \Google\Analytics\Admin\V1alpha\EventCreateRule|null
+     */
+    public function getEventCreateRule()
+    {
+        return $this->readOneof(29);
+    }
+
+    public function hasEventCreateRule()
+    {
+        return $this->hasOneof(29);
+    }
+
+    /**
+     * A snapshot of an EventCreateRule resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EventCreateRule event_create_rule = 29;</code>
+     * @param \Google\Analytics\Admin\V1alpha\EventCreateRule $var
+     * @return $this
+     */
+    public function setEventCreateRule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\EventCreateRule::class);
+        $this->writeOneof(29, $var);
 
         return $this;
     }

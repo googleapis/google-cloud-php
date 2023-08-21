@@ -49,7 +49,7 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * A set of Certificates defines for the given `hostname`. There can be
-     * defined up to fifteen certificates in each Certificate Map Entry. Each
+     * defined up to four certificates in each Certificate Map Entry. Each
      * certificate must match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.resource_reference) = {</code>
@@ -89,7 +89,7 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
      *           A predefined matcher for particular cases, other than SNI selection.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $certificates
      *           A set of Certificates defines for the given `hostname`. There can be
-     *           defined up to fifteen certificates in each Certificate Map Entry. Each
+     *           defined up to four certificates in each Certificate Map Entry. Each
      *           certificate must match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
      *     @type int $state
      *           Output only. A serving state of this Certificate Map Entry.
@@ -322,7 +322,7 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * A set of Certificates defines for the given `hostname`. There can be
-     * defined up to fifteen certificates in each Certificate Map Entry. Each
+     * defined up to four certificates in each Certificate Map Entry. Each
      * certificate must match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.resource_reference) = {</code>
@@ -335,7 +335,7 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * A set of Certificates defines for the given `hostname`. There can be
-     * defined up to fifteen certificates in each Certificate Map Entry. Each
+     * defined up to four certificates in each Certificate Map Entry. Each
      * certificate must match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.resource_reference) = {</code>

@@ -16,24 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project to list related account groups from, in the format
-     * "projects/{project}".
+     * Required. The name of the project to list related account groups from, in
+     * the format "projects/{project}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than
-     * this value.
-     * If unspecified, at most 50 groups will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return
+     * fewer than this value. If unspecified, at most 50 groups are returned. The
+     * maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A page token, received from a previous `ListRelatedAccountGroups` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. A page token, received from a previous `ListRelatedAccountGroups`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListRelatedAccountGroups` must match the call that provided the page
      * token.
@@ -43,22 +42,36 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the project to list related account groups from, in
+     *                       the format "projects/{project}". Please see
+     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the project to list related account groups from, in the format
-     *           "projects/{project}".
+     *           Required. The name of the project to list related account groups from, in
+     *           the format "projects/{project}".
      *     @type int $page_size
-     *           Optional. The maximum number of groups to return. The service may return fewer than
-     *           this value.
-     *           If unspecified, at most 50 groups will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           Optional. The maximum number of groups to return. The service might return
+     *           fewer than this value. If unspecified, at most 50 groups are returned. The
+     *           maximum value is 1000; values above 1000 are coerced to 1000.
      *     @type string $page_token
-     *           Optional. A page token, received from a previous `ListRelatedAccountGroups` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. A page token, received from a previous `ListRelatedAccountGroups`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
      *           `ListRelatedAccountGroups` must match the call that provided the page
      *           token.
@@ -70,8 +83,8 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project to list related account groups from, in the format
-     * "projects/{project}".
+     * Required. The name of the project to list related account groups from, in
+     * the format "projects/{project}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -82,8 +95,8 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project to list related account groups from, in the format
-     * "projects/{project}".
+     * Required. The name of the project to list related account groups from, in
+     * the format "projects/{project}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -98,10 +111,9 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than
-     * this value.
-     * If unspecified, at most 50 groups will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return
+     * fewer than this value. If unspecified, at most 50 groups are returned. The
+     * maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -112,10 +124,9 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than
-     * this value.
-     * If unspecified, at most 50 groups will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return
+     * fewer than this value. If unspecified, at most 50 groups are returned. The
+     * maximum value is 1000; values above 1000 are coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -130,8 +141,8 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous `ListRelatedAccountGroups` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. A page token, received from a previous `ListRelatedAccountGroups`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListRelatedAccountGroups` must match the call that provided the page
      * token.
@@ -145,8 +156,8 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous `ListRelatedAccountGroups` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. A page token, received from a previous `ListRelatedAccountGroups`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListRelatedAccountGroups` must match the call that provided the page
      * token.

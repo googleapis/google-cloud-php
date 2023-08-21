@@ -1,5 +1,15 @@
 assign_issues_by:
   - labels:
     - 'api: spanner'
+    - 'api: firestore'
+    - 'api: datastore'
+    - 'api: bigtable'
+    - 'api: bigtableadmin'
+    - 'api: bigquery'
+    - 'api: bigquerystorage'
+    - 'api: bigquerydatatransfer'
+    - 'api: storage'
+    - 'api: pubsub'
+    - 'api: pubsublite'
     to:
     - shivgautam

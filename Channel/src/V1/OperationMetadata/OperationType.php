@@ -122,6 +122,4 @@ class OperationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OperationType::class, \Google\Cloud\Channel\V1\OperationMetadata_OperationType::class);
 

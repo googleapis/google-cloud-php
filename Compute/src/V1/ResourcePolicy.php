@@ -26,6 +26,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * Resource policy for disk consistency groups.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyDiskConsistencyGroupPolicy disk_consistency_group_policy = 473727515;</code>
+     */
+    private $disk_consistency_group_policy = null;
+    /**
      * Resource policy for instances for placement configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
@@ -94,6 +100,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
+     *     @type \Google\Cloud\Compute\V1\ResourcePolicyDiskConsistencyGroupPolicy $disk_consistency_group_policy
+     *           Resource policy for disk consistency groups.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyGroupPlacementPolicy $group_placement_policy
      *           Resource policy for instances for placement configuration.
      *     @type int|string $id
@@ -185,6 +193,42 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource policy for disk consistency groups.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyDiskConsistencyGroupPolicy disk_consistency_group_policy = 473727515;</code>
+     * @return \Google\Cloud\Compute\V1\ResourcePolicyDiskConsistencyGroupPolicy|null
+     */
+    public function getDiskConsistencyGroupPolicy()
+    {
+        return $this->disk_consistency_group_policy;
+    }
+
+    public function hasDiskConsistencyGroupPolicy()
+    {
+        return isset($this->disk_consistency_group_policy);
+    }
+
+    public function clearDiskConsistencyGroupPolicy()
+    {
+        unset($this->disk_consistency_group_policy);
+    }
+
+    /**
+     * Resource policy for disk consistency groups.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyDiskConsistencyGroupPolicy disk_consistency_group_policy = 473727515;</code>
+     * @param \Google\Cloud\Compute\V1\ResourcePolicyDiskConsistencyGroupPolicy $var
+     * @return $this
+     */
+    public function setDiskConsistencyGroupPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourcePolicyDiskConsistencyGroupPolicy::class);
+        $this->disk_consistency_group_policy = $var;
 
         return $this;
     }

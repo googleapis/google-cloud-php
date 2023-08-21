@@ -27,26 +27,24 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\CreateEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeleteEndpointRequest;
-use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\DeployModelRequest;
+use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\Endpoint;
 use Google\Cloud\AIPlatform\V1\GetEndpointRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsResponse;
+use Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest;
 use Google\Cloud\AIPlatform\V1\UndeployModelRequest;
 use Google\Cloud\AIPlatform\V1\UpdateEndpointRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -77,7 +75,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -94,7 +92,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -108,34 +106,28 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient} to use the new
+ * surface.
  */
 class EndpointServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.EndpointService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -149,6 +141,10 @@ class EndpointServiceGapicClient
     private static $modelDeploymentMonitoringJobNameTemplate;
 
     private static $networkNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -235,6 +231,28 @@ class EndpointServiceGapicClient
         return self::$networkNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -244,6 +262,8 @@ class EndpointServiceGapicClient
                 'model' => self::getModelNameTemplate(),
                 'modelDeploymentMonitoringJob' => self::getModelDeploymentMonitoringJobNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
             ];
         }
 
@@ -345,6 +365,53 @@ class EndpointServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -353,6 +420,8 @@ class EndpointServiceGapicClient
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelDeploymentMonitoringJob: projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}
      * - network: projects/{project}/global/networks/{network}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -434,9 +503,6 @@ class EndpointServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -466,7 +532,7 @@ class EndpointServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -505,7 +571,7 @@ class EndpointServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -522,7 +588,7 @@ class EndpointServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -543,10 +609,16 @@ class EndpointServiceGapicClient
      *           component of the endpoint resource name.
      *           If not provided, Vertex AI will generate a value for this ID.
      *
-     *           This value should be 1-10 characters, and valid characters are /[0-9]/.
-     *           When using HTTP/JSON, this field is populated based on a query string
-     *           argument, such as `?endpoint_id=12345`. This is the fallback for fields
-     *           that are not included in either the URI or the body.
+     *           If the first character is a letter, this value may be up to 63 characters,
+     *           and valid characters are `[a-z0-9-]`. The last character must be a letter
+     *           or number.
+     *
+     *           If the first character is a number, this value may be up to 9 characters,
+     *           and valid characters are `[0-9]` with no leading zeros.
+     *
+     *           When using HTTP/JSON, this field is populated
+     *           based on a query string argument, such as `?endpoint_id=12345`. This is the
+     *           fallback for fields that are not included in either the URI or the body.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -668,7 +740,7 @@ class EndpointServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -685,7 +757,7 @@ class EndpointServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -699,8 +771,9 @@ class EndpointServiceGapicClient
      *                                     Format:
      *                                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
      * @param DeployedModel $deployedModel Required. The DeployedModel to be created within the Endpoint. Note that
-     *                                     [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] must be updated for the DeployedModel to start
-     *                                     receiving traffic, either as part of this call, or via
+     *                                     [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     *                                     must be updated for the DeployedModel to start receiving traffic, either as
+     *                                     part of this call, or via
      *                                     [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
      * @param array         $optionalArgs  {
      *     Optional.
@@ -710,13 +783,15 @@ class EndpointServiceGapicClient
      *           traffic that should be forwarded to that DeployedModel.
      *
      *           If this field is non-empty, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it.
-     *           To refer to the ID of the just being deployed Model, a "0" should be used,
-     *           and the actual ID of the new DeployedModel will be filled in its place by
-     *           this method. The traffic percentage values must add up to 100.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *           overwritten with it. To refer to the ID of the just being deployed Model, a
+     *           "0" should be used, and the actual ID of the new DeployedModel will be
+     *           filled in its place by this method. The traffic percentage values must add
+     *           up to 100.
      *
      *           If this field is empty, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not updated.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not
+     *           updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -831,17 +906,18 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location from which to list the Endpoints.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The resource name of the Location from which to list the
+     *                             Endpoints. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
-     *           Optional. An expression for filtering the results of the request. For field names
-     *           both snake_case and camelCase are supported.
+     *           Optional. An expression for filtering the results of the request. For field
+     *           names both snake_case and camelCase are supported.
      *
      *           * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID,
-     *           i.e. the last segment of the Endpoint's [resource name][google.cloud.aiplatform.v1.Endpoint.name].
+     *           i.e. the last segment of the Endpoint's [resource
+     *           name][google.cloud.aiplatform.v1.Endpoint.name].
      *           * `display_name` supports = and, !=
      *           * `labels` supports general map functions that is:
      *           * `labels.key=value` - key:value equality
@@ -923,6 +999,106 @@ class EndpointServiceGapicClient
     }
 
     /**
+     * Updates an existing deployed model. Updatable fields include
+     * `min_replica_count`, `max_replica_count`, `autoscaling_metric_specs`,
+     * `disable_container_logging` (v1 only), and `enable_container_logging`
+     * (v1beta1 only).
+     *
+     * Sample code:
+     * ```
+     * $endpointServiceClient = new EndpointServiceClient();
+     * try {
+     *     $formattedEndpoint = $endpointServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $deployedModel = new DeployedModel();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $endpointServiceClient->mutateDeployedModel($formattedEndpoint, $deployedModel, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $endpointServiceClient->mutateDeployedModel($formattedEndpoint, $deployedModel, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'mutateDeployedModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $endpointServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string        $endpoint      Required. The name of the Endpoint resource into which to mutate a
+     *                                     DeployedModel. Format:
+     *                                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param DeployedModel $deployedModel Required. The DeployedModel to be mutated within the Endpoint. Only the
+     *                                     following fields can be mutated:
+     *
+     *                                     * `min_replica_count` in either
+     *                                     [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                     [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                     * `max_replica_count` in either
+     *                                     [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                     [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                     * [autoscaling_metric_specs][google.cloud.aiplatform.v1.DedicatedResources.autoscaling_metric_specs]
+     *                                     * `disable_container_logging` (v1 only)
+     *                                     * `enable_container_logging` (v1beta1 only)
+     * @param FieldMask     $updateMask    Required. The update mask applies to the resource. See
+     *                                     [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function mutateDeployedModel(
+        $endpoint,
+        $deployedModel,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new MutateDeployedModelRequest();
+        $requestParamHeaders = [];
+        $request->setEndpoint($endpoint);
+        $request->setDeployedModel($deployedModel);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['endpoint'] = $endpoint;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'MutateDeployedModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Undeploys a Model from an Endpoint, removing a DeployedModel from it, and
      * freeing all resources it's using.
      *
@@ -936,7 +1112,7 @@ class EndpointServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -953,7 +1129,7 @@ class EndpointServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -972,12 +1148,12 @@ class EndpointServiceGapicClient
      *
      *     @type array $trafficSplit
      *           If this field is provided, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it. If
-     *           last DeployedModel is being undeployed from the Endpoint, the
-     *           [Endpoint.traffic_split] will always end up empty when this call returns.
-     *           A DeployedModel will be successfully undeployed only if it doesn't have
-     *           any traffic assigned to it when this method executes, or if this field
-     *           unassigns any traffic to it.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *           overwritten with it. If last DeployedModel is being undeployed from the
+     *           Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     *           call returns. A DeployedModel will be successfully undeployed only if it
+     *           doesn't have any traffic assigned to it when this method executes, or if
+     *           this field unassigns any traffic to it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1032,7 +1208,8 @@ class EndpointServiceGapicClient
      * ```
      *
      * @param Endpoint  $endpoint     Required. The Endpoint which replaces the resource on the server.
-     * @param FieldMask $updateMask   Required. The update mask applies to the resource. See [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param FieldMask $updateMask   Required. The update mask applies to the resource. See
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array     $optionalArgs {
      *     Optional.
      *

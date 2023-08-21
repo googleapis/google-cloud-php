@@ -120,6 +120,11 @@ class BatchClient
     private $databaseName;
 
     /**
+     * @var string|null
+     */
+    private $databaseRole;
+
+    /**
      * @var array
      */
     private $allowedPartitionTypes = [
@@ -131,11 +136,17 @@ class BatchClient
      * @param Operation $operation A Cloud Spanner Operations wrapper.
      * @param string $databaseName The database name to which the batch client
      *        instance is scoped.
+     * @param array $options  [optional] {
+     *     Configuration options.
+     *
+     *     @type string $databaseRole The user created database role which creates the session.
+     * }
      */
-    public function __construct(Operation $operation, $databaseName)
+    public function __construct(Operation $operation, $databaseName, array $options = [])
     {
         $this->operation = $operation;
         $this->databaseName = $databaseName;
+        $this->databaseRole = $options['databaseRole'] ?? '';
     }
 
     /**
@@ -168,6 +179,8 @@ class BatchClient
             'transactionOptions' => [],
         ];
 
+        $sessionOptions = $this->pluck('sessionOptions', $options, false) ?: [];
+
         // Single Use transactions are not supported in batch mode.
         $options['transactionOptions']['singleUse'] = false;
 
@@ -176,9 +189,13 @@ class BatchClient
 
         $transactionOptions = $this->configureSnapshotOptions($transactionOptions);
 
+        if ($this->databaseRole !== null) {
+            $sessionOptions['creator_role'] = $this->databaseRole;
+        }
+
         $session = $this->operation->createSession(
             $this->databaseName,
-            $this->pluck('sessionOptions', $options, false) ?: []
+            $sessionOptions
         );
 
         return $this->operation->snapshot($session, [

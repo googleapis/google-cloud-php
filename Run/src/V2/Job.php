@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Job represents the configuration of a single job. A job an immutable resource
- * that references a container image which is run to completion.
+ * Job represents the configuration of a single job, which references a
+ * container image that is run to completion.
  *
  * Generated from protobuf message <code>google.cloud.run.v2.Job</code>
  */
@@ -25,8 +25,9 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -39,27 +40,32 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $generation = 0;
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
      * User-provided labels are shared with Google's billing system, so they can
      * be used to filter, or break down billing charges by team, component,
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
+     * https://cloud.google.com/run/docs/configuring/labels.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 Job.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      */
     private $labels;
     /**
-     * KRM-style annotations for the resource. Unstructured key value map that may
+     * Unstructured key value map that may
      * be set by external tools to store and arbitrary metadata.
      * They are not queryable and should be preserved
-     * when modifying objects. Cloud Run will populate some annotations using
-     * 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     * follows Kubernetes annotations' namespacing, limits, and rules. More info:
-     * https://kubernetes.io/docs/user-guide/annotations
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected on new resources. All system
+     * annotations in v1 now have a corresponding field in v2 Job.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
      */
@@ -118,6 +124,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
+     * Set the launch stage to a preview stage on input to allow use of preview
+     * features in that stage. On read (or output), describes whether the resource
+     * uses preview features.
+     * <p>
+     * For example, if ALPHA is provided as input, but only BETA and GA-level
+     * features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 14;</code>
      */
@@ -135,24 +147,24 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $template = null;
     /**
-     * Output only. The generation of this Job. See comments in `reconciling` for additional
-     * information on reconciliation process in Cloud Run.
+     * Output only. The generation of this Job. See comments in `reconciling` for
+     * additional information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $observed_generation = 0;
     /**
-     * Output only. The Condition of this Job, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Job, containing its readiness status,
+     * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $terminal_condition = null;
     /**
-     * Output only. The Conditions of all other associated sub-resources. They contain
-     * additional diagnostics information in case the Job does not reach its
-     * desired state. See comments in `reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * Output only. The Conditions of all other associated sub-resources. They
+     * contain additional diagnostics information in case the Job does not reach
+     * its desired state. See comments in `reconciling` for additional information
+     * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -170,8 +182,8 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $latest_created_execution = null;
     /**
-     * Output only. Returns true if the Job is currently being acted upon by the system to
-     * bring it into the desired state.
+     * Output only. Returns true if the Job is currently being acted upon by the
+     * system to bring it into the desired state.
      * When a new Job is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Job to the
      * desired state. This process is called reconciliation.
@@ -193,6 +205,12 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $reconciling = false;
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -211,29 +229,35 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Format:
      *           projects/{project}/locations/{location}/jobs/{job}
      *     @type string $uid
-     *           Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     *           string and guaranteed to remain unchanged until the resource is deleted.
+     *           Output only. Server assigned unique identifier for the Execution. The value
+     *           is a UUID4 string and guaranteed to remain unchanged until the resource is
+     *           deleted.
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           KRM-style labels for the resource.
+     *           Unstructured key value map that can be used to organize and categorize
+     *           objects.
      *           User-provided labels are shared with Google's billing system, so they can
      *           be used to filter, or break down billing charges by team, component,
      *           environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     *           https://cloud.google.com/run/docs/configuring/labels
-     *           Cloud Run will populate some labels with 'run.googleapis.com' or
-     *           'serving.knative.dev' namespaces. Those labels are read-only, and user
-     *           changes will not be preserved.
+     *           https://cloud.google.com/run/docs/configuring/labels.
+     *           <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected. All system labels in v1 now have a
+     *           corresponding field in v2 Job.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           KRM-style annotations for the resource. Unstructured key value map that may
+     *           Unstructured key value map that may
      *           be set by external tools to store and arbitrary metadata.
      *           They are not queryable and should be preserved
-     *           when modifying objects. Cloud Run will populate some annotations using
-     *           'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     *           follows Kubernetes annotations' namespacing, limits, and rules. More info:
-     *           https://kubernetes.io/docs/user-guide/annotations
+     *           when modifying objects.
+     *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     *           namespaces, and they will be rejected on new resources. All system
+     *           annotations in v1 now have a corresponding field in v2 Job.
+     *           <p>This field follows Kubernetes annotations' namespacing, limits, and
+     *           rules.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -256,28 +280,34 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Launch Stages](https://cloud.google.com/terms/launch-stages).
      *           Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      *           is assumed.
+     *           Set the launch stage to a preview stage on input to allow use of preview
+     *           features in that stage. On read (or output), describes whether the resource
+     *           uses preview features.
+     *           <p>
+     *           For example, if ALPHA is provided as input, but only BETA and GA-level
+     *           features are used, this field will be BETA on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
      *           Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\ExecutionTemplate $template
      *           Required. The template used to create executions for this Job.
      *     @type int|string $observed_generation
-     *           Output only. The generation of this Job. See comments in `reconciling` for additional
-     *           information on reconciliation process in Cloud Run.
+     *           Output only. The generation of this Job. See comments in `reconciling` for
+     *           additional information on reconciliation process in Cloud Run.
      *     @type \Google\Cloud\Run\V2\Condition $terminal_condition
-     *           Output only. The Condition of this Job, containing its readiness status, and
-     *           detailed error information in case it did not reach the desired state.
+     *           Output only. The Condition of this Job, containing its readiness status,
+     *           and detailed error information in case it did not reach the desired state.
      *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
-     *           Output only. The Conditions of all other associated sub-resources. They contain
-     *           additional diagnostics information in case the Job does not reach its
-     *           desired state. See comments in `reconciling` for additional information on
-     *           reconciliation process in Cloud Run.
+     *           Output only. The Conditions of all other associated sub-resources. They
+     *           contain additional diagnostics information in case the Job does not reach
+     *           its desired state. See comments in `reconciling` for additional information
+     *           on reconciliation process in Cloud Run.
      *     @type int $execution_count
      *           Output only. Number of executions created for this job.
      *     @type \Google\Cloud\Run\V2\ExecutionReference $latest_created_execution
      *           Output only. Name of the last created execution.
      *     @type bool $reconciling
-     *           Output only. Returns true if the Job is currently being acted upon by the system to
-     *           bring it into the desired state.
+     *           Output only. Returns true if the Job is currently being acted upon by the
+     *           system to bring it into the desired state.
      *           When a new Job is created, or an existing one is updated, Cloud Run
      *           will asynchronously perform all necessary steps to bring the Job to the
      *           desired state. This process is called reconciliation.
@@ -294,6 +324,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           `latest_succeeded_execution` will have the state of the last succeeded
      *           execution or empty for newly created Job. Additional information on the
      *           failure can be found in `terminal_condition` and `conditions`.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -335,8 +367,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -347,8 +380,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -391,15 +425,17 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
      * User-provided labels are shared with Google's billing system, so they can
      * be used to filter, or break down billing charges by team, component,
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
+     * https://cloud.google.com/run/docs/configuring/labels.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 Job.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -410,15 +446,17 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
+     * Unstructured key value map that can be used to organize and categorize
+     * objects.
      * User-provided labels are shared with Google's billing system, so they can
      * be used to filter, or break down billing charges by team, component,
      * environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
-     * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
+     * https://cloud.google.com/run/docs/configuring/labels.
+     * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected. All system labels in v1 now have a
+     * corresponding field in v2 Job.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -433,13 +471,16 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource. Unstructured key value map that may
+     * Unstructured key value map that may
      * be set by external tools to store and arbitrary metadata.
      * They are not queryable and should be preserved
-     * when modifying objects. Cloud Run will populate some annotations using
-     * 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     * follows Kubernetes annotations' namespacing, limits, and rules. More info:
-     * https://kubernetes.io/docs/user-guide/annotations
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected on new resources. All system
+     * annotations in v1 now have a corresponding field in v2 Job.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -450,13 +491,16 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource. Unstructured key value map that may
+     * Unstructured key value map that may
      * be set by external tools to store and arbitrary metadata.
      * They are not queryable and should be preserved
-     * when modifying objects. Cloud Run will populate some annotations using
-     * 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field
-     * follows Kubernetes annotations' namespacing, limits, and rules. More info:
-     * https://kubernetes.io/docs/user-guide/annotations
+     * when modifying objects.
+     * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
+     * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
+     * namespaces, and they will be rejected on new resources. All system
+     * annotations in v1 now have a corresponding field in v2 Job.
+     * <p>This field follows Kubernetes annotations' namespacing, limits, and
+     * rules.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -725,6 +769,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
+     * Set the launch stage to a preview stage on input to allow use of preview
+     * features in that stage. On read (or output), describes whether the resource
+     * uses preview features.
+     * <p>
+     * For example, if ALPHA is provided as input, but only BETA and GA-level
+     * features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 14;</code>
      * @return int
@@ -739,6 +789,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
+     * Set the launch stage to a preview stage on input to allow use of preview
+     * features in that stage. On read (or output), describes whether the resource
+     * uses preview features.
+     * <p>
+     * For example, if ALPHA is provided as input, but only BETA and GA-level
+     * features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 14;</code>
      * @param int $var
@@ -825,8 +881,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Job. See comments in `reconciling` for additional
-     * information on reconciliation process in Cloud Run.
+     * Output only. The generation of this Job. See comments in `reconciling` for
+     * additional information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -837,8 +893,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Job. See comments in `reconciling` for additional
-     * information on reconciliation process in Cloud Run.
+     * Output only. The generation of this Job. See comments in `reconciling` for
+     * additional information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -853,8 +909,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Job, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Job, containing its readiness status,
+     * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Run\V2\Condition|null
@@ -875,8 +931,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Job, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Job, containing its readiness status,
+     * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Run\V2\Condition $var
@@ -891,10 +947,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Conditions of all other associated sub-resources. They contain
-     * additional diagnostics information in case the Job does not reach its
-     * desired state. See comments in `reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * Output only. The Conditions of all other associated sub-resources. They
+     * contain additional diagnostics information in case the Job does not reach
+     * its desired state. See comments in `reconciling` for additional information
+     * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -905,10 +961,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Conditions of all other associated sub-resources. They contain
-     * additional diagnostics information in case the Job does not reach its
-     * desired state. See comments in `reconciling` for additional information on
-     * reconciliation process in Cloud Run.
+     * Output only. The Conditions of all other associated sub-resources. They
+     * contain additional diagnostics information in case the Job does not reach
+     * its desired state. See comments in `reconciling` for additional information
+     * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
@@ -985,8 +1041,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Returns true if the Job is currently being acted upon by the system to
-     * bring it into the desired state.
+     * Output only. Returns true if the Job is currently being acted upon by the
+     * system to bring it into the desired state.
      * When a new Job is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Job to the
      * desired state. This process is called reconciliation.
@@ -1013,8 +1069,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Returns true if the Job is currently being acted upon by the system to
-     * bring it into the desired state.
+     * Output only. Returns true if the Job is currently being acted upon by the
+     * system to bring it into the desired state.
      * When a new Job is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Job to the
      * desired state. This process is called reconciliation.
@@ -1040,6 +1096,32 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->reconciling = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.GetAnnotationSpec][google.cloud.aiplatform.v1.DatasetService.GetAnnotationSpec].
+ * Request message for
+ * [DatasetService.GetAnnotationSpec][google.cloud.aiplatform.v1.DatasetService.GetAnnotationSpec].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetAnnotationSpecRequest</code>
  */
@@ -29,6 +30,22 @@ class GetAnnotationSpecRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 2;</code>
      */
     private $read_mask = null;
+
+    /**
+     * @param string $name Required. The name of the AnnotationSpec resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}`
+     *                     Please see {@see DatasetServiceClient::annotationSpecName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

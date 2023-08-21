@@ -92,6 +92,18 @@ return [
                     ],
                 ],
             ],
+            'EvaluateProcessorVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{processor_version=projects/*/locations/*/processors/*/processorVersions/*}:evaluateProcessorVersion',
+                'body' => '*',
+                'placeholders' => [
+                    'processor_version' => [
+                        'getters' => [
+                            'getProcessorVersion',
+                        ],
+                    ],
+                ],
+            ],
             'FetchProcessorTypes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}:fetchProcessorTypes',
@@ -99,6 +111,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEvaluation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/processors/*/processorVersions/*/evaluations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -114,6 +137,17 @@ return [
                     ],
                 ],
             ],
+            'GetProcessorType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/processorTypes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetProcessorVersion' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/processors/*/processorVersions/*}',
@@ -121,6 +155,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEvaluations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/processors/*/processorVersions/*}/evaluations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -197,6 +242,18 @@ return [
                     'processor' => [
                         'getters' => [
                             'getProcessor',
+                        ],
+                    ],
+                ],
+            ],
+            'TrainProcessorVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/processors/*}/processorVersions:train',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -308,4 +365,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

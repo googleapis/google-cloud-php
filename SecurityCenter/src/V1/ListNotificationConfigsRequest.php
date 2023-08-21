@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListNotificationConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization to list notification configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]", or
-     * "projects/[project_id]".
+     * Required. The name of the parent in which to list the notification
+     * configurations. Its format is "organizations/[organization_id]",
+     * "folders/[folder_id]", or "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,15 +40,31 @@ class ListNotificationConfigsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. The name of the parent in which to list the notification
+     *                       configurations. Its format is "organizations/[organization_id]",
+     *                       "folders/[folder_id]", or "projects/[project_id]". Please see
+     *                       {@see SecurityCenterClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization to list notification configs. Its format
-     *           is "organizations/[organization_id]", "folders/[folder_id]", or
-     *           "projects/[project_id]".
+     *           Required. The name of the parent in which to list the notification
+     *           configurations. Its format is "organizations/[organization_id]",
+     *           "folders/[folder_id]", or "projects/[project_id]".
      *     @type string $page_token
      *           The value returned by the last `ListNotificationConfigsResponse`; indicates
      *           that this is a continuation of a prior `ListNotificationConfigs` call, and
@@ -64,9 +80,9 @@ class ListNotificationConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization to list notification configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]", or
-     * "projects/[project_id]".
+     * Required. The name of the parent in which to list the notification
+     * configurations. Its format is "organizations/[organization_id]",
+     * "folders/[folder_id]", or "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,9 +93,9 @@ class ListNotificationConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization to list notification configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]", or
-     * "projects/[project_id]".
+     * Required. The name of the parent in which to list the notification
+     * configurations. Its format is "organizations/[organization_id]",
+     * "folders/[folder_id]", or "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

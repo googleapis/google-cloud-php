@@ -57,7 +57,7 @@ class CloudWorkspaceId extends \Google\Protobuf\Internal\Message
      */
     public function getRepoId()
     {
-        return isset($this->repo_id) ? $this->repo_id : null;
+        return $this->repo_id;
     }
 
     public function hasRepoId()

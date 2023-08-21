@@ -44,6 +44,35 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param string                             $parent     Required. The resource name of the instance location using the form:
+     *                                                       `projects/{project_id}/locations/{location_id}`
+     *                                                       where `location_id` refers to a GCP region
+     *                                                       Please see {@see CloudMemcacheClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Memcache\V1\Instance $instance   Required. A Memcached Instance
+     * @param string                             $instanceId Required. The logical name of the Memcached instance in the user
+     *                                                       project with the following restrictions:
+     *
+     *                                                       * Must contain only lowercase letters, numbers, and hyphens.
+     *                                                       * Must start with a letter.
+     *                                                       * Must be between 1-40 characters.
+     *                                                       * Must end with a number or a letter.
+     *                                                       * Must be unique within the user project / location.
+     *
+     *                                                       If any of the above are not met, the API raises an invalid argument error.
+     *
+     * @return \Google\Cloud\Memcache\V1\CreateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Memcache\V1\Instance $instance, string $instanceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstance($instance)
+            ->setInstanceId($instanceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

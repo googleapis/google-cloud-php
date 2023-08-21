@@ -26,7 +26,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this node pool.
+     * Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this
+     * node pool.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +39,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      */
     private $config = null;
     /**
-     * Required. The ARM ID of the subnet where the node pool VMs run. Make sure it's a
-     * subnet under the virtual network in the cluster configuration.
+     * Required. The ARM ID of the subnet where the node pool VMs run. Make sure
+     * it's a subnet under the virtual network in the cluster configuration.
      *
      * Generated from protobuf field <code>string subnet_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -117,6 +118,12 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string azure_availability_zone = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $azure_availability_zone = '';
+    /**
+     * Output only. A set of errors found in the node pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $errors;
 
     /**
      * Constructor.
@@ -131,12 +138,13 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *           For more details on Google Cloud resource names,
      *           see [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *     @type string $version
-     *           Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this node pool.
+     *           Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this
+     *           node pool.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodeConfig $config
      *           Required. The node configuration of the node pool.
      *     @type string $subnet_id
-     *           Required. The ARM ID of the subnet where the node pool VMs run. Make sure it's a
-     *           subnet under the virtual network in the cluster configuration.
+     *           Required. The ARM ID of the subnet where the node pool VMs run. Make sure
+     *           it's a subnet under the virtual network in the cluster configuration.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodePoolAutoscaling $autoscaling
      *           Required. Autoscaler configuration for this node pool.
      *     @type int $state
@@ -170,6 +178,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *     @type string $azure_availability_zone
      *           Optional. The Azure availability zone of the nodes in this nodepool.
      *           When unspecified, it defaults to `1`.
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *           Output only. A set of errors found in the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -212,7 +222,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this node pool.
+     * Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this
+     * node pool.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -223,7 +234,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this node pool.
+     * Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this
+     * node pool.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -274,8 +286,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ARM ID of the subnet where the node pool VMs run. Make sure it's a
-     * subnet under the virtual network in the cluster configuration.
+     * Required. The ARM ID of the subnet where the node pool VMs run. Make sure
+     * it's a subnet under the virtual network in the cluster configuration.
      *
      * Generated from protobuf field <code>string subnet_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -286,8 +298,8 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ARM ID of the subnet where the node pool VMs run. Make sure it's a
-     * subnet under the virtual network in the cluster configuration.
+     * Required. The ARM ID of the subnet where the node pool VMs run. Make sure
+     * it's a subnet under the virtual network in the cluster configuration.
      *
      * Generated from protobuf field <code>string subnet_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -623,6 +635,32 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->azure_availability_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A set of errors found in the node pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * Output only. A set of errors found in the node pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError::class);
+        $this->errors = $arr;
 
         return $this;
     }

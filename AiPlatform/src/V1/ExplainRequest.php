@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
+ * Request message for
+ * [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExplainRequest</code>
  */
@@ -39,7 +40,8 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
     private $instances;
     /**
      * The parameters that govern the prediction. The schema of the parameters may
-     * be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     * be specified via Endpoint's DeployedModels' [Model's
+     * ][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -48,9 +50,9 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
     private $parameters = null;
     /**
      * If specified, overrides the
-     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec] of the DeployedModel.
-     * Can be used for explaining prediction results with different
-     * configurations, such as:
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+     * of the DeployedModel. Can be used for explaining prediction results with
+     * different configurations, such as:
      *  - Explaining top-5 predictions results as opposed to top-1;
      *  - Increasing path count or step count of the attribution methods to reduce
      *    approximate errors;
@@ -61,11 +63,48 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
     private $explanation_spec_override = null;
     /**
      * If specified, this ExplainRequest will be served by the chosen
-     * DeployedModel, overriding [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     * DeployedModel, overriding
+     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
      *
      * Generated from protobuf field <code>string deployed_model_id = 3;</code>
      */
     private $deployed_model_id = '';
+
+    /**
+     * @param string                   $endpoint        Required. The name of the Endpoint requested to serve the explanation.
+     *                                                  Format:
+     *                                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                                  Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
+     * @param \Google\Protobuf\Value[] $instances       Required. The instances that are the input to the explanation call.
+     *                                                  A DeployedModel may have an upper limit on the number of instances it
+     *                                                  supports per request, and when it is exceeded the explanation call errors
+     *                                                  in case of AutoML Models, or, in case of customer created Models, the
+     *                                                  behaviour is as documented by that Model.
+     *                                                  The schema of any single instance may be specified via Endpoint's
+     *                                                  DeployedModels' [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
+     *                                                  [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
+     *                                                  [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
+     * @param \Google\Protobuf\Value   $parameters      The parameters that govern the prediction. The schema of the parameters may
+     *                                                  be specified via Endpoint's DeployedModels' [Model's
+     *                                                  ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *                                                  [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
+     *                                                  [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
+     * @param string                   $deployedModelId If specified, this ExplainRequest will be served by the chosen
+     *                                                  DeployedModel, overriding
+     *                                                  [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ExplainRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, array $instances, \Google\Protobuf\Value $parameters, string $deployedModelId): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setInstances($instances)
+            ->setParameters($parameters)
+            ->setDeployedModelId($deployedModelId);
+    }
 
     /**
      * Constructor.
@@ -89,21 +128,23 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
      *           [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *     @type \Google\Protobuf\Value $parameters
      *           The parameters that govern the prediction. The schema of the parameters may
-     *           be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *           be specified via Endpoint's DeployedModels' [Model's
+     *           ][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationSpecOverride $explanation_spec_override
      *           If specified, overrides the
-     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec] of the DeployedModel.
-     *           Can be used for explaining prediction results with different
-     *           configurations, such as:
+     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+     *           of the DeployedModel. Can be used for explaining prediction results with
+     *           different configurations, such as:
      *            - Explaining top-5 predictions results as opposed to top-1;
      *            - Increasing path count or step count of the attribution methods to reduce
      *              approximate errors;
      *            - Using different baselines for explaining the prediction results.
      *     @type string $deployed_model_id
      *           If specified, this ExplainRequest will be served by the chosen
-     *           DeployedModel, overriding [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     *           DeployedModel, overriding
+     *           [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
      * }
      */
     public function __construct($data = NULL) {
@@ -185,7 +226,8 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parameters that govern the prediction. The schema of the parameters may
-     * be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     * be specified via Endpoint's DeployedModels' [Model's
+     * ][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -209,7 +251,8 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parameters that govern the prediction. The schema of the parameters may
-     * be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     * be specified via Endpoint's DeployedModels' [Model's
+     * ][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -227,9 +270,9 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If specified, overrides the
-     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec] of the DeployedModel.
-     * Can be used for explaining prediction results with different
-     * configurations, such as:
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+     * of the DeployedModel. Can be used for explaining prediction results with
+     * different configurations, such as:
      *  - Explaining top-5 predictions results as opposed to top-1;
      *  - Increasing path count or step count of the attribution methods to reduce
      *    approximate errors;
@@ -255,9 +298,9 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If specified, overrides the
-     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec] of the DeployedModel.
-     * Can be used for explaining prediction results with different
-     * configurations, such as:
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+     * of the DeployedModel. Can be used for explaining prediction results with
+     * different configurations, such as:
      *  - Explaining top-5 predictions results as opposed to top-1;
      *  - Increasing path count or step count of the attribution methods to reduce
      *    approximate errors;
@@ -277,7 +320,8 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If specified, this ExplainRequest will be served by the chosen
-     * DeployedModel, overriding [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     * DeployedModel, overriding
+     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
      *
      * Generated from protobuf field <code>string deployed_model_id = 3;</code>
      * @return string
@@ -289,7 +333,8 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If specified, this ExplainRequest will be served by the chosen
-     * DeployedModel, overriding [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     * DeployedModel, overriding
+     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
      *
      * Generated from protobuf field <code>string deployed_model_id = 3;</code>
      * @param string $var

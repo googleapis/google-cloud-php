@@ -25,6 +25,22 @@ class GetStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the organization and storedInfoType to be read, for
+     *                     example `organizations/433245324/storedInfoTypes/432452342` or
+     *                     projects/project-id/storedInfoTypes/432452342. Please see
+     *                     {@see DlpServiceClient::storedInfoTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

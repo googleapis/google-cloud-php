@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.BatchWrite][google.firestore.v1.Firestore.BatchWrite].
+ * The request for
+ * [Firestore.BatchWrite][google.firestore.v1.Firestore.BatchWrite].
  *
  * Generated from protobuf message <code>google.firestore.v1.BatchWriteRequest</code>
  */

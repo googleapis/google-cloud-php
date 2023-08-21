@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions].
+ * Request message for
+ * [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListExecutionsRequest</code>
  */
@@ -31,7 +32,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * A page token, received from a previous [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
+     * A page token, received from a previous
+     * [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters must match the call that
      * provided the page token. (Otherwise the request will fail with an
@@ -56,6 +58,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Context based filtering**:
      *    To filter Executions based on the contexts to which they belong use
      *    the function operator with the full resource name:
@@ -83,6 +88,22 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The MetadataStore whose Executions should be listed.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                       Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListExecutionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -96,7 +117,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of Executions to return. The service may return fewer.
      *           Must be in range 1-1000, inclusive. Defaults to 100.
      *     @type string $page_token
-     *           A page token, received from a previous [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
+     *           A page token, received from a previous
+     *           [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
      *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other provided parameters must match the call that
      *           provided the page token. (Otherwise the request will fail with an
@@ -117,6 +139,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *              To filter on metadata fields use traversal operation as follows:
      *              `metadata.<field_name>.<type_value>`
      *              For example: `metadata.field_1.number_value = 10.0`
+     *              In case the field name contains special characters (such as colon), one
+     *              can embed it inside double quote.
+     *              For example: `metadata."field:1".number_value = 10.0`
      *           *  **Context based filtering**:
      *              To filter Executions based on the contexts to which they belong use
      *              the function operator with the full resource name:
@@ -200,7 +225,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
+     * A page token, received from a previous
+     * [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters must match the call that
      * provided the page token. (Otherwise the request will fail with an
@@ -215,7 +241,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
+     * A page token, received from a previous
+     * [MetadataService.ListExecutions][google.cloud.aiplatform.v1.MetadataService.ListExecutions]
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other provided parameters must match the call that
      * provided the page token. (Otherwise the request will fail with an
@@ -249,6 +276,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Context based filtering**:
      *    To filter Executions based on the contexts to which they belong use
      *    the function operator with the full resource name:
@@ -284,6 +314,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Context based filtering**:
      *    To filter Executions based on the contexts to which they belong use
      *    the function operator with the full resource name:

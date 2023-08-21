@@ -41,6 +41,23 @@ class InsertServiceAttachmentRequest extends \Google\Protobuf\Internal\Message
     private $service_attachment_resource = null;
 
     /**
+     * @param string                                     $project                   Project ID for this request.
+     * @param string                                     $region                    Name of the region of this request.
+     * @param \Google\Cloud\Compute\V1\ServiceAttachment $serviceAttachmentResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertServiceAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\ServiceAttachment $serviceAttachmentResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setServiceAttachmentResource($serviceAttachmentResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

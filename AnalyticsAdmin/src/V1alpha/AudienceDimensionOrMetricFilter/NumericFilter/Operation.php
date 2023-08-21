@@ -32,31 +32,17 @@ class Operation
      */
     const LESS_THAN = 2;
     /**
-     * Less than or equal.
-     *
-     * Generated from protobuf enum <code>LESS_THAN_OR_EQUAL = 3;</code>
-     */
-    const LESS_THAN_OR_EQUAL = 3;
-    /**
      * Greater than.
      *
      * Generated from protobuf enum <code>GREATER_THAN = 4;</code>
      */
     const GREATER_THAN = 4;
-    /**
-     * Greater than or equal.
-     *
-     * Generated from protobuf enum <code>GREATER_THAN_OR_EQUAL = 5;</code>
-     */
-    const GREATER_THAN_OR_EQUAL = 5;
 
     private static $valueToName = [
         self::OPERATION_UNSPECIFIED => 'OPERATION_UNSPECIFIED',
         self::EQUAL => 'EQUAL',
         self::LESS_THAN => 'LESS_THAN',
-        self::LESS_THAN_OR_EQUAL => 'LESS_THAN_OR_EQUAL',
         self::GREATER_THAN => 'GREATER_THAN',
-        self::GREATER_THAN_OR_EQUAL => 'GREATER_THAN_OR_EQUAL',
     ];
 
     public static function name($value)

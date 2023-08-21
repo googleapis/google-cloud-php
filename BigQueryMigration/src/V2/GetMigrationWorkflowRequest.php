@@ -30,6 +30,21 @@ class GetMigrationWorkflowRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $name Required. The unique identifier for the migration workflow.
+     *                     Example: `projects/123/locations/us/workflows/1234`
+     *                     Please see {@see MigrationServiceClient::migrationWorkflowName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Migration\V2\GetMigrationWorkflowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

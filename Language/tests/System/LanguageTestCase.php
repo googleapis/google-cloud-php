@@ -22,14 +22,14 @@ use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class LanguageTestCase extends TestCase
 {
     protected static $client;
     private static $hasSetUp = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

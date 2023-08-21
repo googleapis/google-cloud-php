@@ -59,6 +59,4 @@ class AnswerRelevance
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnswerRelevance::class, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback_AnswerRelevance::class);
 

@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteBuildTriggerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The name of the `Trigger` to delete.
+     * Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.resource_reference) = {</code>
+     */
+    private $name = '';
+    /**
      * Required. ID of the project that owns the trigger.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -34,6 +41,9 @@ class DeleteBuildTriggerRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $name
+     *           The name of the `Trigger` to delete.
+     *           Format: `projects/{project}/locations/{location}/triggers/{trigger}`
      *     @type string $project_id
      *           Required. ID of the project that owns the trigger.
      *     @type string $trigger_id
@@ -43,6 +53,34 @@ class DeleteBuildTriggerRequest extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudbuild\V1\Cloudbuild::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The name of the `Trigger` to delete.
+     * Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name of the `Trigger` to delete.
+     * Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
+
+        return $this;
     }
 
     /**

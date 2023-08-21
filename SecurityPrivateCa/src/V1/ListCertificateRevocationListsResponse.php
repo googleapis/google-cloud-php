@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * The list of
+     * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList certificate_revocation_lists = 1;</code>
      */
@@ -44,7 +45,8 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList>|\Google\Protobuf\Internal\RepeatedField $certificate_revocation_lists
-     *           The list of [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+     *           The list of
+     *           [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
      *           [ListCertificateRevocationListsRequest.next_page_token][] to retrieve the
@@ -59,7 +61,8 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The list of [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * The list of
+     * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList certificate_revocation_lists = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -70,7 +73,8 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The list of [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+     * The list of
+     * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList certificate_revocation_lists = 1;</code>
      * @param array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList>|\Google\Protobuf\Internal\RepeatedField $var

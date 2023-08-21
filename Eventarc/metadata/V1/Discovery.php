@@ -18,7 +18,7 @@ class Discovery
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˇ
+˜
 (google/cloud/eventarc/v1/discovery.protogoogle.cloud.eventarc.v1google/api/resource.proto"Ò
 Provider
 name (	B‡A
@@ -34,8 +34,8 @@ class Discovery
 	attribute (	B‡A
 description (	B‡A
 required (B‡A#
-path_pattern_supported (B‡ABr
-com.google.cloud.eventarc.v1BDiscoveryProtoPZ@google.golang.org/genproto/googleapis/cloud/eventarc/v1;eventarcbproto3'
+path_pattern_supported (B‡ABj
+com.google.cloud.eventarc.v1BDiscoveryProtoPZ8cloud.google.com/go/eventarc/apiv1/eventarcpb;eventarcpbbproto3'
         , true);
 
         static::$is_initialized = true;

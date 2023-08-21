@@ -197,7 +197,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not an GA4 Property.
+     * Returns an error if the target is not found, or is not a GA4 Property.
      * @param \Google\Analytics\Admin\V1alpha\DeletePropertyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -611,7 +611,8 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
      * Acknowledges the terms of user data collection for the specified property.
      *
      * This acknowledgement must be completed (either in the Google Analytics UI
-     * or via this API) before MeasurementProtocolSecret resources may be created.
+     * or through this API) before MeasurementProtocolSecret resources may be
+     * created.
      * @param \Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1167,6 +1168,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Lookup for a single Audience.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      * @param \Google\Analytics\Admin\V1alpha\GetAudienceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1183,6 +1185,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Lists Audiences on a property.
      * Audiences created before 2020 may not be supported.
+     * Default audiences will not show filter definitions.
      * @param \Google\Analytics\Admin\V1alpha\ListAudiencesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -1242,6 +1245,81 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Look up a single SearchAds360Link
+     * @param \Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetSearchAds360Link(\Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSearchAds360Link',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchAds360Link', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists all SearchAds360Links on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListSearchAds360Links(\Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSearchAds360Links',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a SearchAds360Link.
+     * @param \Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateSearchAds360Link(\Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSearchAds360Link',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchAds360Link', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a SearchAds360Link on a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteSearchAds360Link(\Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteSearchAds360Link',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a SearchAds360Link on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateSearchAds360Link(\Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSearchAds360Link',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchAds360Link', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lookup for a AttributionSettings singleton.
      * @param \Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest $argument input argument
      * @param array $metadata metadata
@@ -1295,6 +1373,595 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/RunAccessReport',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\RunAccessReportResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an access binding on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateAccessBinding(\Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAccessBinding',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AccessBinding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets information about an access binding.
+     * @param \Google\Analytics\Admin\V1alpha\GetAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAccessBinding(\Google\Analytics\Admin\V1alpha\GetAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccessBinding',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AccessBinding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an access binding on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateAccessBinding(\Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccessBinding',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AccessBinding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an access binding on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteAccessBinding(\Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccessBinding',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists all access bindings on an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListAccessBindings(\Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates information about multiple access bindings to an account or
+     * property.
+     *
+     * This method is transactional. If any AccessBinding cannot be created, none
+     * of the AccessBindings will be created.
+     * @param \Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchCreateAccessBindings(\Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchCreateAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets information about multiple access bindings to an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchGetAccessBindings(\Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchGetAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates information about multiple access bindings to an account or
+     * property.
+     * @param \Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchUpdateAccessBindings(\Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchUpdateAccessBindings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes information about multiple users' links to an account or property.
+     * @param \Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchDeleteAccessBindings(\Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteAccessBindings',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single ExpandedDataSet.
+     * @param \Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetExpandedDataSet(\Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetExpandedDataSet',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ExpandedDataSet', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists ExpandedDataSets on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListExpandedDataSets(\Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListExpandedDataSets',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListExpandedDataSetsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a ExpandedDataSet.
+     * @param \Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateExpandedDataSet(\Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateExpandedDataSet',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ExpandedDataSet', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a ExpandedDataSet on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateExpandedDataSet(\Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateExpandedDataSet',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ExpandedDataSet', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a ExpandedDataSet on a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteExpandedDataSet(\Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteExpandedDataSet',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single ChannelGroup.
+     * @param \Google\Analytics\Admin\V1alpha\GetChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetChannelGroup(\Google\Analytics\Admin\V1alpha\GetChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetChannelGroup',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ChannelGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists ChannelGroups on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListChannelGroups(\Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListChannelGroups',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a ChannelGroup.
+     * @param \Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateChannelGroup(\Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateChannelGroup',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ChannelGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a ChannelGroup.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateChannelGroup(\Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateChannelGroup',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ChannelGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a ChannelGroup on a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteChannelGroup(\Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteChannelGroup',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Sets the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     * @param \Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SetAutomatedGa4ConfigurationOptOut(\Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/SetAutomatedGa4ConfigurationOptOut',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Fetches the opt out status for the automated GA4 setup process for a UA
+     * property.
+     * Note: this has no effect on GA4 property.
+     * @param \Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function FetchAutomatedGa4ConfigurationOptOut(\Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchAutomatedGa4ConfigurationOptOut',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single BigQuery Link.
+     * @param \Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetBigQueryLink(\Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetBigQueryLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\BigQueryLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists BigQuery Links on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListBigQueryLinks(\Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListBigQueryLinks',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListBigQueryLinksResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns the enhanced measurement settings for this data stream.
+     * Note that the stream must enable enhanced measurement for these settings to
+     * take effect.
+     * @param \Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEnhancedMeasurementSettings(\Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEnhancedMeasurementSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the enhanced measurement settings for this data stream.
+     * Note that the stream must enable enhanced measurement for these settings to
+     * take effect.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateEnhancedMeasurementSettings(\Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEnhancedMeasurementSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a connected site tag for a Universal Analytics property. You can
+     * create a maximum of 20 connected site tags per property.
+     * Note: This API cannot be used on GA4 properties.
+     * @param \Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateConnectedSiteTag(\Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateConnectedSiteTag',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a connected site tag for a Universal Analytics property.
+     * Note: this has no effect on GA4 properties.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteConnectedSiteTag(\Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteConnectedSiteTag',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists the connected site tags for a Universal Analytics property. A maximum
+     * of 20 connected site tags will be returned. Note: this has no effect on GA4
+     * property.
+     * @param \Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListConnectedSiteTags(\Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListConnectedSiteTags',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Given a specified UA property, looks up the GA4 property connected to it.
+     * Note: this cannot be used with GA4 properties.
+     * @param \Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function FetchConnectedGa4Property(\Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchConnectedGa4Property',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Looks up a single AdSenseLink.
+     * @param \Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAdSenseLink(\Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAdSenseLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AdSenseLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an AdSenseLink.
+     * @param \Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateAdSenseLink(\Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAdSenseLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\AdSenseLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an AdSenseLink.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteAdSenseLink(\Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAdSenseLink',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists AdSenseLinks on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListAdSenseLinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListAdSenseLinks(\Google\Analytics\Admin\V1alpha\ListAdSenseLinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAdSenseLinks',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListAdSenseLinksResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEventCreateRule(\Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEventCreateRule',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EventCreateRule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists EventCreateRules on a web data stream.
+     * @param \Google\Analytics\Admin\V1alpha\ListEventCreateRulesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListEventCreateRules(\Google\Analytics\Admin\V1alpha\ListEventCreateRulesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListEventCreateRules',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListEventCreateRulesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateEventCreateRule(\Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateEventCreateRule',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EventCreateRule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateEventCreateRule(\Google\Analytics\Admin\V1alpha\UpdateEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEventCreateRule',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\EventCreateRule', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an EventCreateRule.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteEventCreateRuleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteEventCreateRule(\Google\Analytics\Admin\V1alpha\DeleteEventCreateRuleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteEventCreateRule',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 

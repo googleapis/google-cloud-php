@@ -74,6 +74,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Connection to Cloud Spanner over gRPC
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {
@@ -253,9 +255,8 @@ class Grpc implements ConnectionInterface
 
         $this->defaultQueryOptions = $config['queryOptions'];
 
-        $this->spannerClient = isset($config['gapicSpannerClient'])
-            ? $config['gapicSpannerClient']
-            : $this->constructGapic(SpannerClient::class, $grpcConfig);
+        $this->spannerClient = $config['gapicSpannerClient']
+            ?? $this->constructGapic(SpannerClient::class, $grpcConfig);
 
         //@codeCoverageIgnoreStart
         if (isset($config['gapicSpannerInstanceAdminClient'])) {
@@ -683,6 +684,21 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateDatabase(array $args)
+    {
+        $databaseInfo = $this->serializer->decodeMessage(new Database(), $this->pluck('database', $args));
+        $databaseName = $databaseInfo->getName();
+        $updateMask = $this->serializer->decodeMessage(new FieldMask(), $this->pluck('updateMask', $args));
+        return $this->send([$this->getDatabaseAdminClient(), 'updateDatabase'], [
+            $databaseInfo,
+            $updateMask,
+            $this->addResourcePrefixHeader($args, $databaseName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function updateDatabaseDdl(array $args)
     {
         $databaseName = $this->pluck('name', $args);
@@ -778,7 +794,15 @@ class Grpc implements ConnectionInterface
 
         $session = $this->pluck('session', $args, false);
         if ($session) {
-            $args['session'] = $this->serializer->decodeMessage(new Session, $session);
+            $args['session'] = $this->serializer->decodeMessage(
+                new Session,
+                array_filter(
+                    $session,
+                    function ($value) {
+                        return !is_null($value);
+                    }
+                )
+            );
         }
 
         return $this->send([$this->spannerClient, 'createSession'], [
@@ -1012,7 +1036,7 @@ class Grpc implements ConnectionInterface
                 ? PBReadOnly::class
                 : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
             $readOnly = $this->serializer->decodeMessage(
-                new $readOnlyClass(),
+                new $readOnlyClass(), // @phpstan-ignore-line
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);

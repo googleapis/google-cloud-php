@@ -29,7 +29,6 @@ namespace Google\Analytics\Data\V1beta\Gapic;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsRequest;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse;
 use Google\Analytics\Data\V1beta\BatchRunReportsRequest;
-
 use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
 use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
@@ -81,35 +80,29 @@ use Google\Auth\FetchAuthTokenInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient} to use the new
+ * surface.
+ *
  * @experimental
  */
 class BetaAnalyticsDataGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.data.v1beta.BetaAnalyticsData';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticsdata.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics',
         'https://www.googleapis.com/auth/analytics.readonly',
@@ -238,9 +231,6 @@ class BetaAnalyticsDataGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'analyticsdata.googleapis.com:443'.
@@ -270,7 +260,7 @@ class BetaAnalyticsDataGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -467,10 +457,6 @@ class BetaAnalyticsDataGapicClient
      *           `property` should be the same value as in your `runReport` request.
      *
      *           Example: properties/1234
-     *
-     *           Set the Property ID to 0 for compatibility checking on dimensions and
-     *           metrics common to all properties. In this special mode, this method will
-     *           not return custom dimensions and metrics.
      *     @type Dimension[] $dimensions
      *           The dimensions in this report. `dimensions` should be the same value as in
      *           your `runReport` request.
@@ -678,6 +664,13 @@ class BetaAnalyticsDataGapicClient
      *           If false or unspecified, each row with all metrics equal to 0 will not be
      *           returned. If true, these rows will be returned if they are not separately
      *           removed by a filter.
+     *
+     *           Regardless of this `keep_empty_rows` setting, only data recorded by the
+     *           Google Analytics (GA4) property can be displayed in a report.
+     *
+     *           For example if a property never logs a `purchase` event, then a query for
+     *           the `eventName` dimension and  `eventCount` metric will not have a row
+     *           eventName: "purchase" and eventCount: 0.
      *     @type bool $returnPropertyQuota
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).
@@ -800,7 +793,7 @@ class BetaAnalyticsDataGapicClient
      *           SQL having-clause. Dimensions cannot be used in this filter.
      *     @type int $limit
      *           The number of rows to return. If unspecified, 10,000 rows are returned. The
-     *           API returns a maximum of 100,000 rows per request, no matter how many you
+     *           API returns a maximum of 250,000 rows per request, no matter how many you
      *           ask for. `limit` must be positive.
      *
      *           The API can also return fewer rows than the requested `limit`, if there
@@ -944,7 +937,7 @@ class BetaAnalyticsDataGapicClient
      *           response rows for both date ranges. In a cohort request, this `dateRanges`
      *           must be unspecified.
      *     @type FilterExpression $dimensionFilter
-     *           Dimension filters allow you to ask for only specific dimension values in
+     *           Dimension filters let you ask for only specific dimension values in
      *           the report. To learn more, see [Fundamentals of Dimension
      *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
      *           for examples. Metrics cannot be used in this filter.
@@ -963,7 +956,7 @@ class BetaAnalyticsDataGapicClient
      *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *     @type int $limit
      *           The number of rows to return. If unspecified, 10,000 rows are returned. The
-     *           API returns a maximum of 100,000 rows per request, no matter how many you
+     *           API returns a maximum of 250,000 rows per request, no matter how many you
      *           ask for. `limit` must be positive.
      *
      *           The API can also return fewer rows than the requested `limit`, if there
@@ -990,6 +983,13 @@ class BetaAnalyticsDataGapicClient
      *           If false or unspecified, each row with all metrics equal to 0 will not be
      *           returned. If true, these rows will be returned if they are not separately
      *           removed by a filter.
+     *
+     *           Regardless of this `keep_empty_rows` setting, only data recorded by the
+     *           Google Analytics (GA4) property can be displayed in a report.
+     *
+     *           For example if a property never logs a `purchase` event, then a query for
+     *           the `eventName` dimension and  `eventCount` metric will not have a row
+     *           eventName: "purchase" and eventCount: 0.
      *     @type bool $returnPropertyQuota
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).

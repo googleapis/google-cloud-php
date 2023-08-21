@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.DeleteCustomer][google.cloud.channel.v1.CloudChannelService.DeleteCustomer].
+ * Request message for
+ * [CloudChannelService.DeleteCustomer][google.cloud.channel.v1.CloudChannelService.DeleteCustomer].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.DeleteCustomerRequest</code>
  */
@@ -21,6 +22,20 @@ class DeleteCustomerRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The resource name of the customer to delete. Please see
+     *                     {@see CloudChannelServiceClient::customerName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Channel\V1\DeleteCustomerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

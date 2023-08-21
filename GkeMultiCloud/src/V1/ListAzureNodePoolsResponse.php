@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAzureNodePoolsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources in the specified `AzureCluster`.
+     * A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resources in the specified `AzureCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pools = 1;</code>
      */
@@ -36,7 +37,8 @@ class ListAzureNodePoolsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePool>|\Google\Protobuf\Internal\RepeatedField $azure_node_pools
-     *           A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources in the specified `AzureCluster`.
+     *           A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     *           resources in the specified `AzureCluster`.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
@@ -48,7 +50,8 @@ class ListAzureNodePoolsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources in the specified `AzureCluster`.
+     * A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resources in the specified `AzureCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pools = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -59,7 +62,8 @@ class ListAzureNodePoolsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources in the specified `AzureCluster`.
+     * A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     * resources in the specified `AzureCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pools = 1;</code>
      * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePool>|\Google\Protobuf\Internal\RepeatedField $var

@@ -41,6 +41,23 @@ class InsertRegionTargetTcpProxyRequest extends \Google\Protobuf\Internal\Messag
     private $target_tcp_proxy_resource = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param string                                  $region                 Name of the region scoping this request.
+     * @param \Google\Cloud\Compute\V1\TargetTcpProxy $targetTcpProxyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionTargetTcpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\TargetTcpProxy $targetTcpProxyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxyResource($targetTcpProxyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

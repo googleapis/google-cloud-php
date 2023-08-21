@@ -109,6 +109,42 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>ATTRIBUTION_SETTINGS = 20;</code>
      */
     const ATTRIBUTION_SETTINGS = 20;
+    /**
+     * ExpandedDataSet resource
+     *
+     * Generated from protobuf enum <code>EXPANDED_DATA_SET = 21;</code>
+     */
+    const EXPANDED_DATA_SET = 21;
+    /**
+     * ChannelGroup resource
+     *
+     * Generated from protobuf enum <code>CHANNEL_GROUP = 22;</code>
+     */
+    const CHANNEL_GROUP = 22;
+    /**
+     * EnhancedMeasurementSettings resource
+     *
+     * Generated from protobuf enum <code>ENHANCED_MEASUREMENT_SETTINGS = 24;</code>
+     */
+    const ENHANCED_MEASUREMENT_SETTINGS = 24;
+    /**
+     * AdSenseLink resource
+     *
+     * Generated from protobuf enum <code>ADSENSE_LINK = 27;</code>
+     */
+    const ADSENSE_LINK = 27;
+    /**
+     * Audience resource
+     *
+     * Generated from protobuf enum <code>AUDIENCE = 28;</code>
+     */
+    const AUDIENCE = 28;
+    /**
+     * EventCreateRule resource
+     *
+     * Generated from protobuf enum <code>EVENT_CREATE_RULE = 29;</code>
+     */
+    const EVENT_CREATE_RULE = 29;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -127,6 +163,12 @@ class ChangeHistoryResourceType
         self::SEARCH_ADS_360_LINK => 'SEARCH_ADS_360_LINK',
         self::DATA_STREAM => 'DATA_STREAM',
         self::ATTRIBUTION_SETTINGS => 'ATTRIBUTION_SETTINGS',
+        self::EXPANDED_DATA_SET => 'EXPANDED_DATA_SET',
+        self::CHANNEL_GROUP => 'CHANNEL_GROUP',
+        self::ENHANCED_MEASUREMENT_SETTINGS => 'ENHANCED_MEASUREMENT_SETTINGS',
+        self::ADSENSE_LINK => 'ADSENSE_LINK',
+        self::AUDIENCE => 'AUDIENCE',
+        self::EVENT_CREATE_RULE => 'EVENT_CREATE_RULE',
     ];
 
     public static function name($value)

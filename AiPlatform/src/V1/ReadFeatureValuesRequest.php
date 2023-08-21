@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreOnlineServingService.ReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.ReadFeatureValues].
+ * Request message for
+ * [FeaturestoreOnlineServingService.ReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.ReadFeatureValues].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ReadFeatureValuesRequest</code>
  */
@@ -39,6 +40,24 @@ class ReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $feature_selector = null;
+
+    /**
+     * @param string $entityType Required. The resource name of the EntityType for the entity being read.
+     *                           Value format:
+     *                           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
+     *                           For example, for a machine learning model predicting user clicks on a
+     *                           website, an EntityType ID could be `user`. Please see
+     *                           {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ReadFeatureValuesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $entityType): self
+    {
+        return (new self())
+            ->setEntityType($entityType);
+    }
 
     /**
      * Constructor.

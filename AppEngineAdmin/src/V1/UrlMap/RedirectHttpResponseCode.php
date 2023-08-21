@@ -73,6 +73,4 @@ class RedirectHttpResponseCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RedirectHttpResponseCode::class, \Google\Cloud\AppEngine\V1\UrlMap_RedirectHttpResponseCode::class);
 

@@ -27,22 +27,23 @@ namespace Google\Cloud\Deploy\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Deploy\V1\AbandonReleaseRequest;
 use Google\Cloud\Deploy\V1\AbandonReleaseResponse;
+use Google\Cloud\Deploy\V1\AdvanceRolloutRequest;
+use Google\Cloud\Deploy\V1\AdvanceRolloutResponse;
 use Google\Cloud\Deploy\V1\ApproveRolloutRequest;
 use Google\Cloud\Deploy\V1\ApproveRolloutResponse;
+use Google\Cloud\Deploy\V1\CancelRolloutRequest;
+use Google\Cloud\Deploy\V1\CancelRolloutResponse;
 use Google\Cloud\Deploy\V1\Config;
 use Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\CreateReleaseRequest;
@@ -57,6 +58,8 @@ use Google\Cloud\Deploy\V1\GetJobRunRequest;
 use Google\Cloud\Deploy\V1\GetReleaseRequest;
 use Google\Cloud\Deploy\V1\GetRolloutRequest;
 use Google\Cloud\Deploy\V1\GetTargetRequest;
+use Google\Cloud\Deploy\V1\IgnoreJobRequest;
+use Google\Cloud\Deploy\V1\IgnoreJobResponse;
 use Google\Cloud\Deploy\V1\JobRun;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesResponse;
@@ -73,6 +76,8 @@ use Google\Cloud\Deploy\V1\RetryJobRequest;
 use Google\Cloud\Deploy\V1\RetryJobResponse;
 use Google\Cloud\Deploy\V1\Rollout;
 use Google\Cloud\Deploy\V1\Target;
+use Google\Cloud\Deploy\V1\TerminateJobRunRequest;
+use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -109,39 +114,34 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Deploy\V1\Client\CloudDeployClient} to use the new surface.
  */
 class CloudDeployGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.deploy.v1.CloudDeploy';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'clouddeploy.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static $buildNameTemplate;
+
+    private static $clusterNameTemplate;
 
     private static $configNameTemplate;
 
@@ -151,11 +151,17 @@ class CloudDeployGapicClient
 
     private static $locationNameTemplate;
 
+    private static $membershipNameTemplate;
+
     private static $releaseNameTemplate;
 
     private static $rolloutNameTemplate;
 
+    private static $serviceNameTemplate;
+
     private static $targetNameTemplate;
+
+    private static $workerPoolNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -195,6 +201,17 @@ class CloudDeployGapicClient
         }
 
         return self::$buildNameTemplate;
+    }
+
+    private static function getClusterNameTemplate()
+    {
+        if (self::$clusterNameTemplate == null) {
+            self::$clusterNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/clusters/{cluster}'
+            );
+        }
+
+        return self::$clusterNameTemplate;
     }
 
     private static function getConfigNameTemplate()
@@ -241,6 +258,17 @@ class CloudDeployGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getMembershipNameTemplate()
+    {
+        if (self::$membershipNameTemplate == null) {
+            self::$membershipNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/memberships/{membership}'
+            );
+        }
+
+        return self::$membershipNameTemplate;
+    }
+
     private static function getReleaseNameTemplate()
     {
         if (self::$releaseNameTemplate == null) {
@@ -263,6 +291,17 @@ class CloudDeployGapicClient
         return self::$rolloutNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}'
+            );
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getTargetNameTemplate()
     {
         if (self::$targetNameTemplate == null) {
@@ -274,18 +313,33 @@ class CloudDeployGapicClient
         return self::$targetNameTemplate;
     }
 
+    private static function getWorkerPoolNameTemplate()
+    {
+        if (self::$workerPoolNameTemplate == null) {
+            self::$workerPoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/workerPools/{worker_pool}'
+            );
+        }
+
+        return self::$workerPoolNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'build' => self::getBuildNameTemplate(),
+                'cluster' => self::getClusterNameTemplate(),
                 'config' => self::getConfigNameTemplate(),
                 'deliveryPipeline' => self::getDeliveryPipelineNameTemplate(),
                 'jobRun' => self::getJobRunNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'membership' => self::getMembershipNameTemplate(),
                 'release' => self::getReleaseNameTemplate(),
                 'rollout' => self::getRolloutNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
                 'target' => self::getTargetNameTemplate(),
+                'workerPool' => self::getWorkerPoolNameTemplate(),
             ];
         }
 
@@ -308,6 +362,25 @@ class CloudDeployGapicClient
             'project' => $project,
             'location' => $location,
             'build' => $build,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a cluster
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     *
+     * @return string The formatted cluster resource.
+     */
+    public static function clusterName($project, $location, $cluster)
+    {
+        return self::getClusterNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
         ]);
     }
 
@@ -399,6 +472,25 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a membership
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $membership
+     *
+     * @return string The formatted membership resource.
+     */
+    public static function membershipName($project, $location, $membership)
+    {
+        return self::getMembershipNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'membership' => $membership,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a release
      * resource.
      *
@@ -452,6 +544,25 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a target
      * resource.
      *
@@ -471,17 +582,40 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a worker_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workerPool
+     *
+     * @return string The formatted worker_pool resource.
+     */
+    public static function workerPoolName($project, $location, $workerPool)
+    {
+        return self::getWorkerPoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'worker_pool' => $workerPool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - build: projects/{project}/locations/{location}/builds/{build}
+     * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - config: projects/{project}/locations/{location}/config
      * - deliveryPipeline: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}
      * - jobRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}
      * - location: projects/{project}/locations/{location}
+     * - membership: projects/{project}/locations/{location}/memberships/{membership}
      * - release: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}
      * - rollout: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}
+     * - service: projects/{project}/locations/{location}/services/{service}
      * - target: projects/{project}/locations/{location}/targets/{target}
+     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -563,9 +697,6 @@ class CloudDeployGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'clouddeploy.googleapis.com:443'.
@@ -595,7 +726,7 @@ class CloudDeployGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -672,6 +803,59 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Advances a Rollout in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+     *     $phaseId = 'phase_id';
+     *     $response = $cloudDeployClient->advanceRollout($formattedName, $phaseId);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the Rollout. Format is
+     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                             releases/{release}/rollouts/{rollout}.
+     * @param string $phaseId      Required. The phase ID to advance the `Rollout` to.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\AdvanceRolloutResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function advanceRollout($name, $phaseId, array $optionalArgs = [])
+    {
+        $request = new AdvanceRolloutRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setPhaseId($phaseId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AdvanceRollout',
+            AdvanceRolloutResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Approves a Rollout.
      *
      * Sample code:
@@ -725,6 +909,56 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Cancels a Rollout in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+     *     $response = $cloudDeployClient->cancelRollout($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the Rollout. Format is
+     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                             releases/{release}/rollouts/{rollout}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\CancelRolloutResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function cancelRollout($name, array $optionalArgs = [])
+    {
+        $request = new CancelRolloutRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CancelRollout',
+            CancelRolloutResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a new DeliveryPipeline in a given project and location.
      *
      * Sample code:
@@ -738,7 +972,7 @@ class CloudDeployGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -755,7 +989,7 @@ class CloudDeployGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -765,8 +999,8 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string           $parent             Required. The parent collection in which the `DeliveryPipeline` should be created.
-     *                                             Format should be projects/{project_id}/locations/{location_name}.
+     * @param string           $parent             Required. The parent collection in which the `DeliveryPipeline` should be
+     *                                             created. Format should be projects/{project_id}/locations/{location_name}.
      * @param string           $deliveryPipelineId Required. ID of the `DeliveryPipeline`.
      * @param DeliveryPipeline $deliveryPipeline   Required. The `DeliveryPipeline` to create.
      * @param array            $optionalArgs       {
@@ -787,8 +1021,8 @@ class CloudDeployGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -847,7 +1081,7 @@ class CloudDeployGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -864,7 +1098,7 @@ class CloudDeployGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -897,8 +1131,8 @@ class CloudDeployGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -957,7 +1191,7 @@ class CloudDeployGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -974,7 +1208,7 @@ class CloudDeployGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1007,8 +1241,11 @@ class CloudDeployGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
+     *     @type string $startingPhaseId
+     *           Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
+     *           will start at the first phase.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1039,6 +1276,10 @@ class CloudDeployGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
+        if (isset($optionalArgs['startingPhaseId'])) {
+            $request->setStartingPhaseId($optionalArgs['startingPhaseId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1067,7 +1308,7 @@ class CloudDeployGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1084,7 +1325,7 @@ class CloudDeployGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1117,8 +1358,8 @@ class CloudDeployGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1223,15 +1464,15 @@ class CloudDeployGapicClient
      *           Optional. If set to true, then deleting an already deleted or non-existing
      *           `DeliveryPipeline` will succeed.
      *     @type bool $validateOnly
-     *           Optional. If set, validate the request and preview the review, but do not actually
-     *           post it.
+     *           Optional. If set, validate the request and preview the review, but do not
+     *           actually post it.
      *     @type bool $force
-     *           Optional. If set to true, all child resources under this pipeline will also be
-     *           deleted. Otherwise, the request will only work if the pipeline has
-     *           no child resources.
+     *           Optional. If set to true, all child resources under this pipeline will also
+     *           be deleted. Otherwise, the request will only work if the pipeline has no
+     *           child resources.
      *     @type string $etag
-     *           Optional. This checksum is computed by the server based on the value of other
-     *           fields, and may be sent on update and delete requests to ensure the
+     *           Optional. This checksum is computed by the server based on the value of
+     *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1341,13 +1582,13 @@ class CloudDeployGapicClient
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $allowMissing
      *           Optional. If set to true, then deleting an already deleted or non-existing
-     *           DeliveryPipeline will succeed.
+     *           `Target` will succeed.
      *     @type bool $validateOnly
-     *           Optional. If set, validate the request and preview the review, but do not actually
-     *           post it.
+     *           Optional. If set, validate the request and preview the review, but do not
+     *           actually post it.
      *     @type string $etag
-     *           Optional. This checksum is computed by the server based on the value of other
-     *           fields, and may be sent on update and delete requests to ensure the
+     *           Optional. This checksum is computed by the server based on the value of
+     *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1689,6 +1930,66 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Ignores the specified Job in a Rollout.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedRollout = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+     *     $phaseId = 'phase_id';
+     *     $jobId = 'job_id';
+     *     $response = $cloudDeployClient->ignoreJob($formattedRollout, $phaseId, $jobId);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $rollout      Required. Name of the Rollout. Format is
+     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                             releases/{release}/rollouts/{rollout}.
+     * @param string $phaseId      Required. The phase ID the Job to ignore belongs to.
+     * @param string $jobId        Required. The job ID for the Job to ignore.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\IgnoreJobResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function ignoreJob(
+        $rollout,
+        $phaseId,
+        $jobId,
+        array $optionalArgs = []
+    ) {
+        $request = new IgnoreJobRequest();
+        $requestParamHeaders = [];
+        $request->setRollout($rollout);
+        $request->setPhaseId($phaseId);
+        $request->setJobId($jobId);
+        $requestParamHeaders['rollout'] = $rollout;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'IgnoreJob',
+            IgnoreJobResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists DeliveryPipelines in a given project and location.
      *
      * Sample code:
@@ -1714,8 +2015,8 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of pipelines. Format must be
-     *                             projects/{project_id}/locations/{location_name}.
+     * @param string $parent       Required. The parent, which owns this collection of pipelines. Format must
+     *                             be projects/{project_id}/locations/{location_name}.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1819,10 +2120,11 @@ class CloudDeployGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Filter results to be returned. See https://google.aip.dev/160 for more
-     *           details.
+     *           Optional. Filter results to be returned. See https://google.aip.dev/160 for
+     *           more details.
      *     @type string $orderBy
-     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     *           more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1895,7 +2197,8 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The `DeliveryPipeline` which owns this collection of `Release` objects.
+     * @param string $parent       Required. The `DeliveryPipeline` which owns this collection of `Release`
+     *                             objects.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1909,10 +2212,11 @@ class CloudDeployGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Filter releases to be returned. See https://google.aip.dev/160 for more
-     *           details.
+     *           Optional. Filter releases to be returned. See https://google.aip.dev/160
+     *           for more details.
      *     @type string $orderBy
-     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     *           more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1999,10 +2303,11 @@ class CloudDeployGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more
-     *           details.
+     *           Optional. Filter rollouts to be returned. See https://google.aip.dev/160
+     *           for more details.
      *     @type string $orderBy
-     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     *           more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2090,10 +2395,11 @@ class CloudDeployGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Filter targets to be returned. See https://google.aip.dev/160 for more
-     *           details.
+     *           Optional. Filter targets to be returned. See https://google.aip.dev/160 for
+     *           more details.
      *     @type string $orderBy
-     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for
+     *           more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2201,6 +2507,56 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Terminates a Job Run in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->jobRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]', '[JOB_RUN]');
+     *     $response = $cloudDeployClient->terminateJobRun($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the `JobRun`. Format must be
+     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                             releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\TerminateJobRunResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function terminateJobRun($name, array $optionalArgs = [])
+    {
+        $request = new TerminateJobRunRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TerminateJobRun',
+            TerminateJobRunResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates the parameters of a single DeliveryPipeline.
      *
      * Sample code:
@@ -2213,7 +2569,7 @@ class CloudDeployGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2230,7 +2586,7 @@ class CloudDeployGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2264,11 +2620,11 @@ class CloudDeployGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $allowMissing
-     *           Optional. If set to true, updating a `DeliveryPipeline` that does not exist will
-     *           result in the creation of a new `DeliveryPipeline`.
+     *           Optional. If set to true, updating a `DeliveryPipeline` that does not exist
+     *           will result in the creation of a new `DeliveryPipeline`.
      *     @type bool $validateOnly
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2330,7 +2686,7 @@ class CloudDeployGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2347,7 +2703,7 @@ class CloudDeployGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2384,8 +2740,8 @@ class CloudDeployGapicClient
      *           Optional. If set to true, updating a `Target` that does not exist will
      *           result in the creation of a new `Target`.
      *     @type bool $validateOnly
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

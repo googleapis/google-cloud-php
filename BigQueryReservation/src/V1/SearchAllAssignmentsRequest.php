@@ -19,8 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchAllAssignmentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name with location (project name could be the wildcard '-'),
-     * e.g.:
+     * Required. The resource name with location (project name could be the
+     * wildcard '-'), e.g.:
      *   `projects/-/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -50,14 +50,38 @@ class SearchAllAssignmentsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name with location (project name could be the
+     *                       wildcard '-'), e.g.:
+     *                       `projects/-/locations/US`. Please see
+     *                       {@see ReservationServiceClient::locationName()} for help formatting this field.
+     * @param string $query  Please specify resource name as assignee in the query.
+     *
+     *                       Examples:
+     *
+     *                       * `assignee=projects/myproject`
+     *                       * `assignee=folders/123`
+     *                       * `assignee=organizations/456`
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $query): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setQuery($query);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name with location (project name could be the wildcard '-'),
-     *           e.g.:
+     *           Required. The resource name with location (project name could be the
+     *           wildcard '-'), e.g.:
      *             `projects/-/locations/US`.
      *     @type string $query
      *           Please specify resource name as assignee in the query.
@@ -77,8 +101,8 @@ class SearchAllAssignmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name with location (project name could be the wildcard '-'),
-     * e.g.:
+     * Required. The resource name with location (project name could be the
+     * wildcard '-'), e.g.:
      *   `projects/-/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -90,8 +114,8 @@ class SearchAllAssignmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name with location (project name could be the wildcard '-'),
-     * e.g.:
+     * Required. The resource name with location (project name could be the
+     * wildcard '-'), e.g.:
      *   `projects/-/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

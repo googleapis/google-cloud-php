@@ -33,7 +33,7 @@ class GAEStandardMetadataProviderTest extends TestCase
     ];
 
     /**
-     * @dataProvider testData
+     * @dataProvider provideTestData
      */
     public function testGAEStandardMetadataProvider(
         $envs,
@@ -51,7 +51,7 @@ class GAEStandardMetadataProviderTest extends TestCase
         $this->assertEquals($labels, $metadataProvider->labels());
     }
 
-    public function testData()
+    public function provideTestData()
     {
         return [
             [

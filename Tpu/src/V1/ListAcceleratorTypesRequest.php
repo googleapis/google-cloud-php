@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [ListAcceleratorTypes][google.cloud.tpu.v1.Tpu.ListAcceleratorTypes].
+ * Request for
+ * [ListAcceleratorTypes][google.cloud.tpu.v1.Tpu.ListAcceleratorTypes].
  *
  * Generated from protobuf message <code>google.cloud.tpu.v1.ListAcceleratorTypesRequest</code>
  */

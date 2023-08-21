@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-media-translation/v/stable)](https://packagist.org/packages/google/cloud-media-translation) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-media-translation.svg)](https://packagist.org/packages/google/cloud-media-translation)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-media-translation/latest/mediatranslation/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-media-translation/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

@@ -32,7 +32,7 @@ class Type
      */
     const PAYG = 2;
     /**
-     * The license type is is Bring Your Own License type.
+     * The license type is Bring Your Own License type.
      *
      * Generated from protobuf enum <code>BYOL = 3;</code>
      */

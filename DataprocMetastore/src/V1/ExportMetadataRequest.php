@@ -9,25 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DataprocMetastore.ExportMetadata][google.cloud.metastore.v1.DataprocMetastore.ExportMetadata].
+ * Request message for
+ * [DataprocMetastore.ExportMetadata][google.cloud.metastore.v1.DataprocMetastore.ExportMetadata].
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1.ExportMetadataRequest</code>
  */
 class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative resource name of the metastore service to run export, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to run
+     * export, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $service = '';
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -39,7 +40,8 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type database_dump_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,14 +59,14 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
      *           `gs://<bucket_name>/<path_inside_bucket>`. A sub-folder
      *           `<export_folder>` containing exported files will be created below it.
      *     @type string $service
-     *           Required. The relative resource name of the metastore service to run export, in the
-     *           following form:
+     *           Required. The relative resource name of the metastore service to run
+     *           export, in the following form:
      *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *     @type string $request_id
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
      *           the creation of duplicate commitments.
@@ -72,7 +74,8 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
      *           A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     @type int $database_dump_type
-     *           Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     *           Optional. The type of the database dump. If unspecified, defaults to
+     *           `MYSQL`.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,8 +119,8 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service to run export, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to run
+     * export, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -129,8 +132,8 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative resource name of the metastore service to run export, in the
-     * following form:
+     * Required. The relative resource name of the metastore service to run
+     * export, in the following form:
      * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -146,10 +149,10 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -166,10 +169,10 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -190,7 +193,8 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type database_dump_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -201,7 +205,8 @@ class ExportMetadataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type database_dump_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

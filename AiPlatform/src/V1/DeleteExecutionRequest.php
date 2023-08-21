@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.DeleteExecution][google.cloud.aiplatform.v1.MetadataService.DeleteExecution].
+ * Request message for
+ * [MetadataService.DeleteExecution][google.cloud.aiplatform.v1.MetadataService.DeleteExecution].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteExecutionRequest</code>
  */
@@ -31,6 +32,22 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
+
+    /**
+     * @param string $name Required. The resource name of the Execution to delete.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     *                     Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteExecutionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

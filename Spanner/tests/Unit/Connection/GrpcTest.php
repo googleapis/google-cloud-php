@@ -58,8 +58,9 @@ use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Promise\PromiseInterface;
 use http\Exception\InvalidArgumentException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -69,6 +70,7 @@ class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     const CONFIG = 'projects/my-project/instanceConfigs/config-1';
     const DATABASE = 'projects/my-project/instances/instance-1/databases/database-1';
@@ -83,7 +85,7 @@ class GrpcTest extends TestCase
     private $successMessage;
     private $lro;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -650,8 +652,20 @@ class GrpcTest extends TestCase
         $gapic->executeStreamingSql(
             self::SESSION,
             $sql,
-            Argument::withEntry('queryOptions', $expectedOptions)
-        );
+            Argument::that(function ($arguments) use ($expectedOptions) {
+                $queryOptions = $arguments['queryOptions'] ?? null;
+                $expectedOptions += ['optimizerVersion' => null, 'optimizerStatisticsPackage' => null];
+                $this->assertEquals(
+                    $queryOptions ? $queryOptions->getOptimizerVersion() : null,
+                    $expectedOptions['optimizerVersion']
+                );
+                $this->assertEquals(
+                    $queryOptions ? $queryOptions->getOptimizerStatisticsPackage() : null,
+                    $expectedOptions['optimizerStatisticsPackage']
+                );
+                return true;
+            })
+        )->shouldBeCalledOnce();
 
         $grpc = new Grpc([
             'gapicSpannerClient' => $gapic->reveal()

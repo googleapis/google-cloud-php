@@ -31,6 +31,23 @@ class UpdateCdnKeyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Video\Stitcher\V1\CdnKey $cdnKey     Required. The CDN key resource which replaces the resource on the server.
+     * @param \Google\Protobuf\FieldMask             $updateMask Required. The update mask applies to the resource.
+     *                                                           For the `FieldMask` definition, see
+     *                                                           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\UpdateCdnKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Video\Stitcher\V1\CdnKey $cdnKey, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCdnKey($cdnKey)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

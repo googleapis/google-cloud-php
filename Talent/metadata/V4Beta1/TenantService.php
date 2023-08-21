@@ -24,7 +24,7 @@ class TenantService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-π
+Æ
 0google/cloud/talent/v4beta1/tenant_service.protogoogle.cloud.talent.v4beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/talent/v4beta1/common.proto(google/cloud/talent/v4beta1/tenant.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"î
 CreateTenantRequestC
 parent (	B3‡A˙A-
@@ -54,8 +54,8 @@ page_token (	
 	GetTenant-.google.cloud.talent.v4beta1.GetTenantRequest#.google.cloud.talent.v4beta1.Tenant"3Ç”‰ì&$/v4beta1/{name=projects/*/tenants/*}⁄Aname¶
 UpdateTenant0.google.cloud.talent.v4beta1.UpdateTenantRequest#.google.cloud.talent.v4beta1.Tenant"?Ç”‰ì02+/v4beta1/{tenant.name=projects/*/tenants/*}:*⁄Atenantç
 DeleteTenant0.google.cloud.talent.v4beta1.DeleteTenantRequest.google.protobuf.Empty"3Ç”‰ì&*$/v4beta1/{name=projects/*/tenants/*}⁄Anameß
-ListTenants/.google.cloud.talent.v4beta1.ListTenantsRequest0.google.cloud.talent.v4beta1.ListTenantsResponse"5Ç”‰ì&$/v4beta1/{parent=projects/*}/tenants⁄Aparentl Ajobs.googleapis.com“AShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBÄ
-com.google.cloud.talent.v4beta1BTenantServiceProtoPZAgoogle.golang.org/genproto/googleapis/cloud/talent/v4beta1;talent¢CTSbproto3'
+ListTenants/.google.cloud.talent.v4beta1.ListTenantsRequest0.google.cloud.talent.v4beta1.ListTenantsResponse"5Ç”‰ì&$/v4beta1/{parent=projects/*}/tenants⁄Aparentl Ajobs.googleapis.com“AShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBv
+com.google.cloud.talent.v4beta1BTenantServiceProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -22,21 +22,24 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class JobTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $location = 'asia-northeast1';
     public $projectId = 'myProjectId';
     public $jobId = 'myJobId';
     public $jobInfo = ['status' => ['state' => 'DONE']];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

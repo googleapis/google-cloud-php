@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class NodePoolUpdateStrategy
 {
     /**
-     * Default value.
+     * Default value if unset. GKE internally defaults the update strategy to
+     * SURGE for unspecified strategies.
      *
      * Generated from protobuf enum <code>NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED = 0;</code>
      */

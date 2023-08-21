@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+ * The request for
+ * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
  *
  * Generated from protobuf message <code>google.datastore.v1.BeginTransactionRequest</code>
  */
@@ -35,6 +36,19 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions transaction_options = 10;</code>
      */
     private $transaction_options = null;
+
+    /**
+     * @param string $projectId Required. The ID of the project against which to make the request.
+     *
+     * @return \Google\Cloud\Datastore\V1\BeginTransactionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId): self
+    {
+        return (new self())
+            ->setProjectId($projectId);
+    }
 
     /**
      * Constructor.

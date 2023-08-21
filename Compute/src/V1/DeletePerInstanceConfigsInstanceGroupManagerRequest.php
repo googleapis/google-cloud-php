@@ -41,6 +41,25 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     private $zone = '';
 
     /**
+     * @param string                                                                    $project                                                  Project ID for this request.
+     * @param string                                                                    $zone                                                     The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * @param string                                                                    $instanceGroupManager                                     The name of the managed instance group. It should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq $instanceGroupManagersDeletePerInstanceConfigsReqResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\DeletePerInstanceConfigsInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager, \Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq $instanceGroupManagersDeletePerInstanceConfigsReqResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersDeletePerInstanceConfigsReqResource($instanceGroupManagersDeletePerInstanceConfigsReqResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

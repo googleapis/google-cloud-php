@@ -17,9 +17,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location and project to list resources on.
-     * Location must be a valid GCP region, and cannot be the "-" wildcard.
-     * Format: projects/{project}/locations/{location}, where {project} can be
-     * project id or number.
+     * Location must be a valid Google Cloud region, and cannot be the "-"
+     * wildcard. Format: projects/{project}/locations/{location}, where {project}
+     * can be project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,6 +45,23 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The location and project to list resources on.
+     *                       Location must be a valid Google Cloud region, and cannot be the "-"
+     *                       wildcard. Format: projects/{project}/locations/{location}, where {project}
+     *                       can be project id or number. Please see
+     *                       {@see ServicesClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\ListServicesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -52,9 +69,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location and project to list resources on.
-     *           Location must be a valid GCP region, and cannot be the "-" wildcard.
-     *           Format: projects/{project}/locations/{location}, where {project} can be
-     *           project id or number.
+     *           Location must be a valid Google Cloud region, and cannot be the "-"
+     *           wildcard. Format: projects/{project}/locations/{location}, where {project}
+     *           can be project id or number.
      *     @type int $page_size
      *           Maximum number of Services to return in this call.
      *     @type string $page_token
@@ -71,9 +88,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project to list resources on.
-     * Location must be a valid GCP region, and cannot be the "-" wildcard.
-     * Format: projects/{project}/locations/{location}, where {project} can be
-     * project id or number.
+     * Location must be a valid Google Cloud region, and cannot be the "-"
+     * wildcard. Format: projects/{project}/locations/{location}, where {project}
+     * can be project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -85,9 +102,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project to list resources on.
-     * Location must be a valid GCP region, and cannot be the "-" wildcard.
-     * Format: projects/{project}/locations/{location}, where {project} can be
-     * project id or number.
+     * Location must be a valid Google Cloud region, and cannot be the "-"
+     * wildcard. Format: projects/{project}/locations/{location}, where {project}
+     * can be project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

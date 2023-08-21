@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud KMS key configuration that a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] will use.
+ * A Cloud KMS key configuration that a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+ * will use.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CertificateAuthority.KeyVersionSpec</code>
  */

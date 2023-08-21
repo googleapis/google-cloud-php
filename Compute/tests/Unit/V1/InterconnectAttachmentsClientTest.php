@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InterconnectAttachment;
@@ -47,25 +46,19 @@ use stdClass;
  */
 class InterconnectAttachmentsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return InterconnectAttachmentsClient
-     */
+    /** @return InterconnectAttachmentsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +67,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         return new InterconnectAttachmentsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
@@ -118,9 +109,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
@@ -153,14 +142,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -219,14 +206,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -276,9 +261,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -304,17 +287,20 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $id = 3355;
         $interconnect = 'interconnect-849140594';
         $kind = 'kind3292052';
+        $labelFingerprint = 'labelFingerprint714995737';
         $mtu = 108462;
         $name = 'name3373707';
         $operationalStatus = 'operationalStatus1274812671';
         $pairingKey = 'pairingKey976566376';
         $partnerAsn = 975037061;
         $region2 = 'region2-690338393';
+        $remoteService = 'remoteService-1218658372';
         $router = 'router-925132983';
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $stackType = 'stackType2036521617';
         $state = 'state109757585';
+        $subnetLength = 1867652600;
         $type = 'type3575610';
         $vlanTag8021q = 1730540572;
         $expectedResponse = new InterconnectAttachment();
@@ -335,17 +321,20 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setInterconnect($interconnect);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setMtu($mtu);
         $expectedResponse->setName($name);
         $expectedResponse->setOperationalStatus($operationalStatus);
         $expectedResponse->setPairingKey($pairingKey);
         $expectedResponse->setPartnerAsn($partnerAsn);
         $expectedResponse->setRegion($region2);
+        $expectedResponse->setRemoteService($remoteService);
         $expectedResponse->setRouter($router);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStackType($stackType);
         $expectedResponse->setState($state);
+        $expectedResponse->setSubnetLength($subnetLength);
         $expectedResponse->setType($type);
         $expectedResponse->setVlanTag8021q($vlanTag8021q);
         $transport->addResponse($expectedResponse);
@@ -369,9 +358,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -406,14 +393,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -472,14 +457,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -529,9 +512,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -575,9 +556,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -611,14 +590,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -680,14 +657,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -738,14 +713,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setLabelsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -807,14 +780,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setLabelsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

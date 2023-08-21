@@ -23,7 +23,7 @@ class MigrationService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Û
+Ô
 :google/cloud/bigquery/migration/v2/migration_service.proto"google.cloud.bigquery.migration.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto;google/cloud/bigquery/migration/v2/migration_entities.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"³
 CreateMigrationWorkflowRequest9
 parent (	B)àAúA#
@@ -71,8 +71,8 @@ page_token (	BàA
 DeleteMigrationWorkflowB.google.cloud.bigquery.migration.v2.DeleteMigrationWorkflowRequest.google.protobuf.Empty"<‚Óä“/*-/v2/{name=projects/*/locations/*/workflows/*}ÚAnameº
 StartMigrationWorkflowA.google.cloud.bigquery.migration.v2.StartMigrationWorkflowRequest.google.protobuf.Empty"E‚Óä“8"3/v2/{name=projects/*/locations/*/workflows/*}:start:*ÚAnameÔ
 GetMigrationSubtask>.google.cloud.bigquery.migration.v2.GetMigrationSubtaskRequest4.google.cloud.bigquery.migration.v2.MigrationSubtask"G‚Óä“:8/v2/{name=projects/*/locations/*/workflows/*/subtasks/*}ÚAnameç
-ListMigrationSubtasks@.google.cloud.bigquery.migration.v2.ListMigrationSubtasksRequestA.google.cloud.bigquery.migration.v2.ListMigrationSubtasksResponse"I‚Óä“:8/v2/{parent=projects/*/locations/*/workflows/*}/subtasksÚAparentTÊA bigquerymigration.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
-&com.google.cloud.bigquery.migration.v2BMigrationServiceProtoPZKgoogle.golang.org/genproto/googleapis/cloud/bigquery/migration/v2;migrationª"Google.Cloud.BigQuery.Migration.V2Ê"Google\\Cloud\\BigQuery\\Migration\\V2bproto3'
+ListMigrationSubtasks@.google.cloud.bigquery.migration.v2.ListMigrationSubtasksRequestA.google.cloud.bigquery.migration.v2.ListMigrationSubtasksResponse"I‚Óä“:8/v2/{parent=projects/*/locations/*/workflows/*}/subtasksÚAparentTÊA bigquerymigration.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÑ
+&com.google.cloud.bigquery.migration.v2BMigrationServiceProtoPZDcloud.google.com/go/bigquery/migration/apiv2/migrationpb;migrationpbª"Google.Cloud.BigQuery.Migration.V2Ê"Google\\Cloud\\BigQuery\\Migration\\V2bproto3'
         , true);
 
         static::$is_initialized = true;

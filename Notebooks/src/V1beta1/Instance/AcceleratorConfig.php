@@ -10,9 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Definition of a hardware accelerator. Note that not all combinations
- * of `type` and `core_count` are valid. Check [GPUs on
- * Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid
- * combination. TPUs are not supported.
+ * of `type` and `core_count` are valid. Check [GPUs on Compute
+ * Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a
+ * valid combination. TPUs are not supported.
  *
  * Generated from protobuf message <code>google.cloud.notebooks.v1beta1.Instance.AcceleratorConfig</code>
  */

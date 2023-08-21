@@ -1,0 +1,21 @@
+diff --git a/Dialogflow/samples/V2/ConversationModelsClient/create_conversation_model.php b/Dialogflow/samples/V2/ConversationModelsClient/create_conversation_model.php
+index 6f11d9f9524..a7a4ddb6fa8 100644
+--- a/Dialogflow/samples/V2/ConversationModelsClient/create_conversation_model.php
++++ b/Dialogflow/samples/V2/ConversationModelsClient/create_conversation_model.php
+@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
+ use Google\ApiCore\ApiException;
+ use Google\ApiCore\OperationResponse;
+ use Google\Cloud\Dialogflow\V2\ConversationModel;
++use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
+ use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
+ use Google\Cloud\Dialogflow\V2\InputDataset;
+ use Google\Rpc\Status;
+@@ -93,7 +94,7 @@ function create_conversation_model_sample(
+ function callSample(): void
+ {
+     $conversationModelDisplayName = '[DISPLAY_NAME]';
+-    $formattedConversationModelDatasetsDataset = ConversationModelsClient::conversationDatasetName(
++    $formattedConversationModelDatasetsDataset = ConversationDatasetsClient::conversationDatasetName(
+         '[PROJECT]',
+         '[LOCATION]',
+         '[CONVERSATION_DATASET]'

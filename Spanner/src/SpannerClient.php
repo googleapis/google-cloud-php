@@ -93,7 +93,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.54.0';
+    const VERSION = '1.63.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -252,11 +252,22 @@ class SpannerClient
      * $batch = $spanner->batch('instance-id', 'database-id');
      * ```
      *
+     * Database role configured in the optional $options array
+     * will be applied to the session created by this object.
+     * ```
+     * $batch = $spanner->batch('instance-id', 'database-id', ['databaseRole' => 'Reader']);
+     * ```
+     *
      * @param string $instanceId The instance to connect to.
      * @param string $databaseId The database to connect to.
+     * @param array $options  [optional] {
+     *     Configuration options.
+     *
+     *     @type string $databaseRole The user created database role which creates the session.
+     * }
      * @return BatchClient
      */
-    public function batch($instanceId, $databaseId)
+    public function batch($instanceId, $databaseId, array $options = [])
     {
         $operation = new Operation(
             $this->connection,
@@ -269,7 +280,8 @@ class SpannerClient
                 $this->projectId,
                 $instanceId,
                 $databaseId
-            )
+            ),
+            $options
         );
     }
 
@@ -566,6 +578,14 @@ class SpannerClient
      * $database = $spanner->connect('instance-id', 'database-id');
      * ```
      *
+     * Database role configured on the $options parameter
+     * will be applied to the session created by this object.
+     * Note: When the databseRole and sessionPool both are present in the options,
+     * we prioritize the sessionPool.
+     * ```
+     * $database = $spanner->connect('instance-id', 'database-id', ['databaseRole' => 'Reader']);
+     * ```
+     *
      * @param Instance|string $instance The instance object or instance name.
      * @param string $name The database name.
      * @param array $options [optional] {
@@ -573,6 +593,7 @@ class SpannerClient
      *
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database
      */

@@ -21,17 +21,12 @@ use Google\Cloud\Debugger\BufferFullException;
 use Google\Cloud\Debugger\VariableTable;
 use Google\Cloud\Core\Int64;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group debugger
  */
 class VariableTableTest extends TestCase
 {
-    use AssertIsType;
-    use AssertionRenames;
-
     public function testRegisterObjectCreatesVariable()
     {
         $variableTable = new VariableTable();

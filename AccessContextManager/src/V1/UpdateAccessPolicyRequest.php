@@ -29,6 +29,21 @@ class UpdateAccessPolicyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Identity\AccessContextManager\V1\AccessPolicy $policy     Required. The updated AccessPolicy.
+     * @param \Google\Protobuf\FieldMask                            $updateMask Required. Mask to control which fields get updated. Must be non-empty.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\UpdateAccessPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Identity\AccessContextManager\V1\AccessPolicy $policy, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setPolicy($policy)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

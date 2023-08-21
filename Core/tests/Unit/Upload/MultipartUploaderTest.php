@@ -21,12 +21,13 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
-use Prophecy\Argument;
-use Psr\Http\Message\RequestInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * @group core
@@ -34,6 +35,8 @@ use PHPUnit\Framework\TestCase;
  */
 class MultipartUploaderTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testUploadsData()
     {
         $requestWrapper = $this->prophesize(RequestWrapper::class);
@@ -61,7 +64,7 @@ class MultipartUploaderTest extends TestCase
         $stream = Utils::streamFor('abcd');
         $successBody = '{"canI":"kickIt"}';
         $response = new Response(200, [], $successBody);
-        $promise = Promise\promise_for($response);
+        $promise = Create::promiseFor($response);
 
         $requestWrapper->sendAsync(
             Argument::type(RequestInterface::class),

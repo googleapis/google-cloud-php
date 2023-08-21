@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAwsServerConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource to describe.
+     * Required. The name of the
+     * [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+     * to describe.
      * `AwsServerConfig` names are formatted as
      * `projects/<project-id>/locations/<region>/awsServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -27,13 +29,37 @@ class GetAwsServerConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+     *                     to describe.
+     *
+     *                     `AwsServerConfig` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/awsServerConfig`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud resource names. Please see
+     *                     {@see AwsClustersClient::awsServerConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GetAwsServerConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource to describe.
+     *           Required. The name of the
+     *           [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+     *           to describe.
      *           `AwsServerConfig` names are formatted as
      *           `projects/<project-id>/locations/<region>/awsServerConfig`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -46,7 +72,9 @@ class GetAwsServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource to describe.
+     * Required. The name of the
+     * [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+     * to describe.
      * `AwsServerConfig` names are formatted as
      * `projects/<project-id>/locations/<region>/awsServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -61,7 +89,9 @@ class GetAwsServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource to describe.
+     * Required. The name of the
+     * [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+     * to describe.
      * `AwsServerConfig` names are formatted as
      * `projects/<project-id>/locations/<region>/awsServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)

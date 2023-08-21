@@ -154,6 +154,21 @@ class DatasetServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Searches DataItems in a Dataset.
+     * @param \Google\Cloud\AIPlatform\V1\SearchDataItemsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SearchDataItems(\Google\Cloud\AIPlatform\V1\SearchDataItemsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.DatasetService/SearchDataItems',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\SearchDataItemsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists SavedQueries in a Dataset.
      * @param \Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest $argument input argument
      * @param array $metadata metadata

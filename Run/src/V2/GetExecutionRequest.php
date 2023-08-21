@@ -26,6 +26,23 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The full name of the Execution.
+     *                     Format:
+     *                     projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
+     *                     where {project} can be project id or number. Please see
+     *                     {@see ExecutionsClient::executionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\GetExecutionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

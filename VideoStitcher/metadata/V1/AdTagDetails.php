@@ -19,7 +19,7 @@ class AdTagDetails
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¿	
+¶	
 3google/cloud/video/stitcher/v1/ad_tag_details.protogoogle.cloud.video.stitcher.v1google/protobuf/duration.protogoogle/protobuf/struct.proto"ÿ
 LiveAdTagDetail
 name (	>
@@ -42,8 +42,8 @@ class AdTagDetails
 
 size_bytes (+
 duration (2.google.protobuf.Duration
-body (	B
-"com.google.cloud.video.stitcher.v1BAdTagDetailsProtoPZFgoogle.golang.org/genproto/googleapis/cloud/video/stitcher/v1;stitcherbproto3'
+body (	By
+"com.google.cloud.video.stitcher.v1BAdTagDetailsProtoPZ>cloud.google.com/go/video/stitcher/apiv1/stitcherpb;stitcherpbbproto3'
         , true);
 
         static::$is_initialized = true;

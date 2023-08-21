@@ -35,6 +35,13 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DiscoveryEvent.EntityType type = 3;</code>
      */
     private $type = 0;
+    /**
+     * The locations of the data items (e.g., a Cloud Storage objects) sampled
+     * for metadata inference.
+     *
+     * Generated from protobuf field <code>repeated string sampled_data_locations = 4;</code>
+     */
+    private $sampled_data_locations;
 
     /**
      * Constructor.
@@ -50,6 +57,9 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      *           The name is the fully-qualified resource name.
      *     @type int $type
      *           The type of the containing entity resource.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
+     *           The locations of the data items (e.g., a Cloud Storage objects) sampled
+     *           for metadata inference.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +145,34 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dataplex\V1\DiscoveryEvent\EntityType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The locations of the data items (e.g., a Cloud Storage objects) sampled
+     * for metadata inference.
+     *
+     * Generated from protobuf field <code>repeated string sampled_data_locations = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSampledDataLocations()
+    {
+        return $this->sampled_data_locations;
+    }
+
+    /**
+     * The locations of the data items (e.g., a Cloud Storage objects) sampled
+     * for metadata inference.
+     *
+     * Generated from protobuf field <code>repeated string sampled_data_locations = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSampledDataLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->sampled_data_locations = $arr;
 
         return $this;
     }

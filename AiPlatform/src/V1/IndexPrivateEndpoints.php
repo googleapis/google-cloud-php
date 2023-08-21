@@ -26,8 +26,8 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
      */
     private $match_grpc_address = '';
     /**
-     * Output only. The name of the service attachment resource. Populated if private service
-     * connect is enabled.
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -42,8 +42,8 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
      *     @type string $match_grpc_address
      *           Output only. The ip address used to send match gRPC requests.
      *     @type string $service_attachment
-     *           Output only. The name of the service attachment resource. Populated if private service
-     *           connect is enabled.
+     *           Output only. The name of the service attachment resource. Populated if
+     *           private service connect is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +78,8 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the service attachment resource. Populated if private service
-     * connect is enabled.
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -90,8 +90,8 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the service attachment resource. Populated if private service
-     * connect is enabled.
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

@@ -17,11 +17,26 @@ class GetRestoreRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the restore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. Name of the restore resource.
+     *                     Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
+     *                     Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeBackup\V1\GetRestoreRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -31,7 +46,7 @@ class GetRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the restore resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +56,7 @@ class GetRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the restore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +68,7 @@ class GetRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the restore resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

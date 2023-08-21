@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Deprecated. No effect.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.videointelligence.v1.FaceAnnotation</code>
  */
 class FaceAnnotation extends \Google\Protobuf\Internal\Message

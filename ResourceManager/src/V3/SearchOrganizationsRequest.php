@@ -17,21 +17,22 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The maximum number of organizations to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * The server can return fewer organizations than requested. If unspecified,
+     * server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A pagination token returned from a previous call to `SearchOrganizations`
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * `SearchOrganizations` that indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. An optional query string used to filter the Organizations to return in
-     * the response. Query rules are case-insensitive.
+     * Optional. An optional query string used to filter the Organizations to
+     * return in the response. Query rules are case-insensitive.
      * ```
      * | Field            | Description                                |
      * |------------------|--------------------------------------------|
@@ -51,6 +52,37 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
     private $query = '';
 
     /**
+     * @param string $query Optional. An optional query string used to filter the Organizations to
+     *                      return in the response. Query rules are case-insensitive.
+     *
+     *
+     *                      ```
+     *                      | Field            | Description                                |
+     *                      |------------------|--------------------------------------------|
+     *                      | directoryCustomerId, owner.directoryCustomerId | Filters by directory
+     *                      customer id. |
+     *                      | domain           | Filters by domain.                         |
+     *                      ```
+     *
+     *                      Organizations may be queried by `directoryCustomerId` or by
+     *                      `domain`, where the domain is a G Suite domain, for example:
+     *
+     *                      * Query `directorycustomerid:123456789` returns Organization
+     *                      resources with `owner.directory_customer_id` equal to `123456789`.
+     *                      * Query `domain:google.com` returns Organization resources corresponding
+     *                      to the domain `google.com`.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\SearchOrganizationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $query): self
+    {
+        return (new self())
+            ->setQuery($query);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -58,13 +90,14 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type int $page_size
      *           Optional. The maximum number of organizations to return in the response.
-     *           If unspecified, server picks an appropriate default.
+     *           The server can return fewer organizations than requested. If unspecified,
+     *           server picks an appropriate default.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous call to `SearchOrganizations`
-     *           that indicates from where listing should continue.
+     *           Optional. A pagination token returned from a previous call to
+     *           `SearchOrganizations` that indicates from where listing should continue.
      *     @type string $query
-     *           Optional. An optional query string used to filter the Organizations to return in
-     *           the response. Query rules are case-insensitive.
+     *           Optional. An optional query string used to filter the Organizations to
+     *           return in the response. Query rules are case-insensitive.
      *           ```
      *           | Field            | Description                                |
      *           |------------------|--------------------------------------------|
@@ -87,7 +120,8 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of organizations to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * The server can return fewer organizations than requested. If unspecified,
+     * server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -99,7 +133,8 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of organizations to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * The server can return fewer organizations than requested. If unspecified,
+     * server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -114,8 +149,8 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `SearchOrganizations`
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * `SearchOrganizations` that indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -126,8 +161,8 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `SearchOrganizations`
-     * that indicates from where listing should continue.
+     * Optional. A pagination token returned from a previous call to
+     * `SearchOrganizations` that indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -142,8 +177,8 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional query string used to filter the Organizations to return in
-     * the response. Query rules are case-insensitive.
+     * Optional. An optional query string used to filter the Organizations to
+     * return in the response. Query rules are case-insensitive.
      * ```
      * | Field            | Description                                |
      * |------------------|--------------------------------------------|
@@ -167,8 +202,8 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional query string used to filter the Organizations to return in
-     * the response. Query rules are case-insensitive.
+     * Optional. An optional query string used to filter the Organizations to
+     * return in the response. Query rules are case-insensitive.
      * ```
      * | Field            | Description                                |
      * |------------------|--------------------------------------------|

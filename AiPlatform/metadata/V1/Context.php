@@ -20,10 +20,10 @@ class Context
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ñ
+Ë
 (google/cloud/aiplatform/v1/context.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ó
 Context
-name (	BàA
+name (	BàA
 display_name (	
 etag (	?
 labels	 (2/.google.cloud.aiplatform.v1.Context.LabelsEntry4
@@ -39,8 +39,8 @@ class Context
 LabelsEntry
 key (	
 value (	:8:‚êA
-!aiplatform.googleapis.com/ContextZprojects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}BÐ
-com.google.cloud.aiplatform.v1BContextProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+!aiplatform.googleapis.com/ContextZprojects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}BÊ
+com.google.cloud.aiplatform.v1BContextProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

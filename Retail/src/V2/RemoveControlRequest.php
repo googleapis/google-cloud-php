@@ -17,7 +17,7 @@ class RemoveControlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The source ServingConfig resource name . Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string serving_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,6 +31,21 @@ class RemoveControlRequest extends \Google\Protobuf\Internal\Message
     private $control_id = '';
 
     /**
+     * @param string $servingConfig Required. The source ServingConfig resource name . Format:
+     *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
+     *                              Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\RemoveControlRequest
+     *
+     * @experimental
+     */
+    public static function build(string $servingConfig): self
+    {
+        return (new self())
+            ->setServingConfig($servingConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -38,7 +53,7 @@ class RemoveControlRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $serving_config
      *           Required. The source ServingConfig resource name . Format:
-     *           projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *     @type string $control_id
      *           Required. The id of the control to apply. Assumed to be in the same catalog
      *           as the serving config.
@@ -51,7 +66,7 @@ class RemoveControlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The source ServingConfig resource name . Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string serving_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +78,7 @@ class RemoveControlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The source ServingConfig resource name . Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string serving_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

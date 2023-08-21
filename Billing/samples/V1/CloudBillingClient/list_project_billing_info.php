@@ -34,8 +34,9 @@ use Google\Cloud\Billing\V1\ProjectBillingInfo;
  * permission, which is often given to billing account
  * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
  *
- * @param string $formattedName The resource name of the billing account associated with the projects that
- *                              you want to list. For example, `billingAccounts/012345-567890-ABCDEF`. Please see
+ * @param string $formattedName The resource name of the billing account associated with the
+ *                              projects that you want to list. For example,
+ *                              `billingAccounts/012345-567890-ABCDEF`. Please see
  *                              {@see CloudBillingClient::billingAccountName()} for help formatting this field.
  */
 function list_project_billing_info_sample(string $formattedName): void

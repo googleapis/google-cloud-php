@@ -18,9 +18,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location for which to retrieve backup
      * information, in the format
-     * `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     * backup locations map to GCP regions, for example **us-west1**. To retrieve
-     * backup information for all locations, use "-" for the
+     * `projects/{project_number}/locations/{location}`. In Filestore, backup
+     * locations map to Google Cloud regions, for example **us-west1**. To
+     * retrieve backup information for all locations, use "-" for the
      * `{location}` value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -53,6 +53,25 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The project and location for which to retrieve backup
+     *                       information, in the format
+     *                       `projects/{project_number}/locations/{location}`. In Filestore, backup
+     *                       locations map to Google Cloud regions, for example **us-west1**. To
+     *                       retrieve backup information for all locations, use "-" for the
+     *                       `{location}` value. Please see
+     *                       {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Filestore\V1\ListBackupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -61,9 +80,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The project and location for which to retrieve backup
      *           information, in the format
-     *           `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     *           backup locations map to GCP regions, for example **us-west1**. To retrieve
-     *           backup information for all locations, use "-" for the
+     *           `projects/{project_number}/locations/{location}`. In Filestore, backup
+     *           locations map to Google Cloud regions, for example **us-west1**. To
+     *           retrieve backup information for all locations, use "-" for the
      *           `{location}` value.
      *     @type int $page_size
      *           The maximum number of items to return.
@@ -84,9 +103,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location for which to retrieve backup
      * information, in the format
-     * `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     * backup locations map to GCP regions, for example **us-west1**. To retrieve
-     * backup information for all locations, use "-" for the
+     * `projects/{project_number}/locations/{location}`. In Filestore, backup
+     * locations map to Google Cloud regions, for example **us-west1**. To
+     * retrieve backup information for all locations, use "-" for the
      * `{location}` value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -100,9 +119,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location for which to retrieve backup
      * information, in the format
-     * `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     * backup locations map to GCP regions, for example **us-west1**. To retrieve
-     * backup information for all locations, use "-" for the
+     * `projects/{project_number}/locations/{location}`. In Filestore, backup
+     * locations map to Google Cloud regions, for example **us-west1**. To
+     * retrieve backup information for all locations, use "-" for the
      * `{location}` value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

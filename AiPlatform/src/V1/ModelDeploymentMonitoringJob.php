@@ -25,7 +25,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a ModelDeploymentMonitoringJob.
      *
@@ -62,8 +62,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      */
     private $latest_monitoring_pipeline_metadata = null;
     /**
-     * Required. The config for monitoring objectives. This is a per DeployedModel config.
-     * Each DeployedModel needs to be configured separately.
+     * Required. The config for monitoring objectives. This is a per DeployedModel
+     * config. Each DeployedModel needs to be configured separately.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringObjectiveConfig model_deployment_monitoring_objective_configs = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -96,10 +96,12 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      */
     private $predict_instance_schema_uri = '';
     /**
-     * Sample Predict instance, same format as [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
+     * Sample Predict instance, same format as
+     * [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
      * this can be set as a replacement of
-     * [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri]. If not set,
-     * we will generate predict schema from collected predict requests.
+     * [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri].
+     * If not set, we will generate predict schema from collected predict
+     * requests.
      *
      * Generated from protobuf field <code>.google.protobuf.Value sample_predict_instance = 19;</code>
      */
@@ -120,9 +122,9 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      */
     private $analysis_instance_schema_uri = '';
     /**
-     * Output only. The created bigquery tables for the job under customer project. Customer
-     * could do their own query & analysis. There could be 4 log tables in
-     * maximum:
+     * Output only. The created bigquery tables for the job under customer
+     * project. Customer could do their own query & analysis. There could be 4 log
+     * tables in maximum:
      * 1. Training data logging predict request/response
      * 2. Serving data logging predict request/response
      *
@@ -155,14 +157,15 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. Timestamp when this ModelDeploymentMonitoringJob was updated most recently.
+     * Output only. Timestamp when this ModelDeploymentMonitoringJob was updated
+     * most recently.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
-     * Output only. Timestamp when this monitoring pipeline will be scheduled to run for the
-     * next round.
+     * Output only. Timestamp when this monitoring pipeline will be scheduled to
+     * run for the next round.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_schedule_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -208,7 +211,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of a ModelDeploymentMonitoringJob.
      *     @type string $display_name
      *           Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *           Display name of a ModelDeploymentMonitoringJob.
      *     @type string $endpoint
@@ -225,8 +228,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob\LatestMonitoringPipelineMetadata $latest_monitoring_pipeline_metadata
      *           Output only. Latest triggered monitoring pipeline metadata.
      *     @type array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig>|\Google\Protobuf\Internal\RepeatedField $model_deployment_monitoring_objective_configs
-     *           Required. The config for monitoring objectives. This is a per DeployedModel config.
-     *           Each DeployedModel needs to be configured separately.
+     *           Required. The config for monitoring objectives. This is a per DeployedModel
+     *           config. Each DeployedModel needs to be configured separately.
      *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringScheduleConfig $model_deployment_monitoring_schedule_config
      *           Required. Schedule config for running the monitoring job.
      *     @type \Google\Cloud\AIPlatform\V1\SamplingStrategy $logging_sampling_strategy
@@ -239,10 +242,12 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *           If not set, we will generate predict schema from collected predict
      *           requests.
      *     @type \Google\Protobuf\Value $sample_predict_instance
-     *           Sample Predict instance, same format as [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
+     *           Sample Predict instance, same format as
+     *           [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
      *           this can be set as a replacement of
-     *           [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri]. If not set,
-     *           we will generate predict schema from collected predict requests.
+     *           [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri].
+     *           If not set, we will generate predict schema from collected predict
+     *           requests.
      *     @type string $analysis_instance_schema_uri
      *           YAML schema file uri describing the format of a single instance that you
      *           want Tensorflow Data Validation (TFDV) to analyze.
@@ -255,9 +260,9 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *           For models trained with Vertex AI, this field must be set as all the
      *           fields in predict instance formatted as string.
      *     @type array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringBigQueryTable>|\Google\Protobuf\Internal\RepeatedField $bigquery_tables
-     *           Output only. The created bigquery tables for the job under customer project. Customer
-     *           could do their own query & analysis. There could be 4 log tables in
-     *           maximum:
+     *           Output only. The created bigquery tables for the job under customer
+     *           project. Customer could do their own query & analysis. There could be 4 log
+     *           tables in maximum:
      *           1. Training data logging predict request/response
      *           2. Serving data logging predict request/response
      *     @type \Google\Protobuf\Duration $log_ttl
@@ -274,10 +279,11 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this ModelDeploymentMonitoringJob was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. Timestamp when this ModelDeploymentMonitoringJob was updated most recently.
+     *           Output only. Timestamp when this ModelDeploymentMonitoringJob was updated
+     *           most recently.
      *     @type \Google\Protobuf\Timestamp $next_schedule_time
-     *           Output only. Timestamp when this monitoring pipeline will be scheduled to run for the
-     *           next round.
+     *           Output only. Timestamp when this monitoring pipeline will be scheduled to
+     *           run for the next round.
      *     @type \Google\Cloud\AIPlatform\V1\GcsDestination $stats_anomalies_base_directory
      *           Stats anomalies base folder path.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
@@ -327,7 +333,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a ModelDeploymentMonitoringJob.
      *
@@ -341,7 +347,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the ModelDeploymentMonitoringJob.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      * Display name of a ModelDeploymentMonitoringJob.
      *
@@ -482,8 +488,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The config for monitoring objectives. This is a per DeployedModel config.
-     * Each DeployedModel needs to be configured separately.
+     * Required. The config for monitoring objectives. This is a per DeployedModel
+     * config. Each DeployedModel needs to be configured separately.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringObjectiveConfig model_deployment_monitoring_objective_configs = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -494,8 +500,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The config for monitoring objectives. This is a per DeployedModel config.
-     * Each DeployedModel needs to be configured separately.
+     * Required. The config for monitoring objectives. This is a per DeployedModel
+     * config. Each DeployedModel needs to be configured separately.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringObjectiveConfig model_deployment_monitoring_objective_configs = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig>|\Google\Protobuf\Internal\RepeatedField $var
@@ -650,10 +656,12 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sample Predict instance, same format as [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
+     * Sample Predict instance, same format as
+     * [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
      * this can be set as a replacement of
-     * [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri]. If not set,
-     * we will generate predict schema from collected predict requests.
+     * [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri].
+     * If not set, we will generate predict schema from collected predict
+     * requests.
      *
      * Generated from protobuf field <code>.google.protobuf.Value sample_predict_instance = 19;</code>
      * @return \Google\Protobuf\Value|null
@@ -674,10 +682,12 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sample Predict instance, same format as [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
+     * Sample Predict instance, same format as
+     * [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
      * this can be set as a replacement of
-     * [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri]. If not set,
-     * we will generate predict schema from collected predict requests.
+     * [ModelDeploymentMonitoringJob.predict_instance_schema_uri][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri].
+     * If not set, we will generate predict schema from collected predict
+     * requests.
      *
      * Generated from protobuf field <code>.google.protobuf.Value sample_predict_instance = 19;</code>
      * @param \Google\Protobuf\Value $var
@@ -736,9 +746,9 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The created bigquery tables for the job under customer project. Customer
-     * could do their own query & analysis. There could be 4 log tables in
-     * maximum:
+     * Output only. The created bigquery tables for the job under customer
+     * project. Customer could do their own query & analysis. There could be 4 log
+     * tables in maximum:
      * 1. Training data logging predict request/response
      * 2. Serving data logging predict request/response
      *
@@ -751,9 +761,9 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The created bigquery tables for the job under customer project. Customer
-     * could do their own query & analysis. There could be 4 log tables in
-     * maximum:
+     * Output only. The created bigquery tables for the job under customer
+     * project. Customer could do their own query & analysis. There could be 4 log
+     * tables in maximum:
      * 1. Training data logging predict request/response
      * 2. Serving data logging predict request/response
      *
@@ -882,7 +892,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this ModelDeploymentMonitoringJob was updated most recently.
+     * Output only. Timestamp when this ModelDeploymentMonitoringJob was updated
+     * most recently.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -903,7 +914,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this ModelDeploymentMonitoringJob was updated most recently.
+     * Output only. Timestamp when this ModelDeploymentMonitoringJob was updated
+     * most recently.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -918,8 +930,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this monitoring pipeline will be scheduled to run for the
-     * next round.
+     * Output only. Timestamp when this monitoring pipeline will be scheduled to
+     * run for the next round.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_schedule_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -940,8 +952,8 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when this monitoring pipeline will be scheduled to run for the
-     * next round.
+     * Output only. Timestamp when this monitoring pipeline will be scheduled to
+     * run for the next round.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_schedule_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

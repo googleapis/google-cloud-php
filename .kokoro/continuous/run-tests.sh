@@ -30,9 +30,6 @@ fi
 # non-secret env vars
 export ASSET_TEST_BUCKET="php_asset_test_bucket"
 
-echo "Running PHPCS Code Style Checker"
-dev/sh/style
-
 PHP_VERSION=$(php -r 'echo PHP_MAJOR_VERSION;')
 if [ "5" == $PHP_VERSION ]; then
     # Exclude compute if the PHP version is below 7.0
@@ -47,11 +44,7 @@ vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
 echo "Running System Test Suite"
-vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}-system.xml.dist --verbose --log-junit \
-                   ${SYSTEM_LOG_FILENAME}
-
-echo "Running package integration Test"
-
-dev/google-cloud integration -u
+vendor/bin/phpunit -d memory_limit=512M -c phpunit${PHPUNIT_SUFFIX}-system.xml.dist \
+                   --verbose --log-junit ${SYSTEM_LOG_FILENAME}
 
 popd

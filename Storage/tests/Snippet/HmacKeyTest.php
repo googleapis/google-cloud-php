@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\HmacKey;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -29,6 +30,8 @@ use Prophecy\Argument;
  */
 class HmacKeyTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const PROJECT = 'project';
 
     private $connection;
@@ -39,7 +42,7 @@ class HmacKeyTest extends SnippetTestCase
         'accessId' => 'foo'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

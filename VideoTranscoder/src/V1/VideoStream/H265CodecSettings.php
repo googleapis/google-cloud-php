@@ -40,10 +40,10 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      */
     private $height_pixels = 0;
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less than
-     * or equal to 120. Will default to the input frame rate if larger than the
-     * input frame rate. The API will generate an output FPS that is divisible
-     * by the input FPS, and smaller or equal to the target FPS. See
+     * Required. The target video frame rate in frames per second (FPS). Must be
+     * less than or equal to 120. Will default to the input frame rate if larger
+     * than the input frame rate. The API will generate an output FPS that is
+     * divisible by the input FPS, and smaller or equal to the target FPS. See
      * [Calculating frame
      * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
      * more information.
@@ -52,8 +52,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      */
     private $frame_rate = 0.0;
     /**
-     * Required. The video bitrate in bits per second. The minimum value is 1,000.
-     * The maximum value is 800,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is
+     * 1,000. The maximum value is 800,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -218,16 +218,16 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *           the width per the horizontal ASR. The API detects any rotation metadata
      *           and swaps the requested height and width for the output.
      *     @type float $frame_rate
-     *           Required. The target video frame rate in frames per second (FPS). Must be less than
-     *           or equal to 120. Will default to the input frame rate if larger than the
-     *           input frame rate. The API will generate an output FPS that is divisible
-     *           by the input FPS, and smaller or equal to the target FPS. See
+     *           Required. The target video frame rate in frames per second (FPS). Must be
+     *           less than or equal to 120. Will default to the input frame rate if larger
+     *           than the input frame rate. The API will generate an output FPS that is
+     *           divisible by the input FPS, and smaller or equal to the target FPS. See
      *           [Calculating frame
      *           rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
      *           more information.
      *     @type int $bitrate_bps
-     *           Required. The video bitrate in bits per second. The minimum value is 1,000.
-     *           The maximum value is 800,000,000.
+     *           Required. The video bitrate in bits per second. The minimum value is
+     *           1,000. The maximum value is 800,000,000.
      *     @type string $pixel_format
      *           Pixel format to use. The default is `yuv420p`.
      *           Supported pixel formats:
@@ -404,10 +404,10 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less than
-     * or equal to 120. Will default to the input frame rate if larger than the
-     * input frame rate. The API will generate an output FPS that is divisible
-     * by the input FPS, and smaller or equal to the target FPS. See
+     * Required. The target video frame rate in frames per second (FPS). Must be
+     * less than or equal to 120. Will default to the input frame rate if larger
+     * than the input frame rate. The API will generate an output FPS that is
+     * divisible by the input FPS, and smaller or equal to the target FPS. See
      * [Calculating frame
      * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
      * more information.
@@ -421,10 +421,10 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less than
-     * or equal to 120. Will default to the input frame rate if larger than the
-     * input frame rate. The API will generate an output FPS that is divisible
-     * by the input FPS, and smaller or equal to the target FPS. See
+     * Required. The target video frame rate in frames per second (FPS). Must be
+     * less than or equal to 120. Will default to the input frame rate if larger
+     * than the input frame rate. The API will generate an output FPS that is
+     * divisible by the input FPS, and smaller or equal to the target FPS. See
      * [Calculating frame
      * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
      * more information.
@@ -442,8 +442,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. The minimum value is 1,000.
-     * The maximum value is 800,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is
+     * 1,000. The maximum value is 800,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -454,8 +454,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. The minimum value is 1,000.
-     * The maximum value is 800,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is
+     * 1,000. The maximum value is 800,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

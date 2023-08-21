@@ -84,6 +84,21 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The project of the instance config operations.
+     *                       Values are of the form `projects/<project>`. Please see
+     *                       {@see InstanceAdminClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

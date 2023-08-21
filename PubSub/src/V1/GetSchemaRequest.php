@@ -24,12 +24,26 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The set of fields to return in the response. If not set, returns a Schema
-     * with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
-     * fields.
+     * with all fields filled out. Set to `BASIC` to omit the `definition`.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
      */
     private $view = 0;
+
+    /**
+     * @param string $name Required. The name of the schema to get.
+     *                     Format is `projects/{project}/schemas/{schema}`. Please see
+     *                     {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\GetSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -42,8 +56,7 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
      *           Format is `projects/{project}/schemas/{schema}`.
      *     @type int $view
      *           The set of fields to return in the response. If not set, returns a Schema
-     *           with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
-     *           fields.
+     *           with all fields filled out. Set to `BASIC` to omit the `definition`.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,8 +94,7 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of fields to return in the response. If not set, returns a Schema
-     * with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
-     * fields.
+     * with all fields filled out. Set to `BASIC` to omit the `definition`.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
      * @return int
@@ -94,8 +106,7 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of fields to return in the response. If not set, returns a Schema
-     * with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all
-     * fields.
+     * with all fields filled out. Set to `BASIC` to omit the `definition`.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaView view = 2;</code>
      * @param int $var

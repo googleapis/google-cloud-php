@@ -1,6 +1,8 @@
 {
+    "language": "php",
     "distribution_name": "google/cloud-storage",
-    "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-storage/latest",
-    "library_type": "GAPIC_MANUAL"
+    "release_level": "stable",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-storage/latest",
+    "library_type": "GAPIC_MANUAL",
+    "api_shortname": "storage"
 }

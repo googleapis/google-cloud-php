@@ -16,13 +16,13 @@ class ContactDetails
         }
         $pool->internalAddGeneratedFile(
             '
-·
+µ
 4google/cloud/securitycenter/v1/contact_details.protogoogle.cloud.securitycenter.v1"K
 ContactDetails9
 contacts (2\'.google.cloud.securitycenter.v1.Contact"
 Contact
-email (	Bï
-"com.google.cloud.securitycenter.v1BContactDetailsProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+email (	Bí
+"com.google.cloud.securitycenter.v1BContactDetailsProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

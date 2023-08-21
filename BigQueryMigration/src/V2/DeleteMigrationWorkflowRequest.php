@@ -24,6 +24,21 @@ class DeleteMigrationWorkflowRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The unique identifier for the migration workflow.
+     *                     Example: `projects/123/locations/us/workflows/1234`
+     *                     Please see {@see MigrationServiceClient::migrationWorkflowName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Migration\V2\DeleteMigrationWorkflowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

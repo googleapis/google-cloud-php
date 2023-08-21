@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PipelineService.DeleteTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.DeleteTrainingPipeline].
+ * Request message for
+ * [PipelineService.DeleteTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.DeleteTrainingPipeline].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteTrainingPipelineRequest</code>
  */
@@ -23,6 +24,22 @@ class DeleteTrainingPipelineRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the TrainingPipeline resource to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
+     *                     Please see {@see PipelineServiceClient::trainingPipelineName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteTrainingPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

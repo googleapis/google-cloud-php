@@ -9,11 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a "type" of key that may be used in a [Certificate][google.cloud.security.privateca.v1.Certificate] issued
- * from a [CaPool][google.cloud.security.privateca.v1.CaPool].
- * Note that a single [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType] may refer to either a
- * fully-qualified key algorithm, such as RSA 4096, or a family of key
- * algorithms, such as any RSA key.
+ * Describes a "type" of key that may be used in a
+ * [Certificate][google.cloud.security.privateca.v1.Certificate] issued from
+ * a [CaPool][google.cloud.security.privateca.v1.CaPool]. Note that a single
+ * [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]
+ * may refer to either a fully-qualified key algorithm, such as RSA 4096, or
+ * a family of key algorithms, such as any RSA key.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType</code>
  */

@@ -17,7 +17,9 @@ class Metrics extends \Google\Protobuf\Internal\Message
 {
     /**
      * Aggregated over the routes. Each metric is the sum (or max, for loads)
-     * over all [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics] fields of the same name.
+     * over all
+     * [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics]
+     * fields of the same name.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.AggregatedMetrics aggregated_route_metrics = 1;</code>
      */
@@ -30,22 +32,24 @@ class Metrics extends \Google\Protobuf\Internal\Message
     private $skipped_mandatory_shipment_count = 0;
     /**
      * Number of vehicles used. Note: if a vehicle route is empty and
-     * [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty] is true, the vehicle is considered
-     * used.
+     * [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty]
+     * is true, the vehicle is considered used.
      *
      * Generated from protobuf field <code>int32 used_vehicle_count = 3;</code>
      */
     private $used_vehicle_count = 0;
     /**
      * The earliest start time for a used vehicle, computed as the minimum over
-     * all used vehicles of [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     * all used vehicles of
+     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_vehicle_start_time = 4;</code>
      */
     private $earliest_vehicle_start_time = null;
     /**
      * The latest end time for a used vehicle, computed as the maximum over all
-     * used vehicles of [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
+     * used vehicles of
+     * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_vehicle_end_time = 5;</code>
      */
@@ -79,19 +83,23 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Optimization\V1\AggregatedMetrics $aggregated_route_metrics
      *           Aggregated over the routes. Each metric is the sum (or max, for loads)
-     *           over all [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics] fields of the same name.
+     *           over all
+     *           [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics]
+     *           fields of the same name.
      *     @type int $skipped_mandatory_shipment_count
      *           Number of mandatory shipments skipped.
      *     @type int $used_vehicle_count
      *           Number of vehicles used. Note: if a vehicle route is empty and
-     *           [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty] is true, the vehicle is considered
-     *           used.
+     *           [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty]
+     *           is true, the vehicle is considered used.
      *     @type \Google\Protobuf\Timestamp $earliest_vehicle_start_time
      *           The earliest start time for a used vehicle, computed as the minimum over
-     *           all used vehicles of [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     *           all used vehicles of
+     *           [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
      *     @type \Google\Protobuf\Timestamp $latest_vehicle_end_time
      *           The latest end time for a used vehicle, computed as the maximum over all
-     *           used vehicles of [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
+     *           used vehicles of
+     *           [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
      *     @type array|\Google\Protobuf\Internal\MapField $costs
      *           Cost of the solution, broken down by cost-related request fields.
      *           The keys are proto paths, relative to the input OptimizeToursRequest,
@@ -113,7 +121,9 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregated over the routes. Each metric is the sum (or max, for loads)
-     * over all [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics] fields of the same name.
+     * over all
+     * [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics]
+     * fields of the same name.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.AggregatedMetrics aggregated_route_metrics = 1;</code>
      * @return \Google\Cloud\Optimization\V1\AggregatedMetrics|null
@@ -135,7 +145,9 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregated over the routes. Each metric is the sum (or max, for loads)
-     * over all [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics] fields of the same name.
+     * over all
+     * [ShipmentRoute.metrics][google.cloud.optimization.v1.ShipmentRoute.metrics]
+     * fields of the same name.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.AggregatedMetrics aggregated_route_metrics = 1;</code>
      * @param \Google\Cloud\Optimization\V1\AggregatedMetrics $var
@@ -177,8 +189,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of vehicles used. Note: if a vehicle route is empty and
-     * [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty] is true, the vehicle is considered
-     * used.
+     * [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty]
+     * is true, the vehicle is considered used.
      *
      * Generated from protobuf field <code>int32 used_vehicle_count = 3;</code>
      * @return int
@@ -190,8 +202,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of vehicles used. Note: if a vehicle route is empty and
-     * [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty] is true, the vehicle is considered
-     * used.
+     * [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty]
+     * is true, the vehicle is considered used.
      *
      * Generated from protobuf field <code>int32 used_vehicle_count = 3;</code>
      * @param int $var
@@ -207,7 +219,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The earliest start time for a used vehicle, computed as the minimum over
-     * all used vehicles of [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     * all used vehicles of
+     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_vehicle_start_time = 4;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -229,7 +242,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The earliest start time for a used vehicle, computed as the minimum over
-     * all used vehicles of [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     * all used vehicles of
+     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_vehicle_start_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -245,7 +259,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The latest end time for a used vehicle, computed as the maximum over all
-     * used vehicles of [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
+     * used vehicles of
+     * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_vehicle_end_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -267,7 +282,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The latest end time for a used vehicle, computed as the maximum over all
-     * used vehicles of [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
+     * used vehicles of
+     * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_vehicle_end_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var

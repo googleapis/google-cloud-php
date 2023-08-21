@@ -57,6 +57,25 @@ class UpdateReservationRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                               $project             Project ID for this request.
+     * @param string                               $zone                Name of the zone for this request.
+     * @param string                               $reservation         Name of the reservation to update.
+     * @param \Google\Cloud\Compute\V1\Reservation $reservationResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateReservationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $reservation, \Google\Cloud\Compute\V1\Reservation $reservationResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setReservation($reservation)
+            ->setReservationResource($reservationResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

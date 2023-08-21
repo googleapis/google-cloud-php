@@ -23,11 +23,9 @@
 namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistryClient;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class PredictionApiKeyRegistryClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PredictionApiKeyRegistryClient
-     */
+    /** @return PredictionApiKeyRegistryClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +61,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         return new PredictionApiKeyRegistryClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPredictionApiKeyRegistrationTest()
     {
         $transport = $this->createTransport();
@@ -101,9 +91,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPredictionApiKeyRegistrationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -137,9 +125,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePredictionApiKeyRegistrationTest()
     {
         $transport = $this->createTransport();
@@ -163,9 +149,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePredictionApiKeyRegistrationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -198,9 +182,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPredictionApiKeyRegistrationsTest()
     {
         $transport = $this->createTransport();
@@ -235,9 +217,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPredictionApiKeyRegistrationsExceptionTest()
     {
         $transport = $this->createTransport();

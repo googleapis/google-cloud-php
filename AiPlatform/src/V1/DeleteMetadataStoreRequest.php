@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.DeleteMetadataStore][google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore].
+ * Request message for
+ * [MetadataService.DeleteMetadataStore][google.cloud.aiplatform.v1.MetadataService.DeleteMetadataStore].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteMetadataStoreRequest</code>
  */
@@ -30,6 +31,22 @@ class DeleteMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $force = false;
+
+    /**
+     * @param string $name Required. The resource name of the MetadataStore to delete.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                     Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteMetadataStoreRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

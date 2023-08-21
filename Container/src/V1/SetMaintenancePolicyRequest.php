@@ -53,6 +53,47 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string                                       $projectId         Required. The Google Developers Console [project ID or project
+     *                                                                        number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     * @param string                                       $zone              Required. The name of the Google Compute Engine
+     *                                                                        [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                                                                        cluster resides.
+     * @param string                                       $clusterId         Required. The name of the cluster to update.
+     * @param \Google\Cloud\Container\V1\MaintenancePolicy $maintenancePolicy Required. The maintenance policy to be set for the cluster. An empty field
+     *                                                                        clears the existing maintenance policy.
+     *
+     * @return \Google\Cloud\Container\V1\SetMaintenancePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone, string $clusterId, \Google\Cloud\Container\V1\MaintenancePolicy $maintenancePolicy): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone)
+            ->setClusterId($clusterId)
+            ->setMaintenancePolicy($maintenancePolicy);
+    }
+
+    /**
+     * @param string                                       $name              The name (project, location, cluster name) of the cluster to set
+     *                                                                        maintenance policy.
+     *                                                                        Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     * @param \Google\Cloud\Container\V1\MaintenancePolicy $maintenancePolicy Required. The maintenance policy to be set for the cluster. An empty field
+     *                                                                        clears the existing maintenance policy.
+     *
+     * @return \Google\Cloud\Container\V1\SetMaintenancePolicyRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameMaintenancePolicy(string $name, \Google\Cloud\Container\V1\MaintenancePolicy $maintenancePolicy): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setMaintenancePolicy($maintenancePolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

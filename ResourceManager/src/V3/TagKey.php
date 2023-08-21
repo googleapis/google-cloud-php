@@ -24,15 +24,18 @@ class TagKey extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Immutable. The resource name of the new TagKey's parent.
-     * Must be of the form `organizations/{org_id}`.
+     * Immutable. The resource name of the TagKey's parent. A TagKey can be
+     * parented by an Organization or a Project. For a TagKey parented by an
+     * Organization, its parent must be in the form `organizations/{org_id}`. For
+     * a TagKey parented by a Project, its parent can be in the form
+     * `projects/{project_id}` or `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $parent = '';
     /**
-     * Required. Immutable. The user friendly name for a TagKey. The short name should be
-     * unique for TagKeys within the same tag namespace.
+     * Required. Immutable. The user friendly name for a TagKey. The short name
+     * should be unique for TagKeys within the same tag namespace.
      * The short name must be 1-63 characters, beginning and ending with
      * an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
      * dots (.), and alphanumerics between.
@@ -47,7 +50,8 @@ class TagKey extends \Google\Protobuf\Internal\Message
      */
     private $namespaced_name = '';
     /**
-     * Optional. User-assigned description of the TagKey. Must not exceed 256 characters.
+     * Optional. User-assigned description of the TagKey. Must not exceed 256
+     * characters.
      * Read-write.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -66,12 +70,32 @@ class TagKey extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. Entity tag which users can pass to prevent race conditions. This field is
-     * always set in server responses. See UpdateTagKeyRequest for details.
+     * Optional. Entity tag which users can pass to prevent race conditions. This
+     * field is always set in server responses. See UpdateTagKeyRequest for
+     * details.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
+    /**
+     * Optional. A purpose denotes that this Tag is intended for use in policies
+     * of a specific policy engine, and will involve that policy engine in
+     * management operations involving this Tag. A purpose does not grant a
+     * policy engine exclusive rights to the Tag, and it may be referenced by
+     * other policy engines.
+     * A purpose cannot be changed once set.
+     *
+     * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Purpose purpose = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $purpose = 0;
+    /**
+     * Optional. Purpose data corresponds to the policy system that the tag is
+     * intended for. See documentation for `Purpose` for formatting of this field.
+     * Purpose data cannot be changed once set.
+     *
+     * Generated from protobuf field <code>map<string, string> purpose_data = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $purpose_data;
 
     /**
      * Constructor.
@@ -84,26 +108,42 @@ class TagKey extends \Google\Protobuf\Internal\Message
      *           `tagKeys/{tag_key_id}`, where `tag_key_id` is the generated numeric id for
      *           the TagKey.
      *     @type string $parent
-     *           Immutable. The resource name of the new TagKey's parent.
-     *           Must be of the form `organizations/{org_id}`.
+     *           Immutable. The resource name of the TagKey's parent. A TagKey can be
+     *           parented by an Organization or a Project. For a TagKey parented by an
+     *           Organization, its parent must be in the form `organizations/{org_id}`. For
+     *           a TagKey parented by a Project, its parent can be in the form
+     *           `projects/{project_id}` or `projects/{project_number}`.
      *     @type string $short_name
-     *           Required. Immutable. The user friendly name for a TagKey. The short name should be
-     *           unique for TagKeys within the same tag namespace.
+     *           Required. Immutable. The user friendly name for a TagKey. The short name
+     *           should be unique for TagKeys within the same tag namespace.
      *           The short name must be 1-63 characters, beginning and ending with
      *           an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
      *           dots (.), and alphanumerics between.
      *     @type string $namespaced_name
      *           Output only. Immutable. Namespaced name of the TagKey.
      *     @type string $description
-     *           Optional. User-assigned description of the TagKey. Must not exceed 256 characters.
+     *           Optional. User-assigned description of the TagKey. Must not exceed 256
+     *           characters.
      *           Read-write.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Update time.
      *     @type string $etag
-     *           Optional. Entity tag which users can pass to prevent race conditions. This field is
-     *           always set in server responses. See UpdateTagKeyRequest for details.
+     *           Optional. Entity tag which users can pass to prevent race conditions. This
+     *           field is always set in server responses. See UpdateTagKeyRequest for
+     *           details.
+     *     @type int $purpose
+     *           Optional. A purpose denotes that this Tag is intended for use in policies
+     *           of a specific policy engine, and will involve that policy engine in
+     *           management operations involving this Tag. A purpose does not grant a
+     *           policy engine exclusive rights to the Tag, and it may be referenced by
+     *           other policy engines.
+     *           A purpose cannot be changed once set.
+     *     @type array|\Google\Protobuf\Internal\MapField $purpose_data
+     *           Optional. Purpose data corresponds to the policy system that the tag is
+     *           intended for. See documentation for `Purpose` for formatting of this field.
+     *           Purpose data cannot be changed once set.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,8 +182,11 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the new TagKey's parent.
-     * Must be of the form `organizations/{org_id}`.
+     * Immutable. The resource name of the TagKey's parent. A TagKey can be
+     * parented by an Organization or a Project. For a TagKey parented by an
+     * Organization, its parent must be in the form `organizations/{org_id}`. For
+     * a TagKey parented by a Project, its parent can be in the form
+     * `projects/{project_id}` or `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -154,8 +197,11 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the new TagKey's parent.
-     * Must be of the form `organizations/{org_id}`.
+     * Immutable. The resource name of the TagKey's parent. A TagKey can be
+     * parented by an Organization or a Project. For a TagKey parented by an
+     * Organization, its parent must be in the form `organizations/{org_id}`. For
+     * a TagKey parented by a Project, its parent can be in the form
+     * `projects/{project_id}` or `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -170,8 +216,8 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The user friendly name for a TagKey. The short name should be
-     * unique for TagKeys within the same tag namespace.
+     * Required. Immutable. The user friendly name for a TagKey. The short name
+     * should be unique for TagKeys within the same tag namespace.
      * The short name must be 1-63 characters, beginning and ending with
      * an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
      * dots (.), and alphanumerics between.
@@ -185,8 +231,8 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The user friendly name for a TagKey. The short name should be
-     * unique for TagKeys within the same tag namespace.
+     * Required. Immutable. The user friendly name for a TagKey. The short name
+     * should be unique for TagKeys within the same tag namespace.
      * The short name must be 1-63 characters, beginning and ending with
      * an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
      * dots (.), and alphanumerics between.
@@ -230,7 +276,8 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-assigned description of the TagKey. Must not exceed 256 characters.
+     * Optional. User-assigned description of the TagKey. Must not exceed 256
+     * characters.
      * Read-write.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -242,7 +289,8 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-assigned description of the TagKey. Must not exceed 256 characters.
+     * Optional. User-assigned description of the TagKey. Must not exceed 256
+     * characters.
      * Read-write.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -330,8 +378,9 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Entity tag which users can pass to prevent race conditions. This field is
-     * always set in server responses. See UpdateTagKeyRequest for details.
+     * Optional. Entity tag which users can pass to prevent race conditions. This
+     * field is always set in server responses. See UpdateTagKeyRequest for
+     * details.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -342,8 +391,9 @@ class TagKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Entity tag which users can pass to prevent race conditions. This field is
-     * always set in server responses. See UpdateTagKeyRequest for details.
+     * Optional. Entity tag which users can pass to prevent race conditions. This
+     * field is always set in server responses. See UpdateTagKeyRequest for
+     * details.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -353,6 +403,72 @@ class TagKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A purpose denotes that this Tag is intended for use in policies
+     * of a specific policy engine, and will involve that policy engine in
+     * management operations involving this Tag. A purpose does not grant a
+     * policy engine exclusive rights to the Tag, and it may be referenced by
+     * other policy engines.
+     * A purpose cannot be changed once set.
+     *
+     * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Purpose purpose = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPurpose()
+    {
+        return $this->purpose;
+    }
+
+    /**
+     * Optional. A purpose denotes that this Tag is intended for use in policies
+     * of a specific policy engine, and will involve that policy engine in
+     * management operations involving this Tag. A purpose does not grant a
+     * policy engine exclusive rights to the Tag, and it may be referenced by
+     * other policy engines.
+     * A purpose cannot be changed once set.
+     *
+     * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Purpose purpose = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPurpose($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ResourceManager\V3\Purpose::class);
+        $this->purpose = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Purpose data corresponds to the policy system that the tag is
+     * intended for. See documentation for `Purpose` for formatting of this field.
+     * Purpose data cannot be changed once set.
+     *
+     * Generated from protobuf field <code>map<string, string> purpose_data = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getPurposeData()
+    {
+        return $this->purpose_data;
+    }
+
+    /**
+     * Optional. Purpose data corresponds to the policy system that the tag is
+     * intended for. See documentation for `Purpose` for formatting of this field.
+     * Purpose data cannot be changed once set.
+     *
+     * Generated from protobuf field <code>map<string, string> purpose_data = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setPurposeData($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->purpose_data = $arr;
 
         return $this;
     }

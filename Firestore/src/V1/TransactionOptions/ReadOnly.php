@@ -4,11 +4,16 @@
 
 namespace Google\Cloud\Firestore\V1\TransactionOptions;
 
+if (version_compare(PHP_VERSION, '8.1', '<')) {
+    $readOnlyClass = <<<EOF
+namespace Google\Cloud\Firestore\V1\TransactionOptions;
 /**
  * @deprecated
  */
 class ReadOnly extends PBReadOnly
 {
 }
-
-@trigger_error(__NAMESPACE__ . '\ReadOnly is deprecated and will be removed in the next major release. Use PBReadOnly instead', E_USER_DEPRECATED);
+EOF;
+    eval($readOnlyClass);
+    @trigger_error(__NAMESPACE__ . '\ReadOnly is deprecated and will be removed in the next major release. Use PBReadOnly instead', E_USER_DEPRECATED);
+}

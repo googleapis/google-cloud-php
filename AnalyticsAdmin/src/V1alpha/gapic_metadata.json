@@ -40,9 +40,19 @@
                                 "auditUserLinks"
                             ]
                         },
+                        "BatchCreateAccessBindings": {
+                            "methods": [
+                                "batchCreateAccessBindings"
+                            ]
+                        },
                         "BatchCreateUserLinks": {
                             "methods": [
                                 "batchCreateUserLinks"
+                            ]
+                        },
+                        "BatchDeleteAccessBindings": {
+                            "methods": [
+                                "batchDeleteAccessBindings"
                             ]
                         },
                         "BatchDeleteUserLinks": {
@@ -50,9 +60,19 @@
                                 "batchDeleteUserLinks"
                             ]
                         },
+                        "BatchGetAccessBindings": {
+                            "methods": [
+                                "batchGetAccessBindings"
+                            ]
+                        },
                         "BatchGetUserLinks": {
                             "methods": [
                                 "batchGetUserLinks"
+                            ]
+                        },
+                        "BatchUpdateAccessBindings": {
+                            "methods": [
+                                "batchUpdateAccessBindings"
                             ]
                         },
                         "BatchUpdateUserLinks": {
@@ -65,9 +85,29 @@
                                 "cancelDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
+                        "CreateAccessBinding": {
+                            "methods": [
+                                "createAccessBinding"
+                            ]
+                        },
+                        "CreateAdSenseLink": {
+                            "methods": [
+                                "createAdSenseLink"
+                            ]
+                        },
                         "CreateAudience": {
                             "methods": [
                                 "createAudience"
+                            ]
+                        },
+                        "CreateChannelGroup": {
+                            "methods": [
+                                "createChannelGroup"
+                            ]
+                        },
+                        "CreateConnectedSiteTag": {
+                            "methods": [
+                                "createConnectedSiteTag"
                             ]
                         },
                         "CreateConversionEvent": {
@@ -100,6 +140,16 @@
                                 "createDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
+                        "CreateEventCreateRule": {
+                            "methods": [
+                                "createEventCreateRule"
+                            ]
+                        },
+                        "CreateExpandedDataSet": {
+                            "methods": [
+                                "createExpandedDataSet"
+                            ]
+                        },
                         "CreateFirebaseLink": {
                             "methods": [
                                 "createFirebaseLink"
@@ -120,14 +170,39 @@
                                 "createProperty"
                             ]
                         },
+                        "CreateSearchAds360Link": {
+                            "methods": [
+                                "createSearchAds360Link"
+                            ]
+                        },
                         "CreateUserLink": {
                             "methods": [
                                 "createUserLink"
                             ]
                         },
+                        "DeleteAccessBinding": {
+                            "methods": [
+                                "deleteAccessBinding"
+                            ]
+                        },
                         "DeleteAccount": {
                             "methods": [
                                 "deleteAccount"
+                            ]
+                        },
+                        "DeleteAdSenseLink": {
+                            "methods": [
+                                "deleteAdSenseLink"
+                            ]
+                        },
+                        "DeleteChannelGroup": {
+                            "methods": [
+                                "deleteChannelGroup"
+                            ]
+                        },
+                        "DeleteConnectedSiteTag": {
+                            "methods": [
+                                "deleteConnectedSiteTag"
                             ]
                         },
                         "DeleteConversionEvent": {
@@ -150,6 +225,16 @@
                                 "deleteDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
+                        "DeleteEventCreateRule": {
+                            "methods": [
+                                "deleteEventCreateRule"
+                            ]
+                        },
+                        "DeleteExpandedDataSet": {
+                            "methods": [
+                                "deleteExpandedDataSet"
+                            ]
+                        },
                         "DeleteFirebaseLink": {
                             "methods": [
                                 "deleteFirebaseLink"
@@ -170,14 +255,39 @@
                                 "deleteProperty"
                             ]
                         },
+                        "DeleteSearchAds360Link": {
+                            "methods": [
+                                "deleteSearchAds360Link"
+                            ]
+                        },
                         "DeleteUserLink": {
                             "methods": [
                                 "deleteUserLink"
                             ]
                         },
+                        "FetchAutomatedGa4ConfigurationOptOut": {
+                            "methods": [
+                                "fetchAutomatedGa4ConfigurationOptOut"
+                            ]
+                        },
+                        "FetchConnectedGa4Property": {
+                            "methods": [
+                                "fetchConnectedGa4Property"
+                            ]
+                        },
+                        "GetAccessBinding": {
+                            "methods": [
+                                "getAccessBinding"
+                            ]
+                        },
                         "GetAccount": {
                             "methods": [
                                 "getAccount"
+                            ]
+                        },
+                        "GetAdSenseLink": {
+                            "methods": [
+                                "getAdSenseLink"
                             ]
                         },
                         "GetAttributionSettings": {
@@ -188,6 +298,16 @@
                         "GetAudience": {
                             "methods": [
                                 "getAudience"
+                            ]
+                        },
+                        "GetBigQueryLink": {
+                            "methods": [
+                                "getBigQueryLink"
+                            ]
+                        },
+                        "GetChannelGroup": {
+                            "methods": [
+                                "getChannelGroup"
                             ]
                         },
                         "GetConversionEvent": {
@@ -230,6 +350,21 @@
                                 "getDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
+                        "GetEnhancedMeasurementSettings": {
+                            "methods": [
+                                "getEnhancedMeasurementSettings"
+                            ]
+                        },
+                        "GetEventCreateRule": {
+                            "methods": [
+                                "getEventCreateRule"
+                            ]
+                        },
+                        "GetExpandedDataSet": {
+                            "methods": [
+                                "getExpandedDataSet"
+                            ]
+                        },
                         "GetGlobalSiteTag": {
                             "methods": [
                                 "getGlobalSiteTag"
@@ -250,9 +385,19 @@
                                 "getProperty"
                             ]
                         },
+                        "GetSearchAds360Link": {
+                            "methods": [
+                                "getSearchAds360Link"
+                            ]
+                        },
                         "GetUserLink": {
                             "methods": [
                                 "getUserLink"
+                            ]
+                        },
+                        "ListAccessBindings": {
+                            "methods": [
+                                "listAccessBindings"
                             ]
                         },
                         "ListAccountSummaries": {
@@ -265,9 +410,29 @@
                                 "listAccounts"
                             ]
                         },
+                        "ListAdSenseLinks": {
+                            "methods": [
+                                "listAdSenseLinks"
+                            ]
+                        },
                         "ListAudiences": {
                             "methods": [
                                 "listAudiences"
+                            ]
+                        },
+                        "ListBigQueryLinks": {
+                            "methods": [
+                                "listBigQueryLinks"
+                            ]
+                        },
+                        "ListChannelGroups": {
+                            "methods": [
+                                "listChannelGroups"
+                            ]
+                        },
+                        "ListConnectedSiteTags": {
+                            "methods": [
+                                "listConnectedSiteTags"
                             ]
                         },
                         "ListConversionEvents": {
@@ -300,6 +465,16 @@
                                 "listDisplayVideo360AdvertiserLinks"
                             ]
                         },
+                        "ListEventCreateRules": {
+                            "methods": [
+                                "listEventCreateRules"
+                            ]
+                        },
+                        "ListExpandedDataSets": {
+                            "methods": [
+                                "listExpandedDataSets"
+                            ]
+                        },
                         "ListFirebaseLinks": {
                             "methods": [
                                 "listFirebaseLinks"
@@ -318,6 +493,11 @@
                         "ListProperties": {
                             "methods": [
                                 "listProperties"
+                            ]
+                        },
+                        "ListSearchAds360Links": {
+                            "methods": [
+                                "listSearchAds360Links"
                             ]
                         },
                         "ListUserLinks": {
@@ -340,6 +520,16 @@
                                 "searchChangeHistoryEvents"
                             ]
                         },
+                        "SetAutomatedGa4ConfigurationOptOut": {
+                            "methods": [
+                                "setAutomatedGa4ConfigurationOptOut"
+                            ]
+                        },
+                        "UpdateAccessBinding": {
+                            "methods": [
+                                "updateAccessBinding"
+                            ]
+                        },
                         "UpdateAccount": {
                             "methods": [
                                 "updateAccount"
@@ -353,6 +543,16 @@
                         "UpdateAudience": {
                             "methods": [
                                 "updateAudience"
+                            ]
+                        },
+                        "UpdateChannelGroup": {
+                            "methods": [
+                                "updateChannelGroup"
+                            ]
+                        },
+                        "UpdateConversionEvent": {
+                            "methods": [
+                                "updateConversionEvent"
                             ]
                         },
                         "UpdateCustomDimension": {
@@ -380,6 +580,21 @@
                                 "updateDisplayVideo360AdvertiserLink"
                             ]
                         },
+                        "UpdateEnhancedMeasurementSettings": {
+                            "methods": [
+                                "updateEnhancedMeasurementSettings"
+                            ]
+                        },
+                        "UpdateEventCreateRule": {
+                            "methods": [
+                                "updateEventCreateRule"
+                            ]
+                        },
+                        "UpdateExpandedDataSet": {
+                            "methods": [
+                                "updateExpandedDataSet"
+                            ]
+                        },
                         "UpdateGoogleAdsLink": {
                             "methods": [
                                 "updateGoogleAdsLink"
@@ -398,6 +613,11 @@
                         "UpdateProperty": {
                             "methods": [
                                 "updateProperty"
+                            ]
+                        },
+                        "UpdateSearchAds360Link": {
+                            "methods": [
+                                "updateSearchAds360Link"
                             ]
                         },
                         "UpdateUserLink": {

@@ -21,15 +21,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReverseSshConnectivity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The IP of the virtual machine (Compute Engine) used as the bastion server
-     * for the SSH tunnel.
+     * Required. The IP of the virtual machine (Compute Engine) used as the
+     * bastion server for the SSH tunnel.
      *
      * Generated from protobuf field <code>string vm_ip = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $vm_ip = '';
     /**
-     * Required. The forwarding port of the virtual machine (Compute Engine) used as the
-     * bastion server for the SSH tunnel.
+     * Required. The forwarding port of the virtual machine (Compute Engine) used
+     * as the bastion server for the SSH tunnel.
      *
      * Generated from protobuf field <code>int32 vm_port = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -55,11 +55,11 @@ class ReverseSshConnectivity extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $vm_ip
-     *           Required. The IP of the virtual machine (Compute Engine) used as the bastion server
-     *           for the SSH tunnel.
-     *     @type int $vm_port
-     *           Required. The forwarding port of the virtual machine (Compute Engine) used as the
+     *           Required. The IP of the virtual machine (Compute Engine) used as the
      *           bastion server for the SSH tunnel.
+     *     @type int $vm_port
+     *           Required. The forwarding port of the virtual machine (Compute Engine) used
+     *           as the bastion server for the SSH tunnel.
      *     @type string $vm
      *           The name of the virtual machine (Compute Engine) used as the bastion server
      *           for the SSH tunnel.
@@ -73,8 +73,8 @@ class ReverseSshConnectivity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The IP of the virtual machine (Compute Engine) used as the bastion server
-     * for the SSH tunnel.
+     * Required. The IP of the virtual machine (Compute Engine) used as the
+     * bastion server for the SSH tunnel.
      *
      * Generated from protobuf field <code>string vm_ip = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -85,8 +85,8 @@ class ReverseSshConnectivity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The IP of the virtual machine (Compute Engine) used as the bastion server
-     * for the SSH tunnel.
+     * Required. The IP of the virtual machine (Compute Engine) used as the
+     * bastion server for the SSH tunnel.
      *
      * Generated from protobuf field <code>string vm_ip = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -101,8 +101,8 @@ class ReverseSshConnectivity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The forwarding port of the virtual machine (Compute Engine) used as the
-     * bastion server for the SSH tunnel.
+     * Required. The forwarding port of the virtual machine (Compute Engine) used
+     * as the bastion server for the SSH tunnel.
      *
      * Generated from protobuf field <code>int32 vm_port = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -113,8 +113,8 @@ class ReverseSshConnectivity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The forwarding port of the virtual machine (Compute Engine) used as the
-     * bastion server for the SSH tunnel.
+     * Required. The forwarding port of the virtual machine (Compute Engine) used
+     * as the bastion server for the SSH tunnel.
      *
      * Generated from protobuf field <code>int32 vm_port = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

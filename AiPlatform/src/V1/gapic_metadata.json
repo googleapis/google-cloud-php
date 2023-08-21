@@ -20,6 +20,11 @@
                                 "deleteDataset"
                             ]
                         },
+                        "DeleteSavedQuery": {
+                            "methods": [
+                                "deleteSavedQuery"
+                            ]
+                        },
                         "ExportData": {
                             "methods": [
                                 "exportData"
@@ -58,6 +63,11 @@
                         "ListSavedQueries": {
                             "methods": [
                                 "listSavedQueries"
+                            ]
+                        },
+                        "SearchDataItems": {
+                            "methods": [
+                                "searchDataItems"
                             ]
                         },
                         "UpdateDataset": {
@@ -124,6 +134,11 @@
                                 "listEndpoints"
                             ]
                         },
+                        "MutateDeployedModel": {
+                            "methods": [
+                                "mutateDeployedModel"
+                            ]
+                        },
                         "UndeployModel": {
                             "methods": [
                                 "undeployModel"
@@ -176,6 +191,11 @@
                         "StreamingReadFeatureValues": {
                             "methods": [
                                 "streamingReadFeatureValues"
+                            ]
+                        },
+                        "WriteFeatureValues": {
+                            "methods": [
+                                "writeFeatureValues"
                             ]
                         },
                         "GetLocation": {
@@ -245,6 +265,11 @@
                         "DeleteFeature": {
                             "methods": [
                                 "deleteFeature"
+                            ]
+                        },
+                        "DeleteFeatureValues": {
+                            "methods": [
+                                "deleteFeatureValues"
                             ]
                         },
                         "DeleteFeaturestore": {
@@ -509,6 +534,11 @@
                                 "cancelHyperparameterTuningJob"
                             ]
                         },
+                        "CancelNasJob": {
+                            "methods": [
+                                "cancelNasJob"
+                            ]
+                        },
                         "CreateBatchPredictionJob": {
                             "methods": [
                                 "createBatchPredictionJob"
@@ -532,6 +562,11 @@
                         "CreateModelDeploymentMonitoringJob": {
                             "methods": [
                                 "createModelDeploymentMonitoringJob"
+                            ]
+                        },
+                        "CreateNasJob": {
+                            "methods": [
+                                "createNasJob"
                             ]
                         },
                         "DeleteBatchPredictionJob": {
@@ -559,6 +594,11 @@
                                 "deleteModelDeploymentMonitoringJob"
                             ]
                         },
+                        "DeleteNasJob": {
+                            "methods": [
+                                "deleteNasJob"
+                            ]
+                        },
                         "GetBatchPredictionJob": {
                             "methods": [
                                 "getBatchPredictionJob"
@@ -582,6 +622,16 @@
                         "GetModelDeploymentMonitoringJob": {
                             "methods": [
                                 "getModelDeploymentMonitoringJob"
+                            ]
+                        },
+                        "GetNasJob": {
+                            "methods": [
+                                "getNasJob"
+                            ]
+                        },
+                        "GetNasTrialDetail": {
+                            "methods": [
+                                "getNasTrialDetail"
                             ]
                         },
                         "ListBatchPredictionJobs": {
@@ -609,6 +659,16 @@
                                 "listModelDeploymentMonitoringJobs"
                             ]
                         },
+                        "ListNasJobs": {
+                            "methods": [
+                                "listNasJobs"
+                            ]
+                        },
+                        "ListNasTrialDetails": {
+                            "methods": [
+                                "listNasTrialDetails"
+                            ]
+                        },
                         "PauseModelDeploymentMonitoringJob": {
                             "methods": [
                                 "pauseModelDeploymentMonitoringJob"
@@ -627,6 +687,50 @@
                         "UpdateModelDeploymentMonitoringJob": {
                             "methods": [
                                 "updateModelDeploymentMonitoringJob"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MatchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MatchServiceGapicClient",
+                    "rpcs": {
+                        "FindNeighbors": {
+                            "methods": [
+                                "findNeighbors"
+                            ]
+                        },
+                        "ReadIndexDatapoints": {
+                            "methods": [
+                                "readIndexDatapoints"
                             ]
                         },
                         "GetLocation": {
@@ -901,9 +1005,19 @@
                 "grpc": {
                     "libraryClient": "ModelServiceGapicClient",
                     "rpcs": {
+                        "BatchImportEvaluatedAnnotations": {
+                            "methods": [
+                                "batchImportEvaluatedAnnotations"
+                            ]
+                        },
                         "BatchImportModelEvaluationSlices": {
                             "methods": [
                                 "batchImportModelEvaluationSlices"
+                            ]
+                        },
+                        "CopyModel": {
+                            "methods": [
+                                "copyModel"
                             ]
                         },
                         "DeleteModel": {
@@ -966,6 +1080,11 @@
                                 "mergeVersionAliases"
                             ]
                         },
+                        "UpdateExplanationDataset": {
+                            "methods": [
+                                "updateExplanationDataset"
+                            ]
+                        },
                         "UpdateModel": {
                             "methods": [
                                 "updateModel"
@@ -974,6 +1093,45 @@
                         "UploadModel": {
                             "methods": [
                                 "uploadModel"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ModelGardenService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ModelGardenServiceGapicClient",
+                    "rpcs": {
+                        "GetPublisherModel": {
+                            "methods": [
+                                "getPublisherModel"
                             ]
                         },
                         "GetLocation": {
@@ -1107,6 +1265,80 @@
                         "RawPredict": {
                             "methods": [
                                 "rawPredict"
+                            ]
+                        },
+                        "ServerStreamingPredict": {
+                            "methods": [
+                                "serverStreamingPredict"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ScheduleService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ScheduleServiceGapicClient",
+                    "rpcs": {
+                        "CreateSchedule": {
+                            "methods": [
+                                "createSchedule"
+                            ]
+                        },
+                        "DeleteSchedule": {
+                            "methods": [
+                                "deleteSchedule"
+                            ]
+                        },
+                        "GetSchedule": {
+                            "methods": [
+                                "getSchedule"
+                            ]
+                        },
+                        "ListSchedules": {
+                            "methods": [
+                                "listSchedules"
+                            ]
+                        },
+                        "PauseSchedule": {
+                            "methods": [
+                                "pauseSchedule"
+                            ]
+                        },
+                        "ResumeSchedule": {
+                            "methods": [
+                                "resumeSchedule"
+                            ]
+                        },
+                        "UpdateSchedule": {
+                            "methods": [
+                                "updateSchedule"
                             ]
                         },
                         "GetLocation": {
@@ -1307,9 +1539,19 @@
                                 "readTensorboardBlobData"
                             ]
                         },
+                        "ReadTensorboardSize": {
+                            "methods": [
+                                "readTensorboardSize"
+                            ]
+                        },
                         "ReadTensorboardTimeSeriesData": {
                             "methods": [
                                 "readTensorboardTimeSeriesData"
+                            ]
+                        },
+                        "ReadTensorboardUsage": {
+                            "methods": [
+                                "readTensorboardUsage"
                             ]
                         },
                         "UpdateTensorboard": {

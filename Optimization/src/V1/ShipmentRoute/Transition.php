@@ -96,8 +96,11 @@ class Transition extends \Google\Protobuf\Internal\Message
     private $route_polyline = null;
     /**
      * Vehicle loads during this transition, for each type that either appears
-     * in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     * in this vehicle's
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     * or that have non-zero
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * on some shipment performed on this route.
      * The loads during the first transition are the starting loads of the
      * vehicle route. Then, after each visit, the visit's `load_demands` are
      * either added or subtracted to get the next transition's loads, depending
@@ -107,7 +110,9 @@ class Transition extends \Google\Protobuf\Internal\Message
      */
     private $vehicle_loads;
     /**
-     * Deprecated: Use [Transition.vehicle_loads][] instead.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity loads = 10 [deprecated = true];</code>
      * @deprecated
@@ -162,14 +167,19 @@ class Transition extends \Google\Protobuf\Internal\Message
      *           is set to true.
      *     @type array|\Google\Protobuf\Internal\MapField $vehicle_loads
      *           Vehicle loads during this transition, for each type that either appears
-     *           in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     *           in this vehicle's
+     *           [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     *           or that have non-zero
+     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     *           on some shipment performed on this route.
      *           The loads during the first transition are the starting loads of the
      *           vehicle route. Then, after each visit, the visit's `load_demands` are
      *           either added or subtracted to get the next transition's loads, depending
      *           on whether the visit was a pickup or a delivery.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $loads
-     *           Deprecated: Use [Transition.vehicle_loads][] instead.
+     *           Deprecated: Use
+     *           [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -527,8 +537,11 @@ class Transition extends \Google\Protobuf\Internal\Message
 
     /**
      * Vehicle loads during this transition, for each type that either appears
-     * in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     * in this vehicle's
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     * or that have non-zero
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * on some shipment performed on this route.
      * The loads during the first transition are the starting loads of the
      * vehicle route. Then, after each visit, the visit's `load_demands` are
      * either added or subtracted to get the next transition's loads, depending
@@ -544,8 +557,11 @@ class Transition extends \Google\Protobuf\Internal\Message
 
     /**
      * Vehicle loads during this transition, for each type that either appears
-     * in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     * in this vehicle's
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     * or that have non-zero
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * on some shipment performed on this route.
      * The loads during the first transition are the starting loads of the
      * vehicle route. Then, after each visit, the visit's `load_demands` are
      * either added or subtracted to get the next transition's loads, depending
@@ -564,7 +580,9 @@ class Transition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Transition.vehicle_loads][] instead.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity loads = 10 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -577,7 +595,9 @@ class Transition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Transition.vehicle_loads][] instead.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity loads = 10 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var

@@ -36,6 +36,25 @@ class CreateNoteRequest extends \Google\Protobuf\Internal\Message
     private $note = null;
 
     /**
+     * @param string           $parent The name of the project in the form of `projects/[PROJECT_ID]`, under which
+     *                                 the note is to be created. Please see
+     *                                 {@see GrafeasClient::projectName()} for help formatting this field.
+     * @param string           $noteId The ID to use for this note.
+     * @param \Grafeas\V1\Note $note   The note to create.
+     *
+     * @return \Grafeas\V1\CreateNoteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $noteId, \Grafeas\V1\Note $note): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNoteId($noteId)
+            ->setNote($note);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

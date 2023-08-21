@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.ReadTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardTimeSeriesData].
+ * Request message for
+ * [TensorboardService.ReadTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardTimeSeriesData].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ReadTensorboardTimeSeriesDataRequest</code>
  */
@@ -37,6 +38,22 @@ class ReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>string filter = 3;</code>
      */
     private $filter = '';
+
+    /**
+     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to read data from.
+     *                                      Format:
+     *                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     *                                      Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboardTimeSeries): self
+    {
+        return (new self())
+            ->setTensorboardTimeSeries($tensorboardTimeSeries);
+    }
 
     /**
      * Constructor.

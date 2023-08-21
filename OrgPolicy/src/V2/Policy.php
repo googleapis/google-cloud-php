@@ -44,6 +44,14 @@ class Policy extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $alternate = null;
+    /**
+     * dry-run policy.
+     * Audit-only policy, can be used to monitor how the policy would have
+     * impacted the existing and future resources if it's enforced.
+     *
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec dry_run_spec = 4;</code>
+     */
+    private $dry_run_spec = null;
 
     /**
      * Constructor.
@@ -66,6 +74,10 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           Basic information about the Organization Policy.
      *     @type \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec $alternate
      *           Deprecated.
+     *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec $dry_run_spec
+     *           dry-run policy.
+     *           Audit-only policy, can be used to monitor how the policy would have
+     *           impacted the existing and future resources if it's enforced.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +203,46 @@ class Policy extends \Google\Protobuf\Internal\Message
         @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec::class);
         $this->alternate = $var;
+
+        return $this;
+    }
+
+    /**
+     * dry-run policy.
+     * Audit-only policy, can be used to monitor how the policy would have
+     * impacted the existing and future resources if it's enforced.
+     *
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec dry_run_spec = 4;</code>
+     * @return \Google\Cloud\OrgPolicy\V2\PolicySpec|null
+     */
+    public function getDryRunSpec()
+    {
+        return $this->dry_run_spec;
+    }
+
+    public function hasDryRunSpec()
+    {
+        return isset($this->dry_run_spec);
+    }
+
+    public function clearDryRunSpec()
+    {
+        unset($this->dry_run_spec);
+    }
+
+    /**
+     * dry-run policy.
+     * Audit-only policy, can be used to monitor how the policy would have
+     * impacted the existing and future resources if it's enforced.
+     *
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec dry_run_spec = 4;</code>
+     * @param \Google\Cloud\OrgPolicy\V2\PolicySpec $var
+     * @return $this
+     */
+    public function setDryRunSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OrgPolicy\V2\PolicySpec::class);
+        $this->dry_run_spec = $var;
 
         return $this;
     }

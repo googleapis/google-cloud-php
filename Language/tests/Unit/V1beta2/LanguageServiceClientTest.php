@@ -25,7 +25,6 @@ namespace Google\Cloud\Language\Tests\Unit\V1beta2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
@@ -36,6 +35,7 @@ use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
 use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\LanguageServiceClient;
+use Google\Cloud\Language\V1beta2\ModerateTextResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -46,25 +46,19 @@ use stdClass;
  */
 class LanguageServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return LanguageServiceClient
-     */
+    /** @return LanguageServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +67,7 @@ class LanguageServiceClientTest extends GeneratedTest
         return new LanguageServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitiesTest()
     {
         $transport = $this->createTransport();
@@ -102,9 +94,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -137,9 +127,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitySentimentTest()
     {
         $transport = $this->createTransport();
@@ -166,9 +154,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitySentimentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -201,9 +187,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSentimentTest()
     {
         $transport = $this->createTransport();
@@ -230,9 +214,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSentimentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -265,9 +247,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSyntaxTest()
     {
         $transport = $this->createTransport();
@@ -294,9 +274,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSyntaxExceptionTest()
     {
         $transport = $this->createTransport();
@@ -329,9 +307,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateTextTest()
     {
         $transport = $this->createTransport();
@@ -361,9 +337,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateTextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -397,9 +371,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function classifyTextTest()
     {
         $transport = $this->createTransport();
@@ -424,9 +396,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function classifyTextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -448,6 +418,64 @@ class LanguageServiceClientTest extends GeneratedTest
         $document = new Document();
         try {
             $gapicClient->classifyText($document);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function moderateTextTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ModerateTextResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $document = new Document();
+        $response = $gapicClient->moderateText($document);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1beta2.LanguageService/ModerateText', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDocument();
+        $this->assertProtobufEquals($document, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function moderateTextExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $document = new Document();
+        try {
+            $gapicClient->moderateText($document);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

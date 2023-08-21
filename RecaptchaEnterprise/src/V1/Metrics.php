@@ -55,10 +55,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *           "projects/{project}/keys/{key}/metrics".
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Inclusive start time aligned to a day (UTC).
-     *     @type \Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics[]|\Google\Protobuf\Internal\RepeatedField $score_metrics
+     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>|\Google\Protobuf\Internal\RepeatedField $score_metrics
      *           Metrics will be continuous and in order by dates, and in the granularity
      *           of day. All Key types should have score-based data.
-     *     @type \Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics[]|\Google\Protobuf\Internal\RepeatedField $challenge_metrics
+     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics>|\Google\Protobuf\Internal\RepeatedField $challenge_metrics
      *           Metrics will be continuous and in order by dates, and in the granularity
      *           of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
      *           challenge-based data.
@@ -150,7 +150,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      * of day. All Key types should have score-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ScoreMetrics score_metrics = 2;</code>
-     * @param \Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setScoreMetrics($var)
@@ -180,7 +180,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      * challenge-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ChallengeMetrics challenge_metrics = 3;</code>
-     * @param \Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChallengeMetrics($var)

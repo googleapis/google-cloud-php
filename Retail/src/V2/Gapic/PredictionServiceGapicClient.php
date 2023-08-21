@@ -26,9 +26,8 @@ namespace Google\Cloud\Retail\V2\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -54,37 +53,39 @@ use Google\Cloud\Retail\V2\UserEvent;
  *     $predictionServiceClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Retail\V2\Client\PredictionServiceClient} to use the new surface.
  */
 class PredictionServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.retail.v2.PredictionService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'retail.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $productNameTemplate;
+
+    private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
@@ -112,15 +113,107 @@ class PredictionServiceGapicClient
         ];
     }
 
+    private static function getProductNameTemplate()
+    {
+        if (self::$productNameTemplate == null) {
+            self::$productNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}'
+            );
+        }
+
+        return self::$productNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'product' => self::getProductNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a product
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $catalog
+     * @param string $branch
+     * @param string $product
+     *
+     * @return string The formatted product resource.
+     */
+    public static function productName(
+        $project,
+        $location,
+        $catalog,
+        $branch,
+        $product
+    ) {
+        return self::getProductNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'catalog' => $catalog,
+            'branch' => $branch,
+            'product' => $product,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - product: projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
+    }
+
     /**
      * Constructor.
      *
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'retail.googleapis.com:443'.
@@ -150,7 +243,7 @@ class PredictionServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -199,7 +292,7 @@ class PredictionServiceGapicClient
      *                                The ID of the Recommendations AI serving config or placement.
      *                                Before you can request predictions from your model, you must create at
      *                                least one serving config or placement for it. For more information, see
-     *                                [Managing serving configurations]
+     *                                [Manage serving configs]
      *                                (https://cloud.google.com/retail/docs/manage-configs).
      *
      *                                The full list of available serving configs can be seen at
@@ -252,12 +345,11 @@ class PredictionServiceGapicClient
      *           * filterOutOfStockItems  tag=(-"promotional")
      *           * filterOutOfStockItems
      *
-     *           If your filter blocks all prediction results, the API will return generic
-     *           (unfiltered) popular products. If you only want results strictly matching
-     *           the filters, set `strictFiltering` to True in `PredictRequest.params` to
-     *           receive empty results instead.
-     *           Note that the API will never return items with storageStatus of "EXPIRED"
-     *           or "DELETED" regardless of filter choices.
+     *           If your filter blocks all prediction results, the API will return *no*
+     *           results. If instead you want empty result sets to return generic
+     *           (unfiltered) popular products, set `strictFiltering` to False in
+     *           `PredictRequest.params`. Note that the API will never return items with
+     *           storageStatus of "EXPIRED" or "DELETED" regardless of filter choices.
      *
      *           If `filterSyntaxV2` is set to true under the `params` field, then
      *           attribute-based expressions are expected instead of the above described
@@ -266,6 +358,9 @@ class PredictionServiceGapicClient
      *           * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones"))
      *           * (availability: ANY("IN_STOCK")) AND
      *           (colors: ANY("Red") OR categories: ANY("Phones"))
+     *
+     *           For more information, see
+     *           [Filter recommendations](https://cloud.google.com/retail/docs/filter-recs).
      *     @type bool $validateOnly
      *           Use validate only mode for this prediction query. If set to true, a
      *           dummy model will be used that returns arbitrary products.
@@ -282,7 +377,7 @@ class PredictionServiceGapicClient
      *           * `returnScore`: Boolean. If set to true, the prediction 'score'
      *           corresponding to each returned product will be set in the
      *           `results.metadata` field in the prediction response. The given
-     *           'score' indicates the probability of an product being clicked/purchased
+     *           'score' indicates the probability of a product being clicked/purchased
      *           given the user's context and history.
      *           * `strictFiltering`: Boolean. True by default. If set to false, the service
      *           will return generic (unfiltered) popular products instead of empty if

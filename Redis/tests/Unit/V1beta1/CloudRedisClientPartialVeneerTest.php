@@ -21,8 +21,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\Cloud\Core\InsecureCredentialsWrapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Redis\V1beta1\CloudRedisClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group redis
@@ -30,10 +29,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class CloudRedisClientPartialVeneerTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
     }

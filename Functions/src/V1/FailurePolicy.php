@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes the policy in case of function's execution failure.
- * If empty, then defaults to ignoring failures (i.e. not retrying them).
+ * If empty, then defaults to ignoring failures (i.e., not retrying them).
  *
  * Generated from protobuf message <code>google.cloud.functions.v1.FailurePolicy</code>
  */
@@ -25,7 +25,7 @@ class FailurePolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Functions\V1\FailurePolicy\Retry $retry
-     *           If specified, then the function will be retried in case of a failure.
+     *           If specified, the function is retried in case of a failure.
      * }
      */
     public function __construct($data = NULL) {
@@ -34,7 +34,7 @@ class FailurePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, then the function will be retried in case of a failure.
+     * If specified, the function is retried in case of a failure.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v1.FailurePolicy.Retry retry = 1;</code>
      * @return \Google\Cloud\Functions\V1\FailurePolicy\Retry|null
@@ -50,7 +50,7 @@ class FailurePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, then the function will be retried in case of a failure.
+     * If specified, the function is retried in case of a failure.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v1.FailurePolicy.Retry retry = 1;</code>
      * @param \Google\Cloud\Functions\V1\FailurePolicy\Retry $var

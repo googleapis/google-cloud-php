@@ -27,7 +27,6 @@ namespace Google\Cloud\Dialogflow\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
@@ -79,34 +78,27 @@ use Google\Protobuf\Struct;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\AgentsClient} to use the new surface.
  */
 class AgentsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dialogflow.v2.Agents';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
@@ -364,9 +356,6 @@ class AgentsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dialogflow.googleapis.com:443'.
@@ -396,7 +385,7 @@ class AgentsGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -469,7 +458,8 @@ class AgentsGapicClient
      *
      * - `metadata`: An empty [Struct
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
-     * - `response`: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
+     * - `response`:
+     * [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
      *
      * Sample code:
      * ```
@@ -481,7 +471,7 @@ class AgentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -498,7 +488,7 @@ class AgentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -510,10 +500,10 @@ class AgentsGapicClient
      *
      * @param string $parent       Required. The project that the agent to export is associated with.
      *                             Format: `projects/<Project ID>`.
-     * @param string $agentUri     Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
-     *                             URI to export the agent to.
-     *                             The format of this URI must be `gs://<bucket-name>/<object-name>`.
-     *                             If left unspecified, the serialized agent is returned inline.
+     * @param string $agentUri     Required. The [Google Cloud
+     *                             Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     *                             to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+     *                             left unspecified, the serialized agent is returned inline.
      *
      *                             Dialogflow performs a write operation for the Cloud Storage object
      *                             on the caller's behalf, so your request authentication must
@@ -641,11 +631,13 @@ class AgentsGapicClient
      *
      * Uploads new intents and entity types without deleting the existing ones.
      * Intents and entity types with the same name are replaced with the new
-     * versions from [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After the import, the imported draft
-     * agent will be trained automatically (unless disabled in agent settings).
-     * However, once the import is done, training may not be completed yet. Please
-     * call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it returns in order to train
-     * explicitly.
+     * versions from
+     * [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After
+     * the import, the imported draft agent will be trained automatically (unless
+     * disabled in agent settings). However, once the import is done, training may
+     * not be completed yet. Please call
+     * [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+     * operation it returns in order to train explicitly.
      *
      * This method is a [long-running
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
@@ -749,8 +741,9 @@ class AgentsGapicClient
      * entity types in the older version are deleted. After the restore, the
      * restored draft agent will be trained automatically (unless disabled in
      * agent settings). However, once the restore is done, training may not be
-     * completed yet. Please call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it
-     * returns in order to train explicitly.
+     * completed yet. Please call
+     * [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+     * operation it returns in order to train explicitly.
      *
      * This method is a [long-running
      * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).

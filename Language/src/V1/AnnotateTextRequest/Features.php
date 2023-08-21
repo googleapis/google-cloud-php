@@ -47,6 +47,12 @@ class Features extends \Google\Protobuf\Internal\Message
      */
     private $classify_text = false;
     /**
+     * Moderate the document for harmful and sensitive categories.
+     *
+     * Generated from protobuf field <code>bool moderate_text = 11;</code>
+     */
+    private $moderate_text = false;
+    /**
      * The model options to use for classification. Defaults to v1 options
      * if not specified. Only used if `classify_text` is set to true.
      *
@@ -70,6 +76,8 @@ class Features extends \Google\Protobuf\Internal\Message
      *           Extract entities and their associated sentiment.
      *     @type bool $classify_text
      *           Classify the full document into categories.
+     *     @type bool $moderate_text
+     *           Moderate the document for harmful and sensitive categories.
      *     @type \Google\Cloud\Language\V1\ClassificationModelOptions $classification_model_options
      *           The model options to use for classification. Defaults to v1 options
      *           if not specified. Only used if `classify_text` is set to true.
@@ -206,6 +214,32 @@ class Features extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->classify_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Moderate the document for harmful and sensitive categories.
+     *
+     * Generated from protobuf field <code>bool moderate_text = 11;</code>
+     * @return bool
+     */
+    public function getModerateText()
+    {
+        return $this->moderate_text;
+    }
+
+    /**
+     * Moderate the document for harmful and sensitive categories.
+     *
+     * Generated from protobuf field <code>bool moderate_text = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setModerateText($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->moderate_text = $var;
 
         return $this;
     }

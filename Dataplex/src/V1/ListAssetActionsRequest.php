@@ -23,22 +23,37 @@ class ListAssetActionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of actions to return. The service may return fewer than this
-     * value. If unspecified, at most 10 actions will be returned. The maximum
-     * value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of actions to return. The service may return fewer
+     * than this value. If unspecified, at most 10 actions will be returned. The
+     * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `ListAssetActions` call. Provide this
-     * to retrieve the subsequent page. When paginating, all other parameters
-     * provided to `ListAssetActions` must match the call that provided the page
-     * token.
+     * Optional. Page token received from a previous `ListAssetActions` call.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters provided to `ListAssetActions` must match the call that provided
+     * the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The resource name of the parent asset:
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`. Please see
+     *                       {@see DataplexServiceClient::assetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListAssetActionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -50,14 +65,14 @@ class ListAssetActionsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent asset:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
      *     @type int $page_size
-     *           Optional. Maximum number of actions to return. The service may return fewer than this
-     *           value. If unspecified, at most 10 actions will be returned. The maximum
-     *           value is 1000; values above 1000 will be coerced to 1000.
+     *           Optional. Maximum number of actions to return. The service may return fewer
+     *           than this value. If unspecified, at most 10 actions will be returned. The
+     *           maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `ListAssetActions` call. Provide this
-     *           to retrieve the subsequent page. When paginating, all other parameters
-     *           provided to `ListAssetActions` must match the call that provided the page
-     *           token.
+     *           Optional. Page token received from a previous `ListAssetActions` call.
+     *           Provide this to retrieve the subsequent page. When paginating, all other
+     *           parameters provided to `ListAssetActions` must match the call that provided
+     *           the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,9 +109,9 @@ class ListAssetActionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of actions to return. The service may return fewer than this
-     * value. If unspecified, at most 10 actions will be returned. The maximum
-     * value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of actions to return. The service may return fewer
+     * than this value. If unspecified, at most 10 actions will be returned. The
+     * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -107,9 +122,9 @@ class ListAssetActionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of actions to return. The service may return fewer than this
-     * value. If unspecified, at most 10 actions will be returned. The maximum
-     * value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of actions to return. The service may return fewer
+     * than this value. If unspecified, at most 10 actions will be returned. The
+     * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -124,10 +139,10 @@ class ListAssetActionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListAssetActions` call. Provide this
-     * to retrieve the subsequent page. When paginating, all other parameters
-     * provided to `ListAssetActions` must match the call that provided the page
-     * token.
+     * Optional. Page token received from a previous `ListAssetActions` call.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters provided to `ListAssetActions` must match the call that provided
+     * the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -138,10 +153,10 @@ class ListAssetActionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListAssetActions` call. Provide this
-     * to retrieve the subsequent page. When paginating, all other parameters
-     * provided to `ListAssetActions` must match the call that provided the page
-     * token.
+     * Optional. Page token received from a previous `ListAssetActions` call.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters provided to `ListAssetActions` must match the call that provided
+     * the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

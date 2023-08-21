@@ -31,9 +31,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 /**
  * Lists notification configs.
  *
- * @param string $formattedParent Name of the organization to list notification configs. Its format
- *                                is "organizations/[organization_id]", "folders/[folder_id]", or
- *                                "projects/[project_id]". Please see
+ * @param string $formattedParent The name of the parent in which to list the notification
+ *                                configurations. Its format is "organizations/[organization_id]",
+ *                                "folders/[folder_id]", or "projects/[project_id]". Please see
  *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
  */
 function list_notification_configs_sample(string $formattedParent): void

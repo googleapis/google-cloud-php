@@ -35,11 +35,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = null;
     /**
-     * Optional. A unique ID used to identify the request. If the server receives two
+     * Optional. A unique ID used to identify the request. If the server receives
+     * two
      * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      * with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
-     * is returned.
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -56,6 +57,24 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     private $action_on_failed_primary_workers = 0;
 
     /**
+     * @param string                            $projectId Required. The ID of the Google Cloud Platform project that the cluster
+     *                                                     belongs to.
+     * @param string                            $region    Required. The Dataproc region in which to handle the request.
+     * @param \Google\Cloud\Dataproc\V1\Cluster $cluster   Required. The cluster to create.
+     *
+     * @return \Google\Cloud\Dataproc\V1\CreateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region, \Google\Cloud\Dataproc\V1\Cluster $cluster): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setCluster($cluster);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -69,11 +88,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\Cluster $cluster
      *           Required. The cluster to create.
      *     @type string $request_id
-     *           Optional. A unique ID used to identify the request. If the server receives two
+     *           Optional. A unique ID used to identify the request. If the server receives
+     *           two
      *           [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      *           with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
-     *           is returned.
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created
+     *           and stored in the backend is returned.
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -178,11 +198,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique ID used to identify the request. If the server receives two
+     * Optional. A unique ID used to identify the request. If the server receives
+     * two
      * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      * with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
-     * is returned.
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -197,11 +218,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique ID used to identify the request. If the server receives two
+     * Optional. A unique ID used to identify the request. If the server receives
+     * two
      * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      * with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
-     * is returned.
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),

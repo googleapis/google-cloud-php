@@ -140,10 +140,10 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *           Human readable message to be displayed to the user about this debuggee.
      *           Absence of this field indicates no status. The message can be either
      *           informational or an error status.
-     *     @type \Google\Cloud\DevTools\Source\V1\SourceContext[]|\Google\Protobuf\Internal\RepeatedField $source_contexts
+     *     @type array<\Google\Cloud\DevTools\Source\V1\SourceContext>|\Google\Protobuf\Internal\RepeatedField $source_contexts
      *           References to the locations and revisions of the source code used in the
      *           deployed application.
-     *     @type \Google\Cloud\DevTools\Source\V1\ExtendedSourceContext[]|\Google\Protobuf\Internal\RepeatedField $ext_source_contexts
+     *     @type array<\Google\Cloud\DevTools\Source\V1\ExtendedSourceContext>|\Google\Protobuf\Internal\RepeatedField $ext_source_contexts
      *           References to the locations and revisions of the source code used in the
      *           deployed application.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -419,7 +419,7 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      * deployed application.
      *
      * Generated from protobuf field <code>repeated .google.devtools.source.v1.SourceContext source_contexts = 9;</code>
-     * @param \Google\Cloud\DevTools\Source\V1\SourceContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DevTools\Source\V1\SourceContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceContexts($var)
@@ -449,7 +449,7 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      * deployed application.
      *
      * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13 [deprecated = true];</code>
-     * @param \Google\Cloud\DevTools\Source\V1\ExtendedSourceContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DevTools\Source\V1\ExtendedSourceContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

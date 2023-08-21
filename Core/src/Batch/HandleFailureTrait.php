@@ -88,7 +88,7 @@ trait HandleFailureTrait
 
         if ($this->failureFile) {
             $fp = @fopen($this->failureFile, 'a');
-            @fwrite($fp, serialize([$idNum => $items]) . PHP_EOL);
+            @fwrite($fp, json_encode(serialize([$idNum => $items])) . PHP_EOL);
             @fclose($fp);
         }
     }

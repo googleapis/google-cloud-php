@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Style extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      */
@@ -35,23 +36,24 @@ class Style extends \Google\Protobuf\Internal\Message
      */
     private $background_color = null;
     /**
-     * Font weight. Possible values are normal, bold, bolder, and lighter.
-     * https://www.w3schools.com/cssref/pr_font_weight.asp
+     * [Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp).
+     * Possible values are `normal`, `bold`, `bolder`, and `lighter`.
      *
      * Generated from protobuf field <code>string font_weight = 4;</code>
      */
     private $font_weight = '';
     /**
-     * Text style. Possible values are normal, italic, and oblique.
-     * https://www.w3schools.com/cssref/pr_font_font-style.asp
+     * [Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp).
+     * Possible values are `normal`, `italic`, and `oblique`.
      *
      * Generated from protobuf field <code>string text_style = 5;</code>
      */
     private $text_style = '';
     /**
-     * Text decoration. Follows CSS standard.
-     * <text-decoration-line> <text-decoration-color> <text-decoration-style>
-     * https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     * [Text
+     * decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp).
+     * Follows CSS standard. <text-decoration-line> <text-decoration-color>
+     * <text-decoration-style>
      *
      * Generated from protobuf field <code>string text_decoration = 6;</code>
      */
@@ -77,21 +79,23 @@ class Style extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\TextAnchor $text_anchor
-     *           Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     *           Text anchor indexing into the
+     *           [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type \Google\Type\Color $color
      *           Text color.
      *     @type \Google\Type\Color $background_color
      *           Text background color.
      *     @type string $font_weight
-     *           Font weight. Possible values are normal, bold, bolder, and lighter.
-     *           https://www.w3schools.com/cssref/pr_font_weight.asp
+     *           [Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp).
+     *           Possible values are `normal`, `bold`, `bolder`, and `lighter`.
      *     @type string $text_style
-     *           Text style. Possible values are normal, italic, and oblique.
-     *           https://www.w3schools.com/cssref/pr_font_font-style.asp
+     *           [Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp).
+     *           Possible values are `normal`, `italic`, and `oblique`.
      *     @type string $text_decoration
-     *           Text decoration. Follows CSS standard.
-     *           <text-decoration-line> <text-decoration-color> <text-decoration-style>
-     *           https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     *           [Text
+     *           decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp).
+     *           Follows CSS standard. <text-decoration-line> <text-decoration-color>
+     *           <text-decoration-style>
      *     @type \Google\Cloud\DocumentAI\V1\Document\Style\FontSize $font_size
      *           Font size.
      *     @type string $font_family
@@ -105,7 +109,8 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\TextAnchor|null
@@ -126,7 +131,8 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\TextAnchor $var
@@ -213,8 +219,8 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Font weight. Possible values are normal, bold, bolder, and lighter.
-     * https://www.w3schools.com/cssref/pr_font_weight.asp
+     * [Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp).
+     * Possible values are `normal`, `bold`, `bolder`, and `lighter`.
      *
      * Generated from protobuf field <code>string font_weight = 4;</code>
      * @return string
@@ -225,8 +231,8 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Font weight. Possible values are normal, bold, bolder, and lighter.
-     * https://www.w3schools.com/cssref/pr_font_weight.asp
+     * [Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp).
+     * Possible values are `normal`, `bold`, `bolder`, and `lighter`.
      *
      * Generated from protobuf field <code>string font_weight = 4;</code>
      * @param string $var
@@ -241,8 +247,8 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text style. Possible values are normal, italic, and oblique.
-     * https://www.w3schools.com/cssref/pr_font_font-style.asp
+     * [Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp).
+     * Possible values are `normal`, `italic`, and `oblique`.
      *
      * Generated from protobuf field <code>string text_style = 5;</code>
      * @return string
@@ -253,8 +259,8 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text style. Possible values are normal, italic, and oblique.
-     * https://www.w3schools.com/cssref/pr_font_font-style.asp
+     * [Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp).
+     * Possible values are `normal`, `italic`, and `oblique`.
      *
      * Generated from protobuf field <code>string text_style = 5;</code>
      * @param string $var
@@ -269,9 +275,10 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text decoration. Follows CSS standard.
-     * <text-decoration-line> <text-decoration-color> <text-decoration-style>
-     * https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     * [Text
+     * decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp).
+     * Follows CSS standard. <text-decoration-line> <text-decoration-color>
+     * <text-decoration-style>
      *
      * Generated from protobuf field <code>string text_decoration = 6;</code>
      * @return string
@@ -282,9 +289,10 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text decoration. Follows CSS standard.
-     * <text-decoration-line> <text-decoration-color> <text-decoration-style>
-     * https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     * [Text
+     * decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp).
+     * Follows CSS standard. <text-decoration-line> <text-decoration-color>
+     * <text-decoration-style>
      *
      * Generated from protobuf field <code>string text_decoration = 6;</code>
      * @param string $var

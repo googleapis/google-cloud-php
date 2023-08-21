@@ -27,6 +27,28 @@ class GetInsightTypeConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the InsightTypeConfig to get.
+     *
+     *                     Acceptable formats:
+     *
+     *                     * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *
+     *                     * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *
+     *                     * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *                     Please see {@see RecommenderClient::insightTypeConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Recommender\V1\GetInsightTypeConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\SpannerClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
  /**
  * @group spanner
@@ -37,6 +38,7 @@ use Prophecy\Argument;
 class BackupTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
@@ -49,7 +51,7 @@ class BackupTest extends SnippetTestCase
     private $instance;
     private $expireTime;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

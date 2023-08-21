@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
+ * Request message for
+ * [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
  *
  * Generated from protobuf message <code>google.cloud.scheduler.v1beta1.UpdateJobRequest</code>
  */
 class UpdateJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The new job properties. [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
+     * Required. The new job properties.
+     * [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
      *
@@ -37,7 +39,8 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Scheduler\V1beta1\Job $job
-     *           Required. The new job properties. [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
+     *           Required. The new job properties.
+     *           [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
      *           Output only fields cannot be modified using UpdateJob.
      *           Any value specified for an output only field will be ignored.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -50,7 +53,8 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new job properties. [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
+     * Required. The new job properties.
+     * [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
      *
@@ -73,7 +77,8 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new job properties. [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
+     * Required. The new job properties.
+     * [name][google.cloud.scheduler.v1beta1.Job.name] must be specified.
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
      *

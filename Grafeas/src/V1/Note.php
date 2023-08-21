@@ -123,6 +123,8 @@ class Note extends \Google\Protobuf\Internal\Message
      *           A note describing a compliance check.
      *     @type \Grafeas\V1\DSSEAttestationNote $dsse_attestation
      *           A note describing a dsse attestation note.
+     *     @type \Grafeas\V1\VulnerabilityAssessmentNote $vulnerability_assessment
+     *           A note describing a vulnerability assessment.
      * }
      */
     public function __construct($data = NULL) {
@@ -708,6 +710,37 @@ class Note extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\DSSEAttestationNote::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * A note describing a vulnerability assessment.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.VulnerabilityAssessmentNote vulnerability_assessment = 20;</code>
+     * @return \Grafeas\V1\VulnerabilityAssessmentNote|null
+     */
+    public function getVulnerabilityAssessment()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasVulnerabilityAssessment()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * A note describing a vulnerability assessment.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.VulnerabilityAssessmentNote vulnerability_assessment = 20;</code>
+     * @param \Grafeas\V1\VulnerabilityAssessmentNote $var
+     * @return $this
+     */
+    public function setVulnerabilityAssessment($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\VulnerabilityAssessmentNote::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

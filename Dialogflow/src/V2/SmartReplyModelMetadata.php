@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SmartReplyModelMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Type of the smart reply model. If not provided, model_type is used.
+     * Optional. Type of the smart reply model. If not provided, model_type is
+     * used.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationModel.ModelType training_model_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -29,7 +30,8 @@ class SmartReplyModelMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $training_model_type
-     *           Optional. Type of the smart reply model. If not provided, model_type is used.
+     *           Optional. Type of the smart reply model. If not provided, model_type is
+     *           used.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class SmartReplyModelMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Type of the smart reply model. If not provided, model_type is used.
+     * Optional. Type of the smart reply model. If not provided, model_type is
+     * used.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationModel.ModelType training_model_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -49,7 +52,8 @@ class SmartReplyModelMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Type of the smart reply model. If not provided, model_type is used.
+     * Optional. Type of the smart reply model. If not provided, model_type is
+     * used.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationModel.ModelType training_model_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

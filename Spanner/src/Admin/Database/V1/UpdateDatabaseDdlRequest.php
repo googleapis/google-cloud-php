@@ -65,6 +65,22 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     private $operation_id = '';
 
     /**
+     * @param string   $database   Required. The database to update. Please see
+     *                             {@see DatabaseAdminClient::databaseName()} for help formatting this field.
+     * @param string[] $statements Required. DDL statements to be applied to the database.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database, array $statements): self
+    {
+        return (new self())
+            ->setDatabase($database)
+            ->setStatements($statements);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

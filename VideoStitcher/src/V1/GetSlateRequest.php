@@ -16,12 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSlateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the slate to be retrieved, of the slate, in the form of
-     * `projects/{project_number}/locations/{location}/slates/{id}`.
+     * Required. The name of the slate to be retrieved, of the slate, in the form
+     * of `projects/{project_number}/locations/{location}/slates/{id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the slate to be retrieved, of the slate, in the form
+     *                     of `projects/{project_number}/locations/{location}/slates/{id}`. Please see
+     *                     {@see VideoStitcherServiceClient::slateName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\GetSlateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -30,8 +45,8 @@ class GetSlateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the slate to be retrieved, of the slate, in the form of
-     *           `projects/{project_number}/locations/{location}/slates/{id}`.
+     *           Required. The name of the slate to be retrieved, of the slate, in the form
+     *           of `projects/{project_number}/locations/{location}/slates/{id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +55,8 @@ class GetSlateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the slate to be retrieved, of the slate, in the form of
-     * `projects/{project_number}/locations/{location}/slates/{id}`.
+     * Required. The name of the slate to be retrieved, of the slate, in the form
+     * of `projects/{project_number}/locations/{location}/slates/{id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +67,8 @@ class GetSlateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the slate to be retrieved, of the slate, in the form of
-     * `projects/{project_number}/locations/{location}/slates/{id}`.
+     * Required. The name of the slate to be retrieved, of the slate, in the form
+     * of `projects/{project_number}/locations/{location}/slates/{id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

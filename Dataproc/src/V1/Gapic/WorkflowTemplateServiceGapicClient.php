@@ -27,7 +27,6 @@ namespace Google\Cloud\Dataproc\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
@@ -36,7 +35,6 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-
 use Google\Cloud\Dataproc\V1\CreateWorkflowTemplateRequest;
 use Google\Cloud\Dataproc\V1\DeleteWorkflowTemplateRequest;
 use Google\Cloud\Dataproc\V1\GetWorkflowTemplateRequest;
@@ -72,45 +70,45 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataproc\V1\Client\WorkflowTemplateServiceClient} to use the new
+ * surface.
  */
 class WorkflowTemplateServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dataproc.v1.WorkflowTemplateService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dataproc.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $clusterRegionNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $nodeGroupNameTemplate;
 
     private static $projectLocationWorkflowTemplateNameTemplate;
 
     private static $projectRegionWorkflowTemplateNameTemplate;
 
     private static $regionNameTemplate;
+
+    private static $serviceNameTemplate;
 
     private static $workflowTemplateNameTemplate;
 
@@ -137,6 +135,15 @@ class WorkflowTemplateServiceGapicClient
         ];
     }
 
+    private static function getClusterRegionNameTemplate()
+    {
+        if (self::$clusterRegionNameTemplate == null) {
+            self::$clusterRegionNameTemplate = new PathTemplate('projects/{project}/regions/{region}/clusters/{cluster}');
+        }
+
+        return self::$clusterRegionNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -144,6 +151,15 @@ class WorkflowTemplateServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getNodeGroupNameTemplate()
+    {
+        if (self::$nodeGroupNameTemplate == null) {
+            self::$nodeGroupNameTemplate = new PathTemplate('projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}');
+        }
+
+        return self::$nodeGroupNameTemplate;
     }
 
     private static function getProjectLocationWorkflowTemplateNameTemplate()
@@ -173,6 +189,15 @@ class WorkflowTemplateServiceGapicClient
         return self::$regionNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getWorkflowTemplateNameTemplate()
     {
         if (self::$workflowTemplateNameTemplate == null) {
@@ -186,15 +211,37 @@ class WorkflowTemplateServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'clusterRegion' => self::getClusterRegionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'nodeGroup' => self::getNodeGroupNameTemplate(),
                 'projectLocationWorkflowTemplate' => self::getProjectLocationWorkflowTemplateNameTemplate(),
                 'projectRegionWorkflowTemplate' => self::getProjectRegionWorkflowTemplateNameTemplate(),
                 'region' => self::getRegionNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
                 'workflowTemplate' => self::getWorkflowTemplateNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cluster_region resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $cluster
+     *
+     * @return string The formatted cluster_region resource.
+     */
+    public static function clusterRegionName($project, $region, $cluster)
+    {
+        return self::getClusterRegionNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'cluster' => $cluster,
+        ]);
     }
 
     /**
@@ -211,6 +258,27 @@ class WorkflowTemplateServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a node_group
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $cluster
+     * @param string $nodeGroup
+     *
+     * @return string The formatted node_group resource.
+     */
+    public static function nodeGroupName($project, $region, $cluster, $nodeGroup)
+    {
+        return self::getNodeGroupNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'cluster' => $cluster,
+            'node_group' => $nodeGroup,
         ]);
     }
 
@@ -270,6 +338,25 @@ class WorkflowTemplateServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * workflow_template resource.
      *
@@ -292,10 +379,13 @@ class WorkflowTemplateServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - clusterRegion: projects/{project}/regions/{region}/clusters/{cluster}
      * - location: projects/{project}/locations/{location}
+     * - nodeGroup: projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}
      * - projectLocationWorkflowTemplate: projects/{project}/locations/{location}/workflowTemplates/{workflow_template}
      * - projectRegionWorkflowTemplate: projects/{project}/regions/{region}/workflowTemplates/{workflow_template}
      * - region: projects/{project}/regions/{region}
+     * - service: projects/{project}/locations/{location}/services/{service}
      * - workflowTemplate: projects/{project}/regions/{region}/workflowTemplates/{workflow_template}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -368,9 +458,6 @@ class WorkflowTemplateServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataproc.googleapis.com:443'.
@@ -400,7 +487,7 @@ class WorkflowTemplateServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -595,7 +682,8 @@ class WorkflowTemplateServiceGapicClient
      * Instantiates a template and begins execution.
      *
      * This method is equivalent to executing the sequence
-     * [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate], [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
+     * [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
+     * [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
      * [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
      *
      * The returned Operation can be used to track execution of

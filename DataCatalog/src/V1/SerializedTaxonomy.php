@@ -18,7 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Display name of the taxonomy. At most 200 bytes when encoded in UTF-8.
+     * Required. Display name of the taxonomy. At most 200 bytes when encoded in
+     * UTF-8.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,7 +51,8 @@ class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Required. Display name of the taxonomy. At most 200 bytes when encoded in UTF-8.
+     *           Required. Display name of the taxonomy. At most 200 bytes when encoded in
+     *           UTF-8.
      *     @type string $description
      *           Description of the serialized taxonomy. At most 2000 bytes when
      *           encoded in UTF-8. If not set, defaults to an empty description.
@@ -66,7 +68,8 @@ class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name of the taxonomy. At most 200 bytes when encoded in UTF-8.
+     * Required. Display name of the taxonomy. At most 200 bytes when encoded in
+     * UTF-8.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -77,7 +80,8 @@ class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name of the taxonomy. At most 200 bytes when encoded in UTF-8.
+     * Required. Display name of the taxonomy. At most 200 bytes when encoded in
+     * UTF-8.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

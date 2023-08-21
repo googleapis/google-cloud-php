@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.DeleteDocument][google.firestore.v1.Firestore.DeleteDocument].
+ * The request for
+ * [Firestore.DeleteDocument][google.firestore.v1.Firestore.DeleteDocument].
  *
  * Generated from protobuf message <code>google.firestore.v1.DeleteDocumentRequest</code>
  */
@@ -29,6 +30,20 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.v1.Precondition current_document = 2;</code>
      */
     private $current_document = null;
+
+    /**
+     * @param string $name Required. The resource name of the Document to delete. In the format:
+     *                     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *
+     * @return \Google\Cloud\Firestore\V1\DeleteDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

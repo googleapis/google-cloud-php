@@ -25,16 +25,14 @@
 namespace Google\Cloud\GkeBackup\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
-
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -74,6 +72,16 @@ use Google\Cloud\GkeBackup\V1\UpdateRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\UpdateRestoreRequest;
 use Google\Cloud\GkeBackup\V1\VolumeBackup;
 use Google\Cloud\GkeBackup\V1\VolumeRestore;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -92,7 +100,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -109,7 +117,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -123,34 +131,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient} to use the new surface.
  */
 class BackupForGKEGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkebackup.v1.BackupForGKE';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'gkebackup.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -160,6 +161,8 @@ class BackupForGKEGapicClient
     private static $backupPlanNameTemplate;
 
     private static $clusterNameTemplate;
+
+    private static $cryptoKeyNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -233,6 +236,17 @@ class BackupForGKEGapicClient
         return self::$clusterNameTemplate;
     }
 
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -295,6 +309,7 @@ class BackupForGKEGapicClient
                 'backup' => self::getBackupNameTemplate(),
                 'backupPlan' => self::getBackupPlanNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'restore' => self::getRestoreNameTemplate(),
                 'restorePlan' => self::getRestorePlanNameTemplate(),
@@ -362,6 +377,31 @@ class BackupForGKEGapicClient
             'project' => $project,
             'location' => $location,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -489,6 +529,7 @@ class BackupForGKEGapicClient
      * - backup: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}
      * - backupPlan: projects/{project}/locations/{location}/backupPlans/{backup_plan}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
      * - restore: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}
      * - restorePlan: projects/{project}/locations/{location}/restorePlans/{restore_plan}
@@ -575,9 +616,6 @@ class BackupForGKEGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'gkebackup.googleapis.com:443'.
@@ -607,7 +645,7 @@ class BackupForGKEGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -645,7 +683,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -662,7 +700,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -673,7 +711,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $parent       Required. The BackupPlan within which to create the Backup.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -740,7 +778,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -757,7 +795,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -768,7 +806,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string     $parent       Required. The location within which to create the BackupPlan.
-     *                                 Format: projects/&#42;/locations/*
+     *                                 Format: `projects/&#42;/locations/*`
      * @param BackupPlan $backupPlan   Required. The BackupPlan resource object to create.
      * @param string     $backupPlanId Required. The client-provided short name for the BackupPlan resource.
      *                                 This name must:
@@ -831,7 +869,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -848,7 +886,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -859,7 +897,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string  $parent       Required. The RestorePlan within which to create the Restore.
-     *                              Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                              Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      * @param Restore $restore      Required. The restore resource to create.
      * @param string  $restoreId    Required. The client-provided short name for the Restore resource.
      *                              This name must:
@@ -922,7 +960,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -939,7 +977,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -950,7 +988,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string      $parent        Required. The location within which to create the RestorePlan.
-     *                                   Format: projects/&#42;/locations/*
+     *                                   Format: `projects/&#42;/locations/*`
      * @param RestorePlan $restorePlan   Required. The RestorePlan resource object to create.
      * @param string      $restorePlanId Required. The client-provided short name for the RestorePlan resource.
      *                                   This name must:
@@ -1037,14 +1075,14 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Name of the Backup resource.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
      *           If provided, this value must match the current value of the
-     *           target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the request is
-     *           rejected.
+     *           target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the
+     *           request is rejected.
      *     @type bool $force
      *           If set to true, any VolumeBackups below this Backup will also be deleted.
      *           Otherwise, the request will only succeed if the Backup has no
@@ -1125,14 +1163,14 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Fully qualified BackupPlan name.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
      *           If provided, this value must match the current value of the
-     *           target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field or the request is
-     *           rejected.
+     *           target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
+     *           or the request is rejected.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1205,14 +1243,14 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Full name of the Restore
-     *                             Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
      *           If provided, this value must match the current value of the
-     *           target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or the request is
-     *           rejected.
+     *           target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
+     *           the request is rejected.
      *     @type bool $force
      *           If set to true, any VolumeRestores below this restore will also be deleted.
      *           Otherwise, the request will only succeed if the restore has no
@@ -1293,14 +1331,14 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Fully qualified RestorePlan name.
-     *                             Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
      *           If provided, this value must match the current value of the
-     *           target RestorePlan's [etag][google.cloud.gkebackup.v1.RestorePlan.etag] field or the request is
-     *           rejected.
+     *           target RestorePlan's [etag][google.cloud.gkebackup.v1.RestorePlan.etag]
+     *           field or the request is rejected.
      *     @type bool $force
      *           If set to true, any Restores below this RestorePlan will also be deleted.
      *           Otherwise, the request will only succeed if the RestorePlan has no
@@ -1358,7 +1396,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Full name of the Backup resource.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1407,7 +1445,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Fully qualified BackupPlan name.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1456,7 +1494,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Name of the restore resource.
-     *                             Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1505,7 +1543,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Fully qualified RestorePlan name.
-     *                             Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1554,7 +1592,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Full name of the VolumeBackup resource.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/&#42;/volumeBackups/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/&#42;/volumeBackups/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1603,7 +1641,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $name         Required. Full name of the VolumeRestore resource.
-     *                             Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/&#42;/volumeRestores/*
+     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/&#42;/volumeRestores/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1664,7 +1702,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $parent       Required. The location that contains the BackupPlans to list.
-     *                             Format: projects/&#42;/locations/*
+     *                             Format: `projects/&#42;/locations/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1754,7 +1792,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $parent       Required. The BackupPlan that contains the Backups to list.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1844,7 +1882,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $parent       Required. The location that contains the RestorePlans to list.
-     *                             Format: projects/&#42;/locations/*
+     *                             Format: `projects/&#42;/locations/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1934,7 +1972,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $parent       Required. The RestorePlan that contains the Restores to list.
-     *                             Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2024,7 +2062,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $parent       Required. The Backup that contains the VolumeBackups to list.
-     *                             Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2114,7 +2152,7 @@ class BackupForGKEGapicClient
      * ```
      *
      * @param string $parent       Required. The Restore that contains the VolumeRestores to list.
-     *                             Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2189,7 +2227,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2206,7 +2244,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2216,8 +2254,8 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param Backup $backup       Required. A new version of the Backup resource that contains updated fields.
-     *                             This may be sparsely populated if an `update_mask` is provided.
+     * @param Backup $backup       Required. A new version of the Backup resource that contains updated
+     *                             fields. This may be sparsely populated if an `update_mask` is provided.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2276,7 +2314,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2293,7 +2331,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2303,8 +2341,8 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param BackupPlan $backupPlan   Required. A new version of the BackupPlan resource that contains updated fields.
-     *                                 This may be sparsely populated if an `update_mask` is provided.
+     * @param BackupPlan $backupPlan   Required. A new version of the BackupPlan resource that contains updated
+     *                                 fields. This may be sparsely populated if an `update_mask` is provided.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -2364,7 +2402,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2381,7 +2419,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2391,8 +2429,8 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param Restore $restore      Required. A new version of the Restore resource that contains updated fields.
-     *                              This may be sparsely populated if an `update_mask` is provided.
+     * @param Restore $restore      Required. A new version of the Restore resource that contains updated
+     *                              fields. This may be sparsely populated if an `update_mask` is provided.
      * @param array   $optionalArgs {
      *     Optional.
      *
@@ -2451,7 +2489,7 @@ class BackupForGKEGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2468,7 +2506,7 @@ class BackupForGKEGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2478,8 +2516,8 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param RestorePlan $restorePlan  Required. A new version of the RestorePlan resource that contains updated fields.
-     *                                  This may be sparsely populated if an `update_mask` is provided.
+     * @param RestorePlan $restorePlan  Required. A new version of the RestorePlan resource that contains updated
+     *                                  fields. This may be sparsely populated if an `update_mask` is provided.
      * @param array       $optionalArgs {
      *     Optional.
      *
@@ -2523,6 +2561,342 @@ class BackupForGKEGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $backupForGKEClient = new BackupForGKEClient();
+     * try {
+     *     $response = $backupForGKEClient->getLocation();
+     * } finally {
+     *     $backupForGKEClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $backupForGKEClient = new BackupForGKEClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $backupForGKEClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $backupForGKEClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $backupForGKEClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $backupForGKEClient = new BackupForGKEClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $backupForGKEClient->getIamPolicy($resource);
+     * } finally {
+     *     $backupForGKEClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $backupForGKEClient = new BackupForGKEClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $backupForGKEClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $backupForGKEClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $backupForGKEClient = new BackupForGKEClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $backupForGKEClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $backupForGKEClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

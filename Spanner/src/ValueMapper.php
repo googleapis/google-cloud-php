@@ -134,9 +134,7 @@ class ValueMapper
                 ));
             }
 
-            $type = isset($types[$key])
-                ? $types[$key]
-                : null;
+            $type = $types[$key] ?? null;
 
             if (!$type && is_array($value) && !$this->isAssoc($value)) {
                 $type = new ArrayType(null);
@@ -307,9 +305,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_STRUCT:
-                $fields = isset($type['structType']['fields'])
-                    ? $type['structType']['fields']
-                    : [];
+                $fields = $type['structType']['fields'] ?? [];
 
                 $value = $this->decodeValues($fields, $value, Result::RETURN_ASSOCIATIVE);
                 break;
@@ -487,7 +483,7 @@ class ValueMapper
      *
      * @param StructValue|array|null $value The struct value.
      * @param StructType $type The struct type.
-     * @return [array, array] An array containing the value and type.
+     * @return array{0: array, 1: array} An array containing the value and type.
      */
     private function structParam($value, StructType $type)
     {
@@ -554,9 +550,7 @@ class ValueMapper
 
             // Get the value which corresponds to the current type.
             $index = $names[$fieldName];
-            $paramValue = isset($values[$fieldName][$index])
-                ? $values[$fieldName][$index]
-                : null;
+            $paramValue = $values[$fieldName][$index] ?? null;
 
             // If the value didn't exist in the values structure, set it to null.
             // The $typeIndex will give us a hook to order fields properly.
@@ -630,7 +624,7 @@ class ValueMapper
      * @param bool $allowMixedArrayType [optional] If true, array values may be of mixed type.
      *        This is useful when reading against complex keys containing multiple
      *        elements of differing types.
-     * @return [array, array] An array containing the value and type.
+     * @return array{0: array, 1: array} An array containing the value and type.
      */
     private function arrayParam($value, ArrayType $arrayObj, $allowMixedArrayType = false)
     {
@@ -701,7 +695,7 @@ class ValueMapper
         if (is_null($typeCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['code'])) {
             $typeCode = $inferredTypes[0]['code'];
         }
-        
+
         if (is_null($typeAnnotationCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['typeAnnotation'])) {
             $typeAnnotationCode = $inferredTypes[0]['typeAnnotation'];
         }
@@ -731,7 +725,7 @@ class ValueMapper
      * Handle query parameter mappings for various types of objects.
      *
      * @param mixed $value The parameter value.
-     * @return [array, array] An array containing the value and type.
+     * @return array{0: array, 1: array} An array containing the value and type.
      */
     private function objectParam($value)
     {
@@ -775,7 +769,7 @@ class ValueMapper
      *        the structure of an array or struct type.
      * @param string $nestedDefinitionType [optional] Either `arrayElementType`
      *        or `structType`.
-     * @return array
+     * @return array{0: array, 1: array}
      */
     private function typeObject(
         $type,

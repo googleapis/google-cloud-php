@@ -67,6 +67,4 @@ class RoutingType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RoutingType::class, \Google\Cloud\NetworkManagement\V1\VpnTunnelInfo_RoutingType::class);
 

@@ -25,7 +25,6 @@ namespace Google\Cloud\Dataflow\Tests\Unit\V1beta3;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataflow\V1beta3\JobExecutionDetails;
 use Google\Cloud\Dataflow\V1beta3\JobMetrics;
@@ -43,25 +42,19 @@ use stdClass;
  */
 class MetricsV1Beta3ClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return MetricsV1Beta3Client
-     */
+    /** @return MetricsV1Beta3Client */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +63,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         return new MetricsV1Beta3Client($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobExecutionDetailsTest()
     {
         $transport = $this->createTransport();
@@ -103,9 +94,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobExecutionDetailsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -136,9 +125,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobMetricsTest()
     {
         $transport = $this->createTransport();
@@ -159,9 +146,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobMetricsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -192,9 +177,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getStageExecutionDetailsTest()
     {
         $transport = $this->createTransport();
@@ -225,9 +208,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getStageExecutionDetailsExceptionTest()
     {
         $transport = $this->createTransport();

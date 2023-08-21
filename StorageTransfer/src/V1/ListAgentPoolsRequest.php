@@ -46,6 +46,19 @@ class ListAgentPoolsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $projectId Required. The ID of the Google Cloud project that owns the job.
+     *
+     * @return \Google\Cloud\StorageTransfer\V1\ListAgentPoolsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId): self
+    {
+        return (new self())
+            ->setProjectId($projectId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

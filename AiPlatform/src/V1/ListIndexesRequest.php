@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes].
+ * Request message for
+ * [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListIndexesRequest</code>
  */
@@ -37,8 +38,10 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token] of the previous
-     * [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes] call.
+     * [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token]
+     * of the previous
+     * [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -49,6 +52,21 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5;</code>
      */
     private $read_mask = null;
+
+    /**
+     * @param string $parent Required. The resource name of the Location from which to list the Indexes.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see IndexServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListIndexesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -66,8 +84,10 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token] of the previous
-     *           [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes] call.
+     *           [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token]
+     *           of the previous
+     *           [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
      * }
@@ -160,8 +180,10 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token] of the previous
-     * [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes] call.
+     * [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token]
+     * of the previous
+     * [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -174,8 +196,10 @@ class ListIndexesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token] of the previous
-     * [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes] call.
+     * [ListIndexesResponse.next_page_token][google.cloud.aiplatform.v1.ListIndexesResponse.next_page_token]
+     * of the previous
+     * [IndexService.ListIndexes][google.cloud.aiplatform.v1.IndexService.ListIndexes]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

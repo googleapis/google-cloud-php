@@ -16,25 +16,41 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name for TagValue to be deleted in the format tagValues/456.
+     * Required. Resource name for TagValue to be deleted in the format
+     * tagValues/456.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Optional. Set as true to perform the validations necessary for deletion, but not
-     * actually perform the action.
+     * Optional. Set as true to perform the validations necessary for deletion,
+     * but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
     /**
-     * Optional. The etag known to the client for the expected state of the TagValue. This
-     * is to be used for optimistic concurrency.
+     * Optional. The etag known to the client for the expected state of the
+     * TagValue. This is to be used for optimistic concurrency.
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
+
+    /**
+     * @param string $name Required. Resource name for TagValue to be deleted in the format
+     *                     tagValues/456. Please see
+     *                     {@see TagValuesClient::tagValueName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\DeleteTagValueRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -43,13 +59,14 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name for TagValue to be deleted in the format tagValues/456.
+     *           Required. Resource name for TagValue to be deleted in the format
+     *           tagValues/456.
      *     @type bool $validate_only
-     *           Optional. Set as true to perform the validations necessary for deletion, but not
-     *           actually perform the action.
+     *           Optional. Set as true to perform the validations necessary for deletion,
+     *           but not actually perform the action.
      *     @type string $etag
-     *           Optional. The etag known to the client for the expected state of the TagValue. This
-     *           is to be used for optimistic concurrency.
+     *           Optional. The etag known to the client for the expected state of the
+     *           TagValue. This is to be used for optimistic concurrency.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +75,8 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name for TagValue to be deleted in the format tagValues/456.
+     * Required. Resource name for TagValue to be deleted in the format
+     * tagValues/456.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,7 +87,8 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name for TagValue to be deleted in the format tagValues/456.
+     * Required. Resource name for TagValue to be deleted in the format
+     * tagValues/456.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -84,8 +103,8 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set as true to perform the validations necessary for deletion, but not
-     * actually perform the action.
+     * Optional. Set as true to perform the validations necessary for deletion,
+     * but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -96,8 +115,8 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set as true to perform the validations necessary for deletion, but not
-     * actually perform the action.
+     * Optional. Set as true to perform the validations necessary for deletion,
+     * but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -112,8 +131,8 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag known to the client for the expected state of the TagValue. This
-     * is to be used for optimistic concurrency.
+     * Optional. The etag known to the client for the expected state of the
+     * TagValue. This is to be used for optimistic concurrency.
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -124,8 +143,8 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag known to the client for the expected state of the TagValue. This
-     * is to be used for optimistic concurrency.
+     * Optional. The etag known to the client for the expected state of the
+     * TagValue. This is to be used for optimistic concurrency.
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

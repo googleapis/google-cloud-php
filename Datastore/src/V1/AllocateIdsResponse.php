@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Datastore.AllocateIds][google.datastore.v1.Datastore.AllocateIds].
+ * The response for
+ * [Datastore.AllocateIds][google.datastore.v1.Datastore.AllocateIds].
  *
  * Generated from protobuf message <code>google.datastore.v1.AllocateIdsResponse</code>
  */

@@ -61,7 +61,15 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     /**
      * Set only if values should be bucketized into intervals. Must be set
      * for facets with numerical values. Must not be set for facet with text
-     * values. Maximum number of intervals is 30.
+     * values. Maximum number of intervals is 40.
+     * For all numerical facet keys that appear in the list of products from
+     * the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     * computed from their distribution weekly. If the model assigns a high
+     * score to a numerical facet key and its intervals are not specified in
+     * the search request, these percentiles will become the bounds
+     * for its intervals and will be returned in the response. If the
+     * facet key intervals are specified in the request, then the specified
+     * intervals will be returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
      */
@@ -217,7 +225,15 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $intervals
      *           Set only if values should be bucketized into intervals. Must be set
      *           for facets with numerical values. Must not be set for facet with text
-     *           values. Maximum number of intervals is 30.
+     *           values. Maximum number of intervals is 40.
+     *           For all numerical facet keys that appear in the list of products from
+     *           the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     *           computed from their distribution weekly. If the model assigns a high
+     *           score to a numerical facet key and its intervals are not specified in
+     *           the search request, these percentiles will become the bounds
+     *           for its intervals and will be returned in the response. If the
+     *           facet key intervals are specified in the request, then the specified
+     *           intervals will be returned instead.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_values
      *           Only get facet for the given restricted values. For example, when using
      *           "pickupInStore" as key and set restricted values to
@@ -402,7 +418,15 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     /**
      * Set only if values should be bucketized into intervals. Must be set
      * for facets with numerical values. Must not be set for facet with text
-     * values. Maximum number of intervals is 30.
+     * values. Maximum number of intervals is 40.
+     * For all numerical facet keys that appear in the list of products from
+     * the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     * computed from their distribution weekly. If the model assigns a high
+     * score to a numerical facet key and its intervals are not specified in
+     * the search request, these percentiles will become the bounds
+     * for its intervals and will be returned in the response. If the
+     * facet key intervals are specified in the request, then the specified
+     * intervals will be returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -415,7 +439,15 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     /**
      * Set only if values should be bucketized into intervals. Must be set
      * for facets with numerical values. Must not be set for facet with text
-     * values. Maximum number of intervals is 30.
+     * values. Maximum number of intervals is 40.
+     * For all numerical facet keys that appear in the list of products from
+     * the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     * computed from their distribution weekly. If the model assigns a high
+     * score to a numerical facet key and its intervals are not specified in
+     * the search request, these percentiles will become the bounds
+     * for its intervals and will be returned in the response. If the
+     * facet key intervals are specified in the request, then the specified
+     * intervals will be returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
      * @param array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $var

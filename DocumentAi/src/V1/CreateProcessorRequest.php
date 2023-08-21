@@ -9,28 +9,54 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for create a processor. Notice this request is sent to
- * a regionalized backend service, and if the processor type is not available
- * on that region, the creation will fail.
+ * Request message for the
+ * [CreateProcessor][google.cloud.documentai.v1.DocumentProcessorService.CreateProcessor]
+ * method. Notice this request is sent to a regionalized backend service. If the
+ * [ProcessorType][google.cloud.documentai.v1.ProcessorType] isn't available in
+ * that region, the creation fails.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.CreateProcessorRequest</code>
  */
 class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project and location) under which to create the processor.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The parent (project and location) under which to create the
+     * processor. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The processor to be created, requires [processor_type] and [display_name]
-     * to be set. Also, the processor is under CMEK if CMEK fields are set.
+     * Required. The processor to be created, requires
+     * [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     * [Processor.display_name]][] to be set. Also, the
+     * [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     * field must be set if the processor is under CMEK.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Processor processor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $processor = null;
+
+    /**
+     * @param string                                $parent    Required. The parent (project and location) under which to create the
+     *                                                         processor. Format: `projects/{project}/locations/{location}`
+     *                                                         Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\DocumentAI\V1\Processor $processor Required. The processor to be created, requires
+     *                                                         [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     *                                                         [Processor.display_name]][] to be set. Also, the
+     *                                                         [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     *                                                         field must be set if the processor is under CMEK.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\CreateProcessorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DocumentAI\V1\Processor $processor): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProcessor($processor);
+    }
 
     /**
      * Constructor.
@@ -39,11 +65,14 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent (project and location) under which to create the processor.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The parent (project and location) under which to create the
+     *           processor. Format: `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\DocumentAI\V1\Processor $processor
-     *           Required. The processor to be created, requires [processor_type] and [display_name]
-     *           to be set. Also, the processor is under CMEK if CMEK fields are set.
+     *           Required. The processor to be created, requires
+     *           [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     *           [Processor.display_name]][] to be set. Also, the
+     *           [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     *           field must be set if the processor is under CMEK.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,8 +81,8 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) under which to create the processor.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The parent (project and location) under which to create the
+     * processor. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -64,8 +93,8 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) under which to create the processor.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The parent (project and location) under which to create the
+     * processor. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -80,8 +109,11 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The processor to be created, requires [processor_type] and [display_name]
-     * to be set. Also, the processor is under CMEK if CMEK fields are set.
+     * Required. The processor to be created, requires
+     * [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     * [Processor.display_name]][] to be set. Also, the
+     * [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     * field must be set if the processor is under CMEK.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Processor processor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\DocumentAI\V1\Processor|null
@@ -102,8 +134,11 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The processor to be created, requires [processor_type] and [display_name]
-     * to be set. Also, the processor is under CMEK if CMEK fields are set.
+     * Required. The processor to be created, requires
+     * [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     * [Processor.display_name]][] to be set. Also, the
+     * [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     * field must be set if the processor is under CMEK.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Processor processor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\DocumentAI\V1\Processor $var

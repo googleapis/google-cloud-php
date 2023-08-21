@@ -20,6 +20,9 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Session\CacheSessionPool;
+use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 /**
  * @group spanner
@@ -32,6 +35,9 @@ class SpannerTestCase extends SystemTestCase
     const TEST_TABLE_NAME = 'Users';
     const TEST_INDEX_NAME = 'uniqueIndex';
 
+    const DATABASE_ROLE = 'Reader';
+    const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
+
     protected static $client;
     protected static $instance;
     protected static $database;
@@ -40,7 +46,7 @@ class SpannerTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -60,21 +66,34 @@ class SpannerTestCase extends SystemTestCase
             $db->drop();
         });
 
-        $db->updateDdl(
-            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                name STRING(MAX) NOT NULL,
-                birthday DATE NOT NULL
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
-
-        $db->updateDdl(
-            'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
-            ON ' . self::TEST_TABLE_NAME . ' (name)'
-        )->pollUntilComplete();
+        $op = $db->updateDdlBatch(
+            [
+                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                  id INT64 NOT NULL,
+                  name STRING(MAX) NOT NULL,
+                  birthday DATE
+                ) PRIMARY KEY (id)',
+                'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
+                ON ' . self::TEST_TABLE_NAME . ' (name)',
+            ]
+        );
+        $op->pollUntilComplete();
 
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
+
+        if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+            $db->updateDdlBatch(
+                [
+                    'CREATE ROLE ' . self::DATABASE_ROLE,
+                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                    ' TO ROLE ' . self::DATABASE_ROLE,
+                    'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                    . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                ]
+            )->pollUntilComplete();
+        }
 
         self::$hasSetUp = true;
     }
@@ -111,11 +130,32 @@ class SpannerTestCase extends SystemTestCase
         return self::$client;
     }
 
-    public static function getDatabaseInstance($dbName)
+    public static function getDatabaseInstance($dbName, $options = [])
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        return self::$client->connect(self::INSTANCE_NAME, $dbName, $options);
+    }
 
-        return self::$client->connect(self::INSTANCE_NAME, $dbName);
+    public static function getDatabaseFromInstance($instance, $dbName, $options = [])
+    {
+        $instance = self::$client->instance($instance);
+        return $instance->database($dbName, $options);
+    }
+
+    public static function getDatabaseWithSessionPool($dbName, $options = [])
+    {
+        $sessionCache = new MemoryCacheItemPool;
+        $sessionPool = new CacheSessionPool(
+            $sessionCache,
+            $options
+        );
+
+        return self::$client->connect(
+            self::INSTANCE_NAME,
+            $dbName,
+            [
+                'sessionPool' => $sessionPool
+            ]
+        );
     }
 
     public static function skipEmulatorTests()
@@ -123,5 +163,31 @@ class SpannerTestCase extends SystemTestCase
         if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
             self::markTestSkipped('This test is not supported by the emulator.');
         }
+    }
+
+    public static function getDbWithReaderRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithRestrictiveRole()
+    {
+        return self::getDatabaseFromInstance(
+            self::INSTANCE_NAME,
+            self::$dbName,
+            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
+    }
+
+    public static function getDbWithSessionPoolRestrictiveRole()
+    {
+        return self::getDatabaseWithSessionPool(
+            self::$dbName,
+            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
     }
 }

@@ -24,7 +24,7 @@ class CompanyService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˙
+Ô
 1google/cloud/talent/v4beta1/company_service.protogoogle.cloud.talent.v4beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/talent/v4beta1/common.proto)google/cloud/talent/v4beta1/company.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"á
 CreateCompanyRequest3
 parent (	B#‡A˙Ajobs.googleapis.com/Company:
@@ -54,8 +54,8 @@ page_token (	
 GetCompany..google.cloud.talent.v4beta1.GetCompanyRequest$.google.cloud.talent.v4beta1.Company"iÇ”‰ì\\0/v4beta1/{name=projects/*/tenants/*/companies/*}Z(&/v4beta1/{name=projects/*/companies/*}⁄AnameÌ
 UpdateCompany1.google.cloud.talent.v4beta1.UpdateCompanyRequest$.google.cloud.talent.v4beta1.Company"ÇÇ”‰ìr28/v4beta1/{company.name=projects/*/tenants/*/companies/*}:*Z32./v4beta1/{company.name=projects/*/companies/*}:*⁄Acompany≈
 DeleteCompany1.google.cloud.talent.v4beta1.DeleteCompanyRequest.google.protobuf.Empty"iÇ”‰ì\\*0/v4beta1/{name=projects/*/tenants/*/companies/*}Z(*&/v4beta1/{name=projects/*/companies/*}⁄Aname„
-ListCompanies1.google.cloud.talent.v4beta1.ListCompaniesRequest2.google.cloud.talent.v4beta1.ListCompaniesResponse"kÇ”‰ì\\0/v4beta1/{parent=projects/*/tenants/*}/companiesZ(&/v4beta1/{parent=projects/*}/companies⁄Aparentl Ajobs.googleapis.com“AShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBÅ
-com.google.cloud.talent.v4beta1BCompanyServiceProtoPZAgoogle.golang.org/genproto/googleapis/cloud/talent/v4beta1;talent¢CTSbproto3'
+ListCompanies1.google.cloud.talent.v4beta1.ListCompaniesRequest2.google.cloud.talent.v4beta1.ListCompaniesResponse"kÇ”‰ì\\0/v4beta1/{parent=projects/*/tenants/*}/companiesZ(&/v4beta1/{parent=projects/*}/companies⁄Aparentl Ajobs.googleapis.com“AShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBw
+com.google.cloud.talent.v4beta1BCompanyServiceProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 
         static::$is_initialized = true;

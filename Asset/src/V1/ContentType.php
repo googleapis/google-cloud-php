@@ -32,13 +32,13 @@ class ContentType
      */
     const IAM_POLICY = 2;
     /**
-     * The Cloud Organization Policy set on an asset.
+     * The organization policy set on an asset.
      *
      * Generated from protobuf enum <code>ORG_POLICY = 4;</code>
      */
     const ORG_POLICY = 4;
     /**
-     * The Cloud Access context manager Policy set on an asset.
+     * The Access Context Manager policy set on an asset.
      *
      * Generated from protobuf enum <code>ACCESS_POLICY = 5;</code>
      */

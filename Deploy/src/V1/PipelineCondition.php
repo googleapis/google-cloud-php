@@ -22,11 +22,18 @@ class PipelineCondition extends \Google\Protobuf\Internal\Message
      */
     private $pipeline_ready_condition = null;
     /**
-     * Detalis around targets enumerated in the pipeline.
+     * Details around targets enumerated in the pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsPresentCondition targets_present_condition = 3;</code>
      */
     private $targets_present_condition = null;
+    /**
+     * Details on the whether the targets enumerated in the pipeline are of the
+     * same type.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsTypeCondition targets_type_condition = 4;</code>
+     */
+    private $targets_type_condition = null;
 
     /**
      * Constructor.
@@ -37,7 +44,10 @@ class PipelineCondition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\PipelineReadyCondition $pipeline_ready_condition
      *           Details around the Pipeline's overall status.
      *     @type \Google\Cloud\Deploy\V1\TargetsPresentCondition $targets_present_condition
-     *           Detalis around targets enumerated in the pipeline.
+     *           Details around targets enumerated in the pipeline.
+     *     @type \Google\Cloud\Deploy\V1\TargetsTypeCondition $targets_type_condition
+     *           Details on the whether the targets enumerated in the pipeline are of the
+     *           same type.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +92,7 @@ class PipelineCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detalis around targets enumerated in the pipeline.
+     * Details around targets enumerated in the pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsPresentCondition targets_present_condition = 3;</code>
      * @return \Google\Cloud\Deploy\V1\TargetsPresentCondition|null
@@ -103,7 +113,7 @@ class PipelineCondition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detalis around targets enumerated in the pipeline.
+     * Details around targets enumerated in the pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsPresentCondition targets_present_condition = 3;</code>
      * @param \Google\Cloud\Deploy\V1\TargetsPresentCondition $var
@@ -113,6 +123,44 @@ class PipelineCondition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\TargetsPresentCondition::class);
         $this->targets_present_condition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Details on the whether the targets enumerated in the pipeline are of the
+     * same type.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsTypeCondition targets_type_condition = 4;</code>
+     * @return \Google\Cloud\Deploy\V1\TargetsTypeCondition|null
+     */
+    public function getTargetsTypeCondition()
+    {
+        return $this->targets_type_condition;
+    }
+
+    public function hasTargetsTypeCondition()
+    {
+        return isset($this->targets_type_condition);
+    }
+
+    public function clearTargetsTypeCondition()
+    {
+        unset($this->targets_type_condition);
+    }
+
+    /**
+     * Details on the whether the targets enumerated in the pipeline are of the
+     * same type.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsTypeCondition targets_type_condition = 4;</code>
+     * @param \Google\Cloud\Deploy\V1\TargetsTypeCondition $var
+     * @return $this
+     */
+    public function setTargetsTypeCondition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\TargetsTypeCondition::class);
+        $this->targets_type_condition = $var;
 
         return $this;
     }

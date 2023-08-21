@@ -24,6 +24,21 @@ class GetCertificateMapEntryRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. A name of the certificate map entry to describe. Must be in the
+     *                     format `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`. Please see
+     *                     {@see CertificateManagerClient::certificateMapEntryName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\GetCertificateMapEntryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

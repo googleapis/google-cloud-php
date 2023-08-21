@@ -21,9 +21,10 @@ class MedianAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * True if median automated stopping rule applies on
-     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]. It means that elapsed_duration
-     * field of latest measurement of current Trial is used to compute median
-     * objective value for each completed Trials.
+     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration].
+     * It means that elapsed_duration field of latest measurement of current
+     * Trial is used to compute median objective value for each completed
+     * Trials.
      *
      * Generated from protobuf field <code>bool use_elapsed_duration = 1;</code>
      */
@@ -37,9 +38,10 @@ class MedianAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $use_elapsed_duration
      *           True if median automated stopping rule applies on
-     *           [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]. It means that elapsed_duration
-     *           field of latest measurement of current Trial is used to compute median
-     *           objective value for each completed Trials.
+     *           [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration].
+     *           It means that elapsed_duration field of latest measurement of current
+     *           Trial is used to compute median objective value for each completed
+     *           Trials.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,9 +51,10 @@ class MedianAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * True if median automated stopping rule applies on
-     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]. It means that elapsed_duration
-     * field of latest measurement of current Trial is used to compute median
-     * objective value for each completed Trials.
+     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration].
+     * It means that elapsed_duration field of latest measurement of current
+     * Trial is used to compute median objective value for each completed
+     * Trials.
      *
      * Generated from protobuf field <code>bool use_elapsed_duration = 1;</code>
      * @return bool
@@ -63,9 +66,10 @@ class MedianAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * True if median automated stopping rule applies on
-     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]. It means that elapsed_duration
-     * field of latest measurement of current Trial is used to compute median
-     * objective value for each completed Trials.
+     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration].
+     * It means that elapsed_duration field of latest measurement of current
+     * Trial is used to compute median objective value for each completed
+     * Trials.
      *
      * Generated from protobuf field <code>bool use_elapsed_duration = 1;</code>
      * @param bool $var

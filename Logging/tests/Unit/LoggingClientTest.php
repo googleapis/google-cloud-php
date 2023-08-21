@@ -29,8 +29,9 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
@@ -38,6 +39,7 @@ use Prophecy\Argument;
 class LoggingClientTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     public $connection;
     public $formattedProjectId;
@@ -47,7 +49,7 @@ class LoggingClientTest extends TestCase
     public $textPayload = 'aPayload';
     public $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->formattedProjectId = "projects/$this->projectId";
         $this->connection = $this->prophesize(ConnectionInterface::class);

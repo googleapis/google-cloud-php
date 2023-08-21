@@ -35,6 +35,40 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     private $project_id = '';
 
     /**
+     * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`. Please see
+     *                                                                {@see OsLoginServiceClient::userName()} for help formatting this field.
+     * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Optional. The SSH public key and expiration time.
+     *
+     * @return \Google\Cloud\OsLogin\V1\ImportSshPublicKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSshPublicKey($sshPublicKey);
+    }
+
+    /**
+     * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`. Please see
+     *                                                                {@see OsLoginServiceClient::userName()} for help formatting this field.
+     * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Optional. The SSH public key and expiration time.
+     * @param string                                    $projectId    The project ID of the Google Cloud Platform project.
+     *
+     * @return \Google\Cloud\OsLogin\V1\ImportSshPublicKeyRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentSshPublicKeyProjectId(string $parent, \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey, string $projectId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSshPublicKey($sshPublicKey)
+            ->setProjectId($projectId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

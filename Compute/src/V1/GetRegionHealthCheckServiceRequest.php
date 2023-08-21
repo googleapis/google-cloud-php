@@ -35,6 +35,23 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
     private $region = '';
 
     /**
+     * @param string $project            Project ID for this request.
+     * @param string $region             Name of the region scoping this request.
+     * @param string $healthCheckService Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionHealthCheckServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $healthCheckService): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setHealthCheckService($healthCheckService);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

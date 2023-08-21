@@ -17,9 +17,10 @@ use UnexpectedValueException;
  * For queries like "cloud" that don't contain title or
  * location specific ontology, jobs with "cloud" keyword matches are returned
  * regardless of this enum's value.
- * Use [Company.keyword_searchable_job_custom_attributes][google.cloud.talent.v4.Company.keyword_searchable_job_custom_attributes] if
- * company-specific globally matched custom field/attribute string values are
- * needed. Enabling keyword match improves recall of subsequent search
+ * Use
+ * [Company.keyword_searchable_job_custom_attributes][google.cloud.talent.v4.Company.keyword_searchable_job_custom_attributes]
+ * if company-specific globally matched custom field/attribute string values
+ * are needed. Enabling keyword match improves recall of subsequent search
  * requests.
  *
  * Protobuf type <code>google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode</code>
@@ -28,7 +29,8 @@ class KeywordMatchMode
 {
     /**
      * The keyword match option isn't specified. Defaults to
-     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] behavior.
+     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL]
+     * behavior.
      *
      * Generated from protobuf enum <code>KEYWORD_MATCH_MODE_UNSPECIFIED = 0;</code>
      */
@@ -40,16 +42,22 @@ class KeywordMatchMode
      */
     const KEYWORD_MATCH_DISABLED = 1;
     /**
-     * Enable keyword matching over [Job.title][google.cloud.talent.v4.Job.title],
-     * [Job.description][google.cloud.talent.v4.Job.description], [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], [Job.addresses][google.cloud.talent.v4.Job.addresses],
-     * [Job.qualifications][google.cloud.talent.v4.Job.qualifications], and keyword searchable [Job.custom_attributes][google.cloud.talent.v4.Job.custom_attributes]
+     * Enable keyword matching over
+     * [Job.title][google.cloud.talent.v4.Job.title],
+     * [Job.description][google.cloud.talent.v4.Job.description],
+     * [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name],
+     * [Job.addresses][google.cloud.talent.v4.Job.addresses],
+     * [Job.qualifications][google.cloud.talent.v4.Job.qualifications], and
+     * keyword searchable
+     * [Job.custom_attributes][google.cloud.talent.v4.Job.custom_attributes]
      * fields.
      *
      * Generated from protobuf enum <code>KEYWORD_MATCH_ALL = 2;</code>
      */
     const KEYWORD_MATCH_ALL = 2;
     /**
-     * Only enable keyword matching over [Job.title][google.cloud.talent.v4.Job.title].
+     * Only enable keyword matching over
+     * [Job.title][google.cloud.talent.v4.Job.title].
      *
      * Generated from protobuf enum <code>KEYWORD_MATCH_TITLE_ONLY = 3;</code>
      */

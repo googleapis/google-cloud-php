@@ -23,16 +23,19 @@ use Google\Cloud\Vision\Annotation\Document;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class DocumentTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $info;
     private $document;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'pages' => [['foo' => 'bar']],

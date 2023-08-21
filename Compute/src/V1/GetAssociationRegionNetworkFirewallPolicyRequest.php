@@ -41,6 +41,23 @@ class GetAssociationRegionNetworkFirewallPolicyRequest extends \Google\Protobuf\
     private $region = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $firewallPolicy Name of the firewall policy to which the queried association belongs.
+     *
+     * @return \Google\Cloud\Compute\V1\GetAssociationRegionNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $firewallPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setFirewallPolicy($firewallPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

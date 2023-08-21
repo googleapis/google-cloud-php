@@ -59,6 +59,11 @@
                                 "list"
                             ]
                         },
+                        "Move": {
+                            "methods": [
+                                "move"
+                            ]
+                        },
                         "SetLabels": {
                             "methods": [
                                 "setLabels"
@@ -284,6 +289,11 @@
                                 "aggregatedList"
                             ]
                         },
+                        "BulkInsert": {
+                            "methods": [
+                                "bulkInsert"
+                            ]
+                        },
                         "CreateSnapshot": {
                             "methods": [
                                 "createSnapshot"
@@ -334,9 +344,29 @@
                                 "setLabels"
                             ]
                         },
+                        "StartAsyncReplication": {
+                            "methods": [
+                                "startAsyncReplication"
+                            ]
+                        },
+                        "StopAsyncReplication": {
+                            "methods": [
+                                "stopAsyncReplication"
+                            ]
+                        },
+                        "StopGroupAsyncReplication": {
+                            "methods": [
+                                "stopGroupAsyncReplication"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
                             ]
                         }
                     }
@@ -592,6 +622,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "Move": {
+                            "methods": [
+                                "move"
                             ]
                         },
                         "SetLabels": {
@@ -1073,6 +1108,11 @@
                 "grpc": {
                     "libraryClient": "InstanceTemplatesGapicClient",
                     "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -1267,6 +1307,11 @@
                                 "setMinCpuPlatform"
                             ]
                         },
+                        "SetName": {
+                            "methods": [
+                                "setName"
+                            ]
+                        },
                         "SetScheduling": {
                             "methods": [
                                 "setScheduling"
@@ -1394,6 +1439,25 @@
             "clients": {
                 "grpc": {
                     "libraryClient": "InterconnectLocationsGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "InterconnectRemoteLocations": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InterconnectRemoteLocationsGapicClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -1578,6 +1642,55 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "NetworkAttachments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NetworkAttachmentsGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -1888,6 +2001,11 @@
                         "SetNodeTemplate": {
                             "methods": [
                                 "setNodeTemplate"
+                            ]
+                        },
+                        "SimulateMaintenanceEvent": {
+                            "methods": [
+                                "simulateMaintenanceEvent"
                             ]
                         },
                         "TestIamPermissions": {
@@ -2319,6 +2437,11 @@
                                 "addResourcePolicies"
                             ]
                         },
+                        "BulkInsert": {
+                            "methods": [
+                                "bulkInsert"
+                            ]
+                        },
                         "CreateSnapshot": {
                             "methods": [
                                 "createSnapshot"
@@ -2369,9 +2492,29 @@
                                 "setLabels"
                             ]
                         },
+                        "StartAsyncReplication": {
+                            "methods": [
+                                "startAsyncReplication"
+                            ]
+                        },
+                        "StopAsyncReplication": {
+                            "methods": [
+                                "stopAsyncReplication"
+                            ]
+                        },
+                        "StopGroupAsyncReplication": {
+                            "methods": [
+                                "stopGroupAsyncReplication"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
                             ]
                         }
                     }
@@ -2578,6 +2721,35 @@
                         "SetNamedPorts": {
                             "methods": [
                                 "setNamedPorts"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionInstanceTemplates": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionInstanceTemplatesGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
                             ]
                         }
                     }
@@ -3143,6 +3315,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
                             ]
                         },
                         "SetIamPolicy": {
@@ -3865,6 +4042,11 @@
                 "grpc": {
                     "libraryClient": "TargetTcpProxiesGapicClient",
                     "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"

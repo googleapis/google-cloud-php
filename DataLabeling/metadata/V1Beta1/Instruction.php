@@ -19,7 +19,7 @@ class Instruction
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì
+è
 3google/cloud/datalabeling/v1beta1/instruction.proto!google.cloud.datalabeling.v1beta1/google/cloud/datalabeling/v1beta1/dataset.protogoogle/protobuf/timestamp.proto"ý
 Instruction
 name (	
@@ -36,8 +36,8 @@ class Instruction
 CsvInstruction
 gcs_file_uri (	"&
 PdfInstruction
-gcs_file_uri (	Bç
-%com.google.cloud.datalabeling.v1beta1PZMgoogle.golang.org/genproto/googleapis/cloud/datalabeling/v1beta1;datalabelingª!Google.Cloud.DataLabeling.V1Beta1Ê!Google\\Cloud\\DataLabeling\\V1beta1ê$Google::Cloud::DataLabeling::V1beta1bproto3'
+gcs_file_uri (	Bã
+%com.google.cloud.datalabeling.v1beta1PZIcloud.google.com/go/datalabeling/apiv1beta1/datalabelingpb;datalabelingpbª!Google.Cloud.DataLabeling.V1Beta1Ê!Google\\Cloud\\DataLabeling\\V1beta1ê$Google::Cloud::DataLabeling::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

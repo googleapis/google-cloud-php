@@ -27,9 +27,7 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
@@ -38,10 +36,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsRequest;
+use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsResponse;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
+use Google\Cloud\AIPlatform\V1\CopyModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
+use Google\Cloud\AIPlatform\V1\EncryptionSpec;
+use Google\Cloud\AIPlatform\V1\EvaluatedAnnotation;
+use Google\Cloud\AIPlatform\V1\Examples;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
@@ -52,14 +56,15 @@ use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsResponse;
-use Google\Cloud\AIPlatform\V1\ListModelsRequest;
-use Google\Cloud\AIPlatform\V1\ListModelsResponse;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsResponse;
+use Google\Cloud\AIPlatform\V1\ListModelsRequest;
+use Google\Cloud\AIPlatform\V1\ListModelsResponse;
 use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
 use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
+use Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetRequest;
 use Google\Cloud\AIPlatform\V1\UpdateModelRequest;
 use Google\Cloud\AIPlatform\V1\UploadModelRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -84,9 +89,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $modelServiceClient = new ModelServiceClient();
  * try {
- *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
- *     $modelEvaluationSlices = [];
- *     $response = $modelServiceClient->batchImportModelEvaluationSlices($formattedParent, $modelEvaluationSlices);
+ *     $formattedParent = $modelServiceClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+ *     $evaluatedAnnotations = [];
+ *     $response = $modelServiceClient->batchImportEvaluatedAnnotations($formattedParent, $evaluatedAnnotations);
  * } finally {
  *     $modelServiceClient->close();
  * }
@@ -96,37 +101,32 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\ModelServiceClient} to use the new surface.
  */
 class ModelServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.ModelService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $endpointNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -135,6 +135,12 @@ class ModelServiceGapicClient
     private static $modelEvaluationNameTemplate;
 
     private static $modelEvaluationSliceNameTemplate;
+
+    private static $pipelineJobNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $trainingPipelineNameTemplate;
 
@@ -165,6 +171,17 @@ class ModelServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getEndpointNameTemplate()
+    {
+        if (self::$endpointNameTemplate == null) {
+            self::$endpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$endpointNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -211,6 +228,39 @@ class ModelServiceGapicClient
         return self::$modelEvaluationSliceNameTemplate;
     }
 
+    private static function getPipelineJobNameTemplate()
+    {
+        if (self::$pipelineJobNameTemplate == null) {
+            self::$pipelineJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}'
+            );
+        }
+
+        return self::$pipelineJobNameTemplate;
+    }
+
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getTrainingPipelineNameTemplate()
     {
         if (self::$trainingPipelineNameTemplate == null) {
@@ -226,15 +276,38 @@ class ModelServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'endpoint' => self::getEndpointNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'model' => self::getModelNameTemplate(),
                 'modelEvaluation' => self::getModelEvaluationNameTemplate(),
                 'modelEvaluationSlice' => self::getModelEvaluationSliceNameTemplate(),
+                'pipelineJob' => self::getPipelineJobNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
                 'trainingPipeline' => self::getTrainingPipelineNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a endpoint
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted endpoint resource.
+     */
+    public static function endpointName($project, $location, $endpoint)
+    {
+        return self::getEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
     }
 
     /**
@@ -327,6 +400,72 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a pipeline_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pipelineJob
+     *
+     * @return string The formatted pipeline_job resource.
+     */
+    public static function pipelineJobName($project, $location, $pipelineJob)
+    {
+        return self::getPipelineJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'pipeline_job' => $pipelineJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * training_pipeline resource.
      *
@@ -352,10 +491,14 @@ class ModelServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelEvaluation: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}
      * - modelEvaluationSlice: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}
+     * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - trainingPipeline: projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -438,9 +581,6 @@ class ModelServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -470,7 +610,7 @@ class ModelServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -494,6 +634,62 @@ class ModelServiceGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Imports a list of externally generated EvaluatedAnnotations.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+     *     $evaluatedAnnotations = [];
+     *     $response = $modelServiceClient->batchImportEvaluatedAnnotations($formattedParent, $evaluatedAnnotations);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                $parent               Required. The name of the parent ModelEvaluationSlice resource.
+     *                                                    Format:
+     *                                                    `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
+     * @param EvaluatedAnnotation[] $evaluatedAnnotations Required. Evaluated annotations resource to be imported.
+     * @param array                 $optionalArgs         {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchImportEvaluatedAnnotations(
+        $parent,
+        $evaluatedAnnotations,
+        array $optionalArgs = []
+    ) {
+        $request = new BatchImportEvaluatedAnnotationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setEvaluatedAnnotations($evaluatedAnnotations);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchImportEvaluatedAnnotations',
+            BatchImportEvaluatedAnnotationsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -553,11 +749,123 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Copies an already existing Vertex AI Model into the specified Location.
+     * The source Model must exist in the same Project.
+     * When copying custom Models, the users themselves are responsible for
+     * [Model.metadata][google.cloud.aiplatform.v1.Model.metadata] content to be
+     * region-agnostic, as well as making sure that any resources (e.g. files) it
+     * depends on remain accessible.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedSourceModel = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'copyModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the Location into which to copy the Model.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $sourceModel  Required. The resource name of the Model to copy. That Model must be in the
+     *                             same Project. Format:
+     *                             `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $modelId
+     *           Optional. Copy source_model into a new Model with this ID. The ID will
+     *           become the final component of the model resource name.
+     *
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *     @type string $parentModel
+     *           Optional. Specify this field to copy source_model into this existing
+     *           Model as a new version. Format:
+     *           `projects/{project}/locations/{location}/models/{model}`
+     *     @type EncryptionSpec $encryptionSpec
+     *           Customer-managed encryption key options. If this is set,
+     *           then the Model copy will be encrypted with the provided encryption key.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function copyModel($parent, $sourceModel, array $optionalArgs = [])
+    {
+        $request = new CopyModelRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSourceModel($sourceModel);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['modelId'])) {
+            $request->setModelId($optionalArgs['modelId']);
+        }
+
+        if (isset($optionalArgs['parentModel'])) {
+            $request->setParentModel($optionalArgs['parentModel']);
+        }
+
+        if (isset($optionalArgs['encryptionSpec'])) {
+            $request->setEncryptionSpec($optionalArgs['encryptionSpec']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CopyModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes a Model.
      *
-     * A model cannot be deleted if any [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
-     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the model in its
-     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] field.
+     * A model cannot be deleted if any
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+     * model in its
+     * [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+     * field.
      *
      * Sample code:
      * ```
@@ -631,9 +939,11 @@ class ModelServiceGapicClient
     /**
      * Deletes a Model version.
      *
-     * Model version can only be deleted if there are no [DeployedModels][]
-     * created from it. Deleting the only version in the Model is not allowed. Use
-     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for deleting the Model instead.
+     * Model version can only be deleted if there are no
+     * [DeployedModels][google.cloud.aiplatform.v1.DeployedModel] created from it.
+     * Deleting the only version in the Model is not allowed. Use
+     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+     * deleting the Model instead.
      *
      * Sample code:
      * ```
@@ -669,8 +979,8 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the model version to be deleted, with a version ID explicitly
-     *                             included.
+     * @param string $name         Required. The name of the model version to be deleted, with a version ID
+     *                             explicitly included.
      *
      *                             Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      * @param array  $optionalArgs {
@@ -709,7 +1019,8 @@ class ModelServiceGapicClient
     /**
      * Exports a trained, exportable Model to a location specified by the
      * user. A Model is considered to be exportable if it has at least one
-     * [supported export format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+     * [supported export
+     * format][google.cloud.aiplatform.v1.Model.supported_export_formats].
      *
      * Sample code:
      * ```
@@ -721,7 +1032,7 @@ class ModelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -738,7 +1049,7 @@ class ModelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1026,8 +1337,8 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the ModelEvaluation to list the ModelEvaluationSlices
-     *                             from. Format:
+     * @param string $parent       Required. The resource name of the ModelEvaluation to list the
+     *                             ModelEvaluationSlices from. Format:
      *                             `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1236,6 +1547,15 @@ class ModelServiceGapicClient
      *           * `labels.myKey="myValue"`
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
+     *     @type string $orderBy
+     *           A comma-separated list of fields to order by, sorted in ascending order.
+     *           Use "desc" after a field name for descending.
+     *           Supported fields:
+     *
+     *           * `create_time`
+     *           * `update_time`
+     *
+     *           Example: `update_time asc, create_time desc`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1266,6 +1586,10 @@ class ModelServiceGapicClient
 
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1318,7 +1642,8 @@ class ModelServiceGapicClient
      *           both snake_case and camelCase are supported.
      *
      *           * `model` supports = and !=. `model` represents the Model ID,
-     *           i.e. the last segment of the Model's [resource name][google.cloud.aiplatform.v1.Model.name].
+     *           i.e. the last segment of the Model's [resource
+     *           name][google.cloud.aiplatform.v1.Model.name].
      *           * `display_name` supports = and !=
      *           * `labels` supports general map functions that is:
      *           * `labels.key=value` - key:value equality
@@ -1470,6 +1795,86 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Incrementally update the dataset used for an examples model.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedModel = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->updateExplanationDataset($formattedModel);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $modelServiceClient->updateExplanationDataset($formattedModel);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'updateExplanationDataset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $model        Required. The resource name of the Model to update.
+     *                             Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Examples $examples
+     *           The example config containing the location of the dataset.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateExplanationDataset($model, array $optionalArgs = [])
+    {
+        $request = new UpdateExplanationDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setModel($model);
+        $requestParamHeaders['model'] = $model;
+        if (isset($optionalArgs['examples'])) {
+            $request->setExamples($optionalArgs['examples']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateExplanationDataset',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Updates a Model.
      *
      * Sample code:
@@ -1503,7 +1908,8 @@ class ModelServiceGapicClient
      *                                6. One request cannot update both the model and the version fields. You
      *                                must update them separately.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     *                                For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *                                For the `FieldMask` definition, see
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -1551,7 +1957,7 @@ class ModelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1568,7 +1974,7 @@ class ModelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1585,14 +1991,22 @@ class ModelServiceGapicClient
      *     Optional.
      *
      *     @type string $parentModel
-     *           Optional. The resource name of the model into which to upload the version. Only
-     *           specify this field when uploading a new version.
+     *           Optional. The resource name of the model into which to upload the version.
+     *           Only specify this field when uploading a new version.
      *     @type string $modelId
      *           Optional. The ID to use for the uploaded Model, which will become the final
      *           component of the model resource name.
      *
      *           This value may be up to 63 characters, and valid characters are
      *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *     @type string $serviceAccount
+     *           Optional. The user-provided custom service account to use to do the model
+     *           upload. If empty, [Vertex AI Service
+     *           Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     *           will be used. Users uploading the Model must have the
+     *           `iam.serviceAccounts.actAs` permission on this service account. Also, this
+     *           account must belong to the project specified in the `parent` field and have
+     *           all necessary read permissions.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1616,6 +2030,10 @@ class ModelServiceGapicClient
 
         if (isset($optionalArgs['modelId'])) {
             $request->setModelId($optionalArgs['modelId']);
+        }
+
+        if (isset($optionalArgs['serviceAccount'])) {
+            $request->setServiceAccount($optionalArgs['serviceAccount']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

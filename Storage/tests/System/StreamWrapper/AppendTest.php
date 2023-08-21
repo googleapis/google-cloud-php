@@ -30,13 +30,13 @@ class AppendTest extends StreamWrapperTestCase
     private $fileUrl;
     private $tailFileUrl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->fileUrl = self::generateUrl(self::$fileName);
         $this->tailFileUrl = $this->fileUrl . StreamWrapper::TAIL_NAME_SUFFIX;
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         $url = static::generateUrl(self::$fileName);
         unlink($url);

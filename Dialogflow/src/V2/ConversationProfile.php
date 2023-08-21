@@ -112,6 +112,14 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string security_settings = 13 [(.google.api.resource_reference) = {</code>
      */
     private $security_settings = '';
+    /**
+     * Configuration for Text-to-Speech synthesization.
+     * Used by Phone Gateway to specify synthesization options. If agent defines
+     * synthesization options as well, agent settings overrides the option here.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SynthesizeSpeechConfig tts_config = 18;</code>
+     */
+    private $tts_config = null;
 
     /**
      * Constructor.
@@ -160,6 +168,10 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *           Name of the CX SecuritySettings reference for the agent.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/securitySettings/<Security Settings ID>`.
+     *     @type \Google\Cloud\Dialogflow\V2\SynthesizeSpeechConfig $tts_config
+     *           Configuration for Text-to-Speech synthesization.
+     *           Used by Phone Gateway to specify synthesization options. If agent defines
+     *           synthesization options as well, agent settings overrides the option here.
      * }
      */
     public function __construct($data = NULL) {
@@ -643,6 +655,46 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->security_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for Text-to-Speech synthesization.
+     * Used by Phone Gateway to specify synthesization options. If agent defines
+     * synthesization options as well, agent settings overrides the option here.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SynthesizeSpeechConfig tts_config = 18;</code>
+     * @return \Google\Cloud\Dialogflow\V2\SynthesizeSpeechConfig|null
+     */
+    public function getTtsConfig()
+    {
+        return $this->tts_config;
+    }
+
+    public function hasTtsConfig()
+    {
+        return isset($this->tts_config);
+    }
+
+    public function clearTtsConfig()
+    {
+        unset($this->tts_config);
+    }
+
+    /**
+     * Configuration for Text-to-Speech synthesization.
+     * Used by Phone Gateway to specify synthesization options. If agent defines
+     * synthesization options as well, agent settings overrides the option here.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SynthesizeSpeechConfig tts_config = 18;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SynthesizeSpeechConfig $var
+     * @return $this
+     */
+    public function setTtsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SynthesizeSpeechConfig::class);
+        $this->tts_config = $var;
 
         return $this;
     }

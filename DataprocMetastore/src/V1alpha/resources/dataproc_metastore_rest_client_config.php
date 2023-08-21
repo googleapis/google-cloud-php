@@ -27,6 +27,18 @@ return [
             ],
         ],
         'google.cloud.metastore.v1alpha.DataprocMetastore' => [
+            'AlterMetadataResourceLocation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{service=projects/*/locations/*/services/*}:alterLocation',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*/services/*}/backups',
@@ -172,6 +184,42 @@ return [
                     ],
                 ],
             ],
+            'MoveTableToDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{service=projects/*/locations/*/services/*}:moveTableToDatabase',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryMetadata' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{service=projects/*/locations/*/services/*}:queryMetadata',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/**}:removeIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreService' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{service=projects/*/locations/*/services/*}:restore',
@@ -234,6 +282,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/federations/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -261,6 +313,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/federations/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -292,6 +349,11 @@ return [
                         'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:testIamPermissions',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/federations/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -303,6 +365,18 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=projects/*/locations/*/operations/*}',
@@ -338,4 +412,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

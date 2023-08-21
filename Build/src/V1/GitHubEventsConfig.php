@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * GitHubEventsConfig describes the configuration of a trigger that creates a
  * build whenever a GitHub event is received.
- * This message is experimental.
  *
  * Generated from protobuf message <code>google.devtools.cloudbuild.v1.GitHubEventsConfig</code>
  */

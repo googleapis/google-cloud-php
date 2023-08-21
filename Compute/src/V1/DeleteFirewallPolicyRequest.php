@@ -29,6 +29,19 @@ class DeleteFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $firewallPolicy Name of the firewall policy to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $firewallPolicy): self
+    {
+        return (new self())
+            ->setFirewallPolicy($firewallPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

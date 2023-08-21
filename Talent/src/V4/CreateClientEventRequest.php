@@ -24,12 +24,32 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. Events issued when end user interacts with customer's application that
-     * uses Cloud Talent Solution.
+     * Required. Events issued when end user interacts with customer's application
+     * that uses Cloud Talent Solution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.ClientEvent client_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $client_event = null;
+
+    /**
+     * @param string                              $parent      Required. Resource name of the tenant under which the event is created.
+     *
+     *                                                         The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *                                                         "projects/foo/tenants/bar". Please see
+     *                                                         {@see EventServiceClient::tenantName()} for help formatting this field.
+     * @param \Google\Cloud\Talent\V4\ClientEvent $clientEvent Required. Events issued when end user interacts with customer's application
+     *                                                         that uses Cloud Talent Solution.
+     *
+     * @return \Google\Cloud\Talent\V4\CreateClientEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Talent\V4\ClientEvent $clientEvent): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setClientEvent($clientEvent);
+    }
 
     /**
      * Constructor.
@@ -42,8 +62,8 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
      *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      *           "projects/foo/tenants/bar".
      *     @type \Google\Cloud\Talent\V4\ClientEvent $client_event
-     *           Required. Events issued when end user interacts with customer's application that
-     *           uses Cloud Talent Solution.
+     *           Required. Events issued when end user interacts with customer's application
+     *           that uses Cloud Talent Solution.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,8 +102,8 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Events issued when end user interacts with customer's application that
-     * uses Cloud Talent Solution.
+     * Required. Events issued when end user interacts with customer's application
+     * that uses Cloud Talent Solution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.ClientEvent client_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4\ClientEvent|null
@@ -104,8 +124,8 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Events issued when end user interacts with customer's application that
-     * uses Cloud Talent Solution.
+     * Required. Events issued when end user interacts with customer's application
+     * that uses Cloud Talent Solution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.ClientEvent client_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4\ClientEvent $var

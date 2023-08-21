@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.ListCapacityCommitments][google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments].
+ * The request for
+ * [ReservationService.ListCapacityCommitments][google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.ListCapacityCommitmentsRequest</code>
  */
@@ -34,6 +35,21 @@ class ListCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. Resource name of the parent reservation. E.g.,
+     *                       `projects/myproject/locations/US`
+     *                       Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

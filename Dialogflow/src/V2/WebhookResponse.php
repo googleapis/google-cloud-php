@@ -11,9 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The response message for a webhook call.
  * This response is validated by the Dialogflow server. If validation fails,
- * an error will be returned in the [QueryResult.diagnostic_info][google.cloud.dialogflow.v2.QueryResult.diagnostic_info] field.
- * Setting JSON fields to an empty value with the wrong type is a common error.
- * To avoid this error:
+ * an error will be returned in the
+ * [QueryResult.diagnostic_info][google.cloud.dialogflow.v2.QueryResult.diagnostic_info]
+ * field. Setting JSON fields to an empty value with the wrong type is a common
+ * error. To avoid this error:
  * - Use `""` for empty strings
  * - Use `{}` or `null` for empty objects
  * - Use `[]` or `null` for empty arrays
@@ -29,7 +30,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. The text response message intended for the end-user.
      * It is recommended to use `fulfillment_messages.text.text[0]` instead.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text] sent to the integration or API caller.
+     * [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>string fulfillment_text = 1;</code>
      */
@@ -37,7 +39,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The rich response messages intended for the end-user.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages] sent to the integration or API caller.
+     * [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 2;</code>
      */
@@ -46,17 +49,18 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. A custom field used to identify the webhook source.
      * Arbitrary strings are supported.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source] sent to the integration or API caller.
+     * [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>string source = 3;</code>
      */
     private $source = '';
     /**
-     * Optional. This field can be used to pass custom data from your webhook to the
-     * integration or API caller. Arbitrary JSON objects are supported.
-     * When provided, Dialogflow uses this field to populate
-     * [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload] sent to the integration or API caller.
-     * This field is also used by the
+     * Optional. This field can be used to pass custom data from your webhook to
+     * the integration or API caller. Arbitrary JSON objects are supported. When
+     * provided, Dialogflow uses this field to populate
+     * [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload]
+     * sent to the integration or API caller. This field is also used by the
      * [Google Assistant
      * integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
      * for rich response messages.
@@ -70,7 +74,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. The collection of output contexts that will overwrite currently
      * active contexts for the session and reset their lifespans.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts] sent to the integration or API caller.
+     * [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 5;</code>
      */
@@ -88,7 +93,9 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * entity types with. The entity synonyms apply to all languages and persist
      * for the session. Setting this data from a webhook overwrites
      * the session entity types that have been set using `detectIntent`,
-     * `streamingDetectIntent` or [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] management methods.
+     * `streamingDetectIntent` or
+     * [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType]
+     * management methods.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 10;</code>
      */
@@ -104,22 +111,25 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *           Optional. The text response message intended for the end-user.
      *           It is recommended to use `fulfillment_messages.text.text[0]` instead.
      *           When provided, Dialogflow uses this field to populate
-     *           [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text] sent to the integration or API caller.
+     *           [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text]
+     *           sent to the integration or API caller.
      *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
      *           Optional. The rich response messages intended for the end-user.
      *           When provided, Dialogflow uses this field to populate
-     *           [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages] sent to the integration or API caller.
+     *           [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages]
+     *           sent to the integration or API caller.
      *     @type string $source
      *           Optional. A custom field used to identify the webhook source.
      *           Arbitrary strings are supported.
      *           When provided, Dialogflow uses this field to populate
-     *           [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source] sent to the integration or API caller.
+     *           [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source]
+     *           sent to the integration or API caller.
      *     @type \Google\Protobuf\Struct $payload
-     *           Optional. This field can be used to pass custom data from your webhook to the
-     *           integration or API caller. Arbitrary JSON objects are supported.
-     *           When provided, Dialogflow uses this field to populate
-     *           [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload] sent to the integration or API caller.
-     *           This field is also used by the
+     *           Optional. This field can be used to pass custom data from your webhook to
+     *           the integration or API caller. Arbitrary JSON objects are supported. When
+     *           provided, Dialogflow uses this field to populate
+     *           [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload]
+     *           sent to the integration or API caller. This field is also used by the
      *           [Google Assistant
      *           integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
      *           for rich response messages.
@@ -129,7 +139,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *           Optional. The collection of output contexts that will overwrite currently
      *           active contexts for the session and reset their lifespans.
      *           When provided, Dialogflow uses this field to populate
-     *           [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts] sent to the integration or API caller.
+     *           [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts]
+     *           sent to the integration or API caller.
      *     @type \Google\Cloud\Dialogflow\V2\EventInput $followup_event_input
      *           Optional. Invokes the supplied events.
      *           When this field is set, Dialogflow ignores the `fulfillment_text`,
@@ -139,7 +150,9 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *           entity types with. The entity synonyms apply to all languages and persist
      *           for the session. Setting this data from a webhook overwrites
      *           the session entity types that have been set using `detectIntent`,
-     *           `streamingDetectIntent` or [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] management methods.
+     *           `streamingDetectIntent` or
+     *           [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType]
+     *           management methods.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,7 +164,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. The text response message intended for the end-user.
      * It is recommended to use `fulfillment_messages.text.text[0]` instead.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text] sent to the integration or API caller.
+     * [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>string fulfillment_text = 1;</code>
      * @return string
@@ -165,7 +179,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. The text response message intended for the end-user.
      * It is recommended to use `fulfillment_messages.text.text[0]` instead.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text] sent to the integration or API caller.
+     * [QueryResult.fulfillment_text][google.cloud.dialogflow.v2.QueryResult.fulfillment_text]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>string fulfillment_text = 1;</code>
      * @param string $var
@@ -182,7 +197,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The rich response messages intended for the end-user.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages] sent to the integration or API caller.
+     * [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -195,7 +211,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The rich response messages intended for the end-user.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages] sent to the integration or API caller.
+     * [QueryResult.fulfillment_messages][google.cloud.dialogflow.v2.QueryResult.fulfillment_messages]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 2;</code>
      * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $var
@@ -213,7 +230,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. A custom field used to identify the webhook source.
      * Arbitrary strings are supported.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source] sent to the integration or API caller.
+     * [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>string source = 3;</code>
      * @return string
@@ -227,7 +245,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. A custom field used to identify the webhook source.
      * Arbitrary strings are supported.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source] sent to the integration or API caller.
+     * [QueryResult.webhook_source][google.cloud.dialogflow.v2.QueryResult.webhook_source]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>string source = 3;</code>
      * @param string $var
@@ -242,11 +261,11 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field can be used to pass custom data from your webhook to the
-     * integration or API caller. Arbitrary JSON objects are supported.
-     * When provided, Dialogflow uses this field to populate
-     * [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload] sent to the integration or API caller.
-     * This field is also used by the
+     * Optional. This field can be used to pass custom data from your webhook to
+     * the integration or API caller. Arbitrary JSON objects are supported. When
+     * provided, Dialogflow uses this field to populate
+     * [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload]
+     * sent to the integration or API caller. This field is also used by the
      * [Google Assistant
      * integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
      * for rich response messages.
@@ -272,11 +291,11 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field can be used to pass custom data from your webhook to the
-     * integration or API caller. Arbitrary JSON objects are supported.
-     * When provided, Dialogflow uses this field to populate
-     * [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload] sent to the integration or API caller.
-     * This field is also used by the
+     * Optional. This field can be used to pass custom data from your webhook to
+     * the integration or API caller. Arbitrary JSON objects are supported. When
+     * provided, Dialogflow uses this field to populate
+     * [QueryResult.webhook_payload][google.cloud.dialogflow.v2.QueryResult.webhook_payload]
+     * sent to the integration or API caller. This field is also used by the
      * [Google Assistant
      * integration](https://cloud.google.com/dialogflow/docs/integrations/aog)
      * for rich response messages.
@@ -299,7 +318,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. The collection of output contexts that will overwrite currently
      * active contexts for the session and reset their lifespans.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts] sent to the integration or API caller.
+     * [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -313,7 +333,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Optional. The collection of output contexts that will overwrite currently
      * active contexts for the session and reset their lifespans.
      * When provided, Dialogflow uses this field to populate
-     * [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts] sent to the integration or API caller.
+     * [QueryResult.output_contexts][google.cloud.dialogflow.v2.QueryResult.output_contexts]
+     * sent to the integration or API caller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 5;</code>
      * @param array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $var
@@ -372,7 +393,9 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * entity types with. The entity synonyms apply to all languages and persist
      * for the session. Setting this data from a webhook overwrites
      * the session entity types that have been set using `detectIntent`,
-     * `streamingDetectIntent` or [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] management methods.
+     * `streamingDetectIntent` or
+     * [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType]
+     * management methods.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -387,7 +410,9 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * entity types with. The entity synonyms apply to all languages and persist
      * for the session. Setting this data from a webhook overwrites
      * the session entity types that have been set using `detectIntent`,
-     * `streamingDetectIntent` or [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] management methods.
+     * `streamingDetectIntent` or
+     * [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType]
+     * management methods.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 10;</code>
      * @param array<\Google\Cloud\Dialogflow\V2\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $var

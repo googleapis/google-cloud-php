@@ -20,7 +20,6 @@ namespace Google\Cloud\Storage\Tests\System;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use GuzzleHttp\Client;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -28,13 +27,11 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SignedUrlTest extends StorageTestCase
 {
-    use ExpectException;
-
     const CONTENT = 'hello world!';
 
     private $guzzle;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->guzzle = new Client;
     }
@@ -113,7 +110,7 @@ class SignedUrlTest extends StorageTestCase
      */
     public function testSignedUrlDelete($version)
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX));
 

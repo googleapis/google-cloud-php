@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent].
+ * The request message for
+ * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.AnalyzeContentRequest</code>
  */
@@ -64,6 +65,42 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     protected $input;
+
+    /**
+     * @param string                                $participant Required. The name of the participant this text comes from.
+     *                                                           Format: `projects/<Project ID>/locations/<Location
+     *                                                           ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                                                           {@see ParticipantsClient::participantName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\TextInput $textInput   The natural language text to be processed.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $participant, \Google\Cloud\Dialogflow\V2\TextInput $textInput): self
+    {
+        return (new self())
+            ->setParticipant($participant)
+            ->setTextInput($textInput);
+    }
+
+    /**
+     * @param string                                 $participant Required. The name of the participant this text comes from.
+     *                                                            Format: `projects/<Project ID>/locations/<Location
+     *                                                            ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                                                            {@see ParticipantsClient::participantName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\EventInput $eventInput  An input event to send to Dialogflow.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParticipantEventInput(string $participant, \Google\Cloud\Dialogflow\V2\EventInput $eventInput): self
+    {
+        return (new self())
+            ->setParticipant($participant)
+            ->setEventInput($eventInput);
+    }
 
     /**
      * Constructor.

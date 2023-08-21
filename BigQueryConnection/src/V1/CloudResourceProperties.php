@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudResourceProperties extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The account ID of the service created for the purpose of this connection.
+     * Output only. The account ID of the service created for the purpose of this
+     * connection.
      * The service account does not have any permissions associated with it
      * when it is created. After creation, customers delegate permissions
      * to the service account. When the connection is used in the context of an
@@ -37,7 +38,8 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service_account_id
-     *           Output only. The account ID of the service created for the purpose of this connection.
+     *           Output only. The account ID of the service created for the purpose of this
+     *           connection.
      *           The service account does not have any permissions associated with it
      *           when it is created. After creation, customers delegate permissions
      *           to the service account. When the connection is used in the context of an
@@ -53,7 +55,8 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The account ID of the service created for the purpose of this connection.
+     * Output only. The account ID of the service created for the purpose of this
+     * connection.
      * The service account does not have any permissions associated with it
      * when it is created. After creation, customers delegate permissions
      * to the service account. When the connection is used in the context of an
@@ -71,7 +74,8 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The account ID of the service created for the purpose of this connection.
+     * Output only. The account ID of the service created for the purpose of this
+     * connection.
      * The service account does not have any permissions associated with it
      * when it is created. After creation, customers delegate permissions
      * to the service account. When the connection is used in the context of an

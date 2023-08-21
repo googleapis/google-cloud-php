@@ -89,6 +89,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Dialogflow\V2\CreateConversationModelOperationMetadata_State::class);
 

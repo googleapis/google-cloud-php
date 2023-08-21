@@ -48,7 +48,7 @@ function apply_software_update_sample(string $formattedInstance): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Instance $response */
+            /** @var Instance $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

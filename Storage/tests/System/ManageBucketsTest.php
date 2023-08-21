@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Storage\Bucket;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ManageBucketsTest extends StorageTestCase
 {
-    use ExpectException;
-
     public function testListsBuckets()
     {
         $foundBuckets = [];
@@ -192,7 +189,7 @@ class ManageBucketsTest extends StorageTestCase
             [['age' => 1000]],
             [['daysSinceNoncurrentTime' => 25]],
             [['daysSinceNoncurrentTime' => -5], true], // error case
-            [['daysSinceNoncurrentTime' => -5], true], // error case
+            [['daysSinceNoncurrentTime' => -1], true], // error case
 
             [['noncurrentTimeBefore' => (new \DateTime)->format("Y-m-d")]],
             [['noncurrentTimeBefore' => new \DateTime]],

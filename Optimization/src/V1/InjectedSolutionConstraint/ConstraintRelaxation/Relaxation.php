@@ -46,7 +46,7 @@ class Relaxation extends \Google\Protobuf\Internal\Message
     /**
      * The constraint relaxation level that applies when the conditions
      * at or after `threshold_time` AND at least `threshold_visit_count` are
-     * satified.
+     * satisfied.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation.Level level = 1;</code>
      */
@@ -78,7 +78,7 @@ class Relaxation extends \Google\Protobuf\Internal\Message
      *     @type int $level
      *           The constraint relaxation level that applies when the conditions
      *           at or after `threshold_time` AND at least `threshold_visit_count` are
-     *           satified.
+     *           satisfied.
      *     @type \Google\Protobuf\Timestamp $threshold_time
      *           The time at or after which the relaxation `level` may be applied.
      *     @type int $threshold_visit_count
@@ -98,7 +98,7 @@ class Relaxation extends \Google\Protobuf\Internal\Message
     /**
      * The constraint relaxation level that applies when the conditions
      * at or after `threshold_time` AND at least `threshold_visit_count` are
-     * satified.
+     * satisfied.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation.Level level = 1;</code>
      * @return int
@@ -111,7 +111,7 @@ class Relaxation extends \Google\Protobuf\Internal\Message
     /**
      * The constraint relaxation level that applies when the conditions
      * at or after `threshold_time` AND at least `threshold_visit_count` are
-     * satified.
+     * satisfied.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation.Level level = 1;</code>
      * @param int $var

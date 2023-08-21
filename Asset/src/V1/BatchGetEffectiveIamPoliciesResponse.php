@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A response message for [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
+ * A response message for
+ * [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse</code>
  */
@@ -18,9 +19,10 @@ class BatchGetEffectiveIamPoliciesResponse extends \Google\Protobuf\Internal\Mes
     /**
      * The effective policies for a batch of resources. Note that the results
      * order is the same as the order of
-     * [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names]. When a resource does not
-     * have any effective IAM policies, its corresponding policy_result will
-     * contain empty [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
+     * [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names].
+     * When a resource does not have any effective IAM policies, its corresponding
+     * policy_result will contain empty
+     * [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy policy_results = 2;</code>
      */
@@ -35,9 +37,10 @@ class BatchGetEffectiveIamPoliciesResponse extends \Google\Protobuf\Internal\Mes
      *     @type array<\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse\EffectiveIamPolicy>|\Google\Protobuf\Internal\RepeatedField $policy_results
      *           The effective policies for a batch of resources. Note that the results
      *           order is the same as the order of
-     *           [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names]. When a resource does not
-     *           have any effective IAM policies, its corresponding policy_result will
-     *           contain empty [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
+     *           [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names].
+     *           When a resource does not have any effective IAM policies, its corresponding
+     *           policy_result will contain empty
+     *           [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +51,10 @@ class BatchGetEffectiveIamPoliciesResponse extends \Google\Protobuf\Internal\Mes
     /**
      * The effective policies for a batch of resources. Note that the results
      * order is the same as the order of
-     * [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names]. When a resource does not
-     * have any effective IAM policies, its corresponding policy_result will
-     * contain empty [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
+     * [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names].
+     * When a resource does not have any effective IAM policies, its corresponding
+     * policy_result will contain empty
+     * [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy policy_results = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -63,9 +67,10 @@ class BatchGetEffectiveIamPoliciesResponse extends \Google\Protobuf\Internal\Mes
     /**
      * The effective policies for a batch of resources. Note that the results
      * order is the same as the order of
-     * [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names]. When a resource does not
-     * have any effective IAM policies, its corresponding policy_result will
-     * contain empty [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
+     * [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names].
+     * When a resource does not have any effective IAM policies, its corresponding
+     * policy_result will contain empty
+     * [EffectiveIamPolicy.policies][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.policies].
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy policy_results = 2;</code>
      * @param array<\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse\EffectiveIamPolicy>|\Google\Protobuf\Internal\RepeatedField $var

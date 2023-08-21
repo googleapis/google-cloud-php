@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The names of the project and location that the new entry group belongs to.
+     * Required. The names of the project and location that the new entry group
+     * belongs to.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
@@ -41,13 +42,40 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     private $entry_group = null;
 
     /**
+     * @param string                                  $parent       Required. The names of the project and location that the new entry group
+     *                                                              belongs to.
+     *
+     *                                                              Note: The entry group itself and its child resources might not be
+     *                                                              stored in the location specified in its name. Please see
+     *                                                              {@see DataCatalogClient::locationName()} for help formatting this field.
+     * @param string                                  $entryGroupId Required. The ID of the entry group to create.
+     *
+     *                                                              The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     *                                                              underscores (_), and must start with a letter or underscore.
+     *                                                              The maximum size is 64 bytes when encoded in UTF-8.
+     * @param \Google\Cloud\DataCatalog\V1\EntryGroup $entryGroup   The entry group to create. Defaults to empty.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\CreateEntryGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $entryGroupId, \Google\Cloud\DataCatalog\V1\EntryGroup $entryGroup): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntryGroupId($entryGroupId)
+            ->setEntryGroup($entryGroup);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The names of the project and location that the new entry group belongs to.
+     *           Required. The names of the project and location that the new entry group
+     *           belongs to.
      *           Note: The entry group itself and its child resources might not be
      *           stored in the location specified in its name.
      *     @type string $entry_group_id
@@ -65,7 +93,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The names of the project and location that the new entry group belongs to.
+     * Required. The names of the project and location that the new entry group
+     * belongs to.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
@@ -78,7 +107,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The names of the project and location that the new entry group belongs to.
+     * Required. The names of the project and location that the new entry group
+     * belongs to.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *

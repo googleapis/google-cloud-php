@@ -31,7 +31,7 @@ class ConditionFilterTest extends SnippetTestCase
 {
     private $conditionFilter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->conditionFilter = Filter::condition(Filter::key()->regex('prefix.*'));
     }

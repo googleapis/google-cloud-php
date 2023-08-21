@@ -44,6 +44,16 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     private $available_memory = '';
     /**
+     * [Preview] The number of CPUs used in a single container instance.
+     * Default value is calculated from available memory.
+     * Supports the same values as Cloud Run, see
+     * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
+     * Example: "1" indicates 1 vCPU
+     *
+     * Generated from protobuf field <code>string available_cpu = 22;</code>
+     */
+    private $available_cpu = '';
+    /**
      * Environment variables that shall be available during function execution.
      *
      * Generated from protobuf field <code>map<string, string> environment_variables = 4;</code>
@@ -139,6 +149,22 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string revision = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $revision = '';
+    /**
+     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * can receive. Defaults to 1.
+     *
+     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
+     */
+    private $max_instance_request_concurrency = 0;
+    /**
+     * Security level configure whether the function only accepts https.
+     * This configuration is only applicable to 1st Gen functions with Http
+     * trigger. By default https is optional for 1st Gen functions; 2nd Gen
+     * functions are https ONLY.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.ServiceConfig.SecurityLevel security_level = 21;</code>
+     */
+    private $security_level = 0;
 
     /**
      * Constructor.
@@ -161,6 +187,12 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           See
      *           https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      *           a full description.
+     *     @type string $available_cpu
+     *           [Preview] The number of CPUs used in a single container instance.
+     *           Default value is calculated from available memory.
+     *           Supports the same values as Cloud Run, see
+     *           https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
+     *           Example: "1" indicates 1 vCPU
      *     @type array|\Google\Protobuf\Internal\MapField $environment_variables
      *           Environment variables that shall be available during function execution.
      *     @type int $max_instance_count
@@ -209,6 +241,14 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           Secret volumes configuration.
      *     @type string $revision
      *           Output only. The name of service revision.
+     *     @type int $max_instance_request_concurrency
+     *           [Preview] Sets the maximum number of concurrent requests that each instance
+     *           can receive. Defaults to 1.
+     *     @type int $security_level
+     *           Security level configure whether the function only accepts https.
+     *           This configuration is only applicable to 1st Gen functions with Http
+     *           trigger. By default https is optional for 1st Gen functions; 2nd Gen
+     *           functions are https ONLY.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,6 +348,40 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->available_memory = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Preview] The number of CPUs used in a single container instance.
+     * Default value is calculated from available memory.
+     * Supports the same values as Cloud Run, see
+     * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
+     * Example: "1" indicates 1 vCPU
+     *
+     * Generated from protobuf field <code>string available_cpu = 22;</code>
+     * @return string
+     */
+    public function getAvailableCpu()
+    {
+        return $this->available_cpu;
+    }
+
+    /**
+     * [Preview] The number of CPUs used in a single container instance.
+     * Default value is calculated from available memory.
+     * Supports the same values as Cloud Run, see
+     * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
+     * Example: "1" indicates 1 vCPU
+     *
+     * Generated from protobuf field <code>string available_cpu = 22;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAvailableCpu($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->available_cpu = $var;
 
         return $this;
     }
@@ -668,6 +742,66 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->revision = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * can receive. Defaults to 1.
+     *
+     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
+     * @return int
+     */
+    public function getMaxInstanceRequestConcurrency()
+    {
+        return $this->max_instance_request_concurrency;
+    }
+
+    /**
+     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * can receive. Defaults to 1.
+     *
+     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxInstanceRequestConcurrency($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_instance_request_concurrency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Security level configure whether the function only accepts https.
+     * This configuration is only applicable to 1st Gen functions with Http
+     * trigger. By default https is optional for 1st Gen functions; 2nd Gen
+     * functions are https ONLY.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.ServiceConfig.SecurityLevel security_level = 21;</code>
+     * @return int
+     */
+    public function getSecurityLevel()
+    {
+        return $this->security_level;
+    }
+
+    /**
+     * Security level configure whether the function only accepts https.
+     * This configuration is only applicable to 1st Gen functions with Http
+     * trigger. By default https is optional for 1st Gen functions; 2nd Gen
+     * functions are https ONLY.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.ServiceConfig.SecurityLevel security_level = 21;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSecurityLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Functions\V2\ServiceConfig\SecurityLevel::class);
+        $this->security_level = $var;
 
         return $this;
     }

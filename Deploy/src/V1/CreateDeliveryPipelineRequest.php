@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be created.
-     * Format should be projects/{project_id}/locations/{location_name}.
+     * Required. The parent collection in which the `DeliveryPipeline` should be
+     * created. Format should be projects/{project_id}/locations/{location_name}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,12 +51,31 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
+
+    /**
+     * @param string                                   $parent             Required. The parent collection in which the `DeliveryPipeline` should be
+     *                                                                     created. Format should be projects/{project_id}/locations/{location_name}. Please see
+     *                                                                     {@see CloudDeployClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Deploy\V1\DeliveryPipeline $deliveryPipeline   Required. The `DeliveryPipeline` to create.
+     * @param string                                   $deliveryPipelineId Required. ID of the `DeliveryPipeline`.
+     *
+     * @return \Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Deploy\V1\DeliveryPipeline $deliveryPipeline, string $deliveryPipelineId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDeliveryPipeline($deliveryPipeline)
+            ->setDeliveryPipelineId($deliveryPipelineId);
+    }
 
     /**
      * Constructor.
@@ -65,8 +84,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection in which the `DeliveryPipeline` should be created.
-     *           Format should be projects/{project_id}/locations/{location_name}.
+     *           Required. The parent collection in which the `DeliveryPipeline` should be
+     *           created. Format should be projects/{project_id}/locations/{location_name}.
      *     @type string $delivery_pipeline_id
      *           Required. ID of the `DeliveryPipeline`.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline
@@ -84,8 +103,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validate_only
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,8 +113,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be created.
-     * Format should be projects/{project_id}/locations/{location_name}.
+     * Required. The parent collection in which the `DeliveryPipeline` should be
+     * created. Format should be projects/{project_id}/locations/{location_name}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -106,8 +125,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be created.
-     * Format should be projects/{project_id}/locations/{location_name}.
+     * Required. The parent collection in which the `DeliveryPipeline` should be
+     * created. Format should be projects/{project_id}/locations/{location_name}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -230,8 +249,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -242,8 +261,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -36,6 +36,24 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
     private $job_id = '';
 
     /**
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
+     *                          belongs to.
+     * @param string $region    Required. The Dataproc region in which to handle the request.
+     * @param string $jobId     Required. The job ID.
+     *
+     * @return \Google\Cloud\Dataproc\V1\GetJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region, string $jobId): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setJobId($jobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

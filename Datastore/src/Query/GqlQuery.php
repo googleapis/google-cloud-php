@@ -21,7 +21,6 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
-use InvalidArgumentException;
 
 /**
  * Query Google Cloud Datastore using [GQL](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
@@ -149,12 +148,8 @@ class GqlQuery implements QueryInterface
     }
 
     /**
-     * Format the query for use in the API
+     * Format the query for use in the API.
      *
-     * This method is used internally to run queries and is not intended for use
-     * outside the internal library API
-     *
-     * @access private
      * @return array
      */
     public function queryObject()
@@ -182,6 +177,13 @@ class GqlQuery implements QueryInterface
     public function queryKey()
     {
         return "gqlQuery";
+    }
+
+    public function aggregation()
+    {
+        $aggregationQuery = new AggregationQuery($this);
+
+        return $aggregationQuery;
     }
 
     /**

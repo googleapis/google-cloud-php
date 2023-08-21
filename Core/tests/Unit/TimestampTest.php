@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -32,7 +32,7 @@ class TimestampTest extends TestCase
     private $dt;
     private $ts;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->dt = new \DateTime();
         $this->ts = new Timestamp($this->dt);

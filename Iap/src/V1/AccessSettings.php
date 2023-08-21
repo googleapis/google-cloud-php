@@ -39,6 +39,12 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
      */
     private $reauth_settings = null;
+    /**
+     * Settings to configure and enable allowed domains.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7;</code>
+     */
+    private $allowed_domains_settings = null;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *           Settings to configure IAP's OAuth behavior.
      *     @type \Google\Cloud\Iap\V1\ReauthSettings $reauth_settings
      *           Settings to configure reauthentication policies in IAP.
+     *     @type \Google\Cloud\Iap\V1\AllowedDomainsSettings $allowed_domains_settings
+     *           Settings to configure and enable allowed domains.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +209,42 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Iap\V1\ReauthSettings::class);
         $this->reauth_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Settings to configure and enable allowed domains.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7;</code>
+     * @return \Google\Cloud\Iap\V1\AllowedDomainsSettings|null
+     */
+    public function getAllowedDomainsSettings()
+    {
+        return $this->allowed_domains_settings;
+    }
+
+    public function hasAllowedDomainsSettings()
+    {
+        return isset($this->allowed_domains_settings);
+    }
+
+    public function clearAllowedDomainsSettings()
+    {
+        unset($this->allowed_domains_settings);
+    }
+
+    /**
+     * Settings to configure and enable allowed domains.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7;</code>
+     * @param \Google\Cloud\Iap\V1\AllowedDomainsSettings $var
+     * @return $this
+     */
+    public function setAllowedDomainsSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Iap\V1\AllowedDomainsSettings::class);
+        $this->allowed_domains_settings = $var;
 
         return $this;
     }

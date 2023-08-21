@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.BatchImportModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.BatchImportModelEvaluationSlices]
+ * Request message for
+ * [ModelService.BatchImportModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.BatchImportModelEvaluationSlices]
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.BatchImportModelEvaluationSlicesRequest</code>
  */
@@ -29,6 +30,24 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluationSlice model_evaluation_slices = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $model_evaluation_slices;
+
+    /**
+     * @param string                                             $parent                Required. The name of the parent ModelEvaluation resource.
+     *                                                                                  Format:
+     *                                                                                  `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     *                                                                                  Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[] $modelEvaluationSlices Required. Model evaluation slice resource to be imported.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $modelEvaluationSlices): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setModelEvaluationSlices($modelEvaluationSlices);
+    }
 
     /**
      * Constructor.

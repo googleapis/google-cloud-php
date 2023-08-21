@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.UpdateExecution][google.cloud.aiplatform.v1.MetadataService.UpdateExecution].
+ * Request message for
+ * [MetadataService.UpdateExecution][google.cloud.aiplatform.v1.MetadataService.UpdateExecution].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateExecutionRequest</code>
  */
@@ -17,9 +18,8 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Execution containing updates.
-     * The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name] field is used to identify the Execution
-     * to be updated.
-     * Format:
+     * The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     * field is used to identify the Execution to be updated. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Execution execution = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -27,18 +27,36 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
     private $execution = null;
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
     /**
-     * If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
-     * is created.
+     * If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
+     * is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
+     * created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
     private $allow_missing = false;
+
+    /**
+     * @param \Google\Cloud\AIPlatform\V1\Execution $execution  Required. The Execution containing updates.
+     *                                                          The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     *                                                          field is used to identify the Execution to be updated. Format:
+     *                                                          `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     * @param \Google\Protobuf\FieldMask            $updateMask Optional. A FieldMask indicating which fields should be updated.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateExecutionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Execution $execution, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setExecution($execution)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -48,16 +66,15 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\Execution $execution
      *           Required. The Execution containing updates.
-     *           The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name] field is used to identify the Execution
-     *           to be updated.
-     *           Format:
+     *           The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     *           field is used to identify the Execution to be updated. Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. A FieldMask indicating which fields should be updated.
-     *           Functionality of this field is not yet supported.
      *     @type bool $allow_missing
-     *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
-     *           is created.
+     *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
+     *           is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
+     *           created.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,9 +84,8 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Execution containing updates.
-     * The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name] field is used to identify the Execution
-     * to be updated.
-     * Format:
+     * The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     * field is used to identify the Execution to be updated. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Execution execution = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -92,9 +108,8 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Execution containing updates.
-     * The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name] field is used to identify the Execution
-     * to be updated.
-     * Format:
+     * The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     * field is used to identify the Execution to be updated. Format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Execution execution = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -111,7 +126,6 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -133,7 +147,6 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -148,8 +161,9 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
-     * is created.
+     * If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
+     * is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
+     * created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      * @return bool
@@ -160,8 +174,9 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
-     * is created.
+     * If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
+     * is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
+     * created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      * @param bool $var

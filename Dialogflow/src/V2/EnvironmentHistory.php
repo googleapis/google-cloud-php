@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for [Environments.GetEnvironmentHistory][google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory].
+ * The response message for
+ * [Environments.GetEnvironmentHistory][google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.EnvironmentHistory</code>
  */
@@ -27,15 +28,15 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Output only. The list of agent environments. There will be a maximum number of items
-     * returned based on the page_size field in the request.
+     * Output only. The list of agent environments. There will be a maximum number
+     * of items returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EnvironmentHistory.Entry entries = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $entries;
     /**
-     * Output only. Token to retrieve the next page of results, or empty if there are no
-     * more results in the list.
+     * Output only. Token to retrieve the next page of results, or empty if there
+     * are no more results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -55,11 +56,11 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      *              ID>/agent/environments/<Environment ID>`
      *           The environment ID for the default environment is `-`.
      *     @type array<\Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
-     *           Output only. The list of agent environments. There will be a maximum number of items
-     *           returned based on the page_size field in the request.
+     *           Output only. The list of agent environments. There will be a maximum number
+     *           of items returned based on the page_size field in the request.
      *     @type string $next_page_token
-     *           Output only. Token to retrieve the next page of results, or empty if there are no
-     *           more results in the list.
+     *           Output only. Token to retrieve the next page of results, or empty if there
+     *           are no more results in the list.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,8 +105,8 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of agent environments. There will be a maximum number of items
-     * returned based on the page_size field in the request.
+     * Output only. The list of agent environments. There will be a maximum number
+     * of items returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EnvironmentHistory.Entry entries = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -116,8 +117,8 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of agent environments. There will be a maximum number of items
-     * returned based on the page_size field in the request.
+     * Output only. The list of agent environments. There will be a maximum number
+     * of items returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EnvironmentHistory.Entry entries = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry>|\Google\Protobuf\Internal\RepeatedField $var
@@ -132,8 +133,8 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Token to retrieve the next page of results, or empty if there are no
-     * more results in the list.
+     * Output only. Token to retrieve the next page of results, or empty if there
+     * are no more results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -144,8 +145,8 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Token to retrieve the next page of results, or empty if there are no
-     * more results in the list.
+     * Output only. Token to retrieve the next page of results, or empty if there
+     * are no more results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

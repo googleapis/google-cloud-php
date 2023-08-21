@@ -52,6 +52,31 @@ class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Logging\V2\Settings $settings   Required. The settings to update.
+     *
+     *                                                      See [Enabling CMEK for Log
+     *                                                      Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     *                                                      for more information.
+     * @param \Google\Protobuf\FieldMask        $updateMask Optional. Field mask identifying which fields from `settings` should
+     *                                                      be updated. A field will be overwritten if and only if it is in the update
+     *                                                      mask. Output only fields cannot be updated.
+     *
+     *                                                      See [FieldMask][google.protobuf.FieldMask] for more information.
+     *
+     *                                                      For example: `"updateMask=kmsKeyName"`
+     *
+     * @return \Google\Cloud\Logging\V2\UpdateSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Logging\V2\Settings $settings, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSettings($settings)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -38,6 +38,19 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\Run\V2\Job $job Required. The Job to be updated.
+     *
+     * @return \Google\Cloud\Run\V2\UpdateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Run\V2\Job $job): self
+    {
+        return (new self())
+            ->setJob($job);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

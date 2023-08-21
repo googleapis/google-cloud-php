@@ -721,4 +721,34 @@ class VmMigrationGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Lists ReplicationCycles in a given MigratingVM.
+     * @param \Google\Cloud\VMMigration\V1\ListReplicationCyclesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListReplicationCycles(\Google\Cloud\VMMigration\V1\ListReplicationCyclesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.vmmigration.v1.VmMigration/ListReplicationCycles',
+        $argument,
+        ['\Google\Cloud\VMMigration\V1\ListReplicationCyclesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets details of a single ReplicationCycle.
+     * @param \Google\Cloud\VMMigration\V1\GetReplicationCycleRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetReplicationCycle(\Google\Cloud\VMMigration\V1\GetReplicationCycleRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.vmmigration.v1.VmMigration/GetReplicationCycle',
+        $argument,
+        ['\Google\Cloud\VMMigration\V1\ReplicationCycle', 'decode'],
+        $metadata, $options);
+    }
+
 }

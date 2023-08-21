@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-gsuite-addons/v/stable)](https://packagist.org/packages/google/cloud-gsuite-addons) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gsuite-addons.svg)](https://packagist.org/packages/google/cloud-gsuite-addons)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-gsuite-addons/latest/gsuiteaddons/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-gsuite-addons/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

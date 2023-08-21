@@ -18,8 +18,8 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Firestore\FieldPath;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -27,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class FieldPathTest extends TestCase
 {
-    use ExpectException;
-
     private $pieces = ['foo', 'bar', 'hello', 'world'];
 
     public function testConstruct()
@@ -39,7 +37,7 @@ class FieldPathTest extends TestCase
 
     public function testEmptyElements()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new FieldPath(['']);
     }
@@ -61,7 +59,7 @@ class FieldPathTest extends TestCase
      */
     public function testInvalidPaths($path)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         FieldPath::fromString($path);
     }

@@ -20,12 +20,13 @@ class Service
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Security\Privateca\V1\Resources::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ôp
-0google/cloud/security/privateca/v1/service.proto"google.cloud.security.privateca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/security/privateca/v1/resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ü
+År
+0google/cloud/security/privateca/v1/service.proto"google.cloud.security.privateca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/security/privateca/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ü
 CreateCertificateRequest7
 parent (	B\'‡A˙A!
 privateca.googleapis.com/CaPool
@@ -74,12 +75,13 @@ request_id (	B‡A"˙
 certificate_authority_id (	B‡A\\
 certificate_authority (28.google.cloud.security.privateca.v1.CertificateAuthorityB‡A
 
-request_id (	B‡A"Ç
+request_id (	B‡A"´
 "DisableCertificateAuthorityRequestC
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
-request_id (	B‡A"Å
+request_id (	B‡A\'
+ignore_dependent_resources (B‡A"Å
 !EnableCertificateAuthorityRequestC
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
@@ -109,14 +111,15 @@ page_token (	B‡A
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
-request_id (	B‡A" 
+request_id (	B‡A"Û
 !DeleteCertificateAuthorityRequestC
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
 request_id (	B‡A\'
 ignore_active_certificates (B‡A
-skip_grace_period (B‡A"–
+skip_grace_period (B‡A\'
+ignore_dependent_resources (B‡A"–
 !UpdateCertificateAuthorityRequest\\
 certificate_authority (28.google.cloud.security.privateca.v1.CertificateAuthorityB‡A4
 update_mask (2.google.protobuf.FieldMaskB‡A
@@ -134,12 +137,13 @@ request_id (	B‡A"¶
 ca_pool (2*.google.cloud.security.privateca.v1.CaPoolB‡A4
 update_mask (2.google.protobuf.FieldMaskB‡A
 
-request_id (	B‡A"e
+request_id (	B‡A"é
 DeleteCaPoolRequest5
 name (	B\'‡A˙A!
 privateca.googleapis.com/CaPool
 
-request_id (	B‡A"h
+request_id (	B‡A\'
+ignore_dependent_resources (B‡A"h
 FetchCaCertsRequest8
 ca_pool (	B\'‡A˙A!
 privateca.googleapis.com/CaPool
@@ -267,8 +271,8 @@ request_id (	B‡A"Ä
 GetCertificateTemplateA.google.cloud.security.privateca.v1.GetCertificateTemplateRequest7.google.cloud.security.privateca.v1.CertificateTemplate"GÇ”‰ì:8/v1/{name=projects/*/locations/*/certificateTemplates/*}⁄Aname
 ListCertificateTemplatesC.google.cloud.security.privateca.v1.ListCertificateTemplatesRequestD.google.cloud.security.privateca.v1.ListCertificateTemplatesResponse"IÇ”‰ì:8/v1/{parent=projects/*/locations/*}/certificateTemplates⁄Aparentº
 UpdateCertificateTemplateD.google.cloud.security.privateca.v1.UpdateCertificateTemplateRequest.google.longrunning.Operation"πÇ”‰ìe2M/v1/{certificate_template.name=projects/*/locations/*/certificateTemplates/*}:certificate_template⁄A certificate_template,update_mask A(
-CertificateTemplateOperationMetadataL Aprivateca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB˝
-&com.google.cloud.security.privateca.v1BPrivateCaProtoPZKgoogle.golang.org/genproto/googleapis/cloud/security/privateca/v1;privateca¯™"Google.Cloud.Security.PrivateCA.V1 "Google\\Cloud\\Security\\PrivateCA\\V1Í&Google::Cloud::Security::PrivateCA::V1bproto3'
+CertificateTemplateOperationMetadataL Aprivateca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBˆ
+&com.google.cloud.security.privateca.v1BPrivateCaProtoPZDcloud.google.com/go/security/privateca/apiv1/privatecapb;privatecapb¯™"Google.Cloud.Security.PrivateCA.V1 "Google\\Cloud\\Security\\PrivateCA\\V1Í&Google::Cloud::Security::PrivateCA::V1bproto3'
         , true);
 
         static::$is_initialized = true;

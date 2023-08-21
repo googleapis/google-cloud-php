@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Further describes this job's output.
- * Supplements [output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config].
+ * Supplements
+ * [output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.BatchPredictionJob.OutputInfo</code>
  */
@@ -34,8 +35,8 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcs_output_directory
-     *           Output only. The full path of the Cloud Storage directory created, into which
-     *           the prediction output is written.
+     *           Output only. The full path of the Cloud Storage directory created, into
+     *           which the prediction output is written.
      *     @type string $bigquery_output_dataset
      *           Output only. The path of the BigQuery dataset created, in
      *           `bq://projectId.bqDatasetId`
@@ -53,8 +54,8 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The full path of the Cloud Storage directory created, into which
-     * the prediction output is written.
+     * Output only. The full path of the Cloud Storage directory created, into
+     * which the prediction output is written.
      *
      * Generated from protobuf field <code>string gcs_output_directory = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -70,8 +71,8 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The full path of the Cloud Storage directory created, into which
-     * the prediction output is written.
+     * Output only. The full path of the Cloud Storage directory created, into
+     * which the prediction output is written.
      *
      * Generated from protobuf field <code>string gcs_output_directory = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

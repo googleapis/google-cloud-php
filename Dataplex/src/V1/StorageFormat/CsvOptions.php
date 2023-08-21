@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CsvOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8", and
-     * "ISO-8859-1". Defaults to UTF-8 if unspecified.
+     * Optional. The character encoding of the data. Accepts "US-ASCII",
+     * "UTF-8", and "ISO-8859-1". Defaults to UTF-8 if unspecified.
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encoding = '';
     /**
-     * Optional. The number of rows to interpret as header rows that should be skipped
-     * when reading data rows. Defaults to 0.
+     * Optional. The number of rows to interpret as header rows that should be
+     * skipped when reading data rows. Defaults to 0.
      *
      * Generated from protobuf field <code>int32 header_rows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -36,8 +36,9 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      */
     private $delimiter = '';
     /**
-     * Optional. The character used to quote column values. Accepts '"' and '''.
-     * Defaults to '"' if unspecified.
+     * Optional. The character used to quote column values. Accepts '"'
+     * (double quotation mark) or ''' (single quotation mark). Defaults to
+     * '"' (double quotation mark) if unspecified.
      *
      * Generated from protobuf field <code>string quote = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,16 +51,17 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $encoding
-     *           Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8", and
-     *           "ISO-8859-1". Defaults to UTF-8 if unspecified.
+     *           Optional. The character encoding of the data. Accepts "US-ASCII",
+     *           "UTF-8", and "ISO-8859-1". Defaults to UTF-8 if unspecified.
      *     @type int $header_rows
-     *           Optional. The number of rows to interpret as header rows that should be skipped
-     *           when reading data rows. Defaults to 0.
+     *           Optional. The number of rows to interpret as header rows that should be
+     *           skipped when reading data rows. Defaults to 0.
      *     @type string $delimiter
      *           Optional. The delimiter used to separate values. Defaults to ','.
      *     @type string $quote
-     *           Optional. The character used to quote column values. Accepts '"' and '''.
-     *           Defaults to '"' if unspecified.
+     *           Optional. The character used to quote column values. Accepts '"'
+     *           (double quotation mark) or ''' (single quotation mark). Defaults to
+     *           '"' (double quotation mark) if unspecified.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,8 +70,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8", and
-     * "ISO-8859-1". Defaults to UTF-8 if unspecified.
+     * Optional. The character encoding of the data. Accepts "US-ASCII",
+     * "UTF-8", and "ISO-8859-1". Defaults to UTF-8 if unspecified.
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -80,8 +82,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character encoding of the data. Accepts "US-ASCII", "UTF-8", and
-     * "ISO-8859-1". Defaults to UTF-8 if unspecified.
+     * Optional. The character encoding of the data. Accepts "US-ASCII",
+     * "UTF-8", and "ISO-8859-1". Defaults to UTF-8 if unspecified.
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -96,8 +98,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of rows to interpret as header rows that should be skipped
-     * when reading data rows. Defaults to 0.
+     * Optional. The number of rows to interpret as header rows that should be
+     * skipped when reading data rows. Defaults to 0.
      *
      * Generated from protobuf field <code>int32 header_rows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -108,8 +110,8 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of rows to interpret as header rows that should be skipped
-     * when reading data rows. Defaults to 0.
+     * Optional. The number of rows to interpret as header rows that should be
+     * skipped when reading data rows. Defaults to 0.
      *
      * Generated from protobuf field <code>int32 header_rows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -150,8 +152,9 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character used to quote column values. Accepts '"' and '''.
-     * Defaults to '"' if unspecified.
+     * Optional. The character used to quote column values. Accepts '"'
+     * (double quotation mark) or ''' (single quotation mark). Defaults to
+     * '"' (double quotation mark) if unspecified.
      *
      * Generated from protobuf field <code>string quote = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -162,8 +165,9 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character used to quote column values. Accepts '"' and '''.
-     * Defaults to '"' if unspecified.
+     * Optional. The character used to quote column values. Accepts '"'
+     * (double quotation mark) or ''' (single quotation mark). Defaults to
+     * '"' (double quotation mark) if unspecified.
      *
      * Generated from protobuf field <code>string quote = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

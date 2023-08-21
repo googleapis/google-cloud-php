@@ -40,6 +40,28 @@ class CreateEkmConnectionRequest extends \Google\Protobuf\Internal\Message
     private $ekm_connection = null;
 
     /**
+     * @param string                             $parent          Required. The resource name of the location associated with the
+     *                                                            [EkmConnection][google.cloud.kms.v1.EkmConnection], in the format
+     *                                                            `projects/&#42;/locations/*`. Please see
+     *                                                            {@see EkmServiceClient::locationName()} for help formatting this field.
+     * @param string                             $ekmConnectionId Required. It must be unique within a location and match the regular
+     *                                                            expression `[a-zA-Z0-9_-]{1,63}`.
+     * @param \Google\Cloud\Kms\V1\EkmConnection $ekmConnection   Required. An [EkmConnection][google.cloud.kms.v1.EkmConnection] with
+     *                                                            initial field values.
+     *
+     * @return \Google\Cloud\Kms\V1\CreateEkmConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $ekmConnectionId, \Google\Cloud\Kms\V1\EkmConnection $ekmConnection): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEkmConnectionId($ekmConnectionId)
+            ->setEkmConnection($ekmConnection);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

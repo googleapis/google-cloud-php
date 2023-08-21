@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts].
+ * Response message for
+ * [MetadataService.ListArtifacts][google.cloud.aiplatform.v1.MetadataService.ListArtifacts].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListArtifactsResponse</code>
  */
@@ -22,7 +23,8 @@ class ListArtifactsResponse extends \Google\Protobuf\Internal\Message
      */
     private $artifacts;
     /**
-     * A token, which can be sent as [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
+     * A token, which can be sent as
+     * [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
      * to retrieve the next page.
      * If this field is not populated, there are no subsequent pages.
      *
@@ -39,7 +41,8 @@ class ListArtifactsResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $artifacts
      *           The Artifacts retrieved from the MetadataStore.
      *     @type string $next_page_token
-     *           A token, which can be sent as [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
+     *           A token, which can be sent as
+     *           [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
      *           to retrieve the next page.
      *           If this field is not populated, there are no subsequent pages.
      * }
@@ -76,7 +79,8 @@ class ListArtifactsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
+     * A token, which can be sent as
+     * [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
      * to retrieve the next page.
      * If this field is not populated, there are no subsequent pages.
      *
@@ -89,7 +93,8 @@ class ListArtifactsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
+     * A token, which can be sent as
+     * [ListArtifactsRequest.page_token][google.cloud.aiplatform.v1.ListArtifactsRequest.page_token]
      * to retrieve the next page.
      * If this field is not populated, there are no subsequent pages.
      *

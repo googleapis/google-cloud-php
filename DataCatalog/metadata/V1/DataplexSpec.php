@@ -18,7 +18,7 @@ class DataplexSpec
         \GPBMetadata\Google\Cloud\Datacatalog\V1\PhysicalSchema::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬
+Ω
 /google/cloud/datacatalog/v1/dataplex_spec.protogoogle.cloud.datacatalog.v11google/cloud/datacatalog/v1/physical_schema.proto"è
 DataplexSpec
 asset (	@
@@ -36,8 +36,8 @@ project_id (	"W
 system (2-.google.cloud.datacatalog.v1.IntegratedSystem
 fully_qualified_name (	
 google_cloud_resource (	
-data_catalog_entry (	Bﬁ
-com.google.cloud.datacatalog.v1BDataplexSpecProtoPZFgoogle.golang.org/genproto/googleapis/cloud/datacatalog/v1;datacatalog¯™Google.Cloud.DataCatalog.V1 Google\\Cloud\\DataCatalog\\V1ÍGoogle::Cloud::DataCatalog::V1bproto3'
+data_catalog_entry (	BŸ
+com.google.cloud.datacatalog.v1BDataplexSpecProtoPZAcloud.google.com/go/datacatalog/apiv1/datacatalogpb;datacatalogpb¯™Google.Cloud.DataCatalog.V1 Google\\Cloud\\DataCatalog\\V1ÍGoogle::Cloud::DataCatalog::V1bproto3'
         , true);
 
         static::$is_initialized = true;

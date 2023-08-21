@@ -30,6 +30,22 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
     private $repository = null;
 
     /**
+     * @param \Google\Cloud\Dataform\V1beta1\Repository $repository Required. The repository to update.
+     * @param \Google\Protobuf\FieldMask                $updateMask Optional. Specifies the fields to be updated in the repository. If left unset,
+     *                                                              all fields will be updated.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dataform\V1beta1\Repository $repository, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setRepository($repository)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

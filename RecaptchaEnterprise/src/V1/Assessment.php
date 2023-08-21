@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A recaptcha assessment resource.
+ * A reCAPTCHA Enterprise assessment resource.
  *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.Assessment</code>
  */
@@ -41,12 +41,32 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     private $token_properties = null;
     /**
-     * Assessment returned by Account Defender when a hashed_account_id is
+     * Account verification information for identity verification. The assessment
+     * event must include a token and site key to use this feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     */
+    private $account_verification = null;
+    /**
+     * Assessment returned by account defender when a hashed_account_id is
      * provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
      */
     private $account_defender_assessment = null;
+    /**
+     * The private password leak verification field contains the parameters that
+     * are used to to check for leaks privately without sharing user credentials.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
+     */
+    private $private_password_leak_verification = null;
+    /**
+     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
+     */
+    private $fraud_prevention_assessment = null;
 
     /**
      * Constructor.
@@ -63,9 +83,17 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *           Output only. The risk analysis result for the event being assessed.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties $token_properties
      *           Output only. Properties of the provided event token.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo $account_verification
+     *           Account verification information for identity verification. The assessment
+     *           event must include a token and site key to use this feature.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $account_defender_assessment
-     *           Assessment returned by Account Defender when a hashed_account_id is
+     *           Assessment returned by account defender when a hashed_account_id is
      *           provided.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $private_password_leak_verification
+     *           The private password leak verification field contains the parameters that
+     *           are used to to check for leaks privately without sharing user credentials.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment $fraud_prevention_assessment
+     *           Assessment returned by Fraud Prevention when TransactionData is provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -210,7 +238,45 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by Account Defender when a hashed_account_id is
+     * Account verification information for identity verification. The assessment
+     * event must include a token and site key to use this feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo|null
+     */
+    public function getAccountVerification()
+    {
+        return $this->account_verification;
+    }
+
+    public function hasAccountVerification()
+    {
+        return isset($this->account_verification);
+    }
+
+    public function clearAccountVerification()
+    {
+        unset($this->account_verification);
+    }
+
+    /**
+     * Account verification information for identity verification. The assessment
+     * event must include a token and site key to use this feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo $var
+     * @return $this
+     */
+    public function setAccountVerification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo::class);
+        $this->account_verification = $var;
+
+        return $this;
+    }
+
+    /**
+     * Assessment returned by account defender when a hashed_account_id is
      * provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
@@ -232,7 +298,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by Account Defender when a hashed_account_id is
+     * Assessment returned by account defender when a hashed_account_id is
      * provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
@@ -243,6 +309,80 @@ class Assessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment::class);
         $this->account_defender_assessment = $var;
+
+        return $this;
+    }
+
+    /**
+     * The private password leak verification field contains the parameters that
+     * are used to to check for leaks privately without sharing user credentials.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification|null
+     */
+    public function getPrivatePasswordLeakVerification()
+    {
+        return $this->private_password_leak_verification;
+    }
+
+    public function hasPrivatePasswordLeakVerification()
+    {
+        return isset($this->private_password_leak_verification);
+    }
+
+    public function clearPrivatePasswordLeakVerification()
+    {
+        unset($this->private_password_leak_verification);
+    }
+
+    /**
+     * The private password leak verification field contains the parameters that
+     * are used to to check for leaks privately without sharing user credentials.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $var
+     * @return $this
+     */
+    public function setPrivatePasswordLeakVerification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification::class);
+        $this->private_password_leak_verification = $var;
+
+        return $this;
+    }
+
+    /**
+     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment|null
+     */
+    public function getFraudPreventionAssessment()
+    {
+        return $this->fraud_prevention_assessment;
+    }
+
+    public function hasFraudPreventionAssessment()
+    {
+        return isset($this->fraud_prevention_assessment);
+    }
+
+    public function clearFraudPreventionAssessment()
+    {
+        unset($this->fraud_prevention_assessment);
+    }
+
+    /**
+     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment $var
+     * @return $this
+     */
+    public function setFraudPreventionAssessment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment::class);
+        $this->fraud_prevention_assessment = $var;
 
         return $this;
     }

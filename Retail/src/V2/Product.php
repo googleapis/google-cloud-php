@@ -105,7 +105,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * belonging to several parallel categories. Strongly recommended using the
      * full path for better search / recommendation quality.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * For example, if a shoes product belongs to both
      * ["Shoes & Accessories" -> "Shoes"] and
@@ -239,7 +239,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The timestamp when this [Product][google.cloud.retail.v2.Product] becomes
      * available for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
+     * that this is only applicable to
+     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
+     * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
+     * ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp available_time = 18;</code>
      */
@@ -437,10 +441,12 @@ class Product extends \Google\Protobuf\Internal\Message
      * Note: Returning more fields in
      * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      * response payload size and serving latency.
+     * This field is deprecated. Use the retrievable site-wide control instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30 [deprecated = true];</code>
+     * @deprecated
      */
-    private $retrievable_fields = null;
+    protected $retrievable_fields = null;
     /**
      * Output only. Product variants grouped together on primary product which
      * share similar product attributes. It's automatically grouped by
@@ -457,8 +463,11 @@ class Product extends \Google\Protobuf\Internal\Message
     private $variants;
     /**
      * Output only. A list of local inventories specific to different places.
-     * This is only available for users who have Retail Search enabled, and it can
-     * be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
+     * This field can be managed by
+     * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+     * and
+     * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+     * APIs if fine-grained, high-volume updates are necessary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -473,7 +482,13 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           The timestamp when this product becomes unavailable for
-     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
+     *           that this is only applicable to
+     *           [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
+     *           [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
+     *           ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
+     *           In general, we suggest the users to delete the stale products explicitly,
+     *           instead of using this field to determine staleness.
      *           If it is set, the [Product][google.cloud.retail.v2.Product] is not
      *           available for
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
@@ -489,7 +504,13 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Corresponding properties: Google Merchant Center property
      *           [expiration_date](https://support.google.com/merchants/answer/6324499).
      *     @type \Google\Protobuf\Duration $ttl
-     *           Input only. The TTL (time to live) of the product.
+     *           Input only. The TTL (time to live) of the product. Note that this is only
+     *           applicable to [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     *           and [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION],
+     *           and ignored for
+     *           [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]. In general,
+     *           we suggest the users to delete the stale products explicitly, instead of
+     *           using this field to determine staleness.
      *           If it is set, it must be a non-negative value, and
      *           [expire_time][google.cloud.retail.v2.Product.expire_time] is set as
      *           current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl]. The
@@ -568,7 +589,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           belonging to several parallel categories. Strongly recommended using the
      *           full path for better search / recommendation quality.
      *           To represent full path of category, use '>' sign to separate different
-     *           hierarchies. If '>' is part of the category name, please replace it with
+     *           hierarchies. If '>' is part of the category name, replace it with
      *           other character(s).
      *           For example, if a shoes product belongs to both
      *           ["Shoes & Accessories" -> "Shoes"] and
@@ -666,7 +687,11 @@ class Product extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $available_time
      *           The timestamp when this [Product][google.cloud.retail.v2.Product] becomes
      *           available for
-     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
+     *           that this is only applicable to
+     *           [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
+     *           [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
+     *           ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
      *     @type int $availability
      *           The online availability of the [Product][google.cloud.retail.v2.Product].
      *           Default to
@@ -808,6 +833,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Note: Returning more fields in
      *           [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      *           response payload size and serving latency.
+     *           This field is deprecated. Use the retrievable site-wide control instead.
      *     @type array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $variants
      *           Output only. Product variants grouped together on primary product which
      *           share similar product attributes. It's automatically grouped by
@@ -820,8 +846,11 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Do not set this field in API requests.
      *     @type array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $local_inventories
      *           Output only. A list of local inventories specific to different places.
-     *           This is only available for users who have Retail Search enabled, and it can
-     *           be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
+     *           This field can be managed by
+     *           [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+     *           and
+     *           [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+     *           APIs if fine-grained, high-volume updates are necessary.
      * }
      */
     public function __construct($data = NULL) {
@@ -831,7 +860,13 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The timestamp when this product becomes unavailable for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
+     * that this is only applicable to
+     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
+     * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
+     * ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
+     * In general, we suggest the users to delete the stale products explicitly,
+     * instead of using this field to determine staleness.
      * If it is set, the [Product][google.cloud.retail.v2.Product] is not
      * available for
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
@@ -862,7 +897,13 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The timestamp when this product becomes unavailable for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
+     * that this is only applicable to
+     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
+     * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
+     * ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
+     * In general, we suggest the users to delete the stale products explicitly,
+     * instead of using this field to determine staleness.
      * If it is set, the [Product][google.cloud.retail.v2.Product] is not
      * available for
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
@@ -891,7 +932,13 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The TTL (time to live) of the product.
+     * Input only. The TTL (time to live) of the product. Note that this is only
+     * applicable to [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     * and [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION],
+     * and ignored for
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]. In general,
+     * we suggest the users to delete the stale products explicitly, instead of
+     * using this field to determine staleness.
      * If it is set, it must be a non-negative value, and
      * [expire_time][google.cloud.retail.v2.Product.expire_time] is set as
      * current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl]. The
@@ -920,7 +967,13 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The TTL (time to live) of the product.
+     * Input only. The TTL (time to live) of the product. Note that this is only
+     * applicable to [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
+     * and [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION],
+     * and ignored for
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]. In general,
+     * we suggest the users to delete the stale products explicitly, instead of
+     * using this field to determine staleness.
      * If it is set, it must be a non-negative value, and
      * [expire_time][google.cloud.retail.v2.Product.expire_time] is set as
      * current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl]. The
@@ -1204,7 +1257,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * belonging to several parallel categories. Strongly recommended using the
      * full path for better search / recommendation quality.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * For example, if a shoes product belongs to both
      * ["Shoes & Accessories" -> "Shoes"] and
@@ -1240,7 +1293,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * belonging to several parallel categories. Strongly recommended using the
      * full path for better search / recommendation quality.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * For example, if a shoes product belongs to both
      * ["Shoes & Accessories" -> "Shoes"] and
@@ -1620,7 +1673,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The timestamp when this [Product][google.cloud.retail.v2.Product] becomes
      * available for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
+     * that this is only applicable to
+     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
+     * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
+     * ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp available_time = 18;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -1643,7 +1700,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The timestamp when this [Product][google.cloud.retail.v2.Product] becomes
      * available for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
+     * that this is only applicable to
+     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
+     * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
+     * ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp available_time = 18;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -2247,22 +2308,27 @@ class Product extends \Google\Protobuf\Internal\Message
      * Note: Returning more fields in
      * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      * response payload size and serving latency.
+     * This field is deprecated. Use the retrievable site-wide control instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30 [deprecated = true];</code>
      * @return \Google\Protobuf\FieldMask|null
+     * @deprecated
      */
     public function getRetrievableFields()
     {
+        @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
         return $this->retrievable_fields;
     }
 
     public function hasRetrievableFields()
     {
+        @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
         return isset($this->retrievable_fields);
     }
 
     public function clearRetrievableFields()
     {
+        @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
         unset($this->retrievable_fields);
     }
 
@@ -2311,13 +2377,16 @@ class Product extends \Google\Protobuf\Internal\Message
      * Note: Returning more fields in
      * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      * response payload size and serving latency.
+     * This field is deprecated. Use the retrievable site-wide control instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30 [deprecated = true];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
+     * @deprecated
      */
     public function setRetrievableFields($var)
     {
+        @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->retrievable_fields = $var;
 
@@ -2368,8 +2437,11 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of local inventories specific to different places.
-     * This is only available for users who have Retail Search enabled, and it can
-     * be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
+     * This field can be managed by
+     * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+     * and
+     * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+     * APIs if fine-grained, high-volume updates are necessary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -2381,8 +2453,11 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of local inventories specific to different places.
-     * This is only available for users who have Retail Search enabled, and it can
-     * be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
+     * This field can be managed by
+     * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+     * and
+     * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+     * APIs if fine-grained, high-volume updates are necessary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $var

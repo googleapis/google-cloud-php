@@ -23,30 +23,31 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of partitions to return. The service may return fewer than
-     * this value. If unspecified, 100 partitions will be returned by default. The
-     * maximum page size is 500; larger values will will be truncated to 500.
+     * Optional. Maximum number of partitions to return. The service may return
+     * fewer than this value. If unspecified, 100 partitions will be returned by
+     * default. The maximum page size is 500; larger values will will be truncated
+     * to 500.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `ListPartitions` call. Provide
-     * this to retrieve the subsequent page. When paginating, all other parameters
-     * provided to `ListPartitions` must match the call that provided the
-     * page token.
+     * Optional. Page token received from a previous `ListPartitions` call.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters provided to `ListPartitions` must match the call that provided
+     * the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. Filter the partitions returned to the caller using a key vslue pair
-     * expression. The filter expression supports:
-     * - logical operators: AND, OR
+     * Optional. Filter the partitions returned to the caller using a key value
+     * pair expression. Supported operators and syntax:
+     * - logic operators: AND, OR
      * - comparison operators: <, >, >=, <= ,=, !=
      * - LIKE operators:
-     *     - The right hand of a LIKE operator supports “.” and
-     *       “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *   - The right hand of a LIKE operator supports "." and
+     *     "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      * - parenthetical grouping: ( )
      * Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      * **Notes:**
@@ -61,6 +62,21 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent entity:
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
+     *                       {@see MetadataServiceClient::entityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListPartitionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -70,22 +86,23 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent entity:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
      *     @type int $page_size
-     *           Optional. Maximum number of partitions to return. The service may return fewer than
-     *           this value. If unspecified, 100 partitions will be returned by default. The
-     *           maximum page size is 500; larger values will will be truncated to 500.
+     *           Optional. Maximum number of partitions to return. The service may return
+     *           fewer than this value. If unspecified, 100 partitions will be returned by
+     *           default. The maximum page size is 500; larger values will will be truncated
+     *           to 500.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `ListPartitions` call. Provide
-     *           this to retrieve the subsequent page. When paginating, all other parameters
-     *           provided to `ListPartitions` must match the call that provided the
-     *           page token.
+     *           Optional. Page token received from a previous `ListPartitions` call.
+     *           Provide this to retrieve the subsequent page. When paginating, all other
+     *           parameters provided to `ListPartitions` must match the call that provided
+     *           the page token.
      *     @type string $filter
-     *           Optional. Filter the partitions returned to the caller using a key vslue pair
-     *           expression. The filter expression supports:
-     *           - logical operators: AND, OR
+     *           Optional. Filter the partitions returned to the caller using a key value
+     *           pair expression. Supported operators and syntax:
+     *           - logic operators: AND, OR
      *           - comparison operators: <, >, >=, <= ,=, !=
      *           - LIKE operators:
-     *               - The right hand of a LIKE operator supports “.” and
-     *                 “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *             - The right hand of a LIKE operator supports "." and
+     *               "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      *           - parenthetical grouping: ( )
      *           Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      *           **Notes:**
@@ -130,9 +147,10 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of partitions to return. The service may return fewer than
-     * this value. If unspecified, 100 partitions will be returned by default. The
-     * maximum page size is 500; larger values will will be truncated to 500.
+     * Optional. Maximum number of partitions to return. The service may return
+     * fewer than this value. If unspecified, 100 partitions will be returned by
+     * default. The maximum page size is 500; larger values will will be truncated
+     * to 500.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -143,9 +161,10 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of partitions to return. The service may return fewer than
-     * this value. If unspecified, 100 partitions will be returned by default. The
-     * maximum page size is 500; larger values will will be truncated to 500.
+     * Optional. Maximum number of partitions to return. The service may return
+     * fewer than this value. If unspecified, 100 partitions will be returned by
+     * default. The maximum page size is 500; larger values will will be truncated
+     * to 500.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -160,10 +179,10 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListPartitions` call. Provide
-     * this to retrieve the subsequent page. When paginating, all other parameters
-     * provided to `ListPartitions` must match the call that provided the
-     * page token.
+     * Optional. Page token received from a previous `ListPartitions` call.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters provided to `ListPartitions` must match the call that provided
+     * the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -174,10 +193,10 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListPartitions` call. Provide
-     * this to retrieve the subsequent page. When paginating, all other parameters
-     * provided to `ListPartitions` must match the call that provided the
-     * page token.
+     * Optional. Page token received from a previous `ListPartitions` call.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters provided to `ListPartitions` must match the call that provided
+     * the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -192,13 +211,13 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter the partitions returned to the caller using a key vslue pair
-     * expression. The filter expression supports:
-     * - logical operators: AND, OR
+     * Optional. Filter the partitions returned to the caller using a key value
+     * pair expression. Supported operators and syntax:
+     * - logic operators: AND, OR
      * - comparison operators: <, >, >=, <= ,=, !=
      * - LIKE operators:
-     *     - The right hand of a LIKE operator supports “.” and
-     *       “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *   - The right hand of a LIKE operator supports "." and
+     *     "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      * - parenthetical grouping: ( )
      * Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      * **Notes:**
@@ -217,13 +236,13 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter the partitions returned to the caller using a key vslue pair
-     * expression. The filter expression supports:
-     * - logical operators: AND, OR
+     * Optional. Filter the partitions returned to the caller using a key value
+     * pair expression. Supported operators and syntax:
+     * - logic operators: AND, OR
      * - comparison operators: <, >, >=, <= ,=, !=
      * - LIKE operators:
-     *     - The right hand of a LIKE operator supports “.” and
-     *       “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *   - The right hand of a LIKE operator supports "." and
+     *     "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      * - parenthetical grouping: ( )
      * Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      * **Notes:**

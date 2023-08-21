@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.CreateFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.CreateFeaturestore].
+ * Request message for
+ * [FeaturestoreService.CreateFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.CreateFeaturestore].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateFeaturestoreRequest</code>
  */
@@ -18,7 +19,7 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create Featurestores.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +31,8 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      */
     private $featurestore = null;
     /**
-     * Required. The ID to use for this Featurestore, which will become the final component
-     * of the Featurestore's resource name.
+     * Required. The ID to use for this Featurestore, which will become the final
+     * component of the Featurestore's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within the project and location.
@@ -39,6 +40,50 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string featurestore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $featurestore_id = '';
+
+    /**
+     * @param string                                   $parent       Required. The resource name of the Location to create Featurestores.
+     *                                                               Format:
+     *                                                               `projects/{project}/locations/{location}`
+     *                                                               Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore Required. The Featurestore to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Featurestore $featurestore): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFeaturestore($featurestore);
+    }
+
+    /**
+     * @param string                                   $parent         Required. The resource name of the Location to create Featurestores.
+     *                                                                 Format:
+     *                                                                 `projects/{project}/locations/{location}`
+     *                                                                 Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore   Required. The Featurestore to create.
+     * @param string                                   $featurestoreId Required. The ID to use for this Featurestore, which will become the final
+     *                                                                 component of the Featurestore's resource name.
+     *
+     *                                                                 This value may be up to 60 characters, and valid characters are
+     *                                                                 `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *                                                                 The value must be unique within the project and location.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentFeaturestoreFeaturestoreId(string $parent, \Google\Cloud\AIPlatform\V1\Featurestore $featurestore, string $featurestoreId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFeaturestore($featurestore)
+            ->setFeaturestoreId($featurestoreId);
+    }
 
     /**
      * Constructor.
@@ -49,12 +94,12 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the Location to create Featurestores.
      *           Format:
-     *           `projects/{project}/locations/{location}'`
+     *           `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\AIPlatform\V1\Featurestore $featurestore
      *           Required. The Featurestore to create.
      *     @type string $featurestore_id
-     *           Required. The ID to use for this Featurestore, which will become the final component
-     *           of the Featurestore's resource name.
+     *           Required. The ID to use for this Featurestore, which will become the final
+     *           component of the Featurestore's resource name.
      *           This value may be up to 60 characters, and valid characters are
      *           `[a-z0-9_]`. The first character cannot be a number.
      *           The value must be unique within the project and location.
@@ -68,7 +113,7 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create Featurestores.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +126,7 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create Featurestores.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -132,8 +177,8 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for this Featurestore, which will become the final component
-     * of the Featurestore's resource name.
+     * Required. The ID to use for this Featurestore, which will become the final
+     * component of the Featurestore's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within the project and location.
@@ -147,8 +192,8 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for this Featurestore, which will become the final component
-     * of the Featurestore's resource name.
+     * Required. The ID to use for this Featurestore, which will become the final
+     * component of the Featurestore's resource name.
      * This value may be up to 60 characters, and valid characters are
      * `[a-z0-9_]`. The first character cannot be a number.
      * The value must be unique within the project and location.

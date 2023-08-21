@@ -65,6 +65,12 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlBackendType backend_type = 32;</code>
      */
     private $backend_type = 0;
+    /**
+     * The dns name of the instance.
+     *
+     * Generated from protobuf field <code>string dns_name = 34;</code>
+     */
+    private $dns_name = '';
 
     /**
      * Constructor.
@@ -98,6 +104,8 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           `EXTERNAL`: A database server that is not managed by Google.
      *           This property is read-only; use the `tier` property in the `settings`
      *           object to determine the database type.
+     *     @type string $dns_name
+     *           The dns name of the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -295,6 +303,32 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\SqlBackendType::class);
         $this->backend_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The dns name of the instance.
+     *
+     * Generated from protobuf field <code>string dns_name = 34;</code>
+     * @return string
+     */
+    public function getDnsName()
+    {
+        return $this->dns_name;
+    }
+
+    /**
+     * The dns name of the instance.
+     *
+     * Generated from protobuf field <code>string dns_name = 34;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDnsName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dns_name = $var;
 
         return $this;
     }

@@ -32,6 +32,10 @@ class Type
      */
     const COMPUTE_OPTIMIZED_C2D = 383246453;
     /**
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_C3 = 428004784;</code>
+     */
+    const COMPUTE_OPTIMIZED_C3 = 428004784;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE = 299793543;</code>
      */
     const GENERAL_PURPOSE = 299793543;
@@ -52,6 +56,10 @@ class Type
      */
     const GENERAL_PURPOSE_T2D = 232477166;
     /**
+     * Generated from protobuf enum <code>GRAPHICS_OPTIMIZED = 68500563;</code>
+     */
+    const GRAPHICS_OPTIMIZED = 68500563;
+    /**
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED = 281753417;</code>
      */
     const MEMORY_OPTIMIZED = 281753417;
@@ -69,11 +77,13 @@ class Type
         self::ACCELERATOR_OPTIMIZED => 'ACCELERATOR_OPTIMIZED',
         self::COMPUTE_OPTIMIZED => 'COMPUTE_OPTIMIZED',
         self::COMPUTE_OPTIMIZED_C2D => 'COMPUTE_OPTIMIZED_C2D',
+        self::COMPUTE_OPTIMIZED_C3 => 'COMPUTE_OPTIMIZED_C3',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
         self::GENERAL_PURPOSE_E2 => 'GENERAL_PURPOSE_E2',
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',
         self::GENERAL_PURPOSE_N2D => 'GENERAL_PURPOSE_N2D',
         self::GENERAL_PURPOSE_T2D => 'GENERAL_PURPOSE_T2D',
+        self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',

@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\Filter\Builder\QualifierFilter;
 use Google\Cloud\Bigtable\Filter\QualifierRangeFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -31,7 +31,7 @@ class QualifierFilterTest extends TestCase
 {
     private $qualifierFilter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->qualifierFilter = new QualifierFilter;
     }

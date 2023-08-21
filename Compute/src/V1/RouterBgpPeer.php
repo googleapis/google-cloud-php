@@ -22,7 +22,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     private $advertise_mode = null;
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
@@ -46,6 +46,18 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
      */
     private $bfd = null;
+    /**
+     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
+     */
+    private $custom_learned_ip_ranges;
+    /**
+     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     *
+     * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
+     */
+    private $custom_learned_route_priority = null;
     /**
      * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      * Check the Enable enum for the list of possible values.
@@ -131,7 +143,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *           User-specified flag to indicate which mode to use for advertisement.
      *           Check the AdvertiseMode enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertised_groups
-     *           User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     *           User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *           Check the AdvertisedGroups enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
      *           User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
@@ -139,6 +151,10 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *           The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *     @type \Google\Cloud\Compute\V1\RouterBgpPeerBfd $bfd
      *           BFD configuration for the BGP peering.
+     *     @type array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $custom_learned_ip_ranges
+     *           A list of user-defined custom learned route IP address ranges for a BGP session.
+     *     @type int $custom_learned_route_priority
+     *           The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
      *     @type string $enable
      *           The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      *           Check the Enable enum for the list of possible values.
@@ -211,7 +227,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
@@ -223,7 +239,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
@@ -332,6 +348,68 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\RouterBgpPeerBfd::class);
         $this->bfd = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomLearnedIpRanges()
+    {
+        return $this->custom_learned_ip_ranges;
+    }
+
+    /**
+     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
+     * @param array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomLearnedIpRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange::class);
+        $this->custom_learned_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     *
+     * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
+     * @return int
+     */
+    public function getCustomLearnedRoutePriority()
+    {
+        return isset($this->custom_learned_route_priority) ? $this->custom_learned_route_priority : 0;
+    }
+
+    public function hasCustomLearnedRoutePriority()
+    {
+        return isset($this->custom_learned_route_priority);
+    }
+
+    public function clearCustomLearnedRoutePriority()
+    {
+        unset($this->custom_learned_route_priority);
+    }
+
+    /**
+     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     *
+     * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCustomLearnedRoutePriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->custom_learned_route_priority = $var;
 
         return $this;
     }

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-gke-connect-gateway/v/stable)](https://packagist.org/packages/google/cloud-gke-connect-gateway) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gke-connect-gateway.svg)](https://packagist.org/packages/google/cloud-gke-connect-gateway)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-gke-connect-gateway/latest/gkeconnectgateway/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-gke-connect-gateway/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

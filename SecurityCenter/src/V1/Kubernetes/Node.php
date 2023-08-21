@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Kubernetes Nodes associated with the finding.
+ * Kubernetes nodes associated with the finding.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Kubernetes.Node</code>
  */
 class Node extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Full Resource name of the Compute Engine VM running the
-     * cluster node.
+     * [Full resource name](https://google.aip.dev/122#full-resource-names) of
+     * the Compute Engine VM running the cluster node.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -30,8 +30,8 @@ class Node extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Full Resource name of the Compute Engine VM running the
-     *           cluster node.
+     *           [Full resource name](https://google.aip.dev/122#full-resource-names) of
+     *           the Compute Engine VM running the cluster node.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full Resource name of the Compute Engine VM running the
-     * cluster node.
+     * [Full resource name](https://google.aip.dev/122#full-resource-names) of
+     * the Compute Engine VM running the cluster node.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -52,8 +52,8 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full Resource name of the Compute Engine VM running the
-     * cluster node.
+     * [Full resource name](https://google.aip.dev/122#full-resource-names) of
+     * the Compute Engine VM running the cluster node.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

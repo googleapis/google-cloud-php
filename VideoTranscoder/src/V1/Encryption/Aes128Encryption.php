@@ -15,13 +15,6 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class Aes128Encryption extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * Required. URI of the key delivery service. This URI is inserted into the M3U8
-     * header.
-     *
-     * Generated from protobuf field <code>string key_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    private $key_uri = '';
 
     /**
      * Constructor.
@@ -29,42 +22,11 @@ class Aes128Encryption extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $key_uri
-     *           Required. URI of the key delivery service. This URI is inserted into the M3U8
-     *           header.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Video\Transcoder\V1\Resources::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Required. URI of the key delivery service. This URI is inserted into the M3U8
-     * header.
-     *
-     * Generated from protobuf field <code>string key_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return string
-     */
-    public function getKeyUri()
-    {
-        return $this->key_uri;
-    }
-
-    /**
-     * Required. URI of the key delivery service. This URI is inserted into the M3U8
-     * header.
-     *
-     * Generated from protobuf field <code>string key_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setKeyUri($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->key_uri = $var;
-
-        return $this;
     }
 
 }

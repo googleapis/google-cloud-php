@@ -43,16 +43,22 @@ class Event extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * When this field is set to true, the event will be executed at the earliest
-     * time that the server can schedule the event and [execution_time][google.cloud.video.livestream.v1.Event.execution_time] will be
-     * populated with the time that the server actually schedules the event.
+     * time that the server can schedule the event and
+     * [execution_time][google.cloud.video.livestream.v1.Event.execution_time]
+     * will be populated with the time that the server actually schedules the
+     * event.
      *
      * Generated from protobuf field <code>bool execute_now = 9;</code>
      */
     private $execute_now = false;
     /**
-     * The time when the event should be executed. When [execute_now][google.cloud.video.livestream.v1.Event.execute_now] is set to
-     * `true`, this field should not be set in `CreateEvent` request and will be
-     * populated with the time that the server schedules the event.
+     * The time to execute the event. If you set
+     * [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     * `true`, then do not set this field in the `CreateEvent` request. In
+     * this case, the server schedules the event and populates this field. If you
+     * set [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     * `false`, then you must set this field to at least 10 seconds in the future
+     * or else the event can't be created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 10;</code>
      */
@@ -87,16 +93,32 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Output only. The update time.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined key/value metadata.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask $input_switch
+     *           Switches to another input stream.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\AdBreakTask $ad_break
-     *           Required. Inserts a new ad opportunity.
+     *           Inserts a new ad opportunity.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\ReturnToProgramTask $return_to_program
+     *           Stops any running ad break.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\SlateTask $slate
+     *           Inserts a slate.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\MuteTask $mute
+     *           Mutes the stream.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask $unmute
+     *           Unmutes the stream.
      *     @type bool $execute_now
      *           When this field is set to true, the event will be executed at the earliest
-     *           time that the server can schedule the event and [execution_time][google.cloud.video.livestream.v1.Event.execution_time] will be
-     *           populated with the time that the server actually schedules the event.
+     *           time that the server can schedule the event and
+     *           [execution_time][google.cloud.video.livestream.v1.Event.execution_time]
+     *           will be populated with the time that the server actually schedules the
+     *           event.
      *     @type \Google\Protobuf\Timestamp $execution_time
-     *           The time when the event should be executed. When [execute_now][google.cloud.video.livestream.v1.Event.execute_now] is set to
-     *           `true`, this field should not be set in `CreateEvent` request and will be
-     *           populated with the time that the server schedules the event.
+     *           The time to execute the event. If you set
+     *           [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     *           `true`, then do not set this field in the `CreateEvent` request. In
+     *           this case, the server schedules the event and populates this field. If you
+     *           set [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     *           `false`, then you must set this field to at least 10 seconds in the future
+     *           or else the event can't be created.
      *     @type int $state
      *           Output only. The state of the event.
      *     @type \Google\Rpc\Status $error
@@ -236,9 +258,40 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Inserts a new ad opportunity.
+     * Switches to another input stream.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.InputSwitchTask input_switch = 5;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask|null
+     */
+    public function getInputSwitch()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasInputSwitch()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Switches to another input stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.InputSwitchTask input_switch = 5;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask $var
+     * @return $this
+     */
+    public function setInputSwitch($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\InputSwitchTask::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Inserts a new ad opportunity.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6;</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Event\AdBreakTask|null
      */
     public function getAdBreak()
@@ -252,9 +305,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Inserts a new ad opportunity.
+     * Inserts a new ad opportunity.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.AdBreakTask ad_break = 6;</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Event\AdBreakTask $var
      * @return $this
      */
@@ -267,9 +320,135 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Stops any running ad break.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.ReturnToProgramTask return_to_program = 13;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\ReturnToProgramTask|null
+     */
+    public function getReturnToProgram()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasReturnToProgram()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Stops any running ad break.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.ReturnToProgramTask return_to_program = 13;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\ReturnToProgramTask $var
+     * @return $this
+     */
+    public function setReturnToProgram($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\ReturnToProgramTask::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Inserts a slate.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.SlateTask slate = 14;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\SlateTask|null
+     */
+    public function getSlate()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasSlate()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Inserts a slate.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.SlateTask slate = 14;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\SlateTask $var
+     * @return $this
+     */
+    public function setSlate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\SlateTask::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Mutes the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.MuteTask mute = 15;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\MuteTask|null
+     */
+    public function getMute()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasMute()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Mutes the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.MuteTask mute = 15;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\MuteTask $var
+     * @return $this
+     */
+    public function setMute($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\MuteTask::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * Unmutes the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UnmuteTask unmute = 16;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask|null
+     */
+    public function getUnmute()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasUnmute()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * Unmutes the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UnmuteTask unmute = 16;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask $var
+     * @return $this
+     */
+    public function setUnmute($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
      * When this field is set to true, the event will be executed at the earliest
-     * time that the server can schedule the event and [execution_time][google.cloud.video.livestream.v1.Event.execution_time] will be
-     * populated with the time that the server actually schedules the event.
+     * time that the server can schedule the event and
+     * [execution_time][google.cloud.video.livestream.v1.Event.execution_time]
+     * will be populated with the time that the server actually schedules the
+     * event.
      *
      * Generated from protobuf field <code>bool execute_now = 9;</code>
      * @return bool
@@ -281,8 +460,10 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * When this field is set to true, the event will be executed at the earliest
-     * time that the server can schedule the event and [execution_time][google.cloud.video.livestream.v1.Event.execution_time] will be
-     * populated with the time that the server actually schedules the event.
+     * time that the server can schedule the event and
+     * [execution_time][google.cloud.video.livestream.v1.Event.execution_time]
+     * will be populated with the time that the server actually schedules the
+     * event.
      *
      * Generated from protobuf field <code>bool execute_now = 9;</code>
      * @param bool $var
@@ -297,9 +478,13 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the event should be executed. When [execute_now][google.cloud.video.livestream.v1.Event.execute_now] is set to
-     * `true`, this field should not be set in `CreateEvent` request and will be
-     * populated with the time that the server schedules the event.
+     * The time to execute the event. If you set
+     * [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     * `true`, then do not set this field in the `CreateEvent` request. In
+     * this case, the server schedules the event and populates this field. If you
+     * set [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     * `false`, then you must set this field to at least 10 seconds in the future
+     * or else the event can't be created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 10;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -320,9 +505,13 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the event should be executed. When [execute_now][google.cloud.video.livestream.v1.Event.execute_now] is set to
-     * `true`, this field should not be set in `CreateEvent` request and will be
-     * populated with the time that the server schedules the event.
+     * The time to execute the event. If you set
+     * [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     * `true`, then do not set this field in the `CreateEvent` request. In
+     * this case, the server schedules the event and populates this field. If you
+     * set [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
+     * `false`, then you must set this field to at least 10 seconds in the future
+     * or else the event can't be created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var

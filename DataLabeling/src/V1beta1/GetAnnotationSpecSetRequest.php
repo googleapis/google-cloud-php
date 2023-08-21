@@ -24,6 +24,21 @@ class GetAnnotationSpecSetRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. AnnotationSpecSet resource name, format:
+     *                     projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}
+     *                     Please see {@see DataLabelingServiceClient::annotationSpecSetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\GetAnnotationSpecSetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

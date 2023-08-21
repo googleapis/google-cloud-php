@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START batch_v1_generated_BatchService_GetTask_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Batch\V1\BatchServiceClient;
+use Google\Cloud\Batch\V1\Client\BatchServiceClient;
+use Google\Cloud\Batch\V1\GetTaskRequest;
 use Google\Cloud\Batch\V1\Task;
 
 /**
@@ -38,10 +39,14 @@ function get_task_sample(string $formattedName): void
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetTaskRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Task $response */
-        $response = $batchServiceClient->getTask($formattedName);
+        $response = $batchServiceClient->getTask($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

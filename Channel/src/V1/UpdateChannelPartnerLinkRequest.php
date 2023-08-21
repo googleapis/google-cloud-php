@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.UpdateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerLink]
+ * Request message for
+ * [CloudChannelService.UpdateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerLink]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.UpdateChannelPartnerLinkRequest</code>
  */
@@ -24,8 +25,8 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The channel partner link to update. Only channel_partner_link.link_state
-     * is allowed for updates.
+     * Required. The channel partner link to update. Only
+     * channel_partner_link.link_state is allowed for updates.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,8 +51,8 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *           Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      *           where {id} is the Cloud Identity ID of the partner.
      *     @type \Google\Cloud\Channel\V1\ChannelPartnerLink $channel_partner_link
-     *           Required. The channel partner link to update. Only channel_partner_link.link_state
-     *           is allowed for updates.
+     *           Required. The channel partner link to update. Only
+     *           channel_partner_link.link_state is allowed for updates.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask that applies to the resource.
      *           The only allowable value for an update mask is
@@ -94,8 +95,8 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The channel partner link to update. Only channel_partner_link.link_state
-     * is allowed for updates.
+     * Required. The channel partner link to update. Only
+     * channel_partner_link.link_state is allowed for updates.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Channel\V1\ChannelPartnerLink|null
@@ -116,8 +117,8 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The channel partner link to update. Only channel_partner_link.link_state
-     * is allowed for updates.
+     * Required. The channel partner link to update. Only
+     * channel_partner_link.link_state is allowed for updates.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Channel\V1\ChannelPartnerLink $var

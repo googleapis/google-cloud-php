@@ -20,7 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\System;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Core\ExponentialBackoff;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
 
 /**
  * @group bigquery
@@ -28,8 +28,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ManageTablesTest extends BigQueryTestCase
 {
-    use ExpectException;
-
     public function testListTables()
     {
         $foundTables = [];
@@ -137,7 +135,7 @@ class ManageTablesTest extends BigQueryTestCase
 
     public function testUpdateTableConcurrentUpdateFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+        $this->expectException(FailedPreconditionException::class);
 
         $data = [
             'friendlyName' => 'foo',
@@ -154,7 +152,7 @@ class ManageTablesTest extends BigQueryTestCase
 
     public function testCreatesExternalTable()
     {
-        $externalKeyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
+        $externalKeyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
         $authenticatedKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $externalKey = json_decode(file_get_contents($externalKeyFilePath), true);
         $authenticatedKey = json_decode(file_get_contents($authenticatedKeyFilePath), true);
@@ -253,6 +251,79 @@ class ManageTablesTest extends BigQueryTestCase
 
         $perm = 'bigquery.tables.get';
         $this->assertEquals([$perm], $iam->testPermissions([$perm]));
+    }
+
+    public function testCreateAndRestoreSnapshot()
+    {
+        $destinationTable = self::$dataset->table(uniqid('test_dest_table_'));
+        $copyConfig = self::$table->copy(
+            $destinationTable,
+            ['configuration' => ['copy' => ['operationType' => 'SNAPSHOT']]],
+        );
+        $this->runJob($copyConfig);
+        $snapshotDefinition = $destinationTable->reload()['snapshotDefinition'];
+
+        // Assert for proper base table reference
+        $this->assertEquals(
+            $snapshotDefinition['baseTableReference'],
+            self::$table->info()['tableReference']
+        );
+
+        // Assert for proper RFC3339 extended format timestamp
+        $isRfc3339_extended = \DateTime::createFromFormat(
+            \DateTime::RFC3339_EXTENDED,
+            $snapshotDefinition['snapshotTime']
+        ) === false ? false : true;
+        $this->assertTrue($isRfc3339_extended);
+
+        // Test snapshot restore operation
+        $restoredTable = self::$dataset->table(uniqid('restored_table_'));
+        $copyConfig = $destinationTable->copy(
+            $restoredTable,
+            ['configuration' => ['copy' => ['operationType' => 'RESTORE']]],
+        );
+        $this->runJob($copyConfig);
+    }
+
+    public function testCreateClone()
+    {
+        $destinationTable = self::$dataset->table(uniqid('test_dest_table_'));
+        $copyConfig = self::$table->copy(
+            $destinationTable,
+            ['configuration' => ['copy' => ['operationType' => 'CLONE']]],
+        );
+        $this->runJob($copyConfig);
+        $cloneDefinition = $destinationTable->reload()['cloneDefinition'];
+
+        // Assert for proper base table reference
+        $this->assertEquals(
+            $cloneDefinition['baseTableReference'],
+            self::$table->info()['tableReference']
+        );
+
+        // Assert for proper RFC3339 extended format timestamp
+        $isRfc3339_extended = \DateTime::createFromFormat(
+            \DateTime::RFC3339_EXTENDED,
+            $cloneDefinition['cloneTime']
+        ) === false ? false : true;
+        $this->assertTrue($isRfc3339_extended);
+
+        return $destinationTable;
+    }
+
+    /**
+     * @depends testCreateClone
+     */
+    public function testUpdateClone($table)
+    {
+        $row = ['Name' => 'Yash', 'Age' => 22];
+        $expectedRowCount = count(iterator_to_array($table->rows())) + 1;
+        self::$table->insertRow($row);
+        $insertResponse = $table->insertRow($row);
+
+        $actualRowCount = count(iterator_to_array($table->rows()));
+        $this->assertTrue($insertResponse->isSuccessful());
+        $this->assertEquals($expectedRowCount, $actualRowCount);
     }
 
     private function runJob($jobConfig, $client = null)

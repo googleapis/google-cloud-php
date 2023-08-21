@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Participants.SuggestFaqAnswers][google.cloud.dialogflow.v2.Participants.SuggestFaqAnswers].
+ * The request message for
+ * [Participants.SuggestFaqAnswers][google.cloud.dialogflow.v2.Participants.SuggestFaqAnswers].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SuggestFaqAnswersRequest</code>
  */
@@ -46,6 +47,22 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
      */
     private $assist_query_params = null;
+
+    /**
+     * @param string $parent Required. The name of the participant to fetch suggestion for.
+     *                       Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                       {@see ParticipantsClient::participantName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

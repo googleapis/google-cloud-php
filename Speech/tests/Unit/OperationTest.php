@@ -21,21 +21,24 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group speech
  */
 class OperationTest extends TestCase
 {
+    use ProphecyTrait;
+
     public $connection;
     public $operationName = 'myOperation';
     public $operationData = [
         'name' => 'abcdefg'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

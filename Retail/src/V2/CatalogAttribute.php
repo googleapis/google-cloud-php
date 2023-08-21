@@ -24,6 +24,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * characters and underscores. For example, an attribute named
      * `attributes.abc_xyz` can be indexed, but an attribute named
      * `attributes.abc-xyz` cannot be indexed.
+     * If the attribute key starts with `attributes.`, then the attribute is a
+     * custom attribute. Attributes such as `brands`, `patterns`, and `title` are
+     * built-in and called system attributes.
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,13 +44,13 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * [CatalogService.UpdateAttributesConfig][google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]
      * APIs. This field is `False` for pre-loaded
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s.
-     * Only pre-loaded
-     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     * neither in use by products nor predefined can be deleted.
-     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     * either in use by products or are predefined cannot be deleted; however,
-     * their configuration properties will reset to default values upon removal
-     * request.
+     * Only pre-loaded [catalog
+     * attributes][google.cloud.retail.v2.CatalogAttribute] that are neither in
+     * use by products nor predefined can be deleted. [Catalog
+     * attributes][google.cloud.retail.v2.CatalogAttribute] that are
+     * either in use by products or are predefined attributes cannot be deleted;
+     * however, their configuration properties will reset to default values upon
+     * removal request.
      * After catalog changes, it takes about 10 minutes for this field to update.
      *
      * Generated from protobuf field <code>bool in_use = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -66,6 +69,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      * are indexed so that it can be filtered, faceted, or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.IndexableOption indexable_option = 5;</code>
      */
@@ -75,6 +79,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * facet. Could only be DYNAMIC_FACETABLE_DISABLED if
      * [CatalogAttribute.indexable_option][google.cloud.retail.v2.CatalogAttribute.indexable_option]
      * is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.DynamicFacetableOption dynamic_facetable_option = 6;</code>
      */
@@ -89,10 +94,29 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * will not be searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      * there are no text values associated to numerical attributes.
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.SearchableOption searchable_option = 7;</code>
      */
     private $searchable_option = 0;
+    /**
+     * If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable.
+     * This property only applies to textual custom attributes and requires
+     * indexable set to enabled to enable exact-searchable. If unset, the server
+     * behavior defaults to
+     * [EXACT_SEARCHABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption.EXACT_SEARCHABLE_DISABLED].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption exact_searchable_option = 11;</code>
+     */
+    private $exact_searchable_option = 0;
+    /**
+     * If RETRIEVABLE_ENABLED, attribute values are retrievable in the search
+     * results. If unset, the server behavior defaults to
+     * [RETRIEVABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.RetrievableOption.RETRIEVABLE_DISABLED].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.RetrievableOption retrievable_option = 12;</code>
+     */
+    private $retrievable_option = 0;
 
     /**
      * Constructor.
@@ -108,6 +132,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *           characters and underscores. For example, an attribute named
      *           `attributes.abc_xyz` can be indexed, but an attribute named
      *           `attributes.abc-xyz` cannot be indexed.
+     *           If the attribute key starts with `attributes.`, then the attribute is a
+     *           custom attribute. Attributes such as `brands`, `patterns`, and `title` are
+     *           built-in and called system attributes.
      *     @type bool $in_use
      *           Output only. Indicates whether this attribute has been used by any
      *           products. `True` if at least one [Product][google.cloud.retail.v2.Product]
@@ -121,13 +148,13 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *           [CatalogService.UpdateAttributesConfig][google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]
      *           APIs. This field is `False` for pre-loaded
      *           [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s.
-     *           Only pre-loaded
-     *           [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     *           neither in use by products nor predefined can be deleted.
-     *           [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     *           either in use by products or are predefined cannot be deleted; however,
-     *           their configuration properties will reset to default values upon removal
-     *           request.
+     *           Only pre-loaded [catalog
+     *           attributes][google.cloud.retail.v2.CatalogAttribute] that are neither in
+     *           use by products nor predefined can be deleted. [Catalog
+     *           attributes][google.cloud.retail.v2.CatalogAttribute] that are
+     *           either in use by products or are predefined attributes cannot be deleted;
+     *           however, their configuration properties will reset to default values upon
+     *           removal request.
      *           After catalog changes, it takes about 10 minutes for this field to update.
      *     @type int $type
      *           Output only. The type of this attribute. This is derived from the attribute
@@ -138,11 +165,13 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *           is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      *           are indexed so that it can be filtered, faceted, or boosted in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     *           Must be specified, otherwise throws INVALID_FORMAT error.
      *     @type int $dynamic_facetable_option
      *           If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic
      *           facet. Could only be DYNAMIC_FACETABLE_DISABLED if
      *           [CatalogAttribute.indexable_option][google.cloud.retail.v2.CatalogAttribute.indexable_option]
      *           is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           Must be specified, otherwise throws INVALID_FORMAT error.
      *     @type int $searchable_option
      *           When
      *           [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
@@ -153,6 +182,17 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *           will not be searchable by text queries in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      *           there are no text values associated to numerical attributes.
+     *           Must be specified, otherwise throws INVALID_FORMAT error.
+     *     @type int $exact_searchable_option
+     *           If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable.
+     *           This property only applies to textual custom attributes and requires
+     *           indexable set to enabled to enable exact-searchable. If unset, the server
+     *           behavior defaults to
+     *           [EXACT_SEARCHABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption.EXACT_SEARCHABLE_DISABLED].
+     *     @type int $retrievable_option
+     *           If RETRIEVABLE_ENABLED, attribute values are retrievable in the search
+     *           results. If unset, the server behavior defaults to
+     *           [RETRIEVABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.RetrievableOption.RETRIEVABLE_DISABLED].
      * }
      */
     public function __construct($data = NULL) {
@@ -168,6 +208,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * characters and underscores. For example, an attribute named
      * `attributes.abc_xyz` can be indexed, but an attribute named
      * `attributes.abc-xyz` cannot be indexed.
+     * If the attribute key starts with `attributes.`, then the attribute is a
+     * custom attribute. Attributes such as `brands`, `patterns`, and `title` are
+     * built-in and called system attributes.
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -185,6 +228,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * characters and underscores. For example, an attribute named
      * `attributes.abc_xyz` can be indexed, but an attribute named
      * `attributes.abc-xyz` cannot be indexed.
+     * If the attribute key starts with `attributes.`, then the attribute is a
+     * custom attribute. Attributes such as `brands`, `patterns`, and `title` are
+     * built-in and called system attributes.
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -211,13 +257,13 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * [CatalogService.UpdateAttributesConfig][google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]
      * APIs. This field is `False` for pre-loaded
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s.
-     * Only pre-loaded
-     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     * neither in use by products nor predefined can be deleted.
-     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     * either in use by products or are predefined cannot be deleted; however,
-     * their configuration properties will reset to default values upon removal
-     * request.
+     * Only pre-loaded [catalog
+     * attributes][google.cloud.retail.v2.CatalogAttribute] that are neither in
+     * use by products nor predefined can be deleted. [Catalog
+     * attributes][google.cloud.retail.v2.CatalogAttribute] that are
+     * either in use by products or are predefined attributes cannot be deleted;
+     * however, their configuration properties will reset to default values upon
+     * removal request.
      * After catalog changes, it takes about 10 minutes for this field to update.
      *
      * Generated from protobuf field <code>bool in_use = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -241,13 +287,13 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * [CatalogService.UpdateAttributesConfig][google.cloud.retail.v2.CatalogService.UpdateAttributesConfig]
      * APIs. This field is `False` for pre-loaded
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s.
-     * Only pre-loaded
-     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     * neither in use by products nor predefined can be deleted.
-     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]s that are
-     * either in use by products or are predefined cannot be deleted; however,
-     * their configuration properties will reset to default values upon removal
-     * request.
+     * Only pre-loaded [catalog
+     * attributes][google.cloud.retail.v2.CatalogAttribute] that are neither in
+     * use by products nor predefined can be deleted. [Catalog
+     * attributes][google.cloud.retail.v2.CatalogAttribute] that are
+     * either in use by products or are predefined attributes cannot be deleted;
+     * however, their configuration properties will reset to default values upon
+     * removal request.
      * After catalog changes, it takes about 10 minutes for this field to update.
      *
      * Generated from protobuf field <code>bool in_use = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -296,6 +342,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      * are indexed so that it can be filtered, faceted, or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.IndexableOption indexable_option = 5;</code>
      * @return int
@@ -311,6 +358,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      * are indexed so that it can be filtered, faceted, or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.IndexableOption indexable_option = 5;</code>
      * @param int $var
@@ -329,6 +377,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * facet. Could only be DYNAMIC_FACETABLE_DISABLED if
      * [CatalogAttribute.indexable_option][google.cloud.retail.v2.CatalogAttribute.indexable_option]
      * is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.DynamicFacetableOption dynamic_facetable_option = 6;</code>
      * @return int
@@ -343,6 +392,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * facet. Could only be DYNAMIC_FACETABLE_DISABLED if
      * [CatalogAttribute.indexable_option][google.cloud.retail.v2.CatalogAttribute.indexable_option]
      * is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.DynamicFacetableOption dynamic_facetable_option = 6;</code>
      * @param int $var
@@ -366,6 +416,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * will not be searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      * there are no text values associated to numerical attributes.
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.SearchableOption searchable_option = 7;</code>
      * @return int
@@ -385,6 +436,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * will not be searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      * there are no text values associated to numerical attributes.
+     * Must be specified, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.SearchableOption searchable_option = 7;</code>
      * @param int $var
@@ -394,6 +446,70 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Retail\V2\CatalogAttribute\SearchableOption::class);
         $this->searchable_option = $var;
+
+        return $this;
+    }
+
+    /**
+     * If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable.
+     * This property only applies to textual custom attributes and requires
+     * indexable set to enabled to enable exact-searchable. If unset, the server
+     * behavior defaults to
+     * [EXACT_SEARCHABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption.EXACT_SEARCHABLE_DISABLED].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption exact_searchable_option = 11;</code>
+     * @return int
+     */
+    public function getExactSearchableOption()
+    {
+        return $this->exact_searchable_option;
+    }
+
+    /**
+     * If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable.
+     * This property only applies to textual custom attributes and requires
+     * indexable set to enabled to enable exact-searchable. If unset, the server
+     * behavior defaults to
+     * [EXACT_SEARCHABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption.EXACT_SEARCHABLE_DISABLED].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption exact_searchable_option = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExactSearchableOption($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Retail\V2\CatalogAttribute\ExactSearchableOption::class);
+        $this->exact_searchable_option = $var;
+
+        return $this;
+    }
+
+    /**
+     * If RETRIEVABLE_ENABLED, attribute values are retrievable in the search
+     * results. If unset, the server behavior defaults to
+     * [RETRIEVABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.RetrievableOption.RETRIEVABLE_DISABLED].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.RetrievableOption retrievable_option = 12;</code>
+     * @return int
+     */
+    public function getRetrievableOption()
+    {
+        return $this->retrievable_option;
+    }
+
+    /**
+     * If RETRIEVABLE_ENABLED, attribute values are retrievable in the search
+     * results. If unset, the server behavior defaults to
+     * [RETRIEVABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.RetrievableOption.RETRIEVABLE_DISABLED].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.RetrievableOption retrievable_option = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRetrievableOption($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Retail\V2\CatalogAttribute\RetrievableOption::class);
+        $this->retrievable_option = $var;
 
         return $this;
     }

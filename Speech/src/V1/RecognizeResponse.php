@@ -30,6 +30,19 @@ class RecognizeResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration total_billed_time = 3;</code>
      */
     private $total_billed_time = null;
+    /**
+     * Provides information on adaptation behavior in response
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptationInfo speech_adaptation_info = 7;</code>
+     */
+    private $speech_adaptation_info = null;
+    /**
+     * The ID associated with the request. This is a unique ID specific only to
+     * the given request.
+     *
+     * Generated from protobuf field <code>int64 request_id = 8;</code>
+     */
+    private $request_id = 0;
 
     /**
      * Constructor.
@@ -42,6 +55,11 @@ class RecognizeResponse extends \Google\Protobuf\Internal\Message
      *           sequential portions of audio.
      *     @type \Google\Protobuf\Duration $total_billed_time
      *           When available, billed audio seconds for the corresponding request.
+     *     @type \Google\Cloud\Speech\V1\SpeechAdaptationInfo $speech_adaptation_info
+     *           Provides information on adaptation behavior in response
+     *     @type int|string $request_id
+     *           The ID associated with the request. This is a unique ID specific only to
+     *           the given request.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +127,70 @@ class RecognizeResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->total_billed_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Provides information on adaptation behavior in response
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptationInfo speech_adaptation_info = 7;</code>
+     * @return \Google\Cloud\Speech\V1\SpeechAdaptationInfo|null
+     */
+    public function getSpeechAdaptationInfo()
+    {
+        return $this->speech_adaptation_info;
+    }
+
+    public function hasSpeechAdaptationInfo()
+    {
+        return isset($this->speech_adaptation_info);
+    }
+
+    public function clearSpeechAdaptationInfo()
+    {
+        unset($this->speech_adaptation_info);
+    }
+
+    /**
+     * Provides information on adaptation behavior in response
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptationInfo speech_adaptation_info = 7;</code>
+     * @param \Google\Cloud\Speech\V1\SpeechAdaptationInfo $var
+     * @return $this
+     */
+    public function setSpeechAdaptationInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1\SpeechAdaptationInfo::class);
+        $this->speech_adaptation_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ID associated with the request. This is a unique ID specific only to
+     * the given request.
+     *
+     * Generated from protobuf field <code>int64 request_id = 8;</code>
+     * @return int|string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * The ID associated with the request. This is a unique ID specific only to
+     * the given request.
+     *
+     * Generated from protobuf field <code>int64 request_id = 8;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->request_id = $var;
 
         return $this;
     }

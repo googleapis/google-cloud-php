@@ -38,6 +38,28 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataFusion\V1\Instance $instance   Required. The instance resource that replaces the resource on the server. Currently,
+     *                                                         Data Fusion only allows replacing labels, options, and stack driver
+     *                                                         settings. All other fields will be ignored.
+     * @param \Google\Protobuf\FieldMask           $updateMask Field mask is used to specify the fields that the update will overwrite
+     *                                                         in an instance resource. The fields specified in the update_mask are
+     *                                                         relative to the resource, not the full request.
+     *                                                         A field will be overwritten if it is in the mask.
+     *                                                         If the user does not provide a mask, all the supported fields (labels,
+     *                                                         options, and version currently) will be overwritten.
+     *
+     * @return \Google\Cloud\DataFusion\V1\UpdateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataFusion\V1\Instance $instance, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setInstance($instance)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

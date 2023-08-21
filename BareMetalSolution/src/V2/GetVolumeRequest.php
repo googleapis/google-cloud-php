@@ -23,6 +23,20 @@ class GetVolumeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the resource. Please see
+     *                     {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\GetVolumeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

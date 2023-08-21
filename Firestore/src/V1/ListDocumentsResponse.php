@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Firestore.ListDocuments][google.firestore.v1.Firestore.ListDocuments].
+ * The response for
+ * [Firestore.ListDocuments][google.firestore.v1.Firestore.ListDocuments].
  *
  * Generated from protobuf message <code>google.firestore.v1.ListDocumentsResponse</code>
  */
@@ -22,7 +23,8 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      */
     private $documents;
     /**
-     * The next page token.
+     * A token to retrieve the next page of documents.
+     * If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -37,7 +39,8 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Firestore\V1\Document>|\Google\Protobuf\Internal\RepeatedField $documents
      *           The Documents found.
      *     @type string $next_page_token
-     *           The next page token.
+     *           A token to retrieve the next page of documents.
+     *           If this field is omitted, there are no subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +75,8 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The next page token.
+     * A token to retrieve the next page of documents.
+     * If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -83,7 +87,8 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The next page token.
+     * A token to retrieve the next page of documents.
+     * If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

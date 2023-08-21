@@ -23,11 +23,9 @@
 namespace Google\Cloud\MediaTranslation\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\MediaTranslation\V1beta1\SpeechTranslationServiceClient;
 use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechRequest;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class SpeechTranslationServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SpeechTranslationServiceClient
-     */
+    /** @return SpeechTranslationServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,13 +61,11 @@ class SpeechTranslationServiceClientTest extends GeneratedTest
         return new SpeechTranslationServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingTranslateSpeechTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,7 +80,7 @@ class SpeechTranslationServiceClientTest extends GeneratedTest
         $request = new StreamingTranslateSpeechRequest();
         $request2 = new StreamingTranslateSpeechRequest();
         $request3 = new StreamingTranslateSpeechRequest();
-        $bidi = $client->streamingTranslateSpeech();
+        $bidi = $gapicClient->streamingTranslateSpeech();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -126,13 +116,11 @@ class SpeechTranslationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingTranslateSpeechExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -146,7 +134,7 @@ class SpeechTranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->streamingTranslateSpeech();
+        $bidi = $gapicClient->streamingTranslateSpeech();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);

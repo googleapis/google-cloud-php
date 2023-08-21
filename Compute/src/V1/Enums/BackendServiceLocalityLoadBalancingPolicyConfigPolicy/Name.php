@@ -46,4 +46,6 @@ class Name
     const RING_HASH = 'RING_HASH';
 
     const ROUND_ROBIN = 'ROUND_ROBIN';
+
+    const WEIGHTED_MAGLEV = 'WEIGHTED_MAGLEV';
 }

@@ -25,7 +25,7 @@ class TagValues
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-œ
+ﬂ
 0google/cloud/resourcemanager/v3/tag_values.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"“
 TagValue
 name (	B‡A
@@ -49,6 +49,9 @@ tag_values (2).google.cloud.resourcemanager.v3.TagValue
 next_page_token (	"X
 GetTagValueRequestB
 name (	B4‡A˙A.
+,cloudresourcemanager.googleapis.com/TagValue"b
+GetNamespacedTagValueRequestB
+name (	B4‡A˙A.
 ,cloudresourcemanager.googleapis.com/TagValue"v
 CreateTagValueRequestA
 	tag_value (2).google.cloud.resourcemanager.v3.TagValueB‡A
@@ -64,10 +67,11 @@ tag_values (2).google.cloud.resourcemanager.v3.TagValue
 ,cloudresourcemanager.googleapis.com/TagValue
 validate_only (B‡A
 etag (	B‡A"
-DeleteTagValueMetadata2ˇ
+DeleteTagValueMetadata2¨
 	TagValuesû
 ListTagValues5.google.cloud.resourcemanager.v3.ListTagValuesRequest6.google.cloud.resourcemanager.v3.ListTagValuesResponse"Ç”‰ì/v3/tagValues⁄Aparentî
-GetTagValue3.google.cloud.resourcemanager.v3.GetTagValueRequest).google.cloud.resourcemanager.v3.TagValue"%Ç”‰ì/v3/{name=tagValues/*}⁄Aname∫
+GetTagValue3.google.cloud.resourcemanager.v3.GetTagValueRequest).google.cloud.resourcemanager.v3.TagValue"%Ç”‰ì/v3/{name=tagValues/*}⁄Aname™
+GetNamespacedTagValue=.google.cloud.resourcemanager.v3.GetNamespacedTagValueRequest).google.cloud.resourcemanager.v3.TagValue"\'Ç”‰ì/v3/tagValues/namespaced⁄Aname∫
 CreateTagValue6.google.cloud.resourcemanager.v3.CreateTagValueRequest.google.longrunning.Operation"QÇ”‰ì"/v3/tagValues:	tag_value⁄A	tag_value A"
 TagValueCreateTagValueMetadataŸ
 UpdateTagValue6.google.cloud.resourcemanager.v3.UpdateTagValueRequest.google.longrunning.Operation"pÇ”‰ì-2 /v3/{tag_value.name=tagValues/*}:	tag_value⁄Atag_value,update_mask A"
@@ -76,8 +80,8 @@ tag_values (2).google.cloud.resourcemanager.v3.TagValue
 TagValueDeleteTagValueMetadataà
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"=Ç”‰ì,"\'/v3/{resource=tagValues/*}:getIamPolicy:*⁄Aresourceè
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"DÇ”‰ì,"\'/v3/{resource=tagValues/*}:setIamPolicy:*⁄Aresource,policy∫
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"OÇ”‰ì2"-/v3/{resource=tagValues/*}:testIamPermissions:*⁄Aresource,permissionsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB
-#com.google.cloud.resourcemanager.v3BTagValuesProtoPZNgoogle.golang.org/genproto/googleapis/cloud/resourcemanager/v3;resourcemanager™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3Í"Google::Cloud::ResourceManager::V3bproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"OÇ”‰ì2"-/v3/{resource=tagValues/*}:testIamPermissions:*⁄Aresource,permissionsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÔ
+#com.google.cloud.resourcemanager.v3BTagValuesProtoPZMcloud.google.com/go/resourcemanager/apiv3/resourcemanagerpb;resourcemanagerpb™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3Í"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 
         static::$is_initialized = true;

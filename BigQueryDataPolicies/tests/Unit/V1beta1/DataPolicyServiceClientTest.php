@@ -23,11 +23,9 @@
 namespace Google\Cloud\BigQuery\DataPolicies\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\BigQuery\DataPolicies\V1beta1\DataPolicy;
 use Google\Cloud\BigQuery\DataPolicies\V1beta1\DataPolicyServiceClient;
 use Google\Cloud\BigQuery\DataPolicies\V1beta1\ListDataPoliciesResponse;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class DataPolicyServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DataPolicyServiceClient
-     */
+    /** @return DataPolicyServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         return new DataPolicyServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDataPolicyTest()
     {
         $transport = $this->createTransport();
@@ -107,9 +97,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDataPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +131,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDataPolicyTest()
     {
         $transport = $this->createTransport();
@@ -169,9 +155,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDataPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -204,9 +188,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataPolicyTest()
     {
         $transport = $this->createTransport();
@@ -237,9 +219,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -272,9 +252,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -303,9 +281,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -338,9 +314,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -375,9 +349,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -410,9 +382,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -444,9 +414,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -480,9 +448,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -510,9 +476,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -546,9 +510,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataPolicyTest()
     {
         $transport = $this->createTransport();
@@ -579,9 +541,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataPolicyExceptionTest()
     {
         $transport = $this->createTransport();

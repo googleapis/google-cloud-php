@@ -23,21 +23,21 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     * [Supported input and output
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     * element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     * template. URI of the media. Input files must be at least 5 seconds in
+     * duration and stored in Cloud Storage (for example,
+     * `gs://bucket/inputs/file.mp4`). See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $input_uri = '';
     /**
-     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     * [Supported input and output
+     * Input only. Specify the `output_uri` to populate an empty
+     * `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     * template. URI for the output file(s). For example,
+     * `gs://my-bucket/outputs/`. See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -89,6 +89,29 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error = null;
+    /**
+     * The processing mode of the job.
+     * The default is `PROCESSING_MODE_INTERACTIVE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.ProcessingMode mode = 20;</code>
+     */
+    private $mode = 0;
+    /**
+     * The processing priority of a batch job.
+     * This field can only be set for batch mode jobs. The default value is 0.
+     * This value cannot be negative. Higher values correspond to higher
+     * priorities for the job.
+     *
+     * Generated from protobuf field <code>int32 batch_mode_priority = 21;</code>
+     */
+    private $batch_mode_priority = 0;
+    /**
+     * Optional. The optimization strategy of the job. The default is
+     * `AUTODETECT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $optimization = 0;
     protected $job_config;
 
     /**
@@ -101,25 +124,22 @@ class Job extends \Google\Protobuf\Internal\Message
      *           The resource name of the job.
      *           Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *     @type string $input_uri
-     *           Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     *           `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     *           URI of the media. Input files must be at least 5 seconds in duration and
-     *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     *           [Supported input and output
+     *           Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     *           element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     *           template. URI of the media. Input files must be at least 5 seconds in
+     *           duration and stored in Cloud Storage (for example,
+     *           `gs://bucket/inputs/file.mp4`). See [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type string $output_uri
-     *           Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     *           `JobTemplate.config.output.uri` when using template.
-     *           URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     *           [Supported input and output
+     *           Input only. Specify the `output_uri` to populate an empty
+     *           `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     *           template. URI for the output file(s). For example,
+     *           `gs://my-bucket/outputs/`. See [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type string $template_id
-     *           Input only. Specify the `template_id` to use for populating `Job.config`. The default
-     *           is `preset/web-hd`.
-     *           Preset Transcoder templates:
-     *           - `preset/{preset_id}`
-     *           - User defined JobTemplate:
-     *             `{job_template_id}`
+     *           Input only. Specify the `template_id` to use for populating `Job.config`.
+     *           The default is `preset/web-hd`, which is the only supported preset.
+     *           User defined JobTemplate: `{job_template_id}`
      *     @type \Google\Cloud\Video\Transcoder\V1\JobConfig $config
      *           The configuration for this job.
      *     @type int $state
@@ -140,6 +160,17 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. An error object that describes the reason for the failure.
      *           This property is always present when `state` is `FAILED`.
+     *     @type int $mode
+     *           The processing mode of the job.
+     *           The default is `PROCESSING_MODE_INTERACTIVE`.
+     *     @type int $batch_mode_priority
+     *           The processing priority of a batch job.
+     *           This field can only be set for batch mode jobs. The default value is 0.
+     *           This value cannot be negative. Higher values correspond to higher
+     *           priorities for the job.
+     *     @type int $optimization
+     *           Optional. The optimization strategy of the job. The default is
+     *           `AUTODETECT`.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,11 +207,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     * [Supported input and output
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     * element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     * template. URI of the media. Input files must be at least 5 seconds in
+     * duration and stored in Cloud Storage (for example,
+     * `gs://bucket/inputs/file.mp4`). See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -192,11 +223,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
-     * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
-     * [Supported input and output
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each
+     * element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
+     * template. URI of the media. Input files must be at least 5 seconds in
+     * duration and stored in Cloud Storage (for example,
+     * `gs://bucket/inputs/file.mp4`). See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -212,10 +243,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     * [Supported input and output
+     * Input only. Specify the `output_uri` to populate an empty
+     * `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     * template. URI for the output file(s). For example,
+     * `gs://my-bucket/outputs/`. See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -227,10 +258,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
-     * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
-     * [Supported input and output
+     * Input only. Specify the `output_uri` to populate an empty
+     * `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
+     * template. URI for the output file(s). For example,
+     * `gs://my-bucket/outputs/`. See [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -246,12 +277,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `template_id` to use for populating `Job.config`. The default
-     * is `preset/web-hd`.
-     * Preset Transcoder templates:
-     * - `preset/{preset_id}`
-     * - User defined JobTemplate:
-     *   `{job_template_id}`
+     * Input only. Specify the `template_id` to use for populating `Job.config`.
+     * The default is `preset/web-hd`, which is the only supported preset.
+     * User defined JobTemplate: `{job_template_id}`
      *
      * Generated from protobuf field <code>string template_id = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -267,12 +295,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Specify the `template_id` to use for populating `Job.config`. The default
-     * is `preset/web-hd`.
-     * Preset Transcoder templates:
-     * - `preset/{preset_id}`
-     * - User defined JobTemplate:
-     *   `{job_template_id}`
+     * Input only. Specify the `template_id` to use for populating `Job.config`.
+     * The default is `preset/web-hd`, which is the only supported preset.
+     * User defined JobTemplate: `{job_template_id}`
      *
      * Generated from protobuf field <code>string template_id = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
@@ -543,6 +568,94 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * The processing mode of the job.
+     * The default is `PROCESSING_MODE_INTERACTIVE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.ProcessingMode mode = 20;</code>
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * The processing mode of the job.
+     * The default is `PROCESSING_MODE_INTERACTIVE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.ProcessingMode mode = 20;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\Transcoder\V1\Job\ProcessingMode::class);
+        $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * The processing priority of a batch job.
+     * This field can only be set for batch mode jobs. The default value is 0.
+     * This value cannot be negative. Higher values correspond to higher
+     * priorities for the job.
+     *
+     * Generated from protobuf field <code>int32 batch_mode_priority = 21;</code>
+     * @return int
+     */
+    public function getBatchModePriority()
+    {
+        return $this->batch_mode_priority;
+    }
+
+    /**
+     * The processing priority of a batch job.
+     * This field can only be set for batch mode jobs. The default value is 0.
+     * This value cannot be negative. Higher values correspond to higher
+     * priorities for the job.
+     *
+     * Generated from protobuf field <code>int32 batch_mode_priority = 21;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBatchModePriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->batch_mode_priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The optimization strategy of the job. The default is
+     * `AUTODETECT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getOptimization()
+    {
+        return $this->optimization;
+    }
+
+    /**
+     * Optional. The optimization strategy of the job. The default is
+     * `AUTODETECT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOptimization($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\Transcoder\V1\Job\OptimizationStrategy::class);
+        $this->optimization = $var;
 
         return $this;
     }

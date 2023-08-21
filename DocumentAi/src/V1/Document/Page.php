@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Page extends \Google\Protobuf\Internal\Message
 {
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      */
@@ -116,7 +118,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     private $detected_barcodes;
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
      */
@@ -136,9 +138,11 @@ class Page extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $page_number
-     *           1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     *           Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     *           processing.
+     *           1-based index for current
+     *           [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     *           [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     *           taken out of a [Document][google.cloud.documentai.v1.Document] for
+     *           individual processing.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Image $image
      *           Rendered image for this page. This image is preprocessed to remove any
      *           skew, rotation, and distortions such that the annotation bounding boxes
@@ -176,7 +180,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedBarcode>|\Google\Protobuf\Internal\RepeatedField $detected_barcodes
      *           A list of detected barcodes.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores $image_quality_scores
-     *           Image Quality Scores.
+     *           Image quality scores.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           The history of this page.
      * }
@@ -187,9 +191,11 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      * @return int
@@ -200,9 +206,11 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      * @param int $var
@@ -627,7 +635,7 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores|null
@@ -648,7 +656,7 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores $var

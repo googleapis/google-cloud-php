@@ -40,10 +40,6 @@ class Service extends \Google\Protobuf\Internal\Message
      *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *     not longer than 253 characters in total, followed by a slash (/).
      *     Metadata that fails to meet these requirements are rejected
-     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *     for system metadata managed by Service Directory. If the user tries
-     *     to write to these keyspaces, those entries are silently ignored by
-     *     the system
      * Note: This field is equivalent to the `annotations` field in the v1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
@@ -53,7 +49,8 @@ class Service extends \Google\Protobuf\Internal\Message
     private $metadata;
     /**
      * Output only. Endpoints associated with this service. Returned on
-     * [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService]. Control plane clients should use
+     * [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService].
+     * Control plane clients should use
      * [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1beta1.RegistrationService.ListEndpoints].
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1beta1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -66,13 +63,20 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. The timestamp when the service was last updated. Note: endpoints being
-     * created/deleted/updated within the service are not considered service
-     * updates for the purpose of this timestamp.
+     * Output only. The timestamp when the service was last updated. Note:
+     * endpoints being created/deleted/updated within the service are not
+     * considered service updates for the purpose of this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * service.
+     *
+     * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uid = '';
 
     /**
      * Constructor.
@@ -98,23 +102,23 @@ class Service extends \Google\Protobuf\Internal\Message
      *               must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *               not longer than 253 characters in total, followed by a slash (/).
      *               Metadata that fails to meet these requirements are rejected
-     *           *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *               for system metadata managed by Service Directory. If the user tries
-     *               to write to these keyspaces, those entries are silently ignored by
-     *               the system
      *           Note: This field is equivalent to the `annotations` field in the v1 API.
      *           They have the same syntax and read/write to the same location in Service
      *           Directory.
      *     @type array<\Google\Cloud\ServiceDirectory\V1beta1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Output only. Endpoints associated with this service. Returned on
-     *           [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService]. Control plane clients should use
+     *           [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService].
+     *           Control plane clients should use
      *           [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1beta1.RegistrationService.ListEndpoints].
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp when the service was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The timestamp when the service was last updated. Note: endpoints being
-     *           created/deleted/updated within the service are not considered service
-     *           updates for the purpose of this timestamp.
+     *           Output only. The timestamp when the service was last updated. Note:
+     *           endpoints being created/deleted/updated within the service are not
+     *           considered service updates for the purpose of this timestamp.
+     *     @type string $uid
+     *           Output only. A globally unique identifier (in UUID4 format) for this
+     *           service.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,10 +169,6 @@ class Service extends \Google\Protobuf\Internal\Message
      *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *     not longer than 253 characters in total, followed by a slash (/).
      *     Metadata that fails to meet these requirements are rejected
-     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *     for system metadata managed by Service Directory. If the user tries
-     *     to write to these keyspaces, those entries are silently ignored by
-     *     the system
      * Note: This field is equivalent to the `annotations` field in the v1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
@@ -196,10 +196,6 @@ class Service extends \Google\Protobuf\Internal\Message
      *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
      *     not longer than 253 characters in total, followed by a slash (/).
      *     Metadata that fails to meet these requirements are rejected
-     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
-     *     for system metadata managed by Service Directory. If the user tries
-     *     to write to these keyspaces, those entries are silently ignored by
-     *     the system
      * Note: This field is equivalent to the `annotations` field in the v1 API.
      * They have the same syntax and read/write to the same location in Service
      * Directory.
@@ -218,7 +214,8 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Endpoints associated with this service. Returned on
-     * [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService]. Control plane clients should use
+     * [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService].
+     * Control plane clients should use
      * [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1beta1.RegistrationService.ListEndpoints].
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1beta1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -231,7 +228,8 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Endpoints associated with this service. Returned on
-     * [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService]. Control plane clients should use
+     * [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService].
+     * Control plane clients should use
      * [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1beta1.RegistrationService.ListEndpoints].
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1beta1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -283,9 +281,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp when the service was last updated. Note: endpoints being
-     * created/deleted/updated within the service are not considered service
-     * updates for the purpose of this timestamp.
+     * Output only. The timestamp when the service was last updated. Note:
+     * endpoints being created/deleted/updated within the service are not
+     * considered service updates for the purpose of this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -306,9 +304,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp when the service was last updated. Note: endpoints being
-     * created/deleted/updated within the service are not considered service
-     * updates for the purpose of this timestamp.
+     * Output only. The timestamp when the service was last updated. Note:
+     * endpoints being created/deleted/updated within the service are not
+     * considered service updates for the purpose of this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -318,6 +316,34 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * service.
+     *
+     * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this
+     * service.
+     *
+     * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
 
         return $this;
     }

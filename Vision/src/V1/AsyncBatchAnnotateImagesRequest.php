@@ -42,6 +42,21 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param \Google\Cloud\Vision\V1\AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
+     * @param \Google\Cloud\Vision\V1\OutputConfig           $outputConfig Required. The desired output location and metadata (e.g. format).
+     *
+     * @return \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+     *
+     * @experimental
+     */
+    public static function build(array $requests, \Google\Cloud\Vision\V1\OutputConfig $outputConfig): self
+    {
+        return (new self())
+            ->setRequests($requests)
+            ->setOutputConfig($outputConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

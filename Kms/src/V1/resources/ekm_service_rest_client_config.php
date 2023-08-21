@@ -18,6 +18,17 @@ return [
                     'ekm_connection_id',
                 ],
             ],
+            'GetEkmConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConfig}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEkmConnection' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}',
@@ -40,6 +51,22 @@ return [
                     ],
                 ],
             ],
+            'UpdateEkmConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{ekm_config.name=projects/*/locations/*/ekmConfig}',
+                'body' => 'ekm_config',
+                'placeholders' => [
+                    'ekm_config.name' => [
+                        'getters' => [
+                            'getEkmConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateEkmConnection' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{ekm_connection.name=projects/*/locations/*/ekmConnections/*}',
@@ -54,6 +81,17 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'VerifyConnectivity' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}:verifyConnectivity',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],
@@ -181,4 +219,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

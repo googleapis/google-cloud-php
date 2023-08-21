@@ -23,16 +23,19 @@ use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class ImagePropertiesTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $propsData;
     private $props;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->propsData = ['dominantColors' => ['colors' => 'colorsTest']];
         $this->props = new ImageProperties($this->propsData);

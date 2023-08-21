@@ -33,8 +33,8 @@ class AuxiliaryVersionConfig extends \Google\Protobuf\Internal\Message
      */
     private $config_overrides;
     /**
-     * Output only. The network configuration contains the endpoint URI(s) of the auxiliary
-     * Hive metastore service.
+     * Output only. The network configuration contains the endpoint URI(s) of the
+     * auxiliary Hive metastore service.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -56,8 +56,8 @@ class AuxiliaryVersionConfig extends \Google\Protobuf\Internal\Message
      *           version's overrides and the primary version's overrides, the value from
      *           the auxiliary version's overrides takes precedence.
      *     @type \Google\Cloud\Metastore\V1alpha\NetworkConfig $network_config
-     *           Output only. The network configuration contains the endpoint URI(s) of the auxiliary
-     *           Hive metastore service.
+     *           Output only. The network configuration contains the endpoint URI(s) of the
+     *           auxiliary Hive metastore service.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,8 +128,8 @@ class AuxiliaryVersionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The network configuration contains the endpoint URI(s) of the auxiliary
-     * Hive metastore service.
+     * Output only. The network configuration contains the endpoint URI(s) of the
+     * auxiliary Hive metastore service.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Metastore\V1alpha\NetworkConfig|null
@@ -150,8 +150,8 @@ class AuxiliaryVersionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The network configuration contains the endpoint URI(s) of the auxiliary
-     * Hive metastore service.
+     * Output only. The network configuration contains the endpoint URI(s) of the
+     * auxiliary Hive metastore service.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.NetworkConfig network_config = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Metastore\V1alpha\NetworkConfig $var

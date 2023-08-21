@@ -39,8 +39,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     private $metric_kind = 0;
     /**
-     * Required. The data points of this time series. When listing time series, points are
-     * returned in reverse time order.
+     * Required. The data points of this time series. When listing time series,
+     * points are returned in reverse time order.
      * When creating a time series, this field must contain exactly one point and
      * the point's type must be the same as the value type of the associated
      * metric. If the associated metric's descriptor must be auto-created, then
@@ -69,8 +69,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *           this field specifies the metric kind of the new descriptor and must be
      *           either `GAUGE` (the default) or `CUMULATIVE`.
      *     @type array<\Google\Cloud\BigQuery\Migration\V2\Point>|\Google\Protobuf\Internal\RepeatedField $points
-     *           Required. The data points of this time series. When listing time series, points are
-     *           returned in reverse time order.
+     *           Required. The data points of this time series. When listing time series,
+     *           points are returned in reverse time order.
      *           When creating a time series, this field must contain exactly one point and
      *           the point's type must be the same as the value type of the associated
      *           metric. If the associated metric's descriptor must be auto-created, then
@@ -172,8 +172,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data points of this time series. When listing time series, points are
-     * returned in reverse time order.
+     * Required. The data points of this time series. When listing time series,
+     * points are returned in reverse time order.
      * When creating a time series, this field must contain exactly one point and
      * the point's type must be the same as the value type of the associated
      * metric. If the associated metric's descriptor must be auto-created, then
@@ -189,8 +189,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data points of this time series. When listing time series, points are
-     * returned in reverse time order.
+     * Required. The data points of this time series. When listing time series,
+     * points are returned in reverse time order.
      * When creating a time series, this field must contain exactly one point and
      * the point's type must be the same as the value type of the associated
      * metric. If the associated metric's descriptor must be auto-created, then

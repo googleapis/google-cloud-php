@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent_Type;
+use Google\Cloud\Trace\V2\Span\TimeEvent\MessageEvent\Type;
 
 /**
  * This plain PHP class represents an MessageEvent resource. An event describing
@@ -37,9 +37,9 @@ use Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent_Type;
  */
 class MessageEvent extends TimeEvent
 {
-    const TYPE_UNSPECIFIED = Span_TimeEvent_MessageEvent_Type::TYPE_UNSPECIFIED;
-    const TYPE_SENT = Span_TimeEvent_MessageEvent_Type::SENT;
-    const TYPE_RECEIVED = Span_TimeEvent_MessageEvent_Type::RECEIVED;
+    const TYPE_UNSPECIFIED = Type::TYPE_UNSPECIFIED;
+    const TYPE_SENT = Type::SENT;
+    const TYPE_RECEIVED = Type::RECEIVED;
 
     /**
      * @var string Type of MessageEvent. Indicates whether the message was sent

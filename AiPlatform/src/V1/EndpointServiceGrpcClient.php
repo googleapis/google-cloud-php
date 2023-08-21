@@ -138,4 +138,22 @@ class EndpointServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Updates an existing deployed model. Updatable fields include
+     * `min_replica_count`, `max_replica_count`, `autoscaling_metric_specs`,
+     * `disable_container_logging` (v1 only), and `enable_container_logging`
+     * (v1beta1 only).
+     * @param \Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function MutateDeployedModel(\Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.EndpointService/MutateDeployedModel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

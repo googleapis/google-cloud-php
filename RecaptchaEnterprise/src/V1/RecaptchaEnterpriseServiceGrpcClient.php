@@ -94,6 +94,23 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Returns the secret key related to the specified public key.
+     * You must use the legacy secret key only in a 3rd party integration with
+     * legacy reCAPTCHA.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RetrieveLegacySecretKey(\Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/RetrieveLegacySecretKey',
+        $argument,
+        ['\Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Returns the specified key.
      * @param \Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest $argument input argument
      * @param array $metadata metadata
@@ -190,7 +207,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get the memberships in a group of related accounts.
+     * Get memberships in a group of related accounts.
      * @param \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -11,7 +11,7 @@
                     "UNAVAILABLE",
                     "DEADLINE_EXCEEDED"
                 ],
-                "retry_policy_4_codes": [
+                "retry_policy_5_codes": [
                     "UNAVAILABLE",
                     "DEADLINE_EXCEEDED"
                 ]
@@ -44,7 +44,7 @@
                     "max_rpc_timeout_millis": 30000,
                     "total_timeout_millis": 30000
                 },
-                "retry_policy_4_params": {
+                "retry_policy_5_params": {
                     "initial_retry_delay_millis": 100,
                     "retry_delay_multiplier": 1.3,
                     "max_retry_delay_millis": 300000,
@@ -62,8 +62,8 @@
                 },
                 "ImportUserEvents": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "retry_policy_4_codes",
-                    "retry_params_name": "retry_policy_4_params"
+                    "retry_codes_name": "retry_policy_5_codes",
+                    "retry_params_name": "retry_policy_5_params"
                 },
                 "PurgeUserEvents": {
                     "timeout_millis": 30000,

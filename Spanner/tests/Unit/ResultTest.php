@@ -23,9 +23,9 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -33,8 +33,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ResultTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
     use ResultTestTrait;
 
     private $metadata = [
@@ -48,7 +48,7 @@ class ResultTest extends TestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
     }
@@ -72,7 +72,7 @@ class ResultTest extends TestCase
 
     public function testFailsWhenStreamThrowsUnrecoverableException()
     {
-        $this->expectException('\Exception');
+        $this->expectException(\Exception::class);
 
         $result = $this->getResultClass(
             null,
@@ -159,9 +159,80 @@ class ResultTest extends TestCase
         $this->assertEquals(2, $timesCalled);
     }
 
+    public function testRowsRetriesWithoutResumeTokenWhenNotYieldedRows()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b']
+            ],
+            [
+                'values' => ['c']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+                foreach ($chunks as $key => $chunk) {
+                    if ($key === 1 && $timesCalled < 2) {
+                        throw new ServiceException('Unavailable', 14);
+                    }
+                    yield $chunk;
+                }
+            }
+        );
+
+        iterator_to_array($result->rows());
+        $this->assertEquals(2, $timesCalled);
+    }
+
+    public function testRowsRetriesWithResumeTokenWhenNotYieldedRows()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a'],
+                'resumeToken' => 'abc'
+            ],
+            [
+                'values' => ['b']
+            ],
+            [
+                'values' => ['c']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+                foreach ($chunks as $key => $chunk) {
+                    if ($key === 1 && $timesCalled < 2) {
+                        throw new ServiceException('Unavailable', 14);
+                    }
+                    yield $chunk;
+                }
+            }
+        );
+
+        iterator_to_array($result->rows());
+        $this->assertEquals(2, $timesCalled);
+    }
+
     public function testThrowsExceptionWhenCannotRetry()
     {
-        $this->expectException('Google\Cloud\Core\Exception\ServiceException');
+        $this->expectException(ServiceException::class);
 
         $chunks = [
             [
@@ -253,13 +324,14 @@ class ResultTest extends TestCase
 
     public function testUsesCorrectDefaultFormatOption()
     {
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
         $mapper = $this->prophesize(ValueMapper::class);
         $mapper->decodeValues(
             Argument::any(),
             Argument::any(),
-            'nameValuePair'
-        );
-        $result = $this->getResultClass([], 'r', $mapper->reveal());
+            'associative'
+        )->shouldBeCalled();
+        $result = $this->getResultClass($fixture['chunks'], 'r', $mapper->reveal());
 
         $rows = $result->rows();
         $rows->current();
@@ -270,13 +342,14 @@ class ResultTest extends TestCase
      */
     public function testRecievesCorrectFormatOption($format)
     {
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
         $mapper = $this->prophesize(ValueMapper::class);
         $mapper->decodeValues(
             Argument::any(),
             Argument::any(),
             $format
-        );
-        $result = $this->getResultClass([], 'r', $mapper->reveal());
+        )->shouldBeCalled();
+        $result = $this->getResultClass($fixture['chunks'], 'r', $mapper->reveal());
 
         $rows = $result->rows($format);
         $rows->current();

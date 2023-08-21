@@ -19,11 +19,26 @@ class GetCompletionConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full CompletionConfig resource name. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. Full CompletionConfig resource name. Format:
+     *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
+     *                     Please see {@see CatalogServiceClient::completionConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\GetCompletionConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -33,7 +48,7 @@ class GetCompletionConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Full CompletionConfig resource name. Format:
-     *           projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +58,7 @@ class GetCompletionConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full CompletionConfig resource name. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -55,7 +70,7 @@ class GetCompletionConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full CompletionConfig resource name. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

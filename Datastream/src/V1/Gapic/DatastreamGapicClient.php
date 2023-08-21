@@ -27,14 +27,11 @@ namespace Google\Cloud\Datastream\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -105,7 +102,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -122,7 +119,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -136,34 +133,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Datastream\V1\Client\DatastreamClient} to use the new surface.
  */
 class DatastreamGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.datastream.v1.Datastream';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'datastream.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -171,6 +161,8 @@ class DatastreamGapicClient
     private static $connectionProfileNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $networksNameTemplate;
 
     private static $privateConnectionNameTemplate;
 
@@ -231,6 +223,17 @@ class DatastreamGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getNetworksNameTemplate()
+    {
+        if (self::$networksNameTemplate == null) {
+            self::$networksNameTemplate = new PathTemplate(
+                'projects/{project}/global/networks/{network}'
+            );
+        }
+
+        return self::$networksNameTemplate;
+    }
+
     private static function getPrivateConnectionNameTemplate()
     {
         if (self::$privateConnectionNameTemplate == null) {
@@ -281,6 +284,7 @@ class DatastreamGapicClient
             self::$pathTemplateMap = [
                 'connectionProfile' => self::getConnectionProfileNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'networks' => self::getNetworksNameTemplate(),
                 'privateConnection' => self::getPrivateConnectionNameTemplate(),
                 'route' => self::getRouteNameTemplate(),
                 'stream' => self::getStreamNameTemplate(),
@@ -327,6 +331,23 @@ class DatastreamGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a networks
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted networks resource.
+     */
+    public static function networksName($project, $network)
+    {
+        return self::getNetworksNameTemplate()->render([
+            'project' => $project,
+            'network' => $network,
         ]);
     }
 
@@ -427,6 +448,7 @@ class DatastreamGapicClient
      * Template: Pattern
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
      * - location: projects/{project}/locations/{location}
+     * - networks: projects/{project}/global/networks/{network}
      * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
      * - route: projects/{project}/locations/{location}/privateConnections/{private_connection}/routes/{route}
      * - stream: projects/{project}/locations/{location}/streams/{stream}
@@ -512,9 +534,6 @@ class DatastreamGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'datastream.googleapis.com:443'.
@@ -544,7 +563,7 @@ class DatastreamGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -584,7 +603,7 @@ class DatastreamGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -601,7 +620,7 @@ class DatastreamGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -632,8 +651,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. Only validate the connection profile, but don't create any resources.
-     *           The default is false.
+     *           Optional. Only validate the connection profile, but don't create any
+     *           resources. The default is false.
      *     @type bool $force
      *           Optional. Create the connection profile without validating it.
      *     @type RetrySettings|array $retrySettings
@@ -698,7 +717,7 @@ class DatastreamGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -715,7 +734,7 @@ class DatastreamGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -745,6 +764,8 @@ class DatastreamGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, will skip validations.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -769,6 +790,10 @@ class DatastreamGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -800,7 +825,7 @@ class DatastreamGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -817,7 +842,7 @@ class DatastreamGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -901,7 +926,7 @@ class DatastreamGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -918,7 +943,7 @@ class DatastreamGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1146,8 +1171,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $force
-     *           Optional. If set to true, any child routes that belong to this PrivateConnection will
-     *           also be deleted.
+     *           Optional. If set to true, any child routes that belong to this
+     *           PrivateConnection will also be deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1381,8 +1406,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the connection profile type. Must be in the
-     *                             format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The parent resource of the connection profile type. Must be in
+     *                             the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1488,8 +1513,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for the location for which static IPs should be returned.
-     *                             Must be in the format `projects/&#42;/locations/*`.
+     * @param string $name         Required. The resource name for the location for which static IPs should be
+     *                             returned. Must be in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1897,7 +1922,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of private connectivity configurations.
+     * @param string $parent       Required. The parent that owns the collection of private connectivity
+     *                             configurations.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2284,7 +2310,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $object       Required. The name of the stream object resource to start a backfill job for.
+     * @param string $object       Required. The name of the stream object resource to start a backfill job
+     *                             for.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2332,7 +2359,8 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $object       Required. The name of the stream object resource to stop the backfill job for.
+     * @param string $object       Required. The name of the stream object resource to stop the backfill job
+     *                             for.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2378,7 +2406,7 @@ class DatastreamGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2395,7 +2423,7 @@ class DatastreamGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2430,8 +2458,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. Only validate the connection profile, but don't update any resources.
-     *           The default is false.
+     *           Optional. Only validate the connection profile, but don't update any
+     *           resources. The default is false.
      *     @type bool $force
      *           Optional. Update the connection profile without validating it.
      *     @type RetrySettings|array $retrySettings
@@ -2496,7 +2524,7 @@ class DatastreamGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2513,7 +2541,7 @@ class DatastreamGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2548,8 +2576,8 @@ class DatastreamGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validateOnly
-     *           Optional. Only validate the stream with the changes, without actually updating it.
-     *           The default is false.
+     *           Optional. Only validate the stream with the changes, without actually
+     *           updating it. The default is false.
      *     @type bool $force
      *           Optional. Update the stream without validating it.
      *     @type RetrySettings|array $retrySettings

@@ -98,17 +98,17 @@ abstract class AbstractUploader
         $this->requestWrapper = $requestWrapper;
         $this->data = Utils::streamFor($data);
         $this->uri = $uri;
-        $this->metadata = isset($options['metadata']) ? $options['metadata'] : [];
-        $this->chunkSize = isset($options['chunkSize']) ? $options['chunkSize'] : null;
+        $this->metadata = $options['metadata'] ?? [];
+        $this->chunkSize = $options['chunkSize'] ?? null;
         $this->requestOptions = array_intersect_key($options, [
             'restOptions' => null,
             'retries' => null,
-            'requestTimeout' => null
+            'requestTimeout' => null,
+            'restRetryFunction' => null,
+            'restRetryListener' => null
         ]);
 
-        $this->contentType = isset($options['contentType'])
-            ? $options['contentType']
-            : 'application/octet-stream';
+        $this->contentType = $options['contentType'] ?? 'application/octet-stream';
     }
 
     /**

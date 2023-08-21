@@ -16,11 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceRequirements extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Only memory and CPU are supported. Note: The only
-     * supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
-     * requires at least 2Gi of memory. The values of the map is string form of
-     * the 'quantity' k8s type:
-     * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Only ´memory´ and 'cpu' are supported.
+     * <p>Notes:
+     *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
+     * CPU requires at least 2Gi of memory. For more information, go to
+     * https://cloud.google.com/run/docs/configuring/cpu.
+     *   * For supported 'memory' values and syntax, go to
+     *  https://cloud.google.com/run/docs/configuring/memory-limits
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
      */
@@ -31,6 +33,14 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool cpu_idle = 2;</code>
      */
     private $cpu_idle = false;
+    /**
+     * Determines whether CPU should be boosted on startup of a new container
+     * instance above the requested CPU threshold, this can help reduce cold-start
+     * latency.
+     *
+     * Generated from protobuf field <code>bool startup_cpu_boost = 3;</code>
+     */
+    private $startup_cpu_boost = false;
 
     /**
      * Constructor.
@@ -39,13 +49,19 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $limits
-     *           Only memory and CPU are supported. Note: The only
-     *           supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
-     *           requires at least 2Gi of memory. The values of the map is string form of
-     *           the 'quantity' k8s type:
-     *           https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     *           Only ´memory´ and 'cpu' are supported.
+     *           <p>Notes:
+     *            * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
+     *           CPU requires at least 2Gi of memory. For more information, go to
+     *           https://cloud.google.com/run/docs/configuring/cpu.
+     *             * For supported 'memory' values and syntax, go to
+     *            https://cloud.google.com/run/docs/configuring/memory-limits
      *     @type bool $cpu_idle
      *           Determines whether CPU should be throttled or not outside of requests.
+     *     @type bool $startup_cpu_boost
+     *           Determines whether CPU should be boosted on startup of a new container
+     *           instance above the requested CPU threshold, this can help reduce cold-start
+     *           latency.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,11 +70,13 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only memory and CPU are supported. Note: The only
-     * supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
-     * requires at least 2Gi of memory. The values of the map is string form of
-     * the 'quantity' k8s type:
-     * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Only ´memory´ and 'cpu' are supported.
+     * <p>Notes:
+     *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
+     * CPU requires at least 2Gi of memory. For more information, go to
+     * https://cloud.google.com/run/docs/configuring/cpu.
+     *   * For supported 'memory' values and syntax, go to
+     *  https://cloud.google.com/run/docs/configuring/memory-limits
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -69,11 +87,13 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only memory and CPU are supported. Note: The only
-     * supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
-     * requires at least 2Gi of memory. The values of the map is string form of
-     * the 'quantity' k8s type:
-     * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Only ´memory´ and 'cpu' are supported.
+     * <p>Notes:
+     *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
+     * CPU requires at least 2Gi of memory. For more information, go to
+     * https://cloud.google.com/run/docs/configuring/cpu.
+     *   * For supported 'memory' values and syntax, go to
+     *  https://cloud.google.com/run/docs/configuring/memory-limits
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -109,6 +129,36 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->cpu_idle = $var;
+
+        return $this;
+    }
+
+    /**
+     * Determines whether CPU should be boosted on startup of a new container
+     * instance above the requested CPU threshold, this can help reduce cold-start
+     * latency.
+     *
+     * Generated from protobuf field <code>bool startup_cpu_boost = 3;</code>
+     * @return bool
+     */
+    public function getStartupCpuBoost()
+    {
+        return $this->startup_cpu_boost;
+    }
+
+    /**
+     * Determines whether CPU should be boosted on startup of a new container
+     * instance above the requested CPU threshold, this can help reduce cold-start
+     * latency.
+     *
+     * Generated from protobuf field <code>bool startup_cpu_boost = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStartupCpuBoost($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->startup_cpu_boost = $var;
 
         return $this;
     }

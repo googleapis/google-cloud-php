@@ -22,9 +22,9 @@ class UpdateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
      */
     private $custom_dimension = null;
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Omitted fields will not be
+     * updated. To replace the entire entity, use one path with the string "*" to
+     * match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,9 +39,9 @@ class UpdateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Analytics\Admin\V1alpha\CustomDimension $custom_dimension
      *           The CustomDimension to update
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The list of fields to be updated. Omitted fields will not be updated.
-     *           To replace the entire entity, use one path with the string "*" to match
-     *           all fields.
+     *           Required. The list of fields to be updated. Omitted fields will not be
+     *           updated. To replace the entire entity, use one path with the string "*" to
+     *           match all fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,9 +86,9 @@ class UpdateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Omitted fields will not be
+     * updated. To replace the entire entity, use one path with the string "*" to
+     * match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -109,9 +109,9 @@ class UpdateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Omitted fields will not be
+     * updated. To replace the entire entity, use one path with the string "*" to
+     * match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

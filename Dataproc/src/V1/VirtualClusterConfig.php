@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Dataproc cluster config for a cluster that does not directly control the
+ * The Dataproc cluster config for a cluster that does not directly control the
  * underlying compute resources, such as a [Dataproc-on-GKE
- * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+ * cluster](https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview).
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.VirtualClusterConfig</code>
  */
 class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A Storage bucket used to stage job
+     * Optional. A Cloud Storage bucket used to stage job
      * dependencies, config files, and job driver console output.
      * If you do not specify a staging bucket, Cloud
      * Dataproc will determine a Cloud Storage location (US,
@@ -48,7 +48,7 @@ class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $staging_bucket
-     *           Optional. A Storage bucket used to stage job
+     *           Optional. A Cloud Storage bucket used to stage job
      *           dependencies, config files, and job driver console output.
      *           If you do not specify a staging bucket, Cloud
      *           Dataproc will determine a Cloud Storage location (US,
@@ -60,7 +60,8 @@ class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
      *           **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
      *           a Cloud Storage bucket.**
      *     @type \Google\Cloud\Dataproc\V1\KubernetesClusterConfig $kubernetes_cluster_config
-     *           Required. The configuration for running the Dataproc cluster on Kubernetes.
+     *           Required. The configuration for running the Dataproc cluster on
+     *           Kubernetes.
      *     @type \Google\Cloud\Dataproc\V1\AuxiliaryServicesConfig $auxiliary_services_config
      *           Optional. Configuration of auxiliary services used by this cluster.
      * }
@@ -71,7 +72,7 @@ class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Storage bucket used to stage job
+     * Optional. A Cloud Storage bucket used to stage job
      * dependencies, config files, and job driver console output.
      * If you do not specify a staging bucket, Cloud
      * Dataproc will determine a Cloud Storage location (US,
@@ -92,7 +93,7 @@ class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Storage bucket used to stage job
+     * Optional. A Cloud Storage bucket used to stage job
      * dependencies, config files, and job driver console output.
      * If you do not specify a staging bucket, Cloud
      * Dataproc will determine a Cloud Storage location (US,
@@ -117,7 +118,8 @@ class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The configuration for running the Dataproc cluster on Kubernetes.
+     * Required. The configuration for running the Dataproc cluster on
+     * Kubernetes.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KubernetesClusterConfig kubernetes_cluster_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1\KubernetesClusterConfig|null
@@ -133,7 +135,8 @@ class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The configuration for running the Dataproc cluster on Kubernetes.
+     * Required. The configuration for running the Dataproc cluster on
+     * Kubernetes.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KubernetesClusterConfig kubernetes_cluster_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1\KubernetesClusterConfig $var

@@ -7,7 +7,8 @@ namespace Google\Cloud\Tasks\V2beta3\Task;
 use UnexpectedValueException;
 
 /**
- * The view specifies a subset of [Task][google.cloud.tasks.v2beta3.Task] data.
+ * The view specifies a subset of [Task][google.cloud.tasks.v2beta3.Task]
+ * data.
  * When a task is returned in a response, not all
  * information is retrieved by default because some data, such as
  * payloads, might be desirable to return only when needed because
@@ -28,7 +29,8 @@ class View
      * The basic view omits fields which can be large or can contain
      * sensitive data.
      * This view does not include the
-     * [body in AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body].
+     * [body in
+     * AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body].
      * Bodies are desirable to return only when needed, because they
      * can be large and because of the sensitivity of the data that you
      * choose to store in it.
@@ -38,9 +40,10 @@ class View
     const BASIC = 1;
     /**
      * All information is returned.
-     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Queue][google.cloud.tasks.v2beta3.Queue] resource.
+     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Queue][google.cloud.tasks.v2beta3.Queue] resource.
      *
      * Generated from protobuf enum <code>FULL = 2;</code>
      */

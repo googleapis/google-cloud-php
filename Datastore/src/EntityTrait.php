@@ -90,7 +90,7 @@ trait EntityTrait
      *     @type bool $populatedByService Indicates whether the entity was
      *           created as the result of a service request.
      * }
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public static function build(Key $key = null, array $entity = [], array $options = [])
     {

@@ -20,12 +20,15 @@ namespace Google\Cloud\Storage\Tests\Unit;
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\ObjectPageIterator;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class ObjectIteratorTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testGetsPrefixes()
     {
         $prefixes = ['test/', 'test1/'];

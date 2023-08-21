@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.ImportDocuments][google.firestore.admin.v1.FirestoreAdmin.ImportDocuments].
+ * The request for
+ * [FirestoreAdmin.ImportDocuments][google.firestore.admin.v1.FirestoreAdmin.ImportDocuments].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ImportDocumentsRequest</code>
  */
@@ -39,6 +40,21 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string input_uri_prefix = 3;</code>
      */
     private $input_uri_prefix = '';
+
+    /**
+     * @param string $name Required. Database to import into. Should be of the form:
+     *                     `projects/{project_id}/databases/{database_id}`. Please see
+     *                     {@see FirestoreAdminClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

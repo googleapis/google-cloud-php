@@ -49,12 +49,6 @@ class MatchType
      * Generated from protobuf enum <code>FULL_REGEXP = 5;</code>
      */
     const FULL_REGEXP = 5;
-    /**
-     * Partial regular expression matches with the string value.
-     *
-     * Generated from protobuf enum <code>PARTIAL_REGEXP = 6;</code>
-     */
-    const PARTIAL_REGEXP = 6;
 
     private static $valueToName = [
         self::MATCH_TYPE_UNSPECIFIED => 'MATCH_TYPE_UNSPECIFIED',
@@ -63,7 +57,6 @@ class MatchType
         self::ENDS_WITH => 'ENDS_WITH',
         self::CONTAINS => 'CONTAINS',
         self::FULL_REGEXP => 'FULL_REGEXP',
-        self::PARTIAL_REGEXP => 'PARTIAL_REGEXP',
     ];
 
     public static function name($value)

@@ -47,7 +47,7 @@ class VideoStitcherServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/CreateCdnKey',
         $argument,
-        ['\Google\Cloud\Video\Stitcher\V1\CdnKey', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -92,7 +92,7 @@ class VideoStitcherServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteCdnKey',
         $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -108,7 +108,7 @@ class VideoStitcherServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateCdnKey',
         $argument,
-        ['\Google\Cloud\Video\Stitcher\V1\CdnKey', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -246,7 +246,7 @@ class VideoStitcherServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/CreateSlate',
         $argument,
-        ['\Google\Cloud\Video\Stitcher\V1\Slate', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -291,7 +291,7 @@ class VideoStitcherServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateSlate',
         $argument,
-        ['\Google\Cloud\Video\Stitcher\V1\Slate', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -306,7 +306,7 @@ class VideoStitcherServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteSlate',
         $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -337,6 +337,69 @@ class VideoStitcherServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/GetLiveSession',
         $argument,
         ['\Google\Cloud\Video\Stitcher\V1\LiveSession', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Registers the live config with the provided unique ID in
+     * the specified region.
+     * @param \Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateLiveConfig(\Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/CreateLiveConfig',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists all live configs managed by the Video Stitcher that
+     * belong to the specified project and region.
+     * @param \Google\Cloud\Video\Stitcher\V1\ListLiveConfigsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListLiveConfigs(\Google\Cloud\Video\Stitcher\V1\ListLiveConfigsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/ListLiveConfigs',
+        $argument,
+        ['\Google\Cloud\Video\Stitcher\V1\ListLiveConfigsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns the specified live config managed by the Video
+     * Stitcher service.
+     * @param \Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetLiveConfig(\Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/GetLiveConfig',
+        $argument,
+        ['\Google\Cloud\Video\Stitcher\V1\LiveConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes the specified live config.
+     * @param \Google\Cloud\Video\Stitcher\V1\DeleteLiveConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteLiveConfig(\Google\Cloud\Video\Stitcher\V1\DeleteLiveConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteLiveConfig',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-beyondcorp-clientgateways/v/stable)](https://packagist.org/packages/google/cloud-beyondcorp-clientgateways) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-beyondcorp-clientgateways.svg)](https://packagist.org/packages/google/cloud-beyondcorp-clientgateways)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-beyondcorp-clientgateways/latest/beyondcorpclientgateways/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-beyondcorp-clientgateways/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

@@ -12,6 +12,19 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getResults',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\RecommendationEngine\V1beta1\PredictResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'templateMap' => [
+                'placement' => 'projects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}/placements/{placement}',
             ],
         ],
     ],

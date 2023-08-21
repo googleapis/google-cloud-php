@@ -41,6 +41,23 @@ class InsertRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     private $request_id = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param string                                  $region                 Name of the region scoping this request.
+     * @param \Google\Cloud\Compute\V1\BackendService $backendServiceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\BackendService $backendServiceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setBackendServiceResource($backendServiceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -31,12 +31,15 @@ use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class PubSubClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
     const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';
@@ -45,7 +48,7 @@ class PubSubClientTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(PubSubClient::class, [['transport' => 'rest']]);

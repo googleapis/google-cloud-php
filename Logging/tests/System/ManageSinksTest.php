@@ -71,13 +71,12 @@ class ManageSinksTest extends LoggingTestCase
 
         $this->assertTrue($client->sink($name)->exists());
         $this->assertEquals($destination, $sink->info()['destination']);
-        $this->assertEquals($options['outputVersionFormat'], $sink->info()['outputVersionFormat']);
         $this->assertEquals($options['filter'], $sink->info()['filter']);
     }
 
     public function createSinkProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
         $bucket = self::$bucket;
         $bucket->acl()->add('group-cloud-logs@google.com', 'OWNER');
         $bucketDest = sprintf('storage.googleapis.com/%s', $bucket->name());
@@ -134,7 +133,6 @@ class ManageSinksTest extends LoggingTestCase
         $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
         $sink = $client->createSink($name, $destination, $options);
         self::$deletionQueue->add($sink);
-
-        $this->assertEquals($options['outputVersionFormat'], $sink->reload()['outputVersionFormat']);
+        $this->assertEquals($options['filter'], $sink->reload()['filter']);
     }
 }

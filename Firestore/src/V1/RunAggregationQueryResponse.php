@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
+ * The response for
+ * [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
  *
  * Generated from protobuf message <code>google.firestore.v1.RunAggregationQueryResponse</code>
  */
@@ -31,7 +32,13 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
      */
     private $transaction = '';
     /**
-     * The time at which the aggregate value is valid for.
+     * The time at which the aggregate result was computed. This is always
+     * monotonically increasing; in this case, the previous AggregationResult in
+     * the result stream are guaranteed not to have changed between their
+     * `read_time` and this one.
+     * If the query returns no results, a response with `read_time` and no
+     * `result` will be sent, and this represents the time at which the query
+     * was run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 3;</code>
      */
@@ -51,7 +58,13 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
      *           Only present on the first response when the request requested to start
      *           a new transaction.
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           The time at which the aggregate value is valid for.
+     *           The time at which the aggregate result was computed. This is always
+     *           monotonically increasing; in this case, the previous AggregationResult in
+     *           the result stream are guaranteed not to have changed between their
+     *           `read_time` and this one.
+     *           If the query returns no results, a response with `read_time` and no
+     *           `result` will be sent, and this represents the time at which the query
+     *           was run.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,7 +141,13 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the aggregate value is valid for.
+     * The time at which the aggregate result was computed. This is always
+     * monotonically increasing; in this case, the previous AggregationResult in
+     * the result stream are guaranteed not to have changed between their
+     * `read_time` and this one.
+     * If the query returns no results, a response with `read_time` and no
+     * `result` will be sent, and this represents the time at which the query
+     * was run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -149,7 +168,13 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the aggregate value is valid for.
+     * The time at which the aggregate result was computed. This is always
+     * monotonically increasing; in this case, the previous AggregationResult in
+     * the result stream are guaranteed not to have changed between their
+     * `read_time` and this one.
+     * If the query returns no results, a response with `read_time` and no
+     * `result` will be sent, and this represents the time at which the query
+     * was run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var

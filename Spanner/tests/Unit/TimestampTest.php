@@ -19,21 +19,19 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
  */
 class TimestampTest extends TestCase
 {
-    use AssertIsType;
     use GrpcTestTrait;
 
     private $dt;
     private $ts;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

@@ -34,6 +34,20 @@ class UpdateTaxonomyRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataCatalog\V1\Taxonomy $taxonomy The taxonomy to update. You can update only its description, display name,
+     *                                                        and activated policy types.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateTaxonomyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\V1\Taxonomy $taxonomy): self
+    {
+        return (new self())
+            ->setTaxonomy($taxonomy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

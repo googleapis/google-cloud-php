@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Aggregated metrics for [ShipmentRoute][google.cloud.optimization.v1.ShipmentRoute] (resp. for [OptimizeToursResponse][google.cloud.optimization.v1.OptimizeToursResponse]
+ * Aggregated metrics for
+ * [ShipmentRoute][google.cloud.optimization.v1.ShipmentRoute] (resp. for
+ * [OptimizeToursResponse][google.cloud.optimization.v1.OptimizeToursResponse]
  * over all [Transition][google.cloud.optimization.v1.ShipmentRoute.Transition]
  * and/or [Visit][google.cloud.optimization.v1.ShipmentRoute.Visit] (resp. over
  * all [ShipmentRoute][google.cloud.optimization.v1.ShipmentRoute]) elements.
@@ -57,8 +59,12 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     private $visit_duration = null;
     /**
      * The total duration should be equal to the sum of all durations above.
-     * For routes, it also corresponds to [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time] -
-     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     * For routes, it also corresponds to:
+     * ```
+     * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
+     * -
+     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
+     * ```
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      */
@@ -81,14 +87,22 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      */
     private $max_loads;
     /**
-     * Deprecated: Use [ShipmentRoute.route_costs][] and [OptimizeToursResponse.Metrics.costs][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.route_costs][google.cloud.optimization.v1.ShipmentRoute.route_costs]
+     * and
+     * [OptimizeToursResponse.Metrics.costs][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.costs]
+     * instead.
      *
      * Generated from protobuf field <code>map<string, double> costs = 10 [deprecated = true];</code>
      * @deprecated
      */
     private $costs;
     /**
-     * Deprecated: Use [ShipmentRoute.route_total_cost][] and [OptimizeToursResponse.Metrics.total_cost][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.route_total_cost][google.cloud.optimization.v1.ShipmentRoute.route_total_cost]
+     * and
+     * [OptimizeToursResponse.Metrics.total_cost][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.total_cost]
+     * instead.
      *
      * Generated from protobuf field <code>double total_cost = 11 [deprecated = true];</code>
      * @deprecated
@@ -116,8 +130,12 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      *           Total visit duration for a route or a solution.
      *     @type \Google\Protobuf\Duration $total_duration
      *           The total duration should be equal to the sum of all durations above.
-     *           For routes, it also corresponds to [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time] -
-     *           [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     *           For routes, it also corresponds to:
+     *           ```
+     *           [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
+     *           -
+     *           [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
+     *           ```
      *     @type float $travel_distance_meters
      *           Total travel distance for a route or a solution.
      *     @type array|\Google\Protobuf\Internal\MapField $max_loads
@@ -128,9 +146,17 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      *           (resp.
      *           [ShipmentRoute.metrics.max_loads][google.cloud.optimization.v1.AggregatedMetrics.max_loads].
      *     @type array|\Google\Protobuf\Internal\MapField $costs
-     *           Deprecated: Use [ShipmentRoute.route_costs][] and [OptimizeToursResponse.Metrics.costs][] instead.
+     *           Deprecated: Use
+     *           [ShipmentRoute.route_costs][google.cloud.optimization.v1.ShipmentRoute.route_costs]
+     *           and
+     *           [OptimizeToursResponse.Metrics.costs][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.costs]
+     *           instead.
      *     @type float $total_cost
-     *           Deprecated: Use [ShipmentRoute.route_total_cost][] and [OptimizeToursResponse.Metrics.total_cost][] instead.
+     *           Deprecated: Use
+     *           [ShipmentRoute.route_total_cost][google.cloud.optimization.v1.ShipmentRoute.route_total_cost]
+     *           and
+     *           [OptimizeToursResponse.Metrics.total_cost][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.total_cost]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -348,8 +374,12 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The total duration should be equal to the sum of all durations above.
-     * For routes, it also corresponds to [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time] -
-     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     * For routes, it also corresponds to:
+     * ```
+     * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
+     * -
+     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
+     * ```
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      * @return \Google\Protobuf\Duration|null
@@ -371,8 +401,12 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The total duration should be equal to the sum of all durations above.
-     * For routes, it also corresponds to [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time] -
-     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
+     * For routes, it also corresponds to:
+     * ```
+     * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
+     * -
+     * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
+     * ```
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      * @param \Google\Protobuf\Duration $var
@@ -449,7 +483,11 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.route_costs][] and [OptimizeToursResponse.Metrics.costs][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.route_costs][google.cloud.optimization.v1.ShipmentRoute.route_costs]
+     * and
+     * [OptimizeToursResponse.Metrics.costs][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.costs]
+     * instead.
      *
      * Generated from protobuf field <code>map<string, double> costs = 10 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -462,7 +500,11 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.route_costs][] and [OptimizeToursResponse.Metrics.costs][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.route_costs][google.cloud.optimization.v1.ShipmentRoute.route_costs]
+     * and
+     * [OptimizeToursResponse.Metrics.costs][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.costs]
+     * instead.
      *
      * Generated from protobuf field <code>map<string, double> costs = 10 [deprecated = true];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -479,7 +521,11 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.route_total_cost][] and [OptimizeToursResponse.Metrics.total_cost][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.route_total_cost][google.cloud.optimization.v1.ShipmentRoute.route_total_cost]
+     * and
+     * [OptimizeToursResponse.Metrics.total_cost][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.total_cost]
+     * instead.
      *
      * Generated from protobuf field <code>double total_cost = 11 [deprecated = true];</code>
      * @return float
@@ -492,7 +538,11 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.route_total_cost][] and [OptimizeToursResponse.Metrics.total_cost][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.route_total_cost][google.cloud.optimization.v1.ShipmentRoute.route_total_cost]
+     * and
+     * [OptimizeToursResponse.Metrics.total_cost][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.total_cost]
+     * instead.
      *
      * Generated from protobuf field <code>double total_cost = 11 [deprecated = true];</code>
      * @param float $var

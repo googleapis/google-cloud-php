@@ -18,6 +18,10 @@ class LifecyclePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Action to execute when ActionCondition is true.
+     * When RETRY_TASK is specified, we will retry failed tasks
+     * if we notice any exit code match and fail tasks if no match is found.
+     * Likewise, when FAIL_TASK is specified, we will fail tasks
+     * if we notice any exit code match and retry tasks if no match is found.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LifecyclePolicy.Action action = 1;</code>
      */
@@ -37,6 +41,10 @@ class LifecyclePolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type int $action
      *           Action to execute when ActionCondition is true.
+     *           When RETRY_TASK is specified, we will retry failed tasks
+     *           if we notice any exit code match and fail tasks if no match is found.
+     *           Likewise, when FAIL_TASK is specified, we will fail tasks
+     *           if we notice any exit code match and retry tasks if no match is found.
      *     @type \Google\Cloud\Batch\V1\LifecyclePolicy\ActionCondition $action_condition
      *           Conditions that decide why a task failure is dealt with a specific action.
      * }
@@ -48,6 +56,10 @@ class LifecyclePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Action to execute when ActionCondition is true.
+     * When RETRY_TASK is specified, we will retry failed tasks
+     * if we notice any exit code match and fail tasks if no match is found.
+     * Likewise, when FAIL_TASK is specified, we will fail tasks
+     * if we notice any exit code match and retry tasks if no match is found.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LifecyclePolicy.Action action = 1;</code>
      * @return int
@@ -59,6 +71,10 @@ class LifecyclePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Action to execute when ActionCondition is true.
+     * When RETRY_TASK is specified, we will retry failed tasks
+     * if we notice any exit code match and fail tasks if no match is found.
+     * Likewise, when FAIL_TASK is specified, we will fail tasks
+     * if we notice any exit code match and retry tasks if no match is found.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LifecyclePolicy.Action action = 1;</code>
      * @param int $var

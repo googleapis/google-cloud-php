@@ -21,6 +21,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Cursor;
@@ -29,20 +30,21 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\GqlQuery;
+use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class DatastoreClientTest extends SnippetTestCase
 {
-    use AssertIsType;
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example-project';
 
@@ -51,7 +53,7 @@ class DatastoreClientTest extends SnippetTestCase
     private $client;
     private $key;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
@@ -93,6 +95,28 @@ class DatastoreClientTest extends SnippetTestCase
         $nsProp->setAccessible(true);
 
         $this->assertEquals('my-application-namespace', $nsProp->getValue($op));
+    }
+
+    public function testMultipleDatabases()
+    {
+        $snippet = $this->snippetFromClass(DatastoreClient::class, 3);
+        $res = $snippet->invoke('datastore');
+
+        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
+
+        $ds = $res->returnVal();
+
+        $ref = new \ReflectionClass($ds);
+        $opProp = $ref->getProperty('operation');
+        $opProp->setAccessible(true);
+
+        $op = $opProp->getValue($ds);
+
+        $opRef = new \ReflectionClass($op);
+        $dsProp = $opRef->getProperty('databaseId');
+        $dsProp->setAccessible(true);
+
+        $this->assertEquals('my-database', $dsProp->getValue($op));
     }
 
     public function testEmulator()
@@ -351,6 +375,12 @@ class DatastoreClientTest extends SnippetTestCase
         ]);
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
+
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'readOnlyTransaction', 1);
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('time', new Timestamp(new \DateTime()));
+        $res = $snippet->invoke('transaction');
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
     }
 
     public function testInsert()
@@ -551,6 +581,12 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
+
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookup', 1);
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('time', new Timestamp(new \DateTime()));
+        $res = $snippet->invoke();
+        $this->assertEquals('Bob', $res->output());
     }
 
     public function testLookupBatch()
@@ -600,6 +636,13 @@ class DatastoreClientTest extends SnippetTestCase
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
         $this->assertEquals("John", explode("\n", $res->output())[1]);
+
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookupBatch', 1);
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('time', new Timestamp(new \DateTime()));
+        $res = $snippet->invoke();
+        $this->assertEquals("Bob", explode("\n", $res->output())[0]);
+        $this->assertEquals("John", explode("\n", $res->output())[1]);
     }
 
     public function testQuery()
@@ -609,6 +652,15 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('query');
         $this->assertInstanceOf(Query::class, $res->returnVal());
+    }
+
+    public function testAggregationQuery()
+    {
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'aggregationQuery');
+        $snippet->addLocal('datastore', $this->client);
+
+        $res = $snippet->invoke('query');
+        $this->assertInstanceOf(AggregationQuery::class, $res->returnVal());
     }
 
     /**
@@ -662,6 +714,52 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
+
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runQuery', 1);
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('query', $query->reveal());
+        $snippet->addLocal('time', new Timestamp(new \DateTime()));
+        $res = $snippet->invoke('result');
+        $this->assertEquals('Bob', $res->output());
+    }
+
+    public function testRunAggregationQuery()
+    {
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runAggregationQuery');
+        $snippet->addLocal('datastore', $this->client);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([]);
+        $snippet->addLocal('query', $query->reveal());
+
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => [
+                                'property_1' => 1,
+                            ]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
+            ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('1', $res->output());
+
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runAggregationQuery', 1);
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('query', $query->reveal());
+        $snippet->addLocal('time', new Timestamp(new \DateTime()));
+        $res = $snippet->invoke();
+        $this->assertEquals('1', $res->output());
     }
 
     // ******** HELPERS
@@ -707,6 +805,10 @@ class DatastoreClientTest extends SnippetTestCase
             if (!empty((array) $options)) {
                 return $options === $args['transactionOptions'][$type];
             } else {
+                if (is_array($args['transactionOptions'][$type]) and
+                isset($args['transactionOptions'][$type]['readTime'])) {
+                    return true;
+                }
                 return is_object($args['transactionOptions'][$type])
                     && empty((array) $args['transactionOptions'][$type]);
             }

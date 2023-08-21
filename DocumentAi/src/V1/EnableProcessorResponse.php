@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for the enable processor method.
- * Intentionally empty proto for adding fields in future.
+ * Response message for the
+ * [EnableProcessor][google.cloud.documentai.v1.DocumentProcessorService.EnableProcessor]
+ * method. Intentionally empty proto for adding fields in future.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.EnableProcessorResponse</code>
  */

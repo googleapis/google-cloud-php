@@ -24,6 +24,22 @@ class GetNotificationChannelDescriptorRequest extends \Google\Protobuf\Internal\
     private $name = '';
 
     /**
+     * @param string $name Required. The channel type for which to execute the request. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
+     *                     Please see {@see NotificationChannelServiceClient::notificationChannelDescriptorName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelDescriptorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

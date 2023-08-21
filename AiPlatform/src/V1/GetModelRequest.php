@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.GetModel][google.cloud.aiplatform.v1.ModelService.GetModel].
+ * Request message for
+ * [ModelService.GetModel][google.cloud.aiplatform.v1.ModelService.GetModel].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetModelRequest</code>
  */
@@ -31,6 +32,31 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the Model resource.
+     *                     Format: `projects/{project}/locations/{location}/models/{model}`
+     *
+     *                     In order to retrieve a specific version of the model, also provide
+     *                     the version ID or version alias.
+     *                     Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                     or
+     *                     `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *                     If no version ID or alias is specified, the "default" version will be
+     *                     returned. The "default" version alias is created for the first version of
+     *                     the model, and can be moved to other versions later on. There will be
+     *                     exactly one default version. Please see
+     *                     {@see ModelServiceClient::modelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

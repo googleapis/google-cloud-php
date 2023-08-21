@@ -27,7 +27,6 @@ namespace Google\Cloud\OrgPolicy\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -44,6 +43,7 @@ use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesResponse;
 use Google\Cloud\OrgPolicy\V2\Policy;
 use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
@@ -86,34 +86,27 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient} to use the new surface.
  */
 class OrgPolicyGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.orgpolicy.v2.OrgPolicy';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'orgpolicy.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -399,9 +392,6 @@ class OrgPolicyGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'orgpolicy.googleapis.com:443'.
@@ -431,7 +421,7 @@ class OrgPolicyGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -476,8 +466,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that will parent the new Policy. Must be in one of the
-     *                             following forms:
+     * @param string $parent       Required. The Cloud resource that will parent the new Policy. Must be in
+     *                             one of the following forms:
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -611,7 +601,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the policy. See `Policy` for naming requirements.
+     * @param string $name         Required. Resource name of the policy. See `Policy` for naming
+     *                             requirements.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -662,8 +653,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that parents the constraint. Must be in one of the
-     *                             following forms:
+     * @param string $parent       Required. The Cloud resource that parents the constraint. Must be in one of
+     *                             the following forms:
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -735,9 +726,9 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The target Cloud resource that parents the set of constraints and policies
-     *                             that will be returned from this call. Must be in one of the following
-     *                             forms:
+     * @param string $parent       Required. The target Cloud resource that parents the set of constraints and
+     *                             policies that will be returned from this call. Must be in one of the
+     *                             following forms:
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -809,6 +800,10 @@ class OrgPolicyGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Field mask used to specify the fields to be overwritten in the policy
+     *           by the set. The fields specified in the update_mask are relative to the
+     *           policy, not the full request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -825,6 +820,10 @@ class OrgPolicyGapicClient
         $requestParamHeaders = [];
         $request->setPolicy($policy);
         $requestParamHeaders['policy.name'] = $policy->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdatePolicy', Policy::class, $optionalArgs, $request)->wait();

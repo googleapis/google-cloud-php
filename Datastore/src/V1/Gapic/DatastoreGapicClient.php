@@ -26,13 +26,13 @@ namespace Google\Cloud\Datastore\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Datastore\V1\AggregationQuery;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\AllocateIdsResponse;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
@@ -52,6 +52,8 @@ use Google\Cloud\Datastore\V1\ReserveIdsRequest;
 use Google\Cloud\Datastore\V1\ReserveIdsResponse;
 use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RollbackResponse;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Google\Cloud\Datastore\V1\TransactionOptions;
@@ -78,34 +80,27 @@ use Google\Cloud\Datastore\V1\TransactionOptions;
  *     $datastoreClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Datastore\V1\Client\DatastoreClient} to use the new surface.
  */
 class DatastoreGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.datastore.v1.Datastore';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'datastore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
@@ -136,9 +131,6 @@ class DatastoreGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'datastore.googleapis.com:443'.
@@ -168,7 +160,7 @@ class DatastoreGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -210,8 +202,8 @@ class DatastoreGapicClient
      * ```
      *
      * @param string $projectId    Required. The ID of the project against which to make the request.
-     * @param Key[]  $keys         Required. A list of keys with incomplete key paths for which to allocate IDs.
-     *                             No key may be reserved/read-only.
+     * @param Key[]  $keys         Required. A list of keys with incomplete key paths for which to allocate
+     *                             IDs. No key may be reserved/read-only.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -239,6 +231,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -289,6 +282,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['transactionOptions'])) {
@@ -345,6 +339,11 @@ class DatastoreGapicClient
      *           The identifier of the transaction associated with the commit. A
      *           transaction identifier is returned by a call to
      *           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+     *     @type TransactionOptions $singleUseTransaction
+     *           Options for beginning a new transaction for this request.
+     *           The transaction is committed when the request completes. If specified,
+     *           [TransactionOptions.mode][google.datastore.v1.TransactionOptions] must be
+     *           [TransactionOptions.ReadWrite][google.datastore.v1.TransactionOptions.ReadWrite].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -365,10 +364,15 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
+        }
+
+        if (isset($optionalArgs['singleUseTransaction'])) {
+            $request->setSingleUseTransaction($optionalArgs['singleUseTransaction']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -422,6 +426,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['readOptions'])) {
@@ -450,8 +455,8 @@ class DatastoreGapicClient
      * ```
      *
      * @param string $projectId    Required. The ID of the project against which to make the request.
-     * @param Key[]  $keys         Required. A list of keys with complete key paths whose numeric IDs should not be
-     *                             auto-allocated.
+     * @param Key[]  $keys         Required. A list of keys with complete key paths whose numeric IDs should
+     *                             not be auto-allocated.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -479,6 +484,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -494,7 +500,7 @@ class DatastoreGapicClient
      * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = 'project_id';
-     *     $transaction = '';
+     *     $transaction = '...';
      *     $response = $datastoreClient->rollback($projectId, $transaction);
      * } finally {
      *     $datastoreClient->close();
@@ -531,11 +537,88 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Rollback', RollbackResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Runs an aggregation query.
+     *
+     * Sample code:
+     * ```
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
+     * try {
+     *     $projectId = 'project_id';
+     *     $response = $datastoreClient->runAggregationQuery($projectId);
+     * } finally {
+     *     $datastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $projectId    Required. The ID of the project against which to make the request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $databaseId
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
+     *     @type PartitionId $partitionId
+     *           Entities are partitioned into subsets, identified by a partition ID.
+     *           Queries are scoped to a single partition.
+     *           This partition ID is normalized with the standard default context
+     *           partition ID.
+     *     @type ReadOptions $readOptions
+     *           The options for this query.
+     *     @type AggregationQuery $aggregationQuery
+     *           The query to run.
+     *     @type GqlQuery $gqlQuery
+     *           The GQL query to run. This query must be an aggregation query.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Datastore\V1\RunAggregationQueryResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function runAggregationQuery($projectId, array $optionalArgs = [])
+    {
+        $request = new RunAggregationQueryRequest();
+        $requestParamHeaders = [];
+        $request->setProjectId($projectId);
+        $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
+        }
+
+        if (isset($optionalArgs['partitionId'])) {
+            $request->setPartitionId($optionalArgs['partitionId']);
+        }
+
+        if (isset($optionalArgs['readOptions'])) {
+            $request->setReadOptions($optionalArgs['readOptions']);
+        }
+
+        if (isset($optionalArgs['aggregationQuery'])) {
+            $request->setAggregationQuery($optionalArgs['aggregationQuery']);
+        }
+
+        if (isset($optionalArgs['gqlQuery'])) {
+            $request->setGqlQuery($optionalArgs['gqlQuery']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RunAggregationQuery', RunAggregationQueryResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -591,6 +674,7 @@ class DatastoreGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
+            $requestParamHeaders['database_id'] = $optionalArgs['databaseId'];
         }
 
         if (isset($optionalArgs['readOptions'])) {

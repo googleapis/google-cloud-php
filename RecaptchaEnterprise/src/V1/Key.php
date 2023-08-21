@@ -37,9 +37,9 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this Key.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
@@ -48,6 +48,12 @@ class Key extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
      */
     private $testing_options = null;
+    /**
+     * Settings for WAF
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     */
+    private $waf_settings = null;
     protected $platform_settings;
 
     /**
@@ -71,9 +77,11 @@ class Key extends \Google\Protobuf\Internal\Message
      *           See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
      *           Creating and managing labels</a>.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The timestamp corresponding to the creation of this Key.
+     *           Output only. The timestamp corresponding to the creation of this Key.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
      *           Options for user acceptance testing.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $waf_settings
+     *           Settings for WAF
      * }
      */
     public function __construct($data = NULL) {
@@ -257,9 +265,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this Key.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -278,9 +286,9 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this Key.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -324,6 +332,42 @@ class Key extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions::class);
         $this->testing_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Settings for WAF
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\WafSettings|null
+     */
+    public function getWafSettings()
+    {
+        return $this->waf_settings;
+    }
+
+    public function hasWafSettings()
+    {
+        return isset($this->waf_settings);
+    }
+
+    public function clearWafSettings()
+    {
+        unset($this->waf_settings);
+    }
+
+    /**
+     * Settings for WAF
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $var
+     * @return $this
+     */
+    public function setWafSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\WafSettings::class);
+        $this->waf_settings = $var;
 
         return $this;
     }

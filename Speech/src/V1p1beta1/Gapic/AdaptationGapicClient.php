@@ -29,7 +29,6 @@ namespace Google\Cloud\Speech\V1p1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -82,29 +81,19 @@ class AdaptationGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.speech.v1p1beta1.Adaptation';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'speech.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -288,9 +277,6 @@ class AdaptationGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'speech.googleapis.com:443'.
@@ -320,7 +306,7 @@ class AdaptationGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -363,7 +349,8 @@ class AdaptationGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The parent resource where this custom class will be created. Format:
+     * @param string      $parent        Required. The parent resource where this custom class will be created.
+     *                                   Format:
      *
      *                                   `projects/{project}/locations/{location}/customClasses`
      *
@@ -424,9 +411,10 @@ class AdaptationGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent resource where this phrase set will be created. Format:
+     * @param string    $parent       Required. The parent resource where this phrase set will be created.
+     *                                Format:
      *
-     *                                `projects/{project}/locations/{location}/phraseSets`
+     *                                `projects/{project}/locations/{location}`
      *
      *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`

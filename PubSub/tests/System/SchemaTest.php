@@ -30,7 +30,7 @@ use Utilities\StateProto;
  */
 class SchemaTest extends PubSubTestCase
 {
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::skipIfEmulatorUsed(
             "schema tests are not supported when using service emulation"
@@ -116,6 +116,9 @@ class SchemaTest extends PubSubTestCase
      */
     public function testPublishWithAvroSchemaBinary(PubSubClient $client)
     {
+        if (version_compare(phpversion(), '7.3.0') === -1) {
+            $this->markTestSkipped('This test can only be run on php 7.3+');
+        }
         $definition = file_get_contents(__DIR__ . '/testdata/schema.avsc');
         $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
@@ -141,13 +144,11 @@ class SchemaTest extends PubSubTestCase
         $io = new \AvroStringIO();
         $schema = \AvroSchema::parse($definition);
         $writer = new \AvroIODatumWriter($schema);
-        $dataWriter = new \AvroDataIOWriter($io, $writer, $schema);
-        $dataWriter->append($data);
-
-        $dataWriter->close();
+        $encoder = new \AvroIOBinaryEncoder($io);
+        $writer->write($data, $encoder);
 
         $topic->publish(new Message([
-            'data' => base64_encode($io->string()),
+            'data' => $io->string(),
         ]));
     }
 

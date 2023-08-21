@@ -22,12 +22,29 @@ class CreateConversionEventRequest extends \Google\Protobuf\Internal\Message
      */
     private $conversion_event = null;
     /**
-     * Required. The resource name of the parent property where this conversion event will
-     * be created. Format: properties/123
+     * Required. The resource name of the parent property where this conversion
+     * event will be created. Format: properties/123
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+
+    /**
+     * @param string                                         $parent          Required. The resource name of the parent property where this conversion
+     *                                                                        event will be created. Format: properties/123
+     *                                                                        Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Admin\V1beta\ConversionEvent $conversionEvent Required. The conversion event to create.
+     *
+     * @return \Google\Analytics\Admin\V1beta\CreateConversionEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Admin\V1beta\ConversionEvent $conversionEvent): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConversionEvent($conversionEvent);
+    }
 
     /**
      * Constructor.
@@ -38,8 +55,8 @@ class CreateConversionEventRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Analytics\Admin\V1beta\ConversionEvent $conversion_event
      *           Required. The conversion event to create.
      *     @type string $parent
-     *           Required. The resource name of the parent property where this conversion event will
-     *           be created. Format: properties/123
+     *           Required. The resource name of the parent property where this conversion
+     *           event will be created. Format: properties/123
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +101,8 @@ class CreateConversionEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the parent property where this conversion event will
-     * be created. Format: properties/123
+     * Required. The resource name of the parent property where this conversion
+     * event will be created. Format: properties/123
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,8 +113,8 @@ class CreateConversionEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the parent property where this conversion event will
-     * be created. Format: properties/123
+     * Required. The resource name of the parent property where this conversion
+     * event will be created. Format: properties/123
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

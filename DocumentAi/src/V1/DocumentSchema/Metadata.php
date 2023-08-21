@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Metadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If true, a `document` entity type can be applied to subdocument (
-     * splitting). Otherwise, it can only be applied to the entire document
+     * If true, a `document` entity type can be applied to subdocument
+     * (splitting). Otherwise, it can only be applied to the entire document
      * (classification).
      *
      * Generated from protobuf field <code>bool document_splitter = 1;</code>
@@ -52,8 +52,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $document_splitter
-     *           If true, a `document` entity type can be applied to subdocument (
-     *           splitting). Otherwise, it can only be applied to the entire document
+     *           If true, a `document` entity type can be applied to subdocument
+     *           (splitting). Otherwise, it can only be applied to the entire document
      *           (classification).
      *     @type bool $document_allow_multiple_labels
      *           If true, on a given page, there can be multiple `document` annotations
@@ -72,8 +72,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, a `document` entity type can be applied to subdocument (
-     * splitting). Otherwise, it can only be applied to the entire document
+     * If true, a `document` entity type can be applied to subdocument
+     * (splitting). Otherwise, it can only be applied to the entire document
      * (classification).
      *
      * Generated from protobuf field <code>bool document_splitter = 1;</code>
@@ -85,8 +85,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, a `document` entity type can be applied to subdocument (
-     * splitting). Otherwise, it can only be applied to the entire document
+     * If true, a `document` entity type can be applied to subdocument
+     * (splitting). Otherwise, it can only be applied to the entire document
      * (classification).
      *
      * Generated from protobuf field <code>bool document_splitter = 1;</code>

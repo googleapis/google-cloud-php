@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for deleting a big query export.
+ * Request message for deleting a BigQuery export.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.DeleteBigQueryExportRequest</code>
  */
 class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the big query export to delete. Its format is
+     * Required. The name of the BigQuery export to delete. Its format is
      * organizations/{organization}/bigQueryExports/{export_id},
      * folders/{folder}/bigQueryExports/{export_id}, or
      * projects/{project}/bigQueryExports/{export_id}
@@ -26,13 +26,30 @@ class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the BigQuery export to delete. Its format is
+     *                     organizations/{organization}/bigQueryExports/{export_id},
+     *                     folders/{folder}/bigQueryExports/{export_id}, or
+     *                     projects/{project}/bigQueryExports/{export_id}
+     *                     Please see {@see SecurityCenterClient::bigQueryExportName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the big query export to delete. Its format is
+     *           Required. The name of the BigQuery export to delete. Its format is
      *           organizations/{organization}/bigQueryExports/{export_id},
      *           folders/{folder}/bigQueryExports/{export_id}, or
      *           projects/{project}/bigQueryExports/{export_id}
@@ -44,7 +61,7 @@ class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the big query export to delete. Its format is
+     * Required. The name of the BigQuery export to delete. Its format is
      * organizations/{organization}/bigQueryExports/{export_id},
      * folders/{folder}/bigQueryExports/{export_id}, or
      * projects/{project}/bigQueryExports/{export_id}
@@ -58,7 +75,7 @@ class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the big query export to delete. Its format is
+     * Required. The name of the BigQuery export to delete. Its format is
      * organizations/{organization}/bigQueryExports/{export_id},
      * folders/{folder}/bigQueryExports/{export_id}, or
      * projects/{project}/bigQueryExports/{export_id}

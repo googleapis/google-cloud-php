@@ -18,15 +18,16 @@
 namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Datastore\Key;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class KeyTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     public function testWithInitialPath()
     {
@@ -51,6 +52,18 @@ class KeyTest extends TestCase
         ]);
     }
 
+    public function testKeyDatabaseId()
+    {
+        $key = new Key('foo', [
+            'databaseId' => 'MyDb',
+        ]);
+
+        $this->assertEquals($key->keyObject()['partitionId'], [
+            'projectId' => 'foo',
+            'databaseId' => 'MyDb'
+        ]);
+    }
+
     public function testPathElement()
     {
         $key = new Key('foo');
@@ -65,7 +78,7 @@ class KeyTest extends TestCase
 
     public function testInvalidPathElementAddition()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $key = new Key('foo', [
             'path' => [
@@ -118,7 +131,7 @@ class KeyTest extends TestCase
 
     public function testAncestorKeyIncompletePath()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $ancestor = $this->prophesize(Key::class);
         $ancestor->state()->willReturn(Key::STATE_INCOMPLETE);
@@ -140,7 +153,7 @@ class KeyTest extends TestCase
 
     public function testPathElementInvalidIdentifierType()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $key = new Key('foo');
         $key->pathElement('Robots', '1000', ['identifierType' => 'nothanks']);
@@ -157,7 +170,7 @@ class KeyTest extends TestCase
 
     public function testMissingKind()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $key = new Key('foo', [
             'path' => [
@@ -168,7 +181,7 @@ class KeyTest extends TestCase
 
     public function testElementMissingIdentifier()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $key = new Key('foo', [
             'path' => [

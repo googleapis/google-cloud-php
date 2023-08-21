@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ErrorLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. If applicable, denotes the line where the error occurred. A zero value
-     * means that there is no line information.
+     * Optional. If applicable, denotes the line where the error occurred. A zero
+     * value means that there is no line information.
      *
      * Generated from protobuf field <code>int32 line = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $line = 0;
     /**
-     * Optional. If applicable, denotes the column where the error occurred. A zero value
-     * means that there is no columns information.
+     * Optional. If applicable, denotes the column where the error occurred. A
+     * zero value means that there is no columns information.
      *
      * Generated from protobuf field <code>int32 column = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -37,11 +37,11 @@ class ErrorLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $line
-     *           Optional. If applicable, denotes the line where the error occurred. A zero value
-     *           means that there is no line information.
+     *           Optional. If applicable, denotes the line where the error occurred. A zero
+     *           value means that there is no line information.
      *     @type int $column
-     *           Optional. If applicable, denotes the column where the error occurred. A zero value
-     *           means that there is no columns information.
+     *           Optional. If applicable, denotes the column where the error occurred. A
+     *           zero value means that there is no columns information.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +50,8 @@ class ErrorLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If applicable, denotes the line where the error occurred. A zero value
-     * means that there is no line information.
+     * Optional. If applicable, denotes the line where the error occurred. A zero
+     * value means that there is no line information.
      *
      * Generated from protobuf field <code>int32 line = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -62,8 +62,8 @@ class ErrorLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If applicable, denotes the line where the error occurred. A zero value
-     * means that there is no line information.
+     * Optional. If applicable, denotes the line where the error occurred. A zero
+     * value means that there is no line information.
      *
      * Generated from protobuf field <code>int32 line = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -78,8 +78,8 @@ class ErrorLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If applicable, denotes the column where the error occurred. A zero value
-     * means that there is no columns information.
+     * Optional. If applicable, denotes the column where the error occurred. A
+     * zero value means that there is no columns information.
      *
      * Generated from protobuf field <code>int32 column = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -90,8 +90,8 @@ class ErrorLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If applicable, denotes the column where the error occurred. A zero value
-     * means that there is no columns information.
+     * Optional. If applicable, denotes the column where the error occurred. A
+     * zero value means that there is no columns information.
      *
      * Generated from protobuf field <code>int32 column = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

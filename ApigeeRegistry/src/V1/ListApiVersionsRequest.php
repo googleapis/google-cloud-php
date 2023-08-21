@@ -49,6 +49,21 @@ class ListApiVersionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of versions.
+     *                       Format: `projects/&#42;/locations/&#42;/apis/*`
+     *                       Please see {@see RegistryClient::apiName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\ListApiVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

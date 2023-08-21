@@ -47,6 +47,25 @@ class RecreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobu
     private $request_id = null;
 
     /**
+     * @param string                                                              $project                                            Project ID for this request.
+     * @param string                                                              $region                                             Name of the region scoping this request.
+     * @param string                                                              $instanceGroupManager                               Name of the managed instance group.
+     * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagersRecreateRequest $regionInstanceGroupManagersRecreateRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\RecreateInstancesRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager, \Google\Cloud\Compute\V1\RegionInstanceGroupManagersRecreateRequest $regionInstanceGroupManagersRecreateRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setRegionInstanceGroupManagersRecreateRequestResource($regionInstanceGroupManagersRecreateRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -28,7 +28,8 @@ class AllowedIpRange extends \Google\Protobuf\Internal\Message
      */
     private $value = '';
     /**
-     * Optional. User-provided description. It must contain at most 300 characters.
+     * Optional. User-provided description. It must contain at most 300
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,7 +50,8 @@ class AllowedIpRange extends \Google\Protobuf\Internal\Message
      *           `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6,
      *           `2001:db8::1/32` should be truncated to `2001:db8::/32`.
      *     @type string $description
-     *           Optional. User-provided description. It must contain at most 300 characters.
+     *           Optional. User-provided description. It must contain at most 300
+     *           characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +98,8 @@ class AllowedIpRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-provided description. It must contain at most 300 characters.
+     * Optional. User-provided description. It must contain at most 300
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -107,7 +110,8 @@ class AllowedIpRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-provided description. It must contain at most 300 characters.
+     * Optional. User-provided description. It must contain at most 300
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -123,6 +127,4 @@ class AllowedIpRange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AllowedIpRange::class, \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl_AllowedIpRange::class);
 

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.UpdateTensorboardRun][google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboardRun].
+ * Request message for
+ * [TensorboardService.UpdateTensorboardRun][google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboardRun].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateTensorboardRunRequest</code>
  */
@@ -19,21 +20,43 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      * Required. Field mask is used to specify the fields to be overwritten in the
      * TensorboardRun resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten if new
+     * the full request. A field is overwritten if it's in the mask. If the
+     * user does not provide a mask then all fields are overwritten if new
      * values are specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
     /**
-     * Required. The TensorboardRun's `name` field is used to identify the TensorboardRun to
-     * be updated. Format:
+     * Required. The TensorboardRun's `name` field is used to identify the
+     * TensorboardRun to be updated. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardRun tensorboard_run = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tensorboard_run = null;
+
+    /**
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardRun $tensorboardRun Required. The TensorboardRun's `name` field is used to identify the
+     *                                                                   TensorboardRun to be updated. Format:
+     *                                                                   `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     * @param \Google\Protobuf\FieldMask                 $updateMask     Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                                   TensorboardRun resource by the update.
+     *                                                                   The fields specified in the update_mask are relative to the resource, not
+     *                                                                   the full request. A field is overwritten if it's in the mask. If the
+     *                                                                   user does not provide a mask then all fields are overwritten if new
+     *                                                                   values are specified.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateTensorboardRunRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\TensorboardRun $tensorboardRun, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTensorboardRun($tensorboardRun)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -45,12 +68,12 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      *           Required. Field mask is used to specify the fields to be overwritten in the
      *           TensorboardRun resource by the update.
      *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it is in the mask. If the
-     *           user does not provide a mask then all fields will be overwritten if new
+     *           the full request. A field is overwritten if it's in the mask. If the
+     *           user does not provide a mask then all fields are overwritten if new
      *           values are specified.
      *     @type \Google\Cloud\AIPlatform\V1\TensorboardRun $tensorboard_run
-     *           Required. The TensorboardRun's `name` field is used to identify the TensorboardRun to
-     *           be updated. Format:
+     *           Required. The TensorboardRun's `name` field is used to identify the
+     *           TensorboardRun to be updated. Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      * }
      */
@@ -63,8 +86,8 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      * Required. Field mask is used to specify the fields to be overwritten in the
      * TensorboardRun resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten if new
+     * the full request. A field is overwritten if it's in the mask. If the
+     * user does not provide a mask then all fields are overwritten if new
      * values are specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -89,8 +112,8 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      * Required. Field mask is used to specify the fields to be overwritten in the
      * TensorboardRun resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten if new
+     * the full request. A field is overwritten if it's in the mask. If the
+     * user does not provide a mask then all fields are overwritten if new
      * values are specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -106,8 +129,8 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The TensorboardRun's `name` field is used to identify the TensorboardRun to
-     * be updated. Format:
+     * Required. The TensorboardRun's `name` field is used to identify the
+     * TensorboardRun to be updated. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardRun tensorboard_run = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -129,8 +152,8 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The TensorboardRun's `name` field is used to identify the TensorboardRun to
-     * be updated. Format:
+     * Required. The TensorboardRun's `name` field is used to identify the
+     * TensorboardRun to be updated. Format:
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardRun tensorboard_run = 2 [(.google.api.field_behavior) = REQUIRED];</code>

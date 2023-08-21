@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class AzureSshConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The SSH public key data for VMs managed by Anthos. This accepts the
-     * authorized_keys file format used in OpenSSH according to the sshd(8) manual
-     * page.
+     * Required. The SSH public key data for VMs managed by Anthos. This accepts
+     * the authorized_keys file format used in OpenSSH according to the sshd(8)
+     * manual page.
      *
      * Generated from protobuf field <code>string authorized_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,9 +31,9 @@ class AzureSshConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $authorized_key
-     *           Required. The SSH public key data for VMs managed by Anthos. This accepts the
-     *           authorized_keys file format used in OpenSSH according to the sshd(8) manual
-     *           page.
+     *           Required. The SSH public key data for VMs managed by Anthos. This accepts
+     *           the authorized_keys file format used in OpenSSH according to the sshd(8)
+     *           manual page.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +42,9 @@ class AzureSshConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The SSH public key data for VMs managed by Anthos. This accepts the
-     * authorized_keys file format used in OpenSSH according to the sshd(8) manual
-     * page.
+     * Required. The SSH public key data for VMs managed by Anthos. This accepts
+     * the authorized_keys file format used in OpenSSH according to the sshd(8)
+     * manual page.
      *
      * Generated from protobuf field <code>string authorized_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -55,9 +55,9 @@ class AzureSshConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The SSH public key data for VMs managed by Anthos. This accepts the
-     * authorized_keys file format used in OpenSSH according to the sshd(8) manual
-     * page.
+     * Required. The SSH public key data for VMs managed by Anthos. This accepts
+     * the authorized_keys file format used in OpenSSH according to the sshd(8)
+     * manual page.
      *
      * Generated from protobuf field <code>string authorized_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

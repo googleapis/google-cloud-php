@@ -16,18 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The field will contain name of the resource requested, for example:
-     * "projects/project-1/workerPools/workerpool-name"
+     * Required. The `WorkerPool` to update.
+     * The `name` field is used to identify the `WorkerPool` to update.
+     * Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
-     * Generated from protobuf field <code>string name = 2;</code>
-     */
-    private $name = '';
-    /**
-     * `WorkerPool` resource to update.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool worker_pool = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool worker_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $worker_pool = null;
+    /**
+     * A mask specifying which fields in `worker_pool` to update.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     */
+    private $update_mask = null;
+    /**
+     * If set, validate the request and preview the response, but do not actually
+     * post it.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4;</code>
+     */
+    private $validate_only = false;
 
     /**
      * Constructor.
@@ -35,11 +43,15 @@ class UpdateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $name
-     *           The field will contain name of the resource requested, for example:
-     *           "projects/project-1/workerPools/workerpool-name"
      *     @type \Google\Cloud\Build\V1\WorkerPool $worker_pool
-     *           `WorkerPool` resource to update.
+     *           Required. The `WorkerPool` to update.
+     *           The `name` field is used to identify the `WorkerPool` to update.
+     *           Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           A mask specifying which fields in `worker_pool` to update.
+     *     @type bool $validate_only
+     *           If set, validate the request and preview the response, but do not actually
+     *           post it.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,42 +60,16 @@ class UpdateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field will contain name of the resource requested, for example:
-     * "projects/project-1/workerPools/workerpool-name"
+     * Required. The `WorkerPool` to update.
+     * The `name` field is used to identify the `WorkerPool` to update.
+     * Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
-     * Generated from protobuf field <code>string name = 2;</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * The field will contain name of the resource requested, for example:
-     * "projects/project-1/workerPools/workerpool-name"
-     *
-     * Generated from protobuf field <code>string name = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
-
-        return $this;
-    }
-
-    /**
-     * `WorkerPool` resource to update.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool worker_pool = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool worker_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Build\V1\WorkerPool|null
      */
     public function getWorkerPool()
     {
-        return isset($this->worker_pool) ? $this->worker_pool : null;
+        return $this->worker_pool;
     }
 
     public function hasWorkerPool()
@@ -97,9 +83,11 @@ class UpdateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * `WorkerPool` resource to update.
+     * Required. The `WorkerPool` to update.
+     * The `name` field is used to identify the `WorkerPool` to update.
+     * Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool worker_pool = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.WorkerPool worker_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Build\V1\WorkerPool $var
      * @return $this
      */
@@ -107,6 +95,70 @@ class UpdateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\WorkerPool::class);
         $this->worker_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * A mask specifying which fields in `worker_pool` to update.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getUpdateMask()
+    {
+        return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * A mask specifying which fields in `worker_pool` to update.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set, validate the request and preview the response, but do not actually
+     * post it.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4;</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * If set, validate the request and preview the response, but do not actually
+     * post it.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

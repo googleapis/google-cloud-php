@@ -23,16 +23,19 @@ use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class WebImageTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $info;
     private $image;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'url' => 'http://foo.bar/image.jpg',

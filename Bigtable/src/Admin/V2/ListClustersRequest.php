@@ -32,6 +32,23 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The unique name of the instance for which a list of clusters is requested.
+     *                       Values are of the form `projects/{project}/instances/{instance}`.
+     *                       Use `{instance} = '-'` to list Clusters for all Instances in a project,
+     *                       e.g., `projects/myproject/instances/-`. Please see
+     *                       {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\ListClustersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

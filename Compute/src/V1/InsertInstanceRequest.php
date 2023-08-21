@@ -53,6 +53,23 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                            $project          Project ID for this request.
+     * @param string                            $zone             The name of the zone for this request.
+     * @param \Google\Cloud\Compute\V1\Instance $instanceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, \Google\Cloud\Compute\V1\Instance $instanceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceResource($instanceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

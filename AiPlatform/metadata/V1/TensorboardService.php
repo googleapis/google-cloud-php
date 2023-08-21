@@ -25,11 +25,12 @@ class TensorboardService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\TensorboardRun::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\TensorboardTimeSeries::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ær
-4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"œ
+è{
+4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"œ
 CreateTensorboardRequest=
 parent (	B-àAúA\'
 %aiplatform.googleapis.com/TensorboardA
@@ -53,7 +54,26 @@ page_token (	
 tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardBàA"W
 DeleteTensorboardRequest;
 name (	B-àAúA\'
-%aiplatform.googleapis.com/Tensorboard"è
+%aiplatform.googleapis.com/Tensorboard"a
+ReadTensorboardUsageRequestB
+tensorboard (	B-àAúA\'
+%aiplatform.googleapis.com/Tensorboard"Ã
+ReadTensorboardUsageResponsej
+monthly_usage_data (2N.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.MonthlyUsageDataEntry8
+PerUserUsageData
+username (	
+
+view_count (w
+PerMonthUsageDatab
+user_usage_data (2I.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerUserUsageDataƒ
+MonthlyUsageDataEntry
+key (	Y
+value (2J.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerMonthUsageData:8"`
+ReadTensorboardSizeRequestB
+tensorboard (	B-àAúA\'
+%aiplatform.googleapis.com/Tensorboard"8
+ReadTensorboardSizeResponse
+storage_size_byte ("è
 "CreateTensorboardExperimentRequestG
 parent (	B7àAúA1
 /aiplatform.googleapis.com/TensorboardExperimentQ
@@ -185,7 +205,7 @@ page_token (	
 "CreateTensorboardOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"t
 "UpdateTensorboardOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2Å;
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2‹?
 TensorboardServiceù
 CreateTensorboard4.google.cloud.aiplatform.v1.CreateTensorboardRequest.google.longrunning.Operation"Ž‚Óä“?"0/v1/{parent=projects/*/locations/*}/tensorboards:tensorboardÚAparent,tensorboardÊA1
 Tensorboard"CreateTensorboardOperationMetadata­
@@ -194,7 +214,9 @@ page_token (	
 Tensorboard"UpdateTensorboardOperationMetadataÀ
 ListTensorboards3.google.cloud.aiplatform.v1.ListTensorboardsRequest4.google.cloud.aiplatform.v1.ListTensorboardsResponse"A‚Óä“20/v1/{parent=projects/*/locations/*}/tensorboardsÚAparentÜ
 DeleteTensorboard4.google.cloud.aiplatform.v1.DeleteTensorboardRequest.google.longrunning.Operation"r‚Óä“2*0/v1/{name=projects/*/locations/*/tensorboards/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadata«
+google.protobuf.EmptyDeleteOperationMetadataâ
+ReadTensorboardUsage7.google.cloud.aiplatform.v1.ReadTensorboardUsageRequest8.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse"W‚Óä“CA/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readUsageÚAtensorboardÞ
+ReadTensorboardSize6.google.cloud.aiplatform.v1.ReadTensorboardSizeRequest7.google.cloud.aiplatform.v1.ReadTensorboardSizeResponse"V‚Óä“B@/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readSizeÚAtensorboard«
 CreateTensorboardExperiment>.google.cloud.aiplatform.v1.CreateTensorboardExperimentRequest1.google.cloud.aiplatform.v1.TensorboardExperiment"˜‚Óä“X">/v1/{parent=projects/*/locations/*/tensorboards/*}/experiments:tensorboard_experimentÚA7parent,tensorboard_experiment,tensorboard_experiment_idÙ
 GetTensorboardExperiment;.google.cloud.aiplatform.v1.GetTensorboardExperimentRequest1.google.cloud.aiplatform.v1.TensorboardExperiment"M‚Óä“@>/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*}ÚAname­
 UpdateTensorboardExperiment>.google.cloud.aiplatform.v1.UpdateTensorboardExperimentRequest1.google.cloud.aiplatform.v1.TensorboardExperiment"š‚Óä“o2U/v1/{tensorboard_experiment.name=projects/*/locations/*/tensorboards/*/experiments/*}:tensorboard_experimentÚA"tensorboard_experiment,update_maskì
@@ -220,8 +242,8 @@ page_token (	
 ReadTensorboardBlobData:.google.cloud.aiplatform.v1.ReadTensorboardBlobDataRequest;.google.cloud.aiplatform.v1.ReadTensorboardBlobDataResponse"|‚Óä“hf/v1/{time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:readBlobDataÚAtime_series0¼
 WriteTensorboardExperimentDataA.google.cloud.aiplatform.v1.WriteTensorboardExperimentDataRequestB.google.cloud.aiplatform.v1.WriteTensorboardExperimentDataResponse"’‚Óä“["V/v1/{tensorboard_experiment=projects/*/locations/*/tensorboards/*/experiments/*}:write:*ÚA.tensorboard_experiment,write_run_data_requests™
 WriteTensorboardRunData:.google.cloud.aiplatform.v1.WriteTensorboardRunDataRequest;.google.cloud.aiplatform.v1.WriteTensorboardRunDataResponse"„‚Óä“["V/v1/{tensorboard_run=projects/*/locations/*/tensorboards/*/experiments/*/runs/*}:write:*ÚA tensorboard_run,time_series_dataÕ
-ExportTensorboardTimeSeriesDataB.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequestC.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataResponse"¨‚Óä“‡"/v1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:exportTensorboardTimeSeries:*ÚAtensorboard_time_series†ÊAaiplatform.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÛ
-com.google.cloud.aiplatform.v1BTensorboardServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+ExportTensorboardTimeSeriesDataB.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataRequestC.google.cloud.aiplatform.v1.ExportTensorboardTimeSeriesDataResponse"¨‚Óä“‡"/v1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:exportTensorboardTimeSeries:*ÚAtensorboard_time_series†ÊAaiplatform.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÕ
+com.google.cloud.aiplatform.v1BTensorboardServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

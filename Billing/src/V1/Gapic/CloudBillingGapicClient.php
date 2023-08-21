@@ -73,6 +73,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Billing\V1\Client\CloudBillingClient} to use the new surface.
  */
 class CloudBillingGapicClient
 {
@@ -99,13 +102,15 @@ class CloudBillingGapicClient
 
     private static $billingAccountNameTemplate;
 
+    private static $projectBillingInfoNameTemplate;
+
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' =>
+            'apiEndpoint' =>
                 self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' =>
                 __DIR__ . '/../resources/cloud_billing_client_config.json',
@@ -137,11 +142,23 @@ class CloudBillingGapicClient
         return self::$billingAccountNameTemplate;
     }
 
+    private static function getProjectBillingInfoNameTemplate()
+    {
+        if (self::$projectBillingInfoNameTemplate == null) {
+            self::$projectBillingInfoNameTemplate = new PathTemplate(
+                'projects/{project}/billingInfo'
+            );
+        }
+
+        return self::$projectBillingInfoNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'billingAccount' => self::getBillingAccountNameTemplate(),
+                'projectBillingInfo' => self::getProjectBillingInfoNameTemplate(),
             ];
         }
 
@@ -164,10 +181,26 @@ class CloudBillingGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_billing_info resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_billing_info resource.
+     */
+    public static function projectBillingInfoName($project)
+    {
+        return self::getProjectBillingInfoNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccount: billingAccounts/{billing_account}
+     * - projectBillingInfo: projects/{project}/billingInfo
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -214,9 +247,6 @@ class CloudBillingGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudbilling.googleapis.com:443'.
@@ -246,7 +276,7 @@ class CloudBillingGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -346,8 +376,8 @@ class CloudBillingGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the billing account to retrieve. For example,
-     *                             `billingAccounts/012345-567890-ABCDEF`.
+     * @param string $name         Required. The resource name of the billing account to retrieve. For
+     *                             example, `billingAccounts/012345-567890-ABCDEF`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -451,8 +481,8 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $name = 'name';
-     *     $response = $cloudBillingClient->getProjectBillingInfo($name);
+     *     $formattedName = $cloudBillingClient->projectBillingInfoName('[PROJECT]');
+     *     $response = $cloudBillingClient->getProjectBillingInfo($formattedName);
      * } finally {
      *     $cloudBillingClient->close();
      * }
@@ -601,8 +631,9 @@ class CloudBillingGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the billing account associated with the projects that
-     *                             you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param string $name         Required. The resource name of the billing account associated with the
+     *                             projects that you want to list. For example,
+     *                             `billingAccounts/012345-567890-ABCDEF`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -803,7 +834,8 @@ class CloudBillingGapicClient
      * ```
      *
      * @param string         $name         Required. The name of the billing account resource to be updated.
-     * @param BillingAccount $account      Required. The billing account resource to replace the resource on the server.
+     * @param BillingAccount $account      Required. The billing account resource to replace the resource on the
+     *                                     server.
      * @param array          $optionalArgs {
      *     Optional.
      *
@@ -892,8 +924,9 @@ class CloudBillingGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the project associated with the billing information
-     *                             that you want to update. For example, `projects/tokyo-rain-123`.
+     * @param string $name         Required. The resource name of the project associated with the billing
+     *                             information that you want to update. For example,
+     *                             `projects/tokyo-rain-123`.
      * @param array  $optionalArgs {
      *     Optional.
      *

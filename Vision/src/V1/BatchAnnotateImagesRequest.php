@@ -36,6 +36,19 @@ class BatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param \Google\Cloud\Vision\V1\AnnotateImageRequest[] $requests Required. Individual image annotation requests for this batch.
+     *
+     * @return \Google\Cloud\Vision\V1\BatchAnnotateImagesRequest
+     *
+     * @experimental
+     */
+    public static function build(array $requests): self
+    {
+        return (new self())
+            ->setRequests($requests);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

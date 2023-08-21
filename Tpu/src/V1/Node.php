@@ -57,8 +57,8 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. If this field is populated, it contains a description of why the TPU Node
-     * is unhealthy.
+     * Output only. If this field is populated, it contains a description of why
+     * the TPU Node is unhealthy.
      *
      * Generated from protobuf field <code>string health_description = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -91,10 +91,10 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     private $cidr_block = '';
     /**
-     * Output only. The service account used to run the tensor flow services within the node.
-     * To share resources, including Google Cloud Storage data, with the
-     * Tensorflow job running in the Node, this account must have permissions to
-     * that data.
+     * Output only. The service account used to run the tensor flow services
+     * within the node. To share resources, including Google Cloud Storage data,
+     * with the Tensorflow job running in the Node, this account must have
+     * permissions to that data.
      *
      * Generated from protobuf field <code>string service_account = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -176,8 +176,8 @@ class Node extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The current state for the TPU Node.
      *     @type string $health_description
-     *           Output only. If this field is populated, it contains a description of why the TPU Node
-     *           is unhealthy.
+     *           Output only. If this field is populated, it contains a description of why
+     *           the TPU Node is unhealthy.
      *     @type string $tensorflow_version
      *           Required. The version of Tensorflow running in the Node.
      *     @type string $network
@@ -194,10 +194,10 @@ class Node extends \Google\Protobuf\Internal\Message
      *           provided network is peered with another network that is using that CIDR
      *           block.
      *     @type string $service_account
-     *           Output only. The service account used to run the tensor flow services within the node.
-     *           To share resources, including Google Cloud Storage data, with the
-     *           Tensorflow job running in the Node, this account must have permissions to
-     *           that data.
+     *           Output only. The service account used to run the tensor flow services
+     *           within the node. To share resources, including Google Cloud Storage data,
+     *           with the Tensorflow job running in the Node, this account must have
+     *           permissions to that data.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the node was created.
      *     @type \Google\Cloud\Tpu\V1\SchedulingConfig $scheduling_config
@@ -398,8 +398,8 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If this field is populated, it contains a description of why the TPU Node
-     * is unhealthy.
+     * Output only. If this field is populated, it contains a description of why
+     * the TPU Node is unhealthy.
      *
      * Generated from protobuf field <code>string health_description = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -410,8 +410,8 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If this field is populated, it contains a description of why the TPU Node
-     * is unhealthy.
+     * Output only. If this field is populated, it contains a description of why
+     * the TPU Node is unhealthy.
      *
      * Generated from protobuf field <code>string health_description = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -522,10 +522,10 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account used to run the tensor flow services within the node.
-     * To share resources, including Google Cloud Storage data, with the
-     * Tensorflow job running in the Node, this account must have permissions to
-     * that data.
+     * Output only. The service account used to run the tensor flow services
+     * within the node. To share resources, including Google Cloud Storage data,
+     * with the Tensorflow job running in the Node, this account must have
+     * permissions to that data.
      *
      * Generated from protobuf field <code>string service_account = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -536,10 +536,10 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account used to run the tensor flow services within the node.
-     * To share resources, including Google Cloud Storage data, with the
-     * Tensorflow job running in the Node, this account must have permissions to
-     * that data.
+     * Output only. The service account used to run the tensor flow services
+     * within the node. To share resources, including Google Cloud Storage data,
+     * with the Tensorflow job running in the Node, this account must have
+     * permissions to that data.
      *
      * Generated from protobuf field <code>string service_account = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

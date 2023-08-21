@@ -16,11 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the stream object resource to start a backfill job for.
+     * Required. The name of the stream object resource to start a backfill job
+     * for.
      *
      * Generated from protobuf field <code>string object = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $object = '';
+
+    /**
+     * @param string $object Required. The name of the stream object resource to start a backfill job
+     *                       for. Please see
+     *                       {@see DatastreamClient::streamObjectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Datastream\V1\StartBackfillJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $object): self
+    {
+        return (new self())
+            ->setObject($object);
+    }
 
     /**
      * Constructor.
@@ -29,7 +45,8 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $object
-     *           Required. The name of the stream object resource to start a backfill job for.
+     *           Required. The name of the stream object resource to start a backfill job
+     *           for.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +55,8 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the stream object resource to start a backfill job for.
+     * Required. The name of the stream object resource to start a backfill job
+     * for.
      *
      * Generated from protobuf field <code>string object = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +67,8 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the stream object resource to start a backfill job for.
+     * Required. The name of the stream object resource to start a backfill job
+     * for.
      *
      * Generated from protobuf field <code>string object = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

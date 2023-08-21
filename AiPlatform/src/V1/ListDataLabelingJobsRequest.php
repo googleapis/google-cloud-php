@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.ListDataLabelingJobs][google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs].
+ * Request message for
+ * [JobService.ListDataLabelingJobs][google.cloud.aiplatform.v1.JobService.ListDataLabelingJobs].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListDataLabelingJobsRequest</code>
  */
@@ -72,6 +73,21 @@ class ListDataLabelingJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
+
+    /**
+     * @param string $parent Required. The parent of the DataLabelingJob.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see JobServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListDataLabelingJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

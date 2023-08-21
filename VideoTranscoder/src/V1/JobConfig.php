@@ -78,6 +78,15 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay overlays = 10;</code>
      */
     private $overlays;
+    /**
+     * List of encryption configurations for the content.
+     * Each configuration has an ID. Specify this ID in the
+     * [MuxStream.encryption_id][google.cloud.video.transcoder.v1.MuxStream.encryption_id]
+     * field to indicate the configuration to use for that `MuxStream` output.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Encryption encryptions = 11;</code>
+     */
+    private $encryptions;
 
     /**
      * Constructor.
@@ -108,6 +117,11 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      *           Spritesheets require at least one VideoStream in the Jobconfig.
      *     @type array<\Google\Cloud\Video\Transcoder\V1\Overlay>|\Google\Protobuf\Internal\RepeatedField $overlays
      *           List of overlays on the output video, in descending Z-order.
+     *     @type array<\Google\Cloud\Video\Transcoder\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $encryptions
+     *           List of encryption configurations for the content.
+     *           Each configuration has an ID. Specify this ID in the
+     *           [MuxStream.encryption_id][google.cloud.video.transcoder.v1.MuxStream.encryption_id]
+     *           field to indicate the configuration to use for that `MuxStream` output.
      * }
      */
     public function __construct($data = NULL) {
@@ -397,6 +411,38 @@ class JobConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\Transcoder\V1\Overlay::class);
         $this->overlays = $arr;
+
+        return $this;
+    }
+
+    /**
+     * List of encryption configurations for the content.
+     * Each configuration has an ID. Specify this ID in the
+     * [MuxStream.encryption_id][google.cloud.video.transcoder.v1.MuxStream.encryption_id]
+     * field to indicate the configuration to use for that `MuxStream` output.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Encryption encryptions = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEncryptions()
+    {
+        return $this->encryptions;
+    }
+
+    /**
+     * List of encryption configurations for the content.
+     * Each configuration has an ID. Specify this ID in the
+     * [MuxStream.encryption_id][google.cloud.video.transcoder.v1.MuxStream.encryption_id]
+     * field to indicate the configuration to use for that `MuxStream` output.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Encryption encryptions = 11;</code>
+     * @param array<\Google\Cloud\Video\Transcoder\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEncryptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\Transcoder\V1\Encryption::class);
+        $this->encryptions = $arr;
 
         return $this;
     }

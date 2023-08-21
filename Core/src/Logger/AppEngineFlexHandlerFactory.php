@@ -39,7 +39,7 @@ class AppEngineFlexHandlerFactory
      *
      * @throws Exception
      *
-     * @return AppEngineFlexHandler|AppEngineFlexHandlerV2
+     * @return AppEngineFlexHandler|AppEngineFlexHandlerV2|AppEngineFlexHandlerV3
      */
     public static function build(
         $level = Logger::INFO,
@@ -55,6 +55,8 @@ class AppEngineFlexHandlerFactory
                 return new AppEngineFlexHandler($level, $bubble, $filePermission, $useLocking, $stream);
             case 2:
                 return new AppEngineFlexHandlerV2($level, $bubble, $filePermission, $useLocking, $stream);
+            case 3:
+                return new AppEngineFlexHandlerV3($level, $bubble, $filePermission, $useLocking, $stream);
             default:
                 throw new Exception('Version not supported');
         }

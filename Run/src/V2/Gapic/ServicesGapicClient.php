@@ -27,7 +27,6 @@ namespace Google\Cloud\Run\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
@@ -68,7 +67,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -85,7 +84,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -99,41 +98,42 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Run\V2\Client\ServicesClient} to use the new surface.
  */
 class ServicesGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.run.v2.Services';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'run.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $connectorNameTemplate;
+
+    private static $cryptoKeyNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $revisionNameTemplate;
+
+    private static $secretNameTemplate;
+
+    private static $secretVersionNameTemplate;
 
     private static $serviceNameTemplate;
 
@@ -166,6 +166,28 @@ class ServicesGapicClient
         ];
     }
 
+    private static function getConnectorNameTemplate()
+    {
+        if (self::$connectorNameTemplate == null) {
+            self::$connectorNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connectors/{connector}'
+            );
+        }
+
+        return self::$connectorNameTemplate;
+    }
+
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -188,6 +210,28 @@ class ServicesGapicClient
         return self::$revisionNameTemplate;
     }
 
+    private static function getSecretNameTemplate()
+    {
+        if (self::$secretNameTemplate == null) {
+            self::$secretNameTemplate = new PathTemplate(
+                'projects/{project}/secrets/{secret}'
+            );
+        }
+
+        return self::$secretNameTemplate;
+    }
+
+    private static function getSecretVersionNameTemplate()
+    {
+        if (self::$secretVersionNameTemplate == null) {
+            self::$secretVersionNameTemplate = new PathTemplate(
+                'projects/{project}/secrets/{secret}/versions/{version}'
+            );
+        }
+
+        return self::$secretVersionNameTemplate;
+    }
+
     private static function getServiceNameTemplate()
     {
         if (self::$serviceNameTemplate == null) {
@@ -203,13 +247,61 @@ class ServicesGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'connector' => self::getConnectorNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'revision' => self::getRevisionNameTemplate(),
+                'secret' => self::getSecretNameTemplate(),
+                'secretVersion' => self::getSecretVersionNameTemplate(),
                 'service' => self::getServiceNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a connector
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connector
+     *
+     * @return string The formatted connector resource.
+     */
+    public static function connectorName($project, $location, $connector)
+    {
+        return self::getConnectorNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connector' => $connector,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
     }
 
     /**
@@ -255,6 +347,42 @@ class ServicesGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a secret
+     * resource.
+     *
+     * @param string $project
+     * @param string $secret
+     *
+     * @return string The formatted secret resource.
+     */
+    public static function secretName($project, $secret)
+    {
+        return self::getSecretNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName($project, $secret, $version)
+    {
+        return self::getSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a service
      * resource.
      *
@@ -277,8 +405,12 @@ class ServicesGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - connector: projects/{project}/locations/{location}/connectors/{connector}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
      * - revision: projects/{project}/locations/{location}/services/{service}/revisions/{revision}
+     * - secret: projects/{project}/secrets/{secret}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - service: projects/{project}/locations/{location}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -361,9 +493,6 @@ class ServicesGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'run.googleapis.com:443'.
@@ -393,7 +522,7 @@ class ServicesGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -433,7 +562,7 @@ class ServicesGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -450,7 +579,7 @@ class ServicesGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -527,7 +656,7 @@ class ServicesGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -544,7 +673,7 @@ class ServicesGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -738,9 +867,9 @@ class ServicesGapicClient
      * ```
      *
      * @param string $parent       Required. The location and project to list resources on.
-     *                             Location must be a valid GCP region, and cannot be the "-" wildcard.
-     *                             Format: projects/{project}/locations/{location}, where {project} can be
-     *                             project id or number.
+     *                             Location must be a valid Google Cloud region, and cannot be the "-"
+     *                             wildcard. Format: projects/{project}/locations/{location}, where {project}
+     *                             can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -935,7 +1064,7 @@ class ServicesGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -952,7 +1081,7 @@ class ServicesGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -971,8 +1100,8 @@ class ServicesGapicClient
      *           populated, without persisting the request or updating any resources.
      *     @type bool $allowMissing
      *           If set to true, and if the Service does not exist, it will create a new
-     *           one. Caller must have both create and update permissions for this call if
-     *           this is set to true.
+     *           one. The caller must have 'run.services.create' permissions if this is set
+     *           to true and the Service does not exist.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

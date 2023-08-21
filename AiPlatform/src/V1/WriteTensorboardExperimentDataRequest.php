@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.WriteTensorboardExperimentData][google.cloud.aiplatform.v1.TensorboardService.WriteTensorboardExperimentData].
+ * Request message for
+ * [TensorboardService.WriteTensorboardExperimentData][google.cloud.aiplatform.v1.TensorboardService.WriteTensorboardExperimentData].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.WriteTensorboardExperimentDataRequest</code>
  */
@@ -29,6 +30,24 @@ class WriteTensorboardExperimentDataRequest extends \Google\Protobuf\Internal\Me
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WriteTensorboardRunDataRequest write_run_data_requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $write_run_data_requests;
+
+    /**
+     * @param string                                                       $tensorboardExperiment Required. The resource name of the TensorboardExperiment to write data to.
+     *                                                                                            Format:
+     *                                                                                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     *                                                                                            Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest[] $writeRunDataRequests  Required. Requests containing per-run TensorboardTimeSeries data to write.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\WriteTensorboardExperimentDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboardExperiment, array $writeRunDataRequests): self
+    {
+        return (new self())
+            ->setTensorboardExperiment($tensorboardExperiment)
+            ->setWriteRunDataRequests($writeRunDataRequests);
+    }
 
     /**
      * Constructor.

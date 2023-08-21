@@ -27,17 +27,12 @@ namespace Google\Cloud\Translate\V3\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Translate\V3\BatchDocumentInputConfig;
@@ -83,7 +78,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -100,7 +95,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -114,34 +109,28 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Translate\V3\Client\TranslationServiceClient} to use the new
+ * surface.
  */
 class TranslationServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.translation.v3.TranslationService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'translate.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-translation',
@@ -317,9 +306,6 @@ class TranslationServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'translate.googleapis.com:443'.
@@ -349,7 +335,7 @@ class TranslationServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -397,7 +383,7 @@ class TranslationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -414,7 +400,7 @@ class TranslationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -433,10 +419,10 @@ class TranslationServiceGapicClient
      *                                                        Only AutoML Translation models or glossaries within the same region (have
      *                                                        the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
      *                                                        error is returned.
-     * @param string                     $sourceLanguageCode  Required. The BCP-47 language code of the input document if known, for
+     * @param string                     $sourceLanguageCode  Required. The ISO-639 language code of the input document if known, for
      *                                                        example, "en-US" or "sr-Latn". Supported language codes are listed in
-     *                                                        Language Support (https://cloud.google.com/translate/docs/languages).
-     * @param string[]                   $targetLanguageCodes Required. The BCP-47 language code to use for translation of the input
+     *                                                        [Language Support](https://cloud.google.com/translate/docs/languages).
+     * @param string[]                   $targetLanguageCodes Required. The ISO-639 language code to use for translation of the input
      *                                                        document. Specify up to 10 language codes here.
      * @param BatchDocumentInputConfig[] $inputConfigs        Required. Input configurations.
      *                                                        The total number of files matched should be <= 100.
@@ -477,6 +463,18 @@ class TranslationServiceGapicClient
      *
      *           If nothing specified, output files will be in the same format as the
      *           original file.
+     *     @type string $customizedAttribution
+     *           Optional. This flag is to support user customized attribution.
+     *           If not provided, the default is `Machine Translated by Google`.
+     *           Customized attribution should follow rules in
+     *           https://cloud.google.com/translate/attribution#attribution_and_logos
+     *     @type bool $enableShadowRemovalNativePdf
+     *           Optional. If true, use the text removal server to remove the shadow text on
+     *           background image for native pdf translation.
+     *           Shadow removal feature can only be enabled when
+     *           is_translate_native_pdf_only: false && pdf_native_only: false
+     *     @type bool $enableRotationCorrection
+     *           Optional. If true, enable auto rotation correction in DVS.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -509,6 +507,18 @@ class TranslationServiceGapicClient
             $request->setFormatConversions($optionalArgs['formatConversions']);
         }
 
+        if (isset($optionalArgs['customizedAttribution'])) {
+            $request->setCustomizedAttribution($optionalArgs['customizedAttribution']);
+        }
+
+        if (isset($optionalArgs['enableShadowRemovalNativePdf'])) {
+            $request->setEnableShadowRemovalNativePdf($optionalArgs['enableShadowRemovalNativePdf']);
+        }
+
+        if (isset($optionalArgs['enableRotationCorrection'])) {
+            $request->setEnableRotationCorrection($optionalArgs['enableRotationCorrection']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('BatchTranslateDocument', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -536,7 +546,7 @@ class TranslationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -553,7 +563,7 @@ class TranslationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -664,7 +674,7 @@ class TranslationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -681,7 +691,7 @@ class TranslationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -732,7 +742,7 @@ class TranslationServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -749,7 +759,7 @@ class TranslationServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1109,14 +1119,14 @@ class TranslationServiceGapicClient
      *
      *                                                 Models and glossaries must be within the same region (have the same
      *                                                 location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param string              $targetLanguageCode  Required. The BCP-47 language code to use for translation of the input
+     * @param string              $targetLanguageCode  Required. The ISO-639 language code to use for translation of the input
      *                                                 document, set to one of the language codes listed in Language Support.
      * @param DocumentInputConfig $documentInputConfig Required. Input configurations.
      * @param array               $optionalArgs        {
      *     Optional.
      *
      *     @type string $sourceLanguageCode
-     *           Optional. The BCP-47 language code of the input document if known, for
+     *           Optional. The ISO-639 language code of the input document if known, for
      *           example, "en-US" or "sr-Latn". Supported language codes are listed in
      *           Language Support. If the source language isn't specified, the API attempts
      *           to identify the source language automatically and returns the source
@@ -1156,6 +1166,22 @@ class TranslationServiceGapicClient
      *
      *           See https://cloud.google.com/translate/docs/advanced/labels for more
      *           information.
+     *     @type string $customizedAttribution
+     *           Optional. This flag is to support user customized attribution.
+     *           If not provided, the default is `Machine Translated by Google`.
+     *           Customized attribution should follow rules in
+     *           https://cloud.google.com/translate/attribution#attribution_and_logos
+     *     @type bool $isTranslateNativePdfOnly
+     *           Optional. is_translate_native_pdf_only field for external customers.
+     *           If true, the page limit of online native pdf translation is 300 and only
+     *           native pdf pages will be translated.
+     *     @type bool $enableShadowRemovalNativePdf
+     *           Optional. If true, use the text removal server to remove the shadow text on
+     *           background image for native pdf translation.
+     *           Shadow removal feature can only be enabled when
+     *           is_translate_native_pdf_only: false && pdf_native_only: false
+     *     @type bool $enableRotationCorrection
+     *           Optional. If true, enable auto rotation correction in DVS.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1194,6 +1220,22 @@ class TranslationServiceGapicClient
             $request->setLabels($optionalArgs['labels']);
         }
 
+        if (isset($optionalArgs['customizedAttribution'])) {
+            $request->setCustomizedAttribution($optionalArgs['customizedAttribution']);
+        }
+
+        if (isset($optionalArgs['isTranslateNativePdfOnly'])) {
+            $request->setIsTranslateNativePdfOnly($optionalArgs['isTranslateNativePdfOnly']);
+        }
+
+        if (isset($optionalArgs['enableShadowRemovalNativePdf'])) {
+            $request->setEnableShadowRemovalNativePdf($optionalArgs['enableShadowRemovalNativePdf']);
+        }
+
+        if (isset($optionalArgs['enableRotationCorrection'])) {
+            $request->setEnableRotationCorrection($optionalArgs['enableRotationCorrection']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TranslateDocument', TranslateDocumentResponse::class, $optionalArgs, $request)->wait();
@@ -1216,10 +1258,9 @@ class TranslationServiceGapicClient
      * ```
      *
      * @param string[] $contents           Required. The content of the input in string format.
-     *                                     We recommend the total content be less than 30k codepoints. The max length
-     *                                     of this field is 1024.
-     *                                     Use BatchTranslateText for larger text.
-     * @param string   $targetLanguageCode Required. The BCP-47 language code to use for translation of the input
+     *                                     We recommend the total content be less than 30,000 codepoints. The max
+     *                                     length of this field is 1024. Use BatchTranslateText for larger text.
+     * @param string   $targetLanguageCode Required. The ISO-639 language code to use for translation of the input
      *                                     text, set to one of the language codes listed in Language Support.
      * @param string   $parent             Required. Project or location to make a call. Must refer to a caller's
      *                                     project.
@@ -1242,7 +1283,7 @@ class TranslationServiceGapicClient
      *           Optional. The format of the source text, for example, "text/html",
      *           "text/plain". If left blank, the MIME type defaults to "text/html".
      *     @type string $sourceLanguageCode
-     *           Optional. The BCP-47 language code of the input text if
+     *           Optional. The ISO-639 language code of the input text if
      *           known, for example, "en-US" or "sr-Latn". Supported language codes are
      *           listed in Language Support. If the source language isn't specified, the API
      *           attempts to identify the source language automatically and returns the
@@ -1263,7 +1304,7 @@ class TranslationServiceGapicClient
      *           For example,
      *           `projects/{project-number-or-id}/locations/global/models/general/nmt`.
      *
-     *           If not provided, the default Google model (NMT) will be used.
+     *           If not provided, the default Google model (NMT) will be used
      *     @type TranslateTextGlossaryConfig $glossaryConfig
      *           Optional. Glossary to be applied. The glossary must be
      *           within the same region (have the same location-id) as the model, otherwise

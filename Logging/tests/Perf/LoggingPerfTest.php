@@ -19,7 +19,7 @@ namespace Google\Cloud\Logging\Tests\Perf;
 
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\PsrLogger;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
@@ -31,7 +31,7 @@ class LoggingPerfTest extends TestCase
     /* @var PsrLogger */
     private $grpcClient;
 
-    public function set_up()
+    public function setUp(): void
     {
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $this->restLogger = LoggingClient::psrBatchLogger(

@@ -65,6 +65,67 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $projectId      Deprecated. The Google Developers Console [project ID or project
+     *                               number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                               This field has been deprecated and replaced by the name field.
+     * @param string $zone           Deprecated. The name of the Google Compute Engine
+     *                               [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                               cluster resides. This field has been deprecated and replaced by the name
+     *                               field.
+     * @param string $clusterId      Deprecated. The name of the cluster to upgrade.
+     *                               This field has been deprecated and replaced by the name field.
+     * @param string $loggingService Required. The logging service the cluster should use to write logs.
+     *                               Currently available options:
+     *
+     *                               * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     *                               service with a Kubernetes-native resource model
+     *                               * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *                               available as of GKE 1.15).
+     *                               * `none` - no logs will be exported from the cluster.
+     *
+     *                               If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     *                               used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
+     *
+     * @return \Google\Cloud\Container\V1\SetLoggingServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone, string $clusterId, string $loggingService): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone)
+            ->setClusterId($clusterId)
+            ->setLoggingService($loggingService);
+    }
+
+    /**
+     * @param string $name           The name (project, location, cluster) of the cluster to set logging.
+     *                               Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     * @param string $loggingService Required. The logging service the cluster should use to write logs.
+     *                               Currently available options:
+     *
+     *                               * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     *                               service with a Kubernetes-native resource model
+     *                               * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *                               available as of GKE 1.15).
+     *                               * `none` - no logs will be exported from the cluster.
+     *
+     *                               If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     *                               used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
+     *
+     * @return \Google\Cloud\Container\V1\SetLoggingServiceRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameLoggingService(string $name, string $loggingService): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setLoggingService($loggingService);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

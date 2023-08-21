@@ -53,8 +53,8 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
      */
     private $min_break_duration = null;
     /**
-     * Required. Maximum allowed span of any interval of time in the route that does not
-     * include at least partially a break of `duration >=
+     * Required. Maximum allowed span of any interval of time in the route that
+     * does not include at least partially a break of `duration >=
      * min_break_duration`. Must be positive.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_inter_break_duration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -71,8 +71,8 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
      *           Required. Minimum break duration for this constraint. Nonnegative.
      *           See description of `FrequencyConstraint`.
      *     @type \Google\Protobuf\Duration $max_inter_break_duration
-     *           Required. Maximum allowed span of any interval of time in the route that does not
-     *           include at least partially a break of `duration >=
+     *           Required. Maximum allowed span of any interval of time in the route that
+     *           does not include at least partially a break of `duration >=
      *           min_break_duration`. Must be positive.
      * }
      */
@@ -120,8 +120,8 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maximum allowed span of any interval of time in the route that does not
-     * include at least partially a break of `duration >=
+     * Required. Maximum allowed span of any interval of time in the route that
+     * does not include at least partially a break of `duration >=
      * min_break_duration`. Must be positive.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_inter_break_duration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -143,8 +143,8 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maximum allowed span of any interval of time in the route that does not
-     * include at least partially a break of `duration >=
+     * Required. Maximum allowed span of any interval of time in the route that
+     * does not include at least partially a break of `duration >=
      * min_break_duration`. Must be positive.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_inter_break_duration = 2 [(.google.api.field_behavior) = REQUIRED];</code>

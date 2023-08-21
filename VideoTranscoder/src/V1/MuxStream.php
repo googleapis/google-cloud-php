@@ -57,6 +57,13 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.SegmentSettings segment_settings = 5;</code>
      */
     private $segment_settings = null;
+    /**
+     * Identifier of the encryption configuration to use. If omitted, output will
+     * be unencrypted.
+     *
+     * Generated from protobuf field <code>string encryption_id = 7;</code>
+     */
+    private $encryption_id = '';
 
     /**
      * Constructor.
@@ -86,6 +93,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *           List of `ElementaryStream.key`s multiplexed in this stream.
      *     @type \Google\Cloud\Video\Transcoder\V1\SegmentSettings $segment_settings
      *           Segment settings for `ts`, `fmp4` and `vtt`.
+     *     @type string $encryption_id
+     *           Identifier of the encryption configuration to use. If omitted, output will
+     *           be unencrypted.
      * }
      */
     public function __construct($data = NULL) {
@@ -253,6 +263,34 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\SegmentSettings::class);
         $this->segment_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifier of the encryption configuration to use. If omitted, output will
+     * be unencrypted.
+     *
+     * Generated from protobuf field <code>string encryption_id = 7;</code>
+     * @return string
+     */
+    public function getEncryptionId()
+    {
+        return $this->encryption_id;
+    }
+
+    /**
+     * Identifier of the encryption configuration to use. If omitted, output will
+     * be unencrypted.
+     *
+     * Generated from protobuf field <code>string encryption_id = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEncryptionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->encryption_id = $var;
 
         return $this;
     }

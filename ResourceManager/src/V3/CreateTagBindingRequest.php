@@ -22,12 +22,25 @@ class CreateTagBindingRequest extends \Google\Protobuf\Internal\Message
      */
     private $tag_binding = null;
     /**
-     * Optional. Set to true to perform the validations necessary for creating the resource,
-     * but not actually perform the action.
+     * Optional. Set to true to perform the validations necessary for creating the
+     * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
+
+    /**
+     * @param \Google\Cloud\ResourceManager\V3\TagBinding $tagBinding Required. The TagBinding to be created.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\CreateTagBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\TagBinding $tagBinding): self
+    {
+        return (new self())
+            ->setTagBinding($tagBinding);
+    }
 
     /**
      * Constructor.
@@ -38,8 +51,8 @@ class CreateTagBindingRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ResourceManager\V3\TagBinding $tag_binding
      *           Required. The TagBinding to be created.
      *     @type bool $validate_only
-     *           Optional. Set to true to perform the validations necessary for creating the resource,
-     *           but not actually perform the action.
+     *           Optional. Set to true to perform the validations necessary for creating the
+     *           resource, but not actually perform the action.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +97,8 @@ class CreateTagBindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set to true to perform the validations necessary for creating the resource,
-     * but not actually perform the action.
+     * Optional. Set to true to perform the validations necessary for creating the
+     * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -96,8 +109,8 @@ class CreateTagBindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set to true to perform the validations necessary for creating the resource,
-     * but not actually perform the action.
+     * Optional. Set to true to perform the validations necessary for creating the
+     * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

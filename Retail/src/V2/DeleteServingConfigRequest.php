@@ -17,11 +17,26 @@ class DeleteServingConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the ServingConfig to delete. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The resource name of the ServingConfig to delete. Format:
+     *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
+     *                     Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\DeleteServingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -31,7 +46,7 @@ class DeleteServingConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the ServingConfig to delete. Format:
-     *           projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +56,7 @@ class DeleteServingConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the ServingConfig to delete. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +68,7 @@ class DeleteServingConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the ServingConfig to delete. Format:
-     * projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}
+     * `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -27,10 +27,8 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -119,34 +117,28 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient} to use the new
+ * surface.
  */
 class MetadataServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.MetadataService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -505,9 +497,6 @@ class MetadataServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -537,7 +526,7 @@ class MetadataServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -579,9 +568,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string $context      Required. The resource name of the Context that the Artifacts and Executions
-     *                             belong to.
-     *                             Format:
+     * @param string $context      Required. The resource name of the Context that the Artifacts and
+     *                             Executions belong to. Format:
      *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -839,9 +827,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the MetadataStore where the Context should be
-     *                              created.
-     *                              Format:
+     * @param string  $parent       Required. The resource name of the MetadataStore where the Context should
+     *                              be created. Format:
      *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      * @param Context $context      Required. The Context to create.
      * @param array   $optionalArgs {
@@ -975,9 +962,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent         Required. The resource name of the MetadataStore where the MetadataSchema should
-     *                                       be created.
-     *                                       Format:
+     * @param string         $parent         Required. The resource name of the MetadataStore where the MetadataSchema
+     *                                       should be created. Format:
      *                                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      * @param MetadataSchema $metadataSchema Required. The MetadataSchema to create.
      * @param array          $optionalArgs   {
@@ -1043,7 +1029,7 @@ class MetadataServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1060,7 +1046,7 @@ class MetadataServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1762,6 +1748,9 @@ class MetadataServiceGapicClient
      *           To filter on metadata fields use traversal operation as follows:
      *           `metadata.<field_name>.<type_value>`.
      *           For example: `metadata.field_1.number_value = 10.0`
+     *           In case the field name contains special characters (such as colon), one
+     *           can embed it inside double quote.
+     *           For example: `metadata."field:1".number_value = 10.0`
      *           *   **Context based filtering**:
      *           To filter Artifacts based on the contexts to which they belong, use the
      *           function operator with the full resource name
@@ -1885,6 +1874,9 @@ class MetadataServiceGapicClient
      *           To filter on metadata fields use traversal operation as follows:
      *           `metadata.<field_name>.<type_value>`.
      *           For example: `metadata.field_1.number_value = 10.0`.
+     *           In case the field name contains special characters (such as colon), one
+     *           can embed it inside double quote.
+     *           For example: `metadata."field:1".number_value = 10.0`
      *           *  **Parent Child filtering**:
      *           To filter Contexts based on parent-child relationship use the HAS
      *           operator as follows:
@@ -2012,6 +2004,9 @@ class MetadataServiceGapicClient
      *           To filter on metadata fields use traversal operation as follows:
      *           `metadata.<field_name>.<type_value>`
      *           For example: `metadata.field_1.number_value = 10.0`
+     *           In case the field name contains special characters (such as colon), one
+     *           can embed it inside double quote.
+     *           For example: `metadata."field:1".number_value = 10.0`
      *           *  **Context based filtering**:
      *           To filter Executions based on the contexts to which they belong use
      *           the function operator with the full resource name:
@@ -2254,7 +2249,7 @@ class MetadataServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2271,7 +2266,7 @@ class MetadataServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2341,7 +2336,7 @@ class MetadataServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2358,7 +2353,7 @@ class MetadataServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2428,7 +2423,7 @@ class MetadataServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2445,7 +2440,7 @@ class MetadataServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2517,9 +2512,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string $artifact     Required. The resource name of the Artifact whose Lineage needs to be retrieved as a
-     *                             LineageSubgraph.
-     *                             Format:
+     * @param string $artifact     Required. The resource name of the Artifact whose Lineage needs to be
+     *                             retrieved as a LineageSubgraph. Format:
      *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *
      *                             The request may error with FAILED_PRECONDITION if the number of Artifacts,
@@ -2551,6 +2545,9 @@ class MetadataServiceGapicClient
      *           To filter on metadata fields use traversal operation as follows:
      *           `metadata.<field_name>.<type_value>`.
      *           For example: `metadata.field_1.number_value = 10.0`
+     *           In case the field name contains special characters (such as colon), one
+     *           can embed it inside double quote.
+     *           For example: `metadata."field:1".number_value = 10.0`
      *
      *           Each of the above supported filter types can be combined together using
      *           logical operators (`AND` & `OR`). Maximum nested expression depth allowed
@@ -2671,9 +2668,8 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param string $execution    Required. The resource name of the Execution whose input and output Artifacts should
-     *                             be retrieved as a LineageSubgraph.
-     *                             Format:
+     * @param string $execution    Required. The resource name of the Execution whose input and output
+     *                             Artifacts should be retrieved as a LineageSubgraph. Format:
      *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -2784,18 +2780,17 @@ class MetadataServiceGapicClient
      * ```
      *
      * @param Artifact $artifact     Required. The Artifact containing updates.
-     *                               The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     *                               be updated.
-     *                               Format:
+     *                               The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
+     *                               field is used to identify the Artifact to be updated. Format:
      *                               `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      * @param array    $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. A FieldMask indicating which fields should be updated.
-     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
-     *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is
+     *           not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      *           created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -2850,19 +2845,17 @@ class MetadataServiceGapicClient
      * ```
      *
      * @param Context $context      Required. The Context containing updates.
-     *                              The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field is used to identify the Context to be
-     *                              updated.
-     *                              Format:
+     *                              The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field
+     *                              is used to identify the Context to be updated. Format:
      *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      * @param array   $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. A FieldMask indicating which fields should be updated.
-     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
-     *           If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is not found, a new [Context][google.cloud.aiplatform.v1.Context] is
-     *           created.
+     *           If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is
+     *           not found, a new [Context][google.cloud.aiplatform.v1.Context] is created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2916,19 +2909,18 @@ class MetadataServiceGapicClient
      * ```
      *
      * @param Execution $execution    Required. The Execution containing updates.
-     *                                The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name] field is used to identify the Execution
-     *                                to be updated.
-     *                                Format:
+     *                                The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     *                                field is used to identify the Execution to be updated. Format:
      *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. A FieldMask indicating which fields should be updated.
-     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
-     *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
-     *           is created.
+     *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
+     *           is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
+     *           created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

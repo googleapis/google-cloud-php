@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\StructValue;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
@@ -28,7 +28,7 @@ class StructValueTest extends TestCase
 {
     private $values;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->values = [
             [

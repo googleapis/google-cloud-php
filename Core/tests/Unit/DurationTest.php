@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -30,7 +30,7 @@ class DurationTest extends TestCase
 
     private $duration;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->duration = new Duration(self::SECONDS, self::NANOS);
     }

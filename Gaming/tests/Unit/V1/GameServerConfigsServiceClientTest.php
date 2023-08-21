@@ -23,15 +23,12 @@
 namespace Google\Cloud\Gaming\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Gaming\V1\GameServerConfig;
 use Google\Cloud\Gaming\V1\GameServerConfigsServiceClient;
-
 use Google\Cloud\Gaming\V1\ListGameServerConfigsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class GameServerConfigsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GameServerConfigsServiceClient
-     */
+    /** @return GameServerConfigsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,14 +65,12 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         return new GameServerConfigsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerConfigTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -148,14 +137,12 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -207,14 +194,12 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerConfigTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -271,14 +256,12 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -328,9 +311,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerConfigTest()
     {
         $transport = $this->createTransport();
@@ -359,9 +340,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -394,9 +373,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGameServerConfigsTest()
     {
         $transport = $this->createTransport();
@@ -431,9 +408,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGameServerConfigsExceptionTest()
     {
         $transport = $this->createTransport();

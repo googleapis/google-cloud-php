@@ -60,6 +60,4 @@ class UrlTypeHint
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UrlTypeHint::class, \Google\Cloud\Dialogflow\V2\Intent_Message_BrowseCarouselCard_BrowseCarouselCardItem_OpenUrlAction_UrlTypeHint::class);
 

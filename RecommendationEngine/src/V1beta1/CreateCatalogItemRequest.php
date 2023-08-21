@@ -30,6 +30,23 @@ class CreateCatalogItemRequest extends \Google\Protobuf\Internal\Message
     private $catalog_item = null;
 
     /**
+     * @param string                                                 $parent      Required. The parent catalog resource name, such as
+     *                                                                            `projects/&#42;/locations/global/catalogs/default_catalog`. Please see
+     *                                                                            {@see CatalogServiceClient::catalogName()} for help formatting this field.
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem $catalogItem Required. The catalog item to create.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\CreateCatalogItemRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem $catalogItem): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCatalogItem($catalogItem);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

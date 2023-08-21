@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
+/**
+ * @internal
+ */
 trait VisibilityTrait
 {
     public function isPublic(): bool

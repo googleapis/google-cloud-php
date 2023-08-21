@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [X509Extension][google.cloud.security.privateca.v1.X509Extension] specifies an X.509 extension, which may be used in
- * different parts of X.509 objects like certificates, CSRs, and CRLs.
+ * An [X509Extension][google.cloud.security.privateca.v1.X509Extension]
+ * specifies an X.509 extension, which may be used in different parts of X.509
+ * objects like certificates, CSRs, and CRLs.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.X509Extension</code>
  */
@@ -23,9 +24,9 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      */
     private $object_id = null;
     /**
-     * Optional. Indicates whether or not this extension is critical (i.e., if the client
-     * does not know how to handle this extension, the client should consider this
-     * to be an error).
+     * Optional. Indicates whether or not this extension is critical (i.e., if the
+     * client does not know how to handle this extension, the client should
+     * consider this to be an error).
      *
      * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,9 +47,9 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Security\PrivateCA\V1\ObjectId $object_id
      *           Required. The OID for this X.509 extension.
      *     @type bool $critical
-     *           Optional. Indicates whether or not this extension is critical (i.e., if the client
-     *           does not know how to handle this extension, the client should consider this
-     *           to be an error).
+     *           Optional. Indicates whether or not this extension is critical (i.e., if the
+     *           client does not know how to handle this extension, the client should
+     *           consider this to be an error).
      *     @type string $value
      *           Required. The value of this X.509 extension.
      * }
@@ -95,9 +96,9 @@ class X509Extension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether or not this extension is critical (i.e., if the client
-     * does not know how to handle this extension, the client should consider this
-     * to be an error).
+     * Optional. Indicates whether or not this extension is critical (i.e., if the
+     * client does not know how to handle this extension, the client should
+     * consider this to be an error).
      *
      * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -108,9 +109,9 @@ class X509Extension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether or not this extension is critical (i.e., if the client
-     * does not know how to handle this extension, the client should consider this
-     * to be an error).
+     * Optional. Indicates whether or not this extension is critical (i.e., if the
+     * client does not know how to handle this extension, the client should
+     * consider this to be an error).
      *
      * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

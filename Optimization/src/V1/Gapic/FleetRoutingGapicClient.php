@@ -26,9 +26,7 @@ namespace Google\Cloud\Optimization\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -44,7 +42,6 @@ use Google\Cloud\Optimization\V1\OptimizeToursResponse;
 use Google\Cloud\Optimization\V1\ShipmentModel;
 use Google\Cloud\Optimization\V1\ShipmentRoute;
 use Google\LongRunning\Operation;
-
 use Google\Protobuf\Duration;
 
 /**
@@ -78,7 +75,7 @@ use Google\Protobuf\Duration;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -95,7 +92,7 @@ use Google\Protobuf\Duration;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -104,34 +101,27 @@ use Google\Protobuf\Duration;
  *     $fleetRoutingClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Optimization\V1\Client\FleetRoutingClient} to use the new surface.
  */
 class FleetRoutingGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.optimization.v1.FleetRouting';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudoptimization.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -204,9 +194,6 @@ class FleetRoutingGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudoptimization.googleapis.com:443'.
@@ -236,7 +223,7 @@ class FleetRoutingGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -284,7 +271,7 @@ class FleetRoutingGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -301,7 +288,7 @@ class FleetRoutingGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -316,8 +303,8 @@ class FleetRoutingGapicClient
      *                                         Format: `projects/{project-id}/locations/{location-id}`.
      *
      *                                         If no location is specified, a region will be chosen automatically.
-     * @param AsyncModelConfig[] $modelConfigs Required. Input/Output information each purchase model, such as file paths and data
-     *                                         formats.
+     * @param AsyncModelConfig[] $modelConfigs Required. Input/Output information each purchase model, such as file paths
+     *                                         and data formats.
      * @param array              $optionalArgs {
      *     Optional.
      *
@@ -403,7 +390,7 @@ class FleetRoutingGapicClient
      *           By default, the solving mode is `DEFAULT_SOLVE` (0).
      *           For allowed values, use constants defined on {@see \Google\Cloud\Optimization\V1\OptimizeToursRequest\SolvingMode}
      *     @type int $maxValidationErrors
-     *           Truncates the number of validation errors returned. Those errors are
+     *           Truncates the number of validation errors returned. These errors are
      *           typically attached to an INVALID_ARGUMENT error payload as a BadRequest
      *           error detail (https://cloud.google.com/apis/design/errors#error_details),
      *           unless solving_mode=VALIDATE_ONLY: see the
@@ -435,8 +422,9 @@ class FleetRoutingGapicClient
      *           <= visits[0].start_time <= visits[1].start_time ...
      *           <= vehicle_end_time`).
      *           * a shipment may only be performed on a vehicle that is allowed. A
-     *           vehicle is allowed if [Shipment.allowed_vehicle_indices][google.cloud.optimization.v1.Shipment.allowed_vehicle_indices] is empty or
-     *           its `vehicle_index` is included in
+     *           vehicle is allowed if
+     *           [Shipment.allowed_vehicle_indices][google.cloud.optimization.v1.Shipment.allowed_vehicle_indices]
+     *           is empty or its `vehicle_index` is included in
      *           [Shipment.allowed_vehicle_indices][google.cloud.optimization.v1.Shipment.allowed_vehicle_indices].
      *
      *           If the injected solution is not feasible, a validation error is not
@@ -471,16 +459,27 @@ class FleetRoutingGapicClient
      *     @type bool $interpretInjectedSolutionsUsingLabels
      *           If true:
      *
-     *           * uses [ShipmentRoute.vehicle_label][google.cloud.optimization.v1.ShipmentRoute.vehicle_label] instead of `vehicle_index` to
+     *           * uses
+     *           [ShipmentRoute.vehicle_label][google.cloud.optimization.v1.ShipmentRoute.vehicle_label]
+     *           instead of `vehicle_index` to
      *           match routes in an injected solution with vehicles in the request;
-     *           reuses the mapping of original [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index] to new
-     *           [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index] to update
+     *           reuses the mapping of original
+     *           [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index]
+     *           to new
+     *           [ShipmentRoute.vehicle_index][google.cloud.optimization.v1.ShipmentRoute.vehicle_index]
+     *           to update
      *           [ConstraintRelaxation.vehicle_indices][google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.vehicle_indices]
      *           if non-empty, but the mapping must be unambiguous (i.e., multiple
      *           `ShipmentRoute`s must not share the same original `vehicle_index`).
-     *           * uses [ShipmentRoute.Visit.shipment_label][google.cloud.optimization.v1.ShipmentRoute.Visit.shipment_label] instead of `shipment_index`
+     *           * uses
+     *           [ShipmentRoute.Visit.shipment_label][google.cloud.optimization.v1.ShipmentRoute.Visit.shipment_label]
+     *           instead of `shipment_index`
      *           to match visits in an injected solution with shipments in the request;
-     *           * uses [SkippedShipment.label][google.cloud.optimization.v1.SkippedShipment.label] instead of [SkippedShipment.index][google.cloud.optimization.v1.SkippedShipment.index] to
+     *           * uses
+     *           [SkippedShipment.label][google.cloud.optimization.v1.SkippedShipment.label]
+     *           instead of
+     *           [SkippedShipment.index][google.cloud.optimization.v1.SkippedShipment.index]
+     *           to
      *           match skipped shipments in the injected solution with request
      *           shipments.
      *
@@ -493,8 +492,10 @@ class FleetRoutingGapicClient
      *           If true, labels in the following categories must appear at most once in
      *           their category:
      *
-     *           * [Vehicle.label][google.cloud.optimization.v1.Vehicle.label] in the request;
-     *           * [Shipment.label][google.cloud.optimization.v1.Shipment.label] in the request;
+     *           * [Vehicle.label][google.cloud.optimization.v1.Vehicle.label] in the
+     *           request;
+     *           * [Shipment.label][google.cloud.optimization.v1.Shipment.label] in the
+     *           request;
      *           * [ShipmentRoute.vehicle_label][google.cloud.optimization.v1.ShipmentRoute.vehicle_label] in the injected solution;
      *           * [SkippedShipment.label][google.cloud.optimization.v1.SkippedShipment.label] and [ShipmentRoute.Visit.shipment_label][google.cloud.optimization.v1.ShipmentRoute.Visit.shipment_label] in
      *           the injected solution (except pickup/delivery visit pairs, whose
@@ -504,27 +505,32 @@ class FleetRoutingGapicClient
      *           request vehicle, the corresponding route is removed from the solution
      *           along with its visits. If a `shipment_label` in the injected solution does
      *           not correspond to a request shipment, the corresponding visit is removed
-     *           from the solution. If a [SkippedShipment.label][google.cloud.optimization.v1.SkippedShipment.label] in the injected solution
-     *           does not correspond to a request shipment, the `SkippedShipment` is removed
-     *           from the solution.
+     *           from the solution. If a
+     *           [SkippedShipment.label][google.cloud.optimization.v1.SkippedShipment.label]
+     *           in the injected solution does not correspond to a request shipment, the
+     *           `SkippedShipment` is removed from the solution.
      *
      *           Removing route visits or entire routes from an injected solution may
      *           have an effect on the implied constraints, which may lead to change in
      *           solution, validation errors, or infeasibility.
      *
-     *           NOTE: The caller must ensure that each [Vehicle.label][google.cloud.optimization.v1.Vehicle.label]
-     *           (resp. [Shipment.label][google.cloud.optimization.v1.Shipment.label]) uniquely identifies a vehicle (resp. shipment)
-     *           entity used across the two relevant requests: the past request that
-     *           produced the `OptimizeToursResponse` used in the injected solution and the
-     *           current request that includes the injected solution. The uniqueness checks
-     *           described above are not enough to guarantee this requirement.
+     *           NOTE: The caller must ensure that each
+     *           [Vehicle.label][google.cloud.optimization.v1.Vehicle.label] (resp.
+     *           [Shipment.label][google.cloud.optimization.v1.Shipment.label]) uniquely
+     *           identifies a vehicle (resp. shipment) entity used across the two relevant
+     *           requests: the past request that produced the `OptimizeToursResponse` used
+     *           in the injected solution and the current request that includes the injected
+     *           solution. The uniqueness checks described above are not enough to guarantee
+     *           this requirement.
      *     @type bool $considerRoadTraffic
      *           Consider traffic estimation in calculating `ShipmentRoute` fields
      *           [Transition.travel_duration][google.cloud.optimization.v1.ShipmentRoute.Transition.travel_duration],
      *           [Visit.start_time][google.cloud.optimization.v1.ShipmentRoute.Visit.start_time],
      *           and `vehicle_end_time`; in setting the
-     *           [ShipmentRoute.has_traffic_infeasibilities][google.cloud.optimization.v1.ShipmentRoute.has_traffic_infeasibilities] field, and in calculating the
-     *           [OptimizeToursResponse.total_cost][google.cloud.optimization.v1.OptimizeToursResponse.total_cost] field.
+     *           [ShipmentRoute.has_traffic_infeasibilities][google.cloud.optimization.v1.ShipmentRoute.has_traffic_infeasibilities]
+     *           field, and in calculating the
+     *           [OptimizeToursResponse.total_cost][google.cloud.optimization.v1.OptimizeToursResponse.total_cost]
+     *           field.
      *     @type bool $populatePolylines
      *           If true, polylines will be populated in response `ShipmentRoute`s.
      *     @type bool $populateTransitionPolylines
@@ -550,10 +556,12 @@ class FleetRoutingGapicClient
      *           Label that may be used to identify this request, reported back in the
      *           [OptimizeToursResponse.request_label][google.cloud.optimization.v1.OptimizeToursResponse.request_label].
      *     @type bool $populateTravelStepPolylines
-     *           Deprecated: Use [OptimizeToursRequest.populate_transition_polylines][] instead.
-     *           If true, polylines will be populated in response
-     *           [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions]. Note that in this case, the polylines will
-     *           also be populated in the deprecated `travel_steps`.
+     *           Deprecated: Use
+     *           [OptimizeToursRequest.populate_transition_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_transition_polylines]
+     *           instead. If true, polylines will be populated in response
+     *           [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions].
+     *           Note that in this case, the polylines will also be populated in the
+     *           deprecated `travel_steps`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

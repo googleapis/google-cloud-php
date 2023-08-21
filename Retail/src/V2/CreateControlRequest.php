@@ -39,6 +39,29 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
     private $control_id = '';
 
     /**
+     * @param string                          $parent    Required. Full resource name of parent catalog. Format:
+     *                                                   `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
+     *                                                   Please see {@see ControlServiceClient::catalogName()} for help formatting this field.
+     * @param \Google\Cloud\Retail\V2\Control $control   Required. The Control to create.
+     * @param string                          $controlId Required. The ID to use for the Control, which will become the final
+     *                                                   component of the Control's resource name.
+     *
+     *                                                   This value should be 4-63 characters, and valid characters
+     *                                                   are /[a-z][0-9]-_/.
+     *
+     * @return \Google\Cloud\Retail\V2\CreateControlRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Retail\V2\Control $control, string $controlId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setControl($control)
+            ->setControlId($controlId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

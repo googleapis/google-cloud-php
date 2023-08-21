@@ -25,19 +25,20 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START lifesciences_v2beta_generated_WorkflowsServiceV2Beta_RunPipeline_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
 use Google\Cloud\LifeSciences\V2beta\Pipeline;
+use Google\Cloud\LifeSciences\V2beta\RunPipelineRequest;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineResponse;
-use Google\Cloud\LifeSciences\V2beta\WorkflowsServiceV2BetaClient;
 use Google\Rpc\Status;
 
 /**
  * Runs a pipeline.  The returned Operation's [metadata]
  * [google.longrunning.Operation.metadata] field will contain a
- * [google.cloud.lifesciences.v2beta.Metadata][google.cloud.lifesciences.v2beta.Metadata] object describing the status
- * of the pipeline execution. The
+ * [google.cloud.lifesciences.v2beta.Metadata][google.cloud.lifesciences.v2beta.Metadata]
+ * object describing the status of the pipeline execution. The
  * [response][google.longrunning.Operation.response] field will contain a
- * [google.cloud.lifesciences.v2beta.RunPipelineResponse][google.cloud.lifesciences.v2beta.RunPipelineResponse] object if the
- * pipeline completes successfully.
+ * [google.cloud.lifesciences.v2beta.RunPipelineResponse][google.cloud.lifesciences.v2beta.RunPipelineResponse]
+ * object if the pipeline completes successfully.
  *
  * **Note:** Before you can use this method, the *Life Sciences Service Agent*
  * must have access to your project. This is done automatically when the
@@ -60,17 +61,19 @@ function run_pipeline_sample(): void
     // Create a client.
     $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $pipeline = new Pipeline();
+    $request = (new RunPipelineRequest())
+        ->setPipeline($pipeline);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+        $response = $workflowsServiceV2BetaClient->runPipeline($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var RunPipelineResponse $response */
+            /** @var RunPipelineResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

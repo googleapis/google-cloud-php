@@ -9,26 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Kubernetes Subject.
+ * Represents a Kubernetes subject.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Kubernetes.Subject</code>
  */
 class Subject extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Authentication type for subject.
+     * Authentication type for the subject.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes.Subject.AuthType kind = 1;</code>
      */
     private $kind = 0;
     /**
-     * Namespace for subject.
+     * Namespace for the subject.
      *
      * Generated from protobuf field <code>string ns = 2;</code>
      */
     private $ns = '';
     /**
-     * Name for subject.
+     * Name for the subject.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
@@ -41,11 +41,11 @@ class Subject extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $kind
-     *           Authentication type for subject.
+     *           Authentication type for the subject.
      *     @type string $ns
-     *           Namespace for subject.
+     *           Namespace for the subject.
      *     @type string $name
-     *           Name for subject.
+     *           Name for the subject.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class Subject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Authentication type for subject.
+     * Authentication type for the subject.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes.Subject.AuthType kind = 1;</code>
      * @return int
@@ -65,7 +65,7 @@ class Subject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Authentication type for subject.
+     * Authentication type for the subject.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes.Subject.AuthType kind = 1;</code>
      * @param int $var
@@ -80,7 +80,7 @@ class Subject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Namespace for subject.
+     * Namespace for the subject.
      *
      * Generated from protobuf field <code>string ns = 2;</code>
      * @return string
@@ -91,7 +91,7 @@ class Subject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Namespace for subject.
+     * Namespace for the subject.
      *
      * Generated from protobuf field <code>string ns = 2;</code>
      * @param string $var
@@ -106,7 +106,7 @@ class Subject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for subject.
+     * Name for the subject.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @return string
@@ -117,7 +117,7 @@ class Subject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for subject.
+     * Name for the subject.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var

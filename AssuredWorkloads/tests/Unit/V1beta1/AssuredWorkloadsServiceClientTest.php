@@ -23,26 +23,22 @@
 namespace Google\Cloud\AssuredWorkloads\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
 use Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsResponse;
-
+use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType;
+use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload\ComplianceRegime;
-use Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings;
-use Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -53,25 +49,19 @@ use stdClass;
  */
 class AssuredWorkloadsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AssuredWorkloadsServiceClient
-     */
+    /** @return AssuredWorkloadsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -80,14 +70,70 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         return new AssuredWorkloadsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function analyzeWorkloadMoveTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AnalyzeWorkloadMoveResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $target = 'target-880905839';
+        $response = $gapicClient->analyzeWorkloadMove($target);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/AnalyzeWorkloadMove', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTarget();
+        $this->assertProtobufEquals($target, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeWorkloadMoveExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $target = 'target-880905839';
+        try {
+            $gapicClient->analyzeWorkloadMove($target);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createWorkloadTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -130,14 +176,6 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $workload->setDisplayName($workloadDisplayName);
         $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
         $workload->setComplianceRegime($workloadComplianceRegime);
-        $workloadIl4Settings = new IL4Settings();
-        $il4SettingsKmsSettings = new KMSSettings();
-        $kmsSettingsNextRotationTime = new Timestamp();
-        $il4SettingsKmsSettings->setNextRotationTime($kmsSettingsNextRotationTime);
-        $kmsSettingsRotationPeriod = new Duration();
-        $il4SettingsKmsSettings->setRotationPeriod($kmsSettingsRotationPeriod);
-        $workloadIl4Settings->setKmsSettings($il4SettingsKmsSettings);
-        $workload->setIl4Settings($workloadIl4Settings);
         $response = $gapicClient->createWorkload($formattedParent, $workload);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -171,14 +209,12 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWorkloadExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -211,14 +247,6 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $workload->setDisplayName($workloadDisplayName);
         $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
         $workload->setComplianceRegime($workloadComplianceRegime);
-        $workloadIl4Settings = new IL4Settings();
-        $il4SettingsKmsSettings = new KMSSettings();
-        $kmsSettingsNextRotationTime = new Timestamp();
-        $il4SettingsKmsSettings->setNextRotationTime($kmsSettingsNextRotationTime);
-        $kmsSettingsRotationPeriod = new Duration();
-        $il4SettingsKmsSettings->setRotationPeriod($kmsSettingsRotationPeriod);
-        $workloadIl4Settings->setKmsSettings($il4SettingsKmsSettings);
-        $workload->setIl4Settings($workloadIl4Settings);
         $response = $gapicClient->createWorkload($formattedParent, $workload);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -241,9 +269,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkloadTest()
     {
         $transport = $this->createTransport();
@@ -267,9 +293,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkloadExceptionTest()
     {
         $transport = $this->createTransport();
@@ -302,9 +326,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkloadTest()
     {
         $transport = $this->createTransport();
@@ -341,9 +363,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkloadExceptionTest()
     {
         $transport = $this->createTransport();
@@ -376,9 +396,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkloadsTest()
     {
         $transport = $this->createTransport();
@@ -413,9 +431,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkloadsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -448,9 +464,69 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function restrictAllowedResourcesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RestrictAllowedResourcesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
+        $response = $gapicClient->restrictAllowedResources($name, $restrictionType);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/RestrictAllowedResources', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getRestrictionType();
+        $this->assertProtobufEquals($restrictionType, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function restrictAllowedResourcesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
+        try {
+            $gapicClient->restrictAllowedResources($name, $restrictionType);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateWorkloadTest()
     {
         $transport = $this->createTransport();
@@ -479,14 +555,6 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $workload->setDisplayName($workloadDisplayName);
         $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
         $workload->setComplianceRegime($workloadComplianceRegime);
-        $workloadIl4Settings = new IL4Settings();
-        $il4SettingsKmsSettings = new KMSSettings();
-        $kmsSettingsNextRotationTime = new Timestamp();
-        $il4SettingsKmsSettings->setNextRotationTime($kmsSettingsNextRotationTime);
-        $kmsSettingsRotationPeriod = new Duration();
-        $il4SettingsKmsSettings->setRotationPeriod($kmsSettingsRotationPeriod);
-        $workloadIl4Settings->setKmsSettings($il4SettingsKmsSettings);
-        $workload->setIl4Settings($workloadIl4Settings);
         $updateMask = new FieldMask();
         $response = $gapicClient->updateWorkload($workload, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -502,9 +570,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateWorkloadExceptionTest()
     {
         $transport = $this->createTransport();
@@ -528,14 +594,6 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $workload->setDisplayName($workloadDisplayName);
         $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
         $workload->setComplianceRegime($workloadComplianceRegime);
-        $workloadIl4Settings = new IL4Settings();
-        $il4SettingsKmsSettings = new KMSSettings();
-        $kmsSettingsNextRotationTime = new Timestamp();
-        $il4SettingsKmsSettings->setNextRotationTime($kmsSettingsNextRotationTime);
-        $kmsSettingsRotationPeriod = new Duration();
-        $il4SettingsKmsSettings->setRotationPeriod($kmsSettingsRotationPeriod);
-        $workloadIl4Settings->setKmsSettings($il4SettingsKmsSettings);
-        $workload->setIl4Settings($workloadIl4Settings);
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateWorkload($workload, $updateMask);

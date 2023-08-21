@@ -23,11 +23,9 @@
 namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse;
 use Google\Cloud\Monitoring\V3\ListNotificationChannelDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListNotificationChannelsResponse;
@@ -45,25 +43,19 @@ use stdClass;
  */
 class NotificationChannelServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return NotificationChannelServiceClient
-     */
+    /** @return NotificationChannelServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +64,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         return new NotificationChannelServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNotificationChannelTest()
     {
         $transport = $this->createTransport();
@@ -110,9 +100,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNotificationChannelExceptionTest()
     {
         $transport = $this->createTransport();
@@ -146,9 +134,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNotificationChannelTest()
     {
         $transport = $this->createTransport();
@@ -172,9 +158,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNotificationChannelExceptionTest()
     {
         $transport = $this->createTransport();
@@ -207,9 +191,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationChannelTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +224,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationChannelExceptionTest()
     {
         $transport = $this->createTransport();
@@ -277,9 +257,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationChannelDescriptorTest()
     {
         $transport = $this->createTransport();
@@ -312,9 +290,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationChannelDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -347,9 +323,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationChannelVerificationCodeTest()
     {
         $transport = $this->createTransport();
@@ -376,9 +350,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationChannelVerificationCodeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -411,9 +383,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotificationChannelDescriptorsTest()
     {
         $transport = $this->createTransport();
@@ -448,9 +418,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotificationChannelDescriptorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -483,9 +451,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotificationChannelsTest()
     {
         $transport = $this->createTransport();
@@ -522,9 +488,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotificationChannelsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -557,9 +521,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendNotificationChannelVerificationCodeTest()
     {
         $transport = $this->createTransport();
@@ -583,9 +545,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendNotificationChannelVerificationCodeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -618,9 +578,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNotificationChannelTest()
     {
         $transport = $this->createTransport();
@@ -653,9 +611,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNotificationChannelExceptionTest()
     {
         $transport = $this->createTransport();
@@ -688,9 +644,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function verifyNotificationChannelTest()
     {
         $transport = $this->createTransport();
@@ -726,9 +680,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function verifyNotificationChannelExceptionTest()
     {
         $transport = $this->createTransport();

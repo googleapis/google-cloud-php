@@ -55,6 +55,21 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool interim_results = 3;</code>
      */
     private $interim_results = false;
+    /**
+     * If `true`, responses with voice activity speech events will be returned as
+     * they are detected.
+     *
+     * Generated from protobuf field <code>bool enable_voice_activity_events = 5;</code>
+     */
+    private $enable_voice_activity_events = false;
+    /**
+     * If set, the server will automatically close the stream after the specified
+     * duration has elapsed after the last VOICE_ACTIVITY speech event has been
+     * sent. The field `voice_activity_events` must also be set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.StreamingRecognitionConfig.VoiceActivityTimeout voice_activity_timeout = 6;</code>
+     */
+    private $voice_activity_timeout = null;
 
     /**
      * Constructor.
@@ -89,6 +104,13 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      *           returned as they become available (these interim results are indicated with
      *           the `is_final=false` flag).
      *           If `false` or omitted, only `is_final=true` result(s) are returned.
+     *     @type bool $enable_voice_activity_events
+     *           If `true`, responses with voice activity speech events will be returned as
+     *           they are detected.
+     *     @type \Google\Cloud\Speech\V1\StreamingRecognitionConfig\VoiceActivityTimeout $voice_activity_timeout
+     *           If set, the server will automatically close the stream after the specified
+     *           duration has elapsed after the last VOICE_ACTIVITY speech event has been
+     *           sent. The field `voice_activity_events` must also be set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -222,6 +244,74 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->interim_results = $var;
+
+        return $this;
+    }
+
+    /**
+     * If `true`, responses with voice activity speech events will be returned as
+     * they are detected.
+     *
+     * Generated from protobuf field <code>bool enable_voice_activity_events = 5;</code>
+     * @return bool
+     */
+    public function getEnableVoiceActivityEvents()
+    {
+        return $this->enable_voice_activity_events;
+    }
+
+    /**
+     * If `true`, responses with voice activity speech events will be returned as
+     * they are detected.
+     *
+     * Generated from protobuf field <code>bool enable_voice_activity_events = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableVoiceActivityEvents($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_voice_activity_events = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set, the server will automatically close the stream after the specified
+     * duration has elapsed after the last VOICE_ACTIVITY speech event has been
+     * sent. The field `voice_activity_events` must also be set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.StreamingRecognitionConfig.VoiceActivityTimeout voice_activity_timeout = 6;</code>
+     * @return \Google\Cloud\Speech\V1\StreamingRecognitionConfig\VoiceActivityTimeout|null
+     */
+    public function getVoiceActivityTimeout()
+    {
+        return $this->voice_activity_timeout;
+    }
+
+    public function hasVoiceActivityTimeout()
+    {
+        return isset($this->voice_activity_timeout);
+    }
+
+    public function clearVoiceActivityTimeout()
+    {
+        unset($this->voice_activity_timeout);
+    }
+
+    /**
+     * If set, the server will automatically close the stream after the specified
+     * duration has elapsed after the last VOICE_ACTIVITY speech event has been
+     * sent. The field `voice_activity_events` must also be set to true.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.StreamingRecognitionConfig.VoiceActivityTimeout voice_activity_timeout = 6;</code>
+     * @param \Google\Cloud\Speech\V1\StreamingRecognitionConfig\VoiceActivityTimeout $var
+     * @return $this
+     */
+    public function setVoiceActivityTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1\StreamingRecognitionConfig\VoiceActivityTimeout::class);
+        $this->voice_activity_timeout = $var;
 
         return $this;
     }

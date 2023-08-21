@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [CertificateDescription][google.cloud.security.privateca.v1.CertificateDescription] describes an X.509 certificate or CSR that has
- * been issued, as an alternative to using ASN.1 / X.509.
+ * A
+ * [CertificateDescription][google.cloud.security.privateca.v1.CertificateDescription]
+ * describes an X.509 certificate or CSR that has been issued, as an alternative
+ * to using ASN.1 / X.509.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CertificateDescription</code>
  */

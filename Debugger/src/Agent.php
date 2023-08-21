@@ -151,9 +151,7 @@ class Agent
             'identifier' => 'stackdriver-debugger',
             'batchMethod' => 'insertBatch'
         ]);
-        $this->logger = isset($options['logger'])
-            ? $options['logger']
-            : $this->defaultLogger();
+        $this->logger = $options['logger'] ?? $this->defaultLogger();
 
         if (empty($breakpoints)) {
             return;
@@ -177,6 +175,7 @@ class Agent
 
             switch ($breakpoint->action()) {
                 case Breakpoint::ACTION_CAPTURE:
+                case 'CAPTURE':
                     stackdriver_debugger_add_snapshot(
                         $sourceLocation->path(),
                         $sourceLocation->line(),
@@ -191,6 +190,7 @@ class Agent
                     );
                     break;
                 case Breakpoint::ACTION_LOG:
+                case 'LOG':
                     stackdriver_debugger_add_logpoint(
                         $sourceLocation->path(),
                         $sourceLocation->line(),

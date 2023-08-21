@@ -21,6 +21,9 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\Aggregate;
+use Google\Cloud\Firestore\AggregateQuery;
+use Google\Cloud\Firestore\AggregateQuerySnapshot;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
@@ -32,6 +35,7 @@ use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -40,6 +44,7 @@ use Prophecy\Argument;
 class TransactionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE_ID = '(default)';
@@ -53,7 +58,7 @@ class TransactionTest extends SnippetTestCase
     private $document;
     private $batch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->transaction = TestHelpers::stub(TransactionStub::class, [
@@ -110,6 +115,26 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('document', $this->document->reveal());
         $res = $snippet->invoke('snapshot');
         $this->assertInstanceOf(DocumentSnapshot::class, $res->returnVal());
+    }
+
+    public function testRunAggregateQuery()
+    {
+        $this->connection->runAggregationQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([]));
+        $aggregateQuery = new AggregateQuery(
+            $this->connection->reveal(),
+            self::DOCUMENT,
+            ['query' => []],
+            Aggregate::count()
+        );
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'runAggregateQuery');
+        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('aggregateQuery', $aggregateQuery);
+
+        $res = $snippet->invoke('snapshot');
+        $this->assertInstanceOf(AggregateQuerySnapshot::class, $res->returnVal());
     }
 
     public function testRunQuery()

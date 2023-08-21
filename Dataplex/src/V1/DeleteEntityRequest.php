@@ -23,11 +23,27 @@ class DeleteEntityRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The etag associated with the partition if it was previously retrieved.
+     * Required. The etag associated with the entity, which can be retrieved with
+     * a [GetEntity][] request.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $etag = '';
+
+    /**
+     * @param string $name Required. The resource name of the entity:
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
+     *                     {@see MetadataServiceClient::entityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\DeleteEntityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -39,7 +55,8 @@ class DeleteEntityRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the entity:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
      *     @type string $etag
-     *           Required. The etag associated with the partition if it was previously retrieved.
+     *           Required. The etag associated with the entity, which can be retrieved with
+     *           a [GetEntity][] request.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +93,8 @@ class DeleteEntityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The etag associated with the partition if it was previously retrieved.
+     * Required. The etag associated with the entity, which can be retrieved with
+     * a [GetEntity][] request.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -87,7 +105,8 @@ class DeleteEntityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The etag associated with the partition if it was previously retrieved.
+     * Required. The etag associated with the entity, which can be retrieved with
+     * a [GetEntity][] request.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

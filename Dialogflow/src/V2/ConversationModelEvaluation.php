@@ -41,6 +41,26 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
+    /**
+     * Output only. Human eval template in csv format.
+     * It tooks real-world conversations provided through input dataset, generates
+     * example suggestions for customer to verify quality of the model.
+     * For Smart Reply, the generated csv file contains columns of
+     * Context, (Suggestions,Q1,Q2)*3, Actual reply.
+     * Context contains at most 10 latest messages in the conversation prior to
+     * the current suggestion.
+     * Q1: "Would you send it as the next message of agent?"
+     * Evaluated based on whether the suggest is appropriate to be sent by
+     * agent in current context.
+     * Q2: "Does the suggestion move the conversation closer to resolution?"
+     * Evaluated based on whether the suggestion provide solutions, or answers
+     * customer's question or collect information from customer to resolve the
+     * customer's issue.
+     * Actual reply column contains the actual agent reply sent in the context.
+     *
+     * Generated from protobuf field <code>string raw_human_eval_template_csv = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $raw_human_eval_template_csv = '';
     protected $metrics;
 
     /**
@@ -61,6 +81,22 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
      *           Output only. Creation time of this model.
      *     @type \Google\Cloud\Dialogflow\V2\SmartReplyMetrics $smart_reply_metrics
      *           Output only. Only available when model is for smart reply.
+     *     @type string $raw_human_eval_template_csv
+     *           Output only. Human eval template in csv format.
+     *           It tooks real-world conversations provided through input dataset, generates
+     *           example suggestions for customer to verify quality of the model.
+     *           For Smart Reply, the generated csv file contains columns of
+     *           Context, (Suggestions,Q1,Q2)*3, Actual reply.
+     *           Context contains at most 10 latest messages in the conversation prior to
+     *           the current suggestion.
+     *           Q1: "Would you send it as the next message of agent?"
+     *           Evaluated based on whether the suggest is appropriate to be sent by
+     *           agent in current context.
+     *           Q2: "Does the suggestion move the conversation closer to resolution?"
+     *           Evaluated based on whether the suggestion provide solutions, or answers
+     *           customer's question or collect information from customer to resolve the
+     *           customer's issue.
+     *           Actual reply column contains the actual agent reply sent in the context.
      * }
      */
     public function __construct($data = NULL) {
@@ -223,6 +259,60 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SmartReplyMetrics::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Human eval template in csv format.
+     * It tooks real-world conversations provided through input dataset, generates
+     * example suggestions for customer to verify quality of the model.
+     * For Smart Reply, the generated csv file contains columns of
+     * Context, (Suggestions,Q1,Q2)*3, Actual reply.
+     * Context contains at most 10 latest messages in the conversation prior to
+     * the current suggestion.
+     * Q1: "Would you send it as the next message of agent?"
+     * Evaluated based on whether the suggest is appropriate to be sent by
+     * agent in current context.
+     * Q2: "Does the suggestion move the conversation closer to resolution?"
+     * Evaluated based on whether the suggestion provide solutions, or answers
+     * customer's question or collect information from customer to resolve the
+     * customer's issue.
+     * Actual reply column contains the actual agent reply sent in the context.
+     *
+     * Generated from protobuf field <code>string raw_human_eval_template_csv = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRawHumanEvalTemplateCsv()
+    {
+        return $this->raw_human_eval_template_csv;
+    }
+
+    /**
+     * Output only. Human eval template in csv format.
+     * It tooks real-world conversations provided through input dataset, generates
+     * example suggestions for customer to verify quality of the model.
+     * For Smart Reply, the generated csv file contains columns of
+     * Context, (Suggestions,Q1,Q2)*3, Actual reply.
+     * Context contains at most 10 latest messages in the conversation prior to
+     * the current suggestion.
+     * Q1: "Would you send it as the next message of agent?"
+     * Evaluated based on whether the suggest is appropriate to be sent by
+     * agent in current context.
+     * Q2: "Does the suggestion move the conversation closer to resolution?"
+     * Evaluated based on whether the suggestion provide solutions, or answers
+     * customer's question or collect information from customer to resolve the
+     * customer's issue.
+     * Actual reply column contains the actual agent reply sent in the context.
+     *
+     * Generated from protobuf field <code>string raw_human_eval_template_csv = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRawHumanEvalTemplateCsv($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->raw_human_eval_template_csv = $var;
 
         return $this;
     }

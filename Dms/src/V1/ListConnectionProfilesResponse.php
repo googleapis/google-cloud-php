@@ -22,7 +22,7 @@ class ListConnectionProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     private $connection_profiles;
     /**
-     * A token, which can be sent as `page_token` to retrieve the next page.
+     * A token which can be sent as `page_token` to retrieve the next page.
      * If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -44,7 +44,7 @@ class ListConnectionProfilesResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\CloudDms\V1\ConnectionProfile>|\Google\Protobuf\Internal\RepeatedField $connection_profiles
      *           The response list of connection profiles.
      *     @type string $next_page_token
-     *           A token, which can be sent as `page_token` to retrieve the next page.
+     *           A token which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
@@ -82,7 +82,7 @@ class ListConnectionProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as `page_token` to retrieve the next page.
+     * A token which can be sent as `page_token` to retrieve the next page.
      * If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -94,7 +94,7 @@ class ListConnectionProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token, which can be sent as `page_token` to retrieve the next page.
+     * A token which can be sent as `page_token` to retrieve the next page.
      * If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>

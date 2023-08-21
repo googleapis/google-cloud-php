@@ -17,8 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,19 +32,19 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      */
     private $pem_ca_certificate = '';
     /**
-     * Required. Must include information about the issuer of 'pem_ca_certificate', and any
-     * further issuers until the self-signed CA.
+     * Required. Must include information about the issuer of
+     * 'pem_ca_certificate', and any further issuers until the self-signed CA.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubordinateConfig subordinate_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $subordinate_config = null;
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -55,27 +56,44 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     private $request_id = '';
 
     /**
+     * @param string $name Required. The resource name for this
+     *                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                     in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\ActivateCertificateAuthorityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           Required. The resource name for this
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *     @type string $pem_ca_certificate
      *           Required. The signed CA certificate issued from
      *           [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1.FetchCertificateAuthorityCsrResponse.pem_csr].
      *     @type \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig $subordinate_config
-     *           Required. Must include information about the issuer of 'pem_ca_certificate', and any
-     *           further issuers until the self-signed CA.
+     *           Required. Must include information about the issuer of
+     *           'pem_ca_certificate', and any further issuers until the self-signed CA.
      *     @type string $request_id
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -89,8 +107,9 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -101,8 +120,9 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -145,8 +165,8 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. Must include information about the issuer of 'pem_ca_certificate', and any
-     * further issuers until the self-signed CA.
+     * Required. Must include information about the issuer of
+     * 'pem_ca_certificate', and any further issuers until the self-signed CA.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubordinateConfig subordinate_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig|null
@@ -167,8 +187,8 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. Must include information about the issuer of 'pem_ca_certificate', and any
-     * further issuers until the self-signed CA.
+     * Required. Must include information about the issuer of
+     * 'pem_ca_certificate', and any further issuers until the self-signed CA.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubordinateConfig subordinate_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig $var
@@ -183,12 +203,12 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -204,12 +224,12 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.

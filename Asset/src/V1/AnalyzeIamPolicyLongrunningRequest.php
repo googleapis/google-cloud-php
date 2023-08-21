@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request message for [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning].
+ * A request message for
+ * [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning].
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.AnalyzeIamPolicyLongrunningRequest</code>
  */
@@ -40,7 +41,8 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      */
     private $saved_analysis_query = '';
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * Required. Output configuration indicating where the results will be output
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -69,7 +71,8 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      *           0 or empty string, etc., because we use proto3, which doesn't support field
      *           presence yet.
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig $output_config
-     *           Required. Output configuration indicating where the results will be output to.
+     *           Required. Output configuration indicating where the results will be output
+     *           to.
      * }
      */
     public function __construct($data = NULL) {
@@ -164,7 +167,8 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * Required. Output configuration indicating where the results will be output
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig|null
@@ -185,7 +189,8 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * Required. Output configuration indicating where the results will be output
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig $var

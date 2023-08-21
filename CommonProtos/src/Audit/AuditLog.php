@@ -88,6 +88,14 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     private $authorization_info;
     /**
+     * Indicates the policy violations for this request. If the request
+     * is denied by the policy, violation information will be logged
+     * here.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.PolicyViolationInfo policy_violation_info = 25;</code>
+     */
+    protected $policy_violation_info = null;
+    /**
      * Metadata about the operation.
      *
      * Generated from protobuf field <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
@@ -170,10 +178,14 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *           The status of the overall operation.
      *     @type \Google\Cloud\Audit\AuthenticationInfo $authentication_info
      *           Authentication information.
-     *     @type \Google\Cloud\Audit\AuthorizationInfo[]|\Google\Protobuf\Internal\RepeatedField $authorization_info
+     *     @type array<\Google\Cloud\Audit\AuthorizationInfo>|\Google\Protobuf\Internal\RepeatedField $authorization_info
      *           Authorization information. If there are multiple
      *           resources or permissions involved, then there is
      *           one AuthorizationInfo element for each {resource, permission} tuple.
+     *     @type \Google\Cloud\Audit\PolicyViolationInfo $policy_violation_info
+     *           Indicates the policy violations for this request. If the request
+     *           is denied by the policy, violation information will be logged
+     *           here.
      *     @type \Google\Cloud\Audit\RequestMetadata $request_metadata
      *           Metadata about the operation.
      *     @type \Google\Protobuf\Struct $request
@@ -308,7 +320,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getResourceLocation()
     {
-        return isset($this->resource_location) ? $this->resource_location : null;
+        return $this->resource_location;
     }
 
     public function hasResourceLocation()
@@ -350,7 +362,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getResourceOriginalState()
     {
-        return isset($this->resource_original_state) ? $this->resource_original_state : null;
+        return $this->resource_original_state;
     }
 
     public function hasResourceOriginalState()
@@ -420,7 +432,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -456,7 +468,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getAuthenticationInfo()
     {
-        return isset($this->authentication_info) ? $this->authentication_info : null;
+        return $this->authentication_info;
     }
 
     public function hasAuthenticationInfo()
@@ -503,13 +515,53 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * one AuthorizationInfo element for each {resource, permission} tuple.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.AuthorizationInfo authorization_info = 9;</code>
-     * @param \Google\Cloud\Audit\AuthorizationInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Audit\AuthorizationInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAuthorizationInfo($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Audit\AuthorizationInfo::class);
         $this->authorization_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Indicates the policy violations for this request. If the request
+     * is denied by the policy, violation information will be logged
+     * here.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.PolicyViolationInfo policy_violation_info = 25;</code>
+     * @return \Google\Cloud\Audit\PolicyViolationInfo|null
+     */
+    public function getPolicyViolationInfo()
+    {
+        return $this->policy_violation_info;
+    }
+
+    public function hasPolicyViolationInfo()
+    {
+        return isset($this->policy_violation_info);
+    }
+
+    public function clearPolicyViolationInfo()
+    {
+        unset($this->policy_violation_info);
+    }
+
+    /**
+     * Indicates the policy violations for this request. If the request
+     * is denied by the policy, violation information will be logged
+     * here.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.PolicyViolationInfo policy_violation_info = 25;</code>
+     * @param \Google\Cloud\Audit\PolicyViolationInfo $var
+     * @return $this
+     */
+    public function setPolicyViolationInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Audit\PolicyViolationInfo::class);
+        $this->policy_violation_info = $var;
 
         return $this;
     }
@@ -522,7 +574,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getRequestMetadata()
     {
-        return isset($this->request_metadata) ? $this->request_metadata : null;
+        return $this->request_metadata;
     }
 
     public function hasRequestMetadata()
@@ -563,7 +615,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getRequest()
     {
-        return isset($this->request) ? $this->request : null;
+        return $this->request;
     }
 
     public function hasRequest()
@@ -609,7 +661,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getResponse()
     {
-        return isset($this->response) ? $this->response : null;
+        return $this->response;
     }
 
     public function hasResponse()
@@ -651,7 +703,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -692,7 +744,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
     public function getServiceData()
     {
         @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
-        return isset($this->service_data) ? $this->service_data : null;
+        return $this->service_data;
     }
 
     public function hasServiceData()

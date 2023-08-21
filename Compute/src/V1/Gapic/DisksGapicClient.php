@@ -26,7 +26,6 @@ namespace Google\Cloud\Compute\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -36,6 +35,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddResourcePoliciesDiskRequest;
 use Google\Cloud\Compute\V1\AggregatedListDisksRequest;
+use Google\Cloud\Compute\V1\BulkInsertDiskRequest;
+use Google\Cloud\Compute\V1\BulkInsertDiskResource;
 use Google\Cloud\Compute\V1\CreateSnapshotDiskRequest;
 use Google\Cloud\Compute\V1\DeleteDiskRequest;
 use Google\Cloud\Compute\V1\Disk;
@@ -44,6 +45,8 @@ use Google\Cloud\Compute\V1\DiskList;
 use Google\Cloud\Compute\V1\DisksAddResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\DisksRemoveResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\DisksResizeRequest;
+use Google\Cloud\Compute\V1\DisksStartAsyncReplicationRequest;
+use Google\Cloud\Compute\V1\DisksStopGroupAsyncReplicationResource;
 use Google\Cloud\Compute\V1\GetDiskRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyDiskRequest;
 use Google\Cloud\Compute\V1\InsertDiskRequest;
@@ -55,9 +58,13 @@ use Google\Cloud\Compute\V1\ResizeDiskRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyDiskRequest;
 use Google\Cloud\Compute\V1\SetLabelsDiskRequest;
 use Google\Cloud\Compute\V1\Snapshot;
+use Google\Cloud\Compute\V1\StartAsyncReplicationDiskRequest;
+use Google\Cloud\Compute\V1\StopAsyncReplicationDiskRequest;
+use Google\Cloud\Compute\V1\StopGroupAsyncReplicationDiskRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsDiskRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateDiskRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ZoneSetLabelsRequest;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
@@ -103,34 +110,27 @@ use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
  *     $disksClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\DisksClient} to use the new surface.
  */
 class DisksGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.compute.v1.Disks';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'compute.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -158,17 +158,13 @@ class DisksGapicClient
         ];
     }
 
-    /**
-     * Implements GapicClientTrait::defaultTransport.
-     */
+    /** Implements GapicClientTrait::defaultTransport. */
     private static function defaultTransport()
     {
         return 'rest';
     }
 
-    /**
-     * Implements GapicClientTrait::getSupportedTransports.
-     */
+    /** Implements GapicClientTrait::getSupportedTransports. */
     private static function getSupportedTransports()
     {
         return [
@@ -186,9 +182,7 @@ class DisksGapicClient
         return $this->operationsClient;
     }
 
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
+    /** Return the default longrunning operation descriptor config. */
     private function getDefaultOperationDescriptor()
     {
         return [
@@ -232,9 +226,6 @@ class DisksGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
@@ -263,7 +254,7 @@ class DisksGapicClient
      *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -457,6 +448,81 @@ class DisksGapicClient
     }
 
     /**
+     * Bulk create a set of disks.
+     *
+     * Sample code:
+     * ```
+     * $disksClient = new DisksClient();
+     * try {
+     *     $bulkInsertDiskResourceResource = new BulkInsertDiskResource();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $disksClient->bulkInsert($bulkInsertDiskResourceResource, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $disksClient->bulkInsert($bulkInsertDiskResourceResource, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $disksClient->resumeOperation($operationName, 'bulkInsert');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $disksClient->close();
+     * }
+     * ```
+     *
+     * @param BulkInsertDiskResource $bulkInsertDiskResourceResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $zone                           The name of the zone for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkInsert($bulkInsertDiskResourceResource, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new BulkInsertDiskRequest();
+        $requestParamHeaders = [];
+        $request->setBulkInsertDiskResourceResource($bulkInsertDiskResourceResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('BulkInsert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
      * Creates a snapshot of a specified persistent disk. For regular snapshot creation, consider using snapshots.insert instead, as that method supports more features, such as creating snapshots in a project different from the source disk project.
      *
      * Sample code:
@@ -618,7 +684,7 @@ class DisksGapicClient
     }
 
     /**
-     * Returns a specified persistent disk. Gets a list of available persistent disks by making a list() request.
+     * Returns the specified persistent disk.
      *
      * Sample code:
      * ```
@@ -1174,6 +1240,236 @@ class DisksGapicClient
     }
 
     /**
+     * Starts asynchronous replication. Must be invoked on the primary disk.
+     *
+     * Sample code:
+     * ```
+     * $disksClient = new DisksClient();
+     * try {
+     *     $disk = 'disk';
+     *     $disksStartAsyncReplicationRequestResource = new DisksStartAsyncReplicationRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $disksClient->startAsyncReplication($disk, $disksStartAsyncReplicationRequestResource, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $disksClient->startAsyncReplication($disk, $disksStartAsyncReplicationRequestResource, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $disksClient->resumeOperation($operationName, 'startAsyncReplication');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $disksClient->close();
+     * }
+     * ```
+     *
+     * @param string                            $disk                                      The name of the persistent disk.
+     * @param DisksStartAsyncReplicationRequest $disksStartAsyncReplicationRequestResource The body resource for this request
+     * @param string                            $project                                   Project ID for this request.
+     * @param string                            $zone                                      The name of the zone for this request.
+     * @param array                             $optionalArgs                              {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function startAsyncReplication($disk, $disksStartAsyncReplicationRequestResource, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new StartAsyncReplicationDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisk($disk);
+        $request->setDisksStartAsyncReplicationRequestResource($disksStartAsyncReplicationRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StartAsyncReplication', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
+     *
+     * Sample code:
+     * ```
+     * $disksClient = new DisksClient();
+     * try {
+     *     $disk = 'disk';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $disksClient->stopAsyncReplication($disk, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $disksClient->stopAsyncReplication($disk, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $disksClient->resumeOperation($operationName, 'stopAsyncReplication');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $disksClient->close();
+     * }
+     * ```
+     *
+     * @param string $disk         The name of the persistent disk.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function stopAsyncReplication($disk, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new StopAsyncReplicationDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisk($disk);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StopAsyncReplication', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Stops asynchronous replication for a consistency group of disks. Can be invoked either in the primary or secondary scope.
+     *
+     * Sample code:
+     * ```
+     * $disksClient = new DisksClient();
+     * try {
+     *     $disksStopGroupAsyncReplicationResourceResource = new DisksStopGroupAsyncReplicationResource();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $disksClient->stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $disksClient->stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $disksClient->resumeOperation($operationName, 'stopGroupAsyncReplication');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $disksClient->close();
+     * }
+     * ```
+     *
+     * @param DisksStopGroupAsyncReplicationResource $disksStopGroupAsyncReplicationResourceResource The body resource for this request
+     * @param string                                 $project                                        Project ID for this request.
+     * @param string                                 $zone                                           The name of the zone for this request. This must be the zone of the primary or secondary disks in the consistency group.
+     * @param array                                  $optionalArgs                                   {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new StopGroupAsyncReplicationDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisksStopGroupAsyncReplicationResourceResource($disksStopGroupAsyncReplicationResourceResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StopGroupAsyncReplication', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource.
      *
      * Sample code:
@@ -1221,5 +1517,95 @@ class DisksGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates the specified disk with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
+     *
+     * Sample code:
+     * ```
+     * $disksClient = new DisksClient();
+     * try {
+     *     $disk = 'disk';
+     *     $diskResource = new Disk();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $disksClient->update($disk, $diskResource, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $disksClient->update($disk, $diskResource, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $disksClient->resumeOperation($operationName, 'update');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $disksClient->close();
+     * }
+     * ```
+     *
+     * @param string $disk         The disk name for this request.
+     * @param Disk   $diskResource The body resource for this request
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $paths
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $updateMask
+     *           update_mask indicates fields to be updated as part of this request.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function update($disk, $diskResource, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new UpdateDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisk($disk);
+        $request->setDiskResource($diskResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['paths'])) {
+            $request->setPaths($optionalArgs['paths']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('Update', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }

@@ -27,10 +27,8 @@ namespace Google\Cloud\ResourceManager\V3\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -73,7 +71,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -90,7 +88,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -104,34 +102,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ResourceManager\V3\Client\FoldersClient} to use the new surface.
  */
 class FoldersGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.resourcemanager.v3.Folders';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudresourcemanager.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
@@ -273,9 +264,6 @@ class FoldersGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudresourcemanager.googleapis.com:443'.
@@ -305,7 +293,7 @@ class FoldersGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -369,7 +357,7 @@ class FoldersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -386,7 +374,7 @@ class FoldersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -396,8 +384,8 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param Folder $folder       Required. The folder being created, only the display name and parent will be
-     *                             consulted. All other fields will be ignored.
+     * @param Folder $folder       Required. The folder being created, only the display name and parent will
+     *                             be consulted. All other fields will be ignored.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -420,11 +408,13 @@ class FoldersGapicClient
 
     /**
      * Requests deletion of a folder. The folder is moved into the
-     * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED] state
-     * immediately, and is deleted approximately 30 days later. This method may
-     * only be called on an empty folder, where a folder is empty if it doesn't
-     * contain any folders or projects in the [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state.
-     * If called on a folder in [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
+     * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
+     * state immediately, and is deleted approximately 30 days later. This method
+     * may only be called on an empty folder, where a folder is empty if it
+     * doesn't contain any folders or projects in the
+     * [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. If
+     * called on a folder in
+     * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
      * state the operation will result in a no-op success.
      * The caller must have `resourcemanager.folders.delete` permission on the
      * identified folder.
@@ -438,7 +428,7 @@ class FoldersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -455,7 +445,7 @@ class FoldersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -618,9 +608,13 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the organization or folder whose folders are
-     *                             being listed.
-     *                             Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * @param string $parent       Required. The name of the parent resource whose folders are being listed.
+     *                             Only children of this parent resource are listed; descendants are not
+     *                             listed.
+     *
+     *                             If the parent is a folder, use the value `folders/{folder_id}`. If the
+     *                             parent is an organization, use the value `organizations/{org_id}`.
+     *
      *                             Access to this method is controlled by checking the
      *                             `resourcemanager.folders.list` permission on the `parent`.
      * @param array  $optionalArgs {
@@ -683,9 +677,9 @@ class FoldersGapicClient
      * `FolderOperation` message as an aid to stateless clients.
      * Folder moves will be rejected if they violate either the naming, height,
      * or fanout constraints described in the
-     * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder] documentation.
-     * The caller must have `resourcemanager.folders.move` permission on the
-     * folder's current and proposed new parent.
+     * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+     * documentation. The caller must have `resourcemanager.folders.move`
+     * permission on the folder's current and proposed new parent.
      *
      * Sample code:
      * ```
@@ -697,7 +691,7 @@ class FoldersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -714,7 +708,7 @@ class FoldersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -726,9 +720,9 @@ class FoldersGapicClient
      *
      * @param string $name              Required. The resource name of the Folder to move.
      *                                  Must be of the form folders/{folder_id}
-     * @param string $destinationParent Required. The resource name of the folder or organization which should be the
-     *                                  folder's new parent.
-     *                                  Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * @param string $destinationParent Required. The resource name of the folder or organization which should be
+     *                                  the folder's new parent. Must be of the form `folders/{folder_id}` or
+     *                                  `organizations/{org_id}`.
      * @param array  $optionalArgs      {
      *     Optional.
      *
@@ -968,14 +962,16 @@ class FoldersGapicClient
 
     /**
      * Cancels the deletion request for a folder. This method may be called on a
-     * folder in any state. If the folder is in the [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE]
-     * state the result will be a no-op success. In order to succeed, the folder's
-     * parent must be in the [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. In addition,
-     * reintroducing the folder into the tree must not violate folder naming,
-     * height, and fanout constraints described in the
-     * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder] documentation.
-     * The caller must have `resourcemanager.folders.undelete` permission on the
-     * identified folder.
+     * folder in any state. If the folder is in the
+     * [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state the
+     * result will be a no-op success. In order to succeed, the folder's parent
+     * must be in the
+     * [ACTIVE][google.cloud.resourcemanager.v3.Folder.State.ACTIVE] state. In
+     * addition, reintroducing the folder into the tree must not violate folder
+     * naming, height, and fanout constraints described in the
+     * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+     * documentation. The caller must have `resourcemanager.folders.undelete`
+     * permission on the identified folder.
      *
      * Sample code:
      * ```
@@ -986,7 +982,7 @@ class FoldersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1003,7 +999,7 @@ class FoldersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1043,7 +1039,9 @@ class FoldersGapicClient
      * Updates a folder, changing its `display_name`.
      * Changes to the folder `display_name` will be rejected if they violate
      * either the `display_name` formatting rules or the naming constraints
-     * described in the [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder] documentation.
+     * described in the
+     * [CreateFolder][google.cloud.resourcemanager.v3.Folders.CreateFolder]
+     * documentation.
      *
      * The folder's `display_name` must start and end with a letter or digit,
      * may contain letters, digits, spaces, hyphens and underscores and can be
@@ -1066,7 +1064,7 @@ class FoldersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1083,7 +1081,7 @@ class FoldersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1093,8 +1091,8 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param Folder    $folder       Required. The new definition of the Folder. It must include the `name` field, which
-     *                                cannot be changed.
+     * @param Folder    $folder       Required. The new definition of the Folder. It must include the `name`
+     *                                field, which cannot be changed.
      * @param FieldMask $updateMask   Required. Fields to be updated.
      *                                Only the `display_name` can be updated.
      * @param array     $optionalArgs {

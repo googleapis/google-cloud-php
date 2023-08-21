@@ -53,7 +53,7 @@ function remove_public_key_sample(): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var RemovePublicKeyResponse $response */
+            /** @var RemovePublicKeyResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

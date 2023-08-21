@@ -47,6 +47,7 @@ admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/v2/Admin").resolve()
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V2/Gapic', 'src/Admin/V2/Gapic', merge=preserve_copyright_year)
+s.move(admin_library / f'src/V2/Client', 'src/Admin/V2/Client', merge=preserve_copyright_year)
 s.move(admin_library / f'src/V2/resources', f'src/Admin/V2/resources', merge=preserve_copyright_year)
 
 # copy proto files to src also
@@ -56,23 +57,6 @@ s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin', merge=preserve_copyrig
 # copy GPBMetadata file to metadata
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/', merge=preserve_copyright_year)
 
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
 
 # fix unit test namespace
 s.replace(
@@ -123,12 +107,6 @@ s.replace(
      */
     private $""")
 
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
-
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(
     "src/**/V*/**/*.php",
@@ -145,5 +123,3 @@ s.replace(
     r"\1](https://cloud.google.com\2)"
 )
 
-# Address breaking changes
-subprocess.run('git show b8050d915e71447f903c3d6ae376195dbe33cd95 | git apply', shell=True)

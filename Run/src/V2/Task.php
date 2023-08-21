@@ -22,8 +22,9 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Server assigned unique identifier for the Task. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Task. The value is a
+     * UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -36,29 +37,29 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $generation = 0;
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $labels;
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $annotations;
     /**
-     * Output only. Represents time when the task was created by the job controller.
-     * It is not guaranteed to be set in happens-before order across separate
-     * operations.
+     * Output only. Represents time when the task was created by the job
+     * controller. It is not guaranteed to be set in happens-before order across
+     * separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -72,8 +73,8 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Output only. Represents time when the Task was completed. It is not guaranteed to
-     * be set in happens-before order across separate operations.
+     * Output only. Represents time when the Task was completed. It is not
+     * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -154,16 +155,16 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $execution_environment = 0;
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reconciling = false;
     /**
-     * Output only. The Condition of this Task, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Task, containing its readiness status,
+     * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -195,20 +196,34 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $last_attempt_result = null;
     /**
-     * Output only. A reference to a customer managed encryption key (CMEK) to use to encrypt
-     * this container image. For more information, go to
+     * Output only. A reference to a customer managed encryption key (CMEK) to use
+     * to encrypt this container image. For more information, go to
      * https://cloud.google.com/run/docs/securing/using-cmek
      *
      * Generated from protobuf field <code>string encryption_key = 28 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $encryption_key = '';
     /**
-     * Output only. VPC Access configuration to use for this Task. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Output only. VPC Access configuration to use for this Task. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $vpc_access = null;
+    /**
+     * Output only. URI where logs for this execution can be found in Cloud
+     * Console.
+     *
+     * Generated from protobuf field <code>string log_uri = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $log_uri = '';
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
     /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
@@ -226,34 +241,35 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The unique name of this Task.
      *     @type string $uid
-     *           Output only. Server assigned unique identifier for the Task. The value is a UUID4
-     *           string and guaranteed to remain unchanged until the resource is deleted.
+     *           Output only. Server assigned unique identifier for the Task. The value is a
+     *           UUID4 string and guaranteed to remain unchanged until the resource is
+     *           deleted.
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           KRM-style labels for the resource.
-     *           User-provided labels are shared with Google's billing system, so they can
-     *           be used to filter, or break down billing charges by team, component,
-     *           environment, state, etc. For more information, visit
+     *           Output only. Unstructured key value map that can be used to organize and
+     *           categorize objects. User-provided labels are shared with Google's billing
+     *           system, so they can be used to filter, or break down billing charges by
+     *           team, component, environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels
-     *           Cloud Run will populate some labels with 'run.googleapis.com' or
-     *           'serving.knative.dev' namespaces. Those labels are read-only, and user
-     *           changes will not be preserved.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           KRM-style annotations for the resource.
+     *           Output only. Unstructured key value map that may
+     *           be set by external tools to store and arbitrary metadata.
+     *           They are not queryable and should be preserved
+     *           when modifying objects.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Represents time when the task was created by the job controller.
-     *           It is not guaranteed to be set in happens-before order across separate
-     *           operations.
+     *           Output only. Represents time when the task was created by the job
+     *           controller. It is not guaranteed to be set in happens-before order across
+     *           separate operations.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. Represents time when the task started to run.
      *           It is not guaranteed to be set in happens-before order across separate
      *           operations.
      *     @type \Google\Protobuf\Timestamp $completion_time
-     *           Output only. Represents time when the Task was completed. It is not guaranteed to
-     *           be set in happens-before order across separate operations.
+     *           Output only. Represents time when the Task was completed. It is not
+     *           guaranteed to be set in happens-before order across separate operations.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Protobuf\Timestamp $delete_time
@@ -286,12 +302,12 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type int $execution_environment
      *           The execution environment being used to host this Task.
      *     @type bool $reconciling
-     *           Output only. Indicates whether the resource's reconciliation is still in progress.
-     *           See comments in `Job.reconciling` for additional information on
+     *           Output only. Indicates whether the resource's reconciliation is still in
+     *           progress. See comments in `Job.reconciling` for additional information on
      *           reconciliation process in Cloud Run.
      *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
-     *           Output only. The Condition of this Task, containing its readiness status, and
-     *           detailed error information in case it did not reach the desired state.
+     *           Output only. The Condition of this Task, containing its readiness status,
+     *           and detailed error information in case it did not reach the desired state.
      *     @type int|string $observed_generation
      *           Output only. The generation of this Task. See comments in `Job.reconciling`
      *           for additional information on reconciliation process in Cloud Run.
@@ -303,12 +319,18 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\TaskAttemptResult $last_attempt_result
      *           Output only. Result of the last attempt of this Task.
      *     @type string $encryption_key
-     *           Output only. A reference to a customer managed encryption key (CMEK) to use to encrypt
-     *           this container image. For more information, go to
+     *           Output only. A reference to a customer managed encryption key (CMEK) to use
+     *           to encrypt this container image. For more information, go to
      *           https://cloud.google.com/run/docs/securing/using-cmek
      *     @type \Google\Cloud\Run\V2\VpcAccess $vpc_access
-     *           Output only. VPC Access configuration to use for this Task. For more information,
-     *           visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     *           Output only. VPC Access configuration to use for this Task. For more
+     *           information, visit
+     *           https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     *     @type string $log_uri
+     *           Output only. URI where logs for this execution can be found in Cloud
+     *           Console.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -346,8 +368,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Task. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Task. The value is a
+     * UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -358,8 +381,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Task. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Task. The value is a
+     * UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -402,17 +426,14 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -421,17 +442,14 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -444,9 +462,12 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -455,9 +476,12 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -470,9 +494,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the task was created by the job controller.
-     * It is not guaranteed to be set in happens-before order across separate
-     * operations.
+     * Output only. Represents time when the task was created by the job
+     * controller. It is not guaranteed to be set in happens-before order across
+     * separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -493,9 +517,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the task was created by the job controller.
-     * It is not guaranteed to be set in happens-before order across separate
-     * operations.
+     * Output only. Represents time when the task was created by the job
+     * controller. It is not guaranteed to be set in happens-before order across
+     * separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -550,8 +574,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the Task was completed. It is not guaranteed to
-     * be set in happens-before order across separate operations.
+     * Output only. Represents time when the Task was completed. It is not
+     * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -572,8 +596,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the Task was completed. It is not guaranteed to
-     * be set in happens-before order across separate operations.
+     * Output only. Represents time when the Task was completed. It is not
+     * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -932,8 +956,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -945,8 +969,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -962,8 +986,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Task, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Task, containing its readiness status,
+     * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -974,8 +998,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Task, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Task, containing its readiness status,
+     * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1108,8 +1132,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A reference to a customer managed encryption key (CMEK) to use to encrypt
-     * this container image. For more information, go to
+     * Output only. A reference to a customer managed encryption key (CMEK) to use
+     * to encrypt this container image. For more information, go to
      * https://cloud.google.com/run/docs/securing/using-cmek
      *
      * Generated from protobuf field <code>string encryption_key = 28 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -1121,8 +1145,8 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A reference to a customer managed encryption key (CMEK) to use to encrypt
-     * this container image. For more information, go to
+     * Output only. A reference to a customer managed encryption key (CMEK) to use
+     * to encrypt this container image. For more information, go to
      * https://cloud.google.com/run/docs/securing/using-cmek
      *
      * Generated from protobuf field <code>string encryption_key = 28 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -1138,8 +1162,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. VPC Access configuration to use for this Task. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Output only. VPC Access configuration to use for this Task. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Run\V2\VpcAccess|null
@@ -1160,8 +1185,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. VPC Access configuration to use for this Task. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Output only. VPC Access configuration to use for this Task. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Run\V2\VpcAccess $var
@@ -1171,6 +1197,60 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\VpcAccess::class);
         $this->vpc_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. URI where logs for this execution can be found in Cloud
+     * Console.
+     *
+     * Generated from protobuf field <code>string log_uri = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLogUri()
+    {
+        return $this->log_uri;
+    }
+
+    /**
+     * Output only. URI where logs for this execution can be found in Cloud
+     * Console.
+     *
+     * Generated from protobuf field <code>string log_uri = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLogUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->log_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

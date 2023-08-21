@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
+ * Request message for
+ * [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeployModelRequest</code>
  */
@@ -25,8 +26,9 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
     private $endpoint = '';
     /**
      * Required. The DeployedModel to be created within the Endpoint. Note that
-     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] must be updated for the DeployedModel to start
-     * receiving traffic, either as part of this call, or via
+     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     * must be updated for the DeployedModel to start receiving traffic, either as
+     * part of this call, or via
      * [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel deployed_model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -36,16 +38,54 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * A map from a DeployedModel's ID to the percentage of this Endpoint's
      * traffic that should be forwarded to that DeployedModel.
      * If this field is non-empty, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it.
-     * To refer to the ID of the just being deployed Model, a "0" should be used,
-     * and the actual ID of the new DeployedModel will be filled in its place by
-     * this method. The traffic percentage values must add up to 100.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     * overwritten with it. To refer to the ID of the just being deployed Model, a
+     * "0" should be used, and the actual ID of the new DeployedModel will be
+     * filled in its place by this method. The traffic percentage values must add
+     * up to 100.
      * If this field is empty, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not updated.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not
+     * updated.
      *
      * Generated from protobuf field <code>map<string, int32> traffic_split = 3;</code>
      */
     private $traffic_split;
+
+    /**
+     * @param string                                    $endpoint      Required. The name of the Endpoint resource into which to deploy a Model.
+     *                                                                 Format:
+     *                                                                 `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                                                 Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\DeployedModel $deployedModel Required. The DeployedModel to be created within the Endpoint. Note that
+     *                                                                 [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     *                                                                 must be updated for the DeployedModel to start receiving traffic, either as
+     *                                                                 part of this call, or via
+     *                                                                 [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
+     * @param array                                     $trafficSplit  A map from a DeployedModel's ID to the percentage of this Endpoint's
+     *                                                                 traffic that should be forwarded to that DeployedModel.
+     *
+     *                                                                 If this field is non-empty, then the Endpoint's
+     *                                                                 [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *                                                                 overwritten with it. To refer to the ID of the just being deployed Model, a
+     *                                                                 "0" should be used, and the actual ID of the new DeployedModel will be
+     *                                                                 filled in its place by this method. The traffic percentage values must add
+     *                                                                 up to 100.
+     *
+     *                                                                 If this field is empty, then the Endpoint's
+     *                                                                 [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not
+     *                                                                 updated.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeployModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, \Google\Cloud\AIPlatform\V1\DeployedModel $deployedModel, array $trafficSplit): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setDeployedModel($deployedModel)
+            ->setTrafficSplit($trafficSplit);
+    }
 
     /**
      * Constructor.
@@ -59,19 +99,22 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type \Google\Cloud\AIPlatform\V1\DeployedModel $deployed_model
      *           Required. The DeployedModel to be created within the Endpoint. Note that
-     *           [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] must be updated for the DeployedModel to start
-     *           receiving traffic, either as part of this call, or via
+     *           [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     *           must be updated for the DeployedModel to start receiving traffic, either as
+     *           part of this call, or via
      *           [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
      *     @type array|\Google\Protobuf\Internal\MapField $traffic_split
      *           A map from a DeployedModel's ID to the percentage of this Endpoint's
      *           traffic that should be forwarded to that DeployedModel.
      *           If this field is non-empty, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it.
-     *           To refer to the ID of the just being deployed Model, a "0" should be used,
-     *           and the actual ID of the new DeployedModel will be filled in its place by
-     *           this method. The traffic percentage values must add up to 100.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *           overwritten with it. To refer to the ID of the just being deployed Model, a
+     *           "0" should be used, and the actual ID of the new DeployedModel will be
+     *           filled in its place by this method. The traffic percentage values must add
+     *           up to 100.
      *           If this field is empty, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not updated.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not
+     *           updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,8 +154,9 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The DeployedModel to be created within the Endpoint. Note that
-     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] must be updated for the DeployedModel to start
-     * receiving traffic, either as part of this call, or via
+     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     * must be updated for the DeployedModel to start receiving traffic, either as
+     * part of this call, or via
      * [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel deployed_model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -135,8 +179,9 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The DeployedModel to be created within the Endpoint. Note that
-     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] must be updated for the DeployedModel to start
-     * receiving traffic, either as part of this call, or via
+     * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     * must be updated for the DeployedModel to start receiving traffic, either as
+     * part of this call, or via
      * [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel deployed_model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -155,12 +200,14 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * A map from a DeployedModel's ID to the percentage of this Endpoint's
      * traffic that should be forwarded to that DeployedModel.
      * If this field is non-empty, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it.
-     * To refer to the ID of the just being deployed Model, a "0" should be used,
-     * and the actual ID of the new DeployedModel will be filled in its place by
-     * this method. The traffic percentage values must add up to 100.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     * overwritten with it. To refer to the ID of the just being deployed Model, a
+     * "0" should be used, and the actual ID of the new DeployedModel will be
+     * filled in its place by this method. The traffic percentage values must add
+     * up to 100.
      * If this field is empty, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not updated.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not
+     * updated.
      *
      * Generated from protobuf field <code>map<string, int32> traffic_split = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -174,12 +221,14 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * A map from a DeployedModel's ID to the percentage of this Endpoint's
      * traffic that should be forwarded to that DeployedModel.
      * If this field is non-empty, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it.
-     * To refer to the ID of the just being deployed Model, a "0" should be used,
-     * and the actual ID of the new DeployedModel will be filled in its place by
-     * this method. The traffic percentage values must add up to 100.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     * overwritten with it. To refer to the ID of the just being deployed Model, a
+     * "0" should be used, and the actual ID of the new DeployedModel will be
+     * filled in its place by this method. The traffic percentage values must add
+     * up to 100.
      * If this field is empty, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not updated.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] is not
+     * updated.
      *
      * Generated from protobuf field <code>map<string, int32> traffic_split = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Conversations.GetConversation][google.cloud.dialogflow.v2.Conversations.GetConversation].
+ * The request message for
+ * [Conversations.GetConversation][google.cloud.dialogflow.v2.Conversations.GetConversation].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetConversationRequest</code>
  */
@@ -23,6 +24,22 @@ class GetConversationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the conversation. Format:
+     *                     `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
+     *                     ID>`. Please see
+     *                     {@see ConversationsClient::conversationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetConversationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

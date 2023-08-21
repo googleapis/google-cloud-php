@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VizierService.ListOptimalTrials][google.cloud.aiplatform.v1.VizierService.ListOptimalTrials].
+ * Request message for
+ * [VizierService.ListOptimalTrials][google.cloud.aiplatform.v1.VizierService.ListOptimalTrials].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListOptimalTrialsRequest</code>
  */
@@ -21,6 +22,20 @@ class ListOptimalTrialsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+
+    /**
+     * @param string $parent Required. The name of the Study that the optimal Trial belongs to. Please see
+     *                       {@see VizierServiceClient::studyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListOptimalTrialsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

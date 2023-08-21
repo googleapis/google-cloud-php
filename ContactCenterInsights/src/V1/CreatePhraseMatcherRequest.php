@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource of the phrase matcher. Required. The location to create
-     * a phrase matcher for.
-     * Format: `projects/<Project ID>/locations/<Location ID>` or
-     * `projects/<Project Number>/locations/<Location ID>`
+     * Required. The parent resource of the phrase matcher. Required. The location
+     * to create a phrase matcher for. Format: `projects/<Project
+     * ID>/locations/<Location ID>` or `projects/<Project
+     * Number>/locations/<Location ID>`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,16 +32,35 @@ class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
     private $phrase_matcher = null;
 
     /**
+     * @param string                                               $parent        Required. The parent resource of the phrase matcher. Required. The location
+     *                                                                            to create a phrase matcher for. Format: `projects/<Project
+     *                                                                            ID>/locations/<Location ID>` or `projects/<Project
+     *                                                                            Number>/locations/<Location ID>`
+     *                                                                            Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phraseMatcher Required. The phrase matcher resource to create.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\CreatePhraseMatcherRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phraseMatcher): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPhraseMatcher($phraseMatcher);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource of the phrase matcher. Required. The location to create
-     *           a phrase matcher for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>` or
-     *           `projects/<Project Number>/locations/<Location ID>`
+     *           Required. The parent resource of the phrase matcher. Required. The location
+     *           to create a phrase matcher for. Format: `projects/<Project
+     *           ID>/locations/<Location ID>` or `projects/<Project
+     *           Number>/locations/<Location ID>`
      *     @type \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phrase_matcher
      *           Required. The phrase matcher resource to create.
      * }
@@ -52,10 +71,10 @@ class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the phrase matcher. Required. The location to create
-     * a phrase matcher for.
-     * Format: `projects/<Project ID>/locations/<Location ID>` or
-     * `projects/<Project Number>/locations/<Location ID>`
+     * Required. The parent resource of the phrase matcher. Required. The location
+     * to create a phrase matcher for. Format: `projects/<Project
+     * ID>/locations/<Location ID>` or `projects/<Project
+     * Number>/locations/<Location ID>`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -66,10 +85,10 @@ class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the phrase matcher. Required. The location to create
-     * a phrase matcher for.
-     * Format: `projects/<Project ID>/locations/<Location ID>` or
-     * `projects/<Project Number>/locations/<Location ID>`
+     * Required. The parent resource of the phrase matcher. Required. The location
+     * to create a phrase matcher for. Format: `projects/<Project
+     * ID>/locations/<Location ID>` or `projects/<Project
+     * Number>/locations/<Location ID>`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

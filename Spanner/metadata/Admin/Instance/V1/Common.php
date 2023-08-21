@@ -17,14 +17,14 @@ class Common
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-é
+ç
 -google/spanner/admin/instance/v1/common.proto google.spanner.admin.instance.v1"‹
 OperationProgress
 progress_percent (.
 
 start_time (2.google.protobuf.Timestamp,
-end_time (2.google.protobuf.TimestampBÿ
-$com.google.spanner.admin.instance.v1BCommonProtoPZHgoogle.golang.org/genproto/googleapis/spanner/admin/instance/v1;instanceª&Google.Cloud.Spanner.Admin.Instance.V1Ê&Google\\Cloud\\Spanner\\Admin\\Instance\\V1ê+Google::Cloud::Spanner::Admin::Instance::V1bproto3'
+end_time (2.google.protobuf.TimestampBý
+$com.google.spanner.admin.instance.v1BCommonProtoPZFcloud.google.com/go/spanner/admin/instance/apiv1/instancepb;instancepbª&Google.Cloud.Spanner.Admin.Instance.V1Ê&Google\\Cloud\\Spanner\\Admin\\Instance\\V1ê+Google::Cloud::Spanner::Admin::Instance::V1bproto3'
         , true);
 
         static::$is_initialized = true;

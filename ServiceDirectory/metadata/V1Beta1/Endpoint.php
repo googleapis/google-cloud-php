@@ -19,8 +19,8 @@ class Endpoint
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-°
-4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"”
+Â
+4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"¦
 Endpoint
 name (	BàA
 address (	BàA
@@ -29,12 +29,13 @@ class Endpoint
 network (	B/àAúA)
 \'servicedirectory.googleapis.com/Network4
 create_time (2.google.protobuf.TimestampBàA4
-update_time (2.google.protobuf.TimestampBàA/
+update_time (2.google.protobuf.TimestampBàA
+uid (	BàA/
 MetadataEntry
 key (	
 value (	:8:–êA’
 (servicedirectory.googleapis.com/Endpointfprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}Bõ
-)com.google.cloud.servicedirectory.v1beta1BEndpointProtoPZUgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1beta1;servicedirectoryøª%Google.Cloud.ServiceDirectory.V1Beta1Ê%Google\\Cloud\\ServiceDirectory\\V1beta1ê(Google::Cloud::ServiceDirectory::V1beta1êAa
+)com.google.cloud.servicedirectory.v1beta1BEndpointProtoPZUcloud.google.com/go/servicedirectory/apiv1beta1/servicedirectorypb;servicedirectorypbøª%Google.Cloud.ServiceDirectory.V1Beta1Ê%Google\\Cloud\\ServiceDirectory\\V1beta1ê(Google::Cloud::ServiceDirectory::V1beta1êAa
 \'servicedirectory.googleapis.com/Network6projects/{project}/locations/global/networks/{network}bproto3'
         , true);
 

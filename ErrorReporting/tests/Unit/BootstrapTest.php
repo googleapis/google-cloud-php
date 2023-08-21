@@ -21,8 +21,9 @@ use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use Google\Cloud\ErrorReporting\Bootstrap;
 use Google\Cloud\ErrorReporting\MockValues;
 use Google\Cloud\Logging\PsrLogger;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 //@codingStandardsIgnoreStart
 require_once __DIR__ . '/fakeGlobalFunctions.php';
@@ -33,11 +34,13 @@ require_once __DIR__ . '/fakeGlobalFunctions.php';
  */
 class BootstrapTest extends TestCase
 {
+    use ProphecyTrait;
+
 
     private $psrBatchLogger;
     private $metadataProvider;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->psrBatchLogger = $this->prophesize(PsrLogger::class);
     }
@@ -121,6 +124,50 @@ class BootstrapTest extends TestCase
                     'filePath' => $exception->getFile(),
                     'lineNumber' => $exception->getLine(),
                     'functionName' => 'Google\Cloud\ErrorReporting\Tests\Unit\BootstrapTest->exceptionProvider',
+                ]
+            ],
+            'serviceContext' => [
+                'service' => '',
+                'version' => ''
+            ]
+        ];
+        $this->psrBatchLogger->error($expectedMessage, $expectedContext)
+            ->shouldBeCalledTimes(1);
+        $this->psrBatchLogger->getMetadataProvider()
+            ->willReturn(new SimpleMetadataProvider())
+            ->shouldBeCalledTimes(2);
+        Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
+        Bootstrap::exceptionHandler($exception);
+    }
+
+    /**
+     * @dataProvider exceptionProvider
+     * @runInSeparateProcess
+     */
+    public function testExceptionHandlerWithHttpContext($exception)
+    {
+        $_SERVER = [
+            'REQUEST_METHOD' => 'GET',
+            'HTTP_REFERER' => 'ref',
+            'HTTP_HOST' => 'google.com',
+            'REQUEST_URI' => '/index.php',
+            'REMOTE_ADDR' => '1.2.3.4',
+            'HTTP_USER_AGENT' => 'UA',
+            ];
+        $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
+        $expectedContext = [
+            'context' => [
+                'reportLocation' => [
+                    'filePath' => $exception->getFile(),
+                    'lineNumber' => $exception->getLine(),
+                    'functionName' => 'Google\Cloud\ErrorReporting\Tests\Unit\BootstrapTest->exceptionProvider',
+                ],
+                'httpRequest' => [
+                    'method' => 'GET',
+                    'url' => 'http://google.com/index.php',
+                    'referrer' => 'ref',
+                    'remoteIp' => '1.2.3.4',
+                    'userAgent' => 'UA',
                 ]
             ],
             'serviceContext' => [

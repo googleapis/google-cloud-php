@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\GuestOsFeature;
 use UnexpectedValueException;
 
 /**
- * The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_SNP_CAPABLE For more information, see Enabling guest operating system features.
+ * The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_LIVE_MIGRATABLE - SEV_SNP_CAPABLE For more information, see Enabling guest operating system features.
  *
  * Protobuf type <code>google.cloud.compute.v1.GuestOsFeature.Type</code>
  */
@@ -40,6 +40,14 @@ class Type
      */
     const SEV_CAPABLE = 87083793;
     /**
+     * Generated from protobuf enum <code>SEV_LIVE_MIGRATABLE = 392039820;</code>
+     */
+    const SEV_LIVE_MIGRATABLE = 392039820;
+    /**
+     * Generated from protobuf enum <code>SEV_SNP_CAPABLE = 426919;</code>
+     */
+    const SEV_SNP_CAPABLE = 426919;
+    /**
      * Generated from protobuf enum <code>UEFI_COMPATIBLE = 195865408;</code>
      */
     const UEFI_COMPATIBLE = 195865408;
@@ -59,6 +67,8 @@ class Type
         self::MULTI_IP_SUBNET => 'MULTI_IP_SUBNET',
         self::SECURE_BOOT => 'SECURE_BOOT',
         self::SEV_CAPABLE => 'SEV_CAPABLE',
+        self::SEV_LIVE_MIGRATABLE => 'SEV_LIVE_MIGRATABLE',
+        self::SEV_SNP_CAPABLE => 'SEV_SNP_CAPABLE',
         self::UEFI_COMPATIBLE => 'UEFI_COMPATIBLE',
         self::VIRTIO_SCSI_MULTIQUEUE => 'VIRTIO_SCSI_MULTIQUEUE',
         self::WINDOWS => 'WINDOWS',

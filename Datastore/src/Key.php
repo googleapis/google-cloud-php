@@ -110,6 +110,7 @@ class Key implements JsonSerializable
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *           Applications with no need for multitenancy should not set this value.
+     *     @type string $databaseId ID of the database to which the entities belong.
      *     @type array $path The initial Key path.
      * }
      */
@@ -118,7 +119,8 @@ class Key implements JsonSerializable
         $this->projectId = $projectId;
         $this->options = $options + [
             'path' => [],
-            'namespaceId' => null
+            'namespaceId' => null,
+            'databaseId' => '',
         ];
 
         if (is_array($this->options['path']) && !empty($this->options['path'])) {
@@ -161,7 +163,7 @@ class Key implements JsonSerializable
      *           `Key::TYPE_NAME` will force the pathElement identifier type.
      * }
      * @return Key
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function pathElement($kind, $identifier = null, array $options = [])
     {
@@ -238,7 +240,7 @@ class Key implements JsonSerializable
      *
      * @param Key $key The ancestor Key.
      * @return Key
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function ancestorKey(Key $key)
     {
@@ -413,7 +415,11 @@ class Key implements JsonSerializable
     public function keyObject()
     {
         return [
-            'partitionId' => $this->partitionId($this->projectId, $this->options['namespaceId']),
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $this->options['namespaceId'],
+                $this->options['databaseId']
+            ),
             'path' => $this->path
         ];
     }
@@ -456,7 +462,7 @@ class Key implements JsonSerializable
      * @param string|null $identifierType If not null and allowed, this will be
      *        used as the type. If null, type will be inferred.
      * @return string
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function determineIdentifierType($identifier, $identifierType)
     {
@@ -483,7 +489,7 @@ class Key implements JsonSerializable
      *
      * @param array $path
      * @return array
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     private function normalizePath(array $path)
     {

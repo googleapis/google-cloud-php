@@ -18,8 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit\Iam;
 
 use Google\Cloud\Core\Iam\PolicyBuilder;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -27,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class PolicyBuilderTest extends TestCase
 {
-    use ExpectException;
-
     public function testBuilder()
     {
         $role = 'test';
@@ -66,7 +64,7 @@ class PolicyBuilderTest extends TestCase
 
     public function testInvalidPolicy()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $policy = ['foo' => 'bar'];
         $builder = new PolicyBuilder($policy);
@@ -143,7 +141,7 @@ class PolicyBuilderTest extends TestCase
 
     public function testAddBindingVersionThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Helper methods cannot be invoked on policies with version 3.');
 
         $builder = new PolicyBuilder();
@@ -154,7 +152,7 @@ class PolicyBuilderTest extends TestCase
 
     public function testAddBindingWithConditionsThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Helper methods cannot be invoked on policies containing conditions.');
 
         $policy = [
@@ -223,7 +221,7 @@ class PolicyBuilderTest extends TestCase
 
     public function testRemoveBindingInvalidMemberThrowsException()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('One or more role-members were not found.');
 
         $policy = [
@@ -243,7 +241,7 @@ class PolicyBuilderTest extends TestCase
 
     public function testRemoveBindingInvalidRoleThrowsException()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The role was not found.');
 
         $policy = [
@@ -263,7 +261,7 @@ class PolicyBuilderTest extends TestCase
 
     public function testRemoveBindingVersionThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Helper methods cannot be invoked on policies with version 3.');
 
         $policy = [
@@ -284,7 +282,7 @@ class PolicyBuilderTest extends TestCase
 
     public function testRemoveBindingWithConditionsThrowsException()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Helper methods cannot be invoked on policies containing conditions.');
 
         $policy = [

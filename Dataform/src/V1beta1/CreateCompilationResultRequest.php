@@ -30,6 +30,23 @@ class CreateCompilationResultRequest extends \Google\Protobuf\Internal\Message
     private $compilation_result = null;
 
     /**
+     * @param string                                           $parent            Required. The repository in which to create the compilation result. Must be in the
+     *                                                                            format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     *                                                                            {@see DataformClient::repositoryName()} for help formatting this field.
+     * @param \Google\Cloud\Dataform\V1beta1\CompilationResult $compilationResult Required. The compilation result to create.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataform\V1beta1\CompilationResult $compilationResult): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCompilationResult($compilationResult);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

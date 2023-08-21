@@ -16,11 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListWorkerPoolsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * `WorkerPools` for the project.
+     * `WorkerPools` for the specified project.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.WorkerPool worker_pools = 1;</code>
      */
     private $worker_pools;
+    /**
+     * Continuation token used to page through large result sets. Provide this
+     * value in a subsequent ListWorkerPoolsRequest to return the next page of
+     * results.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     */
+    private $next_page_token = '';
 
     /**
      * Constructor.
@@ -28,8 +36,12 @@ class ListWorkerPoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Build\V1\WorkerPool[]|\Google\Protobuf\Internal\RepeatedField $worker_pools
-     *           `WorkerPools` for the project.
+     *     @type array<\Google\Cloud\Build\V1\WorkerPool>|\Google\Protobuf\Internal\RepeatedField $worker_pools
+     *           `WorkerPools` for the specified project.
+     *     @type string $next_page_token
+     *           Continuation token used to page through large result sets. Provide this
+     *           value in a subsequent ListWorkerPoolsRequest to return the next page of
+     *           results.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +50,7 @@ class ListWorkerPoolsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * `WorkerPools` for the project.
+     * `WorkerPools` for the specified project.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.WorkerPool worker_pools = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,16 +61,46 @@ class ListWorkerPoolsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * `WorkerPools` for the project.
+     * `WorkerPools` for the specified project.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.WorkerPool worker_pools = 1;</code>
-     * @param \Google\Cloud\Build\V1\WorkerPool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\WorkerPool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWorkerPools($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\WorkerPool::class);
         $this->worker_pools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Continuation token used to page through large result sets. Provide this
+     * value in a subsequent ListWorkerPoolsRequest to return the next page of
+     * results.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @return string
+     */
+    public function getNextPageToken()
+    {
+        return $this->next_page_token;
+    }
+
+    /**
+     * Continuation token used to page through large result sets. Provide this
+     * value in a subsequent ListWorkerPoolsRequest to return the next page of
+     * results.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_page_token = $var;
 
         return $this;
     }

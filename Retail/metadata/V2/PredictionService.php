@@ -17,12 +17,13 @@ class PredictionService
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Retail\V2\UserEvent::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
-/google/cloud/retail/v2/prediction_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.proto\'google/cloud/retail/v2/user_event.protogoogle/protobuf/struct.proto"¥
+∂
+/google/cloud/retail/v2/prediction_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/cloud/retail/v2/user_event.protogoogle/protobuf/struct.proto"¥
 PredictRequest
 	placement (	B‡A:
 
@@ -53,8 +54,8 @@ page_token (	B
 key (	%
 value (2.google.protobuf.Value:82·
 PredictionServiceÄ
-Predict&.google.cloud.retail.v2.PredictRequest\'.google.cloud.retail.v2.PredictResponse"£Ç”‰ìú"F/v2/{placement=projects/*/locations/*/catalogs/*/placements/*}:predict:*ZO"J/v2/{placement=projects/*/locations/*/catalogs/*/servingConfigs/*}:predict:*I Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÀ
-com.google.cloud.retail.v2BPredictionServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
+Predict&.google.cloud.retail.v2.PredictRequest\'.google.cloud.retail.v2.PredictResponse"£Ç”‰ìú"F/v2/{placement=projects/*/locations/*/catalogs/*/placements/*}:predict:*ZO"J/v2/{placement=projects/*/locations/*/catalogs/*/servingConfigs/*}:predict:*I Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB¡
+com.google.cloud.retail.v2BPredictionServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

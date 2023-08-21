@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-network-security/v/stable)](https://packagist.org/packages/google/cloud-network-security) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-network-security.svg)](https://packagist.org/packages/google/cloud-network-security)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-network-security/latest/networksecurity/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-network-security/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

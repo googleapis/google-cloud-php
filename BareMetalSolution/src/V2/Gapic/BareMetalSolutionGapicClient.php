@@ -25,52 +25,87 @@
 namespace Google\Cloud\BareMetalSolution\V2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\BareMetalSolution\V2\CreateNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\CreateProvisioningConfigRequest;
+use Google\Cloud\BareMetalSolution\V2\CreateSSHKeyRequest;
+use Google\Cloud\BareMetalSolution\V2\CreateVolumeSnapshotRequest;
+use Google\Cloud\BareMetalSolution\V2\DeleteNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\DeleteSSHKeyRequest;
+use Google\Cloud\BareMetalSolution\V2\DeleteVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\DetachLunRequest;
+use Google\Cloud\BareMetalSolution\V2\DisableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\EnableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\EvictLunRequest;
+use Google\Cloud\BareMetalSolution\V2\EvictVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\GetInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\GetLunRequest;
 use Google\Cloud\BareMetalSolution\V2\GetNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\GetNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\GetProvisioningConfigRequest;
 use Google\Cloud\BareMetalSolution\V2\GetVolumeRequest;
+use Google\Cloud\BareMetalSolution\V2\GetVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\Instance;
 use Google\Cloud\BareMetalSolution\V2\ListInstancesRequest;
 use Google\Cloud\BareMetalSolution\V2\ListInstancesResponse;
 use Google\Cloud\BareMetalSolution\V2\ListLunsRequest;
 use Google\Cloud\BareMetalSolution\V2\ListLunsResponse;
-use Google\Cloud\BareMetalSolution\V2\ListNetworksRequest;
-use Google\Cloud\BareMetalSolution\V2\ListNetworksResponse;
 use Google\Cloud\BareMetalSolution\V2\ListNetworkUsageRequest;
 use Google\Cloud\BareMetalSolution\V2\ListNetworkUsageResponse;
+use Google\Cloud\BareMetalSolution\V2\ListNetworksRequest;
+use Google\Cloud\BareMetalSolution\V2\ListNetworksResponse;
 use Google\Cloud\BareMetalSolution\V2\ListNfsSharesRequest;
 use Google\Cloud\BareMetalSolution\V2\ListNfsSharesResponse;
+use Google\Cloud\BareMetalSolution\V2\ListOSImagesRequest;
+use Google\Cloud\BareMetalSolution\V2\ListOSImagesResponse;
+use Google\Cloud\BareMetalSolution\V2\ListProvisioningQuotasRequest;
+use Google\Cloud\BareMetalSolution\V2\ListProvisioningQuotasResponse;
+use Google\Cloud\BareMetalSolution\V2\ListSSHKeysRequest;
+use Google\Cloud\BareMetalSolution\V2\ListSSHKeysResponse;
+use Google\Cloud\BareMetalSolution\V2\ListVolumeSnapshotsRequest;
+use Google\Cloud\BareMetalSolution\V2\ListVolumeSnapshotsResponse;
 use Google\Cloud\BareMetalSolution\V2\ListVolumesRequest;
 use Google\Cloud\BareMetalSolution\V2\ListVolumesResponse;
 use Google\Cloud\BareMetalSolution\V2\Lun;
 use Google\Cloud\BareMetalSolution\V2\Network;
 use Google\Cloud\BareMetalSolution\V2\NfsShare;
+use Google\Cloud\BareMetalSolution\V2\ProvisioningConfig;
+use Google\Cloud\BareMetalSolution\V2\RenameInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\RenameNetworkRequest;
+use Google\Cloud\BareMetalSolution\V2\RenameNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\RenameVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\ResetInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\ResizeVolumeRequest;
+use Google\Cloud\BareMetalSolution\V2\RestoreVolumeSnapshotRequest;
+use Google\Cloud\BareMetalSolution\V2\SSHKey;
 use Google\Cloud\BareMetalSolution\V2\StartInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\StopInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigRequest;
+use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigResponse;
 use Google\Cloud\BareMetalSolution\V2\UpdateInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\UpdateProvisioningConfigRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\Volume;
+use Google\Cloud\BareMetalSolution\V2\VolumeSnapshot;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Performs management operations on Bare Metal Solution servers.
@@ -88,30 +123,30 @@ use Google\Protobuf\FieldMask;
  * ```
  * $bareMetalSolutionClient = new BareMetalSolutionClient();
  * try {
- *     $formattedInstance = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
- *     $formattedLun = $bareMetalSolutionClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
- *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
+ *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $nfsShare = new NfsShare();
+ *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
+ *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'detachLun');
+ *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'createNfsShare');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -125,39 +160,37 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient} to use the
+ * new surface.
  */
 class BareMetalSolutionGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.baremetalsolution.v2.BareMetalSolution';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'baremetalsolution.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static $instanceNameTemplate;
+
+    private static $instanceConfigNameTemplate;
+
+    private static $interconnectAttachmentNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -167,9 +200,19 @@ class BareMetalSolutionGapicClient
 
     private static $networkNameTemplate;
 
+    private static $networkConfigNameTemplate;
+
+    private static $provisioningConfigNameTemplate;
+
     private static $serverNetworkTemplateNameTemplate;
 
+    private static $sshKeyNameTemplate;
+
     private static $volumeNameTemplate;
+
+    private static $volumeConfigNameTemplate;
+
+    private static $volumeSnapshotNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -211,6 +254,28 @@ class BareMetalSolutionGapicClient
         }
 
         return self::$instanceNameTemplate;
+    }
+
+    private static function getInstanceConfigNameTemplate()
+    {
+        if (self::$instanceConfigNameTemplate == null) {
+            self::$instanceConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/instanceConfigs/{instance_config}'
+            );
+        }
+
+        return self::$instanceConfigNameTemplate;
+    }
+
+    private static function getInterconnectAttachmentNameTemplate()
+    {
+        if (self::$interconnectAttachmentNameTemplate == null) {
+            self::$interconnectAttachmentNameTemplate = new PathTemplate(
+                'projects/{project}/regions/{region}/interconnectAttachments/{interconnect_attachment}'
+            );
+        }
+
+        return self::$interconnectAttachmentNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -257,6 +322,28 @@ class BareMetalSolutionGapicClient
         return self::$networkNameTemplate;
     }
 
+    private static function getNetworkConfigNameTemplate()
+    {
+        if (self::$networkConfigNameTemplate == null) {
+            self::$networkConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/networkConfigs/{network_config}'
+            );
+        }
+
+        return self::$networkConfigNameTemplate;
+    }
+
+    private static function getProvisioningConfigNameTemplate()
+    {
+        if (self::$provisioningConfigNameTemplate == null) {
+            self::$provisioningConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/provisioningConfigs/{provisioning_config}'
+            );
+        }
+
+        return self::$provisioningConfigNameTemplate;
+    }
+
     private static function getServerNetworkTemplateNameTemplate()
     {
         if (self::$serverNetworkTemplateNameTemplate == null) {
@@ -266,6 +353,17 @@ class BareMetalSolutionGapicClient
         }
 
         return self::$serverNetworkTemplateNameTemplate;
+    }
+
+    private static function getSshKeyNameTemplate()
+    {
+        if (self::$sshKeyNameTemplate == null) {
+            self::$sshKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/sshKeys/{ssh_key}'
+            );
+        }
+
+        return self::$sshKeyNameTemplate;
     }
 
     private static function getVolumeNameTemplate()
@@ -279,17 +377,46 @@ class BareMetalSolutionGapicClient
         return self::$volumeNameTemplate;
     }
 
+    private static function getVolumeConfigNameTemplate()
+    {
+        if (self::$volumeConfigNameTemplate == null) {
+            self::$volumeConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/volumeConfigs/{volume_config}'
+            );
+        }
+
+        return self::$volumeConfigNameTemplate;
+    }
+
+    private static function getVolumeSnapshotNameTemplate()
+    {
+        if (self::$volumeSnapshotNameTemplate == null) {
+            self::$volumeSnapshotNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}'
+            );
+        }
+
+        return self::$volumeSnapshotNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'instance' => self::getInstanceNameTemplate(),
+                'instanceConfig' => self::getInstanceConfigNameTemplate(),
+                'interconnectAttachment' => self::getInterconnectAttachmentNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'lun' => self::getLunNameTemplate(),
                 'nFSShare' => self::getNFSShareNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
+                'networkConfig' => self::getNetworkConfigNameTemplate(),
+                'provisioningConfig' => self::getProvisioningConfigNameTemplate(),
                 'serverNetworkTemplate' => self::getServerNetworkTemplateNameTemplate(),
+                'sshKey' => self::getSshKeyNameTemplate(),
                 'volume' => self::getVolumeNameTemplate(),
+                'volumeConfig' => self::getVolumeConfigNameTemplate(),
+                'volumeSnapshot' => self::getVolumeSnapshotNameTemplate(),
             ];
         }
 
@@ -312,6 +439,50 @@ class BareMetalSolutionGapicClient
             'project' => $project,
             'location' => $location,
             'instance' => $instance,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instanceConfig
+     *
+     * @return string The formatted instance_config resource.
+     */
+    public static function instanceConfigName(
+        $project,
+        $location,
+        $instanceConfig
+    ) {
+        return self::getInstanceConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'instance_config' => $instanceConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * interconnect_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $interconnectAttachment
+     *
+     * @return string The formatted interconnect_attachment resource.
+     */
+    public static function interconnectAttachmentName(
+        $project,
+        $region,
+        $interconnectAttachment
+    ) {
+        return self::getInterconnectAttachmentNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'interconnect_attachment' => $interconnectAttachment,
         ]);
     }
 
@@ -393,6 +564,50 @@ class BareMetalSolutionGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * network_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $networkConfig
+     *
+     * @return string The formatted network_config resource.
+     */
+    public static function networkConfigName(
+        $project,
+        $location,
+        $networkConfig
+    ) {
+        return self::getNetworkConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'network_config' => $networkConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * provisioning_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $provisioningConfig
+     *
+     * @return string The formatted provisioning_config resource.
+     */
+    public static function provisioningConfigName(
+        $project,
+        $location,
+        $provisioningConfig
+    ) {
+        return self::getProvisioningConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'provisioning_config' => $provisioningConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * server_network_template resource.
      *
      * @param string $project
@@ -410,6 +625,25 @@ class BareMetalSolutionGapicClient
             'project' => $project,
             'location' => $location,
             'server_network_template' => $serverNetworkTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ssh_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $sshKey
+     *
+     * @return string The formatted ssh_key resource.
+     */
+    public static function sshKeyName($project, $location, $sshKey)
+    {
+        return self::getSshKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'ssh_key' => $sshKey,
         ]);
     }
 
@@ -433,16 +667,67 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * volume_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $volumeConfig
+     *
+     * @return string The formatted volume_config resource.
+     */
+    public static function volumeConfigName($project, $location, $volumeConfig)
+    {
+        return self::getVolumeConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'volume_config' => $volumeConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * volume_snapshot resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $volume
+     * @param string $snapshot
+     *
+     * @return string The formatted volume_snapshot resource.
+     */
+    public static function volumeSnapshotName(
+        $project,
+        $location,
+        $volume,
+        $snapshot
+    ) {
+        return self::getVolumeSnapshotNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'volume' => $volume,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - instance: projects/{project}/locations/{location}/instances/{instance}
+     * - instanceConfig: projects/{project}/locations/{location}/instanceConfigs/{instance_config}
+     * - interconnectAttachment: projects/{project}/regions/{region}/interconnectAttachments/{interconnect_attachment}
      * - location: projects/{project}/locations/{location}
      * - lun: projects/{project}/locations/{location}/volumes/{volume}/luns/{lun}
      * - nFSShare: projects/{project}/locations/{location}/nfsShares/{nfs_share}
      * - network: projects/{project}/locations/{location}/networks/{network}
+     * - networkConfig: projects/{project}/locations/{location}/networkConfigs/{network_config}
+     * - provisioningConfig: projects/{project}/locations/{location}/provisioningConfigs/{provisioning_config}
      * - serverNetworkTemplate: projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}
+     * - sshKey: projects/{project}/locations/{location}/sshKeys/{ssh_key}
      * - volume: projects/{project}/locations/{location}/volumes/{volume}
+     * - volumeConfig: projects/{project}/locations/{location}/volumeConfigs/{volume_config}
+     * - volumeSnapshot: projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -524,9 +809,6 @@ class BareMetalSolutionGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'baremetalsolution.googleapis.com:443'.
@@ -556,7 +838,7 @@ class BareMetalSolutionGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -583,6 +865,427 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Create an NFS share.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $nfsShare = new NfsShare();
+     *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'createNfsShare');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The parent project and location.
+     * @param NfsShare $nfsShare     Required. The NfsShare to create.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createNfsShare($parent, $nfsShare, array $optionalArgs = [])
+    {
+        $request = new CreateNfsShareRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNfsShare($nfsShare);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateNfsShare',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Create new ProvisioningConfig.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $provisioningConfig = new ProvisioningConfig();
+     *     $response = $bareMetalSolutionClient->createProvisioningConfig($formattedParent, $provisioningConfig);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string             $parent             Required. The parent project and location containing the
+     *                                               ProvisioningConfig.
+     * @param ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to create.
+     * @param array              $optionalArgs       {
+     *     Optional.
+     *
+     *     @type string $email
+     *           Optional. Email provided to send a confirmation with provisioning config
+     *           to.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\ProvisioningConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createProvisioningConfig(
+        $parent,
+        $provisioningConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateProvisioningConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setProvisioningConfig($provisioningConfig);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['email'])) {
+            $request->setEmail($optionalArgs['email']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateProvisioningConfig',
+            ProvisioningConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Register a public SSH key in the specified project for use with the
+     * interactive serial console feature.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $sshKey = new SSHKey();
+     *     $sshKeyId = 'ssh_key_id';
+     *     $response = $bareMetalSolutionClient->createSSHKey($formattedParent, $sshKey, $sshKeyId);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent containing the SSH keys.
+     * @param SSHKey $sshKey       Required. The SSH key to register.
+     * @param string $sshKeyId     Required. The ID to use for the key, which will become the final component
+     *                             of the key's resource name.
+     *
+     *                             This value must match the regex:
+     *                             [a-zA-Z0-9&#64;.\-_]{1,64}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\SSHKey
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createSSHKey(
+        $parent,
+        $sshKey,
+        $sshKeyId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateSSHKeyRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSshKey($sshKey);
+        $request->setSshKeyId($sshKeyId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateSSHKey',
+            SSHKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Takes a snapshot of a boot volume.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $volumeSnapshot = new VolumeSnapshot();
+     *     $response = $bareMetalSolutionClient->createVolumeSnapshot($formattedParent, $volumeSnapshot);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent         Required. The volume to snapshot.
+     * @param VolumeSnapshot $volumeSnapshot Required. The snapshot to create.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\VolumeSnapshot
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createVolumeSnapshot(
+        $parent,
+        $volumeSnapshot,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateVolumeSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setVolumeSnapshot($volumeSnapshot);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateVolumeSnapshot',
+            VolumeSnapshot::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Delete an NFS share. The underlying volume is automatically deleted.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+     *     $operationResponse = $bareMetalSolutionClient->deleteNfsShare($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->deleteNfsShare($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'deleteNfsShare');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the NFS share to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteNfsShare($name, array $optionalArgs = [])
+    {
+        $request = new DeleteNfsShareRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteNfsShare',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a public SSH key registered in the specified project.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->sshKeyName('[PROJECT]', '[LOCATION]', '[SSH_KEY]');
+     *     $bareMetalSolutionClient->deleteSSHKey($formattedName);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the SSH key to delete.
+     *                             Currently, the only valid value for the location is "global".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteSSHKey($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSSHKeyRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteSSHKey',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a volume snapshot.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+     *     $bareMetalSolutionClient->deleteVolumeSnapshot($formattedName);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the snapshot to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteVolumeSnapshot($name, array $optionalArgs = [])
+    {
+        $request = new DeleteVolumeSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteVolumeSnapshot',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Detach LUN from Instance.
      *
      * Sample code:
@@ -595,7 +1298,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -612,7 +1315,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -627,6 +1330,8 @@ class BareMetalSolutionGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $skipReboot
+     *           If true, performs lun unmapping without instance reboot.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -644,6 +1349,10 @@ class BareMetalSolutionGapicClient
         $request->setInstance($instance);
         $request->setLun($lun);
         $requestParamHeaders['instance'] = $instance;
+        if (isset($optionalArgs['skipReboot'])) {
+            $request->setSkipReboot($optionalArgs['skipReboot']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -652,6 +1361,300 @@ class BareMetalSolutionGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DetachLun',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Disable the interactive serial console feature on an instance.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->disableInteractiveSerialConsole($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->disableInteractiveSerialConsole($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'disableInteractiveSerialConsole');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function disableInteractiveSerialConsole(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new DisableInteractiveSerialConsoleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DisableInteractiveSerialConsole',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Enable the interactive serial console feature on an instance.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->enableInteractiveSerialConsole($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->enableInteractiveSerialConsole($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'enableInteractiveSerialConsole');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function enableInteractiveSerialConsole(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new EnableInteractiveSerialConsoleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'EnableInteractiveSerialConsole',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Skips lun's cooloff and deletes it now.
+     * Lun must be in cooloff state.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+     *     $operationResponse = $bareMetalSolutionClient->evictLun($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->evictLun($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'evictLun');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the lun.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function evictLun($name, array $optionalArgs = [])
+    {
+        $request = new EvictLunRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'EvictLun',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Skips volume's cooloff and deletes it now.
+     * Volume must be in cooloff state.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $operationResponse = $bareMetalSolutionClient->evictVolume($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->evictVolume($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'evictVolume');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the Volume.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function evictVolume($name, array $optionalArgs = [])
+    {
+        $request = new EvictVolumeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'EvictVolume',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -851,6 +1854,54 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Get ProvisioningConfig by name.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->provisioningConfigName('[PROJECT]', '[LOCATION]', '[PROVISIONING_CONFIG]');
+     *     $response = $bareMetalSolutionClient->getProvisioningConfig($formattedName);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the ProvisioningConfig.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\ProvisioningConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getProvisioningConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetProvisioningConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProvisioningConfig',
+            ProvisioningConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Get details of a single storage volume.
      *
      * Sample code:
@@ -893,6 +1944,55 @@ class BareMetalSolutionGapicClient
         return $this->startCall(
             'GetVolume',
             Volume::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns the specified snapshot resource.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+     *     $response = $bareMetalSolutionClient->getVolumeSnapshot($formattedName);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the snapshot.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\VolumeSnapshot
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getVolumeSnapshot($name, array $optionalArgs = [])
+    {
+        $request = new GetVolumeSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetVolumeSnapshot',
+            VolumeSnapshot::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1274,6 +2374,318 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Retrieves the list of OS images which are currently approved.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bareMetalSolutionClient->listOSImages($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $bareMetalSolutionClient->listOSImages($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent value for ListProvisioningQuotasRequest.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listOSImages($parent, array $optionalArgs = [])
+    {
+        $request = new ListOSImagesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListOSImages',
+            $optionalArgs,
+            ListOSImagesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * List the budget details to provision resources on a given project.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bareMetalSolutionClient->listProvisioningQuotas($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $bareMetalSolutionClient->listProvisioningQuotas($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent value for ListProvisioningQuotasRequest.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listProvisioningQuotas($parent, array $optionalArgs = [])
+    {
+        $request = new ListProvisioningQuotasRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProvisioningQuotas',
+            $optionalArgs,
+            ListProvisioningQuotasResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists the public SSH keys registered for the specified project.
+     * These SSH keys are used only for the interactive serial console feature.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bareMetalSolutionClient->listSSHKeys($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $bareMetalSolutionClient->listSSHKeys($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent containing the SSH keys.
+     *                             Currently, the only valid value for the location is "global".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSSHKeys($parent, array $optionalArgs = [])
+    {
+        $request = new ListSSHKeysRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListSSHKeys',
+            $optionalArgs,
+            ListSSHKeysResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Retrieves the list of snapshots for the specified volume.
+     * Returns a response with an empty list of snapshots if called
+     * for a non-boot volume.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent value for ListVolumesRequest.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listVolumeSnapshots($parent, array $optionalArgs = [])
+    {
+        $request = new ListVolumeSnapshotsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListVolumeSnapshots',
+            $optionalArgs,
+            ListVolumeSnapshotsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * List storage volumes in a given project and location.
      *
      * Sample code:
@@ -1357,6 +2769,227 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * RenameInstance sets a new name for an instance.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $newInstanceId = 'new_instance_id';
+     *     $response = $bareMetalSolutionClient->renameInstance($formattedName, $newInstanceId);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name          Required. The `name` field is used to identify the instance.
+     *                              Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param string $newInstanceId Required. The new `id` of the instance.
+     * @param array  $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\Instance
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function renameInstance(
+        $name,
+        $newInstanceId,
+        array $optionalArgs = []
+    ) {
+        $request = new RenameInstanceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setNewInstanceId($newInstanceId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RenameInstance',
+            Instance::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * RenameNetwork sets a new name for a network.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+     *     $newNetworkId = 'new_network_id';
+     *     $response = $bareMetalSolutionClient->renameNetwork($formattedName, $newNetworkId);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The `name` field is used to identify the network.
+     *                             Format: projects/{project}/locations/{location}/networks/{network}
+     * @param string $newNetworkId Required. The new `id` of the network.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\Network
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function renameNetwork(
+        $name,
+        $newNetworkId,
+        array $optionalArgs = []
+    ) {
+        $request = new RenameNetworkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setNewNetworkId($newNetworkId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RenameNetwork',
+            Network::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * RenameNfsShare sets a new name for an nfsshare.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+     *     $newNfsshareId = 'new_nfsshare_id';
+     *     $response = $bareMetalSolutionClient->renameNfsShare($formattedName, $newNfsshareId);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name          Required. The `name` field is used to identify the nfsshare.
+     *                              Format: projects/{project}/locations/{location}/nfsshares/{nfsshare}
+     * @param string $newNfsshareId Required. The new `id` of the nfsshare.
+     * @param array  $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\NfsShare
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function renameNfsShare(
+        $name,
+        $newNfsshareId,
+        array $optionalArgs = []
+    ) {
+        $request = new RenameNfsShareRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setNewNfsshareId($newNfsshareId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RenameNfsShare',
+            NfsShare::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * RenameVolume sets a new name for a volume.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $newVolumeId = 'new_volume_id';
+     *     $response = $bareMetalSolutionClient->renameVolume($formattedName, $newVolumeId);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The `name` field is used to identify the volume.
+     *                             Format: projects/{project}/locations/{location}/volumes/{volume}
+     * @param string $newVolumeId  Required. The new `id` of the volume.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\Volume
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function renameVolume($name, $newVolumeId, array $optionalArgs = [])
+    {
+        $request = new RenameVolumeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setNewVolumeId($newVolumeId);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RenameVolume',
+            Volume::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Perform an ungraceful, hard reset on a server. Equivalent to shutting the
      * power off and then turning it back on.
      *
@@ -1369,7 +3002,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1386,7 +3019,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1442,7 +3075,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1459,7 +3092,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1510,6 +3143,83 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Uses the specified snapshot to restore its parent volume.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedVolumeSnapshot = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'restoreVolumeSnapshot');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $volumeSnapshot Required. Name of the snapshot which will be used to restore its parent
+     *                               volume.
+     * @param array  $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function restoreVolumeSnapshot(
+        $volumeSnapshot,
+        array $optionalArgs = []
+    ) {
+        $request = new RestoreVolumeSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setVolumeSnapshot($volumeSnapshot);
+        $requestParamHeaders['volume_snapshot'] = $volumeSnapshot;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RestoreVolumeSnapshot',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Starts a server that was shutdown.
      *
      * Sample code:
@@ -1521,7 +3231,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1538,7 +3248,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1594,7 +3304,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1611,7 +3321,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1656,6 +3366,68 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Submit a provisiong configuration for a given project.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $provisioningConfig = new ProvisioningConfig();
+     *     $response = $bareMetalSolutionClient->submitProvisioningConfig($formattedParent, $provisioningConfig);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string             $parent             Required. The parent project and location containing the
+     *                                               ProvisioningConfig.
+     * @param ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to create.
+     * @param array              $optionalArgs       {
+     *     Optional.
+     *
+     *     @type string $email
+     *           Optional. Email provided to send a confirmation with provisioning config
+     *           to.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function submitProvisioningConfig(
+        $parent,
+        $provisioningConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new SubmitProvisioningConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setProvisioningConfig($provisioningConfig);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['email'])) {
+            $request->setEmail($optionalArgs['email']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SubmitProvisioningConfig',
+            SubmitProvisioningConfigResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Update details of a single server.
      *
      * Sample code:
@@ -1667,7 +3439,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1684,7 +3456,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1753,7 +3525,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1770,7 +3542,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1790,7 +3562,7 @@ class BareMetalSolutionGapicClient
      *     @type FieldMask $updateMask
      *           The list of fields to update.
      *           The only currently supported fields are:
-     *           `labels`, `reservations`
+     *           `labels`, `reservations`, `vrf.vlan_attachments`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1837,7 +3609,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1854,7 +3626,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1875,6 +3647,7 @@ class BareMetalSolutionGapicClient
      *           The list of fields to update.
      *           The only currently supported fields are:
      *           `labels`
+     *           `allowed_clients`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1910,6 +3683,69 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Update existing ProvisioningConfig.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $provisioningConfig = new ProvisioningConfig();
+     *     $updateMask = new FieldMask();
+     *     $response = $bareMetalSolutionClient->updateProvisioningConfig($provisioningConfig, $updateMask);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to update.
+     * @param FieldMask          $updateMask         Required. The list of fields to update.
+     * @param array              $optionalArgs       {
+     *     Optional.
+     *
+     *     @type string $email
+     *           Optional. Email provided to send a confirmation with provisioning config
+     *           to.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\ProvisioningConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateProvisioningConfig(
+        $provisioningConfig,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateProvisioningConfigRequest();
+        $requestParamHeaders = [];
+        $request->setProvisioningConfig($provisioningConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'provisioning_config.name'
+        ] = $provisioningConfig->getName();
+        if (isset($optionalArgs['email'])) {
+            $request->setEmail($optionalArgs['email']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateProvisioningConfig',
+            ProvisioningConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Update details of a single storage volume.
      *
      * Sample code:
@@ -1921,7 +3757,7 @@ class BareMetalSolutionGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1938,7 +3774,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1958,11 +3794,7 @@ class BareMetalSolutionGapicClient
      *     @type FieldMask $updateMask
      *           The list of fields to update.
      *           The only currently supported fields are:
-     *           `snapshot_auto_delete_behavior`
-     *           `snapshot_schedule_policy_name`
      *           'labels'
-     *           'snapshot_enabled'
-     *           'snapshot_reservation_detail.reserved_space_percent'
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1995,5 +3827,145 @@ class BareMetalSolutionGapicClient
             $request,
             $this->getOperationsClient()
         )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $response = $bareMetalSolutionClient->getLocation();
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bareMetalSolutionClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $bareMetalSolutionClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }

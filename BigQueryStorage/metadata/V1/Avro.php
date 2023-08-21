@@ -16,15 +16,17 @@ class Avro
         }
         $pool->internalAddGeneratedFile(
             '
-ù
+·
 +google/cloud/bigquery/storage/v1/avro.proto google.cloud.bigquery.storage.v1"
 
 AvroSchema
-schema (	"=
+schema (	"A
 AvroRows
-serialized_binary_rows (
-	row_count (BÂ
-$com.google.cloud.bigquery.storage.v1B	AvroProtoPZGgoogle.golang.org/genproto/googleapis/cloud/bigquery/storage/v1;storageª Google.Cloud.BigQuery.Storage.V1Ê Google\\Cloud\\BigQuery\\Storage\\V1bproto3'
+serialized_binary_rows (
+	row_count (B"A
+AvroSerializationOptions%
+enable_display_name_attribute (B¹
+$com.google.cloud.bigquery.storage.v1B	AvroProtoPZ>cloud.google.com/go/bigquery/storage/apiv1/storagepb;storagepbª Google.Cloud.BigQuery.Storage.V1Ê Google\\Cloud\\BigQuery\\Storage\\V1bproto3'
         , true);
 
         static::$is_initialized = true;

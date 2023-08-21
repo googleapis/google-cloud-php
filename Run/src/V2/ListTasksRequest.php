@@ -45,6 +45,23 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The Execution from which the Tasks should be listed.
+     *                       To list all Tasks across Executions of a Job, use "-" instead of Execution
+     *                       name. To list all Tasks across Jobs, use "-" instead of Job name. Format:
+     *                       projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
+     *                       Please see {@see TasksClient::executionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Run\V2\ListTasksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

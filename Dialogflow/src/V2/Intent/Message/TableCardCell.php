@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Cell of [TableCardRow][google.cloud.dialogflow.v2.Intent.Message.TableCardRow].
+ * Cell of
+ * [TableCardRow][google.cloud.dialogflow.v2.Intent.Message.TableCardRow].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.TableCardCell</code>
  */
@@ -65,6 +66,4 @@ class TableCardCell extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TableCardCell::class, \Google\Cloud\Dialogflow\V2\Intent_Message_TableCardCell::class);
 

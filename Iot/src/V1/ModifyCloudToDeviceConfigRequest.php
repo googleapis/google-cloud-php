@@ -41,6 +41,24 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
     private $binary_data = '';
 
     /**
+     * @param string $name       Required. The name of the device. For example,
+     *                           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *                           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`. Please see
+     *                           {@see DeviceManagerClient::deviceName()} for help formatting this field.
+     * @param string $binaryData Required. The configuration data for the device.
+     *
+     * @return \Google\Cloud\Iot\V1\ModifyCloudToDeviceConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $binaryData): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setBinaryData($binaryData);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

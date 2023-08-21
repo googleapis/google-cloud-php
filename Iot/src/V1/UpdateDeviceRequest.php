@@ -35,6 +35,27 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Iot\V1\Device $device     Required. The new values for the device. The `id` and `num_id` fields must
+     *                                                be empty, and the field `name` must specify the name path. For example,
+     *                                                `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
+     *                                                `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param \Google\Protobuf\FieldMask  $updateMask Required. Only updates the `device` fields indicated by this mask.
+     *                                                The field mask must not be empty, and it must not contain fields that
+     *                                                are immutable or only set by the server.
+     *                                                Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     *
+     * @return \Google\Cloud\Iot\V1\UpdateDeviceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Iot\V1\Device $device, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDevice($device)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

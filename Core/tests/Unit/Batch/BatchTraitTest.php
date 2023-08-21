@@ -19,13 +19,12 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Google\Cloud\Core\Tests\Unit\Batch\Fixtures\BatchClass;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -33,8 +32,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class BatchTraitTest extends TestCase
 {
-    use AssertStringContains;
-    use ExpectException;
+    use ProphecyTrait;
 
     const ID = 'some-id';
     const BATCH_METHOD = 'doBatch';
@@ -89,7 +87,7 @@ class BatchTraitTest extends TestCase
 
     public function testSetCommonBatchPropertiesThrowsExceptionWithoutIdentifier()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $impl = new BatchClass();
         $impl->setCommonBatchProperties(['batchMethod' => self::BATCH_METHOD]);
@@ -97,7 +95,7 @@ class BatchTraitTest extends TestCase
 
     public function testSetCommonBatchPropertiesThrowsExceptionWithoutBatchMethod()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $impl = new BatchClass();
         $impl->setCommonBatchProperties(['identifier' => self::ID]);

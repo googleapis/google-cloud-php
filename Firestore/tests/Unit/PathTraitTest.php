@@ -19,7 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\PathTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
@@ -35,7 +35,7 @@ class PathTraitTest extends TestCase
 
     private $impl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->impl = TestHelpers::impl(PathTrait::class);
     }

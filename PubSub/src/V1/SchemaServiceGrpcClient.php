@@ -78,6 +78,66 @@ class SchemaServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lists all schema revisions for the named schema.
+     * @param \Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListSchemaRevisions(\Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.pubsub.v1.SchemaService/ListSchemaRevisions',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\ListSchemaRevisionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Commits a new schema revision to an existing schema.
+     * @param \Google\Cloud\PubSub\V1\CommitSchemaRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CommitSchema(\Google\Cloud\PubSub\V1\CommitSchemaRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.pubsub.v1.SchemaService/CommitSchema',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Schema', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a new schema revision that is a copy of the provided revision_id.
+     * @param \Google\Cloud\PubSub\V1\RollbackSchemaRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RollbackSchema(\Google\Cloud\PubSub\V1\RollbackSchemaRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.pubsub.v1.SchemaService/RollbackSchema',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Schema', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a specific schema revision.
+     * @param \Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteSchemaRevision(\Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.pubsub.v1.SchemaService/DeleteSchemaRevision',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Schema', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Deletes a schema.
      * @param \Google\Cloud\PubSub\V1\DeleteSchemaRequest $argument input argument
      * @param array $metadata metadata

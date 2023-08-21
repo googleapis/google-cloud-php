@@ -21,9 +21,9 @@ namespace Google\Cloud\Dataplex\V1;
 /**
  * Dataplex service provides data lakes as a service. The primary resources
  * offered by this service are Lakes, Zones and Assets which collectively allow
- * a data adminstrator to organize, manage, secure and catalog data across their
- * organization located across cloud projects in a variety of storage systems
- * including Cloud Storage and BigQuery.
+ * a data administrator to organize, manage, secure and catalog data across
+ * their organization located across cloud projects in a variety of storage
+ * systems including Cloud Storage and BigQuery.
  */
 class DataplexServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -396,6 +396,21 @@ class DataplexServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.dataplex.v1.DataplexService/ListJobs',
         $argument,
         ['\Google\Cloud\Dataplex\V1\ListJobsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Run an on demand execution of a Task.
+     * @param \Google\Cloud\Dataplex\V1\RunTaskRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RunTask(\Google\Cloud\Dataplex\V1\RunTaskRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataplex.v1.DataplexService/RunTask',
+        $argument,
+        ['\Google\Cloud\Dataplex\V1\RunTaskResponse', 'decode'],
         $metadata, $options);
     }
 

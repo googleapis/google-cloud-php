@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions] has fields that correspond to
- * certain common OIDs that could be specified as an extended key usage value.
+ * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]
+ * has fields that correspond to certain common OIDs that could be specified
+ * as an extended key usage value.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions</code>
  */

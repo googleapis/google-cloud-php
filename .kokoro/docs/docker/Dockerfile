@@ -1,6 +1,7 @@
 FROM gcr.io/gcp-runtimes/ubuntu_16_0_4
 ENV PHP_DIR=/opt/php80
-ENV PHP_SRC_DIR=/usr/local/src/php80-build
+ENV PHP_VERSION=8.1.18
+ENV PHP_SRC_DIR=/usr/local/src/php81-build
 ENV PATH=${PATH}:/usr/local/bin:${PHP_DIR}/bin
 
 RUN apt-get update && \
@@ -34,14 +35,14 @@ RUN apt-get update && \
 # Remove old version of PHP
 RUN apt purge -y php7.0-common
 
-# Install PHP 8.0
+# Install PHP 8.1
 RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
     mkdir -p ${PHP_DIR} ${PHP_SRC_DIR} ${PHP_DIR}/lib/conf.d && \
     cd ${PHP_SRC_DIR} && \
-    wget http://us1.php.net/get/php-8.0.1.tar.bz2/from/this/mirror \
-         -O php-8.0.1.tar.bz2 && \
-    tar jxf php-8.0.1.tar.bz2 && \
-    cd php-8.0.1 && \
+    wget http://us1.php.net/get/php-$PHP_VERSION.tar.bz2/from/this/mirror \
+         -O php-$PHP_VERSION.tar.bz2 && \
+    tar jxf php-$PHP_VERSION.tar.bz2 && \
+    cd php-$PHP_VERSION && \
     ./configure \
         --prefix=${PHP_DIR} \
         --with-config-file-scan-dir=${PHP_DIR}/lib/conf.d \
@@ -84,9 +85,17 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php -r "if (hash_file('SHA384', 'composer-setup.php') === rtrim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --filename=composer --install-dir=/usr/local/bin
 
+# Use phpDocumentor from HEAD until they create a new release
+# TODO: Remove once phpDocumentor tags a new release
+# @see https://github.com/phpDocumentor/phpDocumentor/issues/3434
+COPY --from=phpdoc/phpdoc:20230522201300af6fb5 /opt/phpdoc /opt/phpdoc
+RUN ln -s /opt/phpdoc/bin/phpdoc /usr/local/bin/phpdoc
+ENV PHPDOC_ENV=prod
+
 # Install phpdoc
-RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
-  && chmod +x /usr/local/bin/phpdoc
+# TODO: uncomment once phpDocumentor creates a new release
+# RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
+#   && chmod +x /usr/local/bin/phpdoc
 
 # Install Python3
 RUN wget https://www.python.org/ftp/python/3.9.14/Python-3.9.14.tgz \
@@ -103,4 +112,3 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
 # Install docsuploader
 COPY requirements.txt .
 RUN python3.9 -m pip install --require-hashes -r requirements.txt
-

@@ -30,6 +30,19 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\OrganizationSettings $organizationSettings Required. The organization settings resource to update.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateOrganizationSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\OrganizationSettings $organizationSettings): self
+    {
+        return (new self())
+            ->setOrganizationSettings($organizationSettings);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

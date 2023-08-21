@@ -18,15 +18,17 @@ class CertificateExtensionConstraints extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. A set of named X.509 extensions. Will be combined with
-     * [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions] to determine the full set of X.509 extensions.
+     * [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions]
+     * to determine the full set of X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateExtensionConstraints.KnownCertificateExtension known_extensions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $known_extensions;
     /**
-     * Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId] identifying custom X.509 extensions.
-     * Will be combined with [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions] to determine the full set of
-     * X.509 extensions.
+     * Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId]
+     * identifying custom X.509 extensions. Will be combined with
+     * [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions]
+     * to determine the full set of X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId additional_extensions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,11 +42,13 @@ class CertificateExtensionConstraints extends \Google\Protobuf\Internal\Message
      *
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $known_extensions
      *           Optional. A set of named X.509 extensions. Will be combined with
-     *           [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions] to determine the full set of X.509 extensions.
+     *           [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions]
+     *           to determine the full set of X.509 extensions.
      *     @type array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $additional_extensions
-     *           Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId] identifying custom X.509 extensions.
-     *           Will be combined with [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions] to determine the full set of
-     *           X.509 extensions.
+     *           Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId]
+     *           identifying custom X.509 extensions. Will be combined with
+     *           [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions]
+     *           to determine the full set of X.509 extensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +58,8 @@ class CertificateExtensionConstraints extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A set of named X.509 extensions. Will be combined with
-     * [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions] to determine the full set of X.509 extensions.
+     * [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions]
+     * to determine the full set of X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateExtensionConstraints.KnownCertificateExtension known_extensions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -66,7 +71,8 @@ class CertificateExtensionConstraints extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A set of named X.509 extensions. Will be combined with
-     * [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions] to determine the full set of X.509 extensions.
+     * [additional_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.additional_extensions]
+     * to determine the full set of X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateExtensionConstraints.KnownCertificateExtension known_extensions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -81,9 +87,10 @@ class CertificateExtensionConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId] identifying custom X.509 extensions.
-     * Will be combined with [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions] to determine the full set of
-     * X.509 extensions.
+     * Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId]
+     * identifying custom X.509 extensions. Will be combined with
+     * [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions]
+     * to determine the full set of X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId additional_extensions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -94,9 +101,10 @@ class CertificateExtensionConstraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId] identifying custom X.509 extensions.
-     * Will be combined with [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions] to determine the full set of
-     * X.509 extensions.
+     * Optional. A set of [ObjectIds][google.cloud.security.privateca.v1.ObjectId]
+     * identifying custom X.509 extensions. Will be combined with
+     * [known_extensions][google.cloud.security.privateca.v1.CertificateExtensionConstraints.known_extensions]
+     * to determine the full set of X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId additional_extensions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $var

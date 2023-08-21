@@ -17,11 +17,26 @@ class DeleteLakeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the lake:
-     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The resource name of the lake:
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
+     *                     {@see DataplexServiceClient::lakeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\DeleteLakeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -31,7 +46,7 @@ class DeleteLakeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the lake:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +56,7 @@ class DeleteLakeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the lake:
-     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +68,7 @@ class DeleteLakeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the lake:
-     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

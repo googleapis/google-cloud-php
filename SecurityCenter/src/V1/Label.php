@@ -9,21 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Label represents a generic name=value label. Label has separate name and
- * value fields to support filtering with contains().
+ * Represents a generic name-value label. A label has separate name and value
+ * fields to support filtering with the `contains()` function. For more
+ * information, see [Filtering on array-type
+ * fields](https://cloud.google.com/security-command-center/docs/how-to-api-list-findings#array-contains-filtering).
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Label</code>
  */
 class Label extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Label name.
+     * Name of the label.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Label value.
+     * Value that corresponds to the label's name.
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
@@ -36,9 +38,9 @@ class Label extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Label name.
+     *           Name of the label.
      *     @type string $value
-     *           Label value.
+     *           Value that corresponds to the label's name.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +49,7 @@ class Label extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label name.
+     * Name of the label.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -58,7 +60,7 @@ class Label extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label name.
+     * Name of the label.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -73,7 +75,7 @@ class Label extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label value.
+     * Value that corresponds to the label's name.
      *
      * Generated from protobuf field <code>string value = 2;</code>
      * @return string
@@ -84,7 +86,7 @@ class Label extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label value.
+     * Value that corresponds to the label's name.
      *
      * Generated from protobuf field <code>string value = 2;</code>
      * @param string $var

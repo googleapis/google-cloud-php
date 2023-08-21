@@ -29,7 +29,7 @@ class CheckCloudIdentityAccountsExistResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\CloudIdentityCustomerAccount[]|\Google\Protobuf\Internal\RepeatedField $cloud_identity_accounts
+     *     @type array<\Google\Cloud\Channel\V1\CloudIdentityCustomerAccount>|\Google\Protobuf\Internal\RepeatedField $cloud_identity_accounts
      *           The Cloud Identity accounts associated with the domain.
      * }
      */
@@ -53,7 +53,7 @@ class CheckCloudIdentityAccountsExistResponse extends \Google\Protobuf\Internal\
      * The Cloud Identity accounts associated with the domain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.CloudIdentityCustomerAccount cloud_identity_accounts = 1;</code>
-     * @param \Google\Cloud\Channel\V1\CloudIdentityCustomerAccount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\CloudIdentityCustomerAccount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCloudIdentityAccounts($var)

@@ -27,12 +27,9 @@ namespace Google\Cloud\GkeMultiCloud\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -76,7 +73,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -93,7 +90,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -107,34 +104,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient} to use the new surface.
  */
 class AwsClustersGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkemulticloud.v1.AwsClusters';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'gkemulticloud.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -401,9 +391,6 @@ class AwsClustersGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'gkemulticloud.googleapis.com:443'.
@@ -433,7 +420,7 @@ class AwsClustersGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -460,7 +447,8 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource on a given GCP project and region.
+     * Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     * resource on a given Google Cloud Platform project and region.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -477,7 +465,7 @@ class AwsClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -494,7 +482,7 @@ class AwsClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -504,22 +492,25 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent location where this [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource
-     *                                 will be created.
+     * @param string     $parent       Required. The parent location where this
+     *                                 [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will be
+     *                                 created.
      *
      *                                 Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                                 See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                 for more details on Google Cloud resource names.
-     * @param AwsCluster $awsCluster   Required. The specification of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to create.
-     * @param string     $awsClusterId Required. A client provided ID the resource. Must be unique within the parent
-     *                                 resource.
+     * @param AwsCluster $awsCluster   Required. The specification of the
+     *                                 [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to create.
+     * @param string     $awsClusterId Required. A client provided ID the resource. Must be unique within the
+     *                                 parent resource.
      *
-     *                                 The provided ID will be part of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     *                                 resource name formatted as
+     *                                 The provided ID will be part of the
+     *                                 [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource name
+     *                                 formatted as
      *                                 `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
-     *                                 Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     *                                 Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -566,7 +557,8 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool], attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     * Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
+     * attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -583,7 +575,7 @@ class AwsClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -600,7 +592,7 @@ class AwsClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -610,22 +602,25 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource where this node pool will be created.
+     * @param string      $parent        Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     *                                   resource where this node pool will be created.
      *
      *                                   `AwsCluster` names are formatted as
      *                                   `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
      *                                   See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                   for more details on Google Cloud resource names.
-     * @param AwsNodePool $awsNodePool   Required. The specification of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
-     * @param string      $awsNodePoolId Required. A client provided ID the resource. Must be unique within the parent
-     *                                   resource.
+     * @param AwsNodePool $awsNodePool   Required. The specification of the
+     *                                   [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
+     * @param string      $awsNodePoolId Required. A client provided ID the resource. Must be unique within the
+     *                                   parent resource.
      *
-     *                                   The provided ID will be part of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-     *                                   resource name formatted as
+     *                                   The provided ID will be part of the
+     *                                   [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
+     *                                   formatted as
      *                                   `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      *
-     *                                   Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     *                                   Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      * @param array       $optionalArgs  {
      *     Optional.
      *
@@ -673,10 +668,11 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
+     * Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     * resource.
      *
-     * Fails if the cluster has one or more associated [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-     * resources.
+     * Fails if the cluster has one or more associated
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -716,26 +712,29 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
+     * @param string $name         Required. The resource name the
+     *                             [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
      *
      *                             `AwsCluster` names are formatted as
      *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually delete the resource.
      *     @type bool $allowMissing
-     *           If set to true, and the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource is not
+     *           found, the request will succeed but no action will be taken on the server
+     *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *
      *           Useful for idempotent deletion.
      *     @type string $etag
-     *           The current etag of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     *           The current etag of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *
      *           Allows clients to perform deletions through optimistic concurrency control.
      *
@@ -784,7 +783,8 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
+     * Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     * resource.
      *
      * If successful, the response contains a newly created
      * [Operation][google.longrunning.Operation] resource that can be
@@ -824,7 +824,8 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
+     * @param string $name         Required. The resource name the
+     *                             [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
      *
      *                             `AwsNodePool` names are formatted as
      *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
@@ -838,13 +839,15 @@ class AwsClustersGapicClient
      *           If set, only validate the request, but do not actually delete the node
      *           pool.
      *     @type bool $allowMissing
-     *           If set to true, and the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not found,
-     *           the request will succeed but no action will be taken on the server and a
-     *           completed [Operation][google.longrunning.Operation] will be returned.
+     *           If set to true, and the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not
+     *           found, the request will succeed but no action will be taken on the server
+     *           and a completed [Operation][google.longrunning.Operation] will be returned.
      *
      *           Useful for idempotent deletion.
      *     @type string $etag
-     *           The current ETag of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+     *           The current ETag of the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
      *
      *           Allows clients to perform deletions through optimistic concurrency control.
      *
@@ -907,7 +910,9 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $awsCluster   Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to authenticate to.
+     * @param string $awsCluster   Required. The name of the
+     *                             [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     *                             authenticate to.
      *
      *                             `AwsCluster` names are formatted as
      *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
@@ -950,7 +955,8 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
+     * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     * resource.
      *
      * Sample code:
      * ```
@@ -963,13 +969,15 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     * @param string $name         Required. The name of the
+     *                             [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     *                             describe.
      *
      *                             `AwsCluster` names are formatted as
      *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1004,7 +1012,8 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Describes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
+     * Describes a specific
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
      *
      * Sample code:
      * ```
@@ -1017,7 +1026,9 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to describe.
+     * @param string $name         Required. The name of the
+     *                             [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     *                             describe.
      *
      *                             `AwsNodePool` names are formatted as
      *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
@@ -1072,7 +1083,9 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource to describe.
+     * @param string $name         Required. The name of the
+     *                             [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+     *                             to describe.
      *
      *                             `AwsServerConfig` names are formatted as
      *                             `projects/<project-id>/locations/<region>/awsServerConfig`.
@@ -1113,8 +1126,8 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources on a given Google Cloud project and
-     * region.
+     * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+     * on a given Google Cloud project and region.
      *
      * Sample code:
      * ```
@@ -1145,7 +1158,7 @@ class AwsClustersGapicClient
      *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on GCP resource names.
+     *                             for more details on Google Cloud Platform resource names.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1197,7 +1210,9 @@ class AwsClustersGapicClient
     }
 
     /**
-     * Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources on a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+     * Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     * resources on a given
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *
      * Sample code:
      * ```
@@ -1293,7 +1308,7 @@ class AwsClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1310,7 +1325,7 @@ class AwsClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1320,7 +1335,8 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param AwsCluster $awsCluster   Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to update.
+     * @param AwsCluster $awsCluster   Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     *                                 resource to update.
      * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one path must be supplied in
      *                                 this field. The elements of the repeated paths field can only include these
      *                                 fields from [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]:
@@ -1337,14 +1353,17 @@ class AwsClustersGapicClient
      *                                 *   `control_plane.proxy_config`.
      *                                 *   `control_plane.proxy_config.secret_arn`.
      *                                 *   `control_plane.proxy_config.secret_version`.
+     *                                 *   `control_plane.root_volume.size_gib`.
+     *                                 *   `control_plane.root_volume.volume_type`.
      *                                 *   `control_plane.root_volume.iops`.
      *                                 *   `control_plane.root_volume.kms_key_arn`.
-     *                                 *   `control_plane.root_volume.volume_type`.
-     *                                 *   `control_plane.root_volume.size_gib`.
      *                                 *   `control_plane.ssh_config`.
      *                                 *   `control_plane.ssh_config.ec2_key_pair`.
      *                                 *   `control_plane.instance_placement.tenancy`.
-     *                                 *   `logging_config`.
+     *                                 *   `control_plane.iam_instance_profile`.
+     *                                 *   `logging_config.component_config.enable_components`.
+     *                                 *   `control_plane.tags`.
+     *                                 *   `monitoring_config.managed_prometheus_config.enabled`.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -1401,7 +1420,7 @@ class AwsClustersGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1418,7 +1437,7 @@ class AwsClustersGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1428,7 +1447,8 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param AwsNodePool $awsNodePool  Required. The [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to update.
+     * @param AwsNodePool $awsNodePool  Required. The [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     *                                  resource to update.
      * @param FieldMask   $updateMask   Required. Mask of fields to update. At least one path must be supplied in
      *                                  this field. The elements of the repeated paths field can only include these
      *                                  fields from [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]:
@@ -1448,6 +1468,13 @@ class AwsClustersGapicClient
      *                                  *   `config.proxy_config.secret_version`.
      *                                  *   `config.ssh_config`.
      *                                  *   `config.ssh_config.ec2_key_pair`.
+     *                                  *   `config.instance_placement.tenancy`.
+     *                                  *   `config.iam_instance_profile`.
+     *                                  *   `config.labels`.
+     *                                  *   `config.tags`.
+     *                                  *   `config.autoscaling_metrics_collection`.
+     *                                  *   `config.autoscaling_metrics_collection.granularity`.
+     *                                  *   `config.autoscaling_metrics_collection.metrics`.
      * @param array       $optionalArgs {
      *     Optional.
      *

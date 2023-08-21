@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VizierService.CreateTrial][google.cloud.aiplatform.v1.VizierService.CreateTrial].
+ * Request message for
+ * [VizierService.CreateTrial][google.cloud.aiplatform.v1.VizierService.CreateTrial].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateTrialRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateTrialRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Trial trial = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $trial = null;
+
+    /**
+     * @param string                            $parent Required. The resource name of the Study to create the Trial in.
+     *                                                  Format: `projects/{project}/locations/{location}/studies/{study}`
+     *                                                  Please see {@see VizierServiceClient::studyName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Trial $trial  Required. The Trial to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateTrialRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Trial $trial): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTrial($trial);
+    }
 
     /**
      * Constructor.

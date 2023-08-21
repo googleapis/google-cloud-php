@@ -27,19 +27,28 @@
 namespace Google\Cloud\Metastore\V1beta\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
+use Google\Cloud\Metastore\V1beta\AlterMetadataResourceLocationRequest;
 use Google\Cloud\Metastore\V1beta\Backup;
 use Google\Cloud\Metastore\V1beta\CreateBackupRequest;
 use Google\Cloud\Metastore\V1beta\CreateMetadataImportRequest;
@@ -58,19 +67,22 @@ use Google\Cloud\Metastore\V1beta\ListMetadataImportsResponse;
 use Google\Cloud\Metastore\V1beta\ListServicesRequest;
 use Google\Cloud\Metastore\V1beta\ListServicesResponse;
 use Google\Cloud\Metastore\V1beta\MetadataImport;
+use Google\Cloud\Metastore\V1beta\MoveTableToDatabaseRequest;
+use Google\Cloud\Metastore\V1beta\QueryMetadataRequest;
+use Google\Cloud\Metastore\V1beta\RemoveIamPolicyRequest;
+use Google\Cloud\Metastore\V1beta\RemoveIamPolicyResponse;
 use Google\Cloud\Metastore\V1beta\Restore;
 use Google\Cloud\Metastore\V1beta\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1beta\Service;
 use Google\Cloud\Metastore\V1beta\UpdateMetadataImportRequest;
 use Google\Cloud\Metastore\V1beta\UpdateServiceRequest;
 use Google\LongRunning\Operation;
-
 use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Configures and manages metastore services.
- * Metastore services are fully managed, highly available, auto-scaled,
- * auto-healing, OSS-native deployments of technical metadata management
+ * Metastore services are fully managed, highly available, autoscaled,
+ * autohealing, OSS-native deployments of technical metadata management
  * software. Each metastore service exposes a network endpoint through which
  * metadata queries are served. Metadata queries can originate from a variety
  * of sources, including Apache Hive, Apache Presto, and Apache Spark.
@@ -92,31 +104,31 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataprocMetastoreClient = new DataprocMetastoreClient();
  * try {
- *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
- *     $backupId = 'backup_id';
- *     $backup = new Backup();
- *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
+ *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+ *     $resourceName = 'resource_name';
+ *     $locationUri = 'location_uri';
+ *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
+ *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createBackup');
+ *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'alterMetadataResourceLocation');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -137,34 +149,26 @@ class DataprocMetastoreGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.metastore.v1beta.DataprocMetastore';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'metastore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static $backupNameTemplate;
+
+    private static $lakeNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -173,6 +177,8 @@ class DataprocMetastoreGapicClient
     private static $networkNameTemplate;
 
     private static $serviceNameTemplate;
+
+    private static $subnetworkNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -204,6 +210,15 @@ class DataprocMetastoreGapicClient
         }
 
         return self::$backupNameTemplate;
+    }
+
+    private static function getLakeNameTemplate()
+    {
+        if (self::$lakeNameTemplate == null) {
+            self::$lakeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/lakes/{lake}');
+        }
+
+        return self::$lakeNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -242,15 +257,26 @@ class DataprocMetastoreGapicClient
         return self::$serviceNameTemplate;
     }
 
+    private static function getSubnetworkNameTemplate()
+    {
+        if (self::$subnetworkNameTemplate == null) {
+            self::$subnetworkNameTemplate = new PathTemplate('projects/{project}/regions/{region}/subnetworks/{subnetwork}');
+        }
+
+        return self::$subnetworkNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'backup' => self::getBackupNameTemplate(),
+                'lake' => self::getLakeNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'metadataImport' => self::getMetadataImportNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'service' => self::getServiceNameTemplate(),
+                'subnetwork' => self::getSubnetworkNameTemplate(),
             ];
         }
 
@@ -277,6 +303,27 @@ class DataprocMetastoreGapicClient
             'location' => $location,
             'service' => $service,
             'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a lake
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $lake
+     *
+     * @return string The formatted lake resource.
+     *
+     * @experimental
+     */
+    public static function lakeName($project, $location, $lake)
+    {
+        return self::getLakeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'lake' => $lake,
         ]);
     }
 
@@ -363,14 +410,37 @@ class DataprocMetastoreGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subnetwork
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $subnetwork
+     *
+     * @return string The formatted subnetwork resource.
+     *
+     * @experimental
+     */
+    public static function subnetworkName($project, $region, $subnetwork)
+    {
+        return self::getSubnetworkNameTemplate()->render([
+            'project' => $project,
+            'region' => $region,
+            'subnetwork' => $subnetwork,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/services/{service}/backups/{backup}
+     * - lake: projects/{project}/locations/{location}/lakes/{lake}
      * - location: projects/{project}/locations/{location}
      * - metadataImport: projects/{project}/locations/{location}/services/{service}/metadataImports/{metadata_import}
      * - network: projects/{project}/global/networks/{network}
      * - service: projects/{project}/locations/{location}/services/{service}
+     * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -448,9 +518,6 @@ class DataprocMetastoreGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'metastore.googleapis.com:443'.
@@ -480,7 +547,7 @@ class DataprocMetastoreGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -509,7 +576,91 @@ class DataprocMetastoreGapicClient
     }
 
     /**
-     * Creates a new Backup in a given project and location.
+     * Alter metadata resource location. The metadata resource can be a database,
+     * table, or partition. This functionality only updates the parent directory
+     * for the respective metadata resource and does not transfer any existing
+     * data to the new location.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $resourceName = 'resource_name';
+     *     $locationUri = 'location_uri';
+     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'alterMetadataResourceLocation');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $service      Required. The relative resource name of the metastore service to mutate
+     *                             metadata, in the following format:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $resourceName Required. The relative metadata resource name in the following format.
+     *
+     *                             `databases/{database_id}`
+     *                             or
+     *                             `databases/{database_id}/tables/{table_id}`
+     *                             or
+     *                             `databases/{database_id}/tables/{table_id}/partitions/{partition_id}`
+     * @param string $locationUri  Required. The new location URI for the metadata resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function alterMetadataResourceLocation($service, $resourceName, $locationUri, array $optionalArgs = [])
+    {
+        $request = new AlterMetadataResourceLocationRequest();
+        $requestParamHeaders = [];
+        $request->setService($service);
+        $request->setResourceName($resourceName);
+        $request->setLocationUri($locationUri);
+        $requestParamHeaders['service'] = $service;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('AlterMetadataResourceLocation', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a new backup in a given project and location.
      *
      * Sample code:
      * ```
@@ -522,7 +673,7 @@ class DataprocMetastoreGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -539,7 +690,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -552,7 +703,7 @@ class DataprocMetastoreGapicClient
      * @param string $parent       Required. The relative resource name of the service in which to create a
      *                             backup of the following form:
      *
-     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param string $backupId     Required. The ID of the backup, which is used as the final component of the
      *                             backup's name.
      *
@@ -620,7 +771,7 @@ class DataprocMetastoreGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -637,7 +788,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -650,7 +801,7 @@ class DataprocMetastoreGapicClient
      * @param string         $parent           Required. The relative resource name of the service in which to create a
      *                                         metastore import, in the following form:
      *
-     *                                         `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     *                                         `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param string         $metadataImportId Required. The ID of the metadata import, which is used as the final
      *                                         component of the metadata import's name.
      *
@@ -719,7 +870,7 @@ class DataprocMetastoreGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -736,7 +887,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -984,7 +1135,7 @@ class DataprocMetastoreGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1001,7 +1152,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1014,7 +1165,7 @@ class DataprocMetastoreGapicClient
      * @param string $service      Required. The relative resource name of the metastore service to run
      *                             export, in the following form:
      *
-     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1468,6 +1619,210 @@ class DataprocMetastoreGapicClient
     }
 
     /**
+     * Move a table to another database.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $tableName = 'table_name';
+     *     $dbName = 'db_name';
+     *     $destinationDbName = 'destination_db_name';
+     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase($formattedService, $tableName, $dbName, $destinationDbName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase($formattedService, $tableName, $dbName, $destinationDbName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'moveTableToDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $service           Required. The relative resource name of the metastore service to mutate
+     *                                  metadata, in the following format:
+     *
+     *                                  `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $tableName         Required. The name of the table to be moved.
+     * @param string $dbName            Required. The name of the database where the table resides.
+     * @param string $destinationDbName Required. The name of the database where the table should be moved.
+     * @param array  $optionalArgs      {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function moveTableToDatabase($service, $tableName, $dbName, $destinationDbName, array $optionalArgs = [])
+    {
+        $request = new MoveTableToDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setService($service);
+        $request->setTableName($tableName);
+        $request->setDbName($dbName);
+        $request->setDestinationDbName($destinationDbName);
+        $requestParamHeaders['service'] = $service;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('MoveTableToDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Query DPMS metadata.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $query = 'query';
+     *     $operationResponse = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'queryMetadata');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $service      Required. The relative resource name of the metastore service to query
+     *                             metadata, in the following format:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $query        Required. A read-only SQL query to execute against the metadata database.
+     *                             The query cannot change or mutate the data.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function queryMetadata($service, $query, array $optionalArgs = [])
+    {
+        $request = new QueryMetadataRequest();
+        $requestParamHeaders = [];
+        $request->setService($service);
+        $request->setQuery($query);
+        $requestParamHeaders['service'] = $service;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('QueryMetadata', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Removes the attached IAM policies for a resource
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $dataprocMetastoreClient->removeIamPolicy($resource);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     Required. The relative resource name of the dataplane resource to remove
+     *                             IAM policy, in the following form:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/databases/{database_id}`
+     *                             or
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/databases/{database_id}/tables/{table_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $asynchronous
+     *           Optional. Removes IAM policy attached to database or table asynchronously
+     *           when it is set. The default is false.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Metastore\V1beta\RemoveIamPolicyResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function removeIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new RemoveIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['asynchronous'])) {
+            $request->setAsynchronous($optionalArgs['asynchronous']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RemoveIamPolicy', RemoveIamPolicyResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Restores a service from a backup.
      *
      * Sample code:
@@ -1480,7 +1835,7 @@ class DataprocMetastoreGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1497,7 +1852,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1510,11 +1865,11 @@ class DataprocMetastoreGapicClient
      * @param string $service      Required. The relative resource name of the metastore service to run
      *                             restore, in the following form:
      *
-     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      * @param string $backup       Required. The relative resource name of the metastore service backup to
      *                             restore from, in the following form:
      *
-     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1580,7 +1935,7 @@ class DataprocMetastoreGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1597,7 +1952,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1673,7 +2028,7 @@ class DataprocMetastoreGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1690,7 +2045,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1751,5 +2106,294 @@ class DataprocMetastoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateService', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $response = $dataprocMetastoreClient->getLocation();
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataprocMetastoreClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataprocMetastoreClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $dataprocMetastoreClient->getIamPolicy($resource);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataprocMetastoreClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataprocMetastoreClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
     }
 }

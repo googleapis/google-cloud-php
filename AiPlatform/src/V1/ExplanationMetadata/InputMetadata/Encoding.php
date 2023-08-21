@@ -27,8 +27,9 @@ class Encoding
     const IDENTITY = 1;
     /**
      * The tensor represents a bag of features where each index maps to
-     * a feature. [InputMetadata.index_feature_mapping][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.index_feature_mapping] must be provided for
-     * this encoding. For example:
+     * a feature.
+     * [InputMetadata.index_feature_mapping][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.index_feature_mapping]
+     * must be provided for this encoding. For example:
      * ```
      * input = [27, 6.0, 150]
      * index_feature_mapping = ["age", "height", "weight"]
@@ -40,8 +41,9 @@ class Encoding
     /**
      * The tensor represents a bag of features where each index maps to a
      * feature. Zero values in the tensor indicates feature being
-     * non-existent. [InputMetadata.index_feature_mapping][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.index_feature_mapping] must be provided
-     * for this encoding. For example:
+     * non-existent.
+     * [InputMetadata.index_feature_mapping][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.index_feature_mapping]
+     * must be provided for this encoding. For example:
      * ```
      * input = [2, 0, 5, 0, 1]
      * index_feature_mapping = ["a", "b", "c", "d", "e"]
@@ -52,7 +54,8 @@ class Encoding
     const BAG_OF_FEATURES_SPARSE = 3;
     /**
      * The tensor is a list of binaries representing whether a feature exists
-     * or not (1 indicates existence). [InputMetadata.index_feature_mapping][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.index_feature_mapping]
+     * or not (1 indicates existence).
+     * [InputMetadata.index_feature_mapping][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.index_feature_mapping]
      * must be provided for this encoding. For example:
      * ```
      * input = [1, 0, 1, 0, 1]
@@ -64,8 +67,9 @@ class Encoding
     const INDICATOR = 4;
     /**
      * The tensor is encoded into a 1-dimensional array represented by an
-     * encoded tensor. [InputMetadata.encoded_tensor_name][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoded_tensor_name] must be provided
-     * for this encoding. For example:
+     * encoded tensor.
+     * [InputMetadata.encoded_tensor_name][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoded_tensor_name]
+     * must be provided for this encoding. For example:
      * ```
      * input = ["This", "is", "a", "test", "."]
      * encoded = [0.1, 0.2, 0.3, 0.4, 0.5]
@@ -77,9 +81,9 @@ class Encoding
     /**
      * Select this encoding when the input tensor is encoded into a
      * 2-dimensional array represented by an encoded tensor.
-     * [InputMetadata.encoded_tensor_name][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoded_tensor_name] must be provided for this
-     * encoding. The first dimension of the encoded tensor's shape is the same
-     * as the input tensor's shape. For example:
+     * [InputMetadata.encoded_tensor_name][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoded_tensor_name]
+     * must be provided for this encoding. The first dimension of the encoded
+     * tensor's shape is the same as the input tensor's shape. For example:
      * ```
      * input = ["This", "is", "a", "test", "."]
      * encoded = [[0.1, 0.2, 0.3, 0.4, 0.5],

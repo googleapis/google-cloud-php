@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit\Iterator;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
@@ -27,6 +28,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ItemIteratorTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testIteratesData()
     {
         $page1 = ['a', 'b', 'c'];

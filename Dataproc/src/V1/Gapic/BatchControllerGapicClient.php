@@ -27,10 +27,8 @@ namespace Google\Cloud\Dataproc\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -61,7 +59,7 @@ use Google\Protobuf\GPBEmpty;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -78,7 +76,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -92,34 +90,27 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataproc\V1\Client\BatchControllerClient} to use the new surface.
  */
 class BatchControllerGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dataproc.v1.BatchController';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dataproc.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -127,6 +118,8 @@ class BatchControllerGapicClient
     private static $batchNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $serviceNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -169,12 +162,22 @@ class BatchControllerGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'batch' => self::getBatchNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
             ];
         }
 
@@ -218,11 +221,31 @@ class BatchControllerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - batch: projects/{project}/locations/{location}/batches/{batch}
      * - location: projects/{project}/locations/{location}
+     * - service: projects/{project}/locations/{location}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -294,9 +317,6 @@ class BatchControllerGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataproc.googleapis.com:443'.
@@ -326,7 +346,7 @@ class BatchControllerGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -365,7 +385,7 @@ class BatchControllerGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -382,7 +402,7 @@ class BatchControllerGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -398,8 +418,8 @@ class BatchControllerGapicClient
      *     Optional.
      *
      *     @type string $batchId
-     *           Optional. The ID to use for the batch, which will become the final component of
-     *           the batch's resource name.
+     *           Optional. The ID to use for the batch, which will become the final
+     *           component of the batch's resource name.
      *
      *           This value must be 4-63 characters. Valid characters are `/[a-z][0-9]-/`.
      *     @type string $requestId
@@ -460,7 +480,9 @@ class BatchControllerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the batch resource to delete.
+     * @param string $name         Required. The fully qualified name of the batch to retrieve
+     *                             in the format
+     *                             "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -497,7 +519,9 @@ class BatchControllerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the batch to retrieve.
+     * @param string $name         Required. The fully qualified name of the batch to retrieve
+     *                             in the format
+     *                             "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -561,6 +585,26 @@ class BatchControllerGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. A filter for the batches to return in the response.
+     *
+     *           A filter is a logical expression constraining the values of various fields
+     *           in each batch resource. Filters are case sensitive, and may contain
+     *           multiple clauses combined with logical operators (AND/OR).
+     *           Supported fields are `batch_id`, `batch_uuid`, `state`, and `create_time`.
+     *
+     *           e.g. `state = RUNNING and create_time < "2023-01-01T00:00:00Z"`
+     *           filters for batches in state RUNNING that were created before 2023-01-01
+     *
+     *           See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed
+     *           description of the filter syntax and a list of supported comparisons.
+     *     @type string $orderBy
+     *           Optional. Field(s) on which to sort the list of batches.
+     *
+     *           Currently the only supported sort orders are unspecified (empty) and
+     *           `create_time desc` to sort by most recently created batches first.
+     *
+     *           See https://google.aip.dev/132#ordering for more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -583,6 +627,14 @@ class BatchControllerGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

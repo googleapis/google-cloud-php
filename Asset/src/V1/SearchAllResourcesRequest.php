@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the resources within the `scope`. The caller must be granted the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the resources within the `scope`. The caller must be
+     * granted the
      * [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -35,48 +36,48 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      * for more information. If not specified or empty, it will search all the
      * resources within the specified `scope`.
      * Examples:
-     * * `name:Important` to find Cloud resources whose name contains
+     * * `name:Important` to find Google Cloud resources whose name contains
      *   "Important" as a word.
-     * * `name=Important` to find the Cloud resource whose name is exactly
+     * * `name=Important` to find the Google Cloud resource whose name is exactly
      *   "Important".
-     * * `displayName:Impor*` to find Cloud resources whose display name
+     * * `displayName:Impor*` to find Google Cloud resources whose display name
      *   contains "Impor" as a prefix of any word in the field.
-     * * `location:us-west*` to find Cloud resources whose location contains both
-     *   "us" and "west" as prefixes.
-     * * `labels:prod` to find Cloud resources whose labels contain "prod" as
-     *   a key or value.
-     * * `labels.env:prod` to find Cloud resources that have a label "env"
+     * * `location:us-west*` to find Google Cloud resources whose location
+     *   contains both "us" and "west" as prefixes.
+     * * `labels:prod` to find Google Cloud resources whose labels contain "prod"
+     *   as a key or value.
+     * * `labels.env:prod` to find Google Cloud resources that have a label "env"
      *   and its value is "prod".
-     * * `labels.env:*` to find Cloud resources that have a label "env".
-     * * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *   encryption key whose name contains "key" as a word. This field is
-     *   deprecated. Please use the `kmsKeys` field to retrieve KMS key
-     *   information.
-     * * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
-     *   encryption keys whose name contains the word "key".
-     * * `relationships:instance-group-1` to find Cloud resources that have
+     * * `labels.env:*` to find Google Cloud resources that have a label "env".
+     * * `kmsKey:key` to find Google Cloud resources encrypted with a
+     *   customer-managed encryption key whose name contains "key" as a word. This
+     *   field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS
+     *   key information.
+     * * `kmsKeys:key` to find Google Cloud resources encrypted with
+     *   customer-managed encryption keys whose name contains the word "key".
+     * * `relationships:instance-group-1` to find Google Cloud resources that have
      *   relationships with "instance-group-1" in the related resource name.
-     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
-     *   have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine
+     *   instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP".
      * * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
-     *   compute instances that have relationships with "instance-group-1" in the
-     *   compute instance group resource name, for relationship type
+     *   Compute Engine instances that have relationships with "instance-group-1"
+     *   in the Compute Engine instance group resource name, for relationship type
      *   "INSTANCE_TO_INSTANCEGROUP".
-     * * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
-     *   word.
-     * * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
+     * * `state:ACTIVE` to find Google Cloud resources whose state contains
      *   "ACTIVE" as a word.
-     * * `createTime<1609459200` to find Cloud resources that were created before
-     *   "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     * * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't
+     *   contain "ACTIVE" as a word.
+     * * `createTime<1609459200` to find Google Cloud resources that were created
+     *   before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *   "2021-01-01 00:00:00 UTC" in seconds.
-     * * `updateTime>1609459200` to find Cloud resources that were updated after
-     *   "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     * * `updateTime>1609459200` to find Google Cloud resources that were updated
+     *   after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *   "2021-01-01 00:00:00 UTC" in seconds.
-     * * `Important` to find Cloud resources that contain "Important" as a word
-     *   in any of the searchable fields.
-     * * `Impor*` to find Cloud resources that contain "Impor" as a prefix of any
+     * * `Important` to find Google Cloud resources that contain "Important" as a
      *   word in any of the searchable fields.
-     * * `Important location:(us-west1 OR global)` to find Cloud
+     * * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix
+     *   of any word in any of the searchable fields.
+     * * `Important location:(us-west1 OR global)` to find Google Cloud
      *   resources that contain "Important" as a word in any of the searchable
      *   fields and are also located in the "us-west1" region or the "global"
      *   location.
@@ -85,8 +86,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      */
     private $query = '';
     /**
-     * Optional. A list of asset types that this request searches for. If empty, it will
-     * search all the [searchable asset
+     * Optional. A list of asset types that this request searches for. If empty,
+     * it will search all the [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -101,27 +102,28 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      */
     private $asset_types;
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `page_token` must be the value of `next_page_token` from
-     * the previous response. The values of all other method parameters, must be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of all other
+     * method parameters, must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "location DESC, name".
      * Only singular primitive fields in the response are sortable:
      *   * name
@@ -143,10 +145,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * Optional. A comma-separated list of fields specifying which fields to be returned in
-     * ResourceSearchResult. Only '*' or combination of top level fields can be
-     * specified. Field names of both snake_case and camelCase are supported.
-     * Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     * Optional. A comma-separated list of fields specifying which fields to be
+     * returned in ResourceSearchResult. Only '*' or combination of top level
+     * fields can be specified. Field names of both snake_case and camelCase are
+     * supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      * The read_mask paths must be valid field paths listed but not limited to
      * (both snake_case and camelCase are supported):
      *   * name
@@ -161,7 +163,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * labels
      *   * networkTags
      *   * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
-     *     retrieve KMS key information.)
+     *     retrieve Cloud KMS key information.)
      *   * kmsKeys
      *   * createTime
      *   * updateTime
@@ -179,14 +181,107 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string   $scope      Required. A scope can be a project, a folder, or an organization. The
+     *                             search is limited to the resources within the `scope`. The caller must be
+     *                             granted the
+     *                             [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
+     *                             permission on the desired scope.
+     *
+     *                             The allowed values are:
+     *
+     *                             * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *                             * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+     *                             * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string   $query      Optional. The query statement. See [how to construct a
+     *                             query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
+     *                             for more information. If not specified or empty, it will search all the
+     *                             resources within the specified `scope`.
+     *
+     *                             Examples:
+     *
+     *                             * `name:Important` to find Google Cloud resources whose name contains
+     *                             "Important" as a word.
+     *                             * `name=Important` to find the Google Cloud resource whose name is exactly
+     *                             "Important".
+     *                             * `displayName:Impor*` to find Google Cloud resources whose display name
+     *                             contains "Impor" as a prefix of any word in the field.
+     *                             * `location:us-west*` to find Google Cloud resources whose location
+     *                             contains both "us" and "west" as prefixes.
+     *                             * `labels:prod` to find Google Cloud resources whose labels contain "prod"
+     *                             as a key or value.
+     *                             * `labels.env:prod` to find Google Cloud resources that have a label "env"
+     *                             and its value is "prod".
+     *                             * `labels.env:*` to find Google Cloud resources that have a label "env".
+     *                             * `kmsKey:key` to find Google Cloud resources encrypted with a
+     *                             customer-managed encryption key whose name contains "key" as a word. This
+     *                             field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS
+     *                             key information.
+     *                             * `kmsKeys:key` to find Google Cloud resources encrypted with
+     *                             customer-managed encryption keys whose name contains the word "key".
+     *                             * `relationships:instance-group-1` to find Google Cloud resources that have
+     *                             relationships with "instance-group-1" in the related resource name.
+     *                             * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine
+     *                             instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     *                             * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
+     *                             Compute Engine instances that have relationships with "instance-group-1"
+     *                             in the Compute Engine instance group resource name, for relationship type
+     *                             "INSTANCE_TO_INSTANCEGROUP".
+     *                             * `state:ACTIVE` to find Google Cloud resources whose state contains
+     *                             "ACTIVE" as a word.
+     *                             * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't
+     *                             contain "ACTIVE" as a word.
+     *                             * `createTime<1609459200` to find Google Cloud resources that were created
+     *                             before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *                             "2021-01-01 00:00:00 UTC" in seconds.
+     *                             * `updateTime>1609459200` to find Google Cloud resources that were updated
+     *                             after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *                             "2021-01-01 00:00:00 UTC" in seconds.
+     *                             * `Important` to find Google Cloud resources that contain "Important" as a
+     *                             word in any of the searchable fields.
+     *                             * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix
+     *                             of any word in any of the searchable fields.
+     *                             * `Important location:(us-west1 OR global)` to find Google Cloud
+     *                             resources that contain "Important" as a word in any of the searchable
+     *                             fields and are also located in the "us-west1" region or the "global"
+     *                             location.
+     * @param string[] $assetTypes Optional. A list of asset types that this request searches for. If empty,
+     *                             it will search all the [searchable asset
+     *                             types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     *
+     *                             Regular expressions are also supported. For example:
+     *
+     *                             * "compute.googleapis.com.*" snapshots resources whose asset type starts
+     *                             with "compute.googleapis.com".
+     *                             * ".*Instance" snapshots resources whose asset type ends with "Instance".
+     *                             * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+     *
+     *                             See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     *                             regular expression syntax. If the regular expression does not match any
+     *                             supported asset type, an INVALID_ARGUMENT error will be returned.
+     *
+     * @return \Google\Cloud\Asset\V1\SearchAllResourcesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $scope, string $query, array $assetTypes): self
+    {
+        return (new self())
+            ->setScope($scope)
+            ->setQuery($query)
+            ->setAssetTypes($assetTypes);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope
-     *           Required. A scope can be a project, a folder, or an organization. The search is
-     *           limited to the resources within the `scope`. The caller must be granted the
+     *           Required. A scope can be a project, a folder, or an organization. The
+     *           search is limited to the resources within the `scope`. The caller must be
+     *           granted the
      *           [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      *           permission on the desired scope.
      *           The allowed values are:
@@ -200,54 +295,54 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *           for more information. If not specified or empty, it will search all the
      *           resources within the specified `scope`.
      *           Examples:
-     *           * `name:Important` to find Cloud resources whose name contains
+     *           * `name:Important` to find Google Cloud resources whose name contains
      *             "Important" as a word.
-     *           * `name=Important` to find the Cloud resource whose name is exactly
+     *           * `name=Important` to find the Google Cloud resource whose name is exactly
      *             "Important".
-     *           * `displayName:Impor*` to find Cloud resources whose display name
+     *           * `displayName:Impor*` to find Google Cloud resources whose display name
      *             contains "Impor" as a prefix of any word in the field.
-     *           * `location:us-west*` to find Cloud resources whose location contains both
-     *             "us" and "west" as prefixes.
-     *           * `labels:prod` to find Cloud resources whose labels contain "prod" as
-     *             a key or value.
-     *           * `labels.env:prod` to find Cloud resources that have a label "env"
+     *           * `location:us-west*` to find Google Cloud resources whose location
+     *             contains both "us" and "west" as prefixes.
+     *           * `labels:prod` to find Google Cloud resources whose labels contain "prod"
+     *             as a key or value.
+     *           * `labels.env:prod` to find Google Cloud resources that have a label "env"
      *             and its value is "prod".
-     *           * `labels.env:*` to find Cloud resources that have a label "env".
-     *           * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *             encryption key whose name contains "key" as a word. This field is
-     *             deprecated. Please use the `kmsKeys` field to retrieve KMS key
-     *             information.
-     *           * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
-     *             encryption keys whose name contains the word "key".
-     *           * `relationships:instance-group-1` to find Cloud resources that have
+     *           * `labels.env:*` to find Google Cloud resources that have a label "env".
+     *           * `kmsKey:key` to find Google Cloud resources encrypted with a
+     *             customer-managed encryption key whose name contains "key" as a word. This
+     *             field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS
+     *             key information.
+     *           * `kmsKeys:key` to find Google Cloud resources encrypted with
+     *             customer-managed encryption keys whose name contains the word "key".
+     *           * `relationships:instance-group-1` to find Google Cloud resources that have
      *             relationships with "instance-group-1" in the related resource name.
-     *           * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
-     *             have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     *           * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine
+     *             instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP".
      *           * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
-     *             compute instances that have relationships with "instance-group-1" in the
-     *             compute instance group resource name, for relationship type
+     *             Compute Engine instances that have relationships with "instance-group-1"
+     *             in the Compute Engine instance group resource name, for relationship type
      *             "INSTANCE_TO_INSTANCEGROUP".
-     *           * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
-     *             word.
-     *           * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
+     *           * `state:ACTIVE` to find Google Cloud resources whose state contains
      *             "ACTIVE" as a word.
-     *           * `createTime<1609459200` to find Cloud resources that were created before
-     *             "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *           * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't
+     *             contain "ACTIVE" as a word.
+     *           * `createTime<1609459200` to find Google Cloud resources that were created
+     *             before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *             "2021-01-01 00:00:00 UTC" in seconds.
-     *           * `updateTime>1609459200` to find Cloud resources that were updated after
-     *             "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *           * `updateTime>1609459200` to find Google Cloud resources that were updated
+     *             after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *             "2021-01-01 00:00:00 UTC" in seconds.
-     *           * `Important` to find Cloud resources that contain "Important" as a word
-     *             in any of the searchable fields.
-     *           * `Impor*` to find Cloud resources that contain "Impor" as a prefix of any
+     *           * `Important` to find Google Cloud resources that contain "Important" as a
      *             word in any of the searchable fields.
-     *           * `Important location:(us-west1 OR global)` to find Cloud
+     *           * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix
+     *             of any word in any of the searchable fields.
+     *           * `Important location:(us-west1 OR global)` to find Google Cloud
      *             resources that contain "Important" as a word in any of the searchable
      *             fields and are also located in the "us-west1" region or the "global"
      *             location.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
-     *           Optional. A list of asset types that this request searches for. If empty, it will
-     *           search all the [searchable asset
+     *           Optional. A list of asset types that this request searches for. If empty,
+     *           it will search all the [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      *           Regular expressions are also supported. For example:
      *           * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -258,19 +353,20 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *           regular expression syntax. If the regular expression does not match any
      *           supported asset type, an INVALID_ARGUMENT error will be returned.
      *     @type int $page_size
-     *           Optional. The page size for search result pagination. Page size is capped at 500 even
-     *           if a larger value is given. If set to zero, server will pick an appropriate
-     *           default. Returned results may be fewer than requested. When this happens,
-     *           there could be more results as long as `next_page_token` is returned.
+     *           Optional. The page size for search result pagination. Page size is capped
+     *           at 500 even if a larger value is given. If set to zero, server will pick an
+     *           appropriate default. Returned results may be fewer than requested. When
+     *           this happens, there could be more results as long as `next_page_token` is
+     *           returned.
      *     @type string $page_token
-     *           Optional. If present, then retrieve the next batch of results from the preceding call
-     *           to this method. `page_token` must be the value of `next_page_token` from
-     *           the previous response. The values of all other method parameters, must be
-     *           identical to those in the previous call.
+     *           Optional. If present, then retrieve the next batch of results from the
+     *           preceding call to this method. `page_token` must be the value of
+     *           `next_page_token` from the previous response. The values of all other
+     *           method parameters, must be identical to those in the previous call.
      *     @type string $order_by
-     *           Optional. A comma-separated list of fields specifying the sorting order of the
-     *           results. The default order is ascending. Add " DESC" after the field name
-     *           to indicate descending order. Redundant space characters are ignored.
+     *           Optional. A comma-separated list of fields specifying the sorting order of
+     *           the results. The default order is ascending. Add " DESC" after the field
+     *           name to indicate descending order. Redundant space characters are ignored.
      *           Example: "location DESC, name".
      *           Only singular primitive fields in the response are sortable:
      *             * name
@@ -288,10 +384,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *           `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g.,
      *           `additionalAttributes`) are not supported.
      *     @type \Google\Protobuf\FieldMask $read_mask
-     *           Optional. A comma-separated list of fields specifying which fields to be returned in
-     *           ResourceSearchResult. Only '*' or combination of top level fields can be
-     *           specified. Field names of both snake_case and camelCase are supported.
-     *           Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     *           Optional. A comma-separated list of fields specifying which fields to be
+     *           returned in ResourceSearchResult. Only '*' or combination of top level
+     *           fields can be specified. Field names of both snake_case and camelCase are
+     *           supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      *           The read_mask paths must be valid field paths listed but not limited to
      *           (both snake_case and camelCase are supported):
      *             * name
@@ -306,7 +402,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             * labels
      *             * networkTags
      *             * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
-     *               retrieve KMS key information.)
+     *               retrieve Cloud KMS key information.)
      *             * kmsKeys
      *             * createTime
      *             * updateTime
@@ -326,8 +422,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the resources within the `scope`. The caller must be granted the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the resources within the `scope`. The caller must be
+     * granted the
      * [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -345,8 +442,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the resources within the `scope`. The caller must be granted the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the resources within the `scope`. The caller must be
+     * granted the
      * [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -373,48 +471,48 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      * for more information. If not specified or empty, it will search all the
      * resources within the specified `scope`.
      * Examples:
-     * * `name:Important` to find Cloud resources whose name contains
+     * * `name:Important` to find Google Cloud resources whose name contains
      *   "Important" as a word.
-     * * `name=Important` to find the Cloud resource whose name is exactly
+     * * `name=Important` to find the Google Cloud resource whose name is exactly
      *   "Important".
-     * * `displayName:Impor*` to find Cloud resources whose display name
+     * * `displayName:Impor*` to find Google Cloud resources whose display name
      *   contains "Impor" as a prefix of any word in the field.
-     * * `location:us-west*` to find Cloud resources whose location contains both
-     *   "us" and "west" as prefixes.
-     * * `labels:prod` to find Cloud resources whose labels contain "prod" as
-     *   a key or value.
-     * * `labels.env:prod` to find Cloud resources that have a label "env"
+     * * `location:us-west*` to find Google Cloud resources whose location
+     *   contains both "us" and "west" as prefixes.
+     * * `labels:prod` to find Google Cloud resources whose labels contain "prod"
+     *   as a key or value.
+     * * `labels.env:prod` to find Google Cloud resources that have a label "env"
      *   and its value is "prod".
-     * * `labels.env:*` to find Cloud resources that have a label "env".
-     * * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *   encryption key whose name contains "key" as a word. This field is
-     *   deprecated. Please use the `kmsKeys` field to retrieve KMS key
-     *   information.
-     * * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
-     *   encryption keys whose name contains the word "key".
-     * * `relationships:instance-group-1` to find Cloud resources that have
+     * * `labels.env:*` to find Google Cloud resources that have a label "env".
+     * * `kmsKey:key` to find Google Cloud resources encrypted with a
+     *   customer-managed encryption key whose name contains "key" as a word. This
+     *   field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS
+     *   key information.
+     * * `kmsKeys:key` to find Google Cloud resources encrypted with
+     *   customer-managed encryption keys whose name contains the word "key".
+     * * `relationships:instance-group-1` to find Google Cloud resources that have
      *   relationships with "instance-group-1" in the related resource name.
-     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
-     *   have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine
+     *   instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP".
      * * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
-     *   compute instances that have relationships with "instance-group-1" in the
-     *   compute instance group resource name, for relationship type
+     *   Compute Engine instances that have relationships with "instance-group-1"
+     *   in the Compute Engine instance group resource name, for relationship type
      *   "INSTANCE_TO_INSTANCEGROUP".
-     * * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
-     *   word.
-     * * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
+     * * `state:ACTIVE` to find Google Cloud resources whose state contains
      *   "ACTIVE" as a word.
-     * * `createTime<1609459200` to find Cloud resources that were created before
-     *   "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     * * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't
+     *   contain "ACTIVE" as a word.
+     * * `createTime<1609459200` to find Google Cloud resources that were created
+     *   before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *   "2021-01-01 00:00:00 UTC" in seconds.
-     * * `updateTime>1609459200` to find Cloud resources that were updated after
-     *   "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     * * `updateTime>1609459200` to find Google Cloud resources that were updated
+     *   after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *   "2021-01-01 00:00:00 UTC" in seconds.
-     * * `Important` to find Cloud resources that contain "Important" as a word
-     *   in any of the searchable fields.
-     * * `Impor*` to find Cloud resources that contain "Impor" as a prefix of any
+     * * `Important` to find Google Cloud resources that contain "Important" as a
      *   word in any of the searchable fields.
-     * * `Important location:(us-west1 OR global)` to find Cloud
+     * * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix
+     *   of any word in any of the searchable fields.
+     * * `Important location:(us-west1 OR global)` to find Google Cloud
      *   resources that contain "Important" as a word in any of the searchable
      *   fields and are also located in the "us-west1" region or the "global"
      *   location.
@@ -433,48 +531,48 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      * for more information. If not specified or empty, it will search all the
      * resources within the specified `scope`.
      * Examples:
-     * * `name:Important` to find Cloud resources whose name contains
+     * * `name:Important` to find Google Cloud resources whose name contains
      *   "Important" as a word.
-     * * `name=Important` to find the Cloud resource whose name is exactly
+     * * `name=Important` to find the Google Cloud resource whose name is exactly
      *   "Important".
-     * * `displayName:Impor*` to find Cloud resources whose display name
+     * * `displayName:Impor*` to find Google Cloud resources whose display name
      *   contains "Impor" as a prefix of any word in the field.
-     * * `location:us-west*` to find Cloud resources whose location contains both
-     *   "us" and "west" as prefixes.
-     * * `labels:prod` to find Cloud resources whose labels contain "prod" as
-     *   a key or value.
-     * * `labels.env:prod` to find Cloud resources that have a label "env"
+     * * `location:us-west*` to find Google Cloud resources whose location
+     *   contains both "us" and "west" as prefixes.
+     * * `labels:prod` to find Google Cloud resources whose labels contain "prod"
+     *   as a key or value.
+     * * `labels.env:prod` to find Google Cloud resources that have a label "env"
      *   and its value is "prod".
-     * * `labels.env:*` to find Cloud resources that have a label "env".
-     * * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *   encryption key whose name contains "key" as a word. This field is
-     *   deprecated. Please use the `kmsKeys` field to retrieve KMS key
-     *   information.
-     * * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
-     *   encryption keys whose name contains the word "key".
-     * * `relationships:instance-group-1` to find Cloud resources that have
+     * * `labels.env:*` to find Google Cloud resources that have a label "env".
+     * * `kmsKey:key` to find Google Cloud resources encrypted with a
+     *   customer-managed encryption key whose name contains "key" as a word. This
+     *   field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS
+     *   key information.
+     * * `kmsKeys:key` to find Google Cloud resources encrypted with
+     *   customer-managed encryption keys whose name contains the word "key".
+     * * `relationships:instance-group-1` to find Google Cloud resources that have
      *   relationships with "instance-group-1" in the related resource name.
-     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
-     *   have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     * * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine
+     *   instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP".
      * * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
-     *   compute instances that have relationships with "instance-group-1" in the
-     *   compute instance group resource name, for relationship type
+     *   Compute Engine instances that have relationships with "instance-group-1"
+     *   in the Compute Engine instance group resource name, for relationship type
      *   "INSTANCE_TO_INSTANCEGROUP".
-     * * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
-     *   word.
-     * * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
+     * * `state:ACTIVE` to find Google Cloud resources whose state contains
      *   "ACTIVE" as a word.
-     * * `createTime<1609459200` to find Cloud resources that were created before
-     *   "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     * * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't
+     *   contain "ACTIVE" as a word.
+     * * `createTime<1609459200` to find Google Cloud resources that were created
+     *   before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *   "2021-01-01 00:00:00 UTC" in seconds.
-     * * `updateTime>1609459200` to find Cloud resources that were updated after
-     *   "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     * * `updateTime>1609459200` to find Google Cloud resources that were updated
+     *   after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *   "2021-01-01 00:00:00 UTC" in seconds.
-     * * `Important` to find Cloud resources that contain "Important" as a word
-     *   in any of the searchable fields.
-     * * `Impor*` to find Cloud resources that contain "Impor" as a prefix of any
+     * * `Important` to find Google Cloud resources that contain "Important" as a
      *   word in any of the searchable fields.
-     * * `Important location:(us-west1 OR global)` to find Cloud
+     * * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix
+     *   of any word in any of the searchable fields.
+     * * `Important location:(us-west1 OR global)` to find Google Cloud
      *   resources that contain "Important" as a word in any of the searchable
      *   fields and are also located in the "us-west1" region or the "global"
      *   location.
@@ -492,8 +590,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of asset types that this request searches for. If empty, it will
-     * search all the [searchable asset
+     * Optional. A list of asset types that this request searches for. If empty,
+     * it will search all the [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -513,8 +611,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of asset types that this request searches for. If empty, it will
-     * search all the [searchable asset
+     * Optional. A list of asset types that this request searches for. If empty,
+     * it will search all the [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -538,10 +636,11 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -552,10 +651,11 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -570,10 +670,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `page_token` must be the value of `next_page_token` from
-     * the previous response. The values of all other method parameters, must be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of all other
+     * method parameters, must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -584,10 +684,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `page_token` must be the value of `next_page_token` from
-     * the previous response. The values of all other method parameters, must be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of all other
+     * method parameters, must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -602,9 +702,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "location DESC, name".
      * Only singular primitive fields in the response are sortable:
      *   * name
@@ -631,9 +731,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "location DESC, name".
      * Only singular primitive fields in the response are sortable:
      *   * name
@@ -664,10 +764,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying which fields to be returned in
-     * ResourceSearchResult. Only '*' or combination of top level fields can be
-     * specified. Field names of both snake_case and camelCase are supported.
-     * Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     * Optional. A comma-separated list of fields specifying which fields to be
+     * returned in ResourceSearchResult. Only '*' or combination of top level
+     * fields can be specified. Field names of both snake_case and camelCase are
+     * supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      * The read_mask paths must be valid field paths listed but not limited to
      * (both snake_case and camelCase are supported):
      *   * name
@@ -682,7 +782,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * labels
      *   * networkTags
      *   * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
-     *     retrieve KMS key information.)
+     *     retrieve Cloud KMS key information.)
      *   * kmsKeys
      *   * createTime
      *   * updateTime
@@ -714,10 +814,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying which fields to be returned in
-     * ResourceSearchResult. Only '*' or combination of top level fields can be
-     * specified. Field names of both snake_case and camelCase are supported.
-     * Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     * Optional. A comma-separated list of fields specifying which fields to be
+     * returned in ResourceSearchResult. Only '*' or combination of top level
+     * fields can be specified. Field names of both snake_case and camelCase are
+     * supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      * The read_mask paths must be valid field paths listed but not limited to
      * (both snake_case and camelCase are supported):
      *   * name
@@ -732,7 +832,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * labels
      *   * networkTags
      *   * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
-     *     retrieve KMS key information.)
+     *     retrieve Cloud KMS key information.)
      *   * kmsKeys
      *   * createTime
      *   * updateTime

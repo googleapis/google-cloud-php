@@ -73,6 +73,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Video\Transcoder\V1\Client\TranscoderServiceClient} to use the new
+ * surface.
  */
 class TranscoderServiceGapicClient
 {
@@ -266,9 +270,6 @@ class TranscoderServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'transcoder.googleapis.com:443'.
@@ -298,7 +299,7 @@ class TranscoderServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -385,8 +386,8 @@ class TranscoderServiceGapicClient
      * @param string      $parent        Required. The parent location to create this job template.
      *                                   Format: `projects/{project}/locations/{location}`
      * @param JobTemplate $jobTemplate   Required. Parameters for creating job template.
-     * @param string      $jobTemplateId Required. The ID to use for the job template, which will become the final component
-     *                                   of the job template's resource name.
+     * @param string      $jobTemplateId Required. The ID to use for the job template, which will become the final
+     *                                   component of the job template's resource name.
      *
      *                                   This value should be 4-63 characters, and valid characters must match the
      *                                   regular expression `[a-zA-Z][a-zA-Z0-9_-]*`.
@@ -613,8 +614,8 @@ class TranscoderServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent location from which to retrieve the collection of job templates.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The parent location from which to retrieve the collection of job
+     *                             templates. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
