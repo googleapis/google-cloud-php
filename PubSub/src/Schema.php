@@ -178,7 +178,7 @@ class Schema
             $options['view'] = SchemaView::value($options['view']);
         }
 
-        return $this->requestHandler->sendReq(
+        return $this->info = $this->requestHandler->sendReq(
             SchemaServiceClient::class,
             'getSchema',
             [$this->name],

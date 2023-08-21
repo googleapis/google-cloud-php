@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\Cloud\Core\Exception\NotFoundException;
+use Google\ApiCore\Veneer\Exception\NotFoundException;
+use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Schema;
+use Google\Cloud\PubSub\V1\SchemaView;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -34,16 +37,16 @@ class SchemaTest extends TestCase
 
     const NAME = "projects/example/schemas/my-schema";
 
-    private $connection;
+    private $requestHandler;
     private $schema;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->schema = TestHelpers::stub(Schema::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
             self::NAME,
-        ]);
+        ], ['requestHandler']);
     }
 
     public function testName()
@@ -53,11 +56,14 @@ class SchemaTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteSchema([
-            'name' => self::NAME,
-        ])->willReturn('foo');
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('deleteSchema'), 2],
+                [Argument::containing(self::NAME), 3]
+            ])
+        )->willReturn('foo');
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         // the service call returns void, but let's test that we're returning whatever it sends.
         $this->assertEquals('foo', $this->schema->delete());
@@ -65,12 +71,15 @@ class SchemaTest extends TestCase
 
     public function testInfo()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSchema'), 2],
+                [Argument::containing(self::NAME), 3],
+                [Argument::withEntry('view', SchemaView::value('FULL')), 4],
+            ])
+        )->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals('bar', $this->schema->info()['foo']);
 
@@ -80,12 +89,15 @@ class SchemaTest extends TestCase
 
     public function testReload()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledTimes(2)->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSchema'), 2],
+                [Argument::containing(self::NAME), 3],
+                [Argument::withEntry('view', SchemaView::value('FULL')), 4],
+            ])
+        )->shouldBeCalledTimes(2)->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals('bar', $this->schema->reload()['foo']);
 
@@ -95,25 +107,47 @@ class SchemaTest extends TestCase
 
     public function testExists()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSchema'), 2],
+                [Argument::containing(self::NAME), 3],
+                [Argument::withEntry('view', SchemaView::value('FULL')), 4],
+            ])
+        )->shouldBeCalledOnce()->willReturn(['foo' => 'bar']);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertTrue($this->schema->exists());
     }
 
     public function testExistsReturnsFalse()
     {
-        $this->connection->getSchema([
-            'name' => self::NAME,
-            'view' => 'FULL',
-        ])->shouldBeCalledOnce()->willThrow(NotFoundException::class);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSchema'), 2],
+                [Argument::containing(self::NAME), 3],
+                [Argument::withEntry('view', SchemaView::value('FULL')), 4],
+            ])
+        )->shouldBeCalledOnce()->willThrow(NotFoundException::class);
 
-        $this->schema->___setProperty('connection', $this->connection->reveal());
+        $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertFalse($this->schema->exists());
+    }
+
+    private function matchesNthArgument($tokensArr, $totalTokens = 4)
+    {
+        $args = [];
+        for ($i = 0; $i < $totalTokens; $i++) {
+            $args[$i] = Argument::any();
+        }
+
+        foreach($tokensArr as $row) {
+            $token = $row[0];
+            $index = $row[1] - 1;
+            $args[$index] = $token;
+        }
+
+        return $args;
     }
 }
