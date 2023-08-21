@@ -34,6 +34,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class SchemaTest extends TestCase
 {
     use ProphecyTrait;
+    use ArgumentHelperTrait;
 
     const NAME = "projects/example/schemas/my-schema";
 
@@ -133,21 +134,5 @@ class SchemaTest extends TestCase
         $this->schema->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertFalse($this->schema->exists());
-    }
-
-    private function matchesNthArgument($tokensArr, $totalTokens = 4)
-    {
-        $args = [];
-        for ($i = 0; $i < $totalTokens; $i++) {
-            $args[$i] = Argument::any();
-        }
-
-        foreach($tokensArr as $row) {
-            $token = $row[0];
-            $index = $row[1] - 1;
-            $args[$index] = $token;
-        }
-
-        return $args;
     }
 }

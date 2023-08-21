@@ -19,7 +19,6 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -33,6 +32,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class SnapshotTest extends TestCase
 {
     use ProphecyTrait;
+    use ArgumentHelperTrait;
 
     const PROJECT = 'my-project';
     const SNAPSHOT_ID = 'snapshot';
@@ -150,21 +150,5 @@ class SnapshotTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Subscription::class, $this->snapshot->subscription());
-    }
-
-    private function matchesNthArgument($tokensArr, $totalTokens = 4)
-    {
-        $args = [];
-        for ($i = 0; $i < $totalTokens; $i++) {
-            $args[$i] = Argument::any();
-        }
-
-        foreach($tokensArr as $row) {
-            $token = $row[0];
-            $index = $row[1] - 1;
-            $args[$index] = $token;
-        }
-
-        return $args;
     }
 }

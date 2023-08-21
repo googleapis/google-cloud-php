@@ -30,7 +30,6 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\Subscription as V1Subscription;
-use Google\Protobuf\Duration as ProtobufDuration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
@@ -45,6 +44,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class SubscriptionTest extends TestCase
 {
     use ProphecyTrait;
+    use ArgumentHelperTrait;
 
     const PROJECT = 'project-id';
     const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
@@ -1162,21 +1162,5 @@ class SubscriptionTest extends TestCase
         ];
 
         return new BadRequestException(json_encode($arr));
-    }
-
-    private function matchesNthArgument($tokensArr, $totalTokens = 4)
-    {
-        $args = [];
-        for ($i = 0; $i < $totalTokens; $i++) {
-            $args[$i] = Argument::any();
-        }
-
-        foreach($tokensArr as $row) {
-            $token = $row[0];
-            $index = $row[1] - 1;
-            $args[$index] = $token;
-        }
-
-        return $args;
     }
 }

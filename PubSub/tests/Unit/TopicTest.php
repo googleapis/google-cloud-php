@@ -39,6 +39,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class TopicTest extends TestCase
 {
     use ProphecyTrait;
+    use ArgumentHelperTrait;
 
     const TOPIC = 'projects/project-name/topics/topic-name';
 
@@ -64,13 +65,17 @@ class TopicTest extends TestCase
     public function testCreate()
     {
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('createTopic'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('createTopic'), 2]
+            ])
         )->willReturn([
             'name' => self::TOPIC
         ]);
 
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('getTopic'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('getTopic'), 2]
+            ])
         )->shouldNotBeCalled();
 
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -86,12 +91,12 @@ class TopicTest extends TestCase
     public function testUpdate()
     {
         $this->requestHandler->sendReq(
-            Argument::any(),
-            Argument::exact('updateTopic'),
-            Argument::that(function($args) {
-                return $args[0] instanceof V1Topic && $args[1] instanceof FieldMask;
-            }),
-            Argument::any()
+            ...$this->matchesNthArgument([
+                [Argument::exact('updateTopic'), 2],
+                [Argument::that(function($args) {
+                    return $args[0] instanceof V1Topic && $args[1] instanceof FieldMask;
+                }), 3]
+            ])
         )->shouldBeCalled()->willReturn([
             'foo' => 'bar'
         ]);
@@ -107,7 +112,9 @@ class TopicTest extends TestCase
     public function testDelete()
     {
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('deleteTopic'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('deleteTopic'), 2]
+            ])
         )->shouldBeCalled();
 
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -118,7 +125,9 @@ class TopicTest extends TestCase
     public function testExists()
     {
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('getTopic'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('getTopic'), 2]
+            ])
         )->willReturn([
             'name' => self::TOPIC
         ]);
@@ -131,7 +140,9 @@ class TopicTest extends TestCase
     public function testExistsReturnsFalse()
     {
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('getTopic'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('getTopic'), 2]
+            ])
         )->willThrow(new NotFoundException('uh oh'));
 
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -142,7 +153,9 @@ class TopicTest extends TestCase
     public function testInfo()
     {
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('getTopic'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('getTopic'), 2]
+            ])
         )->willReturn([
             'name' => self::TOPIC
         ])->shouldBeCalledTimes(1);
@@ -159,7 +172,9 @@ class TopicTest extends TestCase
     public function testReload()
     {
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('getTopic'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('getTopic'), 2]
+            ])
         )->willReturn([
             'name' => self::TOPIC
         ]);
@@ -185,14 +200,15 @@ class TopicTest extends TestCase
         ];
 
         $this->requestHandler->sendReq(
-            Argument::any(),
-            Argument::exact('publish'),
-            Argument::that(function ($args) use ($message) {
-                $message['data'] = base64_encode($message['data']);
+            ...$this->matchesNthArgument([
+                [Argument::exact('publish'), 2],
+                [Argument::that(function ($args) use ($message) {
+                    $message['data'] = base64_encode($message['data']);
 
-                return $args[0] === self::TOPIC && $args[1][0] instanceof PubsubMessage && $args[1][0]->getData() === $message['data'];
-            }),
-            Argument::withEntry('foo', 'bar')
+                    return $args[0] === self::TOPIC && $args[1][0] instanceof PubsubMessage && $args[1][0]->getData() === $message['data'];
+                }), 3],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
         )->willReturn($ids);
 
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -224,21 +240,24 @@ class TopicTest extends TestCase
         ];
 
         $this->requestHandler->sendReq(
-            Argument::any(),
-            Argument::exact('publish'),
-            Argument::that(function ($args) use ($messages) {
-                $validArg = $args[0] === self::TOPIC;
-
-                foreach($messages as $key => $msg) {
-                    $validArg = $validArg && (base64_encode($msg['data']) == $args[1][$key]->getData());
-                    $validArg = $validArg && $args[1][$key] instanceof PubsubMessage;
-                }
-                $messages[0]['data'] = base64_encode($messages[0]['data']);
-                $messages[1]['data'] = base64_encode($messages[1]['data']);
-
-                return  $validArg;
-            }),
-            Argument::withEntry('foo', 'bar')
+            ...$this->matchesNthArgument([
+                [Argument::exact('publish'), 2],
+                [
+                    Argument::that(function ($args) use ($messages) {
+                        $validArg = $args[0] === self::TOPIC;
+        
+                        foreach($messages as $key => $msg) {
+                            $validArg = $validArg && (base64_encode($msg['data']) == $args[1][$key]->getData());
+                            $validArg = $validArg && $args[1][$key] instanceof PubsubMessage;
+                        }
+                        $messages[0]['data'] = base64_encode($messages[0]['data']);
+                        $messages[1]['data'] = base64_encode($messages[1]['data']);
+        
+                        return  $validArg;
+                    }), 3
+                ],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
         )->willReturn($ids);
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -256,7 +275,9 @@ class TopicTest extends TestCase
         ];
 
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('publish'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('publish'), 2]
+            ])
         );
 
         $this->topic->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -280,10 +301,10 @@ class TopicTest extends TestCase
         ];
 
         $this->requestHandler->sendReq(
-            Argument::any(),
-            Argument::exact('createSubscription'),
-            Argument::any(),
-            Argument::withEntry('foo', 'bar')
+            ...$this->matchesNthArgument([
+                [Argument::exact('createSubscription'), 2],
+                [Argument::withEntry('foo', 'bar'), 4]
+            ])
         )->willReturn($subscriptionData)
         ->shouldBeCalledTimes(1);
 
@@ -310,7 +331,9 @@ class TopicTest extends TestCase
         ];
 
         $this->requestHandler->sendReq(
-            ...$this->matchesNthArgument(Argument::exact('listTopicSubscriptions'), 2)
+            ...$this->matchesNthArgument([
+                [Argument::exact('listTopicSubscriptions'), 2]
+            ])
         )->willReturn([
             'subscriptions' => $subscriptionResult
         ])->shouldBeCalledTimes(1);
@@ -339,16 +362,16 @@ class TopicTest extends TestCase
         ];
 
         $this->requestHandler->sendReq(
-            Argument::any(),
-            Argument::exact('listTopicSubscriptions'),
-            Argument::any(),
-            Argument::that(function($options) {
-                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                    return false;
-                }
-
-                return true;
-            })
+            ...$this->matchesNthArgument([
+                [Argument::exact('listTopicSubscriptions'), 2],
+                [Argument::that(function($options) {
+                    if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                        return false;
+                    }
+    
+                    return true;
+                }), 4]
+            ])
         )->willReturn([
             'subscriptions' => $subscriptionResult,
             'nextPageToken' => 'foo'
@@ -377,17 +400,5 @@ class TopicTest extends TestCase
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->topic->iam());
-    }
-
-    private function matchesNthArgument($wildcard, $num)
-    {
-        $args = [];
-        for ($i = 0; $i < $num - 1; $i++) {
-            $args[] = Argument::any();
-        }
-
-        $args[] = $wildcard;
-        $args[] = Argument::cetera();
-        return $args;
     }
 }
