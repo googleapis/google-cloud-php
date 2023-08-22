@@ -38,9 +38,7 @@ use Google\Cloud\Video\Stitcher\V1\VodSession;
  *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
  * @param string $vodSessionSourceUri  URI of the media to stitch.
  * @param string $vodSessionAdTagUri   Ad tag URI.
- * @param int    $vodSessionAdTracking Determines how the ad should be tracked. If
- *                                     [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
- *                                     is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+ * @param int    $vodSessionAdTracking Determines how the ad should be tracked.
  */
 function create_vod_session_sample(
     string $formattedParent,
