@@ -28,8 +28,10 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Optional. A set of folder and organization names of the form
      * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
      * usage from only this set of folders and organizations should be included in
-     * the budget. If omitted, the report includes all usage for all
-     * organizations, regardless of which organization the usage occurred on.
+     * the budget. If omitted, the budget includes all usage that the billing
+     * account pays for. If the folder or organization contains projects that are
+     * paid for by a different Cloud Billing account, the budget *doesn't* apply
+     * to those projects.
      *
      * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -105,8 +107,10 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           Optional. A set of folder and organization names of the form
      *           `folders/{folderId}` or `organizations/{organizationId}`, specifying that
      *           usage from only this set of folders and organizations should be included in
-     *           the budget. If omitted, the report includes all usage for all
-     *           organizations, regardless of which organization the usage occurred on.
+     *           the budget. If omitted, the budget includes all usage that the billing
+     *           account pays for. If the folder or organization contains projects that are
+     *           paid for by a different Cloud Billing account, the budget *doesn't* apply
+     *           to those projects.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $credit_types
      *           Optional. If
      *           [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment]
@@ -194,8 +198,10 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Optional. A set of folder and organization names of the form
      * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
      * usage from only this set of folders and organizations should be included in
-     * the budget. If omitted, the report includes all usage for all
-     * organizations, regardless of which organization the usage occurred on.
+     * the budget. If omitted, the budget includes all usage that the billing
+     * account pays for. If the folder or organization contains projects that are
+     * paid for by a different Cloud Billing account, the budget *doesn't* apply
+     * to those projects.
      *
      * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -209,8 +215,10 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Optional. A set of folder and organization names of the form
      * `folders/{folderId}` or `organizations/{organizationId}`, specifying that
      * usage from only this set of folders and organizations should be included in
-     * the budget. If omitted, the report includes all usage for all
-     * organizations, regardless of which organization the usage occurred on.
+     * the budget. If omitted, the budget includes all usage that the billing
+     * account pays for. If the folder or organization contains projects that are
+     * paid for by a different Cloud Billing account, the budget *doesn't* apply
+     * to those projects.
      *
      * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
