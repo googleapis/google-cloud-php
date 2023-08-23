@@ -67,6 +67,14 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string database_names = 9;</code>
      */
     private $database_names;
+    /**
+     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
+     * in the specified zone. If no zone is specified, clone to the same zone as
+     * the source instance.
+     *
+     * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $preferred_zone = null;
 
     /**
      * Constructor.
@@ -98,6 +106,10 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_names
      *           (SQL Server only) Clone only the specified databases from the source
      *           instance. Clone all databases if empty.
+     *     @type string $preferred_zone
+     *           Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
+     *           in the specified zone. If no zone is specified, clone to the same zone as
+     *           the source instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -323,6 +335,46 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->database_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
+     * in the specified zone. If no zone is specified, clone to the same zone as
+     * the source instance.
+     *
+     * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPreferredZone()
+    {
+        return isset($this->preferred_zone) ? $this->preferred_zone : '';
+    }
+
+    public function hasPreferredZone()
+    {
+        return isset($this->preferred_zone);
+    }
+
+    public function clearPreferredZone()
+    {
+        unset($this->preferred_zone);
+    }
+
+    /**
+     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
+     * in the specified zone. If no zone is specified, clone to the same zone as
+     * the source instance.
+     *
+     * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPreferredZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->preferred_zone = $var;
 
         return $this;
     }

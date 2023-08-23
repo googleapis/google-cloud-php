@@ -53,6 +53,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
+     * A non-boot disk is a disk that can be of a device with a
+     * file system or a raw storage drive that is not ready for data
+     * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      */
@@ -81,6 +84,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           Non-boot disks to be attached for each VM created by this InstancePolicy.
      *           New disks will be deleted when the VM is deleted.
+     *           A non-boot disk is a disk that can be of a device with a
+     *           file system or a raw storage drive that is not ready for data
+     *           storage and accessing.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +245,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
+     * A non-boot disk is a disk that can be of a device with a
+     * file system or a raw storage drive that is not ready for data
+     * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -251,6 +260,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
+     * A non-boot disk is a disk that can be of a device with a
+     * file system or a raw storage drive that is not ready for data
+     * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var

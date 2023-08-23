@@ -407,7 +407,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setLiveConfig($liveConfig);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $liveSession = new LiveSession();
         $liveSessionLiveConfig = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
         $liveSession->setLiveConfig($liveSessionLiveConfig);
@@ -447,7 +447,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $liveSession = new LiveSession();
         $liveSessionLiveConfig = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
         $liveSession->setLiveConfig($liveSessionLiveConfig);

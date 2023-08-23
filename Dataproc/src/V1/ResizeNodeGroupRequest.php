@@ -47,7 +47,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. Timeout for graceful YARN decomissioning. [Graceful
+     * Optional. Timeout for graceful YARN decommissioning. [Graceful
      * decommissioning]
      * (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      * allows the removal of nodes from the Compute Engine node group
@@ -108,7 +108,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
      *           underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type \Google\Protobuf\Duration $graceful_decommission_timeout
-     *           Optional. Timeout for graceful YARN decomissioning. [Graceful
+     *           Optional. Timeout for graceful YARN decommissioning. [Graceful
      *           decommissioning]
      *           (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      *           allows the removal of nodes from the Compute Engine node group
@@ -231,7 +231,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. [Graceful
+     * Optional. Timeout for graceful YARN decommissioning. [Graceful
      * decommissioning]
      * (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      * allows the removal of nodes from the Compute Engine node group
@@ -262,7 +262,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. [Graceful
+     * Optional. Timeout for graceful YARN decommissioning. [Graceful
      * decommissioning]
      * (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      * allows the removal of nodes from the Compute Engine node group
