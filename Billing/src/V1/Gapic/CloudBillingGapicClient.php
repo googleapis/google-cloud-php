@@ -931,8 +931,9 @@ class CloudBillingGapicClient
      *     Optional.
      *
      *     @type ProjectBillingInfo $projectBillingInfo
-     *           The new billing information for the project. Read-only fields are ignored;
-     *           thus, you can leave empty all fields except `billing_account_name`.
+     *           The new billing information for the project. Output-only fields are
+     *           ignored; thus, you can leave empty all fields except
+     *           `billing_account_name`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
