@@ -7,10 +7,10 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Dataproc\V1\WorkflowMetadata',
-                    'initialPollDelayMillis' => '1000',
-                    'pollDelayMultiplier' => '2.0',
-                    'maxPollDelayMillis' => '10000',
-                    'totalPollTimeoutMillis' => '43200000',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [
@@ -26,10 +26,10 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Dataproc\V1\WorkflowMetadata',
-                    'initialPollDelayMillis' => '1000',
-                    'pollDelayMultiplier' => '2.0',
-                    'maxPollDelayMillis' => '10000',
-                    'totalPollTimeoutMillis' => '43200000',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [
@@ -109,6 +109,45 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
                 'clusterRegion' => 'projects/{project}/regions/{region}/clusters/{cluster}',

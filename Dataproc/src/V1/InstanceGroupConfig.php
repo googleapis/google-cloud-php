@@ -35,6 +35,12 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $instance_names;
     /**
+     * Output only. List of references to Compute Engine instances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.InstanceReference instance_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $instance_references;
+    /**
      * Optional. The Compute Engine image resource used for cluster instances.
      * The URI can represent an image or image family.
      * Image examples:
@@ -112,6 +118,34 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $min_cpu_platform = '';
+    /**
+     * Optional. The minimum number of instances to create.
+     * If min_num_instances is set, min_num_instances is used for a criteria to
+     * decide the cluster. Cluster creation will be failed by being an error state
+     * if the total number of instances created is less than the
+     * min_num_instances.
+     * For example, given that num_instances = 5 and min_num_instances = 3,
+     * * if 4 instances are created and then registered successfully but one
+     * instance is failed, the failed VM will be deleted and the cluster will be
+     * resized to 4 instances in running state.
+     * * if 2 instances are created successfully and 3 instances are failed,
+     * the cluster will be in an error state and does not delete failed VMs for
+     * debugging.
+     * * if 2 instance are created and then registered successfully but 3
+     * instances are failed to initialize, the cluster will be in an error state
+     * and does not delete failed VMs for debugging.
+     * NB: This can only be set for primary workers now.
+     *
+     * Generated from protobuf field <code>int32 min_num_instances = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $min_num_instances = 0;
+    /**
+     * Optional. Instance flexibility Policy allowing a mixture of VM shapes and
+     * provisioning models.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $instance_flexibility_policy = null;
 
     /**
      * Constructor.
@@ -129,6 +163,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_names
      *           Output only. The list of instance names. Dataproc derives the names
      *           from `cluster_name`, `num_instances`, and the instance group.
+     *     @type array<\Google\Cloud\Dataproc\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $instance_references
+     *           Output only. List of references to Compute Engine instances.
      *     @type string $image_uri
      *           Optional. The Compute Engine image resource used for cluster instances.
      *           The URI can represent an image or image family.
@@ -175,6 +211,26 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies the minimum cpu platform for the Instance Group.
      *           See [Dataproc -> Minimum CPU
      *           Platform](https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     *     @type int $min_num_instances
+     *           Optional. The minimum number of instances to create.
+     *           If min_num_instances is set, min_num_instances is used for a criteria to
+     *           decide the cluster. Cluster creation will be failed by being an error state
+     *           if the total number of instances created is less than the
+     *           min_num_instances.
+     *           For example, given that num_instances = 5 and min_num_instances = 3,
+     *           * if 4 instances are created and then registered successfully but one
+     *           instance is failed, the failed VM will be deleted and the cluster will be
+     *           resized to 4 instances in running state.
+     *           * if 2 instances are created successfully and 3 instances are failed,
+     *           the cluster will be in an error state and does not delete failed VMs for
+     *           debugging.
+     *           * if 2 instance are created and then registered successfully but 3
+     *           instances are failed to initialize, the cluster will be in an error state
+     *           and does not delete failed VMs for debugging.
+     *           NB: This can only be set for primary workers now.
+     *     @type \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy $instance_flexibility_policy
+     *           Optional. Instance flexibility Policy allowing a mixture of VM shapes and
+     *           provisioning models.
      * }
      */
     public function __construct($data = NULL) {
@@ -242,6 +298,32 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->instance_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of references to Compute Engine instances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.InstanceReference instance_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInstanceReferences()
+    {
+        return $this->instance_references;
+    }
+
+    /**
+     * Output only. List of references to Compute Engine instances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.InstanceReference instance_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Dataproc\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInstanceReferences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\InstanceReference::class);
+        $this->instance_references = $arr;
 
         return $this;
     }
@@ -530,6 +612,100 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->min_cpu_platform = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The minimum number of instances to create.
+     * If min_num_instances is set, min_num_instances is used for a criteria to
+     * decide the cluster. Cluster creation will be failed by being an error state
+     * if the total number of instances created is less than the
+     * min_num_instances.
+     * For example, given that num_instances = 5 and min_num_instances = 3,
+     * * if 4 instances are created and then registered successfully but one
+     * instance is failed, the failed VM will be deleted and the cluster will be
+     * resized to 4 instances in running state.
+     * * if 2 instances are created successfully and 3 instances are failed,
+     * the cluster will be in an error state and does not delete failed VMs for
+     * debugging.
+     * * if 2 instance are created and then registered successfully but 3
+     * instances are failed to initialize, the cluster will be in an error state
+     * and does not delete failed VMs for debugging.
+     * NB: This can only be set for primary workers now.
+     *
+     * Generated from protobuf field <code>int32 min_num_instances = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMinNumInstances()
+    {
+        return $this->min_num_instances;
+    }
+
+    /**
+     * Optional. The minimum number of instances to create.
+     * If min_num_instances is set, min_num_instances is used for a criteria to
+     * decide the cluster. Cluster creation will be failed by being an error state
+     * if the total number of instances created is less than the
+     * min_num_instances.
+     * For example, given that num_instances = 5 and min_num_instances = 3,
+     * * if 4 instances are created and then registered successfully but one
+     * instance is failed, the failed VM will be deleted and the cluster will be
+     * resized to 4 instances in running state.
+     * * if 2 instances are created successfully and 3 instances are failed,
+     * the cluster will be in an error state and does not delete failed VMs for
+     * debugging.
+     * * if 2 instance are created and then registered successfully but 3
+     * instances are failed to initialize, the cluster will be in an error state
+     * and does not delete failed VMs for debugging.
+     * NB: This can only be set for primary workers now.
+     *
+     * Generated from protobuf field <code>int32 min_num_instances = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMinNumInstances($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->min_num_instances = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Instance flexibility Policy allowing a mixture of VM shapes and
+     * provisioning models.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy|null
+     */
+    public function getInstanceFlexibilityPolicy()
+    {
+        return $this->instance_flexibility_policy;
+    }
+
+    public function hasInstanceFlexibilityPolicy()
+    {
+        return isset($this->instance_flexibility_policy);
+    }
+
+    public function clearInstanceFlexibilityPolicy()
+    {
+        unset($this->instance_flexibility_policy);
+    }
+
+    /**
+     * Optional. Instance flexibility Policy allowing a mixture of VM shapes and
+     * provisioning models.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy $var
+     * @return $this
+     */
+    public function setInstanceFlexibilityPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy::class);
+        $this->instance_flexibility_policy = $var;
 
         return $this;
     }
