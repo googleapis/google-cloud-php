@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Either an InstancePolicy or an instance template.
+ * InstancePolicyOrTemplate lets you define the type of resources to use for
+ * this job either with an InstancePolicy or an instance template.
+ * If undefined, Batch picks the type of VM to use and doesn't include
+ * optional VM resources such as GPUs and extra disks.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.AllocationPolicy.InstancePolicyOrTemplate</code>
  */
