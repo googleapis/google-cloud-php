@@ -9,12 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Instance delete request.
- * Next tag: 7
+ * Instance get latest recovery time request.
  *
- * Generated from protobuf message <code>google.cloud.sql.v1.SqlInstancesDeleteRequest</code>
+ * Generated from protobuf message <code>google.cloud.sql.v1.SqlInstancesGetLatestRecoveryTimeRequest</code>
  */
-class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
+class SqlInstancesGetLatestRecoveryTimeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -23,7 +22,7 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
      */
     private $instance = '';
     /**
-     * Project ID of the project that contains the instance to be deleted.
+     * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
@@ -38,7 +37,7 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
      *     @type string $instance
      *           Cloud SQL instance ID. This does not include the project ID.
      *     @type string $project
-     *           Project ID of the project that contains the instance to be deleted.
+     *           Project ID of the project that contains the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +72,7 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID of the project that contains the instance to be deleted.
+     * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      * @return string
@@ -84,7 +83,7 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID of the project that contains the instance to be deleted.
+     * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      * @param string $var
