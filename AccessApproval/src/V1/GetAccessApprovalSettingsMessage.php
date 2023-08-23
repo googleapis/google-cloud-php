@@ -24,6 +24,20 @@ class GetAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name The name of the AccessApprovalSettings to retrieve.
+     *                     Format: "{projects|folders|organizations}/{id}/accessApprovalSettings"
+     *
+     * @return \Google\Cloud\AccessApproval\V1\GetAccessApprovalSettingsMessage
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_ListRestores_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\ListRestoresRequest;
 use Google\Cloud\GkeBackup\V1\Restore;
 
 /**
  * Lists the Restores for a given RestorePlan.
  *
  * @param string $formattedParent The RestorePlan that contains the Restores to list.
- *                                Format: projects/&#42;/locations/&#42;/restorePlans/*
+ *                                Format: `projects/&#42;/locations/&#42;/restorePlans/*`
  *                                Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
  */
 function list_restores_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_restores_sample(string $formattedParent): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new ListRestoresRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $backupForGKEClient->listRestores($formattedParent);
+        $response = $backupForGKEClient->listRestores($request);
 
         /** @var Restore $element */
         foreach ($response as $element) {

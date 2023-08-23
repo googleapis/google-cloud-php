@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a measurement protocol secret.
@@ -38,15 +39,17 @@ function update_measurement_protocol_secret_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $measurementProtocolSecret = (new MeasurementProtocolSecret())
         ->setDisplayName($measurementProtocolSecretDisplayName);
+    $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.
     try {
         /** @var MeasurementProtocolSecret $response */
         $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret(
-            $measurementProtocolSecret
+            $measurementProtocolSecret,
+            $updateMask
         );
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {

@@ -50,7 +50,7 @@ function create_client_event_sample(string $formattedParent, string $clientEvent
     // Create a client.
     $eventServiceClient = new EventServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $clientEventCreateTime = new Timestamp();
     $clientEvent = (new ClientEvent())
         ->setEventId($clientEventEventId)

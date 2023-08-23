@@ -30,8 +30,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * A human-friendly name for the Uptime check configuration. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced. Required.
+     * should be unique within a Cloud Monitoring Workspace in order to make it
+     * easier to identify; however, uniqueness is not enforced. Required.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
@@ -63,6 +63,12 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     private $content_matchers;
     /**
+     * The type of checkers to use to execute the Uptime check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.CheckerType checker_type = 17;</code>
+     */
+    private $checker_type = 0;
+    /**
      * The list of regions from which the check will be run.
      * Some regions contain one location, and others contain more than one.
      * If this field is specified, enough regions must be provided to include a
@@ -92,6 +98,17 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     private $internal_checkers;
+    /**
+     * User-supplied key/value data to be used for organizing and
+     * identifying the `UptimeCheckConfig` objects.
+     * The field can contain up to 64 entries. Each key and value is limited to
+     * 63 Unicode characters or 128 bytes, whichever is smaller. Labels and
+     * values can contain only lowercase letters, numerals, underscores, and
+     * dashes. Keys must begin with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 20;</code>
+     */
+    private $user_labels;
     protected $resource;
     protected $check_request_type;
 
@@ -111,8 +128,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           response.
      *     @type string $display_name
      *           A human-friendly name for the Uptime check configuration. The display name
-     *           should be unique within a Stackdriver Workspace in order to make it easier
-     *           to identify; however, uniqueness is not enforced. Required.
+     *           should be unique within a Cloud Monitoring Workspace in order to make it
+     *           easier to identify; however, uniqueness is not enforced. Required.
      *     @type \Google\Api\MonitoredResource $monitored_resource
      *           The [monitored
      *           resource](https://cloud.google.com/monitoring/api/resources) associated
@@ -124,6 +141,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *             `aws_ec2_instance`,
      *             `aws_elb_load_balancer`
      *             `k8s_service`
+     *             `servicedirectory_service`
+     *             `cloud_run_revision`
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup $resource_group
      *           The group resource associated with the configuration.
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck $http_check
@@ -144,6 +163,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           in the `content_matchers` list is supported, and additional entries will
      *           be ignored. This field is optional and should only be specified if a
      *           content match is required as part of the/ Uptime check.
+     *     @type int $checker_type
+     *           The type of checkers to use to execute the Uptime check.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $selected_regions
      *           The list of regions from which the check will be run.
      *           Some regions contain one location, and others contain more than one.
@@ -160,6 +181,13 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           `true` and this list is empty, the check will egress from all the
      *           InternalCheckers configured for the project that owns this
      *           `UptimeCheckConfig`.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *           User-supplied key/value data to be used for organizing and
+     *           identifying the `UptimeCheckConfig` objects.
+     *           The field can contain up to 64 entries. Each key and value is limited to
+     *           63 Unicode characters or 128 bytes, whichever is smaller. Labels and
+     *           values can contain only lowercase letters, numerals, underscores, and
+     *           dashes. Keys must begin with a letter.
      * }
      */
     public function __construct($data = NULL) {
@@ -207,8 +235,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A human-friendly name for the Uptime check configuration. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced. Required.
+     * should be unique within a Cloud Monitoring Workspace in order to make it
+     * easier to identify; however, uniqueness is not enforced. Required.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -220,8 +248,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A human-friendly name for the Uptime check configuration. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced. Required.
+     * should be unique within a Cloud Monitoring Workspace in order to make it
+     * easier to identify; however, uniqueness is not enforced. Required.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
@@ -246,6 +274,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *   `aws_ec2_instance`,
      *   `aws_elb_load_balancer`
      *   `k8s_service`
+     *   `servicedirectory_service`
+     *   `cloud_run_revision`
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource monitored_resource = 3;</code>
      * @return \Google\Api\MonitoredResource|null
@@ -271,6 +301,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *   `aws_ec2_instance`,
      *   `aws_elb_load_balancer`
      *   `k8s_service`
+     *   `servicedirectory_service`
+     *   `cloud_run_revision`
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource monitored_resource = 3;</code>
      * @param \Google\Api\MonitoredResource $var
@@ -492,6 +524,32 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The type of checkers to use to execute the Uptime check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.CheckerType checker_type = 17;</code>
+     * @return int
+     */
+    public function getCheckerType()
+    {
+        return $this->checker_type;
+    }
+
+    /**
+     * The type of checkers to use to execute the Uptime check.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.CheckerType checker_type = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCheckerType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\CheckerType::class);
+        $this->checker_type = $var;
+
+        return $this;
+    }
+
+    /**
      * The list of regions from which the check will be run.
      * Some regions contain one location, and others contain more than one.
      * If this field is specified, enough regions must be provided to include a
@@ -593,6 +651,42 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
         @trigger_error('internal_checkers is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\InternalChecker::class);
         $this->internal_checkers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * User-supplied key/value data to be used for organizing and
+     * identifying the `UptimeCheckConfig` objects.
+     * The field can contain up to 64 entries. Each key and value is limited to
+     * 63 Unicode characters or 128 bytes, whichever is smaller. Labels and
+     * values can contain only lowercase letters, numerals, underscores, and
+     * dashes. Keys must begin with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 20;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabels()
+    {
+        return $this->user_labels;
+    }
+
+    /**
+     * User-supplied key/value data to be used for organizing and
+     * identifying the `UptimeCheckConfig` objects.
+     * The field can contain up to 64 entries. Each key and value is limited to
+     * 63 Unicode characters or 128 bytes, whichever is smaller. Labels and
+     * values can contain only lowercase letters, numerals, underscores, and
+     * dashes. Keys must begin with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 20;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_labels = $arr;
 
         return $this;
     }

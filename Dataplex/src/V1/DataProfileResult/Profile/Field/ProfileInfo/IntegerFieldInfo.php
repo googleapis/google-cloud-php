@@ -9,38 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * IntegerFieldInfo defines output for any integer type field.
+ * The profile information for an integer type field.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo</code>
  */
 class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The average of non-null values of integer field in the sampled
-     * data. Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Average of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>double average = 1;</code>
      */
     private $average = 0.0;
     /**
-     * The standard deviation of non-null of integer field in the sampled
-     * data. Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Standard deviation of non-null values in the scanned data. NaN, if
+     * the field has a NaN.
      *
      * Generated from protobuf field <code>double standard_deviation = 3;</code>
      */
     private $standard_deviation = 0.0;
     /**
-     * The minimum value of an integer field in the sampled data.
-     * Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Minimum of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>int64 min = 4;</code>
      */
     private $min = 0;
     /**
-     * A quartile divide the number of data points into four parts, or
+     * A quartile divides the number of data points into four parts, or
      * quarters, of more-or-less equal size. Three main quartiles used
      * are: The first quartile (Q1) splits off the lowest 25% of data from
      * the highest 75%. It is also known as the lower or 25th empirical
@@ -48,17 +45,17 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      * quartile (Q2) is the median of a data set. So, 50% of the data lies
      * below this point. The third quartile (Q3) splits off the highest
      * 25% of data from the lowest 75%. It is known as the upper or 75th
-     * empirical quartile, as 75% of the data lies below this point. So,
-     * here the quartiles is provided as an ordered list of quartile
-     * values, occurring in order Q1, median, Q3.
+     * empirical quartile, as 75% of the data lies below this point.
+     * Here, the quartiles is provided as an ordered list of approximate
+     * quartile values for the scanned data, occurring in order Q1,
+     * median, Q3.
      *
      * Generated from protobuf field <code>repeated int64 quartiles = 6;</code>
      */
     private $quartiles;
     /**
-     * The maximum value of an integer field in the sampled data.
-     * Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Maximum of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>int64 max = 5;</code>
      */
@@ -71,19 +68,16 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $average
-     *           The average of non-null values of integer field in the sampled
-     *           data. Return NaN, if the field has a NaN. Optional if zero non-null
-     *           rows.
+     *           Average of non-null values in the scanned data. NaN, if the field
+     *           has a NaN.
      *     @type float $standard_deviation
-     *           The standard deviation of non-null of integer field in the sampled
-     *           data. Return NaN, if the field has a NaN. Optional if zero non-null
-     *           rows.
+     *           Standard deviation of non-null values in the scanned data. NaN, if
+     *           the field has a NaN.
      *     @type int|string $min
-     *           The minimum value of an integer field in the sampled data.
-     *           Return NaN, if the field has a NaN. Optional if zero non-null
-     *           rows.
+     *           Minimum of non-null values in the scanned data. NaN, if the field
+     *           has a NaN.
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $quartiles
-     *           A quartile divide the number of data points into four parts, or
+     *           A quartile divides the number of data points into four parts, or
      *           quarters, of more-or-less equal size. Three main quartiles used
      *           are: The first quartile (Q1) splits off the lowest 25% of data from
      *           the highest 75%. It is also known as the lower or 25th empirical
@@ -91,13 +85,13 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      *           quartile (Q2) is the median of a data set. So, 50% of the data lies
      *           below this point. The third quartile (Q3) splits off the highest
      *           25% of data from the lowest 75%. It is known as the upper or 75th
-     *           empirical quartile, as 75% of the data lies below this point. So,
-     *           here the quartiles is provided as an ordered list of quartile
-     *           values, occurring in order Q1, median, Q3.
+     *           empirical quartile, as 75% of the data lies below this point.
+     *           Here, the quartiles is provided as an ordered list of approximate
+     *           quartile values for the scanned data, occurring in order Q1,
+     *           median, Q3.
      *     @type int|string $max
-     *           The maximum value of an integer field in the sampled data.
-     *           Return NaN, if the field has a NaN. Optional if zero non-null
-     *           rows.
+     *           Maximum of non-null values in the scanned data. NaN, if the field
+     *           has a NaN.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,9 +100,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The average of non-null values of integer field in the sampled
-     * data. Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Average of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>double average = 1;</code>
      * @return float
@@ -119,9 +112,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The average of non-null values of integer field in the sampled
-     * data. Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Average of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>double average = 1;</code>
      * @param float $var
@@ -136,9 +128,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The standard deviation of non-null of integer field in the sampled
-     * data. Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Standard deviation of non-null values in the scanned data. NaN, if
+     * the field has a NaN.
      *
      * Generated from protobuf field <code>double standard_deviation = 3;</code>
      * @return float
@@ -149,9 +140,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The standard deviation of non-null of integer field in the sampled
-     * data. Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Standard deviation of non-null values in the scanned data. NaN, if
+     * the field has a NaN.
      *
      * Generated from protobuf field <code>double standard_deviation = 3;</code>
      * @param float $var
@@ -166,9 +156,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum value of an integer field in the sampled data.
-     * Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Minimum of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>int64 min = 4;</code>
      * @return int|string
@@ -179,9 +168,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum value of an integer field in the sampled data.
-     * Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Minimum of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>int64 min = 4;</code>
      * @param int|string $var
@@ -196,7 +184,7 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A quartile divide the number of data points into four parts, or
+     * A quartile divides the number of data points into four parts, or
      * quarters, of more-or-less equal size. Three main quartiles used
      * are: The first quartile (Q1) splits off the lowest 25% of data from
      * the highest 75%. It is also known as the lower or 25th empirical
@@ -204,9 +192,10 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      * quartile (Q2) is the median of a data set. So, 50% of the data lies
      * below this point. The third quartile (Q3) splits off the highest
      * 25% of data from the lowest 75%. It is known as the upper or 75th
-     * empirical quartile, as 75% of the data lies below this point. So,
-     * here the quartiles is provided as an ordered list of quartile
-     * values, occurring in order Q1, median, Q3.
+     * empirical quartile, as 75% of the data lies below this point.
+     * Here, the quartiles is provided as an ordered list of approximate
+     * quartile values for the scanned data, occurring in order Q1,
+     * median, Q3.
      *
      * Generated from protobuf field <code>repeated int64 quartiles = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -217,7 +206,7 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A quartile divide the number of data points into four parts, or
+     * A quartile divides the number of data points into four parts, or
      * quarters, of more-or-less equal size. Three main quartiles used
      * are: The first quartile (Q1) splits off the lowest 25% of data from
      * the highest 75%. It is also known as the lower or 25th empirical
@@ -225,9 +214,10 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
      * quartile (Q2) is the median of a data set. So, 50% of the data lies
      * below this point. The third quartile (Q3) splits off the highest
      * 25% of data from the lowest 75%. It is known as the upper or 75th
-     * empirical quartile, as 75% of the data lies below this point. So,
-     * here the quartiles is provided as an ordered list of quartile
-     * values, occurring in order Q1, median, Q3.
+     * empirical quartile, as 75% of the data lies below this point.
+     * Here, the quartiles is provided as an ordered list of approximate
+     * quartile values for the scanned data, occurring in order Q1,
+     * median, Q3.
      *
      * Generated from protobuf field <code>repeated int64 quartiles = 6;</code>
      * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -242,9 +232,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum value of an integer field in the sampled data.
-     * Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Maximum of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>int64 max = 5;</code>
      * @return int|string
@@ -255,9 +244,8 @@ class IntegerFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum value of an integer field in the sampled data.
-     * Return NaN, if the field has a NaN. Optional if zero non-null
-     * rows.
+     * Maximum of non-null values in the scanned data. NaN, if the field
+     * has a NaN.
      *
      * Generated from protobuf field <code>int64 max = 5;</code>
      * @param int|string $var

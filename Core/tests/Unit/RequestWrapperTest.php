@@ -30,7 +30,7 @@ use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -85,7 +85,7 @@ class RequestWrapperTest extends TestCase
             'asyncHttpHandler' => function ($request, $options = []) use ($response) {
                 $this->assertEquals(self::$requestOptions['restOptions']['debug'], $options['debug']);
                 $this->assertEquals(self::$requestOptions['requestTimeout'], $options['timeout']);
-                return Promise\promise_for($response);
+                return Create::promiseFor($response);
             }
         ]);
 
@@ -119,7 +119,7 @@ class RequestWrapperTest extends TestCase
                 $actualDelays++;
             },
             'asyncHttpHandler' => function ($request, $options = []) {
-                return Promise\rejection_for(new \Exception());
+                return Create::rejectionFor(new \Exception());
             }
         ]);
 

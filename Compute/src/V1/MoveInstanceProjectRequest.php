@@ -35,6 +35,21 @@ class MoveInstanceProjectRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                       $project                     Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\InstanceMoveRequest $instanceMoveRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\MoveInstanceProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\InstanceMoveRequest $instanceMoveRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setInstanceMoveRequestResource($instanceMoveRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

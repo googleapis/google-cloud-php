@@ -21,7 +21,7 @@ class Accelerators extends \Google\Protobuf\Internal\Message
      */
     private $guest_accelerator_count = null;
     /**
-     * The accelerator type resource name, not a full URL, e.g. 'nvidia-tesla-k80'.
+     * The accelerator type resource name, not a full URL, e.g. nvidia-tesla-t4.
      *
      * Generated from protobuf field <code>optional string guest_accelerator_type = 293064725;</code>
      */
@@ -36,7 +36,7 @@ class Accelerators extends \Google\Protobuf\Internal\Message
      *     @type int $guest_accelerator_count
      *           Number of accelerator cards exposed to the guest.
      *     @type string $guest_accelerator_type
-     *           The accelerator type resource name, not a full URL, e.g. 'nvidia-tesla-k80'.
+     *           The accelerator type resource name, not a full URL, e.g. nvidia-tesla-t4.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +81,7 @@ class Accelerators extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The accelerator type resource name, not a full URL, e.g. 'nvidia-tesla-k80'.
+     * The accelerator type resource name, not a full URL, e.g. nvidia-tesla-t4.
      *
      * Generated from protobuf field <code>optional string guest_accelerator_type = 293064725;</code>
      * @return string
@@ -102,7 +102,7 @@ class Accelerators extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The accelerator type resource name, not a full URL, e.g. 'nvidia-tesla-k80'.
+     * The accelerator type resource name, not a full URL, e.g. nvidia-tesla-t4.
      *
      * Generated from protobuf field <code>optional string guest_accelerator_type = 293064725;</code>
      * @param string $var

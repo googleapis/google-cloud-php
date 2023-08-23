@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexEndpointService_DeleteIndexEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteIndexEndpointRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_index_endpoint_sample(string $formattedName): void
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteIndexEndpointRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $indexEndpointServiceClient->deleteIndexEndpoint($formattedName);
+        $response = $indexEndpointServiceClient->deleteIndexEndpoint($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

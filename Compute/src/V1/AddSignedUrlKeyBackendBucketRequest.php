@@ -41,6 +41,23 @@ class AddSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\Mess
     private $signed_url_key_resource = null;
 
     /**
+     * @param string                                $project              Project ID for this request.
+     * @param string                                $backendBucket        Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\SignedUrlKey $signedUrlKeyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddSignedUrlKeyBackendBucketRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendBucket, \Google\Cloud\Compute\V1\SignedUrlKey $signedUrlKeyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendBucket($backendBucket)
+            ->setSignedUrlKeyResource($signedUrlKeyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

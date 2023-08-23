@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.GetTensorboardUsage][].
+ * Request message for
+ * [TensorboardService.ReadTensorboardUsage][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardUsage].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ReadTensorboardUsageRequest</code>
  */
@@ -23,6 +24,22 @@ class ReadTensorboardUsageRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string tensorboard = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $tensorboard = '';
+
+    /**
+     * @param string $tensorboard Required. The name of the Tensorboard resource.
+     *                            Format:
+     *                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     *                            Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ReadTensorboardUsageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboard): self
+    {
+        return (new self())
+            ->setTensorboard($tensorboard);
+    }
 
     /**
      * Constructor.

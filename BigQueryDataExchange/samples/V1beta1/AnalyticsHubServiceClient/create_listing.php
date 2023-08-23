@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticshub_v1beta1_generated_AnalyticsHubService_CreateListing_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Client\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\CreateListingRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource;
 
@@ -58,11 +59,15 @@ function create_listing_sample(
     $listing = (new Listing())
         ->setBigqueryDataset($listingBigqueryDataset)
         ->setDisplayName($listingDisplayName);
+    $request = (new CreateListingRequest())
+        ->setParent($formattedParent)
+        ->setListingId($listingId)
+        ->setListing($listing);
 
     // Call the API and handle any network failures.
     try {
         /** @var Listing $response */
-        $response = $analyticsHubServiceClient->createListing($formattedParent, $listingId, $listing);
+        $response = $analyticsHubServiceClient->createListing($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

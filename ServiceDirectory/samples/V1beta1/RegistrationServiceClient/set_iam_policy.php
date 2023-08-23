@@ -28,7 +28,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
 
 /**
- * Sets the IAM Policy for a resource (namespace or service only).
+ * Sets the IAM Policy for a resource
  *
  * @param string $resource REQUIRED: The resource for which the policy is being specified.
  *                         See the operation documentation for the appropriate value for this field.
@@ -38,7 +38,7 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $policy = new Policy();
 
     // Call the API and handle any network failures.

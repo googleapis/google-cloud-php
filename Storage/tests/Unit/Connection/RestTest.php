@@ -25,10 +25,7 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
-use Google\Cloud\Storage\Connection\RetryTrait;
-use Google\Cloud\Storage\StorageClient;
-use Google\CRC32\CRC32;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -220,7 +217,7 @@ class RestTest extends TestCase
         )->will(
             function ($args) use (&$actualRequest, $response) {
                 $actualRequest = $args[0];
-                return Promise\promise_for($response);
+                return Create::promiseFor($response);
             }
         );
 
@@ -297,9 +294,8 @@ class RestTest extends TestCase
         $tempFile->write(str_repeat('0', 5000001));
         $logoFile = Utils::streamFor(fopen(__DIR__ . '/../data/logo.svg', 'r'));
 
-        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
-        $crc32c->update((string) $logoFile);
-        $crcHash = base64_encode($crc32c->hash(true));
+        $crc32c = hash('crc32c', (string) $logoFile, true);
+        $crcHash = base64_encode($crc32c);
 
         return [
             [

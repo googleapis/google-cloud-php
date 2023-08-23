@@ -76,6 +76,9 @@ use Google\Cloud\Compute\V1\TargetReference;
  *     $forwardingRulesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\ForwardingRulesClient} to use the new surface.
  */
 class ForwardingRulesGapicClient
 {

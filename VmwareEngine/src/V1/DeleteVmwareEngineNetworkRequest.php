@@ -54,6 +54,24 @@ class DeleteVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The resource name of the VMware Engine network to be deleted.
+     *                     Resource names are schemeless URIs that follow the conventions in
+     *                     https://cloud.google.com/apis/design/resource_names.
+     *                     For example:
+     *                     `projects/my-project/locations/global/vmwareEngineNetworks/my-network`
+     *                     Please see {@see VmwareEngineClient::vmwareEngineNetworkName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\DeleteVmwareEngineNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

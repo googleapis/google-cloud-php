@@ -25,8 +25,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The minimum CPU platform.
      * See
-     * `https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform`.
-     * Not yet implemented.
+     * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      */
@@ -44,8 +43,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      */
     private $accelerators;
     /**
-     * Book disk to be created and attached to each VM by this InstancePolicy.
+     * Boot disk to be created and attached to each VM by this InstancePolicy.
      * Boot disk will be deleted when the VM is deleted.
+     * Batch API now only supports booting from image.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
      */
@@ -53,6 +53,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
+     * A non-boot disk is a disk that can be of a device with a
+     * file system or a raw storage drive that is not ready for data
+     * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      */
@@ -69,18 +72,21 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *     @type string $min_cpu_platform
      *           The minimum CPU platform.
      *           See
-     *           `https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform`.
-     *           Not yet implemented.
+     *           https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      *     @type int $provisioning_model
      *           The provisioning model.
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           The accelerators attached to each VM instance.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\Disk $boot_disk
-     *           Book disk to be created and attached to each VM by this InstancePolicy.
+     *           Boot disk to be created and attached to each VM by this InstancePolicy.
      *           Boot disk will be deleted when the VM is deleted.
+     *           Batch API now only supports booting from image.
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           Non-boot disks to be attached for each VM created by this InstancePolicy.
      *           New disks will be deleted when the VM is deleted.
+     *           A non-boot disk is a disk that can be of a device with a
+     *           file system or a raw storage drive that is not ready for data
+     *           storage and accessing.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,8 +123,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The minimum CPU platform.
      * See
-     * `https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform`.
-     * Not yet implemented.
+     * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      * @return string
@@ -131,8 +136,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The minimum CPU platform.
      * See
-     * `https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform`.
-     * Not yet implemented.
+     * https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      * @param string $var
@@ -199,8 +203,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Book disk to be created and attached to each VM by this InstancePolicy.
+     * Boot disk to be created and attached to each VM by this InstancePolicy.
      * Boot disk will be deleted when the VM is deleted.
+     * Batch API now only supports booting from image.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
      * @return \Google\Cloud\Batch\V1\AllocationPolicy\Disk|null
@@ -221,8 +226,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Book disk to be created and attached to each VM by this InstancePolicy.
+     * Boot disk to be created and attached to each VM by this InstancePolicy.
      * Boot disk will be deleted when the VM is deleted.
+     * Batch API now only supports booting from image.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
      * @param \Google\Cloud\Batch\V1\AllocationPolicy\Disk $var
@@ -239,6 +245,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
+     * A non-boot disk is a disk that can be of a device with a
+     * file system or a raw storage drive that is not ready for data
+     * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -251,6 +260,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
+     * A non-boot disk is a disk that can be of a device with a
+     * file system or a raw storage drive that is not ready for data
+     * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var

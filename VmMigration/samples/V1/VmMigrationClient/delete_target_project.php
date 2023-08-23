@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_DeleteTargetProject_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\DeleteTargetProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_target_project_sample(string $formattedName): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTargetProjectRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->deleteTargetProject($formattedName);
+        $response = $vmMigrationClient->deleteTargetProject($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

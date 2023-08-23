@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_ApproveRollout_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Deploy\V1\ApproveRolloutRequest;
 use Google\Cloud\Deploy\V1\ApproveRolloutResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 
 /**
  * Approves a Rollout.
@@ -41,10 +42,15 @@ function approve_rollout_sample(string $formattedName, bool $approved): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new ApproveRolloutRequest())
+        ->setName($formattedName)
+        ->setApproved($approved);
+
     // Call the API and handle any network failures.
     try {
         /** @var ApproveRolloutResponse $response */
-        $response = $cloudDeployClient->approveRollout($formattedName, $approved);
+        $response = $cloudDeployClient->approveRollout($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

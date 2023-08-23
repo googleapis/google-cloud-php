@@ -24,14 +24,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_DataScanService_GetDataScanJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\DataScanJob;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\GetDataScanJobRequest;
 
 /**
  * Gets a DataScanJob resource.
  *
  * @param string $formattedName The resource name of the DataScanJob:
- *                              `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id}`
+ *                              `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
  *                              where `project` refers to a *project_id* or *project_number* and
  *                              `location_id` refers to a GCP region. Please see
  *                              {@see DataScanServiceClient::dataScanJobName()} for help formatting this field.
@@ -41,10 +42,14 @@ function get_data_scan_job_sample(string $formattedName): void
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDataScanJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DataScanJob $response */
-        $response = $dataScanServiceClient->getDataScanJob($formattedName);
+        $response = $dataScanServiceClient->getDataScanJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

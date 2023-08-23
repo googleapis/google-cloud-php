@@ -34,8 +34,8 @@ use Google\Cloud\Tasks\V2\Queue;
  * the queue if it does exist.
  *
  * Queues created with this method allow tasks to live for a maximum of 31
- * days. After a task is 31 days old, the task will be deleted regardless of whether
- * it was dispatched or not.
+ * days. After a task is 31 days old, the task will be deleted regardless of
+ * whether it was dispatched or not.
  *
  * WARNING: Using this method may have unintended side effects if you are
  * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
@@ -55,7 +55,7 @@ function update_queue_sample(): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $queue = new Queue();
 
     // Call the API and handle any network failures.

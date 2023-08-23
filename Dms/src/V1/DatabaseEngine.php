@@ -31,11 +31,18 @@ class DatabaseEngine
      * Generated from protobuf enum <code>POSTGRESQL = 2;</code>
      */
     const POSTGRESQL = 2;
+    /**
+     * The source engine is Oracle.
+     *
+     * Generated from protobuf enum <code>ORACLE = 4;</code>
+     */
+    const ORACLE = 4;
 
     private static $valueToName = [
         self::DATABASE_ENGINE_UNSPECIFIED => 'DATABASE_ENGINE_UNSPECIFIED',
         self::MYSQL => 'MYSQL',
         self::POSTGRESQL => 'POSTGRESQL',
+        self::ORACLE => 'ORACLE',
     ];
 
     public static function name($value)

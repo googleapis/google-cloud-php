@@ -40,7 +40,7 @@ function update_server_tls_policy_sample(string $serverTlsPolicyName): void
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $serverTlsPolicy = (new ServerTlsPolicy())
         ->setName($serverTlsPolicyName);
 

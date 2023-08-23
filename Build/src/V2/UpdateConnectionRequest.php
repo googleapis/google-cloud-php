@@ -47,6 +47,21 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param \Google\Cloud\Build\V2\Connection $connection Required. The Connection to update.
+     * @param \Google\Protobuf\FieldMask        $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\Build\V2\UpdateConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Build\V2\Connection $connection, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setConnection($connection)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

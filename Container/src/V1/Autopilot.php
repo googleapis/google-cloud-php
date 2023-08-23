@@ -21,6 +21,12 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
     private $enabled = false;
+    /**
+     * Workload policy configuration for Autopilot.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
+     */
+    private $workload_policy_config = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Enable Autopilot
+     *     @type \Google\Cloud\Container\V1\WorkloadPolicyConfig $workload_policy_config
+     *           Workload policy configuration for Autopilot.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,42 @@ class Autopilot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Workload policy configuration for Autopilot.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
+     * @return \Google\Cloud\Container\V1\WorkloadPolicyConfig|null
+     */
+    public function getWorkloadPolicyConfig()
+    {
+        return $this->workload_policy_config;
+    }
+
+    public function hasWorkloadPolicyConfig()
+    {
+        return isset($this->workload_policy_config);
+    }
+
+    public function clearWorkloadPolicyConfig()
+    {
+        unset($this->workload_policy_config);
+    }
+
+    /**
+     * Workload policy configuration for Autopilot.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
+     * @param \Google\Cloud\Container\V1\WorkloadPolicyConfig $var
+     * @return $this
+     */
+    public function setWorkloadPolicyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WorkloadPolicyConfig::class);
+        $this->workload_policy_config = $var;
 
         return $this;
     }

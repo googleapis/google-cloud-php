@@ -58,6 +58,23 @@ return [
                     ],
                 ],
             ],
+            'Move' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/addresses/{address}/move',
+                'body' => 'global_addresses_move_request_resource',
+                'placeholders' => [
+                    'address' => [
+                        'getters' => [
+                            'getAddress',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'SetLabels' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/addresses/{resource}/setLabels',

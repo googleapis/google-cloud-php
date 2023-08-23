@@ -40,7 +40,7 @@ function patch_sample(string $interconnect, string $project): void
     // Create a client.
     $interconnectsClient = new InterconnectsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $interconnectResource = new Interconnect();
 
     // Call the API and handle any network failures.

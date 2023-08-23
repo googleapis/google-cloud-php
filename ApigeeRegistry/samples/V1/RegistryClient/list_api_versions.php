@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApigeeRegistry\V1\ApiVersion;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\ListApiVersionsRequest;
 
 /**
  * Returns matching versions.
@@ -40,10 +41,14 @@ function list_api_versions_sample(string $formattedParent): void
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new ListApiVersionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $registryClient->listApiVersions($formattedParent);
+        $response = $registryClient->listApiVersions($request);
 
         /** @var ApiVersion $element */
         foreach ($response as $element) {

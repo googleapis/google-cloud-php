@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_DeleteGcpUserAccessBinding_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\DeleteGcpUserAccessBindingRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,14 @@ function delete_gcp_user_access_binding_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteGcpUserAccessBindingRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->deleteGcpUserAccessBinding($formattedName);
+        $response = $accessContextManagerClient->deleteGcpUserAccessBinding($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

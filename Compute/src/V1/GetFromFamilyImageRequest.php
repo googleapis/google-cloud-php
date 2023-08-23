@@ -29,6 +29,21 @@ class GetFromFamilyImageRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
+     * @param string $family  Name of the image family to search for.
+     *
+     * @return \Google\Cloud\Compute\V1\GetFromFamilyImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $family): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setFamily($family);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

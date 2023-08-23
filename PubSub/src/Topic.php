@@ -55,6 +55,10 @@ class Topic
     use ResourceNameTrait;
     use RequestCallerTrait;
 
+    const DEFAULT_COMPRESSION_BYTES_THRESHOLD = 240;
+
+    const DEFAULT_ENABLE_COMPRESSION = false;
+
     /**
      * The request handler that is responsible for sending a req and
      * serializing responses into relevant classes.
@@ -92,6 +96,16 @@ class Topic
     private $clientConfig;
 
     /**
+     * @var bool
+     */
+    private $enableCompression;
+
+    /**
+     * @var int
+     */
+    private $compressionBytesThreshold;
+
+    /**
      * Create a PubSub topic.
      *
      * @param RequestHandler The request handler that is responsible for sending a request and
@@ -100,14 +114,23 @@ class Topic
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
      * @param array $info {
-     *     A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics
+     *        A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics
      *
-     *     @type string name The name of the topic.
-     *     @type array $labels Key value pairs used to organize your resources.
-     *     @type string $kmsKeyName The resource name of the Cloud KMS
-     *           CryptoKey to be used to protect access to messages published on this
-     *           topic. The expected format is
-     *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *        @type string name The name of the topic.
+     *        @type array $labels Key value pairs used to organize your resources.
+     *        @type string $kmsKeyName The resource name of the Cloud KMS
+     *              CryptoKey to be used to protect access to messages published on this
+     *              topic. The expected format is
+     *              `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *        @type bool $enableCompression Flag to enable compression of messages
+     *              before publishing. Set the flag to `true` to enable compression.
+     *              Defaults to `false`. Messsages are compressed if their total
+     *              size >= `compressionBytesThreshold`, whose default value has
+     *              been experimentally derived after performance evaluations.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed. This only takes effect
+     *              if `enableCompression` is set to `true`. Defaults to `240`.
+     *              (This value is experiementally derived after performance evaluations.)
      * }
      *
      * @param array $clientConfig [optional] Configuration options for the
@@ -130,6 +153,15 @@ class Topic
         $this->encode = (bool) $encode;
         $this->info = $info;
         $this->clientConfig = $clientConfig;
+
+        if (isset($info['enableCompression']) && $info['enableCompression'] === true) {
+            $this->enableCompression = true;
+            $this->compressionBytesThreshold = $info['compressionBytesThreshold'] ??
+                self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
+        } else {
+            $this->enableCompression = self::DEFAULT_ENABLE_COMPRESSION;
+            $this->compressionBytesThreshold = self::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
+        }
 
         // Accept either a simple name or a fully-qualified name.
         if ($this->isFullyQualifiedName('topic', $name)) {
@@ -533,7 +565,11 @@ class Topic
             PublisherClient::class,
             'publish',
             [$this->name, $messages],
-            $options
+            $options + [
+            'compressionOptions' => [
+                'enableCompression' => $this->enableCompression,
+                'compressionBytesThreshold' => $this->compressionBytesThreshold
+            ]]
         );
     }
 
@@ -559,6 +595,8 @@ class Topic
      *     @type bool $debugOutput Whether or not to output debug information.
      *           Please note debug output currently only applies in CLI based
      *           applications. **Defaults to** `false`.
+     *     @type resource $debugOutputResource A resource to output debug output
+     *           to. **Defaults to** Resource for `php://stderr`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
@@ -583,6 +621,15 @@ class Topic
      *           batch daemon. **Defaults to**
      *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
+     *     @type bool $enableCompression Flag to enable compression of messages
+     *           before publishing. Set the flag to `true` to enable compression.
+     *           Defaults to `false`. Messsages are compressed if their total
+     *           size >= `compressionBytesThreshold`, whose default value has
+     *           been experimentally derived after performance evaluations.
+     *     @type int $compressionBytesThreshold The threshold byte size
+     *           above which messages are compressed. This only takes effect
+     *           if `enableCompression` is set to `true`. Defaults to `240`.
+     *           (This value is experiementally derived after performance evaluations.)
      * }
      * @return BatchPublisher
      * @experimental The experimental flag means that while we believe this method

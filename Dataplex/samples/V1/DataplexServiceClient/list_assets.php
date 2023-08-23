@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dataplex\V1\Asset;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\ListAssetsRequest;
 
 /**
  * Lists asset resources in a zone.
@@ -40,10 +41,14 @@ function list_assets_sample(string $formattedParent): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAssetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataplexServiceClient->listAssets($formattedParent);
+        $response = $dataplexServiceClient->listAssets($request);
 
         /** @var Asset $element */
         foreach ($response as $element) {

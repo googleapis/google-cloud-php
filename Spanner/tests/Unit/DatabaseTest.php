@@ -335,6 +335,27 @@ class DatabaseTest extends TestCase
     /**
      * @group spanner-admin
      */
+    public function testUpdateDatabase()
+    {
+        $this->connection->updateDatabase(Argument::allOf(
+            Argument::withEntry('database', [
+                'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+                'enableDropProtection' => true,
+            ]),
+            Argument::withEntry('updateMask', ['paths' => ['enable_drop_protection']])
+        ))->shouldBeCalledTimes(1)->willReturn([
+            'enableDropProtection' => true
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->database->updateDatabase(['enableDropProtection' => true]);
+        $this->assertTrue($res['enableDropProtection']);
+    }
+
+    /**
+     * @group spanner-admin
+     */
     public function testCreatePostgresDialect()
     {
         $createStatement = sprintf('CREATE DATABASE "%s"', self::DATABASE);

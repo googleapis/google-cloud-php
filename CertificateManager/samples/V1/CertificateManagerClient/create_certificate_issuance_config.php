@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig;
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig\CertificateAuthorityConfig;
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig\KeyAlgorithm;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\CreateCertificateIssuanceConfigRequest;
 use Google\Protobuf\Duration;
 use Google\Rpc\Status;
 
@@ -61,15 +62,15 @@ function create_certificate_issuance_config_sample(
         ->setLifetime($certificateIssuanceConfigLifetime)
         ->setRotationWindowPercentage($certificateIssuanceConfigRotationWindowPercentage)
         ->setKeyAlgorithm($certificateIssuanceConfigKeyAlgorithm);
+    $request = (new CreateCertificateIssuanceConfigRequest())
+        ->setParent($formattedParent)
+        ->setCertificateIssuanceConfigId($certificateIssuanceConfigId)
+        ->setCertificateIssuanceConfig($certificateIssuanceConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateManagerClient->createCertificateIssuanceConfig(
-            $formattedParent,
-            $certificateIssuanceConfigId,
-            $certificateIssuanceConfig
-        );
+        $response = $certificateManagerClient->createCertificateIssuanceConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

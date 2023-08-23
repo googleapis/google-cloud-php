@@ -99,13 +99,20 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * - num_units: The total commitment for commitment-based offers
      * The response may additionally include the following output-only Parameters:
      * - assigned_units: The number of licenses assigned to users.
-     * For GCP billing subaccounts, the following Parameter may be accepted as
-     * input:
+     * For Google Cloud billing subaccounts, the following Parameter may be
+     * accepted as input:
      * - display_name: The display name of the billing subaccount.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
      */
     private $parameters;
+    /**
+     * Optional. The billing account resource name that is used to pay for this
+     * entitlement.
+     *
+     * Generated from protobuf field <code>string billing_account = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $billing_account = '';
 
     /**
      * Constructor.
@@ -153,9 +160,12 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *           - num_units: The total commitment for commitment-based offers
      *           The response may additionally include the following output-only Parameters:
      *           - assigned_units: The number of licenses assigned to users.
-     *           For GCP billing subaccounts, the following Parameter may be accepted as
-     *           input:
+     *           For Google Cloud billing subaccounts, the following Parameter may be
+     *           accepted as input:
      *           - display_name: The display name of the billing subaccount.
+     *     @type string $billing_account
+     *           Optional. The billing account resource name that is used to pay for this
+     *           entitlement.
      * }
      */
     public function __construct($data = NULL) {
@@ -535,8 +545,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * - num_units: The total commitment for commitment-based offers
      * The response may additionally include the following output-only Parameters:
      * - assigned_units: The number of licenses assigned to users.
-     * For GCP billing subaccounts, the following Parameter may be accepted as
-     * input:
+     * For Google Cloud billing subaccounts, the following Parameter may be
+     * accepted as input:
      * - display_name: The display name of the billing subaccount.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
@@ -557,8 +567,8 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * - num_units: The total commitment for commitment-based offers
      * The response may additionally include the following output-only Parameters:
      * - assigned_units: The number of licenses assigned to users.
-     * For GCP billing subaccounts, the following Parameter may be accepted as
-     * input:
+     * For Google Cloud billing subaccounts, the following Parameter may be
+     * accepted as input:
      * - display_name: The display name of the billing subaccount.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
@@ -569,6 +579,34 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Channel\V1\Parameter::class);
         $this->parameters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The billing account resource name that is used to pay for this
+     * entitlement.
+     *
+     * Generated from protobuf field <code>string billing_account = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBillingAccount()
+    {
+        return $this->billing_account;
+    }
+
+    /**
+     * Optional. The billing account resource name that is used to pay for this
+     * entitlement.
+     *
+     * Generated from protobuf field <code>string billing_account = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBillingAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->billing_account = $var;
 
         return $this;
     }

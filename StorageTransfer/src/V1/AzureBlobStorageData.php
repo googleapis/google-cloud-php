@@ -28,7 +28,8 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      */
     private $storage_account = '';
     /**
-     * Required. Input only. Credentials used to authenticate API requests to Azure.
+     * Required. Input only. Credentials used to authenticate API requests to
+     * Azure.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -50,6 +51,26 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string path = 5;</code>
      */
     private $path = '';
+    /**
+     * Optional. The Resource name of a secret in Secret Manager.
+     * The Azure SAS token must be stored in Secret Manager in JSON format:
+     * <pre>{
+     *  "sas_token" : "<var>SAS_TOKEN</var>"
+     * }</pre>
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     * be granted `roles/secretmanager.secretAccessor` for the resource.
+     * See [Configure access to a source: Microsoft Azure Blob Storage]
+     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * for more information.
+     * If `credentials_secret` is specified, do not specify
+     * [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials].
+     * This feature is in
+     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * Format: `projects/{project_number}/secrets/{secret_name}`
+     *
+     * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $credentials_secret = '';
 
     /**
      * Constructor.
@@ -60,7 +81,8 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      *     @type string $storage_account
      *           Required. The name of the Azure Storage account.
      *     @type \Google\Cloud\StorageTransfer\V1\AzureCredentials $azure_credentials
-     *           Required. Input only. Credentials used to authenticate API requests to Azure.
+     *           Required. Input only. Credentials used to authenticate API requests to
+     *           Azure.
      *           For information on our data retention policy for user credentials, see
      *           [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *     @type string $container
@@ -70,6 +92,22 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      *           Must be an empty string or full path name that ends with a '/'. This field
      *           is treated as an object prefix. As such, it should generally not begin with
      *           a '/'.
+     *     @type string $credentials_secret
+     *           Optional. The Resource name of a secret in Secret Manager.
+     *           The Azure SAS token must be stored in Secret Manager in JSON format:
+     *           <pre>{
+     *            "sas_token" : "<var>SAS_TOKEN</var>"
+     *           }</pre>
+     *           [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     *           be granted `roles/secretmanager.secretAccessor` for the resource.
+     *           See [Configure access to a source: Microsoft Azure Blob Storage]
+     *           (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     *           for more information.
+     *           If `credentials_secret` is specified, do not specify
+     *           [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials].
+     *           This feature is in
+     *           [preview](https://cloud.google.com/terms/service-terms#1).
+     *           Format: `projects/{project_number}/secrets/{secret_name}`
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +142,8 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Credentials used to authenticate API requests to Azure.
+     * Required. Input only. Credentials used to authenticate API requests to
+     * Azure.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -127,7 +166,8 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Credentials used to authenticate API requests to Azure.
+     * Required. Input only. Credentials used to authenticate API requests to
+     * Azure.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -197,6 +237,60 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Resource name of a secret in Secret Manager.
+     * The Azure SAS token must be stored in Secret Manager in JSON format:
+     * <pre>{
+     *  "sas_token" : "<var>SAS_TOKEN</var>"
+     * }</pre>
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     * be granted `roles/secretmanager.secretAccessor` for the resource.
+     * See [Configure access to a source: Microsoft Azure Blob Storage]
+     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * for more information.
+     * If `credentials_secret` is specified, do not specify
+     * [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials].
+     * This feature is in
+     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * Format: `projects/{project_number}/secrets/{secret_name}`
+     *
+     * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCredentialsSecret()
+    {
+        return $this->credentials_secret;
+    }
+
+    /**
+     * Optional. The Resource name of a secret in Secret Manager.
+     * The Azure SAS token must be stored in Secret Manager in JSON format:
+     * <pre>{
+     *  "sas_token" : "<var>SAS_TOKEN</var>"
+     * }</pre>
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     * be granted `roles/secretmanager.secretAccessor` for the resource.
+     * See [Configure access to a source: Microsoft Azure Blob Storage]
+     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * for more information.
+     * If `credentials_secret` is specified, do not specify
+     * [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials].
+     * This feature is in
+     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * Format: `projects/{project_number}/secrets/{secret_name}`
+     *
+     * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCredentialsSecret($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->credentials_secret = $var;
 
         return $this;
     }

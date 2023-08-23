@@ -32,6 +32,24 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
     private $output_config = null;
 
     /**
+     * @param string                                                      $name         Required. The resource name of the Model to export.
+     *                                                                                  The resource name may contain version id or version alias to specify the
+     *                                                                                  version, if no version is specified, the default version will be exported. Please see
+     *                                                                                  {@see ModelServiceClient::modelName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig $outputConfig Required. The desired output location and configuration.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ExportModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig $outputConfig): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setOutputConfig($outputConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

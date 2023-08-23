@@ -54,6 +54,47 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The model monitoring configuration which replaces the resource on
+     *                                                                                               the server.
+     * @param \Google\Protobuf\FieldMask                               $updateMask                   Required. The update mask is used to specify the fields to be overwritten
+     *                                                                                               in the ModelDeploymentMonitoringJob resource by the update. The fields
+     *                                                                                               specified in the update_mask are relative to the resource, not the full
+     *                                                                                               request. A field will be overwritten if it is in the mask. If the user does
+     *                                                                                               not provide a mask then only the non-empty fields present in the request
+     *                                                                                               will be overwritten. Set the update_mask to `*` to override all fields. For
+     *                                                                                               the objective config, the user can either provide the update mask for
+     *                                                                                               model_deployment_monitoring_objective_configs or any combination of its
+     *                                                                                               nested fields, such as:
+     *                                                                                               model_deployment_monitoring_objective_configs.objective_config.training_dataset.
+     *
+     *                                                                                               Updatable fields:
+     *
+     *                                                                                               * `display_name`
+     *                                                                                               * `model_deployment_monitoring_schedule_config`
+     *                                                                                               * `model_monitoring_alert_config`
+     *                                                                                               * `logging_sampling_strategy`
+     *                                                                                               * `labels`
+     *                                                                                               * `log_ttl`
+     *                                                                                               * `enable_monitoring_pipeline_logs`
+     *                                                                                               .  and
+     *                                                                                               * `model_deployment_monitoring_objective_configs`
+     *                                                                                               .  or
+     *                                                                                               * `model_deployment_monitoring_objective_configs.objective_config.training_dataset`
+     *                                                                                               * `model_deployment_monitoring_objective_configs.objective_config.training_prediction_skew_detection_config`
+     *                                                                                               * `model_deployment_monitoring_objective_configs.objective_config.prediction_drift_detection_config`
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateModelDeploymentMonitoringJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

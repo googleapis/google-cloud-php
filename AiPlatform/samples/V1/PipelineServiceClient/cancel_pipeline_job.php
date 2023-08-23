@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_PipelineService_CancelPipelineJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\PipelineServiceClient;
+use Google\Cloud\AIPlatform\V1\CancelPipelineJobRequest;
+use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
 
 /**
  * Cancels a PipelineJob.
@@ -51,9 +52,13 @@ function cancel_pipeline_job_sample(string $formattedName): void
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
+    // Prepare the request message.
+    $request = (new CancelPipelineJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $pipelineServiceClient->cancelPipelineJob($formattedName);
+        $pipelineServiceClient->cancelPipelineJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

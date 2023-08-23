@@ -105,21 +105,28 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $customized_attribution = '';
     /**
-     * Optional. If true, the page limit of online native pdf translation is 300
-     * and only native pdf pages will be translated.
+     * Optional. is_translate_native_pdf_only field for external customers.
+     * If true, the page limit of online native pdf translation is 300 and only
+     * native pdf pages will be translated.
      *
      * Generated from protobuf field <code>bool is_translate_native_pdf_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $is_translate_native_pdf_only = false;
     /**
-     * Optional. If true, use the text removal to remove the shadow text on
+     * Optional. If true, use the text removal server to remove the shadow text on
      * background image for native pdf translation.
      * Shadow removal feature can only be enabled when
-     * is_translate_native_pdf_only is false
+     * is_translate_native_pdf_only: false && pdf_native_only: false
      *
      * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_shadow_removal_native_pdf = false;
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_rotation_correction = false;
 
     /**
      * Constructor.
@@ -181,13 +188,16 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           Customized attribution should follow rules in
      *           https://cloud.google.com/translate/attribution#attribution_and_logos
      *     @type bool $is_translate_native_pdf_only
-     *           Optional. If true, the page limit of online native pdf translation is 300
-     *           and only native pdf pages will be translated.
+     *           Optional. is_translate_native_pdf_only field for external customers.
+     *           If true, the page limit of online native pdf translation is 300 and only
+     *           native pdf pages will be translated.
      *     @type bool $enable_shadow_removal_native_pdf
-     *           Optional. If true, use the text removal to remove the shadow text on
+     *           Optional. If true, use the text removal server to remove the shadow text on
      *           background image for native pdf translation.
      *           Shadow removal feature can only be enabled when
-     *           is_translate_native_pdf_only is false
+     *           is_translate_native_pdf_only: false && pdf_native_only: false
+     *     @type bool $enable_rotation_correction
+     *           Optional. If true, enable auto rotation correction in DVS.
      * }
      */
     public function __construct($data = NULL) {
@@ -530,8 +540,9 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, the page limit of online native pdf translation is 300
-     * and only native pdf pages will be translated.
+     * Optional. is_translate_native_pdf_only field for external customers.
+     * If true, the page limit of online native pdf translation is 300 and only
+     * native pdf pages will be translated.
      *
      * Generated from protobuf field <code>bool is_translate_native_pdf_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -542,8 +553,9 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, the page limit of online native pdf translation is 300
-     * and only native pdf pages will be translated.
+     * Optional. is_translate_native_pdf_only field for external customers.
+     * If true, the page limit of online native pdf translation is 300 and only
+     * native pdf pages will be translated.
      *
      * Generated from protobuf field <code>bool is_translate_native_pdf_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -558,10 +570,10 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, use the text removal to remove the shadow text on
+     * Optional. If true, use the text removal server to remove the shadow text on
      * background image for native pdf translation.
      * Shadow removal feature can only be enabled when
-     * is_translate_native_pdf_only is false
+     * is_translate_native_pdf_only: false && pdf_native_only: false
      *
      * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -572,10 +584,10 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, use the text removal to remove the shadow text on
+     * Optional. If true, use the text removal server to remove the shadow text on
      * background image for native pdf translation.
      * Shadow removal feature can only be enabled when
-     * is_translate_native_pdf_only is false
+     * is_translate_native_pdf_only: false && pdf_native_only: false
      *
      * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -585,6 +597,32 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_shadow_removal_native_pdf = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableRotationCorrection()
+    {
+        return $this->enable_rotation_correction;
+    }
+
+    /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     *
+     * Generated from protobuf field <code>bool enable_rotation_correction = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableRotationCorrection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_rotation_correction = $var;
 
         return $this;
     }

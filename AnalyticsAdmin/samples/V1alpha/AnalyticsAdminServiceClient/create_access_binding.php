@@ -40,7 +40,7 @@ function create_access_binding_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $accessBinding = new AccessBinding();
 
     // Call the API and handle any network failures.

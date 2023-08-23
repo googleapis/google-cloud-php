@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_UpdateEnvironment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\Environment;
 use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec;
 use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime;
+use Google\Cloud\Dataplex\V1\UpdateEnvironmentRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -50,11 +51,14 @@ function update_environment_sample(string $environmentInfrastructureSpecOsImageI
         ->setOsImage($environmentInfrastructureSpecOsImage);
     $environment = (new Environment())
         ->setInfrastructureSpec($environmentInfrastructureSpec);
+    $request = (new UpdateEnvironmentRequest())
+        ->setUpdateMask($updateMask)
+        ->setEnvironment($environment);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->updateEnvironment($updateMask, $environment);
+        $response = $dataplexServiceClient->updateEnvironment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -50,6 +50,21 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The location name. For example:
+     *                       `projects/PROJECT_ID/locations/LOCATION_ID`. Please see
+     *                       {@see CloudSchedulerClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Scheduler\V1\ListJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

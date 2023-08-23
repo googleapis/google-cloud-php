@@ -58,6 +58,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Context based filtering**:
      *    To filter Executions based on the contexts to which they belong use
      *    the function operator with the full resource name:
@@ -83,6 +86,22 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
     private $order_by = '';
+
+    /**
+     * @param string $parent Required. The MetadataStore whose Executions should be listed.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                       Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListExecutionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -120,6 +139,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *              To filter on metadata fields use traversal operation as follows:
      *              `metadata.<field_name>.<type_value>`
      *              For example: `metadata.field_1.number_value = 10.0`
+     *              In case the field name contains special characters (such as colon), one
+     *              can embed it inside double quote.
+     *              For example: `metadata."field:1".number_value = 10.0`
      *           *  **Context based filtering**:
      *              To filter Executions based on the contexts to which they belong use
      *              the function operator with the full resource name:
@@ -254,6 +276,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Context based filtering**:
      *    To filter Executions based on the contexts to which they belong use
      *    the function operator with the full resource name:
@@ -289,6 +314,9 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    To filter on metadata fields use traversal operation as follows:
      *    `metadata.<field_name>.<type_value>`
      *    For example: `metadata.field_1.number_value = 10.0`
+     *    In case the field name contains special characters (such as colon), one
+     *    can embed it inside double quote.
+     *    For example: `metadata."field:1".number_value = 10.0`
      * *  **Context based filtering**:
      *    To filter Executions based on the contexts to which they belong use
      *    the function operator with the full resource name:

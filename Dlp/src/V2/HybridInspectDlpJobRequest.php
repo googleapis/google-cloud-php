@@ -30,6 +30,21 @@ class HybridInspectDlpJobRequest extends \Google\Protobuf\Internal\Message
     private $hybrid_item = null;
 
     /**
+     * @param string $name Required. Resource name of the job to execute a hybrid inspect on, for example
+     *                     `projects/dlp-test-project/dlpJob/53234423`. Please see
+     *                     {@see DlpServiceClient::dlpJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

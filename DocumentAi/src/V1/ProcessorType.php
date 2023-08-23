@@ -24,7 +24,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -71,7 +71,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      *           The resource name of the processor type.
      *           Format: `projects/{project}/processorTypes/{processor_type}`
      *     @type string $type
-     *           The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     *           The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *     @type string $category
      *           The processor category, used by UI to group processor types.
      *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $available_locations
@@ -119,7 +119,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -130,7 +130,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var

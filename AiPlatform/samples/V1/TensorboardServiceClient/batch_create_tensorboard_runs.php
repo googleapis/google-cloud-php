@@ -24,10 +24,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_TensorboardService_BatchCreateTensorboardRuns_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\BatchCreateTensorboardRunsRequest;
 use Google\Cloud\AIPlatform\V1\BatchCreateTensorboardRunsResponse;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateTensorboardRunRequest;
 use Google\Cloud\AIPlatform\V1\TensorboardRun;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 
 /**
  * Batch create TensorboardRuns.
@@ -68,11 +69,14 @@ function batch_create_tensorboard_runs_sample(
         ->setTensorboardRun($requestsTensorboardRun)
         ->setTensorboardRunId($requestsTensorboardRunId);
     $requests = [$createTensorboardRunRequest,];
+    $request = (new BatchCreateTensorboardRunsRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchCreateTensorboardRunsResponse $response */
-        $response = $tensorboardServiceClient->batchCreateTensorboardRuns($formattedParent, $requests);
+        $response = $tensorboardServiceClient->batchCreateTensorboardRuns($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

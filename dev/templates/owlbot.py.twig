@@ -35,7 +35,6 @@ php.owlbot_main(
     dest=dest,
     copy_excludes=[
         src / "**/[A-Z]*_*.php",
-        src / "**/*GrpcClient.php"
     ]
 )
 
@@ -56,7 +55,7 @@ subprocess.run([
     '--package=@prettier/plugin-php@^0.16',
     '--',
     'prettier',
-    '**/Gapic/*',
+    '**/BaseClient/*',
     '--write',
     '--parser=php',
     '--single-quote',

@@ -25,8 +25,8 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * The maximum number of processor versions to return.
-     * If unspecified, at most 10 processor versions will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * If unspecified, at most `10` processor versions will be returned.
+     * The maximum value is `20`. Values above `20` will be coerced to `20`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -40,6 +40,22 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent (project, location and processor) to list all
+     *                       versions. Format:
+     *                       `projects/{project}/locations/{location}/processors/{processor}`
+     *                       Please see {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -51,8 +67,8 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/processors/{processor}`
      *     @type int $page_size
      *           The maximum number of processor versions to return.
-     *           If unspecified, at most 10 processor versions will be returned.
-     *           The maximum value is 20; values above 20 will be coerced to 20.
+     *           If unspecified, at most `10` processor versions will be returned.
+     *           The maximum value is `20`. Values above `20` will be coerced to `20`.
      *     @type string $page_token
      *           We will return the processor versions sorted by creation time. The page
      *           token will point to the next processor version.
@@ -95,8 +111,8 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of processor versions to return.
-     * If unspecified, at most 10 processor versions will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * If unspecified, at most `10` processor versions will be returned.
+     * The maximum value is `20`. Values above `20` will be coerced to `20`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -108,8 +124,8 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of processor versions to return.
-     * If unspecified, at most 10 processor versions will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * If unspecified, at most `10` processor versions will be returned.
+     * The maximum value is `20`. Values above `20` will be coerced to `20`.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

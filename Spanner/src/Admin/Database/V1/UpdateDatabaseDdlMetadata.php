@@ -38,7 +38,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      */
     private $commit_timestamps;
     /**
-     * Output only. When true, indicates that the operation is throttled e.g
+     * Output only. When true, indicates that the operation is throttled e.g.
      * due to resource constraints. When resources become available the operation
      * will resume and this field will be false again.
      *
@@ -47,17 +47,23 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     private $throttled = false;
     /**
      * The progress of the
-     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
-     * Currently, only index creation statements will have a continuously
-     * updating progress.
-     * For non-index creation statements, `progress[i]` will have start time
-     * and end time populated with commit timestamp of operation,
-     * as well as a progress of 100% once the operation has completed.
-     * `progress[i]` is the operation progress for `statements[i]`.
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     * operations. All DDL statements will have continuously updating progress,
+     * and `progress[i]` is the operation progress for `statements[i]`. Also,
+     * `progress[i]` will have start time and end time populated with commit
+     * timestamp of operation, as well as a progress of 100% once the operation
+     * has completed.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.OperationProgress progress = 5;</code>
      */
     private $progress;
+    /**
+     * The brief action info for the DDL statements.
+     * `actions[i]` is the brief info for `statements[i]`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.DdlStatementActionInfo actions = 6;</code>
+     */
+    private $actions;
 
     /**
      * Constructor.
@@ -75,18 +81,20 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      *           succeeded so far, where `commit_timestamps[i]` is the commit
      *           timestamp for the statement `statements[i]`.
      *     @type bool $throttled
-     *           Output only. When true, indicates that the operation is throttled e.g
+     *           Output only. When true, indicates that the operation is throttled e.g.
      *           due to resource constraints. When resources become available the operation
      *           will resume and this field will be false again.
      *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\OperationProgress>|\Google\Protobuf\Internal\RepeatedField $progress
      *           The progress of the
-     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
-     *           Currently, only index creation statements will have a continuously
-     *           updating progress.
-     *           For non-index creation statements, `progress[i]` will have start time
-     *           and end time populated with commit timestamp of operation,
-     *           as well as a progress of 100% once the operation has completed.
-     *           `progress[i]` is the operation progress for `statements[i]`.
+     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     *           operations. All DDL statements will have continuously updating progress,
+     *           and `progress[i]` is the operation progress for `statements[i]`. Also,
+     *           `progress[i]` will have start time and end time populated with commit
+     *           timestamp of operation, as well as a progress of 100% once the operation
+     *           has completed.
+     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\DdlStatementActionInfo>|\Google\Protobuf\Internal\RepeatedField $actions
+     *           The brief action info for the DDL statements.
+     *           `actions[i]` is the brief info for `statements[i]`.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,7 +187,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. When true, indicates that the operation is throttled e.g
+     * Output only. When true, indicates that the operation is throttled e.g.
      * due to resource constraints. When resources become available the operation
      * will resume and this field will be false again.
      *
@@ -192,7 +200,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. When true, indicates that the operation is throttled e.g
+     * Output only. When true, indicates that the operation is throttled e.g.
      * due to resource constraints. When resources become available the operation
      * will resume and this field will be false again.
      *
@@ -210,13 +218,12 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
-     * Currently, only index creation statements will have a continuously
-     * updating progress.
-     * For non-index creation statements, `progress[i]` will have start time
-     * and end time populated with commit timestamp of operation,
-     * as well as a progress of 100% once the operation has completed.
-     * `progress[i]` is the operation progress for `statements[i]`.
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     * operations. All DDL statements will have continuously updating progress,
+     * and `progress[i]` is the operation progress for `statements[i]`. Also,
+     * `progress[i]` will have start time and end time populated with commit
+     * timestamp of operation, as well as a progress of 100% once the operation
+     * has completed.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.OperationProgress progress = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -228,13 +235,12 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
-     * Currently, only index creation statements will have a continuously
-     * updating progress.
-     * For non-index creation statements, `progress[i]` will have start time
-     * and end time populated with commit timestamp of operation,
-     * as well as a progress of 100% once the operation has completed.
-     * `progress[i]` is the operation progress for `statements[i]`.
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     * operations. All DDL statements will have continuously updating progress,
+     * and `progress[i]` is the operation progress for `statements[i]`. Also,
+     * `progress[i]` will have start time and end time populated with commit
+     * timestamp of operation, as well as a progress of 100% once the operation
+     * has completed.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.OperationProgress progress = 5;</code>
      * @param array<\Google\Cloud\Spanner\Admin\Database\V1\OperationProgress>|\Google\Protobuf\Internal\RepeatedField $var
@@ -244,6 +250,34 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress::class);
         $this->progress = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The brief action info for the DDL statements.
+     * `actions[i]` is the brief info for `statements[i]`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.DdlStatementActionInfo actions = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getActions()
+    {
+        return $this->actions;
+    }
+
+    /**
+     * The brief action info for the DDL statements.
+     * `actions[i]` is the brief info for `statements[i]`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.DdlStatementActionInfo actions = 6;</code>
+     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\DdlStatementActionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setActions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Database\V1\DdlStatementActionInfo::class);
+        $this->actions = $arr;
 
         return $this;
     }

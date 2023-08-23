@@ -54,7 +54,7 @@ function create_tag_template_field_sample(
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $tagTemplateFieldType = new FieldType();
     $tagTemplateField = (new TagTemplateField())
         ->setType($tagTemplateFieldType);

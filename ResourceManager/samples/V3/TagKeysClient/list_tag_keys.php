@@ -25,24 +25,30 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagKeys_ListTagKeys_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagKeysClient;
+use Google\Cloud\ResourceManager\V3\ListTagKeysRequest;
 use Google\Cloud\ResourceManager\V3\TagKey;
-use Google\Cloud\ResourceManager\V3\TagKeysClient;
 
 /**
  * Lists all TagKeys for a parent resource.
  *
- * @param string $parent The resource name of the new TagKey's parent.
- *                       Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+ * @param string $parent The resource name of the TagKey's parent.
+ *                       Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+ *                       `projects/{project_number}`
  */
 function list_tag_keys_sample(string $parent): void
 {
     // Create a client.
     $tagKeysClient = new TagKeysClient();
 
+    // Prepare the request message.
+    $request = (new ListTagKeysRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tagKeysClient->listTagKeys($parent);
+        $response = $tagKeysClient->listTagKeys($request);
 
         /** @var TagKey $element */
         foreach ($response as $element) {

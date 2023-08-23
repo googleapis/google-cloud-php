@@ -57,6 +57,25 @@ class PatchNetworkEdgeSecurityServiceRequest extends \Google\Protobuf\Internal\M
     private $update_mask = null;
 
     /**
+     * @param string                                              $project                            Project ID for this request.
+     * @param string                                              $region                             Name of the region scoping this request.
+     * @param string                                              $networkEdgeSecurityService         Name of the network edge security service to update.
+     * @param \Google\Cloud\Compute\V1\NetworkEdgeSecurityService $networkEdgeSecurityServiceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchNetworkEdgeSecurityServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $networkEdgeSecurityService, \Google\Cloud\Compute\V1\NetworkEdgeSecurityService $networkEdgeSecurityServiceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
+            ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

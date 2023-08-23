@@ -40,7 +40,7 @@ function get_health_sample(string $backendService, string $project, string $regi
     // Create a client.
     $regionBackendServicesClient = new RegionBackendServicesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $resourceGroupReferenceResource = new ResourceGroupReference();
 
     // Call the API and handle any network failures.

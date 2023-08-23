@@ -35,6 +35,23 @@ class GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest extends \Google\Pr
     private $region = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  Name of the region scoping this request.
+     * @param string $network Network reference
+     *
+     * @return \Google\Cloud\Compute\V1\GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $network): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNetwork($network);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

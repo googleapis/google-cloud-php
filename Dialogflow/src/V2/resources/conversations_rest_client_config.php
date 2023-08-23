@@ -41,6 +41,26 @@ return [
                     ],
                 ],
             ],
+            'GenerateStatelessSummary' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{stateless_conversation.parent=projects/*}/suggestions:generateStatelessSummary',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{stateless_conversation.parent=projects/*/locations/*}/suggestions:generateStatelessSummary',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'stateless_conversation.parent' => [
+                        'getters' => [
+                            'getStatelessConversation',
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/conversations/*}',

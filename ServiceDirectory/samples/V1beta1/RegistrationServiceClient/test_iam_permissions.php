@@ -28,7 +28,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
 
 /**
- * Tests IAM permissions for a resource (namespace or service only).
+ * Tests IAM permissions for a resource (namespace, service  or
+ * service workload only).
  *
  * @param string $resource           REQUIRED: The resource for which the policy detail is being requested.
  *                                   See the operation documentation for the appropriate value for this field.
@@ -42,7 +43,7 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $permissions = [$permissionsElement,];
 
     // Call the API and handle any network failures.

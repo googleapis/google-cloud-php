@@ -41,6 +41,23 @@ class InsertRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Me
     private $request_id = null;
 
     /**
+     * @param string                                      $project                    Project ID for this request.
+     * @param string                                      $region                     Name of the region scoping this request.
+     * @param \Google\Cloud\Compute\V1\HealthCheckService $healthCheckServiceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertRegionHealthCheckServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\HealthCheckService $healthCheckServiceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setHealthCheckServiceResource($healthCheckServiceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

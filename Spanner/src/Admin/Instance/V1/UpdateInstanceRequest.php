@@ -37,6 +37,28 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $field_mask = null;
 
     /**
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance  Required. The instance to update, which must always include the instance
+     *                                                                    name.  Otherwise, only fields mentioned in
+     *                                                                    [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask]
+     *                                                                    need be included.
+     * @param \Google\Protobuf\FieldMask                       $fieldMask Required. A mask specifying which fields in
+     *                                                                    [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     *                                                                    The field mask must always be specified; this prevents any future fields in
+     *                                                                    [Instance][google.spanner.admin.instance.v1.Instance] from being erased
+     *                                                                    accidentally by clients that do not know about them.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance, \Google\Protobuf\FieldMask $fieldMask): self
+    {
+        return (new self())
+            ->setInstance($instance)
+            ->setFieldMask($fieldMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

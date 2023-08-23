@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START essentialcontacts_v1_generated_EssentialContactsService_ListContacts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\EssentialContacts\V1\Client\EssentialContactsServiceClient;
 use Google\Cloud\EssentialContacts\V1\Contact;
-use Google\Cloud\EssentialContacts\V1\EssentialContactsServiceClient;
+use Google\Cloud\EssentialContacts\V1\ListContactsRequest;
 
 /**
  * Lists the contacts that have been set on a resource.
@@ -41,10 +42,14 @@ function list_contacts_sample(string $formattedParent): void
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListContactsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $essentialContactsServiceClient->listContacts($formattedParent);
+        $response = $essentialContactsServiceClient->listContacts($request);
 
         /** @var Contact $element */
         foreach ($response as $element) {

@@ -31,6 +31,22 @@ class UpdateFulfillmentRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\Fulfillment $fulfillment Required. The fulfillment to update.
+     * @param \Google\Protobuf\FieldMask              $updateMask  Required. The mask to control which fields get updated. If the mask is not
+     *                                                             present, all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateFulfillmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Fulfillment $fulfillment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFulfillment($fulfillment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -30,6 +30,21 @@ class UpdateAnswerRecordRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\AnswerRecord $answerRecord Required. Answer record to update.
+     * @param \Google\Protobuf\FieldMask               $updateMask   Required. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateAnswerRecordRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\AnswerRecord $answerRecord, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAnswerRecord($answerRecord)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouderrorreporting_v1beta1_generated_ErrorStatsService_ListGroupStats_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ErrorReporting\V1beta1\Client\ErrorStatsServiceClient;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats;
-use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsRequest;
 
 /**
  * Lists the specified groups.
@@ -44,10 +45,14 @@ function list_group_stats_sample(string $formattedProjectName): void
     // Create a client.
     $errorStatsServiceClient = new ErrorStatsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListGroupStatsRequest())
+        ->setProjectName($formattedProjectName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $errorStatsServiceClient->listGroupStats($formattedProjectName);
+        $response = $errorStatsServiceClient->listGroupStats($request);
 
         /** @var ErrorGroupStats $element */
         foreach ($response as $element) {

@@ -30,7 +30,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â#
+£#
 !google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"Æ
 CreateServiceRequest2
 parent (	B"‡A˙Arun.googleapis.com/Service2
@@ -58,7 +58,7 @@ page_token (	
 name (	B"‡A˙A
 run.googleapis.com/Service
 validate_only (
-etag (	"¥
+etag (	"Œ
 Service
 name (	
 description (	
@@ -90,7 +90,8 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 latest_created_revision" (	B#‡A˙A
 run.googleapis.com/RevisionG
 traffic_statuses# (2(.google.cloud.run.v2.TrafficTargetStatusB‡A
-uri$ (	B‡A
+uri$ (	B‡A
+custom_audiences% (	
 satisfies_pzs& (B‡A
 reconcilingb (B‡A
 etagc (	B‡A-

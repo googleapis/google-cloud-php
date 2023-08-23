@@ -41,7 +41,7 @@ function patch_sample(string $instanceGroupManager, string $project, string $reg
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instanceGroupManagerResource = new InstanceGroupManager();
 
     // Call the API and handle any network failures.

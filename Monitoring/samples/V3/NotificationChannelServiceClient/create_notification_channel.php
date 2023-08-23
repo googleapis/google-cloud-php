@@ -46,7 +46,7 @@ function create_notification_channel_sample(string $name): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $notificationChannel = new NotificationChannel();
 
     // Call the API and handle any network failures.

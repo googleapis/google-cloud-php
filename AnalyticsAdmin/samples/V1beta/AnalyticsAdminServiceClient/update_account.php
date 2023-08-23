@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateAccount_sync]
 use Google\Analytics\Admin\V1beta\Account;
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\UpdateAccountRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -42,11 +43,14 @@ function update_account_sample(string $accountDisplayName): void
     $account = (new Account())
         ->setDisplayName($accountDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateAccountRequest())
+        ->setAccount($account)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Account $response */
-        $response = $analyticsAdminServiceClient->updateAccount($account, $updateMask);
+        $response = $analyticsAdminServiceClient->updateAccount($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

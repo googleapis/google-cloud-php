@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataScanService_DeleteDataScan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
+use Google\Cloud\Dataplex\V1\DeleteDataScanRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_data_scan_sample(string $formattedName): void
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDataScanRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataScanServiceClient->deleteDataScan($formattedName);
+        $response = $dataScanServiceClient->deleteDataScan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

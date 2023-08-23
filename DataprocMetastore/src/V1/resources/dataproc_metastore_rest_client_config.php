@@ -27,6 +27,18 @@ return [
             ],
         ],
         'google.cloud.metastore.v1.DataprocMetastore' => [
+            'AlterMetadataResourceLocation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:alterLocation',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/services/*}/backups',
@@ -168,6 +180,30 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveTableToDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:moveTableToDatabase',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryMetadata' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:queryMetadata',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
                         ],
                     ],
                 ],

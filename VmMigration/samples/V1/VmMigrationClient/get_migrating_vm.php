@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmmigration_v1_generated_VmMigration_GetMigratingVm_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\GetMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\MigratingVm;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 
 /**
  * Gets details of a single MigratingVm.
@@ -38,10 +39,14 @@ function get_migrating_vm_sample(string $formattedName): void
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new GetMigratingVmRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var MigratingVm $response */
-        $response = $vmMigrationClient->getMigratingVm($formattedName);
+        $response = $vmMigrationClient->getMigratingVm($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

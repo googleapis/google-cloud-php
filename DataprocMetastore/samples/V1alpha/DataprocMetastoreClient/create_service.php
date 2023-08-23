@@ -49,7 +49,7 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $service = new Service();
 
     // Call the API and handle any network failures.

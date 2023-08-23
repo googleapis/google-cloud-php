@@ -26,6 +26,22 @@ class GetOrganizationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the Organization to fetch. This is the
+     *                     organization's relative path in the API, formatted as
+     *                     "organizations/[organizationId]". For example, "organizations/1234". Please see
+     *                     {@see OrganizationsClient::organizationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\GetOrganizationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

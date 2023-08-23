@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalineage_v1_generated_Lineage_GetRun_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\GetRunRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
 
 /**
@@ -38,10 +39,14 @@ function get_run_sample(string $formattedName): void
     // Create a client.
     $lineageClient = new LineageClient();
 
+    // Prepare the request message.
+    $request = (new GetRunRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Run $response */
-        $response = $lineageClient->getRun($formattedName);
+        $response = $lineageClient->getRun($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

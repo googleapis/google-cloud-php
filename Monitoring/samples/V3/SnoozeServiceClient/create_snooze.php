@@ -56,7 +56,7 @@ function create_snooze_sample(
     // Create a client.
     $snoozeServiceClient = new SnoozeServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $snoozeCriteria = new Criteria();
     $snoozeInterval = new TimeInterval();
     $snooze = (new Snooze())

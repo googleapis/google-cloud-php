@@ -16,22 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class Container extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Container name.
+     * Name of the container.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Container image URI provided when configuring a pod/container.
-     * May identify a container image version using mutable tags.
+     * Container image URI provided when configuring a pod or container. This
+     * string can identify a container image version using mutable tags.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     private $uri = '';
     /**
-     * Optional container image id, when provided by the container runtime.
-     * Uniquely identifies the container image launched using a container image
-     * digest.
+     * Optional container image ID, if provided by the container runtime. Uniquely
+     * identifies the container image launched using a container image digest.
      *
      * Generated from protobuf field <code>string image_id = 3;</code>
      */
@@ -50,14 +49,13 @@ class Container extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Container name.
+     *           Name of the container.
      *     @type string $uri
-     *           Container image URI provided when configuring a pod/container.
-     *           May identify a container image version using mutable tags.
+     *           Container image URI provided when configuring a pod or container. This
+     *           string can identify a container image version using mutable tags.
      *     @type string $image_id
-     *           Optional container image id, when provided by the container runtime.
-     *           Uniquely identifies the container image launched using a container image
-     *           digest.
+     *           Optional container image ID, if provided by the container runtime. Uniquely
+     *           identifies the container image launched using a container image digest.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Label>|\Google\Protobuf\Internal\RepeatedField $labels
      *           Container labels, as provided by the container runtime.
      * }
@@ -68,7 +66,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container name.
+     * Name of the container.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -79,7 +77,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container name.
+     * Name of the container.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -94,8 +92,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container image URI provided when configuring a pod/container.
-     * May identify a container image version using mutable tags.
+     * Container image URI provided when configuring a pod or container. This
+     * string can identify a container image version using mutable tags.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -106,8 +104,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container image URI provided when configuring a pod/container.
-     * May identify a container image version using mutable tags.
+     * Container image URI provided when configuring a pod or container. This
+     * string can identify a container image version using mutable tags.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -122,9 +120,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional container image id, when provided by the container runtime.
-     * Uniquely identifies the container image launched using a container image
-     * digest.
+     * Optional container image ID, if provided by the container runtime. Uniquely
+     * identifies the container image launched using a container image digest.
      *
      * Generated from protobuf field <code>string image_id = 3;</code>
      * @return string
@@ -135,9 +132,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional container image id, when provided by the container runtime.
-     * Uniquely identifies the container image launched using a container image
-     * digest.
+     * Optional container image ID, if provided by the container runtime. Uniquely
+     * identifies the container image launched using a container image digest.
      *
      * Generated from protobuf field <code>string image_id = 3;</code>
      * @param string $var

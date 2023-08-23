@@ -45,6 +45,21 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent for the instances are in the form of
+     *                       `projects/&#42;/patchJobs/*`. Please see
+     *                       {@see OsConfigServiceClient::patchJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

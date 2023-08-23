@@ -61,6 +61,21 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     protected $force = false;
 
     /**
+     * @param string $name Required. The name of the resource. For the required format, see the
+     *                     comment on the Cluster.name field. Please see
+     *                     {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AlloyDb\V1\DeleteClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

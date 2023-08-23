@@ -46,7 +46,7 @@ function batch_get_documents_sample(string $database, string $documentsElement):
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $documents = [$documentsElement,];
 
     // Call the API and handle any network failures.

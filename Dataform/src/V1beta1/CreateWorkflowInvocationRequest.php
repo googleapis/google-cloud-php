@@ -30,6 +30,23 @@ class CreateWorkflowInvocationRequest extends \Google\Protobuf\Internal\Message
     private $workflow_invocation = null;
 
     /**
+     * @param string                                            $parent             Required. The repository in which to create the workflow invocation. Must be in the
+     *                                                                              format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     *                                                                              {@see DataformClient::repositoryName()} for help formatting this field.
+     * @param \Google\Cloud\Dataform\V1beta1\WorkflowInvocation $workflowInvocation Required. The workflow invocation resource to create.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataform\V1beta1\WorkflowInvocation $workflowInvocation): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setWorkflowInvocation($workflowInvocation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

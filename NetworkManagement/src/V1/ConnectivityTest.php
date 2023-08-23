@@ -17,7 +17,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -115,6 +115,15 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails reachability_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reachability_details = null;
+    /**
+     * Output only. The probing details of this test from the latest run, present
+     * for applicable tests only. The details are updated when creating a new
+     * test, updating an existing test, or triggering a one-time rerun of an
+     * existing test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails probing_details = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $probing_details = null;
 
     /**
      * Constructor.
@@ -124,7 +133,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Unique name of the resource using the form:
-     *               `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *               `projects/{project_id}/locations/global/connectivityTests/{test}`
      *     @type string $description
      *           The user-supplied description of the Connectivity Test.
      *           Maximum of 512 characters.
@@ -178,6 +187,11 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *           Output only. The reachability details of this test from the latest run.
      *           The details are updated when creating a new test, updating an
      *           existing test, or triggering a one-time rerun of an existing test.
+     *     @type \Google\Cloud\NetworkManagement\V1\ProbingDetails $probing_details
+     *           Output only. The probing details of this test from the latest run, present
+     *           for applicable tests only. The details are updated when creating a new
+     *           test, updating an existing test, or triggering a one-time rerun of an
+     *           existing test.
      * }
      */
     public function __construct($data = NULL) {
@@ -187,7 +201,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -199,7 +213,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -585,6 +599,48 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ReachabilityDetails::class);
         $this->reachability_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The probing details of this test from the latest run, present
+     * for applicable tests only. The details are updated when creating a new
+     * test, updating an existing test, or triggering a one-time rerun of an
+     * existing test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails probing_details = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ProbingDetails|null
+     */
+    public function getProbingDetails()
+    {
+        return $this->probing_details;
+    }
+
+    public function hasProbingDetails()
+    {
+        return isset($this->probing_details);
+    }
+
+    public function clearProbingDetails()
+    {
+        unset($this->probing_details);
+    }
+
+    /**
+     * Output only. The probing details of this test from the latest run, present
+     * for applicable tests only. The details are updated when creating a new
+     * test, updating an existing test, or triggering a one-time rerun of an
+     * existing test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails probing_details = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ProbingDetails $var
+     * @return $this
+     */
+    public function setProbingDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ProbingDetails::class);
+        $this->probing_details = $var;
 
         return $this;
     }

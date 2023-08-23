@@ -47,6 +47,25 @@ class ResizeRegionDiskRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                            $project                          The project ID for this request.
+     * @param string                                            $region                           Name of the region for this request.
+     * @param string                                            $disk                             Name of the regional persistent disk.
+     * @param \Google\Cloud\Compute\V1\RegionDisksResizeRequest $regionDisksResizeRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ResizeRegionDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $disk, \Google\Cloud\Compute\V1\RegionDisksResizeRequest $regionDisksResizeRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setDisk($disk)
+            ->setRegionDisksResizeRequestResource($regionDisksResizeRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -55,9 +55,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
  *                                 * indicator.ip_addresses: `=`, `:`
  *                                 * indicator.domains: `=`, `:`
  * @param string $muteConfigId     Unique identifier provided by the client within the parent scope.
- *                                 It must consist of lower case letters, numbers, and hyphen, with the first
- *                                 character a letter, the last a letter or a number, and a 63 character
- *                                 maximum.
+ *                                 It must consist of only lowercase letters, numbers, and hyphens, must start
+ *                                 with a letter, must end with either a letter or a number, and must be 63
+ *                                 characters or less.
  */
 function create_mute_config_sample(
     string $formattedParent,
@@ -67,7 +67,7 @@ function create_mute_config_sample(
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $muteConfig = (new MuteConfig())
         ->setFilter($muteConfigFilter);
 

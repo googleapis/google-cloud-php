@@ -19,6 +19,7 @@ namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\PubSub\Topic;
 
 /**
  * Publishes messages to Google Cloud Pub\Sub with background batching.
@@ -48,7 +49,9 @@ class BatchPublisher
     const ID_TEMPLATE = 'pubsub-topic-%s';
 
     /**
-     * @var array
+     * @var array Stores all the topics that have been created
+     *      as [key => value] pairs where key is the unique
+     *      identifier of a BatchPublisher.
      */
     private static $topics = [];
 
@@ -63,18 +66,43 @@ class BatchPublisher
     private $client;
 
     /**
+     * @var bool
+     */
+    private $enableCompression;
+
+    /**
+     * @var int
+     */
+    private $compressionBytesThreshold;
+
+    /**
      * @param string $topicName The topic name.
-     * @param array $options [optional] Please see
-     *        {@see Google\Cloud\PubSub\Topic::batchPublisher()} for
+     * @param array $options [optional] {
+     *        Please {@see PubSub\Topic::batchPublisher()} for
      *        configuration details.
+     *        @type bool $enableCompression Flag to enable compression of messages
+     *              before publishing. Set the flag to `true` to enable compression.
+     *              Defaults to `false`. Messsages are compressed if their total
+     *              size >= `compressionBytesThreshold`, whose default value has
+     *              been experimentally derived after performance evaluations.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed. This only takes effect
+     *              if `enableCompression` is set to `true`. Defaults to `240`.
+     * }
      */
     public function __construct($topicName, array $options = [])
     {
         $this->topicName = $topicName;
+        $this->enableCompression = $options['enableCompression'] ?? false;
+        $this->compressionBytesThreshold = $options['compressionBytesThreshold'] ??
+            Topic::DEFAULT_COMPRESSION_BYTES_THRESHOLD;
         $this->setCommonBatchProperties($options + [
             'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
             'batchMethod' => 'publishDeferred'
         ]);
+    }
+
+    /**
     }
 
     /**
@@ -90,7 +118,7 @@ class BatchPublisher
      * @param Message|array $message An instance of
      *        {@see Google\Cloud\PubSub\Message}, or an array in the correct
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
-     * @return bool
+     * @return void
      */
     public function publish($message)
     {
@@ -141,16 +169,23 @@ class BatchPublisher
             $calls[$key][] = $message;
         }
 
-        if (!array_key_exists($this->topicName, self::$topics)) {
+        if (!array_key_exists($this->identifier, self::$topics)) {
             if (!$this->client) {
                 //@codeCoverageIgnoreStart
                 $this->client = new PubSubClient($this->getUnwrappedClientConfig());
                 //@codeCoverageIgnoreEnd
             }
-            self::$topics[$this->topicName] = $this->client->topic($this->topicName);
+            $compressionOptions = [
+                'enableCompression' => $this->enableCompression,
+                'compressionBytesThreshold' => $this->compressionBytesThreshold
+            ];
+            self::$topics[$this->identifier] = $this->client->topic(
+                $this->topicName,
+                $compressionOptions
+            );
         }
 
-        $topic = self::$topics[$this->topicName];
+        $topic = self::$topics[$this->identifier];
 
         $res = [];
         foreach ($calls as $call) {

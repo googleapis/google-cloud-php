@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastore_v1_generated_DatastoreAdmin_ImportEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\ImportEntitiesRequest;
 use Google\Rpc\Status;
 
 /**
@@ -36,8 +37,9 @@ use Google\Rpc\Status;
  * that a subset of the data has already been imported to Cloud Datastore.
  *
  * @param string $projectId Project ID against which to make the request.
- * @param string $inputUrl  The full resource URL of the external storage location. Currently, only
- *                          Google Cloud Storage is supported. So input_url should be of the form:
+ * @param string $inputUrl  The full resource URL of the external storage location.
+ *                          Currently, only Google Cloud Storage is supported. So input_url should be
+ *                          of the form:
  *                          `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
  *                          `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
  *                          an optional Cloud Storage namespace path (this is not a Cloud Datastore
@@ -55,10 +57,15 @@ function import_entities_sample(string $projectId, string $inputUrl): void
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
+    // Prepare the request message.
+    $request = (new ImportEntitiesRequest())
+        ->setProjectId($projectId)
+        ->setInputUrl($inputUrl);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastoreAdminClient->importEntities($projectId, $inputUrl);
+        $response = $datastoreAdminClient->importEntities($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

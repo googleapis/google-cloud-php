@@ -52,7 +52,7 @@ function create_conversation_dataset_sample(
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $conversationDataset = (new ConversationDataset())
         ->setDisplayName($conversationDatasetDisplayName);
 

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datafusion_v1_generated_DataFusion_DeleteInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataFusion\V1\DataFusionClient;
+use Google\Cloud\DataFusion\V1\Client\DataFusionClient;
+use Google\Cloud\DataFusion\V1\DeleteInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_instance_sample(string $formattedName): void
     // Create a client.
     $dataFusionClient = new DataFusionClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInstanceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataFusionClient->deleteInstance($formattedName);
+        $response = $dataFusionClient->deleteInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

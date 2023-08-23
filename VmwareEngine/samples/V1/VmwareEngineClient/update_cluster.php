@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_UpdateCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\Cluster;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\UpdateClusterRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -56,11 +57,14 @@ function update_cluster_sample(): void
     $clusterNodeTypeConfigs = [];
     $cluster = (new Cluster())
         ->setNodeTypeConfigs($clusterNodeTypeConfigs);
+    $request = (new UpdateClusterRequest())
+        ->setUpdateMask($updateMask)
+        ->setCluster($cluster);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->updateCluster($updateMask, $cluster);
+        $response = $vmwareEngineClient->updateCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

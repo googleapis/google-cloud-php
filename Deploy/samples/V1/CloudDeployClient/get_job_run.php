@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_GetJobRun_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\GetJobRunRequest;
 use Google\Cloud\Deploy\V1\JobRun;
 
 /**
@@ -39,10 +40,14 @@ function get_job_run_sample(string $formattedName): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new GetJobRunRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var JobRun $response */
-        $response = $cloudDeployClient->getJobRun($formattedName);
+        $response = $cloudDeployClient->getJobRun($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

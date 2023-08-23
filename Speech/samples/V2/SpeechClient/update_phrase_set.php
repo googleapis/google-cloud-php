@@ -43,7 +43,7 @@ function update_phrase_set_sample(): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $phraseSet = new PhraseSet();
 
     // Call the API and handle any network failures.

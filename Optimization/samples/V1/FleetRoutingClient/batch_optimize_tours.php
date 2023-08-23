@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudoptimization_v1_generated_FleetRouting_BatchOptimizeTours_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Optimization\V1\BatchOptimizeToursRequest;
 use Google\Cloud\Optimization\V1\BatchOptimizeToursRequest\AsyncModelConfig;
 use Google\Cloud\Optimization\V1\BatchOptimizeToursResponse;
-use Google\Cloud\Optimization\V1\FleetRoutingClient;
+use Google\Cloud\Optimization\V1\Client\FleetRoutingClient;
 use Google\Cloud\Optimization\V1\InputConfig;
 use Google\Cloud\Optimization\V1\OutputConfig;
 use Google\Rpc\Status;
@@ -62,11 +63,14 @@ function batch_optimize_tours_sample(string $parent): void
         ->setInputConfig($modelConfigsInputConfig)
         ->setOutputConfig($modelConfigsOutputConfig);
     $modelConfigs = [$asyncModelConfig,];
+    $request = (new BatchOptimizeToursRequest())
+        ->setParent($parent)
+        ->setModelConfigs($modelConfigs);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $fleetRoutingClient->batchOptimizeTours($parent, $modelConfigs);
+        $response = $fleetRoutingClient->batchOptimizeTours($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

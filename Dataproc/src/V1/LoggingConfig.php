@@ -19,7 +19,9 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * The per-package log levels for the driver. This may include
      * "root" package name to configure rootLogger.
      * Examples:
-     *   'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'
+     * - 'com.google = FATAL'
+     * - 'root = INFO'
+     * - 'org.apache = DEBUG'
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataproc.v1.LoggingConfig.Level> driver_log_levels = 2;</code>
      */
@@ -35,7 +37,9 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      *           The per-package log levels for the driver. This may include
      *           "root" package name to configure rootLogger.
      *           Examples:
-     *             'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'
+     *           - 'com.google = FATAL'
+     *           - 'root = INFO'
+     *           - 'org.apache = DEBUG'
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +51,9 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * The per-package log levels for the driver. This may include
      * "root" package name to configure rootLogger.
      * Examples:
-     *   'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'
+     * - 'com.google = FATAL'
+     * - 'root = INFO'
+     * - 'org.apache = DEBUG'
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataproc.v1.LoggingConfig.Level> driver_log_levels = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -61,7 +67,9 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * The per-package log levels for the driver. This may include
      * "root" package name to configure rootLogger.
      * Examples:
-     *   'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'
+     * - 'com.google = FATAL'
+     * - 'root = INFO'
+     * - 'org.apache = DEBUG'
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataproc.v1.LoggingConfig.Level> driver_log_levels = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

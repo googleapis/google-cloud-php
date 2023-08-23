@@ -24,6 +24,21 @@ class DeleteApiRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the form:
+     *                     `projects/&#42;/locations/global/apis/*`
+     *                     Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApiGateway\V1\DeleteApiRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

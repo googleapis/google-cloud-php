@@ -29,6 +29,21 @@ class GetInstanceTemplateRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project          Project ID for this request.
+     * @param string $instanceTemplate The name of the instance template.
+     *
+     * @return \Google\Cloud\Compute\V1\GetInstanceTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $instanceTemplate): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setInstanceTemplate($instanceTemplate);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

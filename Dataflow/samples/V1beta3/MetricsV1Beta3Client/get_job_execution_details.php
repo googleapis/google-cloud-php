@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataflow_v1beta3_generated_MetricsV1Beta3_GetJobExecutionDetails_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataflow\V1beta3\MetricsV1Beta3Client;
+use Google\Cloud\Dataflow\V1beta3\Client\MetricsV1Beta3Client;
+use Google\Cloud\Dataflow\V1beta3\GetJobExecutionDetailsRequest;
 use Google\Cloud\Dataflow\V1beta3\StageSummary;
 
 /**
@@ -44,10 +45,13 @@ function get_job_execution_details_sample(): void
     // Create a client.
     $metricsV1Beta3Client = new MetricsV1Beta3Client();
 
+    // Prepare the request message.
+    $request = new GetJobExecutionDetailsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metricsV1Beta3Client->getJobExecutionDetails();
+        $response = $metricsV1Beta3Client->getJobExecutionDetails($request);
 
         /** @var StageSummary $element */
         foreach ($response as $element) {

@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use Google\Rpc\Status;
 
 /**
- * Patches a rule at the specified priority.
+ * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
  *
  * @param string $project        Project ID for this request.
  * @param string $securityPolicy Name of the security policy to update.
@@ -40,7 +40,7 @@ function patch_rule_sample(string $project, string $securityPolicy): void
     // Create a client.
     $securityPoliciesClient = new SecurityPoliciesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $securityPolicyRuleResource = new SecurityPolicyRule();
 
     // Call the API and handle any network failures.

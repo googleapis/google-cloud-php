@@ -49,6 +49,8 @@ use Google\Cloud\Kms\V1\ListEkmConnectionsRequest;
 use Google\Cloud\Kms\V1\ListEkmConnectionsResponse;
 use Google\Cloud\Kms\V1\UpdateEkmConfigRequest;
 use Google\Cloud\Kms\V1\UpdateEkmConnectionRequest;
+use Google\Cloud\Kms\V1\VerifyConnectivityRequest;
+use Google\Cloud\Kms\V1\VerifyConnectivityResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -81,6 +83,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Kms\V1\Client\EkmServiceClient} to use the new surface.
  */
 class EkmServiceGapicClient
 {
@@ -665,6 +670,50 @@ class EkmServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateEkmConnection', EkmConnection::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Verifies that Cloud KMS can successfully connect to the external key
+     * manager specified by an [EkmConnection][google.cloud.kms.v1.EkmConnection].
+     * If there is an error connecting to the EKM, this method returns a
+     * FAILED_PRECONDITION status containing structured information as described
+     * at https://cloud.google.com/kms/docs/reference/ekm_errors.
+     *
+     * Sample code:
+     * ```
+     * $ekmServiceClient = new EkmServiceClient();
+     * try {
+     *     $formattedName = $ekmServiceClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
+     *     $response = $ekmServiceClient->verifyConnectivity($formattedName);
+     * } finally {
+     *     $ekmServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
+     *                             [EkmConnection][google.cloud.kms.v1.EkmConnection] to verify.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\VerifyConnectivityResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function verifyConnectivity($name, array $optionalArgs = [])
+    {
+        $request = new VerifyConnectivityRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('VerifyConnectivity', VerifyConnectivityResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

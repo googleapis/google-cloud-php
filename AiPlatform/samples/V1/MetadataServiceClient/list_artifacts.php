@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\AIPlatform\V1\Artifact;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\ListArtifactsRequest;
 
 /**
  * Lists Artifacts in the MetadataStore.
@@ -41,10 +42,14 @@ function list_artifacts_sample(string $formattedParent): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListArtifactsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metadataServiceClient->listArtifacts($formattedParent);
+        $response = $metadataServiceClient->listArtifacts($request);
 
         /** @var Artifact $element */
         foreach ($response as $element) {

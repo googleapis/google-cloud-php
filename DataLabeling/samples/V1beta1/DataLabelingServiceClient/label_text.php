@@ -26,8 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\HumanAnnotationConfig;
+use Google\Cloud\DataLabeling\V1beta1\LabelTextRequest;
 use Google\Cloud\DataLabeling\V1beta1\LabelTextRequest\Feature;
 use Google\Rpc\Status;
 
@@ -57,11 +58,15 @@ function label_text_sample(
     $basicConfig = (new HumanAnnotationConfig())
         ->setInstruction($basicConfigInstruction)
         ->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+    $request = (new LabelTextRequest())
+        ->setParent($formattedParent)
+        ->setBasicConfig($basicConfig)
+        ->setFeature($feature);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataLabelingServiceClient->labelText($formattedParent, $basicConfig, $feature);
+        $response = $dataLabelingServiceClient->labelText($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

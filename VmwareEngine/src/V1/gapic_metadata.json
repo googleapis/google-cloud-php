@@ -30,6 +30,11 @@
                                 "createPrivateCloud"
                             ]
                         },
+                        "CreatePrivateConnection": {
+                            "methods": [
+                                "createPrivateConnection"
+                            ]
+                        },
                         "CreateVmwareEngineNetwork": {
                             "methods": [
                                 "createVmwareEngineNetwork"
@@ -48,6 +53,11 @@
                         "DeletePrivateCloud": {
                             "methods": [
                                 "deletePrivateCloud"
+                            ]
+                        },
+                        "DeletePrivateConnection": {
+                            "methods": [
+                                "deletePrivateConnection"
                             ]
                         },
                         "DeleteVmwareEngineNetwork": {
@@ -80,6 +90,16 @@
                                 "getPrivateCloud"
                             ]
                         },
+                        "GetPrivateConnection": {
+                            "methods": [
+                                "getPrivateConnection"
+                            ]
+                        },
+                        "GetSubnet": {
+                            "methods": [
+                                "getSubnet"
+                            ]
+                        },
                         "GetVmwareEngineNetwork": {
                             "methods": [
                                 "getVmwareEngineNetwork"
@@ -108,6 +128,16 @@
                         "ListPrivateClouds": {
                             "methods": [
                                 "listPrivateClouds"
+                            ]
+                        },
+                        "ListPrivateConnectionPeeringRoutes": {
+                            "methods": [
+                                "listPrivateConnectionPeeringRoutes"
+                            ]
+                        },
+                        "ListPrivateConnections": {
+                            "methods": [
+                                "listPrivateConnections"
                             ]
                         },
                         "ListSubnets": {
@@ -158,6 +188,16 @@
                         "UpdatePrivateCloud": {
                             "methods": [
                                 "updatePrivateCloud"
+                            ]
+                        },
+                        "UpdatePrivateConnection": {
+                            "methods": [
+                                "updatePrivateConnection"
+                            ]
+                        },
+                        "UpdateSubnet": {
+                            "methods": [
+                                "updateSubnet"
                             ]
                         },
                         "UpdateVmwareEngineNetwork": {

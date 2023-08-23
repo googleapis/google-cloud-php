@@ -40,7 +40,7 @@ function patch_sample(string $project, string $publicAdvertisedPrefix): void
     // Create a client.
     $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
 
     // Call the API and handle any network failures.

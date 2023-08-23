@@ -53,7 +53,7 @@ function streaming_pull_sample(string $formattedSubscription, int $streamAckDead
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $request = (new StreamingPullRequest())
         ->setSubscription($formattedSubscription)
         ->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);

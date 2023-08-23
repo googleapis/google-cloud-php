@@ -20,28 +20,40 @@ class PredictionService
         \GPBMetadata\Google\Api\Httpbody::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Explanation::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\Types::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-þ
-3google/cloud/aiplatform/v1/prediction_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto,google/cloud/aiplatform/v1/explanation.protogoogle/protobuf/struct.proto"ª
+Ý
+3google/cloud/aiplatform/v1/prediction_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto,google/cloud/aiplatform/v1/explanation.proto&google/cloud/aiplatform/v1/types.protogoogle/protobuf/struct.proto"ª
 PredictRequest<
 endpoint (	B*àAúA$
 "aiplatform.googleapis.com/Endpoint.
 	instances (2.google.protobuf.ValueBàA*
 
-parameters (2.google.protobuf.Value"Ñ
+parameters (2.google.protobuf.Value"€
 PredictResponse+
 predictions (2.google.protobuf.Value
 deployed_model_id (	6
 model (	B\'àAúA!
 aiplatform.googleapis.com/Model
 model_version_id (	BàA
-model_display_name (	BàA"z
+model_display_name (	BàA-
+metadata (2.google.protobuf.ValueBàA"z
 RawPredictRequest<
 endpoint (	B*àAúA$
 "aiplatform.googleapis.com/Endpoint\'
-	http_body (2.google.api.HttpBody"
+	http_body (2.google.api.HttpBody"Ã
+StreamingPredictRequest<
+endpoint (	B*àAúA$
+"aiplatform.googleapis.com/Endpoint2
+inputs (2".google.cloud.aiplatform.v1.Tensor6
+
+parameters (2".google.cloud.aiplatform.v1.Tensor"‡
+StreamingPredictResponse3
+outputs (2".google.cloud.aiplatform.v1.Tensor6
+
+parameters (2".google.cloud.aiplatform.v1.Tensor"
 ExplainRequest<
 endpoint (	B*àAúA$
 "aiplatform.googleapis.com/Endpoint.
@@ -53,11 +65,12 @@ parameters (2.google.protobuf.ValueV
 ExplainResponse=
 explanations (2\'.google.cloud.aiplatform.v1.Explanation
 deployed_model_id (	+
-predictions (2.google.protobuf.Value2×
+predictions (2.google.protobuf.Value2	
 PredictionService”
 Predict*.google.cloud.aiplatform.v1.PredictRequest+.google.cloud.aiplatform.v1.PredictResponse"¯‚Óä“ˆ"9/v1/{endpoint=projects/*/locations/*/endpoints/*}:predict:*ZH"C/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:predict:*ÚAendpoint,instances,parametersþ
 
-RawPredict-.google.cloud.aiplatform.v1.RawPredictRequest.google.api.HttpBody"ª‚Óä“Ž"</v1/{endpoint=projects/*/locations/*/endpoints/*}:rawPredict:*ZK"F/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:rawPredict:*ÚAendpoint,http_bodyÚ
+RawPredict-.google.cloud.aiplatform.v1.RawPredictRequest.google.api.HttpBody"ª‚Óä“Ž"</v1/{endpoint=projects/*/locations/*/endpoints/*}:rawPredict:*ZK"F/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:rawPredict:*ÚAendpoint,http_bodyµ
+ServerStreamingPredict3.google.cloud.aiplatform.v1.StreamingPredictRequest4.google.cloud.aiplatform.v1.StreamingPredictResponse"­‚Óä“¦"H/v1/{endpoint=projects/*/locations/*/endpoints/*}:serverStreamingPredict:*ZW"R/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:serverStreamingPredict:*0Ú
 Explain*.google.cloud.aiplatform.v1.ExplainRequest+.google.cloud.aiplatform.v1.ExplainResponse"v‚Óä“>"9/v1/{endpoint=projects/*/locations/*/endpoints/*}:explain:*ÚA/endpoint,instances,parameters,deployed_model_idMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÔ
 com.google.cloud.aiplatform.v1BPredictionServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

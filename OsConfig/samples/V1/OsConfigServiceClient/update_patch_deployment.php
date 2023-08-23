@@ -44,7 +44,7 @@ function update_patch_deployment_sample(): void
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $patchDeploymentInstanceFilter = new PatchInstanceFilter();
     $patchDeploymentOneTimeScheduleExecuteTime = new Timestamp();
     $patchDeploymentOneTimeSchedule = (new OneTimeSchedule())

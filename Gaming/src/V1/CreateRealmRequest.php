@@ -36,6 +36,25 @@ class CreateRealmRequest extends \Google\Protobuf\Internal\Message
     private $realm = null;
 
     /**
+     * @param string                        $parent  Required. The parent resource name, in the following form:
+     *                                               `projects/{project}/locations/{location}`. Please see
+     *                                               {@see RealmsServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Gaming\V1\Realm $realm   Required. The realm resource to be created.
+     * @param string                        $realmId Required. The ID of the realm resource to be created.
+     *
+     * @return \Google\Cloud\Gaming\V1\CreateRealmRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Gaming\V1\Realm $realm, string $realmId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRealm($realm)
+            ->setRealmId($realmId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

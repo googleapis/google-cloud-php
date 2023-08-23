@@ -64,6 +64,10 @@ use Google\Protobuf\GPBEmpty;
  *     $identityAwareProxyOAuthServiceClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient} to use the new
+ * surface.
  */
 class IdentityAwareProxyOAuthServiceGapicClient
 {

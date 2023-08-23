@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Settings specific to the Key Management Service.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings</code>
  */
 class KMSSettings extends \Google\Protobuf\Internal\Message

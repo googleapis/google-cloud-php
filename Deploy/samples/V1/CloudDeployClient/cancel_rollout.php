@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_CancelRollout_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Deploy\V1\CancelRolloutRequest;
 use Google\Cloud\Deploy\V1\CancelRolloutResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 
 /**
  * Cancels a Rollout in a given project and location.
@@ -40,10 +41,14 @@ function cancel_rollout_sample(string $formattedName): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new CancelRolloutRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CancelRolloutResponse $response */
-        $response = $cloudDeployClient->cancelRollout($formattedName);
+        $response = $cloudDeployClient->cancelRollout($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

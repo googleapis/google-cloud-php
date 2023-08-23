@@ -58,6 +58,22 @@ class ListCertificateRevocationListsRequest extends \Google\Protobuf\Internal\Me
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the location associated with the
+     *                       [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
+     *                       in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+     *                       {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\ListCertificateRevocationListsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

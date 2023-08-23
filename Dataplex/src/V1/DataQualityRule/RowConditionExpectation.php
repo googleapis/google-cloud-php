@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Evaluates whether each row passes the specified condition.
  * The SQL expression needs to use BigQuery standard SQL syntax and should
- * produce a boolean per row as the result.
+ * produce a boolean value per row as the result.
  * Example: col1 >= 0 AND col2 < 10
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataQualityRule.RowConditionExpectation</code>
@@ -19,7 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class RowConditionExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Optional. The SQL expression.
+     *
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sql_expression = '';
 
@@ -30,6 +32,7 @@ class RowConditionExpectation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $sql_expression
+     *           Optional. The SQL expression.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,9 @@ class RowConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Optional. The SQL expression.
+     *
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSqlExpression()
@@ -47,7 +52,9 @@ class RowConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Optional. The SQL expression.
+     *
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_ExportTensorboardTimeSeriesData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\ExportTensorboardTimeSeriesDataRequest;
 use Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint;
 
 /**
@@ -42,12 +43,14 @@ function export_tensorboard_time_series_data_sample(string $formattedTensorboard
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new ExportTensorboardTimeSeriesDataRequest())
+        ->setTensorboardTimeSeries($formattedTensorboardTimeSeries);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tensorboardServiceClient->exportTensorboardTimeSeriesData(
-            $formattedTensorboardTimeSeries
-        );
+        $response = $tensorboardServiceClient->exportTensorboardTimeSeriesData($request);
 
         /** @var TimeSeriesDataPoint $element */
         foreach ($response as $element) {

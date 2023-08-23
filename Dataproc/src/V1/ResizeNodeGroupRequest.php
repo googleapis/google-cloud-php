@@ -47,7 +47,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. Timeout for graceful YARN decomissioning. [Graceful
+     * Optional. Timeout for graceful YARN decommissioning. [Graceful
      * decommissioning]
      * (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      * allows the removal of nodes from the Compute Engine node group
@@ -62,6 +62,25 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $graceful_decommission_timeout = null;
+
+    /**
+     * @param string $name Required. The name of the node group to resize.
+     *                     Format:
+     *                     `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
+     * @param int    $size Required. The number of running instances for the node group to maintain.
+     *                     The group adds or removes instances to maintain the number of instances
+     *                     specified by this parameter.
+     *
+     * @return \Google\Cloud\Dataproc\V1\ResizeNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, int $size): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSize($size);
+    }
 
     /**
      * Constructor.
@@ -89,7 +108,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
      *           underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type \Google\Protobuf\Duration $graceful_decommission_timeout
-     *           Optional. Timeout for graceful YARN decomissioning. [Graceful
+     *           Optional. Timeout for graceful YARN decommissioning. [Graceful
      *           decommissioning]
      *           (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      *           allows the removal of nodes from the Compute Engine node group
@@ -212,7 +231,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. [Graceful
+     * Optional. Timeout for graceful YARN decommissioning. [Graceful
      * decommissioning]
      * (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      * allows the removal of nodes from the Compute Engine node group
@@ -243,7 +262,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. [Graceful
+     * Optional. Timeout for graceful YARN decommissioning. [Graceful
      * decommissioning]
      * (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning)
      * allows the removal of nodes from the Compute Engine node group

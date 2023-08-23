@@ -25,6 +25,22 @@ class GetVodAdTagDetailRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the ad tag detail for the specified VOD session, in
+     *                     the form of
+     *                     `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodAdTagDetails/{vod_ad_tag_detail}`. Please see
+     *                     {@see VideoStitcherServiceClient::vodAdTagDetailName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\GetVodAdTagDetailRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

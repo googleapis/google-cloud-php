@@ -49,6 +49,8 @@ use Google\Cloud\Kms\V1\MacSignResponse;
 use Google\Cloud\Kms\V1\MacVerifyResponse;
 use Google\Cloud\Kms\V1\ProtectionLevel;
 use Google\Cloud\Kms\V1\PublicKey;
+use Google\Cloud\Kms\V1\RawDecryptResponse;
+use Google\Cloud\Kms\V1\RawEncryptResponse;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
@@ -1576,6 +1578,156 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $mac = '79';
         try {
             $gapicClient->macVerify($formattedName, $data, $mac);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rawDecryptTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $plaintext = '-9';
+        $verifiedCiphertextCrc32c = true;
+        $verifiedAdditionalAuthenticatedDataCrc32c = true;
+        $verifiedInitializationVectorCrc32c = true;
+        $expectedResponse = new RawDecryptResponse();
+        $expectedResponse->setPlaintext($plaintext);
+        $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
+        $expectedResponse->setVerifiedAdditionalAuthenticatedDataCrc32c($verifiedAdditionalAuthenticatedDataCrc32c);
+        $expectedResponse->setVerifiedInitializationVectorCrc32c($verifiedInitializationVectorCrc32c);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $ciphertext = '-72';
+        $initializationVector = '-62';
+        $response = $gapicClient->rawDecrypt($name, $ciphertext, $initializationVector);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/RawDecrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+        $this->assertProtobufEquals($ciphertext, $actualValue);
+        $actualValue = $actualRequestObject->getInitializationVector();
+        $this->assertProtobufEquals($initializationVector, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rawDecryptExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $ciphertext = '-72';
+        $initializationVector = '-62';
+        try {
+            $gapicClient->rawDecrypt($name, $ciphertext, $initializationVector);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rawEncryptTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $ciphertext = '-72';
+        $initializationVector2 = '-11';
+        $tagLength = 172791595;
+        $verifiedPlaintextCrc32c = false;
+        $verifiedAdditionalAuthenticatedDataCrc32c = true;
+        $verifiedInitializationVectorCrc32c = true;
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new RawEncryptResponse();
+        $expectedResponse->setCiphertext($ciphertext);
+        $expectedResponse->setInitializationVector($initializationVector2);
+        $expectedResponse->setTagLength($tagLength);
+        $expectedResponse->setVerifiedPlaintextCrc32c($verifiedPlaintextCrc32c);
+        $expectedResponse->setVerifiedAdditionalAuthenticatedDataCrc32c($verifiedAdditionalAuthenticatedDataCrc32c);
+        $expectedResponse->setVerifiedInitializationVectorCrc32c($verifiedInitializationVectorCrc32c);
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $plaintext = '-9';
+        $response = $gapicClient->rawEncrypt($name, $plaintext);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/RawEncrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getPlaintext();
+        $this->assertProtobufEquals($plaintext, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rawEncryptExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $plaintext = '-9';
+        try {
+            $gapicClient->rawEncrypt($name, $plaintext);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

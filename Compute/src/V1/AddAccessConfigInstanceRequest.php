@@ -53,6 +53,27 @@ class AddAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                                $project              Project ID for this request.
+     * @param string                                $zone                 The name of the zone for this request.
+     * @param string                                $instance             The instance name for this request.
+     * @param string                                $networkInterface     The name of the network interface to add to this instance.
+     * @param \Google\Cloud\Compute\V1\AccessConfig $accessConfigResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddAccessConfigInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, string $networkInterface, \Google\Cloud\Compute\V1\AccessConfig $accessConfigResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setNetworkInterface($networkInterface)
+            ->setAccessConfigResource($accessConfigResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

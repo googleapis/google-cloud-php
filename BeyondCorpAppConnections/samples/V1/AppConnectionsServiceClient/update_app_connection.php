@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection;
 use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\ApplicationEndpoint;
 use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\Type;
-use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnectionsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnections\V1\Client\AppConnectionsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnections\V1\UpdateAppConnectionRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -59,11 +60,14 @@ function update_app_connection_sample(
         ->setName($appConnectionName)
         ->setType($appConnectionType)
         ->setApplicationEndpoint($appConnectionApplicationEndpoint);
+    $request = (new UpdateAppConnectionRequest())
+        ->setUpdateMask($updateMask)
+        ->setAppConnection($appConnection);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appConnectionsServiceClient->updateAppConnection($updateMask, $appConnection);
+        $response = $appConnectionsServiceClient->updateAppConnection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_SearchEvaluations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\Evaluation;
+use Google\Cloud\DataLabeling\V1beta1\SearchEvaluationsRequest;
 
 /**
  * Searches [evaluations][google.cloud.datalabeling.v1beta1.Evaluation] within a project.
@@ -40,10 +41,14 @@ function search_evaluations_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchEvaluationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->searchEvaluations($formattedParent);
+        $response = $dataLabelingServiceClient->searchEvaluations($request);
 
         /** @var Evaluation $element */
         foreach ($response as $element) {

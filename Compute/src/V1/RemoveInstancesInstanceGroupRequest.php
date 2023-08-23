@@ -47,6 +47,25 @@ class RemoveInstancesInstanceGroupRequest extends \Google\Protobuf\Internal\Mess
     private $zone = '';
 
     /**
+     * @param string                                                        $project                                      Project ID for this request.
+     * @param string                                                        $zone                                         The name of the zone where the instance group is located.
+     * @param string                                                        $instanceGroup                                The name of the instance group where the specified instances will be removed.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupsRemoveInstancesRequest $instanceGroupsRemoveInstancesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\RemoveInstancesInstanceGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroup, \Google\Cloud\Compute\V1\InstanceGroupsRemoveInstancesRequest $instanceGroupsRemoveInstancesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroup($instanceGroup)
+            ->setInstanceGroupsRemoveInstancesRequestResource($instanceGroupsRemoveInstancesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

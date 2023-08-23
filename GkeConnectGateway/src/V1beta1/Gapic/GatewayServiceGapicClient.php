@@ -55,6 +55,10 @@ use Google\Protobuf\Any;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\GkeConnect\Gateway\V1beta1\Client\GatewayServiceClient} to use the
+ * new surface.
+ *
  * @experimental
  */
 class GatewayServiceGapicClient

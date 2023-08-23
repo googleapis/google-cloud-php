@@ -100,6 +100,10 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $networkFirewallPoliciesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient} to use the new
+ * surface.
  */
 class NetworkFirewallPoliciesGapicClient
 {

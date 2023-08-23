@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_VizierService_CheckTrialEarlyStoppingState_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\CheckTrialEarlyStoppingStateRequest;
 use Google\Cloud\AIPlatform\V1\CheckTrialEarlyStoppingStateResponse;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,14 @@ function check_trial_early_stopping_state_sample(string $formattedTrialName): vo
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new CheckTrialEarlyStoppingStateRequest())
+        ->setTrialName($formattedTrialName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vizierServiceClient->checkTrialEarlyStoppingState($formattedTrialName);
+        $response = $vizierServiceClient->checkTrialEarlyStoppingState($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

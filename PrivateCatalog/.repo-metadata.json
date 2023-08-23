@@ -1,4 +1,5 @@
 {
+    "language": "php",
     "distribution_name": "google/cloud-private-catalog",
     "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-private-catalog/latest",

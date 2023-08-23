@@ -32,6 +32,29 @@ class GetProductRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Full resource name of [Product][google.cloud.retail.v2.Product],
+     *                     such as
+     *                     `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *
+     *                     If the caller does not have permission to access the
+     *                     [Product][google.cloud.retail.v2.Product], regardless of whether or not it
+     *                     exists, a PERMISSION_DENIED error is returned.
+     *
+     *                     If the requested [Product][google.cloud.retail.v2.Product] does not exist,
+     *                     a NOT_FOUND error is returned. Please see
+     *                     {@see ProductServiceClient::productName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\GetProductRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

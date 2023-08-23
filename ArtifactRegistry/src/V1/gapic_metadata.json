@@ -1,0 +1,203 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.artifactregistry.v1",
+    "libraryPackage": "Google\\Cloud\\ArtifactRegistry\\V1",
+    "services": {
+        "ArtifactRegistry": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ArtifactRegistryGapicClient",
+                    "rpcs": {
+                        "CreateRepository": {
+                            "methods": [
+                                "createRepository"
+                            ]
+                        },
+                        "CreateTag": {
+                            "methods": [
+                                "createTag"
+                            ]
+                        },
+                        "DeletePackage": {
+                            "methods": [
+                                "deletePackage"
+                            ]
+                        },
+                        "DeleteRepository": {
+                            "methods": [
+                                "deleteRepository"
+                            ]
+                        },
+                        "DeleteTag": {
+                            "methods": [
+                                "deleteTag"
+                            ]
+                        },
+                        "DeleteVersion": {
+                            "methods": [
+                                "deleteVersion"
+                            ]
+                        },
+                        "GetDockerImage": {
+                            "methods": [
+                                "getDockerImage"
+                            ]
+                        },
+                        "GetFile": {
+                            "methods": [
+                                "getFile"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetMavenArtifact": {
+                            "methods": [
+                                "getMavenArtifact"
+                            ]
+                        },
+                        "GetNpmPackage": {
+                            "methods": [
+                                "getNpmPackage"
+                            ]
+                        },
+                        "GetPackage": {
+                            "methods": [
+                                "getPackage"
+                            ]
+                        },
+                        "GetProjectSettings": {
+                            "methods": [
+                                "getProjectSettings"
+                            ]
+                        },
+                        "GetPythonPackage": {
+                            "methods": [
+                                "getPythonPackage"
+                            ]
+                        },
+                        "GetRepository": {
+                            "methods": [
+                                "getRepository"
+                            ]
+                        },
+                        "GetTag": {
+                            "methods": [
+                                "getTag"
+                            ]
+                        },
+                        "GetVPCSCConfig": {
+                            "methods": [
+                                "getVPCSCConfig"
+                            ]
+                        },
+                        "GetVersion": {
+                            "methods": [
+                                "getVersion"
+                            ]
+                        },
+                        "ImportAptArtifacts": {
+                            "methods": [
+                                "importAptArtifacts"
+                            ]
+                        },
+                        "ImportYumArtifacts": {
+                            "methods": [
+                                "importYumArtifacts"
+                            ]
+                        },
+                        "ListDockerImages": {
+                            "methods": [
+                                "listDockerImages"
+                            ]
+                        },
+                        "ListFiles": {
+                            "methods": [
+                                "listFiles"
+                            ]
+                        },
+                        "ListMavenArtifacts": {
+                            "methods": [
+                                "listMavenArtifacts"
+                            ]
+                        },
+                        "ListNpmPackages": {
+                            "methods": [
+                                "listNpmPackages"
+                            ]
+                        },
+                        "ListPackages": {
+                            "methods": [
+                                "listPackages"
+                            ]
+                        },
+                        "ListPythonPackages": {
+                            "methods": [
+                                "listPythonPackages"
+                            ]
+                        },
+                        "ListRepositories": {
+                            "methods": [
+                                "listRepositories"
+                            ]
+                        },
+                        "ListTags": {
+                            "methods": [
+                                "listTags"
+                            ]
+                        },
+                        "ListVersions": {
+                            "methods": [
+                                "listVersions"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateProjectSettings": {
+                            "methods": [
+                                "updateProjectSettings"
+                            ]
+                        },
+                        "UpdateRepository": {
+                            "methods": [
+                                "updateRepository"
+                            ]
+                        },
+                        "UpdateTag": {
+                            "methods": [
+                                "updateTag"
+                            ]
+                        },
+                        "UpdateVPCSCConfig": {
+                            "methods": [
+                                "updateVPCSCConfig"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

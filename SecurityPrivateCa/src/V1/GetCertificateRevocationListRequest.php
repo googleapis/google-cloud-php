@@ -28,6 +28,24 @@ class GetCertificateRevocationListRequest extends \Google\Protobuf\Internal\Mess
     private $name = '';
 
     /**
+     * @param string $name Required. The
+     *                     [name][google.cloud.security.privateca.v1.CertificateRevocationList.name]
+     *                     of the
+     *                     [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     *                     to get. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateRevocationListName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\GetCertificateRevocationListRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

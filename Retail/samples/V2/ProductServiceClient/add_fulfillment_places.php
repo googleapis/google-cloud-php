@@ -112,7 +112,7 @@ function add_fulfillment_places_sample(
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $placeIds = [$placeIdsElement,];
 
     // Call the API and handle any network failures.

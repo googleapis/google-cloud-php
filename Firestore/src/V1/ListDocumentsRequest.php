@@ -124,7 +124,9 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           Perform the read as part of an already active transaction.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Perform the read at the provided time.
-     *           This may not be older than 270 seconds.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type bool $show_missing
      *           If the list should show missing documents.
      *           A document is missing if it does not exist, but there are sub-documents
@@ -375,7 +377,9 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Perform the read at the provided time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 10;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -392,7 +396,9 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Perform the read at the provided time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var

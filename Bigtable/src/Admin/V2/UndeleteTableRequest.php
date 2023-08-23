@@ -26,6 +26,22 @@ class UndeleteTableRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The unique name of the table to be restored.
+     *                     Values are of the form
+     *                     `projects/{project}/instances/{instance}/tables/{table}`. Please see
+     *                     {@see BigtableTableAdminClient::tableName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

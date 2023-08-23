@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudoptimization_v1_generated_FleetRouting_OptimizeTours_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Optimization\V1\FleetRoutingClient;
+use Google\Cloud\Optimization\V1\Client\FleetRoutingClient;
+use Google\Cloud\Optimization\V1\OptimizeToursRequest;
 use Google\Cloud\Optimization\V1\OptimizeToursResponse;
 
 /**
@@ -54,10 +55,14 @@ function optimize_tours_sample(string $parent): void
     // Create a client.
     $fleetRoutingClient = new FleetRoutingClient();
 
+    // Prepare the request message.
+    $request = (new OptimizeToursRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OptimizeToursResponse $response */
-        $response = $fleetRoutingClient->optimizeTours($parent);
+        $response = $fleetRoutingClient->optimizeTours($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

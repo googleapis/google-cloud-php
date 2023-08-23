@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_PauseModelDeploymentMonitoringJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\PauseModelDeploymentMonitoringJobRequest;
 
 /**
  * Pauses a ModelDeploymentMonitoringJob. If the job is running, the server
@@ -42,9 +43,13 @@ function pause_model_deployment_monitoring_job_sample(string $formattedName): vo
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new PauseModelDeploymentMonitoringJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $jobServiceClient->pauseModelDeploymentMonitoringJob($formattedName);
+        $jobServiceClient->pauseModelDeploymentMonitoringJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

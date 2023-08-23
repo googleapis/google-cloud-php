@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagKeys_UpdateTagKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagKeysClient;
 use Google\Cloud\ResourceManager\V3\TagKey;
-use Google\Cloud\ResourceManager\V3\TagKeysClient;
+use Google\Cloud\ResourceManager\V3\UpdateTagKeyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,11 +48,13 @@ function update_tag_key_sample(string $tagKeyShortName): void
     // Prepare the request message.
     $tagKey = (new TagKey())
         ->setShortName($tagKeyShortName);
+    $request = (new UpdateTagKeyRequest())
+        ->setTagKey($tagKey);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagKeysClient->updateTagKey($tagKey);
+        $response = $tagKeysClient->updateTagKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

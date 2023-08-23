@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_VizierService_ListStudies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\ListStudiesRequest;
 use Google\Cloud\AIPlatform\V1\Study;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Lists all the studies in a region for an associated project.
@@ -40,10 +41,14 @@ function list_studies_sample(string $formattedParent): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListStudiesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vizierServiceClient->listStudies($formattedParent);
+        $response = $vizierServiceClient->listStudies($request);
 
         /** @var Study $element */
         foreach ($response as $element) {

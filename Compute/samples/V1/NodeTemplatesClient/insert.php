@@ -40,7 +40,7 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $nodeTemplatesClient = new NodeTemplatesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $nodeTemplateResource = new NodeTemplate();
 
     // Call the API and handle any network failures.

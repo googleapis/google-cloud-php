@@ -23,7 +23,7 @@ class InstanceStatus
      */
     const UNDEFINED_INSTANCE_STATUS = 0;
     /**
-     * The Nanny is halted and we are performing tear down tasks like network deprogramming, releasing quota, IP, tearing down disks etc.
+     * The instance is halted and we are performing tear down tasks like network deprogramming, releasing quota, IP, tearing down disks etc.
      *
      * Generated from protobuf enum <code>DEPROVISIONING = 428935662;</code>
      */

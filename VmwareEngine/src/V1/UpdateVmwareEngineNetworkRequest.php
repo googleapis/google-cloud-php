@@ -52,6 +52,26 @@ class UpdateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork $vmwareEngineNetwork Required. VMware Engine network description.
+     * @param \Google\Protobuf\FieldMask                        $updateMask          Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                                               VMware Engine network resource by the update.
+     *                                                                               The fields specified in the `update_mask` are relative to the resource, not
+     *                                                                               the full request. A field will be overwritten if it is in the mask. If the
+     *                                                                               user does not provide a mask then all fields will be overwritten. Only the
+     *                                                                               following fields can be updated: `description`.
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\UpdateVmwareEngineNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork $vmwareEngineNetwork, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setVmwareEngineNetwork($vmwareEngineNetwork)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

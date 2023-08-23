@@ -43,7 +43,7 @@ function create_ekm_connection_sample(string $formattedParent, string $ekmConnec
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $ekmConnection = new EkmConnection();
 
     // Call the API and handle any network failures.

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbuild_v2_generated_RepositoryManager_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
 use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 
 /**
  * Sets the access control policy on the specified resource. Replaces
@@ -44,11 +45,14 @@ function set_iam_policy_sample(string $resource): void
 
     // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $repositoryManagerClient->setIamPolicy($resource, $policy);
+        $response = $repositoryManagerClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

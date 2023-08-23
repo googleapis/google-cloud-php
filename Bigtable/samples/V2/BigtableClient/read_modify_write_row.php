@@ -47,7 +47,7 @@ function read_modify_write_row_sample(string $formattedTableName, string $rowKey
     // Create a client.
     $bigtableClient = new BigtableClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $rules = [new ReadModifyWriteRule()];
 
     // Call the API and handle any network failures.

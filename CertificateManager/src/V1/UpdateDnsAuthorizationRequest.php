@@ -31,6 +31,23 @@ class UpdateDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\CertificateManager\V1\DnsAuthorization $dnsAuthorization Required. A definition of the dns authorization to update.
+     * @param \Google\Protobuf\FieldMask                           $updateMask       Required. The update mask applies to the resource. For the `FieldMask`
+     *                                                                               definition, see
+     *                                                                               https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\UpdateDnsAuthorizationRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\CertificateManager\V1\DnsAuthorization $dnsAuthorization, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDnsAuthorization($dnsAuthorization)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

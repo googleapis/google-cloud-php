@@ -51,6 +51,32 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                                 $parent           Required. The name of the project in which to create the instance config.
+     *                                                                                 Values are of the form `projects/<project>`. Please see
+     *                                                                                 {@see InstanceAdminClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig   Required. The InstanceConfig proto of the configuration to create.
+     *                                                                                 instance_config.name must be
+     *                                                                                 `<parent>/instanceConfigs/<instance_config_id>`.
+     *                                                                                 instance_config.base_config must be a Google managed configuration name,
+     *                                                                                 e.g. <parent>/instanceConfigs/us-east1, <parent>/instanceConfigs/nam3.
+     * @param string                                                 $instanceConfigId Required. The ID of the instance config to create.  Valid identifiers are
+     *                                                                                 of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     *                                                                                 characters in length. The `custom-` prefix is required to avoid name
+     *                                                                                 conflicts with Google managed configurations.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig, string $instanceConfigId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstanceConfig($instanceConfig)
+            ->setInstanceConfigId($instanceConfigId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

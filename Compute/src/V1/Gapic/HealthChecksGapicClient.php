@@ -73,6 +73,9 @@ use Google\Cloud\Compute\V1\UpdateHealthCheckRequest;
  *     $healthChecksClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\HealthChecksClient} to use the new surface.
  */
 class HealthChecksGapicClient
 {

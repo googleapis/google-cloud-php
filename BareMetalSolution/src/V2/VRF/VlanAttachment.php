@@ -33,6 +33,32 @@ class VlanAttachment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string router_ip = 3;</code>
      */
     private $router_ip = '';
+    /**
+     * Input only. Pairing key.
+     *
+     * Generated from protobuf field <code>string pairing_key = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    private $pairing_key = '';
+    /**
+     * The QOS policy applied to this VLAN attachment.
+     * This value should be preferred to using qos at vrf level.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 5;</code>
+     */
+    private $qos_policy = null;
+    /**
+     * Immutable. The identifier of the attachment within vrf.
+     *
+     * Generated from protobuf field <code>string id = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $id = '';
+    /**
+     * Optional. The name of the vlan attachment within vrf. This is of the form
+     * projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}
+     *
+     * Generated from protobuf field <code>string interconnect_attachment = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $interconnect_attachment = '';
 
     /**
      * Constructor.
@@ -46,6 +72,16 @@ class VlanAttachment extends \Google\Protobuf\Internal\Message
      *           The peer IP of the attachment.
      *     @type string $router_ip
      *           The router IP of the attachment.
+     *     @type string $pairing_key
+     *           Input only. Pairing key.
+     *     @type \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy $qos_policy
+     *           The QOS policy applied to this VLAN attachment.
+     *           This value should be preferred to using qos at vrf level.
+     *     @type string $id
+     *           Immutable. The identifier of the attachment within vrf.
+     *     @type string $interconnect_attachment
+     *           Optional. The name of the vlan attachment within vrf. This is of the form
+     *           projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +163,124 @@ class VlanAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->router_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Pairing key.
+     *
+     * Generated from protobuf field <code>string pairing_key = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPairingKey()
+    {
+        return $this->pairing_key;
+    }
+
+    /**
+     * Input only. Pairing key.
+     *
+     * Generated from protobuf field <code>string pairing_key = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPairingKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pairing_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * The QOS policy applied to this VLAN attachment.
+     * This value should be preferred to using qos at vrf level.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 5;</code>
+     * @return \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy|null
+     */
+    public function getQosPolicy()
+    {
+        return $this->qos_policy;
+    }
+
+    public function hasQosPolicy()
+    {
+        return isset($this->qos_policy);
+    }
+
+    public function clearQosPolicy()
+    {
+        unset($this->qos_policy);
+    }
+
+    /**
+     * The QOS policy applied to this VLAN attachment.
+     * This value should be preferred to using qos at vrf level.
+     *
+     * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 5;</code>
+     * @param \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy $var
+     * @return $this
+     */
+    public function setQosPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy::class);
+        $this->qos_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The identifier of the attachment within vrf.
+     *
+     * Generated from protobuf field <code>string id = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Immutable. The identifier of the attachment within vrf.
+     *
+     * Generated from protobuf field <code>string id = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the vlan attachment within vrf. This is of the form
+     * projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}
+     *
+     * Generated from protobuf field <code>string interconnect_attachment = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getInterconnectAttachment()
+    {
+        return $this->interconnect_attachment;
+    }
+
+    /**
+     * Optional. The name of the vlan attachment within vrf. This is of the form
+     * projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}
+     *
+     * Generated from protobuf field <code>string interconnect_attachment = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInterconnectAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->interconnect_attachment = $var;
 
         return $this;
     }

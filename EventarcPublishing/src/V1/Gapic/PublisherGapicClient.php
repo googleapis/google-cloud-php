@@ -75,6 +75,10 @@ use Google\Protobuf\Any;
  *     $publisherClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Eventarc\Publishing\V1\Client\PublisherClient} to use the new
+ * surface.
  */
 class PublisherGapicClient
 {

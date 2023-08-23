@@ -41,6 +41,9 @@ use Google\Cloud\AIPlatform\V1\ExplanationSpecOverride;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingPredictResponse;
+use Google\Cloud\AIPlatform\V1\Tensor;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -75,6 +78,10 @@ use Google\Protobuf\Value;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient} to use the new
+ * surface.
  */
 class PredictionServiceGapicClient
 {
@@ -361,8 +368,7 @@ class PredictionServiceGapicClient
      * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
      * is not specified, all DeployedModels must have
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
-     * populated. Only deployed AutoML tabular Models have
-     * explanation_spec.
+     * populated.
      *
      * Sample code:
      * ```
@@ -604,6 +610,72 @@ class PredictionServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Perform a server-side streaming online prediction request for Vertex
+     * LLM streaming.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $formattedEndpoint = $predictionServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     // Read all responses until the stream is complete
+     *     $stream = $predictionServiceClient->serverStreamingPredict($formattedEndpoint);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $endpoint     Required. The name of the Endpoint requested to serve the prediction.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Tensor[] $inputs
+     *           The prediction input.
+     *     @type Tensor $parameters
+     *           The parameters that govern the prediction.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function serverStreamingPredict($endpoint, array $optionalArgs = [])
+    {
+        $request = new StreamingPredictRequest();
+        $requestParamHeaders = [];
+        $request->setEndpoint($endpoint);
+        $requestParamHeaders['endpoint'] = $endpoint;
+        if (isset($optionalArgs['inputs'])) {
+            $request->setInputs($optionalArgs['inputs']);
+        }
+
+        if (isset($optionalArgs['parameters'])) {
+            $request->setParameters($optionalArgs['parameters']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ServerStreamingPredict',
+            StreamingPredictResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**

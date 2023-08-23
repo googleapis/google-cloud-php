@@ -49,6 +49,42 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\EntityType $entityType Required. The EntityType's `name` field is used to identify the EntityType
+     *                                                           to be updated. Format:
+     *                                                           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     * @param \Google\Protobuf\FieldMask             $updateMask Field mask is used to specify the fields to be overwritten in the
+     *                                                           EntityType resource by the update.
+     *                                                           The fields specified in the update_mask are relative to the resource, not
+     *                                                           the full request. A field will be overwritten if it is in the mask. If the
+     *                                                           user does not provide a mask then only the non-empty fields present in the
+     *                                                           request will be overwritten. Set the update_mask to `*` to override all
+     *                                                           fields.
+     *
+     *                                                           Updatable fields:
+     *
+     *                                                           * `description`
+     *                                                           * `labels`
+     *                                                           * `monitoring_config.snapshot_analysis.disabled`
+     *                                                           * `monitoring_config.snapshot_analysis.monitoring_interval_days`
+     *                                                           * `monitoring_config.snapshot_analysis.staleness_days`
+     *                                                           * `monitoring_config.import_features_analysis.state`
+     *                                                           * `monitoring_config.import_features_analysis.anomaly_detection_baseline`
+     *                                                           * `monitoring_config.numerical_threshold_config.value`
+     *                                                           * `monitoring_config.categorical_threshold_config.value`
+     *                                                           * `offline_storage_ttl_days`
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\EntityType $entityType, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEntityType($entityType)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

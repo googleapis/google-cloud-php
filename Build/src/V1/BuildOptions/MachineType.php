@@ -45,6 +45,12 @@ class MachineType
      * Generated from protobuf enum <code>E2_HIGHCPU_32 = 6;</code>
      */
     const E2_HIGHCPU_32 = 6;
+    /**
+     * E2 machine with 1 CPU.
+     *
+     * Generated from protobuf enum <code>E2_MEDIUM = 7;</code>
+     */
+    const E2_MEDIUM = 7;
 
     private static $valueToName = [
         self::UNSPECIFIED => 'UNSPECIFIED',
@@ -52,6 +58,7 @@ class MachineType
         self::N1_HIGHCPU_32 => 'N1_HIGHCPU_32',
         self::E2_HIGHCPU_8 => 'E2_HIGHCPU_8',
         self::E2_HIGHCPU_32 => 'E2_HIGHCPU_32',
+        self::E2_MEDIUM => 'E2_MEDIUM',
     ];
 
     public static function name($value)

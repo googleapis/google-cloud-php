@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START mediatranslation_v1beta1_generated_SpeechTranslationService_StreamingTranslateSpeech_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\Cloud\MediaTranslation\V1beta1\SpeechTranslationServiceClient;
+use Google\Cloud\MediaTranslation\V1beta1\Client\SpeechTranslationServiceClient;
 use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechRequest;
 use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechResponse;
 

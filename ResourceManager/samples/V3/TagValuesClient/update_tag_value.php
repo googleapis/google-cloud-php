@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagValues_UpdateTagValue_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagValuesClient;
 use Google\Cloud\ResourceManager\V3\TagValue;
-use Google\Cloud\ResourceManager\V3\TagValuesClient;
+use Google\Cloud\ResourceManager\V3\UpdateTagValueRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,11 +48,13 @@ function update_tag_value_sample(string $tagValueShortName): void
     // Prepare the request message.
     $tagValue = (new TagValue())
         ->setShortName($tagValueShortName);
+    $request = (new UpdateTagValueRequest())
+        ->setTagValue($tagValue);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagValuesClient->updateTagValue($tagValue);
+        $response = $tagValuesClient->updateTagValue($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

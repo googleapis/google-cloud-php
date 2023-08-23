@@ -25,11 +25,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_BatchReadFeatureValues_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec;
 use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
 use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Rpc\Status;
 
@@ -77,15 +78,15 @@ function batch_read_feature_values_sample(
         ->setEntityTypeId($entityTypeSpecsEntityTypeId)
         ->setFeatureSelector($entityTypeSpecsFeatureSelector);
     $entityTypeSpecs = [$entityTypeSpec,];
+    $request = (new BatchReadFeatureValuesRequest())
+        ->setFeaturestore($formattedFeaturestore)
+        ->setDestination($destination)
+        ->setEntityTypeSpecs($entityTypeSpecs);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->batchReadFeatureValues(
-            $formattedFeaturestore,
-            $destination,
-            $entityTypeSpecs
-        );
+        $response = $featurestoreServiceClient->batchReadFeatureValues($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

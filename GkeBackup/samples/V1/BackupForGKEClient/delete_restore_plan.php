@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_DeleteRestorePlan_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\DeleteRestorePlanRequest;
 use Google\Rpc\Status;
 
 /**
  * Deletes an existing RestorePlan.
  *
  * @param string $formattedName Fully qualified RestorePlan name.
- *                              Format: projects/&#42;/locations/&#42;/restorePlans/*
+ *                              Format: `projects/&#42;/locations/&#42;/restorePlans/*`
  *                              Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
  */
 function delete_restore_plan_sample(string $formattedName): void
@@ -40,10 +41,14 @@ function delete_restore_plan_sample(string $formattedName): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRestorePlanRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupForGKEClient->deleteRestorePlan($formattedName);
+        $response = $backupForGKEClient->deleteRestorePlan($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

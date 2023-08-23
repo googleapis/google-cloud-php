@@ -96,6 +96,13 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12;</code>
      */
     private $enable_partial_automated_agent_reply = false;
+    /**
+     * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     * populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 19;</code>
+     */
+    private $enable_debugging_info = false;
     protected $config;
     protected $input;
 
@@ -147,6 +154,9 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           response stream still contains only one final response even if some
      *           `Fulfillment`s in Dialogflow virtual agent have been configured to return
      *           partial responses.
+     *     @type bool $enable_debugging_info
+     *           If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     *           populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -541,6 +551,34 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_partial_automated_agent_reply = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     * populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 19;</code>
+     * @return bool
+     */
+    public function getEnableDebuggingInfo()
+    {
+        return $this->enable_debugging_info;
+    }
+
+    /**
+     * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
+     * populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDebuggingInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_debugging_info = $var;
 
         return $this;
     }

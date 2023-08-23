@@ -44,7 +44,7 @@ function update_cluster_sample(string $formattedClusterNetwork): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $cluster = (new Cluster())
         ->setNetwork($formattedClusterNetwork);
 

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_UpdateTarget_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\Target;
+use Google\Cloud\Deploy\V1\UpdateTargetRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -47,11 +48,14 @@ function update_target_sample(): void
     // Prepare the request message.
     $updateMask = new FieldMask();
     $target = new Target();
+    $request = (new UpdateTargetRequest())
+        ->setUpdateMask($updateMask)
+        ->setTarget($target);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudDeployClient->updateTarget($updateMask, $target);
+        $response = $cloudDeployClient->updateTarget($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

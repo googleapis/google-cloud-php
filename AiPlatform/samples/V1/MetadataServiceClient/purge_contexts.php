@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MetadataService_PurgeContexts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\PurgeContextsRequest;
 use Google\Cloud\AIPlatform\V1\PurgeContextsResponse;
 use Google\Rpc\Status;
 
@@ -44,10 +45,15 @@ function purge_contexts_sample(string $formattedParent, string $filter): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new PurgeContextsRequest())
+        ->setParent($formattedParent)
+        ->setFilter($filter);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $metadataServiceClient->purgeContexts($formattedParent, $filter);
+        $response = $metadataServiceClient->purgeContexts($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

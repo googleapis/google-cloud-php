@@ -71,10 +71,10 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     private $query_params = null;
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config which instructs the speech recognizer how to process
-     *     the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -122,6 +122,12 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes input_audio = 6;</code>
      */
     private $input_audio = '';
+    /**
+     * if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
+     */
+    private $enable_debugging_info = false;
 
     /**
      * Constructor.
@@ -149,10 +155,10 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
      *           Required. The input specification. It can be set to:
-     *           1.  an audio config which instructs the speech recognizer how to process
-     *               the speech audio,
-     *           2.  a conversational query in the form of text, or
-     *           3.  an event that specifies which intent to trigger.
+     *           1. an audio config which instructs the speech recognizer how to process
+     *           the speech audio,
+     *           2. a conversational query in the form of text, or
+     *           3. an event that specifies which intent to trigger.
      *     @type bool $single_utterance
      *           Please use
      *           [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance]
@@ -179,6 +185,8 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           The input audio content to be recognized. Must be sent if
      *           `query_input` was set to a streaming input audio config. The complete audio
      *           over all streaming messages must not exceed 1 minute.
+     *     @type bool $enable_debugging_info
+     *           if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -278,10 +286,10 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config which instructs the speech recognizer how to process
-     *     the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryInput|null
@@ -303,10 +311,10 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The input specification. It can be set to:
-     * 1.  an audio config which instructs the speech recognizer how to process
-     *     the speech audio,
-     * 2.  a conversational query in the form of text, or
-     * 3.  an event that specifies which intent to trigger.
+     * 1. an audio config which instructs the speech recognizer how to process
+     * the speech audio,
+     * 2. a conversational query in the form of text, or
+     * 3. an event that specifies which intent to trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryInput $var
@@ -480,6 +488,32 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->input_audio = $var;
+
+        return $this;
+    }
+
+    /**
+     * if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
+     * @return bool
+     */
+    public function getEnableDebuggingInfo()
+    {
+        return $this->enable_debugging_info;
+    }
+
+    /**
+     * if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
+     *
+     * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDebuggingInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_debugging_info = $var;
 
         return $this;
     }

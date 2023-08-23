@@ -24,6 +24,20 @@ class GetEffectivePolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The effective policy to compute. See `Policy` for naming rules. Please see
+     *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\GetEffectivePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

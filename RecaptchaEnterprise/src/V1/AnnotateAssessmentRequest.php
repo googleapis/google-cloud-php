@@ -56,6 +56,26 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     private $transaction_event = null;
 
     /**
+     * @param string $name       Required. The resource name of the Assessment, in the format
+     *                           "projects/{project}/assessments/{assessment}". Please see
+     *                           {@see RecaptchaEnterpriseServiceClient::assessmentName()} for help formatting this field.
+     * @param int    $annotation Optional. The annotation that will be assigned to the Event. This field can
+     *                           be left empty to provide reasons that apply to an event without concluding
+     *                           whether the event is legitimate or fraudulent.
+     *                           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, int $annotation): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setAnnotation($annotation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

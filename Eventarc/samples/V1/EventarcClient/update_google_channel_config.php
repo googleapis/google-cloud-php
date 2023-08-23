@@ -38,7 +38,7 @@ function update_google_channel_config_sample(string $googleChannelConfigName): v
     // Create a client.
     $eventarcClient = new EventarcClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $googleChannelConfig = (new GoogleChannelConfig())
         ->setName($googleChannelConfigName);
 

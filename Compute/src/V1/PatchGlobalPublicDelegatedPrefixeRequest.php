@@ -41,6 +41,23 @@ class PatchGlobalPublicDelegatedPrefixeRequest extends \Google\Protobuf\Internal
     private $request_id = null;
 
     /**
+     * @param string                                         $project                       Project ID for this request.
+     * @param string                                         $publicDelegatedPrefix         Name of the PublicDelegatedPrefix resource to patch.
+     * @param \Google\Cloud\Compute\V1\PublicDelegatedPrefix $publicDelegatedPrefixResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchGlobalPublicDelegatedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $publicDelegatedPrefix, \Google\Cloud\Compute\V1\PublicDelegatedPrefix $publicDelegatedPrefixResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
+            ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

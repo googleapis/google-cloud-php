@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommendationengine_v1beta1_generated_PredictionApiKeyRegistry_DeletePredictionApiKeyRegistration_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistryClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\PredictionApiKeyRegistryClient;
+use Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistrationRequest;
 
 /**
  * Unregister an apiKey from using for predict method.
@@ -38,9 +39,13 @@ function delete_prediction_api_key_registration_sample(string $formattedName): v
     // Create a client.
     $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
 
+    // Prepare the request message.
+    $request = (new DeletePredictionApiKeyRegistrationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $predictionApiKeyRegistryClient->deletePredictionApiKeyRegistration($formattedName);
+        $predictionApiKeyRegistryClient->deletePredictionApiKeyRegistration($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

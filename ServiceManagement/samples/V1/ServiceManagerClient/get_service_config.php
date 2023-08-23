@@ -31,8 +31,8 @@ use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
  * Gets a service configuration (version) for a managed service.
  *
  * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
- *                            example: `example.googleapis.com`.
+ *                            [overview](https://cloud.google.com/service-management/overview) for naming
+ *                            requirements.  For example: `example.googleapis.com`.
  * @param string $configId    The id of the service configuration resource.
  *
  *                            This field must be specified for the server to return all fields, including

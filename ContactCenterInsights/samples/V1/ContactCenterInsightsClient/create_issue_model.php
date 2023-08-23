@@ -40,7 +40,7 @@ function create_issue_model_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $issueModel = new IssueModel();
 
     // Call the API and handle any network failures.

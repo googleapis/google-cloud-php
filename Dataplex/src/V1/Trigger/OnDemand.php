@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The scan runs one-time via RunDataScan API.
+ * The scan runs once via `RunDataScan` API.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Trigger.OnDemand</code>
  */

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ListVmwareEngineNetworks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 
 /**
@@ -42,10 +43,14 @@ function list_vmware_engine_networks_sample(string $formattedParent): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ListVmwareEngineNetworksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmwareEngineClient->listVmwareEngineNetworks($formattedParent);
+        $response = $vmwareEngineClient->listVmwareEngineNetworks($request);
 
         /** @var VmwareEngineNetwork $element */
         foreach ($response as $element) {

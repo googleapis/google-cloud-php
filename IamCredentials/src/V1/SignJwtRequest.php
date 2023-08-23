@@ -44,6 +44,36 @@ class SignJwtRequest extends \Google\Protobuf\Internal\Message
     private $payload = '';
 
     /**
+     * @param string   $name      Required. The resource name of the service account for which the credentials
+     *                            are requested, in the following format:
+     *                            `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *                            character is required; replacing it with a project ID is invalid. Please see
+     *                            {@see IAMCredentialsClient::serviceAccountName()} for help formatting this field.
+     * @param string[] $delegates The sequence of service accounts in a delegation chain. Each service
+     *                            account must be granted the `roles/iam.serviceAccountTokenCreator` role
+     *                            on its next service account in the chain. The last service account in the
+     *                            chain must be granted the `roles/iam.serviceAccountTokenCreator` role
+     *                            on the service account that is specified in the `name` field of the
+     *                            request.
+     *
+     *                            The delegates must have the following format:
+     *                            `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *                            character is required; replacing it with a project ID is invalid.
+     * @param string   $payload   Required. The JWT payload to sign: a JSON object that contains a JWT Claims Set.
+     *
+     * @return \Google\Cloud\Iam\Credentials\V1\SignJwtRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $delegates, string $payload): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setDelegates($delegates)
+            ->setPayload($payload);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

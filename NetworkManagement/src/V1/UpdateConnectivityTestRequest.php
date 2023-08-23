@@ -30,6 +30,22 @@ class UpdateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
     private $resource = null;
 
     /**
+     * @param \Google\Protobuf\FieldMask                          $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                        this field.
+     * @param \Google\Cloud\NetworkManagement\V1\ConnectivityTest $resource   Required. Only fields specified in update_mask are updated.
+     *
+     * @return \Google\Cloud\NetworkManagement\V1\UpdateConnectivityTestRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Protobuf\FieldMask $updateMask, \Google\Cloud\NetworkManagement\V1\ConnectivityTest $resource): self
+    {
+        return (new self())
+            ->setUpdateMask($updateMask)
+            ->setResource($resource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

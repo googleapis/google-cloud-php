@@ -35,6 +35,23 @@ class GetRegionDiskRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  Name of the region for this request.
+     * @param string $disk    Name of the regional persistent disk to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $disk): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setDisk($disk);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

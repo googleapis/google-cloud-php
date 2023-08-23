@@ -41,7 +41,7 @@ function set_scheduling_sample(string $instance, string $project, string $zone):
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $schedulingResource = new Scheduling();
 
     // Call the API and handle any network failures.

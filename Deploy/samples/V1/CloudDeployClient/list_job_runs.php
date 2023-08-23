@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddeploy_v1_generated_CloudDeploy_ListJobRuns_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\JobRun;
+use Google\Cloud\Deploy\V1\ListJobRunsRequest;
 
 /**
  * Lists JobRuns in a given project and location.
@@ -39,10 +40,14 @@ function list_job_runs_sample(string $formattedParent): void
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new ListJobRunsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudDeployClient->listJobRuns($formattedParent);
+        $response = $cloudDeployClient->listJobRuns($request);
 
         /** @var JobRun $element */
         foreach ($response as $element) {

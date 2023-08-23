@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storageinsights_v1_generated_StorageInsights_GetReportConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\GetReportConfigRequest;
 use Google\Cloud\StorageInsights\V1\ReportConfig;
-use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
 
 /**
  * Gets details of a single ReportConfig.
@@ -38,10 +39,14 @@ function get_report_config_sample(string $formattedName): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
+    // Prepare the request message.
+    $request = (new GetReportConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ReportConfig $response */
-        $response = $storageInsightsClient->getReportConfig($formattedName);
+        $response = $storageInsightsClient->getReportConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

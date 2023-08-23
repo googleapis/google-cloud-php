@@ -48,14 +48,14 @@ use Google\Rpc\Status;
  * in `ConnectivityTest` for for more details.
  *
  * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
  */
 function update_connectivity_test_sample(string $resourceName): void
 {
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $resourceSource = new Endpoint();
     $resourceDestination = new Endpoint();

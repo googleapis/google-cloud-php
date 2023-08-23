@@ -60,6 +60,26 @@ class CreateTargetRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                         $parent   Required. The parent collection in which the `Target` should be created.
+     *                                                 Format should be
+     *                                                 projects/{project_id}/locations/{location_name}. Please see
+     *                                                 {@see CloudDeployClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Deploy\V1\Target $target   Required. The `Target` to create.
+     * @param string                         $targetId Required. ID of the `Target`.
+     *
+     * @return \Google\Cloud\Deploy\V1\CreateTargetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Deploy\V1\Target $target, string $targetId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTarget($target)
+            ->setTargetId($targetId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

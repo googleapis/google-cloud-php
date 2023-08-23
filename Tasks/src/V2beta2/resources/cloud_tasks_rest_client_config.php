@@ -2,6 +2,30 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.cloud.tasks.v2beta2.CloudTasks' => [
             'AcknowledgeTask' => [
                 'method' => 'post',
@@ -11,6 +35,23 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'BufferTask' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta2/{queue=projects/*/locations/*/queues/*}/tasks/{task_id}:buffer',
+                'body' => '*',
+                'placeholders' => [
+                    'queue' => [
+                        'getters' => [
+                            'getQueue',
+                        ],
+                    ],
+                    'task_id' => [
+                        'getters' => [
+                            'getTaskId',
                         ],
                     ],
                 ],

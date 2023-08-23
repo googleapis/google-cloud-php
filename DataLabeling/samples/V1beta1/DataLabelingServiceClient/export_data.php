@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_ExportData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\ExportDataOperationResponse;
+use Google\Cloud\DataLabeling\V1beta1\ExportDataRequest;
 use Google\Cloud\DataLabeling\V1beta1\OutputConfig;
 use Google\Rpc\Status;
 
@@ -50,15 +51,15 @@ function export_data_sample(string $formattedName, string $formattedAnnotatedDat
 
     // Prepare the request message.
     $outputConfig = new OutputConfig();
+    $request = (new ExportDataRequest())
+        ->setName($formattedName)
+        ->setAnnotatedDataset($formattedAnnotatedDataset)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataLabelingServiceClient->exportData(
-            $formattedName,
-            $formattedAnnotatedDataset,
-            $outputConfig
-        );
+        $response = $dataLabelingServiceClient->exportData($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

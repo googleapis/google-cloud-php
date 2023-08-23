@@ -31,6 +31,22 @@ class UpdateEkmConnectionRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Kms\V1\EkmConnection $ekmConnection Required. [EkmConnection][google.cloud.kms.v1.EkmConnection] with updated
+     *                                                          values.
+     * @param \Google\Protobuf\FieldMask         $updateMask    Required. List of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\Kms\V1\UpdateEkmConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Kms\V1\EkmConnection $ekmConnection, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEkmConnection($ekmConnection)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

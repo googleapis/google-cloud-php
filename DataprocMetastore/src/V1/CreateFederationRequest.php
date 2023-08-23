@@ -58,6 +58,34 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                $parent       Required. The relative resource name of the location in which to create a
+     *                                                            federation service, in the following form:
+     *
+     *                                                            `projects/{project_number}/locations/{location_id}`. Please see
+     *                                                            {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Metastore\V1\Federation $federation   Required. The Metastore Federation to create. The `name` field is
+     *                                                            ignored. The ID of the created metastore federation must be
+     *                                                            provided in the request's `federation_id` field.
+     * @param string                                $federationId Required. The ID of the metastore federation, which is used as the final
+     *                                                            component of the metastore federation's name.
+     *
+     *                                                            This value must be between 2 and 63 characters long inclusive, begin with a
+     *                                                            letter, end with a letter or number, and consist of alpha-numeric
+     *                                                            ASCII characters or hyphens.
+     *
+     * @return \Google\Cloud\Metastore\V1\CreateFederationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Metastore\V1\Federation $federation, string $federationId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFederation($federation)
+            ->setFederationId($federationId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

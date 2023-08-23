@@ -1,4 +1,5 @@
 {
+    "language": "php",
     "distribution_name": "google/analytics-data",
     "release_level": "preview",
     "client_documentation": "https://cloud.google.com/php/docs/reference/analytics-data/latest",

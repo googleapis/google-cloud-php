@@ -10,9 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for `AppendRows`.
- * Due to the nature of AppendRows being a bidirectional streaming RPC, certain
- * parts of the AppendRowsRequest need only be specified for the first request
- * sent each time the gRPC network connection is opened/reopened.
+ * Because AppendRows is a bidirectional streaming RPC, certain parts of the
+ * AppendRowsRequest need only be specified for the first request before
+ * switching table destinations. You can also switch table destinations within
+ * the same connection for the default stream.
  * The size of a single AppendRowsRequest must be less than 10 MB in size.
  * Requests larger than this return an error, typically `INVALID_ARGUMENT`.
  *
@@ -21,14 +22,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class AppendRowsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The write_stream identifies the target of the append operation,
-     * and only needs to be specified as part of the first request on the gRPC
-     * connection. If provided for subsequent requests, it must match the value of
-     * the first request.
+     * Required. The write_stream identifies the append operation. It must be
+     * provided in the following scenarios:
+     * * In the first request to an AppendRows connection.
+     * * In all subsequent requests to an AppendRows connection, if you use the
+     * same connection to write to multiple tables or change the input schema for
+     * default streams.
      * For explicitly created write streams, the format is:
      * * `projects/{project}/datasets/{dataset}/tables/{table}/streams/{id}`
      * For the special default stream, the format is:
      * * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`.
+     * An example of a possible sequence of requests with write_stream fields
+     * within a single connection:
+     * * r1: {write_stream: stream_name_1}
+     * * r2: {write_stream: /&#42;omit*&#47;}
+     * * r3: {write_stream: /&#42;omit*&#47;}
+     * * r4: {write_stream: stream_name_2}
+     * * r5: {write_stream: stream_name_2}
+     * The destination changed in request_4, so the write_stream field must be
+     * populated in all subsequent requests in this stream.
      *
      * Generated from protobuf field <code>string write_stream = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -68,7 +80,66 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation> missing_value_interpretations = 7;</code>
      */
     private $missing_value_interpretations;
+    /**
+     * Optional. Default missing value interpretation for all columns in the
+     * table. When a value is specified on an `AppendRowsRequest`, it is applied
+     * to all requests on the connection from that point forward, until a
+     * subsequent `AppendRowsRequest` sets it to a different value.
+     * `missing_value_interpretation` can override
+     * `default_missing_value_interpretation`. For example, if you want to write
+     * `NULL` instead of using default values for some columns, you can set
+     * `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     * time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_missing_value_interpretation = 0;
     protected $rows;
+
+    /**
+     * @param string $writeStream Required. The write_stream identifies the append operation. It must be
+     *                            provided in the following scenarios:
+     *
+     *                            * In the first request to an AppendRows connection.
+     *
+     *                            * In all subsequent requests to an AppendRows connection, if you use the
+     *                            same connection to write to multiple tables or change the input schema for
+     *                            default streams.
+     *
+     *                            For explicitly created write streams, the format is:
+     *
+     *                            * `projects/{project}/datasets/{dataset}/tables/{table}/streams/{id}`
+     *
+     *                            For the special default stream, the format is:
+     *
+     *                            * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`.
+     *
+     *                            An example of a possible sequence of requests with write_stream fields
+     *                            within a single connection:
+     *
+     *                            * r1: {write_stream: stream_name_1}
+     *
+     *                            * r2: {write_stream: /*omit&#42;/}
+     *
+     *                            * r3: {write_stream: /*omit&#42;/}
+     *
+     *                            * r4: {write_stream: stream_name_2}
+     *
+     *                            * r5: {write_stream: stream_name_2}
+     *
+     *                            The destination changed in request_4, so the write_stream field must be
+     *                            populated in all subsequent requests in this stream. Please see
+     *                            {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $writeStream): self
+    {
+        return (new self())
+            ->setWriteStream($writeStream);
+    }
 
     /**
      * Constructor.
@@ -77,14 +148,25 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $write_stream
-     *           Required. The write_stream identifies the target of the append operation,
-     *           and only needs to be specified as part of the first request on the gRPC
-     *           connection. If provided for subsequent requests, it must match the value of
-     *           the first request.
+     *           Required. The write_stream identifies the append operation. It must be
+     *           provided in the following scenarios:
+     *           * In the first request to an AppendRows connection.
+     *           * In all subsequent requests to an AppendRows connection, if you use the
+     *           same connection to write to multiple tables or change the input schema for
+     *           default streams.
      *           For explicitly created write streams, the format is:
      *           * `projects/{project}/datasets/{dataset}/tables/{table}/streams/{id}`
      *           For the special default stream, the format is:
      *           * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`.
+     *           An example of a possible sequence of requests with write_stream fields
+     *           within a single connection:
+     *           * r1: {write_stream: stream_name_1}
+     *           * r2: {write_stream: /&#42;omit*&#47;}
+     *           * r3: {write_stream: /&#42;omit*&#47;}
+     *           * r4: {write_stream: stream_name_2}
+     *           * r5: {write_stream: stream_name_2}
+     *           The destination changed in request_4, so the write_stream field must be
+     *           populated in all subsequent requests in this stream.
      *     @type \Google\Protobuf\Int64Value $offset
      *           If present, the write is only performed if the next append offset is same
      *           as the provided value. If not present, the write is performed at the
@@ -110,6 +192,16 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *           requests on the connection.
      *           Currently, field name can only be top-level column name, can't be a struct
      *           field path like 'foo.bar'.
+     *     @type int $default_missing_value_interpretation
+     *           Optional. Default missing value interpretation for all columns in the
+     *           table. When a value is specified on an `AppendRowsRequest`, it is applied
+     *           to all requests on the connection from that point forward, until a
+     *           subsequent `AppendRowsRequest` sets it to a different value.
+     *           `missing_value_interpretation` can override
+     *           `default_missing_value_interpretation`. For example, if you want to write
+     *           `NULL` instead of using default values for some columns, you can set
+     *           `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     *           time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,14 +210,25 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The write_stream identifies the target of the append operation,
-     * and only needs to be specified as part of the first request on the gRPC
-     * connection. If provided for subsequent requests, it must match the value of
-     * the first request.
+     * Required. The write_stream identifies the append operation. It must be
+     * provided in the following scenarios:
+     * * In the first request to an AppendRows connection.
+     * * In all subsequent requests to an AppendRows connection, if you use the
+     * same connection to write to multiple tables or change the input schema for
+     * default streams.
      * For explicitly created write streams, the format is:
      * * `projects/{project}/datasets/{dataset}/tables/{table}/streams/{id}`
      * For the special default stream, the format is:
      * * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`.
+     * An example of a possible sequence of requests with write_stream fields
+     * within a single connection:
+     * * r1: {write_stream: stream_name_1}
+     * * r2: {write_stream: /&#42;omit*&#47;}
+     * * r3: {write_stream: /&#42;omit*&#47;}
+     * * r4: {write_stream: stream_name_2}
+     * * r5: {write_stream: stream_name_2}
+     * The destination changed in request_4, so the write_stream field must be
+     * populated in all subsequent requests in this stream.
      *
      * Generated from protobuf field <code>string write_stream = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -136,14 +239,25 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The write_stream identifies the target of the append operation,
-     * and only needs to be specified as part of the first request on the gRPC
-     * connection. If provided for subsequent requests, it must match the value of
-     * the first request.
+     * Required. The write_stream identifies the append operation. It must be
+     * provided in the following scenarios:
+     * * In the first request to an AppendRows connection.
+     * * In all subsequent requests to an AppendRows connection, if you use the
+     * same connection to write to multiple tables or change the input schema for
+     * default streams.
      * For explicitly created write streams, the format is:
      * * `projects/{project}/datasets/{dataset}/tables/{table}/streams/{id}`
      * For the special default stream, the format is:
      * * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`.
+     * An example of a possible sequence of requests with write_stream fields
+     * within a single connection:
+     * * r1: {write_stream: stream_name_1}
+     * * r2: {write_stream: /&#42;omit*&#47;}
+     * * r3: {write_stream: /&#42;omit*&#47;}
+     * * r4: {write_stream: stream_name_2}
+     * * r5: {write_stream: stream_name_2}
+     * The destination changed in request_4, so the write_stream field must be
+     * populated in all subsequent requests in this stream.
      *
      * Generated from protobuf field <code>string write_stream = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -339,6 +453,48 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\MissingValueInterpretation::class);
         $this->missing_value_interpretations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Default missing value interpretation for all columns in the
+     * table. When a value is specified on an `AppendRowsRequest`, it is applied
+     * to all requests on the connection from that point forward, until a
+     * subsequent `AppendRowsRequest` sets it to a different value.
+     * `missing_value_interpretation` can override
+     * `default_missing_value_interpretation`. For example, if you want to write
+     * `NULL` instead of using default values for some columns, you can set
+     * `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     * time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultMissingValueInterpretation()
+    {
+        return $this->default_missing_value_interpretation;
+    }
+
+    /**
+     * Optional. Default missing value interpretation for all columns in the
+     * table. When a value is specified on an `AppendRowsRequest`, it is applied
+     * to all requests on the connection from that point forward, until a
+     * subsequent `AppendRowsRequest` sets it to a different value.
+     * `missing_value_interpretation` can override
+     * `default_missing_value_interpretation`. For example, if you want to write
+     * `NULL` instead of using default values for some columns, you can set
+     * `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
+     * time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultMissingValueInterpretation($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\MissingValueInterpretation::class);
+        $this->default_missing_value_interpretation = $var;
 
         return $this;
     }

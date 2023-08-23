@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateProperty_sync]
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\Property;
+use Google\Analytics\Admin\V1beta\UpdatePropertyRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -54,11 +55,14 @@ function update_property_sample(string $propertyDisplayName, string $propertyTim
         ->setDisplayName($propertyDisplayName)
         ->setTimeZone($propertyTimeZone);
     $updateMask = new FieldMask();
+    $request = (new UpdatePropertyRequest())
+        ->setProperty($property)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Property $response */
-        $response = $analyticsAdminServiceClient->updateProperty($property, $updateMask);
+        $response = $analyticsAdminServiceClient->updateProperty($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

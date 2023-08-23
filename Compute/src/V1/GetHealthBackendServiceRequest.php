@@ -33,6 +33,23 @@ class GetHealthBackendServiceRequest extends \Google\Protobuf\Internal\Message
     private $resource_group_reference_resource = null;
 
     /**
+     * @param string                                          $project
+     * @param string                                          $backendService                 Name of the BackendService resource to which the queried instance belongs.
+     * @param \Google\Cloud\Compute\V1\ResourceGroupReference $resourceGroupReferenceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\GetHealthBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendService, \Google\Cloud\Compute\V1\ResourceGroupReference $resourceGroupReferenceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendService($backendService)
+            ->setResourceGroupReferenceResource($resourceGroupReferenceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

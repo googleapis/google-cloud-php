@@ -49,7 +49,7 @@ function update_tag_template_sample(): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $tagTemplateFields = [];
     $tagTemplate = (new TagTemplate())
         ->setFields($tagTemplateFields);

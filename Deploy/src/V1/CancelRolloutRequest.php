@@ -25,6 +25,22 @@ class CancelRolloutRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the Rollout. Format is
+     *                     projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                     releases/{release}/rollouts/{rollout}. Please see
+     *                     {@see CloudDeployClient::rolloutName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Deploy\V1\CancelRolloutRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

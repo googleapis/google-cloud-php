@@ -36,11 +36,28 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * The `next_page_token` value returned from a previous
-     * [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if any.
+     * [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if
+     * any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The resource name of the instance location using the form:
+     *                       `projects/{project_id}/locations/{location_id}`
+     *                       where `location_id` refers to a GCP region. Please see
+     *                       {@see CloudRedisClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Redis\V1\ListInstancesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -61,7 +78,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *           to determine if there are more instances left to be queried.
      *     @type string $page_token
      *           The `next_page_token` value returned from a previous
-     *           [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if any.
+     *           [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if
+     *           any.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,7 +155,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `next_page_token` value returned from a previous
-     * [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if any.
+     * [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if
+     * any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -149,7 +168,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `next_page_token` value returned from a previous
-     * [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if any.
+     * [ListInstances][google.cloud.redis.v1.CloudRedis.ListInstances] request, if
+     * any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

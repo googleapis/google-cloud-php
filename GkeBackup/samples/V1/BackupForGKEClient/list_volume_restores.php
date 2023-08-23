@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkebackup_v1_generated_BackupForGKE_ListVolumeRestores_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\ListVolumeRestoresRequest;
 use Google\Cloud\GkeBackup\V1\VolumeRestore;
 
 /**
  * Lists the VolumeRestores for a given Restore.
  *
  * @param string $formattedParent The Restore that contains the VolumeRestores to list.
- *                                Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+ *                                Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
  *                                Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
  */
 function list_volume_restores_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_volume_restores_sample(string $formattedParent): void
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
+    // Prepare the request message.
+    $request = (new ListVolumeRestoresRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $backupForGKEClient->listVolumeRestores($formattedParent);
+        $response = $backupForGKEClient->listVolumeRestores($request);
 
         /** @var VolumeRestore $element */
         foreach ($response as $element) {

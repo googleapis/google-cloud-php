@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_CreateApiVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\ApiVersion;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\CreateApiVersionRequest;
 
 /**
  * Creates a specified version.
@@ -48,11 +49,15 @@ function create_api_version_sample(string $formattedParent, string $apiVersionId
 
     // Prepare the request message.
     $apiVersion = new ApiVersion();
+    $request = (new CreateApiVersionRequest())
+        ->setParent($formattedParent)
+        ->setApiVersion($apiVersion)
+        ->setApiVersionId($apiVersionId);
 
     // Call the API and handle any network failures.
     try {
         /** @var ApiVersion $response */
-        $response = $registryClient->createApiVersion($formattedParent, $apiVersion, $apiVersionId);
+        $response = $registryClient->createApiVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

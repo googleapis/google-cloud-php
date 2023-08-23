@@ -29,6 +29,21 @@ class GetNetworkFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $firewallPolicy Name of the firewall policy to get.
+     *
+     * @return \Google\Cloud\Compute\V1\GetNetworkFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $firewallPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setFirewallPolicy($firewallPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

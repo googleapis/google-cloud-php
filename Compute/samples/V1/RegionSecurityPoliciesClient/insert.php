@@ -40,7 +40,7 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $securityPolicyResource = new SecurityPolicy();
 
     // Call the API and handle any network failures.

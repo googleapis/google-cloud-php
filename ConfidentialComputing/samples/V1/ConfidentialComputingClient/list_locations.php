@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START confidentialcomputing_v1_generated_ConfidentialComputing_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\ConfidentialComputing\V1\ConfidentialComputingClient;
+use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $confidentialComputingClient = new ConfidentialComputingClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $confidentialComputingClient->listLocations();
+        $response = $confidentialComputingClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

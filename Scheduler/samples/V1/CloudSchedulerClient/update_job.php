@@ -51,7 +51,7 @@ function update_job_sample(): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $job = new Job();
     $updateMask = new FieldMask();
 

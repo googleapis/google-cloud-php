@@ -51,6 +51,22 @@ class DeleteCaPoolRequest extends \Google\Protobuf\Internal\Message
     private $ignore_dependent_resources = false;
 
     /**
+     * @param string $name Required. The resource name for this
+     *                     [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
+     *                     `projects/&#42;/locations/&#42;/caPools/*`. Please see
+     *                     {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\DeleteCaPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

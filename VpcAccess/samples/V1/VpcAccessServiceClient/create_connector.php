@@ -42,7 +42,7 @@ function create_connector_sample(string $formattedParent, string $connectorId): 
     // Create a client.
     $vpcAccessServiceClient = new VpcAccessServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $connector = new Connector();
 
     // Call the API and handle any network failures.

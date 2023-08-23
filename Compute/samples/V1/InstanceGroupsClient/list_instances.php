@@ -40,7 +40,7 @@ function list_instances_sample(string $instanceGroup, string $project, string $z
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instanceGroupsListInstancesRequestResource = new InstanceGroupsListInstancesRequest();
 
     // Call the API and handle any network failures.

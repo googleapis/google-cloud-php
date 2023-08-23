@@ -51,7 +51,7 @@ function create_channel_connection_sample(
     // Create a client.
     $eventarcClient = new EventarcClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $channelConnection = (new ChannelConnection())
         ->setName($channelConnectionName)
         ->setChannel($formattedChannelConnectionChannel);

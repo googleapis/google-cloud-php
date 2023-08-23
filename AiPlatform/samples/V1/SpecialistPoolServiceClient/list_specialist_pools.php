@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_SpecialistPoolService_ListSpecialistPools_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\SpecialistPoolServiceClient;
+use Google\Cloud\AIPlatform\V1\ListSpecialistPoolsRequest;
 use Google\Cloud\AIPlatform\V1\SpecialistPool;
-use Google\Cloud\AIPlatform\V1\SpecialistPoolServiceClient;
 
 /**
  * Lists SpecialistPools in a Location.
@@ -40,10 +41,14 @@ function list_specialist_pools_sample(string $formattedParent): void
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSpecialistPoolsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $specialistPoolServiceClient->listSpecialistPools($formattedParent);
+        $response = $specialistPoolServiceClient->listSpecialistPools($request);
 
         /** @var SpecialistPool $element */
         foreach ($response as $element) {

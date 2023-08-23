@@ -222,6 +222,15 @@ class ChunkFormatter implements \IteratorAggregate
                 }
                 $rowSet->setRowRanges($ranges);
             }
+
+            // This flag enables `ResumableStream->readAll()` to skip backend network
+            // call. It's used to avoid the unintentional full table scan in the
+            // event when a retryable error (for eg `Code::DEADLINE_EXCEEDED`) happens
+            // after all data is received causing empty rows to be sent in next retry
+            // request resulting in a full table scan.
+            if (empty($rowKeys) && empty($ranges)) {
+                $this->options['requestCompleted'] = true;
+            }
         } else {
             $range = (new RowRange)->setStartKeyOpen($prevRowKey);
             $this->options['rows'] = (new RowSet)->setRowRanges([$range]);

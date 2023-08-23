@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommendationengine_v1beta1_generated_CatalogService_DeleteCatalogItem_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\DeleteCatalogItemRequest;
 
 /**
  * Deletes a catalog item.
@@ -38,9 +39,13 @@ function delete_catalog_item_sample(string $formattedName): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCatalogItemRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $catalogServiceClient->deleteCatalogItem($formattedName);
+        $catalogServiceClient->deleteCatalogItem($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

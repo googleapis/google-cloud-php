@@ -9,12 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents database access information, such as queries.
- * A database may be a sub-resource of an instance (as in the case of CloudSQL
- * instances or Cloud Spanner instances), or the database instance itself.
- * Some database resources may not have the full resource name populated
- * because these resource types are not yet supported by Cloud Asset Inventory
- * (e.g. CloudSQL databases). In these cases only the display name will be
+ * Represents database access information, such as queries. A database may be a
+ * sub-resource of an instance (as in the case of Cloud SQL instances or Cloud
+ * Spanner instances), or the database instance itself. Some database resources
+ * might not have the [full resource
+ * name](https://google.aip.dev/122#full-resource-names) populated because these
+ * resource types, such as Cloud SQL databases, are not yet supported by Cloud
+ * Asset Inventory. In these cases only the display name is provided.
+ * Some database resources may not have the [full resource
+ * name](https://google.aip.dev/122#full-resource-names) populated because
+ * these resource types are not yet supported by Cloud Asset Inventory (e.g.
+ * Cloud SQL databases). In these cases only the display name will be
  * provided.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Database</code>
@@ -22,34 +27,35 @@ use Google\Protobuf\Internal\GPBUtil;
 class Database extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full resource name of the database the user connected to, if it is
-     * supported by CAI. (https://google.aip.dev/122#full-resource-names)
+     * The [full resource name](https://google.aip.dev/122#full-resource-names) of
+     * the database that the user connected to, if it is supported by Cloud Asset
+     * Inventory.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * The human readable name of the database the user connected to.
+     * The human-readable name of the database that the user connected to.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
     /**
-     * The username used to connect to the DB. This may not necessarily be an IAM
-     * principal, and has no required format.
+     * The username used to connect to the database. The username might not be an
+     * IAM principal and does not have a set format.
      *
      * Generated from protobuf field <code>string user_name = 3;</code>
      */
     private $user_name = '';
     /**
-     * The SQL statement associated with the relevant access.
+     * The SQL statement that is associated with the database access.
      *
      * Generated from protobuf field <code>string query = 4;</code>
      */
     private $query = '';
     /**
-     * The target usernames/roles/groups of a SQL privilege grant (not an IAM
-     * policy change).
+     * The target usernames, roles, or groups of an SQL privilege grant, which is
+     * not an IAM policy change.
      *
      * Generated from protobuf field <code>repeated string grantees = 5;</code>
      */
@@ -62,18 +68,19 @@ class Database extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The full resource name of the database the user connected to, if it is
-     *           supported by CAI. (https://google.aip.dev/122#full-resource-names)
+     *           The [full resource name](https://google.aip.dev/122#full-resource-names) of
+     *           the database that the user connected to, if it is supported by Cloud Asset
+     *           Inventory.
      *     @type string $display_name
-     *           The human readable name of the database the user connected to.
+     *           The human-readable name of the database that the user connected to.
      *     @type string $user_name
-     *           The username used to connect to the DB. This may not necessarily be an IAM
-     *           principal, and has no required format.
+     *           The username used to connect to the database. The username might not be an
+     *           IAM principal and does not have a set format.
      *     @type string $query
-     *           The SQL statement associated with the relevant access.
+     *           The SQL statement that is associated with the database access.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $grantees
-     *           The target usernames/roles/groups of a SQL privilege grant (not an IAM
-     *           policy change).
+     *           The target usernames, roles, or groups of an SQL privilege grant, which is
+     *           not an IAM policy change.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,8 +89,9 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the database the user connected to, if it is
-     * supported by CAI. (https://google.aip.dev/122#full-resource-names)
+     * The [full resource name](https://google.aip.dev/122#full-resource-names) of
+     * the database that the user connected to, if it is supported by Cloud Asset
+     * Inventory.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -94,8 +102,9 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the database the user connected to, if it is
-     * supported by CAI. (https://google.aip.dev/122#full-resource-names)
+     * The [full resource name](https://google.aip.dev/122#full-resource-names) of
+     * the database that the user connected to, if it is supported by Cloud Asset
+     * Inventory.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -110,7 +119,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The human readable name of the database the user connected to.
+     * The human-readable name of the database that the user connected to.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -121,7 +130,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The human readable name of the database the user connected to.
+     * The human-readable name of the database that the user connected to.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
@@ -136,8 +145,8 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The username used to connect to the DB. This may not necessarily be an IAM
-     * principal, and has no required format.
+     * The username used to connect to the database. The username might not be an
+     * IAM principal and does not have a set format.
      *
      * Generated from protobuf field <code>string user_name = 3;</code>
      * @return string
@@ -148,8 +157,8 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The username used to connect to the DB. This may not necessarily be an IAM
-     * principal, and has no required format.
+     * The username used to connect to the database. The username might not be an
+     * IAM principal and does not have a set format.
      *
      * Generated from protobuf field <code>string user_name = 3;</code>
      * @param string $var
@@ -164,7 +173,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SQL statement associated with the relevant access.
+     * The SQL statement that is associated with the database access.
      *
      * Generated from protobuf field <code>string query = 4;</code>
      * @return string
@@ -175,7 +184,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SQL statement associated with the relevant access.
+     * The SQL statement that is associated with the database access.
      *
      * Generated from protobuf field <code>string query = 4;</code>
      * @param string $var
@@ -190,8 +199,8 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target usernames/roles/groups of a SQL privilege grant (not an IAM
-     * policy change).
+     * The target usernames, roles, or groups of an SQL privilege grant, which is
+     * not an IAM policy change.
      *
      * Generated from protobuf field <code>repeated string grantees = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -202,8 +211,8 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target usernames/roles/groups of a SQL privilege grant (not an IAM
-     * policy change).
+     * The target usernames, roles, or groups of an SQL privilege grant, which is
+     * not an IAM policy change.
      *
      * Generated from protobuf field <code>repeated string grantees = 5;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

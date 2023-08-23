@@ -41,6 +41,23 @@ class DeleteVpnTunnelRequest extends \Google\Protobuf\Internal\Message
     private $vpn_tunnel = '';
 
     /**
+     * @param string $project   Project ID for this request.
+     * @param string $region    Name of the region for this request.
+     * @param string $vpnTunnel Name of the VpnTunnel resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteVpnTunnelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $vpnTunnel): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setVpnTunnel($vpnTunnel);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

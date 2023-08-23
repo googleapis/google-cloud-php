@@ -64,6 +64,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Profiler\V2\Client\ProfilerServiceClient} to use the new surface.
  */
 class ProfilerServiceGapicClient
 {
@@ -88,6 +91,8 @@ class ProfilerServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.write',
     ];
 
+    private static $profileNameTemplate;
+
     private static $projectNameTemplate;
 
     private static $pathTemplateMap;
@@ -111,6 +116,15 @@ class ProfilerServiceGapicClient
         ];
     }
 
+    private static function getProfileNameTemplate()
+    {
+        if (self::$profileNameTemplate == null) {
+            self::$profileNameTemplate = new PathTemplate('projects/{project}/profiles/{profile}');
+        }
+
+        return self::$profileNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -124,11 +138,29 @@ class ProfilerServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'profile' => self::getProfileNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a profile
+     * resource.
+     *
+     * @param string $project
+     * @param string $profile
+     *
+     * @return string The formatted profile resource.
+     */
+    public static function profileName($project, $profile)
+    {
+        return self::getProfileNameTemplate()->render([
+            'project' => $project,
+            'profile' => $profile,
+        ]);
     }
 
     /**
@@ -150,6 +182,7 @@ class ProfilerServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - profile: projects/{project}/profiles/{profile}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

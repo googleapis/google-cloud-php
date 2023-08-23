@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway;
 use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\HostType;
 use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\Type;
-use Google\Cloud\BeyondCorp\AppGateways\V1\AppGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\AppGateways\V1\Client\AppGatewaysServiceClient;
+use Google\Cloud\BeyondCorp\AppGateways\V1\CreateAppGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -56,11 +57,14 @@ function create_app_gateway_sample(
         ->setName($appGatewayName)
         ->setType($appGatewayType)
         ->setHostType($appGatewayHostType);
+    $request = (new CreateAppGatewayRequest())
+        ->setParent($formattedParent)
+        ->setAppGateway($appGateway);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appGatewaysServiceClient->createAppGateway($formattedParent, $appGateway);
+        $response = $appGatewaysServiceClient->createAppGateway($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

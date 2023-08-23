@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
-use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersRequest;
 
 /**
  * Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
@@ -46,10 +47,14 @@ function list_attached_clusters_sample(string $formattedParent): void
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
+    // Prepare the request message.
+    $request = (new ListAttachedClustersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $attachedClustersClient->listAttachedClusters($formattedParent);
+        $response = $attachedClustersClient->listAttachedClusters($request);
 
         /** @var AttachedCluster $element */
         foreach ($response as $element) {

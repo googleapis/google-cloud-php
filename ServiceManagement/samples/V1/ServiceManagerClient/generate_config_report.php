@@ -52,7 +52,7 @@ function generate_config_report_sample(): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $newConfig = new Any();
 
     // Call the API and handle any network failures.

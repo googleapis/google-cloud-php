@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_FeaturestoreService_UpdateEntityType_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\EntityType;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateEntityTypeRequest;
 
 /**
  * Updates the parameters of a single EntityType.
@@ -43,11 +44,13 @@ function update_entity_type_sample(): void
 
     // Prepare the request message.
     $entityType = new EntityType();
+    $request = (new UpdateEntityTypeRequest())
+        ->setEntityType($entityType);
 
     // Call the API and handle any network failures.
     try {
         /** @var EntityType $response */
-        $response = $featurestoreServiceClient->updateEntityType($entityType);
+        $response = $featurestoreServiceClient->updateEntityType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

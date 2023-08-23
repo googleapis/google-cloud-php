@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_ListDatasets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\Dataset;
+use Google\Cloud\DataLabeling\V1beta1\ListDatasetsRequest;
 
 /**
  * Lists datasets under a project. Pagination is supported.
@@ -40,10 +41,14 @@ function list_datasets_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDatasetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->listDatasets($formattedParent);
+        $response = $dataLabelingServiceClient->listDatasets($request);
 
         /** @var Dataset $element */
         foreach ($response as $element) {

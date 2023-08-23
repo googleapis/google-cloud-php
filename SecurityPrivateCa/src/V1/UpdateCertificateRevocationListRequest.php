@@ -48,6 +48,23 @@ class UpdateCertificateRevocationListRequest extends \Google\Protobuf\Internal\M
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList $certificateRevocationList Required.
+     *                                                                                                 [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     *                                                                                                 with updated values.
+     * @param \Google\Protobuf\FieldMask                                    $updateMask                Required. A list of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRevocationListRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList $certificateRevocationList, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCertificateRevocationList($certificateRevocationList)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

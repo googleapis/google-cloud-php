@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iam_v2_generated_Policies_UpdatePolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Iam\V2\PoliciesClient;
+use Google\Cloud\Iam\V2\Client\PoliciesClient;
 use Google\Cloud\Iam\V2\Policy;
+use Google\Cloud\Iam\V2\UpdatePolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -55,11 +56,13 @@ function update_policy_sample(): void
 
     // Prepare the request message.
     $policy = new Policy();
+    $request = (new UpdatePolicyRequest())
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $policiesClient->updatePolicy($policy);
+        $response = $policiesClient->updatePolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

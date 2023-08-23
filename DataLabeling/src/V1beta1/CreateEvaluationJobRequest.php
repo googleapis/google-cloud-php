@@ -30,6 +30,23 @@ class CreateEvaluationJobRequest extends \Google\Protobuf\Internal\Message
     private $job = null;
 
     /**
+     * @param string                                           $parent Required. Evaluation job resource parent. Format:
+     *                                                                 "projects/<var>{project_id}</var>"
+     *                                                                 Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\DataLabeling\V1beta1\EvaluationJob $job    Required. The evaluation job to create.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\CreateEvaluationJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataLabeling\V1beta1\EvaluationJob $job): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJob($job);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

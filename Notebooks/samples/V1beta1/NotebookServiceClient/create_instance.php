@@ -47,7 +47,7 @@ function create_instance_sample(
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instance = (new Instance())
         ->setMachineType($instanceMachineType);
 

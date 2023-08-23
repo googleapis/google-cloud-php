@@ -41,6 +41,26 @@ class UpdateTagKeyRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\ResourceManager\V3\TagKey $tagKey     Required. The new definition of the TagKey. Only the `description` and
+     *                                                            `etag` fields can be updated by this request. If the `etag` field is not
+     *                                                            empty, it must match the `etag` field of the existing tag key. Otherwise,
+     *                                                            `ABORTED` will be returned.
+     * @param \Google\Protobuf\FieldMask              $updateMask Fields to be updated. The mask may only contain `description` or
+     *                                                            `etag`. If omitted entirely, both `description` and `etag` are assumed to
+     *                                                            be significant.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\UpdateTagKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ResourceManager\V3\TagKey $tagKey, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTagKey($tagKey)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

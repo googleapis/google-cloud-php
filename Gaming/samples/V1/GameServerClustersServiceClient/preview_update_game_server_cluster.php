@@ -42,7 +42,7 @@ function preview_update_game_server_cluster_sample(string $gameServerClusterName
     // Create a client.
     $gameServerClustersServiceClient = new GameServerClustersServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $gameServerCluster = (new GameServerCluster())
         ->setName($gameServerClusterName);
     $updateMask = new FieldMask();

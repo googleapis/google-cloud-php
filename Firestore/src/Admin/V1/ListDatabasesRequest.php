@@ -24,6 +24,21 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param string $parent Required. A parent name of the form
+     *                       `projects/{project_id}`
+     *                       Please see {@see FirestoreAdminClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ListDatabasesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

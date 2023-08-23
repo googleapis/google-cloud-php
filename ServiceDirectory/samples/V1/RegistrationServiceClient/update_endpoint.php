@@ -29,7 +29,7 @@ use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates a endpoint.
+ * Updates an endpoint.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -42,7 +42,7 @@ function update_endpoint_sample(): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $endpoint = new Endpoint();
     $updateMask = new FieldMask();
 

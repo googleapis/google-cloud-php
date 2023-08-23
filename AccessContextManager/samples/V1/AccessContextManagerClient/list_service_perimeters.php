@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_ListServicePerimeters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\ListServicePerimetersRequest;
 use Google\Identity\AccessContextManager\V1\ServicePerimeter;
 
 /**
@@ -45,10 +46,14 @@ function list_service_perimeters_sample(string $formattedParent): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListServicePerimetersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $accessContextManagerClient->listServicePerimeters($formattedParent);
+        $response = $accessContextManagerClient->listServicePerimeters($request);
 
         /** @var ServicePerimeter $element */
         foreach ($response as $element) {

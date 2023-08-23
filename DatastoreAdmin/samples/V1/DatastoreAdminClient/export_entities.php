@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastore_v1_generated_DatastoreAdmin_ExportEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\ExportEntitiesRequest;
 use Google\Cloud\Datastore\Admin\V1\ExportEntitiesResponse;
 use Google\Rpc\Status;
 
@@ -53,8 +54,8 @@ use Google\Rpc\Status;
  *
  *                                The resulting files will be nested deeper than the specified URL prefix.
  *                                The final output URL will be provided in the
- *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url] field. That
- *                                value should be used for subsequent ImportEntities operations.
+ *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+ *                                field. That value should be used for subsequent ImportEntities operations.
  *
  *                                By nesting the data files deeper, the same Cloud Storage bucket can be used
  *                                in multiple ExportEntities operations without conflict.
@@ -64,10 +65,15 @@ function export_entities_sample(string $projectId, string $outputUrlPrefix): voi
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
+    // Prepare the request message.
+    $request = (new ExportEntitiesRequest())
+        ->setProjectId($projectId)
+        ->setOutputUrlPrefix($outputUrlPrefix);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastoreAdminClient->exportEntities($projectId, $outputUrlPrefix);
+        $response = $datastoreAdminClient->exportEntities($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

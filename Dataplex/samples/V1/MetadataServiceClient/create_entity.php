@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_MetadataService_CreateEntity_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\CreateEntityRequest;
 use Google\Cloud\Dataplex\V1\Entity;
 use Google\Cloud\Dataplex\V1\Entity\Type;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
 use Google\Cloud\Dataplex\V1\Schema;
 use Google\Cloud\Dataplex\V1\StorageFormat;
 use Google\Cloud\Dataplex\V1\StorageSystem;
@@ -41,8 +42,7 @@ use Google\Cloud\Dataplex\V1\StorageSystem;
  *                                        published table name. Specifying a new ID in an update entity
  *                                        request will override the existing value.
  *                                        The ID must contain only letters (a-z, A-Z), numbers (0-9), and
- *                                        underscores. Must begin with a letter and consist of 256 or fewer
- *                                        characters.
+ *                                        underscores, and consist of 256 or fewer characters.
  * @param int    $entityType              Immutable. The type of entity.
  * @param string $entityAsset             Immutable. The ID of the asset associated with the storage
  *                                        location containing the entity data. The entity must be with in the same
@@ -110,11 +110,14 @@ function create_entity_sample(
         ->setSystem($entitySystem)
         ->setFormat($entityFormat)
         ->setSchema($entitySchema);
+    $request = (new CreateEntityRequest())
+        ->setParent($formattedParent)
+        ->setEntity($entity);
 
     // Call the API and handle any network failures.
     try {
         /** @var Entity $response */
-        $response = $metadataServiceClient->createEntity($formattedParent, $entity);
+        $response = $metadataServiceClient->createEntity($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

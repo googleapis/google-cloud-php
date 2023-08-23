@@ -26,6 +26,22 @@ class CancelHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the HyperparameterTuningJob to cancel.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
+     *                     Please see {@see JobServiceClient::hyperparameterTuningJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CancelHyperparameterTuningJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

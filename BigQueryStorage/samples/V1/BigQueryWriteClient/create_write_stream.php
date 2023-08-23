@@ -44,7 +44,7 @@ function create_write_stream_sample(string $formattedParent): void
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $writeStream = new WriteStream();
 
     // Call the API and handle any network failures.

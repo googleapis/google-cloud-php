@@ -49,6 +49,33 @@ class Target
      * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE = 5;</code>
      */
     const CLOUD_SQL_INSTANCE = 5;
+    /**
+     * Target is a published service that uses [Private Service
+     * Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
+     *
+     * Generated from protobuf enum <code>PSC_PUBLISHED_SERVICE = 6;</code>
+     */
+    const PSC_PUBLISHED_SERVICE = 6;
+    /**
+     * Target is all Google APIs that use [Private Service
+     * Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).
+     *
+     * Generated from protobuf enum <code>PSC_GOOGLE_API = 7;</code>
+     */
+    const PSC_GOOGLE_API = 7;
+    /**
+     * Target is a VPC-SC that uses [Private Service
+     * Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).
+     *
+     * Generated from protobuf enum <code>PSC_VPC_SC = 8;</code>
+     */
+    const PSC_VPC_SC = 8;
+    /**
+     * Target is a serverless network endpoint group.
+     *
+     * Generated from protobuf enum <code>SERVERLESS_NEG = 9;</code>
+     */
+    const SERVERLESS_NEG = 9;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -57,6 +84,10 @@ class Target
         self::GOOGLE_API => 'GOOGLE_API',
         self::GKE_MASTER => 'GKE_MASTER',
         self::CLOUD_SQL_INSTANCE => 'CLOUD_SQL_INSTANCE',
+        self::PSC_PUBLISHED_SERVICE => 'PSC_PUBLISHED_SERVICE',
+        self::PSC_GOOGLE_API => 'PSC_GOOGLE_API',
+        self::PSC_VPC_SC => 'PSC_VPC_SC',
+        self::SERVERLESS_NEG => 'SERVERLESS_NEG',
     ];
 
     public static function name($value)

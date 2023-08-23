@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_UpdateNetwork_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
 use Google\Cloud\BareMetalSolution\V2\Network;
+use Google\Cloud\BareMetalSolution\V2\UpdateNetworkRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,11 +46,13 @@ function update_network_sample(): void
 
     // Prepare the request message.
     $network = new Network();
+    $request = (new UpdateNetworkRequest())
+        ->setNetwork($network);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $bareMetalSolutionClient->updateNetwork($network);
+        $response = $bareMetalSolutionClient->updateNetwork($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

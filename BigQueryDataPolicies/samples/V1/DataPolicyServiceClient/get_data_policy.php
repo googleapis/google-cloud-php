@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatapolicy_v1_generated_DataPolicyService_GetDataPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\DataPolicies\V1\Client\DataPolicyServiceClient;
 use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy;
-use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicyServiceClient;
+use Google\Cloud\BigQuery\DataPolicies\V1\GetDataPolicyRequest;
 
 /**
  * Gets the data policy specified by its resource name.
@@ -39,10 +40,14 @@ function get_data_policy_sample(string $formattedName): void
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDataPolicyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DataPolicy $response */
-        $response = $dataPolicyServiceClient->getDataPolicy($formattedName);
+        $response = $dataPolicyServiceClient->getDataPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

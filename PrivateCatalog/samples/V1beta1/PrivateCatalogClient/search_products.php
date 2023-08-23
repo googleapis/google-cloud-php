@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudprivatecatalog_v1beta1_generated_PrivateCatalog_SearchProducts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\PrivateCatalog\V1beta1\PrivateCatalogClient;
+use Google\Cloud\PrivateCatalog\V1beta1\Client\PrivateCatalogClient;
 use Google\Cloud\PrivateCatalog\V1beta1\Product;
+use Google\Cloud\PrivateCatalog\V1beta1\SearchProductsRequest;
 
 /**
  * Search [Product][google.cloud.privatecatalog.v1beta1.Product] resources that consumers have access to, within the
@@ -40,10 +41,14 @@ function search_products_sample(string $resource): void
     // Create a client.
     $privateCatalogClient = new PrivateCatalogClient();
 
+    // Prepare the request message.
+    $request = (new SearchProductsRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $privateCatalogClient->searchProducts($resource);
+        $response = $privateCatalogClient->searchProducts($request);
 
         /** @var Product $element */
         foreach ($response as $element) {

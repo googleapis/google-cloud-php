@@ -41,6 +41,23 @@ class DeleteDiskRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $zone    The name of the zone for this request.
+     * @param string $disk    Name of the persistent disk to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $disk): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setDisk($disk);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -28,7 +28,7 @@ use Google\Cloud\ServiceDirectory\V1\Endpoint;
 use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 
 /**
- * Creates a endpoint, and returns the new Endpoint.
+ * Creates an endpoint, and returns the new endpoint.
  *
  * @param string $formattedParent The resource name of the service that this endpoint provides. Please see
  *                                {@see RegistrationServiceClient::serviceName()} for help formatting this field.
@@ -45,7 +45,7 @@ function create_endpoint_sample(string $formattedParent, string $endpointId): vo
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $endpoint = new Endpoint();
 
     // Call the API and handle any network failures.

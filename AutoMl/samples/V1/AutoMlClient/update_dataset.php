@@ -42,7 +42,7 @@ function update_dataset_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $dataset = new Dataset();
     $updateMask = new FieldMask();
 

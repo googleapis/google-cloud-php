@@ -41,6 +41,25 @@ class DeletePerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\
     private $region_instance_group_manager_delete_instance_config_req_resource = null;
 
     /**
+     * @param string                                                                     $project                                                   Project ID for this request.
+     * @param string                                                                     $region                                                    Name of the region scoping this request, should conform to RFC1035.
+     * @param string                                                                     $instanceGroupManager                                      The name of the managed instance group. It should conform to RFC1035.
+     * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq $regionInstanceGroupManagerDeleteInstanceConfigReqResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\DeletePerInstanceConfigsRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager, \Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq $regionInstanceGroupManagerDeleteInstanceConfigReqResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource($regionInstanceGroupManagerDeleteInstanceConfigReqResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

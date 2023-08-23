@@ -48,7 +48,7 @@ function create_realm_sample(
     // Create a client.
     $realmsServiceClient = new RealmsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $realm = (new Realm())
         ->setTimeZone($realmTimeZone);
 

@@ -42,7 +42,7 @@ function update_saved_query_sample(): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $savedQuery = new SavedQuery();
     $updateMask = new FieldMask();
 

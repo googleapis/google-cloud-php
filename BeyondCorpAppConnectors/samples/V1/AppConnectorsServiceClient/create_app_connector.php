@@ -27,7 +27,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector\PrincipalInfo;
-use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\CreateAppConnectorRequest;
 use Google\Rpc\Status;
 
 /**
@@ -49,11 +50,14 @@ function create_app_connector_sample(string $formattedParent, string $appConnect
     $appConnector = (new AppConnector())
         ->setName($appConnectorName)
         ->setPrincipalInfo($appConnectorPrincipalInfo);
+    $request = (new CreateAppConnectorRequest())
+        ->setParent($formattedParent)
+        ->setAppConnector($appConnector);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appConnectorsServiceClient->createAppConnector($formattedParent, $appConnector);
+        $response = $appConnectorsServiceClient->createAppConnector($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

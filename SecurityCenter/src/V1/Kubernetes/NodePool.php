@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Provides GKE Node Pool information.
+ * Provides GKE node pool information.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Kubernetes.NodePool</code>
  */
 class NodePool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Kubernetes Node pool name.
+     * Kubernetes node pool name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -35,7 +35,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Kubernetes Node pool name.
+     *           Kubernetes node pool name.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
      *           Nodes associated with the finding.
      * }
@@ -46,7 +46,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Node pool name.
+     * Kubernetes node pool name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Node pool name.
+     * Kubernetes node pool name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

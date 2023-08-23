@@ -42,6 +42,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\AcknowledgeRequest;
 use Google\Cloud\PubSub\V1\BigQueryConfig;
+use Google\Cloud\PubSub\V1\CloudStorageConfig;
 use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
@@ -96,6 +97,9 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\PubSub\V1\Client\SubscriberClient} to use the new surface.
  */
 class SubscriberGapicClient
 {
@@ -591,6 +595,9 @@ class SubscriberGapicClient
      *     @type BigQueryConfig $bigqueryConfig
      *           If delivery to BigQuery is used with this subscription, this field is
      *           used to configure it.
+     *     @type CloudStorageConfig $cloudStorageConfig
+     *           If delivery to Google Cloud Storage is used with this subscription, this
+     *           field is used to configure it.
      *     @type int $ackDeadlineSeconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
@@ -717,6 +724,10 @@ class SubscriberGapicClient
 
         if (isset($optionalArgs['bigqueryConfig'])) {
             $request->setBigqueryConfig($optionalArgs['bigqueryConfig']);
+        }
+
+        if (isset($optionalArgs['cloudStorageConfig'])) {
+            $request->setCloudStorageConfig($optionalArgs['cloudStorageConfig']);
         }
 
         if (isset($optionalArgs['ackDeadlineSeconds'])) {

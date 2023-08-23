@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_ResetVcenterCredentials_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ResetVcenterCredentialsRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,14 @@ function reset_vcenter_credentials_sample(string $formattedPrivateCloud): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ResetVcenterCredentialsRequest())
+        ->setPrivateCloud($formattedPrivateCloud);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->resetVcenterCredentials($formattedPrivateCloud);
+        $response = $vmwareEngineClient->resetVcenterCredentials($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

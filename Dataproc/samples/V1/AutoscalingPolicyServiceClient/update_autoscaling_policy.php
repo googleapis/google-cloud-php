@@ -72,7 +72,7 @@ function update_autoscaling_policy_sample(
     // Create a client.
     $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $policyBasicAlgorithmYarnConfigGracefulDecommissionTimeout = new Duration();
     $policyBasicAlgorithmYarnConfig = (new BasicYarnAutoscalingConfig())
         ->setGracefulDecommissionTimeout($policyBasicAlgorithmYarnConfigGracefulDecommissionTimeout)

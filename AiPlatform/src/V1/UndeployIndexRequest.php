@@ -33,6 +33,25 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
     private $deployed_index_id = '';
 
     /**
+     * @param string $indexEndpoint   Required. The name of the IndexEndpoint resource from which to undeploy an
+     *                                Index. Format:
+     *                                `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     *                                Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
+     * @param string $deployedIndexId Required. The ID of the DeployedIndex to be undeployed from the
+     *                                IndexEndpoint.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UndeployIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $indexEndpoint, string $deployedIndexId): self
+    {
+        return (new self())
+            ->setIndexEndpoint($indexEndpoint)
+            ->setDeployedIndexId($deployedIndexId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

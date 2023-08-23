@@ -24,6 +24,21 @@ class GetConnectionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the Connection to retrieve.
+     *                     Format: `projects/&#42;/locations/&#42;/connections/*`. Please see
+     *                     {@see RepositoryManagerClient::connectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Build\V2\GetConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

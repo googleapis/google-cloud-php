@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START accesscontextmanager_v1_generated_AccessContextManager_DeleteServicePerimeter_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Identity\AccessContextManager\V1\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
+use Google\Identity\AccessContextManager\V1\DeleteServicePerimeterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,10 +49,14 @@ function delete_service_perimeter_sample(string $formattedName): void
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteServicePerimeterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $accessContextManagerClient->deleteServicePerimeter($formattedName);
+        $response = $accessContextManagerClient->deleteServicePerimeter($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

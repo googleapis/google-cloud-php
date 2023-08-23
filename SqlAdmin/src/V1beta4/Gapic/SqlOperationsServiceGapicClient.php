@@ -36,8 +36,10 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\OperationsListResponse;
+use Google\Cloud\Sql\V1beta4\SqlOperationsCancelRequest;
 use Google\Cloud\Sql\V1beta4\SqlOperationsGetRequest;
 use Google\Cloud\Sql\V1beta4\SqlOperationsListRequest;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description:
@@ -48,7 +50,7 @@ use Google\Cloud\Sql\V1beta4\SqlOperationsListRequest;
  * ```
  * $sqlOperationsServiceClient = new SqlOperationsServiceClient();
  * try {
- *     $response = $sqlOperationsServiceClient->get();
+ *     $sqlOperationsServiceClient->cancel();
  * } finally {
  *     $sqlOperationsServiceClient->close();
  * }
@@ -166,6 +168,64 @@ class SqlOperationsServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Cancels an instance operation that has been performed on an instance.
+     *
+     * Sample code:
+     * ```
+     * $sqlOperationsServiceClient = new SqlOperationsServiceClient();
+     * try {
+     *     $sqlOperationsServiceClient->cancel();
+     * } finally {
+     *     $sqlOperationsServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $operation
+     *           Instance operation ID.
+     *     @type string $project
+     *           Project ID of the project that contains the instance.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function cancel(array $optionalArgs = [])
+    {
+        $request = new SqlOperationsCancelRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['operation'])) {
+            $request->setOperation($optionalArgs['operation']);
+            $requestParamHeaders['operation'] = $optionalArgs['operation'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Cancel',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

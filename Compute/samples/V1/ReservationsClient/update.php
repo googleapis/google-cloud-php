@@ -41,7 +41,7 @@ function update_sample(string $project, string $reservation, string $zone): void
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $reservationResource = new Reservation();
 
     // Call the API and handle any network failures.

@@ -36,6 +36,25 @@ class CreateDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
     private $dns_authorization = null;
 
     /**
+     * @param string                                               $parent             Required. The parent resource of the dns authorization. Must be in the
+     *                                                                                 format `projects/&#42;/locations/*`. Please see
+     *                                                                                 {@see CertificateManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\CertificateManager\V1\DnsAuthorization $dnsAuthorization   Required. A definition of the dns authorization to create.
+     * @param string                                               $dnsAuthorizationId Required. A user-provided name of the dns authorization.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\CreateDnsAuthorizationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\CertificateManager\V1\DnsAuthorization $dnsAuthorization, string $dnsAuthorizationId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDnsAuthorization($dnsAuthorization)
+            ->setDnsAuthorizationId($dnsAuthorizationId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

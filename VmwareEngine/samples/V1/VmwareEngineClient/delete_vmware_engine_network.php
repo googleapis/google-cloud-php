@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_DeleteVmwareEngineNetwork_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\DeleteVmwareEngineNetworkRequest;
 use Google\Rpc\Status;
 
 /**
@@ -46,10 +47,14 @@ function delete_vmware_engine_network_sample(string $formattedName): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new DeleteVmwareEngineNetworkRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->deleteVmwareEngineNetwork($formattedName);
+        $response = $vmwareEngineClient->deleteVmwareEngineNetwork($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -31,6 +31,23 @@ class CreateKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
     private $knowledge_base = null;
 
     /**
+     * @param string                                    $parent        Required. The project to create a knowledge base for.
+     *                                                                 Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                                 {@see KnowledgeBasesClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeBase $knowledgeBase Required. The knowledge base to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateKnowledgeBaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\KnowledgeBase $knowledgeBase): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setKnowledgeBase($knowledgeBase);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

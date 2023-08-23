@@ -159,6 +159,12 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 110;</code>
      */
     private $etag = '';
+    /**
+     * Enable best effort provisioning for nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.BestEffortProvisioning best_effort_provisioning = 113;</code>
+     */
+    private $best_effort_provisioning = null;
 
     /**
      * Constructor.
@@ -228,6 +234,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           This checksum is computed by the server based on the value of node pool
      *           fields, and may be sent on update requests to ensure the client has an
      *           up-to-date value before proceeding.
+     *     @type \Google\Cloud\Container\V1\BestEffortProvisioning $best_effort_provisioning
+     *           Enable best effort provisioning for nodes
      * }
      */
     public function __construct($data = NULL) {
@@ -857,6 +865,42 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable best effort provisioning for nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.BestEffortProvisioning best_effort_provisioning = 113;</code>
+     * @return \Google\Cloud\Container\V1\BestEffortProvisioning|null
+     */
+    public function getBestEffortProvisioning()
+    {
+        return $this->best_effort_provisioning;
+    }
+
+    public function hasBestEffortProvisioning()
+    {
+        return isset($this->best_effort_provisioning);
+    }
+
+    public function clearBestEffortProvisioning()
+    {
+        unset($this->best_effort_provisioning);
+    }
+
+    /**
+     * Enable best effort provisioning for nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.BestEffortProvisioning best_effort_provisioning = 113;</code>
+     * @param \Google\Cloud\Container\V1\BestEffortProvisioning $var
+     * @return $this
+     */
+    public function setBestEffortProvisioning($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BestEffortProvisioning::class);
+        $this->best_effort_provisioning = $var;
 
         return $this;
     }

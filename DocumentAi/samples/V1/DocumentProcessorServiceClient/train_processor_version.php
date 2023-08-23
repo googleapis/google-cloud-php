@@ -33,7 +33,7 @@ use Google\Rpc\Status;
 /**
  * Trains a new processor version.
  * Operation metadata is returned as
- * cloud_documentai_core.TrainProcessorVersionMetadata.
+ * [TrainProcessorVersionMetadata][google.cloud.documentai.v1.TrainProcessorVersionMetadata].
  *
  * @param string $formattedParent The parent (project, location and processor) to create the new
  *                                version for. Format:
@@ -45,7 +45,7 @@ function train_processor_version_sample(string $formattedParent): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $processorVersion = new ProcessorVersion();
 
     // Call the API and handle any network failures.

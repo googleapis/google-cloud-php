@@ -41,7 +41,7 @@ function start_with_encryption_key_sample(string $instance, string $project, str
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
 
     // Call the API and handle any network failures.

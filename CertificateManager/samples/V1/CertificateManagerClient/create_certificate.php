@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\CertificateManager\V1\Certificate;
-use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
+use Google\Cloud\CertificateManager\V1\CreateCertificateRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,15 +45,15 @@ function create_certificate_sample(string $formattedParent, string $certificateI
 
     // Prepare the request message.
     $certificate = new Certificate();
+    $request = (new CreateCertificateRequest())
+        ->setParent($formattedParent)
+        ->setCertificateId($certificateId)
+        ->setCertificate($certificate);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateManagerClient->createCertificate(
-            $formattedParent,
-            $certificateId,
-            $certificate
-        );
+        $response = $certificateManagerClient->createCertificate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

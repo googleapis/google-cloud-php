@@ -34,8 +34,8 @@ use Google\Cloud\Logging\V2\LogSink;
  * The updated sink might also have a new `writer_identity`; see the
  * `unique_writer_identity` field.
  *
- * @param string $formattedSinkName The full resource name of the sink to update, including the parent
- *                                  resource and the sink identifier:
+ * @param string $formattedSinkName The full resource name of the sink to update, including the
+ *                                  parent resource and the sink identifier:
  *
  *                                  "projects/[PROJECT_ID]/sinks/[SINK_ID]"
  *                                  "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
@@ -72,7 +72,7 @@ function update_sink_sample(
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $sink = (new LogSink())
         ->setName($sinkName)
         ->setDestination($sinkDestination);

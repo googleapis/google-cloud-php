@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmwareengine_v1_generated_VmwareEngine_ShowNsxCredentials_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\Credentials;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\ShowNsxCredentialsRequest;
 
 /**
  * Gets details of credentials for NSX appliance.
@@ -43,10 +44,14 @@ function show_nsx_credentials_sample(string $formattedPrivateCloud): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new ShowNsxCredentialsRequest())
+        ->setPrivateCloud($formattedPrivateCloud);
+
     // Call the API and handle any network failures.
     try {
         /** @var Credentials $response */
-        $response = $vmwareEngineClient->showNsxCredentials($formattedPrivateCloud);
+        $response = $vmwareEngineClient->showNsxCredentials($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\HealthStatus;
 use UnexpectedValueException;
 
 /**
- * Health state of the instance.
+ * Health state of the IPv4 address of the instance.
  *
  * Protobuf type <code>google.cloud.compute.v1.HealthStatus.HealthState</code>
  */

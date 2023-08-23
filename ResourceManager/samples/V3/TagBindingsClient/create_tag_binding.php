@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagBindings_CreateTagBinding_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagBindingsClient;
+use Google\Cloud\ResourceManager\V3\CreateTagBindingRequest;
 use Google\Cloud\ResourceManager\V3\TagBinding;
-use Google\Cloud\ResourceManager\V3\TagBindingsClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,11 +46,13 @@ function create_tag_binding_sample(): void
 
     // Prepare the request message.
     $tagBinding = new TagBinding();
+    $request = (new CreateTagBindingRequest())
+        ->setTagBinding($tagBinding);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tagBindingsClient->createTagBinding($tagBinding);
+        $response = $tagBindingsClient->createTagBinding($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -64,7 +64,7 @@ function change_renewal_settings_sample(string $name): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $renewalSettings = new RenewalSettings();
 
     // Call the API and handle any network failures.

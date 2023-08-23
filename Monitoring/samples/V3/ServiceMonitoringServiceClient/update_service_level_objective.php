@@ -41,7 +41,7 @@ function update_service_level_objective_sample(): void
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $serviceLevelObjective = new ServiceLevelObjective();
 
     // Call the API and handle any network failures.

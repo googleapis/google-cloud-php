@@ -28,6 +28,8 @@ use SimpleXMLElement;
 class PageTree
 {
     private array $pages;
+    public bool $hasV1Client = false;
+    public bool $hasV2Client = false;
 
     public function __construct(
         private string $xmlPath,
@@ -76,21 +78,29 @@ class PageTree
                 continue;
             }
 
+            // Manually skip GAPIC base clients
+            $fullName = $classNode->getFullname();
+            if ('GapicClient' === substr($fullName, -11)
+                || 'BaseClient' === substr($fullName, -10)) {
+                $gapicClients[] = $classNode;
+                continue;
+            }
+
             // Skip internal classes
+            // Do this after the GAPIC check because new base clients are internal
             if ($classNode->isInternal()) {
                 continue;
+            }
+
+            if ($classNode->isV1ServiceClass()) {
+                $this->hasV1Client = true;
+            } elseif ($classNode->isV2ServiceClass()) {
+                $this->hasV2Client = true;
             }
 
             // Manually skip protobuf enums in favor of Gapic enums (see below).
             // @TODO: Do not generate them in V2, eventually mark them as deprecated
             $isDiregapic = $isDiregapic || $classNode->isGapicEnumClass();
-
-            $fullName = $classNode->getFullname();
-            // Manually skip GAPIC clients
-            if ('GapicClient' === substr($fullName, -11)) {
-                $gapicClients[] = $classNode;
-                continue;
-            }
 
             // Manually skip Grpc classes
             // @TODO: Do not generate Grpc classes in V2, eventually mark these as deprecated
@@ -161,12 +171,25 @@ class PageTree
         foreach ($gapicClients as $gapicClient) {
             // Find  Classname
             $parts = explode('\\', $gapicClient->getFullName());
-            $clientClassName = substr(array_pop($parts), 0, -11) . 'Client';
-            array_pop($parts); // remove "Gapic" namespace
+            $clientClassName = str_replace(
+                ['BaseClient', 'GapicClient'],
+                'Client',
+                array_pop($parts)
+            );
+            array_pop($parts); // remove "Gapic" or "Client" namespace
             $parts[] = $clientClassName;
             $clientFullName = implode('\\', $parts);
             if (isset($pageMap[$clientFullName])) {
-                $pageMap[$clientFullName]->getClassNode()->setChildNode($gapicClient);
+                $parentClassNode = $pageMap[$clientFullName]->getClassNode();
+                $parentClassNode->setChildNode($gapicClient);
+                if ($this->hasV1Client && $this->hasV2Client) {
+                    if ($parentClassNode->isV2ServiceClass()) {
+                        $parentClassNode->setTocName(sprintf(
+                            '%s (beta)',
+                            $parentClassNode->getName()
+                        ));
+                    }
+                }
             }
         }
 

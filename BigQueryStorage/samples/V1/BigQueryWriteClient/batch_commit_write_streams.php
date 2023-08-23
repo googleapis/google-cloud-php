@@ -47,7 +47,7 @@ function batch_commit_write_streams_sample(
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $writeStreams = [$writeStreamsElement,];
 
     // Call the API and handle any network failures.

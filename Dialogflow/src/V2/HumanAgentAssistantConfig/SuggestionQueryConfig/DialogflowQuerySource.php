@@ -18,7 +18,7 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of a Dialogflow virtual agent used for end user side
-     * intent detection and suggestion. Format: `projects/<Project Number/
+     * intent detection and suggestion. Format: `projects/<Project
      * ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      * the same Dialogflow project.
      *
@@ -34,7 +34,7 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
      *
      *     @type string $agent
      *           Required. The name of a Dialogflow virtual agent used for end user side
-     *           intent detection and suggestion. Format: `projects/<Project Number/
+     *           intent detection and suggestion. Format: `projects/<Project
      *           ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      *           the same Dialogflow project.
      * }
@@ -46,7 +46,7 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of a Dialogflow virtual agent used for end user side
-     * intent detection and suggestion. Format: `projects/<Project Number/
+     * intent detection and suggestion. Format: `projects/<Project
      * ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      * the same Dialogflow project.
      *
@@ -60,7 +60,7 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of a Dialogflow virtual agent used for end user side
-     * intent detection and suggestion. Format: `projects/<Project Number/
+     * intent detection and suggestion. Format: `projects/<Project
      * ID>/locations/<Location ID>/agent`. When multiple agents are allowed in
      * the same Dialogflow project.
      *

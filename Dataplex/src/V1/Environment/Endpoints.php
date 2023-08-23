@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * URI Endpoints to access sessions associated with the Environment.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Environment.Endpoints</code>
  */
 class Endpoints extends \Google\Protobuf\Internal\Message

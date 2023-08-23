@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START run_v2_generated_Revisions_GetRevision_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Run\V2\Client\RevisionsClient;
+use Google\Cloud\Run\V2\GetRevisionRequest;
 use Google\Cloud\Run\V2\Revision;
-use Google\Cloud\Run\V2\RevisionsClient;
 
 /**
  * Gets information about a Revision.
@@ -40,10 +41,14 @@ function get_revision_sample(string $formattedName): void
     // Create a client.
     $revisionsClient = new RevisionsClient();
 
+    // Prepare the request message.
+    $request = (new GetRevisionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Revision $response */
-        $response = $revisionsClient->getRevision($formattedName);
+        $response = $revisionsClient->getRevision($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

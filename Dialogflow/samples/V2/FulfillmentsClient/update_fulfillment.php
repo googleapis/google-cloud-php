@@ -44,7 +44,7 @@ function update_fulfillment_sample(string $fulfillmentName): void
     // Create a client.
     $fulfillmentsClient = new FulfillmentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $fulfillment = (new Fulfillment())
         ->setName($fulfillmentName);
     $updateMask = new FieldMask();

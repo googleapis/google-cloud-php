@@ -59,6 +59,21 @@ class ListInterconnectAttachmentsRequest extends \Google\Protobuf\Internal\Messa
     private $return_partial_success = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  Name of the region for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\ListInterconnectAttachmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

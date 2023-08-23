@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerymigration_v2_generated_MigrationService_GetMigrationWorkflow_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\Client\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\GetMigrationWorkflowRequest;
 use Google\Cloud\BigQuery\Migration\V2\MigrationWorkflow;
 
 /**
@@ -39,10 +40,14 @@ function get_migration_workflow_sample(string $formattedName): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetMigrationWorkflowRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var MigrationWorkflow $response */
-        $response = $migrationServiceClient->getMigrationWorkflow($formattedName);
+        $response = $migrationServiceClient->getMigrationWorkflow($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

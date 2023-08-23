@@ -29,11 +29,7 @@ use Google\Cloud\Logging\V2\LogBucket;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates a log bucket. This method replaces the following fields in the
- * existing bucket with values from the new bucket: `retention_period`
- *
- * If the retention period is decreased and the bucket is locked,
- * `FAILED_PRECONDITION` will be returned.
+ * Updates a log bucket.
  *
  * If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
  * `FAILED_PRECONDITION` will be returned.
@@ -57,7 +53,7 @@ function update_bucket_sample(string $formattedName): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $bucket = new LogBucket();
     $updateMask = new FieldMask();
 

@@ -24,6 +24,20 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     private $service_name = '';
 
     /**
+     * @param string $serviceName Required. The name of the service.  See the `ServiceManager` overview for
+     *                            naming requirements.  For example: `example.googleapis.com`.
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\GetServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $serviceName): self
+    {
+        return (new self())
+            ->setServiceName($serviceName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -34,10 +34,13 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddResourcePoliciesRegionDiskRequest;
+use Google\Cloud\Compute\V1\BulkInsertDiskResource;
+use Google\Cloud\Compute\V1\BulkInsertRegionDiskRequest;
 use Google\Cloud\Compute\V1\CreateSnapshotRegionDiskRequest;
 use Google\Cloud\Compute\V1\DeleteRegionDiskRequest;
 use Google\Cloud\Compute\V1\Disk;
 use Google\Cloud\Compute\V1\DiskList;
+use Google\Cloud\Compute\V1\DisksStopGroupAsyncReplicationResource;
 use Google\Cloud\Compute\V1\GetIamPolicyRegionDiskRequest;
 use Google\Cloud\Compute\V1\GetRegionDiskRequest;
 use Google\Cloud\Compute\V1\InsertRegionDiskRequest;
@@ -47,6 +50,7 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionDisksAddResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\RegionDisksRemoveResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\RegionDisksResizeRequest;
+use Google\Cloud\Compute\V1\RegionDisksStartAsyncReplicationRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
 use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
@@ -55,6 +59,9 @@ use Google\Cloud\Compute\V1\ResizeRegionDiskRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionDiskRequest;
 use Google\Cloud\Compute\V1\SetLabelsRegionDiskRequest;
 use Google\Cloud\Compute\V1\Snapshot;
+use Google\Cloud\Compute\V1\StartAsyncReplicationRegionDiskRequest;
+use Google\Cloud\Compute\V1\StopAsyncReplicationRegionDiskRequest;
+use Google\Cloud\Compute\V1\StopGroupAsyncReplicationRegionDiskRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionDiskRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
@@ -101,6 +108,9 @@ use Google\Cloud\Compute\V1\UpdateRegionDiskRequest;
  *     $regionDisksClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionDisksClient} to use the new surface.
  */
 class RegionDisksGapicClient
 {
@@ -343,6 +353,81 @@ class RegionDisksGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('AddResourcePolicies', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Bulk create a set of disks.
+     *
+     * Sample code:
+     * ```
+     * $regionDisksClient = new RegionDisksClient();
+     * try {
+     *     $bulkInsertDiskResourceResource = new BulkInsertDiskResource();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionDisksClient->bulkInsert($bulkInsertDiskResourceResource, $project, $region);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionDisksClient->bulkInsert($bulkInsertDiskResourceResource, $project, $region);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionDisksClient->resumeOperation($operationName, 'bulkInsert');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionDisksClient->close();
+     * }
+     * ```
+     *
+     * @param BulkInsertDiskResource $bulkInsertDiskResourceResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $region                         The name of the region for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkInsert($bulkInsertDiskResourceResource, $project, $region, array $optionalArgs = [])
+    {
+        $request = new BulkInsertRegionDiskRequest();
+        $requestParamHeaders = [];
+        $request->setBulkInsertDiskResourceResource($bulkInsertDiskResourceResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('BulkInsert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**
@@ -1054,6 +1139,236 @@ class RegionDisksGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Starts asynchronous replication. Must be invoked on the primary disk.
+     *
+     * Sample code:
+     * ```
+     * $regionDisksClient = new RegionDisksClient();
+     * try {
+     *     $disk = 'disk';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionDisksStartAsyncReplicationRequestResource = new RegionDisksStartAsyncReplicationRequest();
+     *     $operationResponse = $regionDisksClient->startAsyncReplication($disk, $project, $region, $regionDisksStartAsyncReplicationRequestResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionDisksClient->startAsyncReplication($disk, $project, $region, $regionDisksStartAsyncReplicationRequestResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionDisksClient->resumeOperation($operationName, 'startAsyncReplication');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionDisksClient->close();
+     * }
+     * ```
+     *
+     * @param string                                  $disk                                            The name of the persistent disk.
+     * @param string                                  $project                                         Project ID for this request.
+     * @param string                                  $region                                          The name of the region for this request.
+     * @param RegionDisksStartAsyncReplicationRequest $regionDisksStartAsyncReplicationRequestResource The body resource for this request
+     * @param array                                   $optionalArgs                                    {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function startAsyncReplication($disk, $project, $region, $regionDisksStartAsyncReplicationRequestResource, array $optionalArgs = [])
+    {
+        $request = new StartAsyncReplicationRegionDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisk($disk);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionDisksStartAsyncReplicationRequestResource($regionDisksStartAsyncReplicationRequestResource);
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StartAsyncReplication', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
+     *
+     * Sample code:
+     * ```
+     * $regionDisksClient = new RegionDisksClient();
+     * try {
+     *     $disk = 'disk';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionDisksClient->stopAsyncReplication($disk, $project, $region);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionDisksClient->stopAsyncReplication($disk, $project, $region);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionDisksClient->resumeOperation($operationName, 'stopAsyncReplication');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionDisksClient->close();
+     * }
+     * ```
+     *
+     * @param string $disk         The name of the persistent disk.
+     * @param string $project      Project ID for this request.
+     * @param string $region       The name of the region for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function stopAsyncReplication($disk, $project, $region, array $optionalArgs = [])
+    {
+        $request = new StopAsyncReplicationRegionDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisk($disk);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StopAsyncReplication', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Stops asynchronous replication for a consistency group of disks. Can be invoked either in the primary or secondary scope.
+     *
+     * Sample code:
+     * ```
+     * $regionDisksClient = new RegionDisksClient();
+     * try {
+     *     $disksStopGroupAsyncReplicationResourceResource = new DisksStopGroupAsyncReplicationResource();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionDisksClient->stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $region);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionDisksClient->stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $region);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionDisksClient->resumeOperation($operationName, 'stopGroupAsyncReplication');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionDisksClient->close();
+     * }
+     * ```
+     *
+     * @param DisksStopGroupAsyncReplicationResource $disksStopGroupAsyncReplicationResourceResource The body resource for this request
+     * @param string                                 $project                                        Project ID for this request.
+     * @param string                                 $region                                         The name of the region for this request. This must be the region of the primary or secondary disks in the consistency group.
+     * @param array                                  $optionalArgs                                   {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $region, array $optionalArgs = [])
+    {
+        $request = new StopGroupAsyncReplicationRegionDiskRequest();
+        $requestParamHeaders = [];
+        $request->setDisksStopGroupAsyncReplicationResourceResource($disksStopGroupAsyncReplicationResourceResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StopGroupAsyncReplication', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**

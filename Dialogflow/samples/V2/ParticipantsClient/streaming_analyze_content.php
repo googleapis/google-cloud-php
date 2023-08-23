@@ -56,7 +56,7 @@ function streaming_analyze_content_sample(string $formattedParticipant): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $request = (new StreamingAnalyzeContentRequest())
         ->setParticipant($formattedParticipant);
 

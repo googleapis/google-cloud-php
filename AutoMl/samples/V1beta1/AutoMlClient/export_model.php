@@ -47,7 +47,7 @@ function export_model_sample(string $formattedName): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $outputConfig = new ModelExportOutputConfig();
 
     // Call the API and handle any network failures.

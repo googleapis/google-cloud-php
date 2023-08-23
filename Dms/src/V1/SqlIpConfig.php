@@ -31,6 +31,17 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      */
     private $private_network = '';
     /**
+     * Optional. The name of the allocated IP address range for the private IP
+     * Cloud SQL instance. This name refers to an already allocated IP range
+     * address. If set, the instance IP address will be created in the allocated
+     * range. Note that this IP address range can't be modified after the instance
+     * is created. If you change the VPC when configuring connectivity settings
+     * for the migration job, this field is not relevant.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $allocated_ip_range = '';
+    /**
      * Whether SSL connections over IP should be enforced or not.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue require_ssl = 3;</code>
@@ -59,6 +70,13 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      *           accessible for private IP. For example,
      *           `projects/myProject/global/networks/default`. This setting can
      *           be updated, but it cannot be removed after it is set.
+     *     @type string $allocated_ip_range
+     *           Optional. The name of the allocated IP address range for the private IP
+     *           Cloud SQL instance. This name refers to an already allocated IP range
+     *           address. If set, the instance IP address will be created in the allocated
+     *           range. Note that this IP address range can't be modified after the instance
+     *           is created. If you change the VPC when configuring connectivity settings
+     *           for the migration job, this field is not relevant.
      *     @type \Google\Protobuf\BoolValue $require_ssl
      *           Whether SSL connections over IP should be enforced or not.
      *     @type array<\Google\Cloud\CloudDms\V1\SqlAclEntry>|\Google\Protobuf\Internal\RepeatedField $authorized_networks
@@ -164,6 +182,42 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->private_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the allocated IP address range for the private IP
+     * Cloud SQL instance. This name refers to an already allocated IP range
+     * address. If set, the instance IP address will be created in the allocated
+     * range. Note that this IP address range can't be modified after the instance
+     * is created. If you change the VPC when configuring connectivity settings
+     * for the migration job, this field is not relevant.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAllocatedIpRange()
+    {
+        return $this->allocated_ip_range;
+    }
+
+    /**
+     * Optional. The name of the allocated IP address range for the private IP
+     * Cloud SQL instance. This name refers to an already allocated IP range
+     * address. If set, the instance IP address will be created in the allocated
+     * range. Note that this IP address range can't be modified after the instance
+     * is created. If you change the VPC when configuring connectivity settings
+     * for the migration job, this field is not relevant.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllocatedIpRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allocated_ip_range = $var;
 
         return $this;
     }

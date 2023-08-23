@@ -42,7 +42,8 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A pem-encoded X.509 certificate signing request (CSR).
      *
-     * Generated from protobuf field <code>string pem_csr = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string pem_csr = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $pem_csr = '';
     /**
@@ -55,6 +56,20 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration cert_duration = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cert_duration = null;
+    /**
+     * Optional. The public key from the client.
+     *
+     * Generated from protobuf field <code>string public_key = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $public_key = '';
+    /**
+     * Optional. An optional hint to the endpoint to generate a client
+     * ceritificate that can be used by AlloyDB connectors to exchange additional
+     * metadata with the server after TLS handshake.
+     *
+     * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $use_metadata_exchange = false;
 
     /**
      * Constructor.
@@ -85,6 +100,12 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      *           24 hours. The endpoint may or may not honor the hint. If the hint is left
      *           unspecified or is not honored, then the endpoint will pick an appropriate
      *           default duration.
+     *     @type string $public_key
+     *           Optional. The public key from the client.
+     *     @type bool $use_metadata_exchange
+     *           Optional. An optional hint to the endpoint to generate a client
+     *           ceritificate that can be used by AlloyDB connectors to exchange additional
+     *           metadata with the server after TLS handshake.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,23 +190,27 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A pem-encoded X.509 certificate signing request (CSR).
      *
-     * Generated from protobuf field <code>string pem_csr = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string pem_csr = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getPemCsr()
     {
+        @trigger_error('pem_csr is deprecated.', E_USER_DEPRECATED);
         return $this->pem_csr;
     }
 
     /**
      * Optional. A pem-encoded X.509 certificate signing request (CSR).
      *
-     * Generated from protobuf field <code>string pem_csr = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string pem_csr = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setPemCsr($var)
     {
+        @trigger_error('pem_csr is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->pem_csr = $var;
 
@@ -232,6 +257,62 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->cert_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The public key from the client.
+     *
+     * Generated from protobuf field <code>string public_key = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPublicKey()
+    {
+        return $this->public_key;
+    }
+
+    /**
+     * Optional. The public key from the client.
+     *
+     * Generated from protobuf field <code>string public_key = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional hint to the endpoint to generate a client
+     * ceritificate that can be used by AlloyDB connectors to exchange additional
+     * metadata with the server after TLS handshake.
+     *
+     * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseMetadataExchange()
+    {
+        return $this->use_metadata_exchange;
+    }
+
+    /**
+     * Optional. An optional hint to the endpoint to generate a client
+     * ceritificate that can be used by AlloyDB connectors to exchange additional
+     * metadata with the server after TLS handshake.
+     *
+     * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseMetadataExchange($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_metadata_exchange = $var;
 
         return $this;
     }

@@ -69,6 +69,21 @@ class ListTrainingPipelinesRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The resource name of the Location to list the TrainingPipelines
+     *                       from. Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListTrainingPipelinesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

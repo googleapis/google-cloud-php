@@ -23,6 +23,20 @@ class CalculateIssueModelStatsRequest extends \Google\Protobuf\Internal\Message
     private $issue_model = '';
 
     /**
+     * @param string $issueModel Required. The resource name of the issue model to query against. Please see
+     *                           {@see ContactCenterInsightsClient::issueModelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $issueModel): self
+    {
+        return (new self())
+            ->setIssueModel($issueModel);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

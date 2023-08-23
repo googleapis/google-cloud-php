@@ -14,6 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * instead. Time interval spent on the route resulting from a
  * [TransitionAttributes.delay][google.cloud.optimization.v1.TransitionAttributes.delay].
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.optimization.v1.ShipmentRoute.Delay</code>
  */
 class Delay extends \Google\Protobuf\Internal\Message

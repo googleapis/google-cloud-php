@@ -33,8 +33,8 @@ use Google\Rpc\Status;
  * Creates a cluster of type SECONDARY in the given location using
  * the primary cluster as the source.
  *
- * @param string $formattedParent         The name of the parent resource (the primary cluster). For the
- *                                        required format, see the comment on the Cluster.name field. Please see
+ * @param string $formattedParent         The location of the new cluster. For the required
+ *                                        format, see the comment on the Cluster.name field. Please see
  *                                        {@see AlloyDBAdminClient::locationName()} for help formatting this field.
  * @param string $clusterId               ID of the requesting object (the secondary cluster).
  * @param string $formattedClusterNetwork The resource link for the VPC network in which cluster resources
@@ -52,7 +52,7 @@ function create_secondary_cluster_sample(
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $cluster = (new Cluster())
         ->setNetwork($formattedClusterNetwork);
 

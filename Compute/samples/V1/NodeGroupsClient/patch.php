@@ -41,7 +41,7 @@ function patch_sample(string $nodeGroup, string $project, string $zone): void
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $nodeGroupResource = new NodeGroup();
 
     // Call the API and handle any network failures.

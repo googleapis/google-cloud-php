@@ -50,7 +50,7 @@ function batch_get_access_bindings_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $formattedNames = [$formattedNamesElement,];
 
     // Call the API and handle any network failures.

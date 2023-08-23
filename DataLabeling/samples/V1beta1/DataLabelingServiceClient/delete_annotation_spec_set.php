@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_DeleteAnnotationSpecSet_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\DeleteAnnotationSpecSetRequest;
 
 /**
  * Deletes an annotation spec set by resource name.
@@ -38,9 +39,13 @@ function delete_annotation_spec_set_sample(string $formattedName): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAnnotationSpecSetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataLabelingServiceClient->deleteAnnotationSpecSet($formattedName);
+        $dataLabelingServiceClient->deleteAnnotationSpecSet($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

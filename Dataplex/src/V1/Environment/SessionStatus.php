@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Status of sessions created for this environment.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Environment.SessionStatus</code>
  */
 class SessionStatus extends \Google\Protobuf\Internal\Message

@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AwsClusters_UpdateAwsNodePool_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AwsConfigEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodeConfig;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePoolAutoscaling;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
+use Google\Cloud\GkeMultiCloud\V1\UpdateAwsNodePoolRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -83,11 +84,14 @@ function update_aws_node_pool_sample(
         ->setSubnetId($awsNodePoolSubnetId)
         ->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
     $updateMask = new FieldMask();
+    $request = (new UpdateAwsNodePoolRequest())
+        ->setAwsNodePool($awsNodePool)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $awsClustersClient->updateAwsNodePool($awsNodePool, $updateMask);
+        $response = $awsClustersClient->updateAwsNodePool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

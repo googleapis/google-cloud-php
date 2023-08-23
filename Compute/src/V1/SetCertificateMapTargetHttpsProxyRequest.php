@@ -41,6 +41,23 @@ class SetCertificateMapTargetHttpsProxyRequest extends \Google\Protobuf\Internal
     private $target_https_proxy = '';
 
     /**
+     * @param string                                                              $project                                            Project ID for this request.
+     * @param string                                                              $targetHttpsProxy                                   Name of the TargetHttpsProxy resource whose CertificateMap is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param \Google\Cloud\Compute\V1\TargetHttpsProxiesSetCertificateMapRequest $targetHttpsProxiesSetCertificateMapRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetCertificateMapTargetHttpsProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetHttpsProxy, \Google\Cloud\Compute\V1\TargetHttpsProxiesSetCertificateMapRequest $targetHttpsProxiesSetCertificateMapRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setTargetHttpsProxiesSetCertificateMapRequestResource($targetHttpsProxiesSetCertificateMapRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

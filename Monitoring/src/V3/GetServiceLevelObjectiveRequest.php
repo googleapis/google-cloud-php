@@ -33,6 +33,22 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
+     *                     Please see {@see ServiceMonitoringServiceClient::serviceLevelObjectiveName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetServiceLevelObjectiveRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

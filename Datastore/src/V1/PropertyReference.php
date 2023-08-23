@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class PropertyReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the property.
-     * If name includes "."s, it may be interpreted as a property name path.
+     * A reference to a property.
+     * Requires:
+     * * MUST be a dot-delimited (`.`) string of segments, where each segment
+     * conforms to [entity property name][google.datastore.v1.Entity.properties]
+     * limitations.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
@@ -30,8 +33,11 @@ class PropertyReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the property.
-     *           If name includes "."s, it may be interpreted as a property name path.
+     *           A reference to a property.
+     *           Requires:
+     *           * MUST be a dot-delimited (`.`) string of segments, where each segment
+     *           conforms to [entity property name][google.datastore.v1.Entity.properties]
+     *           limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +46,11 @@ class PropertyReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the property.
-     * If name includes "."s, it may be interpreted as a property name path.
+     * A reference to a property.
+     * Requires:
+     * * MUST be a dot-delimited (`.`) string of segments, where each segment
+     * conforms to [entity property name][google.datastore.v1.Entity.properties]
+     * limitations.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      * @return string
@@ -52,8 +61,11 @@ class PropertyReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the property.
-     * If name includes "."s, it may be interpreted as a property name path.
+     * A reference to a property.
+     * Requires:
+     * * MUST be a dot-delimited (`.`) string of segments, where each segment
+     * conforms to [entity property name][google.datastore.v1.Entity.properties]
+     * limitations.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      * @param string $var

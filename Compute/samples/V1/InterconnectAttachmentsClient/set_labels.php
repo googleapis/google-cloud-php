@@ -41,7 +41,7 @@ function set_labels_sample(string $project, string $region, string $resource): v
     // Create a client.
     $interconnectAttachmentsClient = new InterconnectAttachmentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
 
     // Call the API and handle any network failures.

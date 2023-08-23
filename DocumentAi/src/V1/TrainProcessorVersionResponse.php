@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for the TrainProcessorVersion method.
+ * The response for
+ * [TrainProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.TrainProcessorVersionResponse</code>
  */

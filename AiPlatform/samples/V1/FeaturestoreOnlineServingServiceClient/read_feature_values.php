@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_FeaturestoreOnlineServingService_ReadFeatureValues_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreOnlineServingServiceClient;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
-use Google\Cloud\AIPlatform\V1\FeaturestoreOnlineServingServiceClient;
 use Google\Cloud\AIPlatform\V1\IdMatcher;
+use Google\Cloud\AIPlatform\V1\ReadFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse;
 
 /**
@@ -64,15 +65,15 @@ function read_feature_values_sample(
         ->setIds($featureSelectorIdMatcherIds);
     $featureSelector = (new FeatureSelector())
         ->setIdMatcher($featureSelectorIdMatcher);
+    $request = (new ReadFeatureValuesRequest())
+        ->setEntityType($formattedEntityType)
+        ->setEntityId($entityId)
+        ->setFeatureSelector($featureSelector);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReadFeatureValuesResponse $response */
-        $response = $featurestoreOnlineServingServiceClient->readFeatureValues(
-            $formattedEntityType,
-            $entityId,
-            $featureSelector
-        );
+        $response = $featurestoreOnlineServingServiceClient->readFeatureValues($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

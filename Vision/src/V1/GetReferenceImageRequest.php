@@ -25,6 +25,23 @@ class GetReferenceImageRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the ReferenceImage to get.
+     *
+     *                     Format is:
+     *                     `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`. Please see
+     *                     {@see ProductSearchClient::referenceImageName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Vision\V1\GetReferenceImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

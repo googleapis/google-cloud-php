@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_InstallNpmPackages_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesRequest;
 use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesResponse;
 
 /**
@@ -38,10 +39,14 @@ function install_npm_packages_sample(string $formattedWorkspace): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new InstallNpmPackagesRequest())
+        ->setWorkspace($formattedWorkspace);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstallNpmPackagesResponse $response */
-        $response = $dataformClient->installNpmPackages($formattedWorkspace);
+        $response = $dataformClient->installNpmPackages($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

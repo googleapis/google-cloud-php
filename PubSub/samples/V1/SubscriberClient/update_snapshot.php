@@ -46,7 +46,7 @@ function update_snapshot_sample(): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $snapshot = new Snapshot();
     $updateMask = new FieldMask();
 

@@ -17,30 +17,32 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The minimum column value allowed for a row to pass this
-     * validation. At least one of min_value and max_value need to be provided.
+     * validation. At least one of `min_value` and `max_value` need to be
+     * provided.
      *
      * Generated from protobuf field <code>string min_value = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $min_value = '';
     /**
      * Optional. The maximum column value allowed for a row to pass this
-     * validation. At least one of min_value and max_value need to be provided.
+     * validation. At least one of `min_value` and `max_value` need to be
+     * provided.
      *
      * Generated from protobuf field <code>string max_value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_value = '';
     /**
      * Optional. Whether each value needs to be strictly greater than ('>') the
-     * minimum, or if equality is allowed. Only relevant if a min_value has been
-     * defined. Default = false.
+     * minimum, or if equality is allowed.
+     * Only relevant if a `min_value` has been defined. Default = false.
      *
      * Generated from protobuf field <code>bool strict_min_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $strict_min_enabled = false;
     /**
      * Optional. Whether each value needs to be strictly lesser than ('<') the
-     * maximum, or if equality is allowed. Only relevant if a max_value has been
-     * defined. Default = false.
+     * maximum, or if equality is allowed.
+     * Only relevant if a `max_value` has been defined. Default = false.
      *
      * Generated from protobuf field <code>bool strict_max_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,18 +56,20 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $min_value
      *           Optional. The minimum column value allowed for a row to pass this
-     *           validation. At least one of min_value and max_value need to be provided.
+     *           validation. At least one of `min_value` and `max_value` need to be
+     *           provided.
      *     @type string $max_value
      *           Optional. The maximum column value allowed for a row to pass this
-     *           validation. At least one of min_value and max_value need to be provided.
+     *           validation. At least one of `min_value` and `max_value` need to be
+     *           provided.
      *     @type bool $strict_min_enabled
      *           Optional. Whether each value needs to be strictly greater than ('>') the
-     *           minimum, or if equality is allowed. Only relevant if a min_value has been
-     *           defined. Default = false.
+     *           minimum, or if equality is allowed.
+     *           Only relevant if a `min_value` has been defined. Default = false.
      *     @type bool $strict_max_enabled
      *           Optional. Whether each value needs to be strictly lesser than ('<') the
-     *           maximum, or if equality is allowed. Only relevant if a max_value has been
-     *           defined. Default = false.
+     *           maximum, or if equality is allowed.
+     *           Only relevant if a `max_value` has been defined. Default = false.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +79,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The minimum column value allowed for a row to pass this
-     * validation. At least one of min_value and max_value need to be provided.
+     * validation. At least one of `min_value` and `max_value` need to be
+     * provided.
      *
      * Generated from protobuf field <code>string min_value = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -87,7 +92,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The minimum column value allowed for a row to pass this
-     * validation. At least one of min_value and max_value need to be provided.
+     * validation. At least one of `min_value` and `max_value` need to be
+     * provided.
      *
      * Generated from protobuf field <code>string min_value = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -103,7 +109,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum column value allowed for a row to pass this
-     * validation. At least one of min_value and max_value need to be provided.
+     * validation. At least one of `min_value` and `max_value` need to be
+     * provided.
      *
      * Generated from protobuf field <code>string max_value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -115,7 +122,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum column value allowed for a row to pass this
-     * validation. At least one of min_value and max_value need to be provided.
+     * validation. At least one of `min_value` and `max_value` need to be
+     * provided.
      *
      * Generated from protobuf field <code>string max_value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -131,8 +139,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Whether each value needs to be strictly greater than ('>') the
-     * minimum, or if equality is allowed. Only relevant if a min_value has been
-     * defined. Default = false.
+     * minimum, or if equality is allowed.
+     * Only relevant if a `min_value` has been defined. Default = false.
      *
      * Generated from protobuf field <code>bool strict_min_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -144,8 +152,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Whether each value needs to be strictly greater than ('>') the
-     * minimum, or if equality is allowed. Only relevant if a min_value has been
-     * defined. Default = false.
+     * minimum, or if equality is allowed.
+     * Only relevant if a `min_value` has been defined. Default = false.
      *
      * Generated from protobuf field <code>bool strict_min_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -161,8 +169,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Whether each value needs to be strictly lesser than ('<') the
-     * maximum, or if equality is allowed. Only relevant if a max_value has been
-     * defined. Default = false.
+     * maximum, or if equality is allowed.
+     * Only relevant if a `max_value` has been defined. Default = false.
      *
      * Generated from protobuf field <code>bool strict_max_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -174,8 +182,8 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Whether each value needs to be strictly lesser than ('<') the
-     * maximum, or if equality is allowed. Only relevant if a max_value has been
-     * defined. Default = false.
+     * maximum, or if equality is allowed.
+     * Only relevant if a `max_value` has been defined. Default = false.
      *
      * Generated from protobuf field <code>bool strict_max_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -24,6 +24,21 @@ class GetOrganizationSettingsRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the organization to get organization settings for. Its
+     *                     format is "organizations/[organization_id]/organizationSettings". Please see
+     *                     {@see SecurityCenterClient::organizationSettingsName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\GetOrganizationSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

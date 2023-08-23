@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START apikeys_v2_generated_ApiKeys_LookupKey_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ApiKeys\V2\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\LookupKeyRequest;
 use Google\Cloud\ApiKeys\V2\LookupKeyResponse;
 
 /**
@@ -41,10 +42,14 @@ function lookup_key_sample(string $keyString): void
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
+    // Prepare the request message.
+    $request = (new LookupKeyRequest())
+        ->setKeyString($keyString);
+
     // Call the API and handle any network failures.
     try {
         /** @var LookupKeyResponse $response */
-        $response = $apiKeysClient->lookupKey($keyString);
+        $response = $apiKeysClient->lookupKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

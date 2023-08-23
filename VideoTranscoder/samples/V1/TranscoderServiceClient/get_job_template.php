@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START transcoder_v1_generated_TranscoderService_GetJobTemplate_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\Transcoder\V1\Client\TranscoderServiceClient;
+use Google\Cloud\Video\Transcoder\V1\GetJobTemplateRequest;
 use Google\Cloud\Video\Transcoder\V1\JobTemplate;
-use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
 
 /**
  * Returns the job template data.
@@ -40,10 +41,14 @@ function get_job_template_sample(string $formattedName): void
     // Create a client.
     $transcoderServiceClient = new TranscoderServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetJobTemplateRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var JobTemplate $response */
-        $response = $transcoderServiceClient->getJobTemplate($formattedName);
+        $response = $transcoderServiceClient->getJobTemplate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

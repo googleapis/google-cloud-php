@@ -19,13 +19,14 @@ class PBNamespace
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¶
-5google/cloud/servicedirectory/v1beta1/namespace.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"ü
+È
+5google/cloud/servicedirectory/v1beta1/namespace.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.proto"Ž
 	Namespace
 name (	BàAQ
 labels (2<.google.cloud.servicedirectory.v1beta1.Namespace.LabelsEntryBàA4
 create_time (2.google.protobuf.TimestampBàA4
-update_time (2.google.protobuf.TimestampBàA-
+update_time (2.google.protobuf.TimestampBàA
+uid (	BàA-
 LabelsEntry
 key (	
 value (	:8:nêAk

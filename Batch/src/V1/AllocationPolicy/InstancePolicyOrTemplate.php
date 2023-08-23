@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Either an InstancePolicy or an instance template.
+ * InstancePolicyOrTemplate lets you define the type of resources to use for
+ * this job either with an InstancePolicy or an instance template.
+ * If undefined, Batch picks the type of VM to use and doesn't include
+ * optional VM resources such as GPUs and extra disks.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.AllocationPolicy.InstancePolicyOrTemplate</code>
  */
@@ -20,6 +23,11 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      * third party location and install them for GPUs specified in
      * policy.accelerators or instance_template on their behalf. Default is
      * false.
+     * For Container-Optimized Image cases, Batch will install the
+     * accelerator driver following milestones of
+     * https://cloud.google.com/container-optimized-os/docs/release-notes. For
+     * non Container-Optimized Image cases, following
+     * https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
      *
      * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
      */
@@ -43,6 +51,11 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      *           third party location and install them for GPUs specified in
      *           policy.accelerators or instance_template on their behalf. Default is
      *           false.
+     *           For Container-Optimized Image cases, Batch will install the
+     *           accelerator driver following milestones of
+     *           https://cloud.google.com/container-optimized-os/docs/release-notes. For
+     *           non Container-Optimized Image cases, following
+     *           https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +134,11 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      * third party location and install them for GPUs specified in
      * policy.accelerators or instance_template on their behalf. Default is
      * false.
+     * For Container-Optimized Image cases, Batch will install the
+     * accelerator driver following milestones of
+     * https://cloud.google.com/container-optimized-os/docs/release-notes. For
+     * non Container-Optimized Image cases, following
+     * https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
      *
      * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
      * @return bool
@@ -135,6 +153,11 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      * third party location and install them for GPUs specified in
      * policy.accelerators or instance_template on their behalf. Default is
      * false.
+     * For Container-Optimized Image cases, Batch will install the
+     * accelerator driver following milestones of
+     * https://cloud.google.com/container-optimized-os/docs/release-notes. For
+     * non Container-Optimized Image cases, following
+     * https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
      *
      * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
      * @param bool $var

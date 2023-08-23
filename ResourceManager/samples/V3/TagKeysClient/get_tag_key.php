@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudresourcemanager_v3_generated_TagKeys_GetTagKey_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ResourceManager\V3\Client\TagKeysClient;
+use Google\Cloud\ResourceManager\V3\GetTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\TagKey;
-use Google\Cloud\ResourceManager\V3\TagKeysClient;
 
 /**
  * Retrieves a TagKey. This method will return `PERMISSION_DENIED` if the
@@ -40,10 +41,14 @@ function get_tag_key_sample(string $formattedName): void
     // Create a client.
     $tagKeysClient = new TagKeysClient();
 
+    // Prepare the request message.
+    $request = (new GetTagKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TagKey $response */
-        $response = $tagKeysClient->getTagKey($formattedName);
+        $response = $tagKeysClient->getTagKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

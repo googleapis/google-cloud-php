@@ -53,7 +53,7 @@ function synthesize_speech_sample(string $voiceLanguageCode, int $audioConfigAud
     // Create a client.
     $textToSpeechClient = new TextToSpeechClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $input = new SynthesisInput();
     $voice = (new VoiceSelectionParams())
         ->setLanguageCode($voiceLanguageCode);

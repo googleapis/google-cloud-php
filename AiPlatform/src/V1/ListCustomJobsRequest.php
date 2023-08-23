@@ -69,6 +69,21 @@ class ListCustomJobsRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string $parent Required. The resource name of the Location to list the CustomJobs from.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see JobServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListCustomJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

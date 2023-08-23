@@ -45,7 +45,7 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $service = new Service();
 
     // Call the API and handle any network failures.

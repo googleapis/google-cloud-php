@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START analyticshub_v1beta1_generated_AnalyticsHubService_ListDataExchanges_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\ListDataExchangesRequest;
 
 /**
  * Lists all data exchanges in a given project and location.
@@ -40,10 +41,14 @@ function list_data_exchanges_sample(string $formattedParent): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDataExchangesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsHubServiceClient->listDataExchanges($formattedParent);
+        $response = $analyticsHubServiceClient->listDataExchanges($request);
 
         /** @var DataExchange $element */
         foreach ($response as $element) {

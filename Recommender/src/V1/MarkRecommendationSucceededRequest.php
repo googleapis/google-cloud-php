@@ -38,6 +38,27 @@ class MarkRecommendationSucceededRequest extends \Google\Protobuf\Internal\Messa
     private $etag = '';
 
     /**
+     * @param string $name          Required. Name of the recommendation. Please see
+     *                              {@see RecommenderClient::recommendationName()} for help formatting this field.
+     * @param array  $stateMetadata State properties to include with this state. Overwrites any existing
+     *                              `state_metadata`.
+     *                              Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
+     *                              Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
+     * @param string $etag          Required. Fingerprint of the Recommendation. Provides optimistic locking.
+     *
+     * @return \Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $stateMetadata, string $etag): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setStateMetadata($stateMetadata)
+            ->setEtag($etag);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

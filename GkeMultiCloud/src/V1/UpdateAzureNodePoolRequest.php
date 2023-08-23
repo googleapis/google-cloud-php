@@ -43,6 +43,30 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azureNodePool Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     *                                                                    resource to update.
+     * @param \Google\Protobuf\FieldMask                   $updateMask    Required. Mask of fields to update. At least one path must be supplied in
+     *                                                                    this field. The elements of the repeated paths field can only include these
+     *                                                                    fields from [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]:
+     *
+     *                                                                    *.  `annotations`.
+     *                                                                    *   `version`.
+     *                                                                    *   `autoscaling.min_node_count`.
+     *                                                                    *   `autoscaling.max_node_count`.
+     *                                                                    *   `config.ssh_config.authorized_key`.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAzureNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azureNodePool, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAzureNodePool($azureNodePool)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

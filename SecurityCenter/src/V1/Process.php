@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Process extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The process name visible in utilities like `top` and `ps`; it can
-     * be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     * The process name, as displayed in utilities like `top` and `ps`. This name
+     * can be accessed through `/proc/[pid]/comm` and changed with
+     * `prctl(PR_SET_NAME)`.
      *
      * Generated from protobuf field <code>string name = 12;</code>
      */
@@ -35,10 +36,9 @@ class Process extends \Google\Protobuf\Internal\Message
      */
     private $libraries;
     /**
-     * When the process represents the invocation of a script,
-     * `binary` provides information about the interpreter while `script`
-     * provides information about the script file provided to the
-     * interpreter.
+     * When the process represents the invocation of a script, `binary` provides
+     * information about the interpreter, while `script` provides information
+     * about the script file provided to the interpreter.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File script = 5;</code>
      */
@@ -68,13 +68,13 @@ class Process extends \Google\Protobuf\Internal\Message
      */
     private $env_variables_truncated = false;
     /**
-     * The process id.
+     * The process ID.
      *
      * Generated from protobuf field <code>int64 pid = 10;</code>
      */
     private $pid = 0;
     /**
-     * The parent process id.
+     * The parent process ID.
      *
      * Generated from protobuf field <code>int64 parent_pid = 11;</code>
      */
@@ -87,17 +87,17 @@ class Process extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The process name visible in utilities like `top` and `ps`; it can
-     *           be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     *           The process name, as displayed in utilities like `top` and `ps`. This name
+     *           can be accessed through `/proc/[pid]/comm` and changed with
+     *           `prctl(PR_SET_NAME)`.
      *     @type \Google\Cloud\SecurityCenter\V1\File $binary
      *           File information for the process executable.
      *     @type array<\Google\Cloud\SecurityCenter\V1\File>|\Google\Protobuf\Internal\RepeatedField $libraries
      *           File information for libraries loaded by the process.
      *     @type \Google\Cloud\SecurityCenter\V1\File $script
-     *           When the process represents the invocation of a script,
-     *           `binary` provides information about the interpreter while `script`
-     *           provides information about the script file provided to the
-     *           interpreter.
+     *           When the process represents the invocation of a script, `binary` provides
+     *           information about the interpreter, while `script` provides information
+     *           about the script file provided to the interpreter.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Process arguments as JSON encoded strings.
      *     @type bool $arguments_truncated
@@ -107,9 +107,9 @@ class Process extends \Google\Protobuf\Internal\Message
      *     @type bool $env_variables_truncated
      *           True if `env_variables` is incomplete.
      *     @type int|string $pid
-     *           The process id.
+     *           The process ID.
      *     @type int|string $parent_pid
-     *           The parent process id.
+     *           The parent process ID.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,8 +118,9 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The process name visible in utilities like `top` and `ps`; it can
-     * be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     * The process name, as displayed in utilities like `top` and `ps`. This name
+     * can be accessed through `/proc/[pid]/comm` and changed with
+     * `prctl(PR_SET_NAME)`.
      *
      * Generated from protobuf field <code>string name = 12;</code>
      * @return string
@@ -130,8 +131,9 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The process name visible in utilities like `top` and `ps`; it can
-     * be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     * The process name, as displayed in utilities like `top` and `ps`. This name
+     * can be accessed through `/proc/[pid]/comm` and changed with
+     * `prctl(PR_SET_NAME)`.
      *
      * Generated from protobuf field <code>string name = 12;</code>
      * @param string $var
@@ -208,10 +210,9 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When the process represents the invocation of a script,
-     * `binary` provides information about the interpreter while `script`
-     * provides information about the script file provided to the
-     * interpreter.
+     * When the process represents the invocation of a script, `binary` provides
+     * information about the interpreter, while `script` provides information
+     * about the script file provided to the interpreter.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File script = 5;</code>
      * @return \Google\Cloud\SecurityCenter\V1\File|null
@@ -232,10 +233,9 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When the process represents the invocation of a script,
-     * `binary` provides information about the interpreter while `script`
-     * provides information about the script file provided to the
-     * interpreter.
+     * When the process represents the invocation of a script, `binary` provides
+     * information about the interpreter, while `script` provides information
+     * about the script file provided to the interpreter.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File script = 5;</code>
      * @param \Google\Cloud\SecurityCenter\V1\File $var
@@ -354,7 +354,7 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The process id.
+     * The process ID.
      *
      * Generated from protobuf field <code>int64 pid = 10;</code>
      * @return int|string
@@ -365,7 +365,7 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The process id.
+     * The process ID.
      *
      * Generated from protobuf field <code>int64 pid = 10;</code>
      * @param int|string $var
@@ -380,7 +380,7 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent process id.
+     * The parent process ID.
      *
      * Generated from protobuf field <code>int64 parent_pid = 11;</code>
      * @return int|string
@@ -391,7 +391,7 @@ class Process extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent process id.
+     * The parent process ID.
      *
      * Generated from protobuf field <code>int64 parent_pid = 11;</code>
      * @param int|string $var

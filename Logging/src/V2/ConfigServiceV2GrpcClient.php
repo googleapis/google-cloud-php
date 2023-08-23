@@ -63,6 +63,43 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Creates a log bucket asynchronously that can be used to store log entries.
+     *
+     * After a bucket has been created, the bucket's location cannot be changed.
+     * @param \Google\Cloud\Logging\V2\CreateBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateBucketAsync(\Google\Cloud\Logging\V2\CreateBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/CreateBucketAsync',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a log bucket asynchronously.
+     *
+     * If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+     * `FAILED_PRECONDITION` will be returned.
+     *
+     * After a bucket has been created, the bucket's location cannot be changed.
+     * @param \Google\Cloud\Logging\V2\UpdateBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateBucketAsync(\Google\Cloud\Logging\V2\UpdateBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateBucketAsync',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a log bucket that can be used to store log entries. After a bucket
      * has been created, the bucket's location cannot be changed.
      * @param \Google\Cloud\Logging\V2\CreateBucketRequest $argument input argument
@@ -79,11 +116,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a log bucket. This method replaces the following fields in the
-     * existing bucket with values from the new bucket: `retention_period`
-     *
-     * If the retention period is decreased and the bucket is locked,
-     * `FAILED_PRECONDITION` will be returned.
+     * Updates a log bucket.
      *
      * If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
      * `FAILED_PRECONDITION` will be returned.
@@ -300,6 +333,69 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/DeleteSink',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Asynchronously creates a linked dataset in BigQuery which makes it possible
+     * to use BigQuery to read the logs stored in the log bucket. A log bucket may
+     * currently only contain one link.
+     * @param \Google\Cloud\Logging\V2\CreateLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateLink(\Google\Cloud\Logging\V2\CreateLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/CreateLink',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a link. This will also delete the corresponding BigQuery linked
+     * dataset.
+     * @param \Google\Cloud\Logging\V2\DeleteLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteLink(\Google\Cloud\Logging\V2\DeleteLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/DeleteLink',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists links.
+     * @param \Google\Cloud\Logging\V2\ListLinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListLinks(\Google\Cloud\Logging\V2\ListLinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/ListLinks',
+        $argument,
+        ['\Google\Cloud\Logging\V2\ListLinksResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a link.
+     * @param \Google\Cloud\Logging\V2\GetLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetLink(\Google\Cloud\Logging\V2\GetLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetLink',
+        $argument,
+        ['\Google\Cloud\Logging\V2\Link', 'decode'],
         $metadata, $options);
     }
 

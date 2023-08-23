@@ -44,7 +44,7 @@ function update_connection_profile_sample(): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $updateMask = new FieldMask();
     $connectionProfile = new ConnectionProfile();
 

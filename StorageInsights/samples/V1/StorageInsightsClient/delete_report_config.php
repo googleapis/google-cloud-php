@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storageinsights_v1_generated_StorageInsights_DeleteReportConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\DeleteReportConfigRequest;
 
 /**
  * Deletes a single ReportConfig.
@@ -37,9 +38,13 @@ function delete_report_config_sample(string $formattedName): void
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteReportConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $storageInsightsClient->deleteReportConfig($formattedName);
+        $storageInsightsClient->deleteReportConfig($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

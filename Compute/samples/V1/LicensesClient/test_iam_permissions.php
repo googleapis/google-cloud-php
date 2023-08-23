@@ -39,7 +39,7 @@ function test_iam_permissions_sample(string $project, string $resource): void
     // Create a client.
     $licensesClient = new LicensesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $testPermissionsRequestResource = new TestPermissionsRequest();
 
     // Call the API and handle any network failures.

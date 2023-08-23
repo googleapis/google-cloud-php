@@ -73,7 +73,7 @@ function remove_local_inventories_sample(string $formattedProduct, string $place
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $placeIds = [$placeIdsElement,];
 
     // Call the API and handle any network failures.

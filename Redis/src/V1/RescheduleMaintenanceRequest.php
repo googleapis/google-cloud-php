@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [RescheduleMaintenance][google.cloud.redis.v1.CloudRedis.RescheduleMaintenance].
+ * Request for
+ * [RescheduleMaintenance][google.cloud.redis.v1.CloudRedis.RescheduleMaintenance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.RescheduleMaintenanceRequest</code>
  */
@@ -24,7 +25,8 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as
+     * well.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.RescheduleMaintenanceRequest.RescheduleType reschedule_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,6 +41,30 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
     private $schedule_time = null;
 
     /**
+     * @param string                     $name           Required. Redis instance resource name using the form:
+     *                                                   `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                                                   where `location_id` refers to a GCP region. Please see
+     *                                                   {@see CloudRedisClient::instanceName()} for help formatting this field.
+     * @param int                        $rescheduleType Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as
+     *                                                   well.
+     *                                                   For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType}
+     * @param \Google\Protobuf\Timestamp $scheduleTime   Optional. Timestamp when the maintenance shall be rescheduled to if
+     *                                                   reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
+     *                                                   example `2012-11-15T16:19:00.094Z`.
+     *
+     * @return \Google\Cloud\Redis\V1\RescheduleMaintenanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, int $rescheduleType, \Google\Protobuf\Timestamp $scheduleTime): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setRescheduleType($rescheduleType)
+            ->setScheduleTime($scheduleTime);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -49,7 +75,8 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
      *               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      *           where `location_id` refers to a GCP region.
      *     @type int $reschedule_type
-     *           Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     *           Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as
+     *           well.
      *     @type \Google\Protobuf\Timestamp $schedule_time
      *           Optional. Timestamp when the maintenance shall be rescheduled to if
      *           reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
@@ -92,7 +119,8 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as
+     * well.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.RescheduleMaintenanceRequest.RescheduleType reschedule_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -103,7 +131,8 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as
+     * well.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.RescheduleMaintenanceRequest.RescheduleType reschedule_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

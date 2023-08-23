@@ -41,7 +41,7 @@ function remove_resource_policies_sample(string $disk, string $project, string $
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $disksRemoveResourcePoliciesRequestResource = new DisksRemoveResourcePoliciesRequest();
 
     // Call the API and handle any network failures.

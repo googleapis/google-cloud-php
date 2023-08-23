@@ -41,7 +41,7 @@ function update_gateway_sample(string $formattedGatewayApiConfig): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $gateway = (new Gateway())
         ->setApiConfig($formattedGatewayApiConfig);
 

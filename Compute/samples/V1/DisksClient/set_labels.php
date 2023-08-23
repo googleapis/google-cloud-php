@@ -41,7 +41,7 @@ function set_labels_sample(string $project, string $resource, string $zone): voi
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $zoneSetLabelsRequestResource = new ZoneSetLabelsRequest();
 
     // Call the API and handle any network failures.

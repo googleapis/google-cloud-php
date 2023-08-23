@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_MetadataService_CreatePartition_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\CreatePartitionRequest;
 use Google\Cloud\Dataplex\V1\Partition;
 
 /**
@@ -52,11 +53,14 @@ function create_partition_sample(
     $partition = (new Partition())
         ->setValues($partitionValues)
         ->setLocation($partitionLocation);
+    $request = (new CreatePartitionRequest())
+        ->setParent($formattedParent)
+        ->setPartition($partition);
 
     // Call the API and handle any network failures.
     try {
         /** @var Partition $response */
-        $response = $metadataServiceClient->createPartition($formattedParent, $partition);
+        $response = $metadataServiceClient->createPartition($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

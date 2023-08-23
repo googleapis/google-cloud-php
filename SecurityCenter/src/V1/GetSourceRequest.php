@@ -24,6 +24,21 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Relative resource name of the source. Its format is
+     *                     "organizations/[organization_id]/source/[source_id]". Please see
+     *                     {@see SecurityCenterClient::sourceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\GetSourceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

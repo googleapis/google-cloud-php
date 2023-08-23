@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START beyondcorp_v1_generated_AppConnectorsService_GetAppConnector_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
-use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\GetAppConnectorRequest;
 
 /**
  * Gets details of a single AppConnector.
@@ -39,10 +40,14 @@ function get_app_connector_sample(string $formattedName): void
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetAppConnectorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AppConnector $response */
-        $response = $appConnectorsServiceClient->getAppConnector($formattedName);
+        $response = $appConnectorsServiceClient->getAppConnector($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

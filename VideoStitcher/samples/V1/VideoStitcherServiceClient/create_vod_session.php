@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_CreateVodSession_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Video\Stitcher\V1\AdTracking;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 
 /**
@@ -37,9 +38,7 @@ use Google\Cloud\Video\Stitcher\V1\VodSession;
  *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
  * @param string $vodSessionSourceUri  URI of the media to stitch.
  * @param string $vodSessionAdTagUri   Ad tag URI.
- * @param int    $vodSessionAdTracking Determines how the ad should be tracked. If
- *                                     [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
- *                                     is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+ * @param int    $vodSessionAdTracking Determines how the ad should be tracked.
  */
 function create_vod_session_sample(
     string $formattedParent,
@@ -55,11 +54,14 @@ function create_vod_session_sample(
         ->setSourceUri($vodSessionSourceUri)
         ->setAdTagUri($vodSessionAdTagUri)
         ->setAdTracking($vodSessionAdTracking);
+    $request = (new CreateVodSessionRequest())
+        ->setParent($formattedParent)
+        ->setVodSession($vodSession);
 
     // Call the API and handle any network failures.
     try {
         /** @var VodSession $response */
-        $response = $videoStitcherServiceClient->createVodSession($formattedParent, $vodSession);
+        $response = $videoStitcherServiceClient->createVodSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -46,7 +46,7 @@ function batch_update_access_bindings_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $requestsAccessBinding = new AccessBinding();
     $updateAccessBindingRequest = (new UpdateAccessBindingRequest())
         ->setAccessBinding($requestsAccessBinding);

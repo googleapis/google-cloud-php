@@ -41,7 +41,7 @@ function add_nodes_sample(string $nodeGroup, string $project, string $zone): voi
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $nodeGroupsAddNodesRequestResource = new NodeGroupsAddNodesRequest();
 
     // Call the API and handle any network failures.

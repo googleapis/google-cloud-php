@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
-use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\ReportStatusRequest;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo;
 use Google\Rpc\Status;
 
@@ -46,11 +47,14 @@ function report_status_sample(string $formattedAppConnector, string $resourceInf
     // Prepare the request message.
     $resourceInfo = (new ResourceInfo())
         ->setId($resourceInfoId);
+    $request = (new ReportStatusRequest())
+        ->setAppConnector($formattedAppConnector)
+        ->setResourceInfo($resourceInfo);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appConnectorsServiceClient->reportStatus($formattedAppConnector, $resourceInfo);
+        $response = $appConnectorsServiceClient->reportStatus($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

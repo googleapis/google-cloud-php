@@ -31,6 +31,23 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
     private $index = null;
 
     /**
+     * @param string                            $parent Required. The resource name of the Location to create the Index in.
+     *                                                  Format: `projects/{project}/locations/{location}`
+     *                                                  Please see {@see IndexServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Index $index  Required. The Index to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Index $index): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIndex($index);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

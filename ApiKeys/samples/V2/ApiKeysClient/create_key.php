@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apikeys_v2_generated_ApiKeys_CreateKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApiKeys\V2\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
+use Google\Cloud\ApiKeys\V2\CreateKeyRequest;
 use Google\Cloud\ApiKeys\V2\Key;
 use Google\Rpc\Status;
 
@@ -45,11 +46,14 @@ function create_key_sample(string $formattedParent): void
 
     // Prepare the request message.
     $key = new Key();
+    $request = (new CreateKeyRequest())
+        ->setParent($formattedParent)
+        ->setKey($key);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiKeysClient->createKey($formattedParent, $key);
+        $response = $apiKeysClient->createKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

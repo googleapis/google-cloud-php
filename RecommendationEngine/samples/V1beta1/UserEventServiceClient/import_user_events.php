@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_UserEventService_ImportUserEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\UserEventServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
-use Google\Cloud\RecommendationEngine\V1beta1\UserEventServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -50,11 +51,14 @@ function import_user_events_sample(string $formattedParent): void
 
     // Prepare the request message.
     $inputConfig = new InputConfig();
+    $request = (new ImportUserEventsRequest())
+        ->setParent($formattedParent)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $userEventServiceClient->importUserEvents($formattedParent, $inputConfig);
+        $response = $userEventServiceClient->importUserEvents($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

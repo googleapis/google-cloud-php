@@ -45,7 +45,7 @@ function create_tenant_sample(string $formattedParent, string $tenantExternalId)
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $tenant = (new Tenant())
         ->setExternalId($tenantExternalId);
 

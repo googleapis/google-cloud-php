@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_MetadataService_DeleteEntity_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
+use Google\Cloud\Dataplex\V1\DeleteEntityRequest;
 
 /**
  * Delete a metadata entity.
@@ -40,9 +41,14 @@ function delete_entity_sample(string $formattedName, string $etag): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteEntityRequest())
+        ->setName($formattedName)
+        ->setEtag($etag);
+
     // Call the API and handle any network failures.
     try {
-        $metadataServiceClient->deleteEntity($formattedName, $etag);
+        $metadataServiceClient->deleteEntity($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

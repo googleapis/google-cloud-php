@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\ListAnnotatedDatasetsRequest;
 
 /**
  * Lists annotated datasets for a dataset. Pagination is supported.
@@ -40,10 +41,14 @@ function list_annotated_datasets_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAnnotatedDatasetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->listAnnotatedDatasets($formattedParent);
+        $response = $dataLabelingServiceClient->listAnnotatedDatasets($request);
 
         /** @var AnnotatedDataset $element */
         foreach ($response as $element) {

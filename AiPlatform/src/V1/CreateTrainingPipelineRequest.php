@@ -31,6 +31,23 @@ class CreateTrainingPipelineRequest extends \Google\Protobuf\Internal\Message
     private $training_pipeline = null;
 
     /**
+     * @param string                                       $parent           Required. The resource name of the Location to create the TrainingPipeline
+     *                                                                       in. Format: `projects/{project}/locations/{location}`
+     *                                                                       Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\TrainingPipeline $trainingPipeline Required. The TrainingPipeline to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateTrainingPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\TrainingPipeline $trainingPipeline): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTrainingPipeline($trainingPipeline);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

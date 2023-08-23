@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_ModelService_ImportModelEvaluation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Imports an externally generated ModelEvaluation.
@@ -41,11 +42,14 @@ function import_model_evaluation_sample(string $formattedParent): void
 
     // Prepare the request message.
     $modelEvaluation = new ModelEvaluation();
+    $request = (new ImportModelEvaluationRequest())
+        ->setParent($formattedParent)
+        ->setModelEvaluation($modelEvaluation);
 
     // Call the API and handle any network failures.
     try {
         /** @var ModelEvaluation $response */
-        $response = $modelServiceClient->importModelEvaluation($formattedParent, $modelEvaluation);
+        $response = $modelServiceClient->importModelEvaluation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

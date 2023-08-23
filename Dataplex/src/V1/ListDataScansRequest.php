@@ -26,7 +26,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Optional. Maximum number of dataScans to return. The service may return
-     * fewer than this value. If unspecified, at most 10 scans will be returned.
+     * fewer than this value. If unspecified, at most 500 scans will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -56,6 +56,23 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent location:
+     *                       `projects/{project}/locations/{location_id}`
+     *                       where `project` refers to a *project_id* or *project_number* and
+     *                       `location_id` refers to a GCP region. Please see
+     *                       {@see DataScanServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListDataScansRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -68,7 +85,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      *           `location_id` refers to a GCP region.
      *     @type int $page_size
      *           Optional. Maximum number of dataScans to return. The service may return
-     *           fewer than this value. If unspecified, at most 10 scans will be returned.
+     *           fewer than this value. If unspecified, at most 500 scans will be returned.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListDataScans` call. Provide
@@ -121,7 +138,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of dataScans to return. The service may return
-     * fewer than this value. If unspecified, at most 10 scans will be returned.
+     * fewer than this value. If unspecified, at most 500 scans will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -134,7 +151,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of dataScans to return. The service may return
-     * fewer than this value. If unspecified, at most 10 scans will be returned.
+     * fewer than this value. If unspecified, at most 500 scans will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

@@ -44,7 +44,7 @@ function set_finding_state_sample(string $formattedName, int $state): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $startTime = new Timestamp();
 
     // Call the API and handle any network failures.

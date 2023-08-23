@@ -56,7 +56,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -73,7 +73,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -87,6 +87,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\TextToSpeech\V1\Client\TextToSpeechLongAudioSynthesizeClient} to
+ * use the new surface.
  */
 class TextToSpeechLongAudioSynthesizeGapicClient
 {
@@ -338,7 +342,7 @@ class TextToSpeechLongAudioSynthesizeGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -355,7 +359,7 @@ class TextToSpeechLongAudioSynthesizeGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -366,19 +370,20 @@ class TextToSpeechLongAudioSynthesizeGapicClient
      * ```
      *
      * @param SynthesisInput $input        Required. The Synthesizer requires either plain text or SSML as input.
+     *                                     While Long Audio is in preview, SSML is temporarily unsupported.
      * @param AudioConfig    $audioConfig  Required. The configuration of the synthesized audio.
      * @param array          $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The resource states of the request in the form of
-     *           `projects/&#42;/locations/&#42;/voices/*`.
+     *           `projects/&#42;/locations/*`.
      *     @type string $outputGcsUri
-     *           Specifies a Cloud Storage URI for the synthesis results. Must be
+     *           Required. Specifies a Cloud Storage URI for the synthesis results. Must be
      *           specified in the format: `gs://bucket_name/object_name`, and the bucket
      *           must already exist.
      *     @type VoiceSelectionParams $voice
-     *           The desired voice of the synthesized audio.
+     *           Required. The desired voice of the synthesized audio.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

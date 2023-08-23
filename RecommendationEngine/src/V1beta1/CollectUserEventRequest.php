@@ -47,6 +47,32 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     private $ets = 0;
 
     /**
+     * @param string $parent    Required. The parent eventStore name, such as
+     *                          `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`. Please see
+     *                          {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
+     * @param string $userEvent Required. URL encoded UserEvent proto.
+     * @param string $uri       Optional. The url including cgi-parameters but excluding the hash fragment.
+     *                          The URL must be truncated to 1.5K bytes to conservatively be under the 2K
+     *                          bytes. This is often more useful than the referer url, because many
+     *                          browsers only send the domain for 3rd party requests.
+     * @param int    $ets       Optional. The event timestamp in milliseconds. This prevents browser
+     *                          caching of otherwise identical get requests. The name is abbreviated to
+     *                          reduce the payload bytes.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\CollectUserEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $userEvent, string $uri, int $ets): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setUserEvent($userEvent)
+            ->setUri($uri)
+            ->setEts($ets);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

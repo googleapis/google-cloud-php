@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbuild_v2_generated_RepositoryManager_ListRepositories_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
+use Google\Cloud\Build\V2\ListRepositoriesRequest;
 use Google\Cloud\Build\V2\Repository;
-use Google\Cloud\Build\V2\RepositoryManagerClient;
 
 /**
  * Lists Repositories in a given connection.
@@ -40,10 +41,14 @@ function list_repositories_sample(string $formattedParent): void
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListRepositoriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $repositoryManagerClient->listRepositories($formattedParent);
+        $response = $repositoryManagerClient->listRepositories($request);
 
         /** @var Repository $element */
         foreach ($response as $element) {

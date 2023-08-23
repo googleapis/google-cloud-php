@@ -40,7 +40,7 @@ function patch_sample(string $network, string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $networkResource = new Network();
 
     // Call the API and handle any network failures.

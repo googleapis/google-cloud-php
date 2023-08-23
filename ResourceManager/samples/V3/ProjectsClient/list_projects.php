@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Projects_ListProjects_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\ProjectsClient;
+use Google\Cloud\ResourceManager\V3\ListProjectsRequest;
 use Google\Cloud\ResourceManager\V3\Project;
-use Google\Cloud\ResourceManager\V3\ProjectsClient;
 
 /**
  * Lists projects that are direct children of the specified folder or
@@ -48,10 +49,14 @@ function list_projects_sample(string $parent): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = (new ListProjectsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $projectsClient->listProjects($parent);
+        $response = $projectsClient->listProjects($request);
 
         /** @var Project $element */
         foreach ($response as $element) {

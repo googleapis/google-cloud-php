@@ -48,6 +48,20 @@ class ListReportDetailsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
+     * @param string $parent Required. Parent value for ListReportDetailsRequest
+     *                       Please see {@see StorageInsightsClient::reportConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\StorageInsights\V1\ListReportDetailsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

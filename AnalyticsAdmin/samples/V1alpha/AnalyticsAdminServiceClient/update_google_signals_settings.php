@@ -42,7 +42,7 @@ function update_google_signals_settings_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $googleSignalsSettings = new GoogleSignalsSettings();
     $updateMask = new FieldMask();
 

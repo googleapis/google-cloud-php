@@ -22,7 +22,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      */
     private $passed = false;
     /**
-     * A list of results at the dimension-level.
+     * A list of results at the dimension level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      */
@@ -45,6 +45,12 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7;</code>
      */
     private $scanned_data = null;
+    /**
+     * Output only. The result of post scan actions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.PostScanActionsResult post_scan_actions_result = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $post_scan_actions_result = null;
 
     /**
      * Constructor.
@@ -55,13 +61,15 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *     @type bool $passed
      *           Overall data quality result -- `true` if all rules passed.
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $dimensions
-     *           A list of results at the dimension-level.
+     *           A list of results at the dimension level.
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of all the rules in a job, and their results.
      *     @type int|string $row_count
      *           The count of rows processed.
      *     @type \Google\Cloud\Dataplex\V1\ScannedData $scanned_data
      *           The data scanned for this result.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityResult\PostScanActionsResult $post_scan_actions_result
+     *           Output only. The result of post scan actions.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +104,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of results at the dimension-level.
+     * A list of results at the dimension level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -107,7 +115,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of results at the dimension-level.
+     * A list of results at the dimension level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $var
@@ -205,6 +213,42 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\ScannedData::class);
         $this->scanned_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The result of post scan actions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.PostScanActionsResult post_scan_actions_result = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualityResult\PostScanActionsResult|null
+     */
+    public function getPostScanActionsResult()
+    {
+        return $this->post_scan_actions_result;
+    }
+
+    public function hasPostScanActionsResult()
+    {
+        return isset($this->post_scan_actions_result);
+    }
+
+    public function clearPostScanActionsResult()
+    {
+        unset($this->post_scan_actions_result);
+    }
+
+    /**
+     * Output only. The result of post scan actions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.PostScanActionsResult post_scan_actions_result = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityResult\PostScanActionsResult $var
+     * @return $this
+     */
+    public function setPostScanActionsResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityResult\PostScanActionsResult::class);
+        $this->post_scan_actions_result = $var;
 
         return $this;
     }

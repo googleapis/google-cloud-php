@@ -28,12 +28,19 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
      */
     private $exclude_objects = null;
     /**
-     * Maximum number of concurrent CDC tasks. The number should be non negative.
-     * If not set (or set to 0), the system's default value will be used.
+     * Maximum number of concurrent CDC tasks. The number should be non-negative.
+     * If not set (or set to 0), the system's default value is used.
      *
      * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
      */
     private $max_concurrent_cdc_tasks = 0;
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be
+     * non-negative. If not set (or set to 0), the system's default value is used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
+     */
+    private $max_concurrent_backfill_tasks = 0;
     protected $large_objects_handling;
 
     /**
@@ -47,12 +54,15 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Datastream\V1\OracleRdbms $exclude_objects
      *           Oracle objects to exclude from the stream.
      *     @type int $max_concurrent_cdc_tasks
-     *           Maximum number of concurrent CDC tasks. The number should be non negative.
-     *           If not set (or set to 0), the system's default value will be used.
+     *           Maximum number of concurrent CDC tasks. The number should be non-negative.
+     *           If not set (or set to 0), the system's default value is used.
+     *     @type int $max_concurrent_backfill_tasks
+     *           Maximum number of concurrent backfill tasks. The number should be
+     *           non-negative. If not set (or set to 0), the system's default value is used.
      *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig\DropLargeObjects $drop_large_objects
      *           Drop large object values.
      *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig\StreamLargeObjects $stream_large_objects
-     *           Stream large object values.
+     *           Stream large object values. NOTE: This feature is currently experimental.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,8 +143,8 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of concurrent CDC tasks. The number should be non negative.
-     * If not set (or set to 0), the system's default value will be used.
+     * Maximum number of concurrent CDC tasks. The number should be non-negative.
+     * If not set (or set to 0), the system's default value is used.
      *
      * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
      * @return int
@@ -145,8 +155,8 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of concurrent CDC tasks. The number should be non negative.
-     * If not set (or set to 0), the system's default value will be used.
+     * Maximum number of concurrent CDC tasks. The number should be non-negative.
+     * If not set (or set to 0), the system's default value is used.
      *
      * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
      * @param int $var
@@ -156,6 +166,34 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_concurrent_cdc_tasks = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be
+     * non-negative. If not set (or set to 0), the system's default value is used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
+     * @return int
+     */
+    public function getMaxConcurrentBackfillTasks()
+    {
+        return $this->max_concurrent_backfill_tasks;
+    }
+
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be
+     * non-negative. If not set (or set to 0), the system's default value is used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxConcurrentBackfillTasks($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_concurrent_backfill_tasks = $var;
 
         return $this;
     }
@@ -192,7 +230,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Stream large object values.
+     * Stream large object values. NOTE: This feature is currently experimental.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.StreamLargeObjects stream_large_objects = 102;</code>
      * @return \Google\Cloud\Datastream\V1\OracleSourceConfig\StreamLargeObjects|null
@@ -208,7 +246,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Stream large object values.
+     * Stream large object values. NOTE: This feature is currently experimental.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.StreamLargeObjects stream_large_objects = 102;</code>
      * @param \Google\Cloud\Datastream\V1\OracleSourceConfig\StreamLargeObjects $var

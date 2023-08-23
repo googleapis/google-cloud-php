@@ -61,6 +61,48 @@ class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsCluster $awsCluster Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     *                                                              resource to update.
+     * @param \Google\Protobuf\FieldMask                $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                                                              this field. The elements of the repeated paths field can only include these
+     *                                                              fields from [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]:
+     *
+     *                                                              *   `description`.
+     *                                                              *   `annotations`.
+     *                                                              *   `control_plane.version`.
+     *                                                              *   `authorization.admin_users`.
+     *                                                              *   `control_plane.aws_services_authentication.role_arn`.
+     *                                                              *   `control_plane.aws_services_authentication.role_session_name`.
+     *                                                              *   `control_plane.config_encryption.kms_key_arn`.
+     *                                                              *   `control_plane.instance_type`.
+     *                                                              *   `control_plane.security_group_ids`.
+     *                                                              *   `control_plane.proxy_config`.
+     *                                                              *   `control_plane.proxy_config.secret_arn`.
+     *                                                              *   `control_plane.proxy_config.secret_version`.
+     *                                                              *   `control_plane.root_volume.size_gib`.
+     *                                                              *   `control_plane.root_volume.volume_type`.
+     *                                                              *   `control_plane.root_volume.iops`.
+     *                                                              *   `control_plane.root_volume.kms_key_arn`.
+     *                                                              *   `control_plane.ssh_config`.
+     *                                                              *   `control_plane.ssh_config.ec2_key_pair`.
+     *                                                              *   `control_plane.instance_placement.tenancy`.
+     *                                                              *   `control_plane.iam_instance_profile`.
+     *                                                              *   `logging_config.component_config.enable_components`.
+     *                                                              *   `control_plane.tags`.
+     *                                                              *   `monitoring_config.managed_prometheus_config.enabled`.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAwsClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\GkeMultiCloud\V1\AwsCluster $awsCluster, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAwsCluster($awsCluster)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

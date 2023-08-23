@@ -55,7 +55,7 @@ function create_stream_sample(
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $streamSourceConfig = (new SourceConfig())
         ->setSourceConnectionProfile($formattedStreamSourceConfigSourceConnectionProfile);
     $streamDestinationConfig = (new DestinationConfig())

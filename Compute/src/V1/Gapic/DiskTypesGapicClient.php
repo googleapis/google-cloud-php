@@ -66,6 +66,9 @@ use Google\Cloud\Compute\V1\ListDiskTypesRequest;
  *     $diskTypesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\DiskTypesClient} to use the new surface.
  */
 class DiskTypesGapicClient
 {

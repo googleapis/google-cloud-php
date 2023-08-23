@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [GetBackup][google.bigtable.admin.v2.BigtableTableAdmin.GetBackup].
+ * The request for
+ * [GetBackup][google.bigtable.admin.v2.BigtableTableAdmin.GetBackup].
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GetBackupRequest</code>
  */
@@ -23,6 +24,22 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. Name of the backup.
+     *                     Values are of the form
+     *                     `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`. Please see
+     *                     {@see BigtableTableAdminClient::backupName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\GetBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

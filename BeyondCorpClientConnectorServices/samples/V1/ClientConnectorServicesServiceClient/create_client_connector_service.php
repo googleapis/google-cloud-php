@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Egress;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress;
-use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\Client\ClientConnectorServicesServiceClient;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\CreateClientConnectorServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -52,14 +53,14 @@ function create_client_connector_service_sample(
         ->setName($clientConnectorServiceName)
         ->setIngress($clientConnectorServiceIngress)
         ->setEgress($clientConnectorServiceEgress);
+    $request = (new CreateClientConnectorServiceRequest())
+        ->setParent($formattedParent)
+        ->setClientConnectorService($clientConnectorService);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clientConnectorServicesServiceClient->createClientConnectorService(
-            $formattedParent,
-            $clientConnectorService
-        );
+        $response = $clientConnectorServicesServiceClient->createClientConnectorService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

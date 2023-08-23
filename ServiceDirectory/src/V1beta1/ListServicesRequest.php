@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [RegistrationService.ListServices][google.cloud.servicedirectory.v1beta1.RegistrationService.ListServices].
+ * The request message for
+ * [RegistrationService.ListServices][google.cloud.servicedirectory.v1beta1.RegistrationService.ListServices].
  *
  * Generated from protobuf message <code>google.cloud.servicedirectory.v1beta1.ListServicesRequest</code>
  */
@@ -59,6 +60,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      * *   `doesnotexist.foo=bar` returns an empty list. Note that service
      *     doesn't have a field called "doesnotexist". Since the filter does not
      *     match any services, it returns no results
+     * *   `attributes.managed_registration=true` returns services that are
+     * managed
+     *     by a GCP product or service
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
@@ -116,6 +120,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *           *   `doesnotexist.foo=bar` returns an empty list. Note that service
      *               doesn't have a field called "doesnotexist". Since the filter does not
      *               match any services, it returns no results
+     *           *   `attributes.managed_registration=true` returns services that are
+     *           managed
+     *               by a GCP product or service
      *           For more information about filtering, see
      *           [API Filtering](https://aip.dev/160).
      *     @type string $order_by
@@ -239,6 +246,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      * *   `doesnotexist.foo=bar` returns an empty list. Note that service
      *     doesn't have a field called "doesnotexist". Since the filter does not
      *     match any services, it returns no results
+     * *   `attributes.managed_registration=true` returns services that are
+     * managed
+     *     by a GCP product or service
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
@@ -274,6 +284,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      * *   `doesnotexist.foo=bar` returns an empty list. Note that service
      *     doesn't have a field called "doesnotexist". Since the filter does not
      *     match any services, it returns no results
+     * *   `attributes.managed_registration=true` returns services that are
+     * managed
+     *     by a GCP product or service
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *

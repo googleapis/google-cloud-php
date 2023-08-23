@@ -1,0 +1,183 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    name: CreateReferenceImageRequest
+    friendlyApiName: 'Cloud Vision V1 Client'
+    id: CreateReferenceImageRequest
+    summary: |-
+      Request message for the `CreateReferenceImage` method.
+
+      Generated from protobuf message <code>google.cloud.vision.v1.CreateReferenceImageRequest</code>
+    type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImage()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::hasReferenceImage()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::clearReferenceImage()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImage()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImageId()'
+      - '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImageId()'
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Required. Resource name of the product in which to create the reference image. Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.'
+        -
+          id: '↳ reference_image'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
+          description: 'Required. The reference image to create. If an image ID is specified, it is ignored.'
+        -
+          id: '↳ reference_image_id'
+          var_type: string
+          description: 'A user-supplied resource id for the ReferenceImage to be added. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.'
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |-
+      Required. Resource name of the product in which to create the reference image.
+
+      Format is
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |-
+      Required. Resource name of the product in which to create the reference image.
+
+      Format is
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImage()'
+    name: getReferenceImage
+    id: getReferenceImage
+    summary: |-
+      Required. The reference image to create.
+
+      If an image ID is specified, it is ignored.
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>|null'
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::hasReferenceImage()'
+    name: hasReferenceImage
+    id: hasReferenceImage
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::clearReferenceImage()'
+    name: clearReferenceImage
+    id: clearReferenceImage
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImage()'
+    name: setReferenceImage
+    id: setReferenceImage
+    summary: |-
+      Required. The reference image to create.
+
+      If an image ID is specified, it is ignored.
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImageId()'
+    name: getReferenceImageId
+    id: getReferenceImageId
+    summary: |-
+      A user-supplied resource id for the ReferenceImage to be added. If set,
+      the server will attempt to use this value as the resource id. If it is
+      already in use, an error is returned with code ALREADY_EXISTS. Must be at
+      most 128 characters long. It cannot contain the character `/`.
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImageId()'
+    name: setReferenceImageId
+    id: setReferenceImageId
+    summary: |-
+      A user-supplied resource id for the ReferenceImage to be added. If set,
+      the server will attempt to use this value as the resource id. If it is
+      already in use, an error is returned with code ALREADY_EXISTS. Must be at
+      most 128 characters long. It cannot contain the character `/`.
+    parent: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: $this

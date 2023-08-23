@@ -40,6 +40,31 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
     private $api_spec_id = '';
 
     /**
+     * @param string                                  $parent    Required. The parent, which owns this collection of specs.
+     *                                                           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
+     *                                                           Please see {@see RegistryClient::apiVersionName()} for help formatting this field.
+     * @param \Google\Cloud\ApigeeRegistry\V1\ApiSpec $apiSpec   Required. The spec to create.
+     * @param string                                  $apiSpecId Required. The ID to use for the spec, which will become the final component of
+     *                                                           the spec's resource name.
+     *
+     *                                                           This value should be 4-63 characters, and valid characters
+     *                                                           are /[a-z][0-9]-/.
+     *
+     *                                                           Following AIP-162, IDs must not have the form of a UUID.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\CreateApiSpecRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ApigeeRegistry\V1\ApiSpec $apiSpec, string $apiSpecId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setApiSpec($apiSpec)
+            ->setApiSpecId($apiSpecId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

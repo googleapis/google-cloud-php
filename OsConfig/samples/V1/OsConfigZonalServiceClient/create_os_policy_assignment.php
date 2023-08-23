@@ -85,7 +85,7 @@ function create_os_policy_assignment_sample(
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $resource = (new Resource())
         ->setId($osPolicyAssignmentOsPoliciesResourceGroupsResourcesId);
     $osPolicyAssignmentOsPoliciesResourceGroupsResources = [$resource,];

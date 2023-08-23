@@ -43,10 +43,10 @@ use Google\Protobuf\FieldMask;
  *
  *                                `"projects/my-project/exclusions/my-exclusion"`
  *                                Please see {@see ConfigServiceV2Client::logExclusionName()} for help formatting this field.
- * @param string $exclusionName   A client-assigned identifier, such as `"load-balancer-exclusion"`.
- *                                Identifiers are limited to 100 characters and can include only letters,
- *                                digits, underscores, hyphens, and periods. First character has to be
- *                                alphanumeric.
+ * @param string $exclusionName   A client-assigned identifier, such as
+ *                                `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
+ *                                can include only letters, digits, underscores, hyphens, and periods. First
+ *                                character has to be alphanumeric.
  * @param string $exclusionFilter An [advanced logs
  *                                filter](https://cloud.google.com/logging/docs/view/advanced-queries) that
  *                                matches the log entries to be excluded. By using the [sample
@@ -66,7 +66,7 @@ function update_exclusion_sample(
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $exclusion = (new LogExclusion())
         ->setName($exclusionName)
         ->setFilter($exclusionFilter);

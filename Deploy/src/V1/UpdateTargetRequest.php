@@ -63,6 +63,25 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Deploy\V1\Target $target     Required. The `Target` to update.
+     * @param \Google\Protobuf\FieldMask     $updateMask Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                   Target resource by the update.
+     *                                                   The fields specified in the update_mask are relative to the resource, not
+     *                                                   the full request. A field will be overwritten if it is in the mask. If the
+     *                                                   user does not provide a mask then all fields will be overwritten.
+     *
+     * @return \Google\Cloud\Deploy\V1\UpdateTargetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Deploy\V1\Target $target, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTarget($target)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

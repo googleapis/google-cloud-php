@@ -139,7 +139,7 @@ class Build extends \Google\Protobuf\Internal\Message
      */
     private $artifacts = null;
     /**
-     * Google Cloud Storage bucket where logs should be written (see
+     * Cloud Storage bucket where logs should be written (see
      * [Bucket Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      * Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
@@ -298,7 +298,7 @@ class Build extends \Google\Protobuf\Internal\Message
      *           Artifacts produced by the build that should be uploaded upon
      *           successful completion of all build steps.
      *     @type string $logs_bucket
-     *           Google Cloud Storage bucket where logs should be written (see
+     *           Cloud Storage bucket where logs should be written (see
      *           [Bucket Name
      *           Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      *           Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
@@ -859,7 +859,7 @@ class Build extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage bucket where logs should be written (see
+     * Cloud Storage bucket where logs should be written (see
      * [Bucket Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      * Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
@@ -873,7 +873,7 @@ class Build extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage bucket where logs should be written (see
+     * Cloud Storage bucket where logs should be written (see
      * [Bucket Name
      * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      * Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.

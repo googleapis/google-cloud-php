@@ -56,6 +56,10 @@ use Google\Cloud\Dataflow\V1beta3\Snapshot;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataflow\V1beta3\Client\SnapshotsV1Beta3Client} to use the new
+ * surface.
+ *
  * @experimental
  */
 class SnapshotsV1Beta3GapicClient

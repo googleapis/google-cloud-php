@@ -53,6 +53,32 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     private $user_email_address = '';
 
     /**
+     * @param string                                          $name             Required. Dataset resource name, format:
+     *                                                                          projects/{project_id}/datasets/{dataset_id}
+     *                                                                          Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
+     * @param string                                          $annotatedDataset Required. Annotated dataset resource name. DataItem in
+     *                                                                          Dataset and their annotations in specified annotated dataset will be
+     *                                                                          exported. It's in format of
+     *                                                                          projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
+     *                                                                          {annotated_dataset_id}
+     *                                                                          Please see {@see DataLabelingServiceClient::annotatedDatasetName()} for help formatting this field.
+     * @param string                                          $filter           Optional. Filter is not supported at this moment.
+     * @param \Google\Cloud\DataLabeling\V1beta1\OutputConfig $outputConfig     Required. Specify the output destination.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\ExportDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $annotatedDataset, string $filter, \Google\Cloud\DataLabeling\V1beta1\OutputConfig $outputConfig): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setAnnotatedDataset($annotatedDataset)
+            ->setFilter($filter)
+            ->setOutputConfig($outputConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

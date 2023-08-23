@@ -51,6 +51,28 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\Metastore\V1\MetadataImport $metadataImport Required. The metadata import to update. The server only merges fields
+     *                                                                  in the import if they are specified in `update_mask`.
+     *
+     *                                                                  The metadata import's `name` field is used to identify the metastore
+     *                                                                  import to be updated.
+     * @param \Google\Protobuf\FieldMask                $updateMask     Required. A field mask used to specify the fields to be overwritten in the
+     *                                                                  metadata import resource by the update.
+     *                                                                  Fields specified in the `update_mask` are relative to the resource (not
+     *                                                                  to the full request). A field is overwritten if it is in the mask.
+     *
+     * @return \Google\Cloud\Metastore\V1\UpdateMetadataImportRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Metastore\V1\MetadataImport $metadataImport, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMetadataImport($metadataImport)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

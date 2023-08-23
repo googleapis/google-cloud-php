@@ -31,6 +31,21 @@ class GetApiConfigRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. Resource name of the form:
+     *                     `projects/&#42;/locations/global/apis/&#42;/configs/*`
+     *                     Please see {@see ApiGatewayServiceClient::apiConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApiGateway\V1\GetApiConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

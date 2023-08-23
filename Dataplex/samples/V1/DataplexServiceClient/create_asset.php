@@ -28,7 +28,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Asset;
 use Google\Cloud\Dataplex\V1\Asset\ResourceSpec;
 use Google\Cloud\Dataplex\V1\Asset\ResourceSpec\Type;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\CreateAssetRequest;
 use Google\Rpc\Status;
 
 /**
@@ -60,11 +61,15 @@ function create_asset_sample(
         ->setType($assetResourceSpecType);
     $asset = (new Asset())
         ->setResourceSpec($assetResourceSpec);
+    $request = (new CreateAssetRequest())
+        ->setParent($formattedParent)
+        ->setAssetId($assetId)
+        ->setAsset($asset);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->createAsset($formattedParent, $assetId, $asset);
+        $response = $dataplexServiceClient->createAsset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

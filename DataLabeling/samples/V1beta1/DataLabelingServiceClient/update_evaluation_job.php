@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalabeling_v1beta1_generated_DataLabelingService_UpdateEvaluationJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\EvaluationJob;
+use Google\Cloud\DataLabeling\V1beta1\UpdateEvaluationJobRequest;
 
 /**
  * Updates an evaluation job. You can only update certain fields of the job's
@@ -48,11 +49,13 @@ function update_evaluation_job_sample(): void
 
     // Prepare the request message.
     $evaluationJob = new EvaluationJob();
+    $request = (new UpdateEvaluationJobRequest())
+        ->setEvaluationJob($evaluationJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var EvaluationJob $response */
-        $response = $dataLabelingServiceClient->updateEvaluationJob($evaluationJob);
+        $response = $dataLabelingServiceClient->updateEvaluationJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

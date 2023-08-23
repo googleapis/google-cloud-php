@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Video\Stitcher\V1\CdnKey;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\ListCdnKeysRequest;
 
 /**
  * Lists all CDN keys in the specified project and location.
@@ -40,10 +41,14 @@ function list_cdn_keys_sample(string $formattedParent): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCdnKeysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $videoStitcherServiceClient->listCdnKeys($formattedParent);
+        $response = $videoStitcherServiceClient->listCdnKeys($request);
 
         /** @var CdnKey $element */
         foreach ($response as $element) {

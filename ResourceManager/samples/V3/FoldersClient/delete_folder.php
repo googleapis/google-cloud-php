@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Folders_DeleteFolder_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\FoldersClient;
+use Google\Cloud\ResourceManager\V3\DeleteFolderRequest;
 use Google\Cloud\ResourceManager\V3\Folder;
-use Google\Cloud\ResourceManager\V3\FoldersClient;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function delete_folder_sample(string $formattedName): void
     // Create a client.
     $foldersClient = new FoldersClient();
 
+    // Prepare the request message.
+    $request = (new DeleteFolderRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $foldersClient->deleteFolder($formattedName);
+        $response = $foldersClient->deleteFolder($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [RegistrationService.ListNamespaces][google.cloud.servicedirectory.v1beta1.RegistrationService.ListNamespaces].
+ * The request message for
+ * [RegistrationService.ListNamespaces][google.cloud.servicedirectory.v1beta1.RegistrationService.ListNamespaces].
  *
  * Generated from protobuf message <code>google.cloud.servicedirectory.v1beta1.ListNamespacesRequest</code>
  */
 class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the project and location whose namespaces you'd like
-     * to list.
+     * Required. The resource name of the project and location whose namespaces
+     * you'd like to list.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +30,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Optional. The next_page_token value returned from a previous List request, if any.
+     * Optional. The next_page_token value returned from a previous List request,
+     * if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,7 +40,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The filter to list results by.
      * General `filter` string syntax:
      * `<field> <operator> <value> (<logical connector>)`
-     * *   `<field>` can be `name` or `labels.<key>` for map field
+     * *   `<field>` can be `name`, `labels.<key>` for map field, or
+     * `attributes.<field>` for attributes field
      * *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
      *     means `HAS`, and is roughly the same as `=`
      * *   `<value>` must be the same data type as field
@@ -55,6 +58,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      * *   `doesnotexist.foo=bar` returns an empty list. Note that namespace
      *     doesn't have a field called "doesnotexist". Since the filter does not
      *     match any namespaces, it returns no results
+     * *   `attributes.managed_registration=true` returns namespaces that are
+     *     managed by a GCP product or service
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
@@ -81,17 +86,19 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the project and location whose namespaces you'd like
-     *           to list.
+     *           Required. The resource name of the project and location whose namespaces
+     *           you'd like to list.
      *     @type int $page_size
      *           Optional. The maximum number of items to return.
      *     @type string $page_token
-     *           Optional. The next_page_token value returned from a previous List request, if any.
+     *           Optional. The next_page_token value returned from a previous List request,
+     *           if any.
      *     @type string $filter
      *           Optional. The filter to list results by.
      *           General `filter` string syntax:
      *           `<field> <operator> <value> (<logical connector>)`
-     *           *   `<field>` can be `name` or `labels.<key>` for map field
+     *           *   `<field>` can be `name`, `labels.<key>` for map field, or
+     *           `attributes.<field>` for attributes field
      *           *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
      *               means `HAS`, and is roughly the same as `=`
      *           *   `<value>` must be the same data type as field
@@ -108,6 +115,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      *           *   `doesnotexist.foo=bar` returns an empty list. Note that namespace
      *               doesn't have a field called "doesnotexist". Since the filter does not
      *               match any namespaces, it returns no results
+     *           *   `attributes.managed_registration=true` returns namespaces that are
+     *               managed by a GCP product or service
      *           For more information about filtering, see
      *           [API Filtering](https://aip.dev/160).
      *     @type string $order_by
@@ -126,8 +135,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the project and location whose namespaces you'd like
-     * to list.
+     * Required. The resource name of the project and location whose namespaces
+     * you'd like to list.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -138,8 +147,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the project and location whose namespaces you'd like
-     * to list.
+     * Required. The resource name of the project and location whose namespaces
+     * you'd like to list.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -180,7 +189,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous List request, if any.
+     * Optional. The next_page_token value returned from a previous List request,
+     * if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -191,7 +201,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous List request, if any.
+     * Optional. The next_page_token value returned from a previous List request,
+     * if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -209,7 +220,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The filter to list results by.
      * General `filter` string syntax:
      * `<field> <operator> <value> (<logical connector>)`
-     * *   `<field>` can be `name` or `labels.<key>` for map field
+     * *   `<field>` can be `name`, `labels.<key>` for map field, or
+     * `attributes.<field>` for attributes field
      * *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
      *     means `HAS`, and is roughly the same as `=`
      * *   `<value>` must be the same data type as field
@@ -226,6 +238,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      * *   `doesnotexist.foo=bar` returns an empty list. Note that namespace
      *     doesn't have a field called "doesnotexist". Since the filter does not
      *     match any namespaces, it returns no results
+     * *   `attributes.managed_registration=true` returns namespaces that are
+     *     managed by a GCP product or service
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
@@ -241,7 +255,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The filter to list results by.
      * General `filter` string syntax:
      * `<field> <operator> <value> (<logical connector>)`
-     * *   `<field>` can be `name` or `labels.<key>` for map field
+     * *   `<field>` can be `name`, `labels.<key>` for map field, or
+     * `attributes.<field>` for attributes field
      * *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
      *     means `HAS`, and is roughly the same as `=`
      * *   `<value>` must be the same data type as field
@@ -258,6 +273,8 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
      * *   `doesnotexist.foo=bar` returns an empty list. Note that namespace
      *     doesn't have a field called "doesnotexist". Since the filter does not
      *     match any namespaces, it returns no results
+     * *   `attributes.managed_registration=true` returns namespaces that are
+     *     managed by a GCP product or service
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *

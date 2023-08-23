@@ -24,15 +24,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START videostitcher_v1_generated_VideoStitcherService_CreateLiveSession_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\CreateLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveSession;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
  * Creates a new live session.
  *
  * @param string $formattedParent                The project and location in which the live session should be
  *                                               created, in the form of `projects/{project_number}/locations/{location}`. Please see
- *                                               {@see VideoStitcherServiceClient::liveSessionName()} for help formatting this field.
+ *                                               {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
  * @param string $formattedLiveSessionLiveConfig The resource name of the live config for this session, in the
  *                                               form of `projects/{project}/locations/{location}/liveConfigs/{id}`. Please see
  *                                               {@see VideoStitcherServiceClient::liveConfigName()} for help formatting this field.
@@ -47,11 +48,14 @@ function create_live_session_sample(
     // Prepare the request message.
     $liveSession = (new LiveSession())
         ->setLiveConfig($formattedLiveSessionLiveConfig);
+    $request = (new CreateLiveSessionRequest())
+        ->setParent($formattedParent)
+        ->setLiveSession($liveSession);
 
     // Call the API and handle any network failures.
     try {
         /** @var LiveSession $response */
-        $response = $videoStitcherServiceClient->createLiveSession($formattedParent, $liveSession);
+        $response = $videoStitcherServiceClient->createLiveSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -69,11 +73,7 @@ function create_live_session_sample(
  */
 function callSample(): void
 {
-    $formattedParent = VideoStitcherServiceClient::liveSessionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[LIVE_SESSION]'
-    );
+    $formattedParent = VideoStitcherServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $formattedLiveSessionLiveConfig = VideoStitcherServiceClient::liveConfigName(
         '[PROJECT]',
         '[LOCATION]',

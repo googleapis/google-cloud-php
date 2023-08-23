@@ -45,7 +45,7 @@ function update_attributes_config_sample(string $attributesConfigName): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $attributesConfig = (new AttributesConfig())
         ->setName($attributesConfigName);
 

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START metastore_v1_generated_DataprocMetastore_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\Metastore\V1\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient;
 
 /**
  * Returns permissions that a caller has on the specified resource. If the
@@ -50,11 +51,14 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
 
     // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $dataprocMetastoreClient->testIamPermissions($resource, $permissions);
+        $response = $dataprocMetastoreClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

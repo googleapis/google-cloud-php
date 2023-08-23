@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_CancelWorkflowInvocation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 
 /**
  * Requests cancellation of a running WorkflowInvocation.
@@ -37,9 +38,13 @@ function cancel_workflow_invocation_sample(string $formattedName): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new CancelWorkflowInvocationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataformClient->cancelWorkflowInvocation($formattedName);
+        $dataformClient->cancelWorkflowInvocation($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

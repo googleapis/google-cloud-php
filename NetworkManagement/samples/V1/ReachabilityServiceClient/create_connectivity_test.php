@@ -56,7 +56,7 @@ use Google\Rpc\Status;
  *                             * Must end with a number or a letter.
  *                             * Must be unique within the customer project
  * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
  */
 function create_connectivity_test_sample(
     string $parent,
@@ -66,7 +66,7 @@ function create_connectivity_test_sample(
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $resourceSource = new Endpoint();
     $resourceDestination = new Endpoint();
     $resource = (new ConnectivityTest())

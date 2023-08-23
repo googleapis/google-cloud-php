@@ -48,7 +48,7 @@ function batch_delete_access_bindings_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $deleteAccessBindingRequest = (new DeleteAccessBindingRequest())
         ->setName($formattedRequestsName);
     $requests = [$deleteAccessBindingRequest,];

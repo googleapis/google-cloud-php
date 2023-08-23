@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalabeling_v1beta1_generated_DataLabelingService_ListInstructions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataLabeling\V1beta1\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\Instruction;
+use Google\Cloud\DataLabeling\V1beta1\ListInstructionsRequest;
 
 /**
  * Lists instructions for a project. Pagination is supported.
@@ -40,10 +41,14 @@ function list_instructions_sample(string $formattedParent): void
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListInstructionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataLabelingServiceClient->listInstructions($formattedParent);
+        $response = $dataLabelingServiceClient->listInstructions($request);
 
         /** @var Instruction $element */
         foreach ($response as $element) {

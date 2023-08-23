@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vmwareengine_v1_generated_VmwareEngine_GetNodeType_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\GetNodeTypeRequest;
 use Google\Cloud\VmwareEngine\V1\NodeType;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 
 /**
  * Gets details of a single `NodeType`.
@@ -42,10 +43,14 @@ function get_node_type_sample(string $formattedName): void
     // Create a client.
     $vmwareEngineClient = new VmwareEngineClient();
 
+    // Prepare the request message.
+    $request = (new GetNodeTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var NodeType $response */
-        $response = $vmwareEngineClient->getNodeType($formattedName);
+        $response = $vmwareEngineClient->getNodeType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

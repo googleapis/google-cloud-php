@@ -44,7 +44,7 @@ function update_game_server_deployment_sample(): void
     // Create a client.
     $gameServerDeploymentsServiceClient = new GameServerDeploymentsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $gameServerDeployment = new GameServerDeployment();
     $updateMask = new FieldMask();
 

@@ -10,10 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents the query input. It can contain either:
- * 1.  An audio config which
- *     instructs the speech recognizer how to process the speech audio.
- * 2.  A conversational query in the form of text,.
- * 3.  An event that specifies which intent to trigger.
+ * 1. An audio config which instructs the speech recognizer how to process the
+ * speech audio.
+ * 2. A conversational query in the form of text.
+ * 3. An event that specifies which intent to trigger.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.QueryInput</code>
  */

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_TensorboardService_GetTensorboardRun_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\GetTensorboardRunRequest;
 use Google\Cloud\AIPlatform\V1\TensorboardRun;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 
 /**
  * Gets a TensorboardRun.
@@ -40,10 +41,14 @@ function get_tensorboard_run_sample(string $formattedName): void
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetTensorboardRunRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TensorboardRun $response */
-        $response = $tensorboardServiceClient->getTensorboardRun($formattedName);
+        $response = $tensorboardServiceClient->getTensorboardRun($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

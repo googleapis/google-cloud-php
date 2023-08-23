@@ -36,45 +36,24 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Required. Which model to use for recognition requests. Select the model
+     * Optional. Which model to use for recognition requests. Select the model
      * best suited to your domain to get best results.
-     * Supported models:
-     * - `latest_long`
-     *   Best for long form content like media or conversation.
-     * - `latest_short`
-     *   Best for short form content like commands or single shot directed speech.
-     *   When using this model, the service will stop transcribing audio after the
-     *   first utterance is detected and completed.
-     *   When using this model,
-     *   [SEPARATE_RECOGNITION_PER_CHANNEL][google.cloud.speech.v2.RecognitionFeatures.MultiChannelMode.SEPARATE_RECOGNITION_PER_CHANNEL]
-     *   is not supported; multi-channel audio is accepted, but only the first
-     *   channel will be processed and transcribed.
-     * - `telephony`
-     *   Best for audio that originated from a phone call (typically recorded at
-     *   an 8khz sampling rate).
-     * - `medical_conversation`
-     *   For conversations between a medical provider—for example, a doctor or
-     *   nurse—and a patient. Use this model when both a provider and a patient
-     *   are speaking. Words uttered by each speaker are automatically detected
-     *   and labeled in the returned transcript.
-     *   For supported features please see [medical models
-     *   documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     * - `medical_dictation`
-     *   For dictated notes spoken by a single medical provider—for example, a
-     *   doctor dictating notes about a patient's blood test results.
-     *   For supported features please see [medical models
-     *   documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     * - `usm`
-     *   The next generation of Speech-to-Text models from Google.
+     * Guidance for choosing which model to use can be found in the [Transcription
+     * Models
+     * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     * and the models supported in each region can be found in the [Table Of
+     * Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      *
-     * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $model = '';
+    protected $model = '';
     /**
-     * Required. The language of the supplied audio as a
+     * Optional. The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Supported languages for each model are listed at:
-     * https://cloud.google.com/speech-to-text/docs/languages
+     * Supported languages for each model are listed in the [Table of Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      * If additional languages are provided, recognition result will contain
      * recognition in the most likely language detected. The recognition result
      * will include the language tag of the language detected in the audio.
@@ -82,7 +61,8 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      * stored in normalized BCP-47 form. For example, "en-us" is stored as
      * "en-US".
      *
-     * Generated from protobuf field <code>repeated string language_codes = 17 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string language_codes = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     private $language_codes;
     /**
@@ -181,41 +161,19 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *           User-settable, human-readable name for the Recognizer. Must be 63
      *           characters or less.
      *     @type string $model
-     *           Required. Which model to use for recognition requests. Select the model
+     *           Optional. Which model to use for recognition requests. Select the model
      *           best suited to your domain to get best results.
-     *           Supported models:
-     *           - `latest_long`
-     *             Best for long form content like media or conversation.
-     *           - `latest_short`
-     *             Best for short form content like commands or single shot directed speech.
-     *             When using this model, the service will stop transcribing audio after the
-     *             first utterance is detected and completed.
-     *             When using this model,
-     *             [SEPARATE_RECOGNITION_PER_CHANNEL][google.cloud.speech.v2.RecognitionFeatures.MultiChannelMode.SEPARATE_RECOGNITION_PER_CHANNEL]
-     *             is not supported; multi-channel audio is accepted, but only the first
-     *             channel will be processed and transcribed.
-     *           - `telephony`
-     *             Best for audio that originated from a phone call (typically recorded at
-     *             an 8khz sampling rate).
-     *           - `medical_conversation`
-     *             For conversations between a medical provider—for example, a doctor or
-     *             nurse—and a patient. Use this model when both a provider and a patient
-     *             are speaking. Words uttered by each speaker are automatically detected
-     *             and labeled in the returned transcript.
-     *             For supported features please see [medical models
-     *             documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     *           - `medical_dictation`
-     *             For dictated notes spoken by a single medical provider—for example, a
-     *             doctor dictating notes about a patient's blood test results.
-     *             For supported features please see [medical models
-     *             documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     *           - `usm`
-     *             The next generation of Speech-to-Text models from Google.
+     *           Guidance for choosing which model to use can be found in the [Transcription
+     *           Models
+     *           Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     *           and the models supported in each region can be found in the [Table Of
+     *           Supported
+     *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
-     *           Required. The language of the supplied audio as a
+     *           Optional. The language of the supplied audio as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     *           Supported languages for each model are listed at:
-     *           https://cloud.google.com/speech-to-text/docs/languages
+     *           Supported languages for each model are listed in the [Table of Supported
+     *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      *           If additional languages are provided, recognition result will contain
      *           recognition in the most likely language detected. The recognition result
      *           will include the language tag of the language detected in the audio.
@@ -348,83 +306,43 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Which model to use for recognition requests. Select the model
+     * Optional. Which model to use for recognition requests. Select the model
      * best suited to your domain to get best results.
-     * Supported models:
-     * - `latest_long`
-     *   Best for long form content like media or conversation.
-     * - `latest_short`
-     *   Best for short form content like commands or single shot directed speech.
-     *   When using this model, the service will stop transcribing audio after the
-     *   first utterance is detected and completed.
-     *   When using this model,
-     *   [SEPARATE_RECOGNITION_PER_CHANNEL][google.cloud.speech.v2.RecognitionFeatures.MultiChannelMode.SEPARATE_RECOGNITION_PER_CHANNEL]
-     *   is not supported; multi-channel audio is accepted, but only the first
-     *   channel will be processed and transcribed.
-     * - `telephony`
-     *   Best for audio that originated from a phone call (typically recorded at
-     *   an 8khz sampling rate).
-     * - `medical_conversation`
-     *   For conversations between a medical provider—for example, a doctor or
-     *   nurse—and a patient. Use this model when both a provider and a patient
-     *   are speaking. Words uttered by each speaker are automatically detected
-     *   and labeled in the returned transcript.
-     *   For supported features please see [medical models
-     *   documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     * - `medical_dictation`
-     *   For dictated notes spoken by a single medical provider—for example, a
-     *   doctor dictating notes about a patient's blood test results.
-     *   For supported features please see [medical models
-     *   documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     * - `usm`
-     *   The next generation of Speech-to-Text models from Google.
+     * Guidance for choosing which model to use can be found in the [Transcription
+     * Models
+     * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     * and the models supported in each region can be found in the [Table Of
+     * Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      *
-     * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getModel()
     {
+        @trigger_error('model is deprecated.', E_USER_DEPRECATED);
         return $this->model;
     }
 
     /**
-     * Required. Which model to use for recognition requests. Select the model
+     * Optional. Which model to use for recognition requests. Select the model
      * best suited to your domain to get best results.
-     * Supported models:
-     * - `latest_long`
-     *   Best for long form content like media or conversation.
-     * - `latest_short`
-     *   Best for short form content like commands or single shot directed speech.
-     *   When using this model, the service will stop transcribing audio after the
-     *   first utterance is detected and completed.
-     *   When using this model,
-     *   [SEPARATE_RECOGNITION_PER_CHANNEL][google.cloud.speech.v2.RecognitionFeatures.MultiChannelMode.SEPARATE_RECOGNITION_PER_CHANNEL]
-     *   is not supported; multi-channel audio is accepted, but only the first
-     *   channel will be processed and transcribed.
-     * - `telephony`
-     *   Best for audio that originated from a phone call (typically recorded at
-     *   an 8khz sampling rate).
-     * - `medical_conversation`
-     *   For conversations between a medical provider—for example, a doctor or
-     *   nurse—and a patient. Use this model when both a provider and a patient
-     *   are speaking. Words uttered by each speaker are automatically detected
-     *   and labeled in the returned transcript.
-     *   For supported features please see [medical models
-     *   documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     * - `medical_dictation`
-     *   For dictated notes spoken by a single medical provider—for example, a
-     *   doctor dictating notes about a patient's blood test results.
-     *   For supported features please see [medical models
-     *   documentation](https://cloud.google.com/speech-to-text/docs/medical-models).
-     * - `usm`
-     *   The next generation of Speech-to-Text models from Google.
+     * Guidance for choosing which model to use can be found in the [Transcription
+     * Models
+     * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     * and the models supported in each region can be found in the [Table Of
+     * Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      *
-     * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setModel($var)
     {
+        @trigger_error('model is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->model = $var;
 
@@ -432,10 +350,10 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The language of the supplied audio as a
+     * Optional. The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Supported languages for each model are listed at:
-     * https://cloud.google.com/speech-to-text/docs/languages
+     * Supported languages for each model are listed in the [Table of Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      * If additional languages are provided, recognition result will contain
      * recognition in the most likely language detected. The recognition result
      * will include the language tag of the language detected in the audio.
@@ -443,19 +361,21 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      * stored in normalized BCP-47 form. For example, "en-us" is stored as
      * "en-US".
      *
-     * Generated from protobuf field <code>repeated string language_codes = 17 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string language_codes = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getLanguageCodes()
     {
+        @trigger_error('language_codes is deprecated.', E_USER_DEPRECATED);
         return $this->language_codes;
     }
 
     /**
-     * Required. The language of the supplied audio as a
+     * Optional. The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Supported languages for each model are listed at:
-     * https://cloud.google.com/speech-to-text/docs/languages
+     * Supported languages for each model are listed in the [Table of Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
      * If additional languages are provided, recognition result will contain
      * recognition in the most likely language detected. The recognition result
      * will include the language tag of the language detected in the audio.
@@ -463,12 +383,14 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      * stored in normalized BCP-47 form. For example, "en-us" is stored as
      * "en-US".
      *
-     * Generated from protobuf field <code>repeated string language_codes = 17 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string language_codes = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setLanguageCodes($var)
     {
+        @trigger_error('language_codes is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->language_codes = $arr;
 

@@ -40,7 +40,7 @@ function patch_sample(string $firewallPolicy, string $project): void
     // Create a client.
     $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $firewallPolicyResource = new FirewallPolicy();
 
     // Call the API and handle any network failures.

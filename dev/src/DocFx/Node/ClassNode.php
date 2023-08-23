@@ -29,6 +29,7 @@ class ClassNode
 
     private $childNode;
     private array $protoPackages = [];
+    private string $tocName;
 
     public function __construct(
         private SimpleXMLElement $xmlNode
@@ -68,8 +69,30 @@ class ClassNode
     public function isServiceClass(): bool
     {
         // returns true if the class extends a generated GAPIC client
+        return $this->isV1ServiceClass() || $this->isV2ServiceClass();
+    }
+
+    public function isV1ServiceClass(): bool
+    {
+        // returns true if the class extends a generated V1 GAPIC client
         if ($extends = $this->getExtends()) {
             return 'GapicClient' === substr($extends, -11);
+        }
+        return false;
+    }
+
+    public function isServiceBaseClass(): bool
+    {
+        // returns true if the class extends a generated GAPIC client
+        return 'GapicClient' === substr($this->getName(), -11)
+            || 'BaseClient' === substr($this->getName(), -10);
+    }
+
+    public function isV2ServiceClass(): bool
+    {
+        // returns true if the class extends a generated V2 GAPIC client
+        if ($extends = $this->getExtends()) {
+            return 'BaseClient' === substr($extends, -10);
         }
         return false;
     }
@@ -80,6 +103,9 @@ class ClassNode
             foreach ($this->xmlNode->docblock->tag as $tag) {
                 if ((string) $tag['name'] === 'deprecated') {
                     return 'deprecated';
+                }
+                if ((string) $tag['name'] === 'experimental') {
+                    return 'beta';
                 }
             }
         }
@@ -136,7 +162,17 @@ class ClassNode
         $methods = [];
         foreach ($this->xmlNode->method as $methodNode) {
             $method = new MethodNode($methodNode, $this->protoPackages);
-            if ($method->isPublic() && !$method->isInherited()) {
+            if ($method->isPublic() && !$method->isInherited() && !$method->isExcludedMethod()) {
+                // This is to fix an issue in phpdocumentor where magic methods do not have
+                // "inhereted_from" set as expected.
+                // TODO: Remove this once the above issue is fixed.
+                // @see https://github.com/phpDocumentor/phpDocumentor/pull/3520
+                if (false !== strpos($method->getFullname(), 'Async()')) {
+                    list($class, $_) = explode('::', $method->getFullname());
+                    if ($class !== $this->getFullName()) {
+                        continue;
+                    }
+                }
                 $methods[] = $method;
             }
         }
@@ -147,6 +183,11 @@ class ClassNode
                 $methods[] = $childMethod;
             }
         }
+
+        if ($this->isServiceClass()) {
+            usort($methods, fn($a, $b) => $a->isOperationMethod() <=> $b->isOperationMethod());
+        }
+        usort($methods, fn($a, $b) => $a->isStatic() <=> $b->isStatic());
 
         return $methods;
     }
@@ -197,5 +238,15 @@ class ClassNode
     public function setProtoPackages(array $protoPackages)
     {
         $this->protoPackages = $protoPackages;
+    }
+
+    public function getTocName()
+    {
+        return isset($this->tocName) ? $this->tocName : $this->getName();
+    }
+
+    public function setTocName(string $tocName)
+    {
+        $this->tocName = $tocName;
     }
 }

@@ -61,6 +61,27 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $projectName Required. The resource name of the Google Cloud Platform project. Written
+     *                            as `projects/{projectID}`, where `{projectID}` is the
+     *                            [Google Cloud Platform project
+     *                            ID](https://support.google.com/cloud/answer/6158840).
+     *
+     *                            Example: `projects/my-project-123`. Please see
+     *                            {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
+     * @param string $groupId     Required. The group for which events shall be returned.
+     *
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectName, string $groupId): self
+    {
+        return (new self())
+            ->setProjectName($projectName)
+            ->setGroupId($groupId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

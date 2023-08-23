@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddeploy_v1_generated_CloudDeploy_RetryJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Deploy\V1\CloudDeployClient;
+use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
+use Google\Cloud\Deploy\V1\RetryJobRequest;
 use Google\Cloud\Deploy\V1\RetryJobResponse;
 
 /**
@@ -42,10 +43,16 @@ function retry_job_sample(string $formattedRollout, string $phaseId, string $job
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
+    // Prepare the request message.
+    $request = (new RetryJobRequest())
+        ->setRollout($formattedRollout)
+        ->setPhaseId($phaseId)
+        ->setJobId($jobId);
+
     // Call the API and handle any network failures.
     try {
         /** @var RetryJobResponse $response */
-        $response = $cloudDeployClient->retryJob($formattedRollout, $phaseId, $jobId);
+        $response = $cloudDeployClient->retryJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

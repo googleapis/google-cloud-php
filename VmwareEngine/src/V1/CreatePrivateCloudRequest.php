@@ -63,6 +63,38 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                     $parent         Required. The resource name of the location to create the new
+     *                                                                   private cloud in. Resource names are schemeless URIs that follow the
+     *                                                                   conventions in https://cloud.google.com/apis/design/resource_names.
+     *                                                                   For example:
+     *                                                                   `projects/my-project/locations/us-central1-a`
+     *                                                                   Please see {@see VmwareEngineClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VmwareEngine\V1\PrivateCloud $privateCloud   Required. The initial description of the new private cloud.
+     * @param string                                     $privateCloudId Required. The user-provided identifier of the private cloud to be created.
+     *                                                                   This identifier must be unique among each `PrivateCloud` within the parent
+     *                                                                   and becomes the final token in the name URI.
+     *                                                                   The identifier must meet the following requirements:
+     *
+     *                                                                   * Only contains 1-63 alphanumeric characters and hyphens
+     *                                                                   * Begins with an alphabetical character
+     *                                                                   * Ends with a non-hyphen character
+     *                                                                   * Not formatted as a UUID
+     *                                                                   * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                                                   (section 3.5)
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\CreatePrivateCloudRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VmwareEngine\V1\PrivateCloud $privateCloud, string $privateCloudId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPrivateCloud($privateCloud)
+            ->setPrivateCloudId($privateCloudId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

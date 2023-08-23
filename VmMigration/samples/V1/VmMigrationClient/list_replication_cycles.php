@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_ListReplicationCycles_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\ListReplicationCyclesRequest;
 use Google\Cloud\VMMigration\V1\ReplicationCycle;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 
 /**
  * Lists ReplicationCycles in a given MigratingVM.
@@ -43,10 +44,15 @@ function list_replication_cycles_sample(string $formattedParent, string $pageTok
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
+    // Prepare the request message.
+    $request = (new ListReplicationCyclesRequest())
+        ->setParent($formattedParent)
+        ->setPageToken($pageToken);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vmMigrationClient->listReplicationCycles($formattedParent, $pageToken);
+        $response = $vmMigrationClient->listReplicationCycles($request);
 
         /** @var ReplicationCycle $element */
         foreach ($response as $element) {

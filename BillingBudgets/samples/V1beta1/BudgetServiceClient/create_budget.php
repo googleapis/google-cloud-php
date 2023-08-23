@@ -42,7 +42,7 @@ function create_budget_sample(string $formattedParent): void
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $budgetAmount = new BudgetAmount();
     $budget = (new Budget())
         ->setAmount($budgetAmount);

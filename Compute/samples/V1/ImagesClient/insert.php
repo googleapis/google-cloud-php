@@ -39,7 +39,7 @@ function insert_sample(string $project): void
     // Create a client.
     $imagesClient = new ImagesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $imageResource = new Image();
 
     // Call the API and handle any network failures.

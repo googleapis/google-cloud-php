@@ -60,7 +60,7 @@ function create_import_job_sample(
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $importJob = (new ImportJob())
         ->setImportMethod($importJobImportMethod)
         ->setProtectionLevel($importJobProtectionLevel);

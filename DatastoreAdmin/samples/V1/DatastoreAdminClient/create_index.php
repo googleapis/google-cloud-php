@@ -25,16 +25,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastore_v1_generated_DatastoreAdmin_CreateIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Datastore\Admin\V1\Index;
 use Google\Rpc\Status;
 
 /**
  * Creates the specified index.
  * A newly created index's initial state is `CREATING`. On completion of the
- * returned [google.longrunning.Operation][google.longrunning.Operation], the state will be `READY`.
- * If the index already exists, the call will return an `ALREADY_EXISTS`
- * status.
+ * returned [google.longrunning.Operation][google.longrunning.Operation], the
+ * state will be `READY`. If the index already exists, the call will return an
+ * `ALREADY_EXISTS` status.
  *
  * During index creation, the process could result in an error, in which
  * case the index will move to the `ERROR` state. The process can be recovered
@@ -56,10 +57,13 @@ function create_index_sample(): void
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
+    // Prepare the request message.
+    $request = new CreateIndexRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastoreAdminClient->createIndex();
+        $response = $datastoreAdminClient->createIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

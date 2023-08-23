@@ -56,7 +56,7 @@ function set_agent_sample(
     // Create a client.
     $agentsClient = new AgentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $agent = (new Agent())
         ->setParent($formattedAgentParent)
         ->setDisplayName($agentDisplayName)

@@ -27,7 +27,6 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
     private $context = null;
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,6 +38,24 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
     private $allow_missing = false;
+
+    /**
+     * @param \Google\Cloud\AIPlatform\V1\Context $context    Required. The Context containing updates.
+     *                                                        The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field
+     *                                                        is used to identify the Context to be updated. Format:
+     *                                                        `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param \Google\Protobuf\FieldMask          $updateMask Optional. A FieldMask indicating which fields should be updated.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateContextRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Context $context, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setContext($context)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -53,7 +70,6 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. A FieldMask indicating which fields should be updated.
-     *           Functionality of this field is not yet supported.
      *     @type bool $allow_missing
      *           If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is
      *           not found, a new [Context][google.cloud.aiplatform.v1.Context] is created.
@@ -108,7 +124,6 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -130,7 +145,6 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A FieldMask indicating which fields should be updated.
-     * Functionality of this field is not yet supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var

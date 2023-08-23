@@ -42,7 +42,7 @@ function begin_transaction_sample(string $formattedSession): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $options = new TransactionOptions();
 
     // Call the API and handle any network failures.

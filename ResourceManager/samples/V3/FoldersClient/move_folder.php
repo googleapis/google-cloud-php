@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_Folders_MoveFolder_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\ResourceManager\V3\Client\FoldersClient;
 use Google\Cloud\ResourceManager\V3\Folder;
-use Google\Cloud\ResourceManager\V3\FoldersClient;
+use Google\Cloud\ResourceManager\V3\MoveFolderRequest;
 use Google\Rpc\Status;
 
 /**
@@ -60,10 +61,15 @@ function move_folder_sample(string $formattedName, string $destinationParent): v
     // Create a client.
     $foldersClient = new FoldersClient();
 
+    // Prepare the request message.
+    $request = (new MoveFolderRequest())
+        ->setName($formattedName)
+        ->setDestinationParent($destinationParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $foldersClient->moveFolder($formattedName, $destinationParent);
+        $response = $foldersClient->moveFolder($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,8 @@ class ListRecognizersRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * The maximum number of Recognizers to return. The service may return fewer
-     * than this value. If unspecified, at most 20 Recognizers will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * than this value. If unspecified, at most 5 Recognizers will be returned.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -50,6 +50,21 @@ class ListRecognizersRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The project and location of Recognizers to list. The expected
+     *                       format is `projects/{project}/locations/{location}`. Please see
+     *                       {@see SpeechClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Speech\V2\ListRecognizersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -60,8 +75,8 @@ class ListRecognizersRequest extends \Google\Protobuf\Internal\Message
      *           format is `projects/{project}/locations/{location}`.
      *     @type int $page_size
      *           The maximum number of Recognizers to return. The service may return fewer
-     *           than this value. If unspecified, at most 20 Recognizers will be returned.
-     *           The maximum value is 20; values above 20 will be coerced to 20.
+     *           than this value. If unspecified, at most 5 Recognizers will be returned.
+     *           The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
      *           A page token, received from a previous
      *           [ListRecognizers][google.cloud.speech.v2.Speech.ListRecognizers] call.
@@ -108,8 +123,8 @@ class ListRecognizersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of Recognizers to return. The service may return fewer
-     * than this value. If unspecified, at most 20 Recognizers will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * than this value. If unspecified, at most 5 Recognizers will be returned.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -121,8 +136,8 @@ class ListRecognizersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of Recognizers to return. The service may return fewer
-     * than this value. If unspecified, at most 20 Recognizers will be returned.
-     * The maximum value is 20; values above 20 will be coerced to 20.
+     * than this value. If unspecified, at most 5 Recognizers will be returned.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

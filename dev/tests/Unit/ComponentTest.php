@@ -37,20 +37,9 @@ class ComponentTest extends TestCase
     public function testComponentProperties(string $componentName, array $details)
     {
         $component = new Component($componentName);
-        $this->assertEquals($details['id'], $component->getId());
-        $this->assertEquals($details['name'], $component->getName());
-        $this->assertEquals($details['path'], $component->getPath());
-        $this->assertEquals($details['repo_name'], $component->getRepoName());
-        $this->assertEquals($details['service_address'], $component->getServiceAddress());
-        $this->assertEquals($details['api_shortname'], $component->getApiShortname());
-        $this->assertEquals($details['issue_tracker'], $component->getIssueTracker());
-        $this->assertEquals($details['package_name'], $component->getPackageName());
-        $this->assertEquals($details['release_level'], $component->getReleaseLevel());
-        $this->assertEquals($details['client_documentation'], $component->getClientDocumentation());
-        $this->assertEquals($details['product_documentation'], $component->getProductDocumentation());
-        $this->assertEquals($details['description'], $component->getDescription());
-        $this->assertEquals($details['namespaces'], $component->getNamespaces());
-        $this->assertEquals($details['reference_documentation_uid'], $component->getReferenceDocumentationUid());
+        foreach ($details as $key => $value) {
+            $this->assertEquals($details[$key], $component->{'get' . ucfirst($key)}());
+        }
     }
 
     public function provideComponentProperties()
@@ -62,19 +51,27 @@ class ComponentTest extends TestCase
                     'id' => 'cloud-bigtable',
                     'name' => 'Bigtable',
                     'path' => realpath(__DIR__ . '/../../../Bigtable'),
-                    'repo_name' => 'googleapis/google-cloud-php-bigtable',
-                    'service_address' => 'bigtable.googleapis.com',
-                    'api_shortname' => 'bigtable',
-                    'issue_tracker' => 'https://github.com/googleapis/google-cloud-php-bigtable/issues',
-                    'package_name' => 'google/cloud-bigtable',
-                    'release_level' => 'stable',
-                    'client_documentation' => 'https://cloud.google.com/php/docs/reference/cloud-bigtable/latest',
-                    'product_documentation' => '',
+                    'repoName' => 'googleapis/google-cloud-php-bigtable',
+                    'serviceAddresses' => ['bigtable.googleapis.com', 'bigtableadmin.googleapis.com'],
+                    'apiShortnames' => ['bigtable', 'bigtableadmin'],
+                    'issueTracker' => 'https://github.com/googleapis/google-cloud-php-bigtable/issues',
+                    'packageName' => 'google/cloud-bigtable',
+                    'releaseLevel' => 'stable',
+                    'clientDocumentation' => 'https://cloud.google.com/php/docs/reference/cloud-bigtable/latest',
+                    'productDocumentation' => '',
                     'description' => 'Cloud Bigtable Client for PHP',
-                    'namespaces' => ['Google\Cloud\Bigtable'],
-                    'reference_documentation_uid' => 'google-cloud-bigtable',
+                    'namespaces' => ['Google\Cloud\Bigtable' => 'src'],
+                    'referenceDocumentationUid' => 'google-cloud-bigtable',
                 ]
             ],
+            [
+                'Talent',
+                [
+                    'id' => 'cloud-talent',
+                    'apiVersions' => ['V4', 'V4beta1'],
+                    'protoPackages' => ['google/cloud/talent/v4', 'google/cloud/talent/v4beta1'],
+                ]
+            ]
         ];
     }
 }

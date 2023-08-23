@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START orgpolicy_v2_generated_OrgPolicy_CreatePolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\OrgPolicy\V2\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\CreatePolicyRequest;
 use Google\Cloud\OrgPolicy\V2\Policy;
 
 /**
@@ -50,11 +51,14 @@ function create_policy_sample(string $formattedParent): void
 
     // Prepare the request message.
     $policy = new Policy();
+    $request = (new CreatePolicyRequest())
+        ->setParent($formattedParent)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $orgPolicyClient->createPolicy($formattedParent, $policy);
+        $response = $orgPolicyClient->createPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

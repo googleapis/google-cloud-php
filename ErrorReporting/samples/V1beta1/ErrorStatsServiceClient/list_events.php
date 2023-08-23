@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouderrorreporting_v1beta1_generated_ErrorStatsService_ListEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ErrorReporting\V1beta1\Client\ErrorStatsServiceClient;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorEvent;
-use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest;
 
 /**
  * Lists the specified events.
@@ -45,10 +46,15 @@ function list_events_sample(string $formattedProjectName, string $groupId): void
     // Create a client.
     $errorStatsServiceClient = new ErrorStatsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEventsRequest())
+        ->setProjectName($formattedProjectName)
+        ->setGroupId($groupId);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
+        $response = $errorStatsServiceClient->listEvents($request);
 
         /** @var ErrorEvent $element */
         foreach ($response as $element) {

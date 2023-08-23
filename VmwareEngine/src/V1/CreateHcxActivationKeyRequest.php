@@ -67,6 +67,39 @@ class CreateHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                         $parent             Required. The resource name of the private cloud to create the key for.
+     *                                                                           Resource names are schemeless URIs that follow the conventions in
+     *                                                                           https://cloud.google.com/apis/design/resource_names.
+     *                                                                           For example:
+     *                                                                           `projects/my-project/locations/us-central1/privateClouds/my-cloud`
+     *                                                                           Please see {@see VmwareEngineClient::privateCloudName()} for help formatting this field.
+     * @param \Google\Cloud\VmwareEngine\V1\HcxActivationKey $hcxActivationKey   Required. The initial description of a new HCX activation key. When
+     *                                                                           creating a new key, this field must be an empty object.
+     * @param string                                         $hcxActivationKeyId Required. The user-provided identifier of the `HcxActivationKey` to be
+     *                                                                           created. This identifier must be unique among `HcxActivationKey` resources
+     *                                                                           within the parent and becomes the final token in the name URI.
+     *                                                                           The identifier must meet the following requirements:
+     *
+     *                                                                           * Only contains 1-63 alphanumeric characters and hyphens
+     *                                                                           * Begins with an alphabetical character
+     *                                                                           * Ends with a non-hyphen character
+     *                                                                           * Not formatted as a UUID
+     *                                                                           * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                                                           (section 3.5)
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\CreateHcxActivationKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VmwareEngine\V1\HcxActivationKey $hcxActivationKey, string $hcxActivationKeyId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setHcxActivationKey($hcxActivationKey)
+            ->setHcxActivationKeyId($hcxActivationKeyId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

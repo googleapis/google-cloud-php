@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_VizierService_ListTrials_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
+use Google\Cloud\AIPlatform\V1\ListTrialsRequest;
 use Google\Cloud\AIPlatform\V1\Trial;
-use Google\Cloud\AIPlatform\V1\VizierServiceClient;
 
 /**
  * Lists the Trials associated with a Study.
@@ -40,10 +41,14 @@ function list_trials_sample(string $formattedParent): void
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTrialsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vizierServiceClient->listTrials($formattedParent);
+        $response = $vizierServiceClient->listTrials($request);
 
         /** @var Trial $element */
         foreach ($response as $element) {

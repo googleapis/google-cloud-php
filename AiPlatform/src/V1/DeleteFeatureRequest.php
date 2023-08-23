@@ -26,6 +26,22 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the Features to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *                     Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteFeatureRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

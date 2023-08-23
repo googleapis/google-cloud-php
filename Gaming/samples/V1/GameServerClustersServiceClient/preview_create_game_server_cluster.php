@@ -49,7 +49,7 @@ function preview_create_game_server_cluster_sample(
     // Create a client.
     $gameServerClustersServiceClient = new GameServerClustersServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $gameServerCluster = (new GameServerCluster())
         ->setName($gameServerClusterName);
 

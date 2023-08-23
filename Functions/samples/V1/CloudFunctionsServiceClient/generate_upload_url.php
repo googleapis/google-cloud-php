@@ -45,12 +45,12 @@ use Google\Cloud\Functions\V1\GenerateUploadUrlResponse;
  * attached, the identity from the credentials would be used, but that
  * identity does not have permissions to upload files to the URL.
  *
- * When making a HTTP PUT request, these two headers need to be specified:
+ * When making an HTTP PUT request, these two headers must be specified:
  *
  * * `content-type: application/zip`
  * * `x-goog-content-length-range: 0,104857600`
  *
- * And this header SHOULD NOT be specified:
+ * And this header must NOT be specified:
  *
  * * `Authorization: Bearer YOUR_TOKEN`
  *

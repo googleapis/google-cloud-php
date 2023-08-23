@@ -46,6 +46,26 @@ class ListAttachedClustersRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent location which owns this collection of
+     *                       [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resources.
+     *
+     *                       Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                       for more details on Google Cloud Platform resource names. Please see
+     *                       {@see AttachedClustersClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

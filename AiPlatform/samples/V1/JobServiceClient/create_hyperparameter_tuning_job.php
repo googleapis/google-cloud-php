@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_CreateHyperparameterTuningJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateHyperparameterTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\CustomJobSpec;
 use Google\Cloud\AIPlatform\V1\HyperparameterTuningJob;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\StudySpec;
 use Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec;
 use Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\GoalType;
@@ -83,14 +84,14 @@ function create_hyperparameter_tuning_job_sample(
         ->setMaxTrialCount($hyperparameterTuningJobMaxTrialCount)
         ->setParallelTrialCount($hyperparameterTuningJobParallelTrialCount)
         ->setTrialJobSpec($hyperparameterTuningJobTrialJobSpec);
+    $request = (new CreateHyperparameterTuningJobRequest())
+        ->setParent($formattedParent)
+        ->setHyperparameterTuningJob($hyperparameterTuningJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var HyperparameterTuningJob $response */
-        $response = $jobServiceClient->createHyperparameterTuningJob(
-            $formattedParent,
-            $hyperparameterTuningJob
-        );
+        $response = $jobServiceClient->createHyperparameterTuningJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,6 +24,21 @@ class RunAssetDiscoveryRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param string $parent Required. Name of the organization to run asset discovery for. Its format
+     *                       is "organizations/[organization_id]". Please see
+     *                       {@see SecurityCenterClient::organizationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

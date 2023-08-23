@@ -35,6 +35,21 @@ class InsertUrlMapRequest extends \Google\Protobuf\Internal\Message
     private $url_map_resource = null;
 
     /**
+     * @param string                          $project        Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\UrlMap $urlMapResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertUrlMapRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\UrlMap $urlMapResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setUrlMapResource($urlMapResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

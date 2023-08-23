@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TrainProcessorVersionMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 1;</code>
      */
@@ -41,7 +41,7 @@ class TrainProcessorVersionMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $common_metadata
-     *           The basic metadata of the long running operation.
+     *           The basic metadata of the long-running operation.
      *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata\DatasetValidation $training_dataset_validation
      *           The training dataset validation information.
      *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata\DatasetValidation $test_dataset_validation
@@ -54,7 +54,7 @@ class TrainProcessorVersionMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\CommonOperationMetadata|null
@@ -75,7 +75,7 @@ class TrainProcessorVersionMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $var

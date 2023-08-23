@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_FetchGitAheadBehind_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindRequest;
 use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindResponse;
 
 /**
@@ -38,10 +39,14 @@ function fetch_git_ahead_behind_sample(string $formattedName): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new FetchGitAheadBehindRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchGitAheadBehindResponse $response */
-        $response = $dataformClient->fetchGitAheadBehind($formattedName);
+        $response = $dataformClient->fetchGitAheadBehind($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

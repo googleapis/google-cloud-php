@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START containeranalysis_v1_generated_Grafeas_CreateNote_sync]
 use Google\ApiCore\ApiException;
-use Grafeas\V1\GrafeasClient;
+use Grafeas\V1\Client\GrafeasClient;
+use Grafeas\V1\CreateNoteRequest;
 use Grafeas\V1\Note;
 
 /**
@@ -42,11 +43,15 @@ function create_note_sample(string $formattedParent, string $noteId): void
 
     // Prepare the request message.
     $note = new Note();
+    $request = (new CreateNoteRequest())
+        ->setParent($formattedParent)
+        ->setNoteId($noteId)
+        ->setNote($note);
 
     // Call the API and handle any network failures.
     try {
         /** @var Note $response */
-        $response = $grafeasClient->createNote($formattedParent, $noteId, $note);
+        $response = $grafeasClient->createNote($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -47,6 +47,25 @@ class DetachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project    Project ID for this request.
+     * @param string $zone       The name of the zone for this request.
+     * @param string $instance   Instance name for this request.
+     * @param string $deviceName The device name of the disk to detach. Make a get() request on the instance to view currently attached disks and device names.
+     *
+     * @return \Google\Cloud\Compute\V1\DetachDiskInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, string $deviceName): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setDeviceName($deviceName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

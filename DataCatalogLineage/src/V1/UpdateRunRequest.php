@@ -34,6 +34,27 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\Run $run        Required. The lineage run to update.
+     *
+     *                                                             The run's `name` field is used to identify the run to update.
+     *
+     *                                                             Format:
+     *                                                             `projects/{project}/locations/{location}/processes/{process}/runs/{run}`.
+     * @param \Google\Protobuf\FieldMask               $updateMask The list of fields to update. Currently not used. The whole message is
+     *                                                             updated.
+     *
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\Lineage\V1\Run $run, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setRun($run)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

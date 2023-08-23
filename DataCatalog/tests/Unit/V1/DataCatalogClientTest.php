@@ -1834,12 +1834,14 @@ class DataCatalogClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $totalSize = 705419236;
         $nextPageToken = '';
         $resultsElement = new SearchCatalogResult();
         $results = [
             $resultsElement,
         ];
         $expectedResponse = new SearchCatalogResponse();
+        $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);

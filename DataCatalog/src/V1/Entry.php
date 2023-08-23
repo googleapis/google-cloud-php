@@ -50,16 +50,11 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     private $linked_resource = '';
     /**
-     * Fully qualified name (FQN) of the resource. Set automatically for entries
-     * representing resources from synced systems. Settable only during creation
-     * and read-only afterwards. Can be used for search and lookup of the entries.
-     * FQNs take two forms:
-     * * For non-regionalized resources:
-     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     * * For regionalized resources:
-     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     * Example for a DPMS table:
-     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     * [Fully Qualified Name
+     * (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     * of the resource. Set automatically for entries representing resources from
+     * synced systems. Settable only during creation, and read-only later. Can
+     * be used for search and lookup of the entries.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
      */
@@ -165,21 +160,14 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           and hashes (#).
      *           The maximum size is 200 bytes when encoded in UTF-8.
      *     @type string $fully_qualified_name
-     *           Fully qualified name (FQN) of the resource. Set automatically for entries
-     *           representing resources from synced systems. Settable only during creation
-     *           and read-only afterwards. Can be used for search and lookup of the entries.
-     *           FQNs take two forms:
-     *           * For non-regionalized resources:
-     *             `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     *           * For regionalized resources:
-     *             `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     *           Example for a DPMS table:
-     *           `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *           [Fully Qualified Name
+     *           (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     *           of the resource. Set automatically for entries representing resources from
+     *           synced systems. Settable only during creation, and read-only later. Can
+     *           be used for search and lookup of the entries.
      *     @type int $type
      *           The type of the entry.
-     *           Only used for entries with types listed in the `EntryType` enum.
-     *           Currently, only `FILESET` enum value is allowed. All other entries
-     *           created in Data Catalog must use the `user_specified_type`.
+     *           For details, see [`EntryType`](#entrytype).
      *     @type string $user_specified_type
      *           Custom entry type that doesn't match any of the values allowed for input
      *           and listed in the `EntryType` enum.
@@ -208,6 +196,9 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\LookerSystemSpec $looker_system_spec
      *           Specification that applies to Looker sysstem. Only settable when
      *           `user_specified_system` is equal to `LOOKER`
+     *     @type \Google\Cloud\DataCatalog\V1\CloudBigtableSystemSpec $cloud_bigtable_system_spec
+     *           Specification that applies to Cloud Bigtable system. Only settable when
+     *           `integrated_system` is equal to `CLOUD_BIGTABLE`
      *     @type \Google\Cloud\DataCatalog\V1\GcsFilesetSpec $gcs_fileset_spec
      *           Specification that applies to a Cloud Storage fileset. Valid only
      *           for entries with the `FILESET` type.
@@ -231,6 +222,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\FilesetSpec $fileset_spec
      *           Specification that applies to a fileset resource. Valid only
      *           for entries with the `FILESET` type.
+     *     @type \Google\Cloud\DataCatalog\V1\ServiceSpec $service_spec
+     *           Specification that applies to a Service resource.
      *     @type string $display_name
      *           Display name of an entry.
      *           The maximum size is 500 bytes when encoded in UTF-8.
@@ -353,16 +346,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified name (FQN) of the resource. Set automatically for entries
-     * representing resources from synced systems. Settable only during creation
-     * and read-only afterwards. Can be used for search and lookup of the entries.
-     * FQNs take two forms:
-     * * For non-regionalized resources:
-     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     * * For regionalized resources:
-     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     * Example for a DPMS table:
-     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     * [Fully Qualified Name
+     * (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     * of the resource. Set automatically for entries representing resources from
+     * synced systems. Settable only during creation, and read-only later. Can
+     * be used for search and lookup of the entries.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
      * @return string
@@ -373,16 +361,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified name (FQN) of the resource. Set automatically for entries
-     * representing resources from synced systems. Settable only during creation
-     * and read-only afterwards. Can be used for search and lookup of the entries.
-     * FQNs take two forms:
-     * * For non-regionalized resources:
-     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     * * For regionalized resources:
-     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
-     * Example for a DPMS table:
-     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     * [Fully Qualified Name
+     * (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
+     * of the resource. Set automatically for entries representing resources from
+     * synced systems. Settable only during creation, and read-only later. Can
+     * be used for search and lookup of the entries.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
      * @param string $var
@@ -398,9 +381,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the entry.
-     * Only used for entries with types listed in the `EntryType` enum.
-     * Currently, only `FILESET` enum value is allowed. All other entries
-     * created in Data Catalog must use the `user_specified_type`.
+     * For details, see [`EntryType`](#entrytype).
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryType type = 2;</code>
      * @return int
@@ -417,9 +398,7 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the entry.
-     * Only used for entries with types listed in the `EntryType` enum.
-     * Currently, only `FILESET` enum value is allowed. All other entries
-     * created in Data Catalog must use the `user_specified_type`.
+     * For details, see [`EntryType`](#entrytype).
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryType type = 2;</code>
      * @param int $var
@@ -620,6 +599,39 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\LookerSystemSpec::class);
         $this->writeOneof(40, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specification that applies to Cloud Bigtable system. Only settable when
+     * `integrated_system` is equal to `CLOUD_BIGTABLE`
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.CloudBigtableSystemSpec cloud_bigtable_system_spec = 41;</code>
+     * @return \Google\Cloud\DataCatalog\V1\CloudBigtableSystemSpec|null
+     */
+    public function getCloudBigtableSystemSpec()
+    {
+        return $this->readOneof(41);
+    }
+
+    public function hasCloudBigtableSystemSpec()
+    {
+        return $this->hasOneof(41);
+    }
+
+    /**
+     * Specification that applies to Cloud Bigtable system. Only settable when
+     * `integrated_system` is equal to `CLOUD_BIGTABLE`
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.CloudBigtableSystemSpec cloud_bigtable_system_spec = 41;</code>
+     * @param \Google\Cloud\DataCatalog\V1\CloudBigtableSystemSpec $var
+     * @return $this
+     */
+    public function setCloudBigtableSystemSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\CloudBigtableSystemSpec::class);
+        $this->writeOneof(41, $var);
 
         return $this;
     }
@@ -855,6 +867,37 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\FilesetSpec::class);
         $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specification that applies to a Service resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ServiceSpec service_spec = 42;</code>
+     * @return \Google\Cloud\DataCatalog\V1\ServiceSpec|null
+     */
+    public function getServiceSpec()
+    {
+        return $this->readOneof(42);
+    }
+
+    public function hasServiceSpec()
+    {
+        return $this->hasOneof(42);
+    }
+
+    /**
+     * Specification that applies to a Service resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ServiceSpec service_spec = 42;</code>
+     * @param \Google\Cloud\DataCatalog\V1\ServiceSpec $var
+     * @return $this
+     */
+    public function setServiceSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\ServiceSpec::class);
+        $this->writeOneof(42, $var);
 
         return $this;
     }

@@ -33,16 +33,18 @@ use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
  * service, from the newest to the oldest.
  *
  * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
- *                            example: `example.googleapis.com`.
+ *                            [overview](https://cloud.google.com/service-management/overview) for naming
+ *                            requirements.  For example: `example.googleapis.com`.
  * @param string $filter      Use `filter` to return subset of rollouts.
  *                            The following filters are supported:
- *                            -- To limit the results to only those in
- *                            status (google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
- *                            use filter='status=SUCCESS'
- *                            -- To limit the results to those in
- *                            status (google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
- *                            or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+ *
+ *                            -- By [status]
+ *                            [google.api.servicemanagement.v1.Rollout.RolloutStatus]. For example,
+ *                            `filter='status=SUCCESS'`
+ *
+ *                            -- By [strategy]
+ *                            [google.api.servicemanagement.v1.Rollout.strategy]. For example,
+ *                            `filter='strategy=TrafficPercentStrategy'`
  */
 function list_service_rollouts_sample(string $serviceName, string $filter): void
 {

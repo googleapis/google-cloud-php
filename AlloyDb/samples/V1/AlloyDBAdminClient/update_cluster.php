@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START alloydb_v1_generated_AlloyDBAdmin_UpdateCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AlloyDb\V1\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\UpdateClusterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,11 +48,13 @@ function update_cluster_sample(string $formattedClusterNetwork): void
     // Prepare the request message.
     $cluster = (new Cluster())
         ->setNetwork($formattedClusterNetwork);
+    $request = (new UpdateClusterRequest())
+        ->setCluster($cluster);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->updateCluster($cluster);
+        $response = $alloyDBAdminClient->updateCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

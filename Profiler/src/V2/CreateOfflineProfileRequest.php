@@ -30,6 +30,21 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
     private $profile = null;
 
     /**
+     * @param string                            $parent  Parent project to create the profile in.
+     * @param \Google\Cloud\Profiler\V2\Profile $profile Contents of the profile to create.
+     *
+     * @return \Google\Cloud\Profiler\V2\CreateOfflineProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Profiler\V2\Profile $profile): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProfile($profile);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

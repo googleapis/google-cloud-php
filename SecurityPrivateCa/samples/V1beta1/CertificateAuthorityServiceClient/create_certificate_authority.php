@@ -67,7 +67,7 @@ function create_certificate_authority_sample(
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $certificateAuthorityConfigSubjectConfigSubject = new Subject();
     $certificateAuthorityConfigSubjectConfig = (new SubjectConfig())
         ->setSubject($certificateAuthorityConfigSubjectConfigSubject);

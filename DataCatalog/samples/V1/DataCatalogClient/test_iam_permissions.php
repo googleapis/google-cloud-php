@@ -55,7 +55,7 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $permissions = [$permissionsElement,];
 
     // Call the API and handle any network failures.

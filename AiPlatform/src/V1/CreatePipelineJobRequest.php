@@ -41,6 +41,30 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
     private $pipeline_job_id = '';
 
     /**
+     * @param string                                  $parent        Required. The resource name of the Location to create the PipelineJob in.
+     *                                                               Format: `projects/{project}/locations/{location}`
+     *                                                               Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\PipelineJob $pipelineJob   Required. The PipelineJob to create.
+     * @param string                                  $pipelineJobId The ID to use for the PipelineJob, which will become the final component of
+     *                                                               the PipelineJob name. If not provided, an ID will be automatically
+     *                                                               generated.
+     *
+     *                                                               This value should be less than 128 characters, and valid characters
+     *                                                               are /[a-z][0-9]-/.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreatePipelineJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\PipelineJob $pipelineJob, string $pipelineJobId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPipelineJob($pipelineJob)
+            ->setPipelineJobId($pipelineJobId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

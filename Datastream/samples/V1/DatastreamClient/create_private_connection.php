@@ -45,7 +45,7 @@ function create_private_connection_sample(
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $privateConnection = (new PrivateConnection())
         ->setDisplayName($privateConnectionDisplayName);
 

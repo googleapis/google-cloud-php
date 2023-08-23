@@ -23,7 +23,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     private $producer_project_id = '';
     /**
      * The max number of items to include in the response list. Page size is 50
-     * if not specified. Maximum value is 100.
+     * if not specified. Maximum value is 500.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
@@ -47,6 +47,25 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     protected $consumer_id = '';
 
     /**
+     * @param string $producerProjectId Include services produced by the specified project.
+     * @param string $consumerId        Include services consumed by the specified consumer.
+     *
+     *                                  The Google Service Management implementation accepts the following
+     *                                  forms:
+     *                                  - project:<project_id>
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\ListServicesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $producerProjectId, string $consumerId): self
+    {
+        return (new self())
+            ->setProducerProjectId($producerProjectId)
+            ->setConsumerId($consumerId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -56,7 +75,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *           Include services produced by the specified project.
      *     @type int $page_size
      *           The max number of items to include in the response list. Page size is 50
-     *           if not specified. Maximum value is 100.
+     *           if not specified. Maximum value is 500.
      *     @type string $page_token
      *           Token identifying which result to start with; returned by a previous list
      *           call.
@@ -100,7 +119,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The max number of items to include in the response list. Page size is 50
-     * if not specified. Maximum value is 100.
+     * if not specified. Maximum value is 500.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      * @return int
@@ -112,7 +131,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The max number of items to include in the response list. Page size is 50
-     * if not specified. Maximum value is 100.
+     * if not specified. Maximum value is 500.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      * @param int $var

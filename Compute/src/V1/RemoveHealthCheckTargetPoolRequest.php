@@ -47,6 +47,25 @@ class RemoveHealthCheckTargetPoolRequest extends \Google\Protobuf\Internal\Messa
     private $target_pools_remove_health_check_request_resource = null;
 
     /**
+     * @param string                                                       $project                                     Project ID for this request.
+     * @param string                                                       $region                                      Name of the region for this request.
+     * @param string                                                       $targetPool                                  Name of the target pool to remove health checks from.
+     * @param \Google\Cloud\Compute\V1\TargetPoolsRemoveHealthCheckRequest $targetPoolsRemoveHealthCheckRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\RemoveHealthCheckTargetPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $targetPool, \Google\Cloud\Compute\V1\TargetPoolsRemoveHealthCheckRequest $targetPoolsRemoveHealthCheckRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetPool($targetPool)
+            ->setTargetPoolsRemoveHealthCheckRequestResource($targetPoolsRemoveHealthCheckRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

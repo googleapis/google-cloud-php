@@ -50,7 +50,7 @@ function create_company_sample(
     // Create a client.
     $companyServiceClient = new CompanyServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $company = (new Company())
         ->setDisplayName($companyDisplayName)
         ->setExternalId($companyExternalId);

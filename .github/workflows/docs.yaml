@@ -21,12 +21,12 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
-        php-version: "8.0"
+        php-version: "8.1"
     - name: Extract phpDocumentor
       id: extract
       uses: shrink/actions-docker-extract@v2
       with:
-        image: "phpdoc/phpdoc:202301112131087e6028"
+        image: "phpdoc/phpdoc:20230522201300af6fb5"
         path: "/opt/phpdoc/."
     - name: Symlink phpDocumentor
       run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc

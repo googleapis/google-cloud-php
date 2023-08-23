@@ -45,7 +45,7 @@ function create_endpoint_sample(string $formattedParent, string $endpointId): vo
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $endpoint = new Endpoint();
 
     // Call the API and handle any network failures.

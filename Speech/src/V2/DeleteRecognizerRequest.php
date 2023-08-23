@@ -47,6 +47,21 @@ class DeleteRecognizerRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
+     * @param string $name Required. The name of the Recognizer to delete.
+     *                     Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`
+     *                     Please see {@see SpeechClient::recognizerName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Speech\V2\DeleteRecognizerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

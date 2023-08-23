@@ -35,6 +35,23 @@ class GetRegionDiskTypeRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $region   The name of the region for this request.
+     * @param string $diskType Name of the disk type to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionDiskTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $diskType): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setDiskType($diskType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

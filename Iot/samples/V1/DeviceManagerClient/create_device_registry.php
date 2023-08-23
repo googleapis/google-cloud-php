@@ -39,7 +39,7 @@ function create_device_registry_sample(string $formattedParent): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $deviceRegistry = new DeviceRegistry();
 
     // Call the API and handle any network failures.

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_JobService_CancelBatchPredictionJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\CancelBatchPredictionJobRequest;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 
 /**
  * Cancels a BatchPredictionJob.
@@ -50,9 +51,13 @@ function cancel_batch_prediction_job_sample(string $formattedName): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new CancelBatchPredictionJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $jobServiceClient->cancelBatchPredictionJob($formattedName);
+        $jobServiceClient->cancelBatchPredictionJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

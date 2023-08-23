@@ -19,7 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class TableConditionExpectation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Optional. The SQL expression.
+     *
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sql_expression = '';
 
@@ -30,6 +32,7 @@ class TableConditionExpectation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $sql_expression
+     *           Optional. The SQL expression.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,9 @@ class TableConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Optional. The SQL expression.
+     *
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSqlExpression()
@@ -47,7 +52,9 @@ class TableConditionExpectation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sql_expression = 1;</code>
+     * Optional. The SQL expression.
+     *
+     * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

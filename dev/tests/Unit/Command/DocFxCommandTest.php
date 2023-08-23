@@ -18,16 +18,20 @@
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\DocFxCommand;
-use Google\Cloud\Dev\DocFx\Page\OverviewPage;
+use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\Yaml\Yaml;
+use SimpleXMLElement;
 
 /**
  * @group dev
  */
 class DocFxCommandTest extends TestCase
 {
-    private static $fixturesDir;
-    private static $tmpDir;
+    private static string $fixturesDir = __DIR__ . '/../../fixtures';
+    private static string $tmpDir;
+    private static CommandTester $commandTester;
 
     public function testGenerateVisionStructureXml()
     {
@@ -37,15 +41,44 @@ class DocFxCommandTest extends TestCase
         $componentDir = __DIR__ . '/../../../../Vision';
         $process = DocFxCommand::getPhpDocCommand($componentDir, self::$tmpDir);
         $process->mustRun();
-        $left = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
+        $left = self::$fixturesDir . '/phpdoc/structure.xml';
         $right = self::$tmpDir . '/structure.xml';
+
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+    }
+
+    public function testGenerateNewClientStructureXml()
+    {
+        if ('1' !== getenv('TEST_PHPDOC_STRUCTURE_XML')) {
+            $this->markTestSkipped('Set TEST_PHPDOC_STRUCTURE_XML=1 to run this test');
+        }
+        $componentDir = __DIR__ . '/../../../../SecretManager';
+        $process = DocFxCommand::getPhpDocCommand($componentDir, self::$tmpDir);
+        $process->mustRun();
+
+        $left = self::$fixturesDir . '/phpdoc/newclient.xml';
+        $right = self::$tmpDir . '/structure.xml';
+
+        // Create "newclient.xml" fixture by using ONLY service client classes.
+        $xml = new SimpleXMLElement(file_get_contents($right));
+        $newClientXml = '<?xml version="1.0"?><project name="Documentation">';
+        foreach ($xml->file as $file) {
+            if (isset($file->class[0])) {
+                $classNode = new ClassNode($file->class[0]);
+                if ($classNode->isServiceClass() || $classNode->isServiceBaseClass())  {
+                    $newClientXml .= $file->asXML();
+                }
+            }
+        }
+        $newClientXml .= '</project>';
+        file_put_contents($right, $newClientXml);
 
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
     public function testGenerateDocFxFiles()
     {
-        $fixturesFiles = array_diff(scandir(self::$fixturesDir), ['..', '.']);
+        $fixturesFiles = array_diff(scandir(self::$fixturesDir . '/docfx/Vision'), ['..', '.']);
         $generatedFiles = array_diff(scandir(self::$tmpDir), ['..', '.']);
 
         $this->assertEquals([], array_diff($fixturesFiles, $generatedFiles));
@@ -58,11 +91,11 @@ class DocFxCommandTest extends TestCase
     public function testDocFxFiles(string $file)
     {
         $this->assertTrue(
-            file_exists(self::$fixturesDir . '/' . $file),
+            file_exists(self::$fixturesDir . '/docfx/Vision/' . $file),
             sprintf('%s does not exist in fixtures (%s)', $file, self::$tmpDir . '/' . $file)
         );
 
-        $left  = self::$fixturesDir . '/' . $file;
+        $left  = self::$fixturesDir . '/docfx/Vision/' . $file;
         $right = self::$tmpDir . '/' . $file;
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
@@ -77,7 +110,7 @@ class DocFxCommandTest extends TestCase
             'docs.metadata was not generated in ' . self::$tmpDir
         );
 
-        $left  = self::$fixturesDir . '/docs.metadata';
+        $left  = self::$fixturesDir . '/docfx/Vision/docs.metadata';
         $right = self::$tmpDir . '/docs.metadata';
         $rightContents = preg_replace('/seconds: \d+/', 'seconds: *', file_get_contents($right));
         $rightContents = preg_replace('/nanos: \d+/', 'nanos: *', $rightContents);
@@ -86,39 +119,18 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right);
     }
 
-    public function testOverviewPage()
-    {
-        $overview1 = new OverviewPage("# Not beta\n\n", $beta = false);
-        $this->assertEquals("# Not beta\n\n", $overview1->getContents());
-
-        $overview2 = new OverviewPage("No header\n\n", $beta = true);
-        $this->assertEquals("No header\n\n", $overview2->getContents());
-
-        $overview3 = new OverviewPage("# No newline", $beta = true);
-        $this->assertEquals('# No newline', $overview3->getContents());
-
-        $overview4 = new OverviewPage("# Yes beta\nend.", $beta = true);
-        $this->assertStringContainsString('pre-GA', $overview4->getContents());
-        $this->assertStringStartsWith("# Yes beta\n", $overview4->getContents());
-        $this->assertStringEndsWith("\nend.", $overview4->getContents());
-    }
-
     public function provideDocFxFiles()
     {
-        $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
-        $componentDir = __DIR__ . '/../../fixtures/component/Vision';
-        $tmpDir = sys_get_temp_dir() . '/' . rand();
-        $cmd = sprintf(
-            '%s/google-cloud docfx --component Vision --xml %s --out=%s --metadata-version=1.0.0 --component-path=%s',
-            __DIR__ . '/../../../',
-            $structureXml,
-            $tmpDir,
-            $componentDir
-        );
-        passthru($cmd);
+        $output = self::getCommandTester()->execute([
+            '--component' => 'Vision',
+            '--xml' => self::$fixturesDir . '/phpdoc/structure.xml',
+            '--out' => self::$tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+            '--component-path' => self::$fixturesDir . '/component/Vision',
+        ]);
 
         $filesAsArguments = [];
-        $generatedFiles = array_diff(scandir($tmpDir), ['..', '.']);
+        $generatedFiles = array_diff(scandir(self::$tmpDir), ['..', '.']);
         foreach ($generatedFiles as $file) {
             if ($file === 'docs.metadata') {
                 continue;
@@ -126,10 +138,48 @@ class DocFxCommandTest extends TestCase
             $filesAsArguments[] = [$file];
         }
 
-        self::$tmpDir = $tmpDir;
-        self::$fixturesDir = realpath(__DIR__ . '/../../fixtures/docfx');
-
         return $filesAsArguments;
+    }
+
+    public function provideNewClient()
+    {
+        self::getCommandTester()->execute([
+            '--component' => 'SecretManager',
+            '--xml' => self::$fixturesDir . '/phpdoc/newclient.xml',
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+        ]);
+
+        return [
+            [$tmpDir, 'V1.Client.SecretManagerServiceClient.yml'],
+            [$tmpDir, 'toc.yml']
+        ];
+    }
+
+    /**
+     * @dataProvider provideNewClient
+     */
+    public function testNewClient(string $tmpDir, string $file)
+    {
+        $left = self::$fixturesDir . '/docfx/NewClient/' . $file;
+        $right = $tmpDir . '/' . $file;
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+    }
+
+    public function testNewClientMagicMethods()
+    {
+        $newClientDocFx = self::$fixturesDir . '/docfx/NewClient/V1.Client.SecretManagerServiceClient.yml';
+        $yaml = Yaml::parse(file_get_contents($newClientDocFx));
+        $asyncMethods = array_filter(
+            $yaml['items'][0]['children'],
+            fn ($child) => 'Async()' === substr($child, -7)
+        );
+        $this->assertGreaterThan(0, count($asyncMethods));
+        $baseClientMethods = array_filter(
+            $yaml['items'][0]['children'],
+            fn ($child) => false !== strpos($child, 'BaseClient')
+        );
+        $this->assertCount(0, $baseClientMethods);
     }
 
     private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)
@@ -144,5 +194,13 @@ class DocFxCommandTest extends TestCase
         }
 
         $this->assertTrue(true, 'file contents match');
+    }
+
+    private static function getCommandTester(): CommandTester
+    {
+        if (!isset(self::$commandTester)) {
+            self::$commandTester = new CommandTester(new DocFxCommand());
+        }
+        return self::$commandTester;
     }
 }

@@ -41,6 +41,23 @@ class InsertInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Messag
     private $zone = '';
 
     /**
+     * @param string                                        $project                      Project ID for this request.
+     * @param string                                        $zone                         The name of the zone where you want to create the managed instance group.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManager $instanceGroupManagerResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, \Google\Cloud\Compute\V1\InstanceGroupManager $instanceGroupManagerResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManagerResource($instanceGroupManagerResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

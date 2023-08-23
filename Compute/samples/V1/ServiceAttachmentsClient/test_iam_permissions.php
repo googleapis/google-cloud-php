@@ -40,7 +40,7 @@ function test_iam_permissions_sample(string $project, string $region, string $re
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $testPermissionsRequestResource = new TestPermissionsRequest();
 
     // Call the API and handle any network failures.

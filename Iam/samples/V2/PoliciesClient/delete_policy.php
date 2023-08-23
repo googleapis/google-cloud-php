@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iam_v2_generated_Policies_DeletePolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Iam\V2\PoliciesClient;
+use Google\Cloud\Iam\V2\Client\PoliciesClient;
+use Google\Cloud\Iam\V2\DeletePolicyRequest;
 use Google\Cloud\Iam\V2\Policy;
 use Google\Rpc\Status;
 
@@ -48,10 +49,14 @@ function delete_policy_sample(string $name): void
     // Create a client.
     $policiesClient = new PoliciesClient();
 
+    // Prepare the request message.
+    $request = (new DeletePolicyRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $policiesClient->deletePolicy($name);
+        $response = $policiesClient->deletePolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

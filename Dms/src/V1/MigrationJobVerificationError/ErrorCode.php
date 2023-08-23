@@ -136,6 +136,38 @@ class ErrorCode
      * Generated from protobuf enum <code>CANT_RESTART_RUNNING_MIGRATION = 21;</code>
      */
     const CANT_RESTART_RUNNING_MIGRATION = 21;
+    /**
+     * The source has tables with limited support.
+     * E.g. PostgreSQL tables without primary keys.
+     *
+     * Generated from protobuf enum <code>TABLES_WITH_LIMITED_SUPPORT = 24;</code>
+     */
+    const TABLES_WITH_LIMITED_SUPPORT = 24;
+    /**
+     * The source uses an unsupported locale.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_DATABASE_LOCALE = 25;</code>
+     */
+    const UNSUPPORTED_DATABASE_LOCALE = 25;
+    /**
+     * The source uses an unsupported Foreign Data Wrapper configuration.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_DATABASE_FDW_CONFIG = 26;</code>
+     */
+    const UNSUPPORTED_DATABASE_FDW_CONFIG = 26;
+    /**
+     * There was an underlying RDBMS error.
+     *
+     * Generated from protobuf enum <code>ERROR_RDBMS = 27;</code>
+     */
+    const ERROR_RDBMS = 27;
+    /**
+     * The source DB size in Bytes exceeds a certain threshold. The migration
+     * might require an increase of quota, or might not be supported.
+     *
+     * Generated from protobuf enum <code>SOURCE_SIZE_EXCEEDS_THRESHOLD = 28;</code>
+     */
+    const SOURCE_SIZE_EXCEEDS_THRESHOLD = 28;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
@@ -158,6 +190,11 @@ class ErrorCode
         self::UNSUPPORTED_TABLE_DEFINITION => 'UNSUPPORTED_TABLE_DEFINITION',
         self::UNSUPPORTED_DEFINER => 'UNSUPPORTED_DEFINER',
         self::CANT_RESTART_RUNNING_MIGRATION => 'CANT_RESTART_RUNNING_MIGRATION',
+        self::TABLES_WITH_LIMITED_SUPPORT => 'TABLES_WITH_LIMITED_SUPPORT',
+        self::UNSUPPORTED_DATABASE_LOCALE => 'UNSUPPORTED_DATABASE_LOCALE',
+        self::UNSUPPORTED_DATABASE_FDW_CONFIG => 'UNSUPPORTED_DATABASE_FDW_CONFIG',
+        self::ERROR_RDBMS => 'ERROR_RDBMS',
+        self::SOURCE_SIZE_EXCEEDS_THRESHOLD => 'SOURCE_SIZE_EXCEEDS_THRESHOLD',
     ];
 
     public static function name($value)

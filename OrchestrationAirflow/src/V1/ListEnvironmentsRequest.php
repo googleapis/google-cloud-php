@@ -36,6 +36,20 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent List environments in the given project and location, in the form:
+     *                       "projects/{projectId}/locations/{locationId}"
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

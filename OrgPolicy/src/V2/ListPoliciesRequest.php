@@ -45,6 +45,26 @@ class ListPoliciesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The target Cloud resource that parents the set of constraints and
+     *                       policies that will be returned from this call. Must be in one of the
+     *                       following forms:
+     *                       * `projects/{project_number}`
+     *                       * `projects/{project_id}`
+     *                       * `folders/{folder_id}`
+     *                       * `organizations/{organization_id}`
+     *                       Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\ListPoliciesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

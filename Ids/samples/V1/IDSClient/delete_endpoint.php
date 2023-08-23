@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START ids_v1_generated_IDS_DeleteEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Ids\V1\IDSClient;
+use Google\Cloud\Ids\V1\Client\IDSClient;
+use Google\Cloud\Ids\V1\DeleteEndpointRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_endpoint_sample(string $formattedName): void
     // Create a client.
     $iDSClient = new IDSClient();
 
+    // Prepare the request message.
+    $request = (new DeleteEndpointRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $iDSClient->deleteEndpoint($formattedName);
+        $response = $iDSClient->deleteEndpoint($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

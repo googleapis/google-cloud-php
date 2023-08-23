@@ -40,7 +40,7 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $targetPoolResource = new TargetPool();
 
     // Call the API and handle any network failures.

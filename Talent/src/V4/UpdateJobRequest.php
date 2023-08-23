@@ -35,6 +35,29 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Talent\V4\Job $job        Required. The Job to be updated.
+     * @param \Google\Protobuf\FieldMask  $updateMask Strongly recommended for the best service experience.
+     *
+     *                                                If [update_mask][google.cloud.talent.v4.UpdateJobRequest.update_mask] is
+     *                                                provided, only the specified fields in
+     *                                                [job][google.cloud.talent.v4.UpdateJobRequest.job] are updated. Otherwise
+     *                                                all the fields are updated.
+     *
+     *                                                A field mask to restrict the fields that are updated. Only
+     *                                                top level fields of [Job][google.cloud.talent.v4.Job] are supported.
+     *
+     * @return \Google\Cloud\Talent\V4\UpdateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Talent\V4\Job $job, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setJob($job)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

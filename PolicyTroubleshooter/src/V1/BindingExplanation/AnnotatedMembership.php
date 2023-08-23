@@ -9,21 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Details about whether the binding includes the member.
+ * Details about whether the binding includes the principal.
  *
  * Generated from protobuf message <code>google.cloud.policytroubleshooter.v1.BindingExplanation.AnnotatedMembership</code>
  */
 class AnnotatedMembership extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Indicates whether the binding includes the member.
+     * Indicates whether the binding includes the principal.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.BindingExplanation.Membership membership = 1;</code>
      */
     private $membership = 0;
     /**
-     * The relevance of the member's status to the overall determination for the
-     * binding.
+     * The relevance of the principal's status to the overall determination for
+     * the binding.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.HeuristicRelevance relevance = 2;</code>
      */
@@ -36,10 +36,10 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $membership
-     *           Indicates whether the binding includes the member.
+     *           Indicates whether the binding includes the principal.
      *     @type int $relevance
-     *           The relevance of the member's status to the overall determination for the
-     *           binding.
+     *           The relevance of the principal's status to the overall determination for
+     *           the binding.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +48,7 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the binding includes the member.
+     * Indicates whether the binding includes the principal.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.BindingExplanation.Membership membership = 1;</code>
      * @return int
@@ -59,7 +59,7 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the binding includes the member.
+     * Indicates whether the binding includes the principal.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.BindingExplanation.Membership membership = 1;</code>
      * @param int $var
@@ -74,8 +74,8 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relevance of the member's status to the overall determination for the
-     * binding.
+     * The relevance of the principal's status to the overall determination for
+     * the binding.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.HeuristicRelevance relevance = 2;</code>
      * @return int
@@ -86,8 +86,8 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relevance of the member's status to the overall determination for the
-     * binding.
+     * The relevance of the principal's status to the overall determination for
+     * the binding.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.HeuristicRelevance relevance = 2;</code>
      * @param int $var

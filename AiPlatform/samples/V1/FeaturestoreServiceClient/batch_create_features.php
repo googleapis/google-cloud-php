@@ -25,11 +25,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreService_BatchCreateFeatures_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesRequest;
 use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesResponse;
+use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateFeatureRequest;
 use Google\Cloud\AIPlatform\V1\Feature;
 use Google\Cloud\AIPlatform\V1\Feature\ValueType;
-use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -69,11 +70,14 @@ function batch_create_features_sample(
         ->setFeature($requestsFeature)
         ->setFeatureId($requestsFeatureId);
     $requests = [$createFeatureRequest,];
+    $request = (new BatchCreateFeaturesRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->batchCreateFeatures($formattedParent, $requests);
+        $response = $featurestoreServiceClient->batchCreateFeatures($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

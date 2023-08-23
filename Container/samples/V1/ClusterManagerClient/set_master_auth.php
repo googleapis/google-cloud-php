@@ -41,7 +41,7 @@ function set_master_auth_sample(int $action): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $update = new MasterAuth();
 
     // Call the API and handle any network failures.

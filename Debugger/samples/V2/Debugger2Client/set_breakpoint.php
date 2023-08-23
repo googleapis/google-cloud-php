@@ -40,7 +40,7 @@ function set_breakpoint_sample(string $debuggeeId, string $clientVersion): void
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $breakpoint = new Breakpoint();
 
     // Call the API and handle any network failures.

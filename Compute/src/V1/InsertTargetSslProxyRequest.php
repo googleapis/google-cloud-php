@@ -35,6 +35,21 @@ class InsertTargetSslProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_ssl_proxy_resource = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\TargetSslProxy $targetSslProxyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertTargetSslProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\TargetSslProxy $targetSslProxyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetSslProxyResource($targetSslProxyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

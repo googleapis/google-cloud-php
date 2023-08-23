@@ -8,8 +8,8 @@ use UnexpectedValueException;
 
 /**
  * Available egress settings.
- * This controls what traffic is diverted through the VPC Access Connector
- * resource. By default PRIVATE_RANGES_ONLY will be used.
+ * This controls what traffic is diverted through the Serverless VPC Access
+ * connector resource. By default, PRIVATE_RANGES_ONLY is used.
  *
  * Protobuf type <code>google.cloud.functions.v1.CloudFunction.VpcConnectorEgressSettings</code>
  */
@@ -22,14 +22,15 @@ class VpcConnectorEgressSettings
      */
     const VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED = 0;
     /**
-     * Use the VPC Access Connector only for private IP space from RFC1918.
+     * Use the Serverless VPC Access connector only for private IP space from
+     * RFC1918.
      *
      * Generated from protobuf enum <code>PRIVATE_RANGES_ONLY = 1;</code>
      */
     const PRIVATE_RANGES_ONLY = 1;
     /**
-     * Force the use of VPC Access Connector for all egress traffic from the
-     * function.
+     * Force the use of Serverless VPC Access connector for all egress traffic
+     * from the function.
      *
      * Generated from protobuf enum <code>ALL_TRAFFIC = 2;</code>
      */

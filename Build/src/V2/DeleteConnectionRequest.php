@@ -38,6 +38,21 @@ class DeleteConnectionRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string $name Required. The name of the Connection to delete.
+     *                     Format: `projects/&#42;/locations/&#42;/connections/*`. Please see
+     *                     {@see RepositoryManagerClient::connectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Build\V2\DeleteConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

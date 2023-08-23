@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmmigration_v1_generated_VmMigration_CreateDatacenterConnector_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
+use Google\Cloud\VMMigration\V1\CreateDatacenterConnectorRequest;
 use Google\Cloud\VMMigration\V1\DatacenterConnector;
-use Google\Cloud\VMMigration\V1\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
@@ -48,15 +49,15 @@ function create_datacenter_connector_sample(
 
     // Prepare the request message.
     $datacenterConnector = new DatacenterConnector();
+    $request = (new CreateDatacenterConnectorRequest())
+        ->setParent($formattedParent)
+        ->setDatacenterConnectorId($datacenterConnectorId)
+        ->setDatacenterConnector($datacenterConnector);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmMigrationClient->createDatacenterConnector(
-            $formattedParent,
-            $datacenterConnectorId,
-            $datacenterConnector
-        );
+        $response = $vmMigrationClient->createDatacenterConnector($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

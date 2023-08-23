@@ -42,7 +42,7 @@ function create_conversation_model_evaluation_sample(string $formattedParent): v
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $conversationModelEvaluation = new ConversationModelEvaluation();
 
     // Call the API and handle any network failures.

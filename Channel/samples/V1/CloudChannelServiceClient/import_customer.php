@@ -63,7 +63,7 @@ function import_customer_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $customerIdentity = (new CustomerIdentityOneof())
         ->setDomain($customerIdentityDomain);
 

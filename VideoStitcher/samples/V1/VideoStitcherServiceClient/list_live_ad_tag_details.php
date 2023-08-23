@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_ListLiveAdTagDetails_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\ListLiveAdTagDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
 
 /**
  * Return the list of ad tag details for the specified live session.
@@ -40,10 +41,14 @@ function list_live_ad_tag_details_sample(string $formattedParent): void
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListLiveAdTagDetailsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $videoStitcherServiceClient->listLiveAdTagDetails($formattedParent);
+        $response = $videoStitcherServiceClient->listLiveAdTagDetails($request);
 
         /** @var LiveAdTagDetail $element */
         foreach ($response as $element) {

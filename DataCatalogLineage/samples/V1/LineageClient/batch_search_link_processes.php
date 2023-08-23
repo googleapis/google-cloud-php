@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datalineage_v1_generated_Lineage_BatchSearchLinkProcesses_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\BatchSearchLinkProcessesRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessLinks;
 
 /**
@@ -61,11 +62,14 @@ function batch_search_link_processes_sample(string $formattedParent, string $lin
 
     // Prepare the request message.
     $links = [$linksElement,];
+    $request = (new BatchSearchLinkProcessesRequest())
+        ->setParent($formattedParent)
+        ->setLinks($links);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $lineageClient->batchSearchLinkProcesses($formattedParent, $links);
+        $response = $lineageClient->batchSearchLinkProcesses($request);
 
         /** @var ProcessLinks $element */
         foreach ($response as $element) {

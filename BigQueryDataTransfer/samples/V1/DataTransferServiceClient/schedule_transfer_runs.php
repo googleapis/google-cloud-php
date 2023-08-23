@@ -45,7 +45,7 @@ function schedule_transfer_runs_sample(string $formattedParent): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $startTime = new Timestamp();
     $endTime = new Timestamp();
 

@@ -54,7 +54,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     private $location = '';
     /**
-     * (Postgres only) Whether point in time recovery is enabled.
+     * Whether point in time recovery is enabled.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue point_in_time_recovery_enabled = 7;</code>
      */
@@ -94,7 +94,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      *     @type string $location
      *           Location of the backup
      *     @type \Google\Protobuf\BoolValue $point_in_time_recovery_enabled
-     *           (Postgres only) Whether point in time recovery is enabled.
+     *           Whether point in time recovery is enabled.
      *     @type \Google\Protobuf\Int32Value $transaction_log_retention_days
      *           The number of days of transaction logs we retain for point in time
      *           restore, from 1-7.
@@ -381,7 +381,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Postgres only) Whether point in time recovery is enabled.
+     * Whether point in time recovery is enabled.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue point_in_time_recovery_enabled = 7;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -404,7 +404,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getPointInTimeRecoveryEnabled()</code>
 
-     * (Postgres only) Whether point in time recovery is enabled.
+     * Whether point in time recovery is enabled.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue point_in_time_recovery_enabled = 7;</code>
      * @return bool|null
@@ -415,7 +415,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Postgres only) Whether point in time recovery is enabled.
+     * Whether point in time recovery is enabled.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue point_in_time_recovery_enabled = 7;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -432,7 +432,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * (Postgres only) Whether point in time recovery is enabled.
+     * Whether point in time recovery is enabled.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue point_in_time_recovery_enabled = 7;</code>
      * @param bool|null $var

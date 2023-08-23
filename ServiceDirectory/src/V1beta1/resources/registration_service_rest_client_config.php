@@ -126,6 +126,11 @@ return [
                         'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:getIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/namespaces/*/workloads/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -200,6 +205,11 @@ return [
                         'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/namespaces/*/workloads/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -217,6 +227,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/namespaces/*/workloads/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START gkemulticloud_v1_generated_AwsClusters_GenerateAwsAccessToken_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenResponse;
 
 /**
@@ -47,10 +48,14 @@ function generate_aws_access_token_sample(string $formattedAwsCluster): void
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
+    // Prepare the request message.
+    $request = (new GenerateAwsAccessTokenRequest())
+        ->setAwsCluster($formattedAwsCluster);
+
     // Call the API and handle any network failures.
     try {
         /** @var GenerateAwsAccessTokenResponse $response */
-        $response = $awsClustersClient->generateAwsAccessToken($formattedAwsCluster);
+        $response = $awsClustersClient->generateAwsAccessToken($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

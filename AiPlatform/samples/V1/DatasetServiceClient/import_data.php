@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_DatasetService_ImportData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\ImportDataConfig;
+use Google\Cloud\AIPlatform\V1\ImportDataRequest;
 use Google\Cloud\AIPlatform\V1\ImportDataResponse;
 use Google\Rpc\Status;
 
@@ -51,11 +52,14 @@ function import_data_sample(string $formattedName, string $importConfigsImportSc
     $importDataConfig = (new ImportDataConfig())
         ->setImportSchemaUri($importConfigsImportSchemaUri);
     $importConfigs = [$importDataConfig,];
+    $request = (new ImportDataRequest())
+        ->setName($formattedName)
+        ->setImportConfigs($importConfigs);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datasetServiceClient->importData($formattedName, $importConfigs);
+        $response = $datasetServiceClient->importData($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexEndpointService_DeployIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\DeployIndexRequest;
 use Google\Cloud\AIPlatform\V1\DeployIndexResponse;
 use Google\Cloud\AIPlatform\V1\DeployedIndex;
-use Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -59,11 +60,14 @@ function deploy_index_sample(
     $deployedIndex = (new DeployedIndex())
         ->setId($deployedIndexId)
         ->setIndex($formattedDeployedIndexIndex);
+    $request = (new DeployIndexRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint)
+        ->setDeployedIndex($deployedIndex);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $indexEndpointServiceClient->deployIndex($formattedIndexEndpoint, $deployedIndex);
+        $response = $indexEndpointServiceClient->deployIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

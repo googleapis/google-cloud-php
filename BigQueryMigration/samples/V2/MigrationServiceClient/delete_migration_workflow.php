@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerymigration_v2_generated_MigrationService_DeleteMigrationWorkflow_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\Client\MigrationServiceClient;
+use Google\Cloud\BigQuery\Migration\V2\DeleteMigrationWorkflowRequest;
 
 /**
  * Deletes a migration workflow by name.
@@ -38,9 +39,13 @@ function delete_migration_workflow_sample(string $formattedName): void
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteMigrationWorkflowRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $migrationServiceClient->deleteMigrationWorkflow($formattedName);
+        $migrationServiceClient->deleteMigrationWorkflow($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

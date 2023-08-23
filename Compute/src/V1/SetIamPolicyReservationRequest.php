@@ -41,6 +41,25 @@ class SetIamPolicyReservationRequest extends \Google\Protobuf\Internal\Message
     private $zone_set_policy_request_resource = null;
 
     /**
+     * @param string                                        $project                      Project ID for this request.
+     * @param string                                        $zone                         The name of the zone for this request.
+     * @param string                                        $resource                     Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\ZoneSetPolicyRequest $zoneSetPolicyRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetIamPolicyReservationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $resource, \Google\Cloud\Compute\V1\ZoneSetPolicyRequest $zoneSetPolicyRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setResource($resource)
+            ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

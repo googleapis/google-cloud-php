@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\StopChannelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function stop_channel_sample(string $formattedName): void
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
+    // Prepare the request message.
+    $request = (new StopChannelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $livestreamServiceClient->stopChannel($formattedName);
+        $response = $livestreamServiceClient->stopChannel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

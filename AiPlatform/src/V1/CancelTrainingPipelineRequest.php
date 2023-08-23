@@ -26,6 +26,22 @@ class CancelTrainingPipelineRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the TrainingPipeline to cancel.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
+     *                     Please see {@see PipelineServiceClient::trainingPipelineName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CancelTrainingPipelineRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

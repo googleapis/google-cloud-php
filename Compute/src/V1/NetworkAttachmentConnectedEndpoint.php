@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The IP address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     * The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
@@ -28,7 +28,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     private $project_id_or_num = null;
     /**
-     * Alias IP ranges from the same subnetwork
+     * Alias IP ranges from the same subnetwork.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_cidr_ranges = 117184788;</code>
      */
@@ -54,11 +54,11 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ip_address
-     *           The IP address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     *           The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
      *     @type string $project_id_or_num
      *           The project id or number of the interface to which the IP was assigned.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_cidr_ranges
-     *           Alias IP ranges from the same subnetwork
+     *           Alias IP ranges from the same subnetwork.
      *     @type string $status
      *           The status of a connected endpoint to this network attachment.
      *           Check the Status enum for the list of possible values.
@@ -72,7 +72,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The IP address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     * The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
@@ -93,7 +93,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The IP address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     * The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
@@ -144,7 +144,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Alias IP ranges from the same subnetwork
+     * Alias IP ranges from the same subnetwork.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_cidr_ranges = 117184788;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -155,7 +155,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Alias IP ranges from the same subnetwork
+     * Alias IP ranges from the same subnetwork.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_cidr_ranges = 117184788;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

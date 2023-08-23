@@ -33,6 +33,12 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
      */
     private $update_time = null;
+    /**
+     * Output only. Service account associated with the BigQuery Connection.
+     *
+     * Generated from protobuf field <code>string managed_access_identity = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $managed_access_identity = '';
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *           Additional information about the current state.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Last update time of the status.
+     *     @type string $managed_access_identity
+     *           Output only. Service account associated with the BigQuery Connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +145,32 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Service account associated with the BigQuery Connection.
+     *
+     * Generated from protobuf field <code>string managed_access_identity = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getManagedAccessIdentity()
+    {
+        return $this->managed_access_identity;
+    }
+
+    /**
+     * Output only. Service account associated with the BigQuery Connection.
+     *
+     * Generated from protobuf field <code>string managed_access_identity = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setManagedAccessIdentity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->managed_access_identity = $var;
 
         return $this;
     }

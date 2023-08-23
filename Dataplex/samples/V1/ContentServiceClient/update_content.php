@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_ContentService_UpdateContent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataplex\V1\Client\ContentServiceClient;
 use Google\Cloud\Dataplex\V1\Content;
-use Google\Cloud\Dataplex\V1\ContentServiceClient;
+use Google\Cloud\Dataplex\V1\UpdateContentRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -46,11 +47,14 @@ function update_content_sample(string $contentPath, string $contentDataText): vo
     $content = (new Content())
         ->setPath($contentPath)
         ->setDataText($contentDataText);
+    $request = (new UpdateContentRequest())
+        ->setUpdateMask($updateMask)
+        ->setContent($content);
 
     // Call the API and handle any network failures.
     try {
         /** @var Content $response */
-        $response = $contentServiceClient->updateContent($updateMask, $content);
+        $response = $contentServiceClient->updateContent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

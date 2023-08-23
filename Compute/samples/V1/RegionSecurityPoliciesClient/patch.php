@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified policy with the data included in the request. To clear fields in the rule, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
+ * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
  *
  * @param string $project        Project ID for this request.
  * @param string $region         Name of the region scoping this request.
@@ -41,7 +41,7 @@ function patch_sample(string $project, string $region, string $securityPolicy): 
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $securityPolicyResource = new SecurityPolicy();
 
     // Call the API and handle any network failures.

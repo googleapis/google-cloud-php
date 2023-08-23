@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Evaluates the given ProcessorVersion against the supplied documents.
+ * Evaluates the given
+ * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] against the
+ * supplied documents.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.EvaluateProcessorVersionRequest</code>
  */
@@ -31,6 +33,23 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig evaluation_documents = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $evaluation_documents = null;
+
+    /**
+     * @param string $processorVersion Required. The resource name of the
+     *                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     *                                 evaluate.
+     *                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     *                                 Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $processorVersion): self
+    {
+        return (new self())
+            ->setProcessorVersion($processorVersion);
+    }
 
     /**
      * Constructor.

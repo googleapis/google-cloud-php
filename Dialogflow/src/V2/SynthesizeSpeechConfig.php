@@ -17,11 +17,11 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal
-     * native speed supported by the specific voice. 2.0 is twice as fast, and
-     * 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any
-     * other values < 0.25 or > 4.0 will return an error.
+     * native speed supported by the specific voice. 2.0 is twice as fast, and 0.5
+     * is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other
+     * values < 0.25 or > 4.0 will return an error.
      *
-     * Generated from protobuf field <code>double speaking_rate = 1;</code>
+     * Generated from protobuf field <code>double speaking_rate = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $speaking_rate = 0.0;
     /**
@@ -29,7 +29,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * semitones from the original pitch. -20 means decrease 20 semitones from the
      * original pitch.
      *
-     * Generated from protobuf field <code>double pitch = 2;</code>
+     * Generated from protobuf field <code>double pitch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $pitch = 0.0;
     /**
@@ -42,7 +42,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * to exceed +10 (dB) as there's usually no effective increase in loudness for
      * any value greater than that.
      *
-     * Generated from protobuf field <code>double volume_gain_db = 3;</code>
+     * Generated from protobuf field <code>double volume_gain_db = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $volume_gain_db = 0.0;
     /**
@@ -50,13 +50,13 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * applied on (post synthesized) text to speech. Effects are applied on top of
      * each other in the order they are given.
      *
-     * Generated from protobuf field <code>repeated string effects_profile_id = 5;</code>
+     * Generated from protobuf field <code>repeated string effects_profile_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $effects_profile_id;
     /**
      * Optional. The desired voice of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $voice = null;
 
@@ -68,9 +68,9 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type float $speaking_rate
      *           Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal
-     *           native speed supported by the specific voice. 2.0 is twice as fast, and
-     *           0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any
-     *           other values < 0.25 or > 4.0 will return an error.
+     *           native speed supported by the specific voice. 2.0 is twice as fast, and 0.5
+     *           is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other
+     *           values < 0.25 or > 4.0 will return an error.
      *     @type float $pitch
      *           Optional. Speaking pitch, in the range [-20.0, 20.0]. 20 means increase 20
      *           semitones from the original pitch. -20 means decrease 20 semitones from the
@@ -99,11 +99,11 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal
-     * native speed supported by the specific voice. 2.0 is twice as fast, and
-     * 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any
-     * other values < 0.25 or > 4.0 will return an error.
+     * native speed supported by the specific voice. 2.0 is twice as fast, and 0.5
+     * is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other
+     * values < 0.25 or > 4.0 will return an error.
      *
-     * Generated from protobuf field <code>double speaking_rate = 1;</code>
+     * Generated from protobuf field <code>double speaking_rate = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getSpeakingRate()
@@ -113,11 +113,11 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal
-     * native speed supported by the specific voice. 2.0 is twice as fast, and
-     * 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any
-     * other values < 0.25 or > 4.0 will return an error.
+     * native speed supported by the specific voice. 2.0 is twice as fast, and 0.5
+     * is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other
+     * values < 0.25 or > 4.0 will return an error.
      *
-     * Generated from protobuf field <code>double speaking_rate = 1;</code>
+     * Generated from protobuf field <code>double speaking_rate = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -134,7 +134,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * semitones from the original pitch. -20 means decrease 20 semitones from the
      * original pitch.
      *
-     * Generated from protobuf field <code>double pitch = 2;</code>
+     * Generated from protobuf field <code>double pitch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getPitch()
@@ -147,7 +147,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * semitones from the original pitch. -20 means decrease 20 semitones from the
      * original pitch.
      *
-     * Generated from protobuf field <code>double pitch = 2;</code>
+     * Generated from protobuf field <code>double pitch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -169,7 +169,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * to exceed +10 (dB) as there's usually no effective increase in loudness for
      * any value greater than that.
      *
-     * Generated from protobuf field <code>double volume_gain_db = 3;</code>
+     * Generated from protobuf field <code>double volume_gain_db = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getVolumeGainDb()
@@ -187,7 +187,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * to exceed +10 (dB) as there's usually no effective increase in loudness for
      * any value greater than that.
      *
-     * Generated from protobuf field <code>double volume_gain_db = 3;</code>
+     * Generated from protobuf field <code>double volume_gain_db = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -204,7 +204,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * applied on (post synthesized) text to speech. Effects are applied on top of
      * each other in the order they are given.
      *
-     * Generated from protobuf field <code>repeated string effects_profile_id = 5;</code>
+     * Generated from protobuf field <code>repeated string effects_profile_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEffectsProfileId()
@@ -217,7 +217,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * applied on (post synthesized) text to speech. Effects are applied on top of
      * each other in the order they are given.
      *
-     * Generated from protobuf field <code>repeated string effects_profile_id = 5;</code>
+     * Generated from protobuf field <code>repeated string effects_profile_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -232,7 +232,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The desired voice of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\VoiceSelectionParams|null
      */
     public function getVoice()
@@ -253,7 +253,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The desired voice of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\VoiceSelectionParams $var
      * @return $this
      */

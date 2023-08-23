@@ -57,7 +57,7 @@ function create_agent_pool_sample(
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $agentPool = (new AgentPool())
         ->setName($agentPoolName);
 

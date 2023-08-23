@@ -36,6 +36,25 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
     private $certificate = null;
 
     /**
+     * @param string                                          $parent        Required. The parent resource of the certificate. Must be in the format
+     *                                                                       `projects/&#42;/locations/*`. Please see
+     *                                                                       {@see CertificateManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\CertificateManager\V1\Certificate $certificate   Required. A definition of the certificate to create.
+     * @param string                                          $certificateId Required. A user-provided name of the certificate.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\CreateCertificateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\CertificateManager\V1\Certificate $certificate, string $certificateId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCertificate($certificate)
+            ->setCertificateId($certificateId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

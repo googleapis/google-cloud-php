@@ -30,6 +30,23 @@ class UpdateExternalSystemRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\ExternalSystem $externalSystem Required. The external system resource to update.
+     * @param \Google\Protobuf\FieldMask                     $updateMask     The FieldMask to use when updating the external system resource.
+     *
+     *                                                                       If empty all mutable fields will be updated.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\ExternalSystem $externalSystem, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setExternalSystem($externalSystem)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

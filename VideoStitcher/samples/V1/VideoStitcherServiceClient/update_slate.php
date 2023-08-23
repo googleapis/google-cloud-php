@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START videostitcher_v1_generated_VideoStitcherService_UpdateSlate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
 use Google\Cloud\Video\Stitcher\V1\Slate;
-use Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient;
+use Google\Cloud\Video\Stitcher\V1\UpdateSlateRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -47,11 +48,14 @@ function update_slate_sample(): void
     // Prepare the request message.
     $slate = new Slate();
     $updateMask = new FieldMask();
+    $request = (new UpdateSlateRequest())
+        ->setSlate($slate)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->updateSlate($slate, $updateMask);
+        $response = $videoStitcherServiceClient->updateSlate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START essentialcontacts_v1_generated_EssentialContactsService_GetContact_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\EssentialContacts\V1\Client\EssentialContactsServiceClient;
 use Google\Cloud\EssentialContacts\V1\Contact;
-use Google\Cloud\EssentialContacts\V1\EssentialContactsServiceClient;
+use Google\Cloud\EssentialContacts\V1\GetContactRequest;
 
 /**
  * Gets a single contact.
@@ -41,10 +42,14 @@ function get_contact_sample(string $formattedName): void
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetContactRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Contact $response */
-        $response = $essentialContactsServiceClient->getContact($formattedName);
+        $response = $essentialContactsServiceClient->getContact($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

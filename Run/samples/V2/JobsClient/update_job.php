@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START run_v2_generated_Jobs_UpdateJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\Client\JobsClient;
 use Google\Cloud\Run\V2\ExecutionTemplate;
 use Google\Cloud\Run\V2\Job;
-use Google\Cloud\Run\V2\JobsClient;
 use Google\Cloud\Run\V2\TaskTemplate;
+use Google\Cloud\Run\V2\UpdateJobRequest;
 use Google\Rpc\Status;
 
 /**
@@ -51,11 +52,13 @@ function update_job_sample(): void
         ->setTemplate($jobTemplateTemplate);
     $job = (new Job())
         ->setTemplate($jobTemplate);
+    $request = (new UpdateJobRequest())
+        ->setJob($job);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $jobsClient->updateJob($job);
+        $response = $jobsClient->updateJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

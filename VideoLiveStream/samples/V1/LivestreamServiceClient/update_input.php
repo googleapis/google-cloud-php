@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START livestream_v1_generated_LivestreamService_UpdateInput_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
 use Google\Cloud\Video\LiveStream\V1\Input;
-use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+use Google\Cloud\Video\LiveStream\V1\UpdateInputRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,11 +46,13 @@ function update_input_sample(): void
 
     // Prepare the request message.
     $input = new Input();
+    $request = (new UpdateInputRequest())
+        ->setInput($input);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $livestreamServiceClient->updateInput($input);
+        $response = $livestreamServiceClient->updateInput($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

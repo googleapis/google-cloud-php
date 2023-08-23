@@ -62,7 +62,7 @@ function create_reference_image_sample(string $formattedParent, string $referenc
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $referenceImage = (new ReferenceImage())
         ->setUri($referenceImageUri);
 

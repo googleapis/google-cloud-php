@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START analyticshub_v1_generated_AnalyticsHubService_ListOrgDataExchanges_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\AnalyticsHubServiceClient;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
 
 /**
  * Lists all data exchanges from projects in a given organization and
@@ -40,10 +41,14 @@ function list_org_data_exchanges_sample(string $organization): void
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListOrgDataExchangesRequest())
+        ->setOrganization($organization);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsHubServiceClient->listOrgDataExchanges($organization);
+        $response = $analyticsHubServiceClient->listOrgDataExchanges($request);
 
         /** @var DataExchange $element */
         foreach ($response as $element) {

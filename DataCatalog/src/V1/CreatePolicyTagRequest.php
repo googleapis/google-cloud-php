@@ -30,6 +30,22 @@ class CreatePolicyTagRequest extends \Google\Protobuf\Internal\Message
     private $policy_tag = null;
 
     /**
+     * @param string                                 $parent    Required. Resource name of the taxonomy that the policy tag will belong to. Please see
+     *                                                          {@see PolicyTagManagerClient::taxonomyName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\V1\PolicyTag $policyTag The policy tag to create.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\CreatePolicyTagRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\DataCatalog\V1\PolicyTag $policyTag): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPolicyTag($policyTag);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

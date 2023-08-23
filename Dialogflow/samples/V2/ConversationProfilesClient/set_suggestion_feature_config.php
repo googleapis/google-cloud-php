@@ -64,7 +64,7 @@ function set_suggestion_feature_config_sample(
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $suggestionFeatureConfig = new SuggestionFeatureConfig();
 
     // Call the API and handle any network failures.

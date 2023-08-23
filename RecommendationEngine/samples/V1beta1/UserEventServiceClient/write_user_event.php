@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommendationengine_v1beta1_generated_UserEventService_WriteUserEvent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\UserEventServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
-use Google\Cloud\RecommendationEngine\V1beta1\UserEventServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\UserInfo;
+use Google\Cloud\RecommendationEngine\V1beta1\WriteUserEventRequest;
 
 /**
  * Writes a single user event.
@@ -74,11 +75,14 @@ function write_user_event_sample(
     $userEvent = (new UserEvent())
         ->setEventType($userEventEventType)
         ->setUserInfo($userEventUserInfo);
+    $request = (new WriteUserEventRequest())
+        ->setParent($formattedParent)
+        ->setUserEvent($userEvent);
 
     // Call the API and handle any network failures.
     try {
         /** @var UserEvent $response */
-        $response = $userEventServiceClient->writeUserEvent($formattedParent, $userEvent);
+        $response = $userEventServiceClient->writeUserEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

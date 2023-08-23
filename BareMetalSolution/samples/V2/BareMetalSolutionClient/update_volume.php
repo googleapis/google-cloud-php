@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_UpdateVolume_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\UpdateVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\Volume;
 use Google\Rpc\Status;
 
@@ -45,11 +46,13 @@ function update_volume_sample(): void
 
     // Prepare the request message.
     $volume = new Volume();
+    $request = (new UpdateVolumeRequest())
+        ->setVolume($volume);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $bareMetalSolutionClient->updateVolume($volume);
+        $response = $bareMetalSolutionClient->updateVolume($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

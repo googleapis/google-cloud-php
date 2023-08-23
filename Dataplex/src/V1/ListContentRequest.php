@@ -53,6 +53,21 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent lake:
+     *                       projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     *                       Please see {@see ContentServiceClient::lakeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListContentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

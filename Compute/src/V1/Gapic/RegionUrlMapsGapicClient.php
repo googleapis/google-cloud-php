@@ -87,6 +87,9 @@ use Google\Cloud\Compute\V1\ValidateRegionUrlMapRequest;
  *     $regionUrlMapsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionUrlMapsClient} to use the new surface.
  */
 class RegionUrlMapsGapicClient
 {

@@ -82,6 +82,10 @@ use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
  *     $globalPublicDelegatedPrefixesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\GlobalPublicDelegatedPrefixesClient} to use the
+ * new surface.
  */
 class GlobalPublicDelegatedPrefixesGapicClient
 {

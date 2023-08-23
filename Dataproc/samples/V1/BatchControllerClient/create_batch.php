@@ -40,7 +40,7 @@ function create_batch_sample(string $formattedParent): void
     // Create a client.
     $batchControllerClient = new BatchControllerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $batch = new Batch();
 
     // Call the API and handle any network failures.

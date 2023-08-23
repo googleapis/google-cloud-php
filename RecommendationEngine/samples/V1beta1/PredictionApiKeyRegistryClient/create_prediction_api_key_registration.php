@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommendationengine_v1beta1_generated_PredictionApiKeyRegistry_CreatePredictionApiKeyRegistration_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\PredictionApiKeyRegistryClient;
+use Google\Cloud\RecommendationEngine\V1beta1\CreatePredictionApiKeyRegistrationRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
-use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistryClient;
 
 /**
  * Register an API key for use with predict method.
@@ -41,14 +42,14 @@ function create_prediction_api_key_registration_sample(string $formattedParent):
 
     // Prepare the request message.
     $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
+    $request = (new CreatePredictionApiKeyRegistrationRequest())
+        ->setParent($formattedParent)
+        ->setPredictionApiKeyRegistration($predictionApiKeyRegistration);
 
     // Call the API and handle any network failures.
     try {
         /** @var PredictionApiKeyRegistration $response */
-        $response = $predictionApiKeyRegistryClient->createPredictionApiKeyRegistration(
-            $formattedParent,
-            $predictionApiKeyRegistration
-        );
+        $response = $predictionApiKeyRegistryClient->createPredictionApiKeyRegistration($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

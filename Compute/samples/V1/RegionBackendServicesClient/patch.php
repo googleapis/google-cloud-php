@@ -41,7 +41,7 @@ function patch_sample(string $backendService, string $project, string $region): 
     // Create a client.
     $regionBackendServicesClient = new RegionBackendServicesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $backendServiceResource = new BackendService();
 
     // Call the API and handle any network failures.

@@ -29,6 +29,19 @@ class GetRuleFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $priority = null;
 
     /**
+     * @param string $firewallPolicy Name of the firewall policy to which the queried rule belongs.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRuleFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $firewallPolicy): self
+    {
+        return (new self())
+            ->setFirewallPolicy($firewallPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

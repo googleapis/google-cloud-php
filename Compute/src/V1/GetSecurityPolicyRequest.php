@@ -29,6 +29,21 @@ class GetSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     private $security_policy = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $securityPolicy Name of the security policy to get.
+     *
+     * @return \Google\Cloud\Compute\V1\GetSecurityPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $securityPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSecurityPolicy($securityPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

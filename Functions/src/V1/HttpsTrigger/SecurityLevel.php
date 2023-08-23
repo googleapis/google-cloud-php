@@ -7,9 +7,9 @@ namespace Google\Cloud\Functions\V1\HttpsTrigger;
 use UnexpectedValueException;
 
 /**
- * Available security level settings.
+ * Available security-level settings.
  * This controls the methods to enforce security (HTTPS) on a URL.
- * If unspecified, SECURE_OPTIONAL will be used.
+ * If unspecified, SECURE_OPTIONAL is used.
  *
  * Protobuf type <code>google.cloud.functions.v1.HttpsTrigger.SecurityLevel</code>
  */

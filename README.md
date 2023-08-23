@@ -131,8 +131,7 @@ $spanner = new SpannerClient([
 
 ## PHP Versions Supported
 
-All client libraries support PHP 5.6 and above, with the exception of
-[Google Cloud Compute](Compute), which supports PHP 7.0 and above.
+All client libraries support PHP 7.4 and above.
 
 ## Versioning
 

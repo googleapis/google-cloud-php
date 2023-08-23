@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeregistry_v1_generated_Registry_RollbackApiSpec_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ApigeeRegistry\V1\ApiSpec;
-use Google\Cloud\ApigeeRegistry\V1\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\Client\RegistryClient;
+use Google\Cloud\ApigeeRegistry\V1\RollbackApiSpecRequest;
 
 /**
  * Sets the current revision to a specified prior revision.
@@ -43,10 +44,15 @@ function rollback_api_spec_sample(string $formattedName, string $revisionId): vo
     // Create a client.
     $registryClient = new RegistryClient();
 
+    // Prepare the request message.
+    $request = (new RollbackApiSpecRequest())
+        ->setName($formattedName)
+        ->setRevisionId($revisionId);
+
     // Call the API and handle any network failures.
     try {
         /** @var ApiSpec $response */
-        $response = $registryClient->rollbackApiSpec($formattedName, $revisionId);
+        $response = $registryClient->rollbackApiSpec($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

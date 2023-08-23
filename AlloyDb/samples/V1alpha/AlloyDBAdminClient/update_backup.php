@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Updates the parameters of a single Backup.
  *
  * @param string $formattedBackupClusterName The full resource name of the backup source cluster
- *                                           (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>). Please see
+ *                                           (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}). Please see
  *                                           {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
  */
 function update_backup_sample(string $formattedBackupClusterName): void
@@ -41,7 +41,7 @@ function update_backup_sample(string $formattedBackupClusterName): void
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $backup = (new Backup())
         ->setClusterName($formattedBackupClusterName);
 

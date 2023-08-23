@@ -23,6 +23,20 @@ class DeleteChannelConnectionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the channel connection to delete. Please see
+     *                     {@see EventarcClient::channelConnectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Eventarc\V1\DeleteChannelConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

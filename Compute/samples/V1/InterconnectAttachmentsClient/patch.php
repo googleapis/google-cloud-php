@@ -41,7 +41,7 @@ function patch_sample(string $interconnectAttachment, string $project, string $r
     // Create a client.
     $interconnectAttachmentsClient = new InterconnectAttachmentsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $interconnectAttachmentResource = new InterconnectAttachment();
 
     // Call the API and handle any network failures.

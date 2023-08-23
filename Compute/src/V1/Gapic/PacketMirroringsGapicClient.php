@@ -75,6 +75,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $packetMirroringsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\PacketMirroringsClient} to use the new surface.
  */
 class PacketMirroringsGapicClient
 {

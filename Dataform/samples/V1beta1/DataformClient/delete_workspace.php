@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_DeleteWorkspace_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
 
 /**
  * Deletes a single Workspace.
@@ -37,9 +38,13 @@ function delete_workspace_sample(string $formattedName): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new DeleteWorkspaceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataformClient->deleteWorkspace($formattedName);
+        $dataformClient->deleteWorkspace($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

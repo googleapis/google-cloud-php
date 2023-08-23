@@ -49,6 +49,22 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
     private $assist_query_params = null;
 
     /**
+     * @param string $parent Required. The name of the participant to fetch suggestion for.
+     *                       Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                       {@see ParticipantsClient::participantName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

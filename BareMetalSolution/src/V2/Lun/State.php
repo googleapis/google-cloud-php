@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>DELETING = 4;</code>
      */
     const DELETING = 4;
+    /**
+     * The LUN is in cool off state. It will be deleted after `expire_time`.
+     *
+     * Generated from protobuf enum <code>COOL_OFF = 5;</code>
+     */
+    const COOL_OFF = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::UPDATING => 'UPDATING',
         self::READY => 'READY',
         self::DELETING => 'DELETING',
+        self::COOL_OFF => 'COOL_OFF',
     ];
 
     public static function name($value)

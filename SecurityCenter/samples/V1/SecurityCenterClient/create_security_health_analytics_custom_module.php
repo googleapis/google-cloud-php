@@ -44,7 +44,7 @@ function create_security_health_analytics_custom_module_sample(string $formatted
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
 
     // Call the API and handle any network failures.

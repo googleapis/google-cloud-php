@@ -38,7 +38,7 @@ function update_account_sample(string $accountDisplayName): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $account = (new Account())
         ->setDisplayName($accountDisplayName);
     $updateMask = new FieldMask();

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datalineage_v1_generated_Lineage_CreateProcess_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\CreateProcessRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\Process;
 
 /**
@@ -41,11 +42,14 @@ function create_process_sample(string $formattedParent): void
 
     // Prepare the request message.
     $process = new Process();
+    $request = (new CreateProcessRequest())
+        ->setParent($formattedParent)
+        ->setProcess($process);
 
     // Call the API and handle any network failures.
     try {
         /** @var Process $response */
-        $response = $lineageClient->createProcess($formattedParent, $process);
+        $response = $lineageClient->createProcess($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

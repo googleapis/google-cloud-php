@@ -69,6 +69,22 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the
+     *                       [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     *                       `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`. Please see
+     *                       {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

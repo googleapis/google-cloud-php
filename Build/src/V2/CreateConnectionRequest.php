@@ -39,6 +39,28 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $connection_id = '';
 
     /**
+     * @param string                            $parent       Required. Project and location where the connection will be created.
+     *                                                        Format: `projects/&#42;/locations/*`. Please see
+     *                                                        {@see RepositoryManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Build\V2\Connection $connection   Required. The Connection to create.
+     * @param string                            $connectionId Required. The ID to use for the Connection, which will become the final
+     *                                                        component of the Connection's resource name. Names must be unique
+     *                                                        per-project per-location. Allows alphanumeric characters and any of
+     *                                                        -._~%!$&'()*+,;=&#64;.
+     *
+     * @return \Google\Cloud\Build\V2\CreateConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Build\V2\Connection $connection, string $connectionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConnection($connection)
+            ->setConnectionId($connectionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

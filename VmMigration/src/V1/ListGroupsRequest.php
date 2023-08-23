@@ -53,6 +53,20 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of groups. Please see
+     *                       {@see VmMigrationClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\ListGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

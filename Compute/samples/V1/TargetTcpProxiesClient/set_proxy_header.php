@@ -40,7 +40,7 @@ function set_proxy_header_sample(string $project, string $targetTcpProxy): void
     // Create a client.
     $targetTcpProxiesClient = new TargetTcpProxiesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $targetTcpProxiesSetProxyHeaderRequestResource = new TargetTcpProxiesSetProxyHeaderRequest();
 
     // Call the API and handle any network failures.

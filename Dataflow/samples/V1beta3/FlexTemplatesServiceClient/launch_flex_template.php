@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataflow_v1beta3_generated_FlexTemplatesService_LaunchFlexTemplate_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataflow\V1beta3\FlexTemplatesServiceClient;
+use Google\Cloud\Dataflow\V1beta3\Client\FlexTemplatesServiceClient;
+use Google\Cloud\Dataflow\V1beta3\LaunchFlexTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\LaunchFlexTemplateResponse;
 
 /**
@@ -41,10 +42,13 @@ function launch_flex_template_sample(): void
     // Create a client.
     $flexTemplatesServiceClient = new FlexTemplatesServiceClient();
 
+    // Prepare the request message.
+    $request = new LaunchFlexTemplateRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var LaunchFlexTemplateResponse $response */
-        $response = $flexTemplatesServiceClient->launchFlexTemplate();
+        $response = $flexTemplatesServiceClient->launchFlexTemplate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -37,6 +37,25 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
     private $time_series;
 
     /**
+     * @param string $tensorboard Required. The resource name of the Tensorboard containing
+     *                            TensorboardTimeSeries to read data from. Format:
+     *                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
+     *                            The TensorboardTimeSeries referenced by
+     *                            [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     *                            must be sub resources of this Tensorboard. Please see
+     *                            {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchReadTensorboardTimeSeriesDataRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tensorboard): self
+    {
+        return (new self())
+            ->setTensorboard($tensorboard);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_ModelService_BatchImportModelEvaluationSlices_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Imports a list of externally generated ModelEvaluationSlice.
@@ -43,14 +44,14 @@ function batch_import_model_evaluation_slices_sample(string $formattedParent): v
 
     // Prepare the request message.
     $modelEvaluationSlices = [new ModelEvaluationSlice()];
+    $request = (new BatchImportModelEvaluationSlicesRequest())
+        ->setParent($formattedParent)
+        ->setModelEvaluationSlices($modelEvaluationSlices);
 
     // Call the API and handle any network failures.
     try {
         /** @var BatchImportModelEvaluationSlicesResponse $response */
-        $response = $modelServiceClient->batchImportModelEvaluationSlices(
-            $formattedParent,
-            $modelEvaluationSlices
-        );
+        $response = $modelServiceClient->batchImportModelEvaluationSlices($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

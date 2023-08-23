@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datafusion_v1_generated_DataFusion_UpdateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataFusion\V1\DataFusionClient;
+use Google\Cloud\DataFusion\V1\Client\DataFusionClient;
 use Google\Cloud\DataFusion\V1\Instance;
 use Google\Cloud\DataFusion\V1\Instance\Type;
+use Google\Cloud\DataFusion\V1\UpdateInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,11 +44,13 @@ function update_instance_sample(int $instanceType): void
     // Prepare the request message.
     $instance = (new Instance())
         ->setType($instanceType);
+    $request = (new UpdateInstanceRequest())
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataFusionClient->updateInstance($instance);
+        $response = $dataFusionClient->updateInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_CreateCompilationResult_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
 
 /**
  * Creates a new CompilationResult in a given project and location.
@@ -41,11 +42,14 @@ function create_compilation_result_sample(string $formattedParent): void
 
     // Prepare the request message.
     $compilationResult = new CompilationResult();
+    $request = (new CreateCompilationResultRequest())
+        ->setParent($formattedParent)
+        ->setCompilationResult($compilationResult);
 
     // Call the API and handle any network failures.
     try {
         /** @var CompilationResult $response */
-        $response = $dataformClient->createCompilationResult($formattedParent, $compilationResult);
+        $response = $dataformClient->createCompilationResult($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

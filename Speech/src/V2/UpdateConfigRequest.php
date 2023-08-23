@@ -32,6 +32,24 @@ class UpdateConfigRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Speech\V2\Config $config     Required. The config to update.
+     *
+     *                                                   The config's `name` field is used to identify the config to be updated.
+     *                                                   The expected format is `projects/{project}/locations/{location}/config`.
+     * @param \Google\Protobuf\FieldMask     $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\Speech\V2\UpdateConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Speech\V2\Config $config, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setConfig($config)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -37,6 +37,34 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The resource for which to retrieve settings.
+     *
+     *                     "projects/[PROJECT_ID]/settings"
+     *                     "organizations/[ORGANIZATION_ID]/settings"
+     *                     "billingAccounts/[BILLING_ACCOUNT_ID]/settings"
+     *                     "folders/[FOLDER_ID]/settings"
+     *
+     *                     For example:
+     *
+     *                     `"organizations/12345/settings"`
+     *
+     *                     Note: Settings for the Log Router can be get for Google Cloud projects,
+     *                     folders, organizations and billing accounts. Currently it can only be
+     *                     configured for organizations. Once configured for an organization, it
+     *                     applies to all projects and folders in the Google Cloud organization. Please see
+     *                     {@see ConfigServiceV2Client::settingsName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\GetSettingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

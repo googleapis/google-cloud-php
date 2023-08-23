@@ -27,7 +27,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector\PrincipalInfo;
-use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\UpdateAppConnectorRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -48,11 +49,14 @@ function update_app_connector_sample(string $appConnectorName): void
     $appConnector = (new AppConnector())
         ->setName($appConnectorName)
         ->setPrincipalInfo($appConnectorPrincipalInfo);
+    $request = (new UpdateAppConnectorRequest())
+        ->setUpdateMask($updateMask)
+        ->setAppConnector($appConnector);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appConnectorsServiceClient->updateAppConnector($updateMask, $appConnector);
+        $response = $appConnectorsServiceClient->updateAppConnector($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

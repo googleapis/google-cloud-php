@@ -49,7 +49,7 @@ function create_gateway_sample(
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $gateway = (new Gateway())
         ->setApiConfig($formattedGatewayApiConfig);
 

@@ -42,7 +42,7 @@ function update_device_sample(): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $device = new Device();
     $updateMask = new FieldMask();
 

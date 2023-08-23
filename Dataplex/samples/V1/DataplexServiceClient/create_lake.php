@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_CreateLake_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\CreateLakeRequest;
 use Google\Cloud\Dataplex\V1\Lake;
 use Google\Rpc\Status;
 
@@ -52,11 +53,15 @@ function create_lake_sample(string $formattedParent, string $lakeId): void
 
     // Prepare the request message.
     $lake = new Lake();
+    $request = (new CreateLakeRequest())
+        ->setParent($formattedParent)
+        ->setLakeId($lakeId)
+        ->setLake($lake);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataplexServiceClient->createLake($formattedParent, $lakeId, $lake);
+        $response = $dataplexServiceClient->createLake($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

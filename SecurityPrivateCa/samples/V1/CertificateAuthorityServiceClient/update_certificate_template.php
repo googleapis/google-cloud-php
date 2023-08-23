@@ -45,7 +45,7 @@ function update_certificate_template_sample(): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $certificateTemplate = new CertificateTemplate();
     $updateMask = new FieldMask();
 

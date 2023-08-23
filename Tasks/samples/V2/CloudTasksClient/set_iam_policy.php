@@ -28,8 +28,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Tasks\V2\CloudTasksClient;
 
 /**
- * Sets the access control policy for a [Queue][google.cloud.tasks.v2.Queue]. Replaces any existing
- * policy.
+ * Sets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
+ * Replaces any existing policy.
  *
  * Note: The Cloud Console does not check queue-level IAM permissions yet.
  * Project-level permissions are required to use the Cloud Console.
@@ -48,7 +48,7 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $policy = new Policy();
 
     // Call the API and handle any network failures.

@@ -40,7 +40,7 @@ function update_peering_sample(string $network, string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $networksUpdatePeeringRequestResource = new NetworksUpdatePeeringRequest();
 
     // Call the API and handle any network failures.

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_MetadataService_GetArtifact_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Artifact;
-use Google\Cloud\AIPlatform\V1\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
+use Google\Cloud\AIPlatform\V1\GetArtifactRequest;
 
 /**
  * Retrieves a specific Artifact.
@@ -40,10 +41,14 @@ function get_artifact_sample(string $formattedName): void
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetArtifactRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Artifact $response */
-        $response = $metadataServiceClient->getArtifact($formattedName);
+        $response = $metadataServiceClient->getArtifact($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

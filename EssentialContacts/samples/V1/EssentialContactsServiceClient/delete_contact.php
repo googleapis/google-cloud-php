@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START essentialcontacts_v1_generated_EssentialContactsService_DeleteContact_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\EssentialContacts\V1\EssentialContactsServiceClient;
+use Google\Cloud\EssentialContacts\V1\Client\EssentialContactsServiceClient;
+use Google\Cloud\EssentialContacts\V1\DeleteContactRequest;
 
 /**
  * Deletes a contact.
@@ -40,9 +41,13 @@ function delete_contact_sample(string $formattedName): void
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteContactRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $essentialContactsServiceClient->deleteContact($formattedName);
+        $essentialContactsServiceClient->deleteContact($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

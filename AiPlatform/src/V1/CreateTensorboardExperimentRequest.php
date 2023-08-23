@@ -41,6 +41,30 @@ class CreateTensorboardExperimentRequest extends \Google\Protobuf\Internal\Messa
     private $tensorboard_experiment_id = '';
 
     /**
+     * @param string                                            $parent                  Required. The resource name of the Tensorboard to create the
+     *                                                                                   TensorboardExperiment in. Format:
+     *                                                                                   `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     *                                                                                   Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardExperiment $tensorboardExperiment   The TensorboardExperiment to create.
+     * @param string                                            $tensorboardExperimentId Required. The ID to use for the Tensorboard experiment, which becomes the
+     *                                                                                   final component of the Tensorboard experiment's resource name.
+     *
+     *                                                                                   This value should be 1-128 characters, and valid characters
+     *                                                                                   are /[a-z][0-9]-/.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateTensorboardExperimentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\TensorboardExperiment $tensorboardExperiment, string $tensorboardExperimentId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTensorboardExperiment($tensorboardExperiment)
+            ->setTensorboardExperimentId($tensorboardExperimentId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

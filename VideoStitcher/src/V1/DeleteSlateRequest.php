@@ -24,6 +24,21 @@ class DeleteSlateRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the slate to be deleted, in the form of
+     *                     `projects/{project_number}/locations/{location}/slates/{id}`. Please see
+     *                     {@see VideoStitcherServiceClient::slateName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\DeleteSlateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

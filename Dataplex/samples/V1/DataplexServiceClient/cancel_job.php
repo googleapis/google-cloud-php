@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataplex_v1_generated_DataplexService_CancelJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\CancelJobRequest;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 
 /**
  * Cancel jobs running for the task resource.
@@ -38,9 +39,13 @@ function cancel_job_sample(string $formattedName): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new CancelJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataplexServiceClient->cancelJob($formattedName);
+        $dataplexServiceClient->cancelJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

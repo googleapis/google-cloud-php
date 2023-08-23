@@ -125,7 +125,7 @@ use Google\Protobuf\Timestamp;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -142,7 +142,7 @@ use Google\Protobuf\Timestamp;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -156,6 +156,10 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient} to use the new
+ * surface.
  */
 class SecurityCenterGapicClient
 {
@@ -1993,7 +1997,7 @@ class SecurityCenterGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -2010,7 +2014,7 @@ class SecurityCenterGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2100,9 +2104,9 @@ class SecurityCenterGapicClient
      *                                         "projects/[project_id]".
      * @param BigQueryExport $bigQueryExport   Required. The BigQuery export being created.
      * @param string         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
-     *                                         It must consist of lower case letters, numbers, and hyphen, with the first
-     *                                         character a letter, the last a letter or a number, and a 63 character
-     *                                         maximum.
+     *                                         It must consist of only lowercase letters, numbers, and hyphens, must start
+     *                                         with a letter, must end with either a letter or a number, and must be 63
+     *                                         characters or less.
      * @param array          $optionalArgs     {
      *     Optional.
      *
@@ -2200,9 +2204,9 @@ class SecurityCenterGapicClient
      *                                 "projects/[project_id]".
      * @param MuteConfig $muteConfig   Required. The mute config being created.
      * @param string     $muteConfigId Required. Unique identifier provided by the client within the parent scope.
-     *                                 It must consist of lower case letters, numbers, and hyphen, with the first
-     *                                 character a letter, the last a letter or a number, and a 63 character
-     *                                 maximum.
+     *                                 It must consist of only lowercase letters, numbers, and hyphens, must start
+     *                                 with a letter, must end with either a letter or a number, and must be 63
+     *                                 characters or less.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -3043,6 +3047,8 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function groupAssets($parent, $groupBy, array $optionalArgs = [])
     {
@@ -3454,6 +3460,8 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAssets($parent, array $optionalArgs = [])
     {
@@ -4230,7 +4238,7 @@ class SecurityCenterGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -4247,7 +4255,7 @@ class SecurityCenterGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -4271,6 +4279,8 @@ class SecurityCenterGapicClient
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function runAssetDiscovery($parent, array $optionalArgs = [])
     {

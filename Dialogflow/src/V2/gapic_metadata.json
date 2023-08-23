@@ -407,6 +407,60 @@
                 }
             }
         },
+        "ConversationProfiles": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationProfilesGapicClient",
+                    "rpcs": {
+                        "ClearSuggestionFeatureConfig": {
+                            "methods": [
+                                "clearSuggestionFeatureConfig"
+                            ]
+                        },
+                        "CreateConversationProfile": {
+                            "methods": [
+                                "createConversationProfile"
+                            ]
+                        },
+                        "DeleteConversationProfile": {
+                            "methods": [
+                                "deleteConversationProfile"
+                            ]
+                        },
+                        "GetConversationProfile": {
+                            "methods": [
+                                "getConversationProfile"
+                            ]
+                        },
+                        "ListConversationProfiles": {
+                            "methods": [
+                                "listConversationProfiles"
+                            ]
+                        },
+                        "SetSuggestionFeatureConfig": {
+                            "methods": [
+                                "setSuggestionFeatureConfig"
+                            ]
+                        },
+                        "UpdateConversationProfile": {
+                            "methods": [
+                                "updateConversationProfile"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Conversations": {
             "clients": {
                 "grpc": {
@@ -420,6 +474,11 @@
                         "CreateConversation": {
                             "methods": [
                                 "createConversation"
+                            ]
+                        },
+                        "GenerateStatelessSummary": {
+                            "methods": [
+                                "generateStatelessSummary"
                             ]
                         },
                         "GetConversation": {
@@ -548,60 +607,6 @@
                         "UndeployConversationModel": {
                             "methods": [
                                 "undeployConversationModel"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "ConversationProfiles": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "ConversationProfilesGapicClient",
-                    "rpcs": {
-                        "ClearSuggestionFeatureConfig": {
-                            "methods": [
-                                "clearSuggestionFeatureConfig"
-                            ]
-                        },
-                        "CreateConversationProfile": {
-                            "methods": [
-                                "createConversationProfile"
-                            ]
-                        },
-                        "DeleteConversationProfile": {
-                            "methods": [
-                                "deleteConversationProfile"
-                            ]
-                        },
-                        "GetConversationProfile": {
-                            "methods": [
-                                "getConversationProfile"
-                            ]
-                        },
-                        "ListConversationProfiles": {
-                            "methods": [
-                                "listConversationProfiles"
-                            ]
-                        },
-                        "SetSuggestionFeatureConfig": {
-                            "methods": [
-                                "setSuggestionFeatureConfig"
-                            ]
-                        },
-                        "UpdateConversationProfile": {
-                            "methods": [
-                                "updateConversationProfile"
                             ]
                         },
                         "GetLocation": {

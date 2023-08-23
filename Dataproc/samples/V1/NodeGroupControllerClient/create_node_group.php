@@ -45,7 +45,7 @@ function create_node_group_sample(string $formattedParent, int $nodeGroupRolesEl
     // Create a client.
     $nodeGroupControllerClient = new NodeGroupControllerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $nodeGroupRoles = [$nodeGroupRolesElement,];
     $nodeGroup = (new NodeGroup())
         ->setRoles($nodeGroupRoles);

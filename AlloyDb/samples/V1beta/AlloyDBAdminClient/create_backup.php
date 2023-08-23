@@ -36,7 +36,7 @@ use Google\Rpc\Status;
  *                                           {@see AlloyDBAdminClient::locationName()} for help formatting this field.
  * @param string $backupId                   ID of the requesting object.
  * @param string $formattedBackupClusterName The full resource name of the backup source cluster
- *                                           (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>). Please see
+ *                                           (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}). Please see
  *                                           {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
  */
 function create_backup_sample(
@@ -47,7 +47,7 @@ function create_backup_sample(
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $backup = (new Backup())
         ->setClusterName($formattedBackupClusterName);
 

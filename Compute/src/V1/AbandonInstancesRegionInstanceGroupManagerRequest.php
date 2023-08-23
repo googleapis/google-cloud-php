@@ -47,6 +47,25 @@ class AbandonInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf
     private $request_id = null;
 
     /**
+     * @param string                                                                      $project                                                    Project ID for this request.
+     * @param string                                                                      $region                                                     Name of the region scoping this request.
+     * @param string                                                                      $instanceGroupManager                                       Name of the managed instance group.
+     * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagersAbandonInstancesRequest $regionInstanceGroupManagersAbandonInstancesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AbandonInstancesRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager, \Google\Cloud\Compute\V1\RegionInstanceGroupManagersAbandonInstancesRequest $regionInstanceGroupManagersAbandonInstancesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource($regionInstanceGroupManagersAbandonInstancesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START gkemulticloud_v1_generated_AwsClusters_GetAwsCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
-use Google\Cloud\GkeMultiCloud\V1\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\Client\AwsClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsClusterRequest;
 
 /**
  * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
@@ -47,10 +48,14 @@ function get_aws_cluster_sample(string $formattedName): void
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
+    // Prepare the request message.
+    $request = (new GetAwsClusterRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AwsCluster $response */
-        $response = $awsClustersClient->getAwsCluster($formattedName);
+        $response = $awsClustersClient->getAwsCluster($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

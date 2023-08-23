@@ -70,7 +70,7 @@ function batch_predict_sample(
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $inputConfigGcsSourceInputUris = [$inputConfigGcsSourceInputUrisElement,];
     $inputConfigGcsSource = (new GcsSource())
         ->setInputUris($inputConfigGcsSourceInputUris);

@@ -142,6 +142,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $instance2 = 'instance2902024968';
         $selfLink = 'selfLink-1691268851';
         $location = 'location1901043637';
+        $timeZone = 'timeZone36848094';
         $expectedResponse = new BackupRun();
         $expectedResponse->setKind($kind);
         $expectedResponse->setId($id2);
@@ -149,6 +150,7 @@ class SqlBackupRunsServiceClientTest extends GeneratedTest
         $expectedResponse->setInstance($instance2);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setLocation($location);
+        $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         $response = $gapicClient->get();
         $this->assertEquals($expectedResponse, $response);

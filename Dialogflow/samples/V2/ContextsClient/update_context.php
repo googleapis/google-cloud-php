@@ -36,7 +36,7 @@ use Google\Cloud\Dialogflow\V2\ContextsClient;
  *                            ID>/sessions/<Session ID>/contexts/<Context ID>`.
  *
  *                            The `Context ID` is always converted to lowercase, may only contain
- *                            characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+ *                            characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long.
  *
  *                            If `Environment ID` is not specified, we assume default 'draft'
  *                            environment. If `User ID` is not specified, we assume default '-' user.
@@ -53,7 +53,7 @@ function update_context_sample(string $contextName): void
     // Create a client.
     $contextsClient = new ContextsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $context = (new Context())
         ->setName($contextName);
 

@@ -35,6 +35,21 @@ class InsertSslPolicyRequest extends \Google\Protobuf\Internal\Message
     private $ssl_policy_resource = null;
 
     /**
+     * @param string                             $project           Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\SslPolicy $sslPolicyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertSslPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\SslPolicy $sslPolicyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSslPolicyResource($sslPolicyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

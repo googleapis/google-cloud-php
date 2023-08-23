@@ -109,6 +109,37 @@ class EncryptRequest extends \Google\Protobuf\Internal\Message
     private $additional_authenticated_data_crc32c = null;
 
     /**
+     * @param string $name      Required. The resource name of the
+     *                          [CryptoKey][google.cloud.kms.v1.CryptoKey] or
+     *                          [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                          encryption.
+     *
+     *                          If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server
+     *                          will use its [primary version][google.cloud.kms.v1.CryptoKey.primary].
+     * @param string $plaintext Required. The data to encrypt. Must be no larger than 64KiB.
+     *
+     *                          The maximum size depends on the key version's
+     *                          [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+     *                          For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE],
+     *                          [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL], and
+     *                          [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC] keys, the
+     *                          plaintext must be no larger than 64KiB. For
+     *                          [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+     *                          the plaintext and additional_authenticated_data fields must be no larger
+     *                          than 8KiB.
+     *
+     * @return \Google\Cloud\Kms\V1\EncryptRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $plaintext): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setPlaintext($plaintext);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

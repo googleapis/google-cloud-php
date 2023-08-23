@@ -37,6 +37,26 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
     private $workspace_id = '';
 
     /**
+     * @param string                                   $parent      Required. The repository in which to create the workspace. Must be in the format
+     *                                                              `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     *                                                              {@see DataformClient::repositoryName()} for help formatting this field.
+     * @param \Google\Cloud\Dataform\V1beta1\Workspace $workspace   Required. The workspace to create.
+     * @param string                                   $workspaceId Required. The ID to use for the workspace, which will become the final component of
+     *                                                              the workspace's resource name.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataform\V1beta1\Workspace $workspace, string $workspaceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setWorkspace($workspace)
+            ->setWorkspaceId($workspaceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

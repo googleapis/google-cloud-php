@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_IndexEndpointService_UpdateIndexEndpoint_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\IndexEndpoint;
-use Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateIndexEndpointRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -44,11 +45,14 @@ function update_index_endpoint_sample(string $indexEndpointDisplayName): void
     $indexEndpoint = (new IndexEndpoint())
         ->setDisplayName($indexEndpointDisplayName);
     $updateMask = new FieldMask();
+    $request = (new UpdateIndexEndpointRequest())
+        ->setIndexEndpoint($indexEndpoint)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var IndexEndpoint $response */
-        $response = $indexEndpointServiceClient->updateIndexEndpoint($indexEndpoint, $updateMask);
+        $response = $indexEndpointServiceClient->updateIndexEndpoint($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

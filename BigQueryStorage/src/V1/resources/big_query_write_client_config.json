@@ -8,7 +8,8 @@
                 ],
                 "retry_policy_5_codes": [
                     "DEADLINE_EXCEEDED",
-                    "UNAVAILABLE"
+                    "UNAVAILABLE",
+                    "RESOURCE_EXHAUSTED"
                 ],
                 "retry_policy_6_codes": [
                     "DEADLINE_EXCEEDED",

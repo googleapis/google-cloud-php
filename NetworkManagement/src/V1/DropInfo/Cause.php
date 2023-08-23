@@ -98,6 +98,13 @@ class Cause
      */
     const FORWARDING_RULE_MISMATCH = 11;
     /**
+     * Packet could be dropped because it was sent from a different region
+     * to a regional forwarding without global access.
+     *
+     * Generated from protobuf enum <code>FORWARDING_RULE_REGION_MISMATCH = 25;</code>
+     */
+    const FORWARDING_RULE_REGION_MISMATCH = 25;
+    /**
      * Forwarding rule does not have backends configured.
      *
      * Generated from protobuf enum <code>FORWARDING_RULE_NO_INSTANCES = 12;</code>
@@ -119,6 +126,18 @@ class Cause
      * Generated from protobuf enum <code>INSTANCE_NOT_RUNNING = 14;</code>
      */
     const INSTANCE_NOT_RUNNING = 14;
+    /**
+     * Packet sent from or to a GKE cluster that is not in running state.
+     *
+     * Generated from protobuf enum <code>GKE_CLUSTER_NOT_RUNNING = 27;</code>
+     */
+    const GKE_CLUSTER_NOT_RUNNING = 27;
+    /**
+     * Packet sent from or to a Cloud SQL instance that is not in running state.
+     *
+     * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE_NOT_RUNNING = 28;</code>
+     */
+    const CLOUD_SQL_INSTANCE_NOT_RUNNING = 28;
     /**
      * The type of traffic is blocked and the user cannot configure a firewall
      * rule to enable it. See [Always blocked
@@ -166,12 +185,115 @@ class Cause
      */
     const GOOGLE_MANAGED_SERVICE_NO_PEERING = 20;
     /**
+     * Packet was dropped because the Google-managed service uses Private
+     * Service Connect (PSC), but the PSC endpoint is not found in the project.
+     *
+     * Generated from protobuf enum <code>GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT = 38;</code>
+     */
+    const GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT = 38;
+    /**
+     * Packet was dropped because the GKE cluster uses Private Service Connect
+     * (PSC), but the PSC endpoint is not found in the project.
+     *
+     * Generated from protobuf enum <code>GKE_PSC_ENDPOINT_MISSING = 36;</code>
+     */
+    const GKE_PSC_ENDPOINT_MISSING = 36;
+    /**
      * Packet was dropped because the Cloud SQL instance has neither a private
      * nor a public IP address.
      *
      * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE_NO_IP_ADDRESS = 21;</code>
      */
     const CLOUD_SQL_INSTANCE_NO_IP_ADDRESS = 21;
+    /**
+     * Packet was dropped because a GKE cluster private endpoint is
+     * unreachable from a region different from the cluster's region.
+     *
+     * Generated from protobuf enum <code>GKE_CONTROL_PLANE_REGION_MISMATCH = 30;</code>
+     */
+    const GKE_CONTROL_PLANE_REGION_MISMATCH = 30;
+    /**
+     * Packet sent from a public GKE cluster control plane to a private
+     * IP address.
+     *
+     * Generated from protobuf enum <code>PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION = 31;</code>
+     */
+    const PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION = 31;
+    /**
+     * Packet was dropped because there is no route from a GKE cluster
+     * control plane to a destination network.
+     *
+     * Generated from protobuf enum <code>GKE_CONTROL_PLANE_NO_ROUTE = 32;</code>
+     */
+    const GKE_CONTROL_PLANE_NO_ROUTE = 32;
+    /**
+     * Packet sent from a Cloud SQL instance to an external IP address is not
+     * allowed. The Cloud SQL instance is not configured to send packets to
+     * external IP addresses.
+     *
+     * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC = 33;</code>
+     */
+    const CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC = 33;
+    /**
+     * Packet sent from a Cloud SQL instance with only a public IP address to a
+     * private IP address.
+     *
+     * Generated from protobuf enum <code>PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION = 34;</code>
+     */
+    const PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION = 34;
+    /**
+     * Packet was dropped because there is no route from a Cloud SQL
+     * instance to a destination network.
+     *
+     * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE_NO_ROUTE = 35;</code>
+     */
+    const CLOUD_SQL_INSTANCE_NO_ROUTE = 35;
+    /**
+     * Packet could be dropped because the Cloud Function is not in an active
+     * status.
+     *
+     * Generated from protobuf enum <code>CLOUD_FUNCTION_NOT_ACTIVE = 22;</code>
+     */
+    const CLOUD_FUNCTION_NOT_ACTIVE = 22;
+    /**
+     * Packet could be dropped because no VPC connector is set.
+     *
+     * Generated from protobuf enum <code>VPC_CONNECTOR_NOT_SET = 23;</code>
+     */
+    const VPC_CONNECTOR_NOT_SET = 23;
+    /**
+     * Packet could be dropped because the VPC connector is not in a running
+     * state.
+     *
+     * Generated from protobuf enum <code>VPC_CONNECTOR_NOT_RUNNING = 24;</code>
+     */
+    const VPC_CONNECTOR_NOT_RUNNING = 24;
+    /**
+     * The Private Service Connect endpoint is in a project that is not approved
+     * to connect to the service.
+     *
+     * Generated from protobuf enum <code>PSC_CONNECTION_NOT_ACCEPTED = 26;</code>
+     */
+    const PSC_CONNECTION_NOT_ACCEPTED = 26;
+    /**
+     * Packet sent from a Cloud Run revision that is not ready.
+     *
+     * Generated from protobuf enum <code>CLOUD_RUN_REVISION_NOT_READY = 29;</code>
+     */
+    const CLOUD_RUN_REVISION_NOT_READY = 29;
+    /**
+     * Packet was dropped inside Private Service Connect service producer.
+     *
+     * Generated from protobuf enum <code>DROPPED_INSIDE_PSC_SERVICE_PRODUCER = 37;</code>
+     */
+    const DROPPED_INSIDE_PSC_SERVICE_PRODUCER = 37;
+    /**
+     * Packet sent to a load balancer, which requires a proxy-only subnet and
+     * the subnet is not found.
+     *
+     * Generated from protobuf enum <code>LOAD_BALANCER_HAS_NO_PROXY_SUBNET = 39;</code>
+     */
+    const LOAD_BALANCER_HAS_NO_PROXY_SUBNET = 39;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -186,16 +308,34 @@ class Cause
         self::NO_EXTERNAL_ADDRESS => 'NO_EXTERNAL_ADDRESS',
         self::UNKNOWN_INTERNAL_ADDRESS => 'UNKNOWN_INTERNAL_ADDRESS',
         self::FORWARDING_RULE_MISMATCH => 'FORWARDING_RULE_MISMATCH',
+        self::FORWARDING_RULE_REGION_MISMATCH => 'FORWARDING_RULE_REGION_MISMATCH',
         self::FORWARDING_RULE_NO_INSTANCES => 'FORWARDING_RULE_NO_INSTANCES',
         self::FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK => 'FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK',
         self::INSTANCE_NOT_RUNNING => 'INSTANCE_NOT_RUNNING',
+        self::GKE_CLUSTER_NOT_RUNNING => 'GKE_CLUSTER_NOT_RUNNING',
+        self::CLOUD_SQL_INSTANCE_NOT_RUNNING => 'CLOUD_SQL_INSTANCE_NOT_RUNNING',
         self::TRAFFIC_TYPE_BLOCKED => 'TRAFFIC_TYPE_BLOCKED',
         self::GKE_MASTER_UNAUTHORIZED_ACCESS => 'GKE_MASTER_UNAUTHORIZED_ACCESS',
         self::CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS => 'CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS',
         self::DROPPED_INSIDE_GKE_SERVICE => 'DROPPED_INSIDE_GKE_SERVICE',
         self::DROPPED_INSIDE_CLOUD_SQL_SERVICE => 'DROPPED_INSIDE_CLOUD_SQL_SERVICE',
         self::GOOGLE_MANAGED_SERVICE_NO_PEERING => 'GOOGLE_MANAGED_SERVICE_NO_PEERING',
+        self::GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT',
+        self::GKE_PSC_ENDPOINT_MISSING => 'GKE_PSC_ENDPOINT_MISSING',
         self::CLOUD_SQL_INSTANCE_NO_IP_ADDRESS => 'CLOUD_SQL_INSTANCE_NO_IP_ADDRESS',
+        self::GKE_CONTROL_PLANE_REGION_MISMATCH => 'GKE_CONTROL_PLANE_REGION_MISMATCH',
+        self::PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION => 'PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION',
+        self::GKE_CONTROL_PLANE_NO_ROUTE => 'GKE_CONTROL_PLANE_NO_ROUTE',
+        self::CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC => 'CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC',
+        self::PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION => 'PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION',
+        self::CLOUD_SQL_INSTANCE_NO_ROUTE => 'CLOUD_SQL_INSTANCE_NO_ROUTE',
+        self::CLOUD_FUNCTION_NOT_ACTIVE => 'CLOUD_FUNCTION_NOT_ACTIVE',
+        self::VPC_CONNECTOR_NOT_SET => 'VPC_CONNECTOR_NOT_SET',
+        self::VPC_CONNECTOR_NOT_RUNNING => 'VPC_CONNECTOR_NOT_RUNNING',
+        self::PSC_CONNECTION_NOT_ACCEPTED => 'PSC_CONNECTION_NOT_ACCEPTED',
+        self::CLOUD_RUN_REVISION_NOT_READY => 'CLOUD_RUN_REVISION_NOT_READY',
+        self::DROPPED_INSIDE_PSC_SERVICE_PRODUCER => 'DROPPED_INSIDE_PSC_SERVICE_PRODUCER',
+        self::LOAD_BALANCER_HAS_NO_PROXY_SUBNET => 'LOAD_BALANCER_HAS_NO_PROXY_SUBNET',
     ];
 
     public static function name($value)

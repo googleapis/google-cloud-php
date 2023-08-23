@@ -39,7 +39,7 @@ function insert_sample(string $project): void
     // Create a client.
     $sslCertificatesClient = new SslCertificatesClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $sslCertificateResource = new SslCertificate();
 
     // Call the API and handle any network failures.

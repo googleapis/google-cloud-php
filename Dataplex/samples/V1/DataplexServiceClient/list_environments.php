@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataplex_v1_generated_DataplexService_ListEnvironments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\Environment;
+use Google\Cloud\Dataplex\V1\ListEnvironmentsRequest;
 
 /**
  * Lists environments under the given lake.
@@ -40,10 +41,14 @@ function list_environments_sample(string $formattedParent): void
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEnvironmentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataplexServiceClient->listEnvironments($formattedParent);
+        $response = $dataplexServiceClient->listEnvironments($request);
 
         /** @var Environment $element */
         foreach ($response as $element) {

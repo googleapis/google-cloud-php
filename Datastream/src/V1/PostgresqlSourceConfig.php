@@ -28,19 +28,27 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
      */
     private $exclude_objects = null;
     /**
-     * Required. The name of the logical replication slot that's configured with the
-     * pgoutput plugin.
+     * Required. Immutable. The name of the logical replication slot that's
+     * configured with the pgoutput plugin.
      *
-     * Generated from protobuf field <code>string replication_slot = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string replication_slot = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $replication_slot = '';
     /**
-     * Required. The name of the publication that includes the set of all tables that are
-     * defined in the stream's include_objects.
+     * Required. The name of the publication that includes the set of all tables
+     * that are defined in the stream's include_objects.
      *
      * Generated from protobuf field <code>string publication = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $publication = '';
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be non
+     * negative. If not set (or set to 0), the system's default value will be
+     * used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 5;</code>
+     */
+    private $max_concurrent_backfill_tasks = 0;
 
     /**
      * Constructor.
@@ -53,11 +61,15 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $exclude_objects
      *           PostgreSQL objects to exclude from the stream.
      *     @type string $replication_slot
-     *           Required. The name of the logical replication slot that's configured with the
-     *           pgoutput plugin.
+     *           Required. Immutable. The name of the logical replication slot that's
+     *           configured with the pgoutput plugin.
      *     @type string $publication
-     *           Required. The name of the publication that includes the set of all tables that are
-     *           defined in the stream's include_objects.
+     *           Required. The name of the publication that includes the set of all tables
+     *           that are defined in the stream's include_objects.
+     *     @type int $max_concurrent_backfill_tasks
+     *           Maximum number of concurrent backfill tasks. The number should be non
+     *           negative. If not set (or set to 0), the system's default value will be
+     *           used.
      * }
      */
     public function __construct($data = NULL) {
@@ -138,10 +150,10 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the logical replication slot that's configured with the
-     * pgoutput plugin.
+     * Required. Immutable. The name of the logical replication slot that's
+     * configured with the pgoutput plugin.
      *
-     * Generated from protobuf field <code>string replication_slot = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string replication_slot = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getReplicationSlot()
@@ -150,10 +162,10 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the logical replication slot that's configured with the
-     * pgoutput plugin.
+     * Required. Immutable. The name of the logical replication slot that's
+     * configured with the pgoutput plugin.
      *
-     * Generated from protobuf field <code>string replication_slot = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string replication_slot = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -166,8 +178,8 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publication that includes the set of all tables that are
-     * defined in the stream's include_objects.
+     * Required. The name of the publication that includes the set of all tables
+     * that are defined in the stream's include_objects.
      *
      * Generated from protobuf field <code>string publication = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -178,8 +190,8 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publication that includes the set of all tables that are
-     * defined in the stream's include_objects.
+     * Required. The name of the publication that includes the set of all tables
+     * that are defined in the stream's include_objects.
      *
      * Generated from protobuf field <code>string publication = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -189,6 +201,36 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->publication = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be non
+     * negative. If not set (or set to 0), the system's default value will be
+     * used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 5;</code>
+     * @return int
+     */
+    public function getMaxConcurrentBackfillTasks()
+    {
+        return $this->max_concurrent_backfill_tasks;
+    }
+
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be non
+     * negative. If not set (or set to 0), the system's default value will be
+     * used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxConcurrentBackfillTasks($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_concurrent_backfill_tasks = $var;
 
         return $this;
     }

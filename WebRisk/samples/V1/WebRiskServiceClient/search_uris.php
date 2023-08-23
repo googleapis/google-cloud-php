@@ -36,14 +36,15 @@ use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
  * empty response will be returned.
  *
  * @param string $uri                The URI to be checked for matches.
- * @param int    $threatTypesElement The ThreatLists to search in. Multiple ThreatLists may be specified.
+ * @param int    $threatTypesElement The ThreatLists to search in. Multiple ThreatLists may be
+ *                                   specified.
  */
 function search_uris_sample(string $uri, int $threatTypesElement): void
 {
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $threatTypes = [$threatTypesElement,];
 
     // Call the API and handle any network failures.

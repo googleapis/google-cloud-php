@@ -82,6 +82,10 @@ use Google\Cloud\Compute\V1\TargetTcpProxyList;
  *     $regionTargetTcpProxiesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionTargetTcpProxiesClient} to use the new
+ * surface.
  */
 class RegionTargetTcpProxiesGapicClient
 {

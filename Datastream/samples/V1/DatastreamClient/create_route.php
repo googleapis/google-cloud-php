@@ -48,7 +48,7 @@ function create_route_sample(
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $route = (new Route())
         ->setDisplayName($routeDisplayName)
         ->setDestinationAddress($routeDestinationAddress);

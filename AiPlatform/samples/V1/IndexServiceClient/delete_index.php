@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_IndexService_DeleteIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AIPlatform\V1\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\IndexServiceClient;
+use Google\Cloud\AIPlatform\V1\DeleteIndexRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,10 +45,14 @@ function delete_index_sample(string $formattedName): void
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteIndexRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $indexServiceClient->deleteIndex($formattedName);
+        $response = $indexServiceClient->deleteIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

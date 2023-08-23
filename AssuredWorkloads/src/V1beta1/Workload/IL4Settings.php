@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Settings specific to resources needed for IL4.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.assuredworkloads.v1beta1.Workload.IL4Settings</code>
  */
 class IL4Settings extends \Google\Protobuf\Internal\Message

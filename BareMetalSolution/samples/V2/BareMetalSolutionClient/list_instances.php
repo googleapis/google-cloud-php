@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
 use Google\Cloud\BareMetalSolution\V2\Instance;
+use Google\Cloud\BareMetalSolution\V2\ListInstancesRequest;
 
 /**
  * List servers in a given project and location.
@@ -39,10 +40,14 @@ function list_instances_sample(string $formattedParent): void
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
+    // Prepare the request message.
+    $request = (new ListInstancesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $bareMetalSolutionClient->listInstances($formattedParent);
+        $response = $bareMetalSolutionClient->listInstances($request);
 
         /** @var Instance $element */
         foreach ($response as $element) {

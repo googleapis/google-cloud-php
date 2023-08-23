@@ -9,30 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ProfileInfo defines the profile information for each schema field type.
+ * The profile information for each field type.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo</code>
  */
 class ProfileInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ratio of null rows against the rows in the sampled data.
+     * Ratio of rows with null value against total scanned rows.
      *
      * Generated from protobuf field <code>double null_ratio = 2;</code>
      */
     private $null_ratio = 0.0;
     /**
-     * The ratio of rows that are distinct against the rows in the sampled
-     * data.
+     * Ratio of rows with distinct values against total scanned rows.
+     * Not available for complex non-groupable field type RECORD and fields
+     * with REPEATABLE mode.
      *
      * Generated from protobuf field <code>double distinct_ratio = 3;</code>
      */
     private $distinct_ratio = 0.0;
     /**
-     * The array of top N values of the field in the sampled data.
-     * Currently N is set as 10 or equal to distinct values in the field,
-     * whichever is smaller. This will be optional for complex non-groupable
-     * data-types such as JSON, ARRAY, JSON, STRUCT.
+     * The list of top N non-null values, frequency and ratio with which
+     * they occur in the scanned data. N is 10 or equal to the number of
+     * distinct values in the field, whichever is smaller. Not available for
+     * complex non-groupable field type RECORD and fields with REPEATABLE
+     * mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4;</code>
      */
@@ -46,21 +48,23 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $null_ratio
-     *           The ratio of null rows against the rows in the sampled data.
+     *           Ratio of rows with null value against total scanned rows.
      *     @type float $distinct_ratio
-     *           The ratio of rows that are distinct against the rows in the sampled
-     *           data.
+     *           Ratio of rows with distinct values against total scanned rows.
+     *           Not available for complex non-groupable field type RECORD and fields
+     *           with REPEATABLE mode.
      *     @type array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue>|\Google\Protobuf\Internal\RepeatedField $top_n_values
-     *           The array of top N values of the field in the sampled data.
-     *           Currently N is set as 10 or equal to distinct values in the field,
-     *           whichever is smaller. This will be optional for complex non-groupable
-     *           data-types such as JSON, ARRAY, JSON, STRUCT.
+     *           The list of top N non-null values, frequency and ratio with which
+     *           they occur in the scanned data. N is 10 or equal to the number of
+     *           distinct values in the field, whichever is smaller. Not available for
+     *           complex non-groupable field type RECORD and fields with REPEATABLE
+     *           mode.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\StringFieldInfo $string_profile
-     *           The corresponding string field profile.
+     *           String type field information.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\IntegerFieldInfo $integer_profile
-     *           The corresponding integer field profile.
+     *           Integer type field information.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\DoubleFieldInfo $double_profile
-     *           The corresponding double field profile.
+     *           Double type field information.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,7 +73,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ratio of null rows against the rows in the sampled data.
+     * Ratio of rows with null value against total scanned rows.
      *
      * Generated from protobuf field <code>double null_ratio = 2;</code>
      * @return float
@@ -80,7 +84,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ratio of null rows against the rows in the sampled data.
+     * Ratio of rows with null value against total scanned rows.
      *
      * Generated from protobuf field <code>double null_ratio = 2;</code>
      * @param float $var
@@ -95,8 +99,9 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ratio of rows that are distinct against the rows in the sampled
-     * data.
+     * Ratio of rows with distinct values against total scanned rows.
+     * Not available for complex non-groupable field type RECORD and fields
+     * with REPEATABLE mode.
      *
      * Generated from protobuf field <code>double distinct_ratio = 3;</code>
      * @return float
@@ -107,8 +112,9 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ratio of rows that are distinct against the rows in the sampled
-     * data.
+     * Ratio of rows with distinct values against total scanned rows.
+     * Not available for complex non-groupable field type RECORD and fields
+     * with REPEATABLE mode.
      *
      * Generated from protobuf field <code>double distinct_ratio = 3;</code>
      * @param float $var
@@ -123,10 +129,11 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The array of top N values of the field in the sampled data.
-     * Currently N is set as 10 or equal to distinct values in the field,
-     * whichever is smaller. This will be optional for complex non-groupable
-     * data-types such as JSON, ARRAY, JSON, STRUCT.
+     * The list of top N non-null values, frequency and ratio with which
+     * they occur in the scanned data. N is 10 or equal to the number of
+     * distinct values in the field, whichever is smaller. Not available for
+     * complex non-groupable field type RECORD and fields with REPEATABLE
+     * mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -137,10 +144,11 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The array of top N values of the field in the sampled data.
-     * Currently N is set as 10 or equal to distinct values in the field,
-     * whichever is smaller. This will be optional for complex non-groupable
-     * data-types such as JSON, ARRAY, JSON, STRUCT.
+     * The list of top N non-null values, frequency and ratio with which
+     * they occur in the scanned data. N is 10 or equal to the number of
+     * distinct values in the field, whichever is smaller. Not available for
+     * complex non-groupable field type RECORD and fields with REPEATABLE
+     * mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue>|\Google\Protobuf\Internal\RepeatedField $var
@@ -155,7 +163,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The corresponding string field profile.
+     * String type field information.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo string_profile = 101;</code>
      * @return \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\StringFieldInfo|null
@@ -171,7 +179,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The corresponding string field profile.
+     * String type field information.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo string_profile = 101;</code>
      * @param \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\StringFieldInfo $var
@@ -186,7 +194,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The corresponding integer field profile.
+     * Integer type field information.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo integer_profile = 102;</code>
      * @return \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\IntegerFieldInfo|null
@@ -202,7 +210,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The corresponding integer field profile.
+     * Integer type field information.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo integer_profile = 102;</code>
      * @param \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\IntegerFieldInfo $var
@@ -217,7 +225,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The corresponding double field profile.
+     * Double type field information.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo double_profile = 103;</code>
      * @return \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\DoubleFieldInfo|null
@@ -233,7 +241,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The corresponding double field profile.
+     * Double type field information.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo double_profile = 103;</code>
      * @param \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\DoubleFieldInfo $var

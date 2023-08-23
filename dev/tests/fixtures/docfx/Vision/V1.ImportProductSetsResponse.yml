@@ -1,0 +1,122 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+    name: ImportProductSetsResponse
+    friendlyApiName: 'Cloud Vision V1 Client'
+    id: ImportProductSetsResponse
+    summary: |-
+      Response message for the `ImportProductSets` method.
+
+      This message is returned by the
+      <xref uid="\Google\Longrunning\OperationsClient::getOperation()">google.longrunning.Operations.GetOperation</xref> method in the returned
+      <xref uid="\Google\Longrunning\Operation::getResponse()">google.longrunning.Operation.response</xref> field.
+
+      Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsResponse</code>
+    type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ImportProductSetsResponse::__construct()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsResponse::getReferenceImages()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsResponse::setReferenceImages()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsResponse::getStatuses()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsResponse::setStatuses()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ reference_images'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          description: 'The list of reference_images that are imported successfully.'
+        -
+          id: '↳ statuses'
+          var_type: 'array&lt;<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>&gt;'
+          description: 'The rpc status for each ImportProductSet request, including both successes and errors. The number of statuses here matches the number of lines in the csv file, and statuses[i] stores the success or failure status of processing the i-th line of the csv, starting from line 0.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::getReferenceImages()'
+    name: getReferenceImages
+    id: getReferenceImages
+    summary: 'The list of reference_images that are imported successfully.'
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::setReferenceImages()'
+    name: setReferenceImages
+    id: setReferenceImages
+    summary: 'The list of reference_images that are imported successfully.'
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::getStatuses()'
+    name: getStatuses
+    id: getStatuses
+    summary: |-
+      The rpc status for each ImportProductSet request, including both successes
+      and errors.
+
+      The number of statuses here matches the number of lines in the csv file,
+      and statuses[i] stores the success or failure status of processing the i-th
+      line of the csv, starting from line 0.
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::setStatuses()'
+    name: setStatuses
+    id: setStatuses
+    summary: |-
+      The rpc status for each ImportProductSet request, including both successes
+      and errors.
+
+      The number of statuses here matches the number of lines in the csv file,
+      and statuses[i] stores the success or failure status of processing the i-th
+      line of the csv, starting from line 0.
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>&gt;'
+          description: ''
+      returns:
+        -
+          var_type: $this

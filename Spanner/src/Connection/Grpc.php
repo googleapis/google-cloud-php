@@ -74,6 +74,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Connection to Cloud Spanner over gRPC
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {
@@ -677,6 +679,21 @@ class Grpc implements ConnectionInterface
         ]);
 
         return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateDatabase(array $args)
+    {
+        $databaseInfo = $this->serializer->decodeMessage(new Database(), $this->pluck('database', $args));
+        $databaseName = $databaseInfo->getName();
+        $updateMask = $this->serializer->decodeMessage(new FieldMask(), $this->pluck('updateMask', $args));
+        return $this->send([$this->getDatabaseAdminClient(), 'updateDatabase'], [
+            $databaseInfo,
+            $updateMask,
+            $this->addResourcePrefixHeader($args, $databaseName)
+        ]);
     }
 
     /**

@@ -53,6 +53,25 @@ return [
                     ],
                 ],
             ],
+            'ServerStreamingPredict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:serverStreamingPredict',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:serverStreamingPredict',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'endpoint' => [
+                        'getters' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [
@@ -437,6 +456,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/schedules/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/specialistPools/*/operations/*}:cancel',
                     ],
                     [
@@ -687,6 +710,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/schedules/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -947,6 +974,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/schedules/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/specialistPools/*/operations/*}',
                     ],
                     [
@@ -1200,6 +1231,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/schedules/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/specialistPools/*}/operations',
                     ],
                     [
@@ -1450,6 +1485,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/schedules/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',

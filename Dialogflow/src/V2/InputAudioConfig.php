@@ -18,17 +18,16 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Audio encoding of the audio content to process.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $audio_encoding = 0;
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to
-     * [Cloud Speech API
+     * Refer to [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      * more details.
      *
-     * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $sample_rate_hertz = 0;
     /**
@@ -38,7 +37,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_code = '';
     /**
@@ -58,9 +57,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
-     * This field is deprecated. Please use [speech_contexts]() instead. If you
-     * specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
-     * treat the [phrase_hints]() as a single additional [SpeechContext]().
+     * This field is deprecated. Please use [`speech_contexts`]() instead. If you
+     * specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will
+     * treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
      * @deprecated
@@ -87,6 +86,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search (best for very short utterances and commands)
      *
      * Generated from protobuf field <code>string model = 7;</code>
      */
@@ -124,6 +128,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
      */
     private $disable_no_speech_recognized_event = false;
+    /**
+     * Enable automatic punctuation option at the speech backend.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
+     */
+    private $enable_automatic_punctuation = false;
 
     /**
      * Constructor.
@@ -135,8 +145,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Required. Audio encoding of the audio content to process.
      *     @type int $sample_rate_hertz
      *           Required. Sample rate (in Hertz) of the audio content sent in the query.
-     *           Refer to
-     *           [Cloud Speech API
+     *           Refer to [Cloud Speech API
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      *           more details.
      *     @type string $language_code
@@ -158,9 +167,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           See [the Cloud Speech
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      *           for more details.
-     *           This field is deprecated. Please use [speech_contexts]() instead. If you
-     *           specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
-     *           treat the [phrase_hints]() as a single additional [SpeechContext]().
+     *           This field is deprecated. Please use [`speech_contexts`]() instead. If you
+     *           specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will
+     *           treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      *     @type array<\Google\Cloud\Dialogflow\V2\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Context information to assist speech recognition.
      *           See [the Cloud Speech
@@ -178,6 +187,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           [Cloud Speech API
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      *           for more details.
+     *           If you specify a model, the following models typically have the best
+     *           performance:
+     *           - phone_call (best for Agent Assist and telephony)
+     *           - latest_short (best for Dialogflow non-telephony)
+     *           - command_and_search (best for very short utterances and commands)
      *     @type int $model_variant
      *           Which variant of the [Speech
      *           model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
@@ -199,6 +213,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
      *           If `false` and recognition doesn't return any result, trigger
      *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *     @type bool $enable_automatic_punctuation
+     *           Enable automatic punctuation option at the speech backend.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,7 +225,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Audio encoding of the audio content to process.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getAudioEncoding()
@@ -220,7 +236,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Audio encoding of the audio content to process.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -234,12 +250,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to
-     * [Cloud Speech API
+     * Refer to [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      * more details.
      *
-     * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getSampleRateHertz()
@@ -249,12 +264,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to
-     * [Cloud Speech API
+     * Refer to [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
      * more details.
      *
-     * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -273,7 +287,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -288,7 +302,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -342,9 +356,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
-     * This field is deprecated. Please use [speech_contexts]() instead. If you
-     * specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
-     * treat the [phrase_hints]() as a single additional [SpeechContext]().
+     * This field is deprecated. Please use [`speech_contexts`]() instead. If you
+     * specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will
+     * treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -362,9 +376,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
-     * This field is deprecated. Please use [speech_contexts]() instead. If you
-     * specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
-     * treat the [phrase_hints]() as a single additional [SpeechContext]().
+     * This field is deprecated. Please use [`speech_contexts`]() instead. If you
+     * specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will
+     * treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -424,6 +438,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search (best for very short utterances and commands)
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @return string
@@ -445,6 +464,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search (best for very short utterances and commands)
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @param string $var
@@ -562,6 +586,32 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_no_speech_recognized_event = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable automatic punctuation option at the speech backend.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
+     * @return bool
+     */
+    public function getEnableAutomaticPunctuation()
+    {
+        return $this->enable_automatic_punctuation;
+    }
+
+    /**
+     * Enable automatic punctuation option at the speech backend.
+     *
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableAutomaticPunctuation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_automatic_punctuation = $var;
 
         return $this;
     }

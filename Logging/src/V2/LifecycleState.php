@@ -33,11 +33,34 @@ class LifecycleState
      * Generated from protobuf enum <code>DELETE_REQUESTED = 2;</code>
      */
     const DELETE_REQUESTED = 2;
+    /**
+     * The resource has been marked for an update by the user. It will remain in
+     * this state until the update is complete.
+     *
+     * Generated from protobuf enum <code>UPDATING = 3;</code>
+     */
+    const UPDATING = 3;
+    /**
+     * The resource has been marked for creation by the user. It will remain in
+     * this state until the creation is complete.
+     *
+     * Generated from protobuf enum <code>CREATING = 4;</code>
+     */
+    const CREATING = 4;
+    /**
+     * The resource is in an INTERNAL error state.
+     *
+     * Generated from protobuf enum <code>FAILED = 5;</code>
+     */
+    const FAILED = 5;
 
     private static $valueToName = [
         self::LIFECYCLE_STATE_UNSPECIFIED => 'LIFECYCLE_STATE_UNSPECIFIED',
         self::ACTIVE => 'ACTIVE',
         self::DELETE_REQUESTED => 'DELETE_REQUESTED',
+        self::UPDATING => 'UPDATING',
+        self::CREATING => 'CREATING',
+        self::FAILED => 'FAILED',
     ];
 
     public static function name($value)

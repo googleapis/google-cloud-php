@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vmwareengine_v1_generated_VmwareEngine_UpdateVmwareEngineNetwork_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
+use Google\Cloud\VmwareEngine\V1\UpdateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\Type;
 use Google\Protobuf\FieldMask;
@@ -47,11 +48,14 @@ function update_vmware_engine_network_sample(int $vmwareEngineNetworkType): void
     $vmwareEngineNetwork = (new VmwareEngineNetwork())
         ->setType($vmwareEngineNetworkType);
     $updateMask = new FieldMask();
+    $request = (new UpdateVmwareEngineNetworkRequest())
+        ->setVmwareEngineNetwork($vmwareEngineNetwork)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $vmwareEngineClient->updateVmwareEngineNetwork($vmwareEngineNetwork, $updateMask);
+        $response = $vmwareEngineClient->updateVmwareEngineNetwork($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_PredictionService_RawPredict_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\HttpBody;
-use Google\Cloud\AIPlatform\V1\PredictionServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient;
+use Google\Cloud\AIPlatform\V1\RawPredictRequest;
 
 /**
  * Perform an online prediction with an arbitrary HTTP payload.
@@ -50,10 +51,14 @@ function raw_predict_sample(string $formattedEndpoint): void
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
+    // Prepare the request message.
+    $request = (new RawPredictRequest())
+        ->setEndpoint($formattedEndpoint);
+
     // Call the API and handle any network failures.
     try {
         /** @var HttpBody $response */
-        $response = $predictionServiceClient->rawPredict($formattedEndpoint);
+        $response = $predictionServiceClient->rawPredict($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -62,6 +62,10 @@ use Google\Cloud\Compute\V1\SetNamedPortsRegionInstanceGroupRequest;
  *     $regionInstanceGroupsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionInstanceGroupsClient} to use the new
+ * surface.
  */
 class RegionInstanceGroupsGapicClient
 {

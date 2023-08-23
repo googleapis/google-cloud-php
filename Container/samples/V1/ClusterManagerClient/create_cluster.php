@@ -55,7 +55,7 @@ function create_cluster_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $cluster = new Cluster();
 
     // Call the API and handle any network failures.

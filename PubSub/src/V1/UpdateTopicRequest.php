@@ -33,6 +33,25 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\PubSub\V1\Topic $topic      Required. The updated topic object.
+     * @param \Google\Protobuf\FieldMask    $updateMask Required. Indicates which fields in the provided topic to update. Must be
+     *                                                  specified and non-empty. Note that if `update_mask` contains
+     *                                                  "message_storage_policy" but the `message_storage_policy` is not set in
+     *                                                  the `topic` provided above, then the updated value is determined by the
+     *                                                  policy configured at the project or organization level.
+     *
+     * @return \Google\Cloud\PubSub\V1\UpdateTopicRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\PubSub\V1\Topic $topic, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTopic($topic)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

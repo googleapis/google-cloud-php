@@ -30,6 +30,22 @@ class UpdateMuteConfigRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\MuteConfig $muteConfig Required. The mute config being updated.
+     * @param \Google\Protobuf\FieldMask                 $updateMask The list of fields to be updated.
+     *                                                               If empty all mutable fields will be updated.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\MuteConfig $muteConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMuteConfig($muteConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

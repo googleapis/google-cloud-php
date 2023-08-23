@@ -33,7 +33,7 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     private $forwarding_rule_ip = null;
     /**
-     * Health state of the instance.
+     * Health state of the IPv4 address of the instance.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
@@ -82,7 +82,7 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      *     @type string $forwarding_rule_ip
      *           A forwarding rule IP address assigned to this instance.
      *     @type string $health_state
-     *           Health state of the instance.
+     *           Health state of the IPv4 address of the instance.
      *           Check the HealthState enum for the list of possible values.
      *     @type string $instance
      *           URL of the instance resource.
@@ -200,7 +200,7 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health state of the instance.
+     * Health state of the IPv4 address of the instance.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
@@ -222,7 +222,7 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health state of the instance.
+     * Health state of the IPv4 address of the instance.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>

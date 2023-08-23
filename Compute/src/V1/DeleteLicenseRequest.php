@@ -35,6 +35,21 @@ class DeleteLicenseRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $license Name of the license resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteLicenseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $license): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setLicense($license);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

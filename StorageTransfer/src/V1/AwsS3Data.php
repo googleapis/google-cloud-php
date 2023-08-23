@@ -25,9 +25,9 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      */
     private $bucket_name = '';
     /**
-     * Input only. AWS access key used to sign the API requests to the AWS S3 bucket.
-     * Permissions on the bucket must be granted to the access ID of the AWS
-     * access key.
+     * Input only. AWS access key used to sign the API requests to the AWS S3
+     * bucket. Permissions on the bucket must be granted to the access ID of the
+     * AWS access key.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -50,11 +50,32 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      * ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
      * When a role ARN is provided, Transfer Service fetches temporary
      * credentials for the session using a `AssumeRoleWithWebIdentity` call for
-     * the provided role using the [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for this project.
+     * the provided role using the
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for
+     * this project.
      *
      * Generated from protobuf field <code>string role_arn = 4;</code>
      */
     private $role_arn = '';
+    /**
+     * Optional. The Resource name of a secret in Secret Manager.
+     * The Azure SAS token must be stored in Secret Manager in JSON format:
+     * <pre>{
+     *  "sas_token" : "<var>SAS_TOKEN</var>"
+     * }</pre>
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     * be granted `roles/secretmanager.secretAccessor` for the resource.
+     * See [Configure access to a source: Microsoft Azure Blob Storage]
+     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * for more information.
+     * If `credentials_secret` is specified, do not specify [azure_credentials][].
+     * This feature is in
+     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * Format: `projects/{project_number}/secrets/{secret_name}`
+     *
+     * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $credentials_secret = '';
 
     /**
      * Constructor.
@@ -67,9 +88,9 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *           [Creating a
      *           bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).
      *     @type \Google\Cloud\StorageTransfer\V1\AwsAccessKey $aws_access_key
-     *           Input only. AWS access key used to sign the API requests to the AWS S3 bucket.
-     *           Permissions on the bucket must be granted to the access ID of the AWS
-     *           access key.
+     *           Input only. AWS access key used to sign the API requests to the AWS S3
+     *           bucket. Permissions on the bucket must be granted to the access ID of the
+     *           AWS access key.
      *           For information on our data retention policy for user credentials, see
      *           [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *     @type string $path
@@ -84,7 +105,24 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *           ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
      *           When a role ARN is provided, Transfer Service fetches temporary
      *           credentials for the session using a `AssumeRoleWithWebIdentity` call for
-     *           the provided role using the [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for this project.
+     *           the provided role using the
+     *           [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for
+     *           this project.
+     *     @type string $credentials_secret
+     *           Optional. The Resource name of a secret in Secret Manager.
+     *           The Azure SAS token must be stored in Secret Manager in JSON format:
+     *           <pre>{
+     *            "sas_token" : "<var>SAS_TOKEN</var>"
+     *           }</pre>
+     *           [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     *           be granted `roles/secretmanager.secretAccessor` for the resource.
+     *           See [Configure access to a source: Microsoft Azure Blob Storage]
+     *           (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     *           for more information.
+     *           If `credentials_secret` is specified, do not specify [azure_credentials][].
+     *           This feature is in
+     *           [preview](https://cloud.google.com/terms/service-terms#1).
+     *           Format: `projects/{project_number}/secrets/{secret_name}`
      * }
      */
     public function __construct($data = NULL) {
@@ -123,9 +161,9 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. AWS access key used to sign the API requests to the AWS S3 bucket.
-     * Permissions on the bucket must be granted to the access ID of the AWS
-     * access key.
+     * Input only. AWS access key used to sign the API requests to the AWS S3
+     * bucket. Permissions on the bucket must be granted to the access ID of the
+     * AWS access key.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -148,9 +186,9 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. AWS access key used to sign the API requests to the AWS S3 bucket.
-     * Permissions on the bucket must be granted to the access ID of the AWS
-     * access key.
+     * Input only. AWS access key used to sign the API requests to the AWS S3
+     * bucket. Permissions on the bucket must be granted to the access ID of the
+     * AWS access key.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -205,7 +243,9 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      * ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
      * When a role ARN is provided, Transfer Service fetches temporary
      * credentials for the session using a `AssumeRoleWithWebIdentity` call for
-     * the provided role using the [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for this project.
+     * the provided role using the
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for
+     * this project.
      *
      * Generated from protobuf field <code>string role_arn = 4;</code>
      * @return string
@@ -222,7 +262,9 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      * ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns).
      * When a role ARN is provided, Transfer Service fetches temporary
      * credentials for the session using a `AssumeRoleWithWebIdentity` call for
-     * the provided role using the [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for this project.
+     * the provided role using the
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for
+     * this project.
      *
      * Generated from protobuf field <code>string role_arn = 4;</code>
      * @param string $var
@@ -232,6 +274,58 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->role_arn = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Resource name of a secret in Secret Manager.
+     * The Azure SAS token must be stored in Secret Manager in JSON format:
+     * <pre>{
+     *  "sas_token" : "<var>SAS_TOKEN</var>"
+     * }</pre>
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     * be granted `roles/secretmanager.secretAccessor` for the resource.
+     * See [Configure access to a source: Microsoft Azure Blob Storage]
+     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * for more information.
+     * If `credentials_secret` is specified, do not specify [azure_credentials][].
+     * This feature is in
+     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * Format: `projects/{project_number}/secrets/{secret_name}`
+     *
+     * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCredentialsSecret()
+    {
+        return $this->credentials_secret;
+    }
+
+    /**
+     * Optional. The Resource name of a secret in Secret Manager.
+     * The Azure SAS token must be stored in Secret Manager in JSON format:
+     * <pre>{
+     *  "sas_token" : "<var>SAS_TOKEN</var>"
+     * }</pre>
+     * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
+     * be granted `roles/secretmanager.secretAccessor` for the resource.
+     * See [Configure access to a source: Microsoft Azure Blob Storage]
+     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * for more information.
+     * If `credentials_secret` is specified, do not specify [azure_credentials][].
+     * This feature is in
+     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * Format: `projects/{project_number}/secrets/{secret_name}`
+     *
+     * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCredentialsSecret($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->credentials_secret = $var;
 
         return $this;
     }

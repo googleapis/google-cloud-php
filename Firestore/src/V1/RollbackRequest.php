@@ -30,6 +30,22 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     private $transaction = '';
 
     /**
+     * @param string $database    Required. The database name. In the format:
+     *                            `projects/{project_id}/databases/{database_id}`.
+     * @param string $transaction Required. The transaction to roll back.
+     *
+     * @return \Google\Cloud\Firestore\V1\RollbackRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database, string $transaction): self
+    {
+        return (new self())
+            ->setDatabase($database)
+            ->setTransaction($transaction);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START aiplatform_v1_generated_ModelService_GetModelEvaluationSlice_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\GetModelEvaluationSliceRequest;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Gets a ModelEvaluationSlice.
@@ -40,10 +41,14 @@ function get_model_evaluation_slice_sample(string $formattedName): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetModelEvaluationSliceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ModelEvaluationSlice $response */
-        $response = $modelServiceClient->getModelEvaluationSlice($formattedName);
+        $response = $modelServiceClient->getModelEvaluationSlice($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

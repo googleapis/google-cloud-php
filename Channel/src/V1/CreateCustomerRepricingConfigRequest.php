@@ -32,6 +32,24 @@ class CreateCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
     private $customer_repricing_config = null;
 
     /**
+     * @param string                                           $parent                  Required. The resource name of the customer that will receive this
+     *                                                                                  repricing config. Parent uses the format:
+     *                                                                                  accounts/{account_id}/customers/{customer_id}
+     *                                                                                  Please see {@see CloudChannelServiceClient::customerName()} for help formatting this field.
+     * @param \Google\Cloud\Channel\V1\CustomerRepricingConfig $customerRepricingConfig Required. The CustomerRepricingConfig object to update.
+     *
+     * @return \Google\Cloud\Channel\V1\CreateCustomerRepricingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Channel\V1\CustomerRepricingConfig $customerRepricingConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCustomerRepricingConfig($customerRepricingConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

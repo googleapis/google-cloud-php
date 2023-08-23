@@ -77,10 +77,12 @@ class PublishAndPullTest extends PubSubTestCase
         $sub->modifyAckDeadlineBatch($actualMessages, 15);
         $sub->acknowledgeBatch($actualMessages);
 
-        $this->assertEquals($messages[0]['data'], $actualMessages[0]->data());
-        $this->assertEquals($messages[0]['attributes'], $actualMessages[0]->attributes());
-        $this->assertEquals($messages[1]['data'], $actualMessages[1]->data());
-        $this->assertEquals($messages[1]['attributes'], $actualMessages[1]->attributes());
+        $data = [$actualMessages[0]->data(), $actualMessages[1]->data()];
+        $attributes = [$actualMessages[0]->attributes(), $actualMessages[1]->attributes()];
+        $this->assertTrue(in_array($messages[0]['data'], $data));
+        $this->assertTrue(in_array($messages[0]['attributes'], $attributes));
+        $this->assertTrue(in_array($messages[1]['data'], $data));
+        $this->assertTrue(in_array($messages[1]['attributes'], $attributes));
     }
 
     /**
@@ -88,29 +90,40 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testOrderingKeys($client)
     {
-        if ($client instanceof PubSubClientRest) {
-            $this->markTestSkipped(
-                'enableMessageOrdering not available in REST transport during experimental period.'
-            );
-        }
-
         list ($topic, $sub) = self::topicAndSubscription($client, [], [
             'enableMessageOrdering' => true
         ]);
 
         $key = 'foo';
+        $numOfMessages = 5;
 
-        $message = (new MessageBuilder())
-            ->setData('foobar')
+        foreach (range(1, $numOfMessages) as $i) {
+            $topic->publish((new MessageBuilder())
+            ->setData('message' . $i)
             ->setOrderingKey($key)
-            ->build();
+            ->build());
+        }
 
-        $topic->publish($message);
-        sleep(1);
+        $messages = $sub->pull();
+        $messagesReceived = array();
+        while (count($messagesReceived) != $numOfMessages) {
+            foreach ($messages as $message) {
+                if (!in_array($message->data(), $messagesReceived)) {
+                    // Append message to understand the order
+                    array_push($messagesReceived, $message->data());
+                }
+                // Acknowledgment may take time to reach server
+                $sub->acknowledge($message);
+            }
+            sleep(1);
+            $messages = $sub->pull();
+        }
 
-        $pulled = $sub->pull();
-
-        $this->assertEquals($key, $pulled[0]->orderingKey());
+        $i = 1;
+        foreach ($messagesReceived as $message) {
+            $this->assertEquals('message' . $i, $message);
+            $i++;
+        }
     }
 
     /**

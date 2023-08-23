@@ -35,6 +35,21 @@ class DeleteFirewallRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $firewall Name of the firewall rule to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteFirewallRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $firewall): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setFirewall($firewall);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

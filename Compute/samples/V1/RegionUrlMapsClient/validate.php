@@ -40,7 +40,7 @@ function validate_sample(string $project, string $region, string $urlMap): void
     // Create a client.
     $regionUrlMapsClient = new RegionUrlMapsClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $regionUrlMapsValidateRequestResource = new RegionUrlMapsValidateRequest();
 
     // Call the API and handle any network failures.

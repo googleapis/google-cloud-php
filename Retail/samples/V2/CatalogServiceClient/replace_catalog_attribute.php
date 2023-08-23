@@ -60,7 +60,7 @@ function replace_catalog_attribute_sample(
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $catalogAttribute = (new CatalogAttribute())
         ->setKey($catalogAttributeKey);
 

@@ -29,6 +29,21 @@ class GetRouteRequest extends \Google\Protobuf\Internal\Message
     private $route = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $route   Name of the Route resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $route): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRoute($route);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

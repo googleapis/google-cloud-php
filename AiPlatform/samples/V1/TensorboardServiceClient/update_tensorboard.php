@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_UpdateTensorboard_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\Tensorboard;
-use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\UpdateTensorboardRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,11 +45,14 @@ function update_tensorboard_sample(string $tensorboardDisplayName): void
     $updateMask = new FieldMask();
     $tensorboard = (new Tensorboard())
         ->setDisplayName($tensorboardDisplayName);
+    $request = (new UpdateTensorboardRequest())
+        ->setUpdateMask($updateMask)
+        ->setTensorboard($tensorboard);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $tensorboardServiceClient->updateTensorboard($updateMask, $tensorboard);
+        $response = $tensorboardServiceClient->updateTensorboard($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

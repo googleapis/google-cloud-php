@@ -99,12 +99,20 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      */
     private $data_disk_size_gb = null;
     /**
-     * The Google Cloud Platform zone where your Cloud SQL datdabse instance is
+     * The Google Cloud Platform zone where your Cloud SQL database instance is
      * located.
      *
      * Generated from protobuf field <code>string zone = 11;</code>
      */
     private $zone = '';
+    /**
+     * Optional. The Google Cloud Platform zone where the failover Cloud SQL
+     * database instance is located. Used when the Cloud SQL database availability
+     * type is REGIONAL (i.e. multiple zones / highly available).
+     *
+     * Generated from protobuf field <code>string secondary_zone = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $secondary_zone = '';
     /**
      * The Database Migration Service source connection profile ID,
      * in the format:
@@ -131,6 +139,22 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string collation = 15;</code>
      */
     private $collation = '';
+    /**
+     * The KMS key name used for the csql instance.
+     *
+     * Generated from protobuf field <code>string cmek_key_name = 16;</code>
+     */
+    private $cmek_key_name = '';
+    /**
+     * Optional. Availability type. Potential values:
+     * *  `ZONAL`: The instance serves data from only one zone. Outages in that
+     * zone affect data availability.
+     * *  `REGIONAL`: The instance can serve data from more than one zone in a
+     * region (it is highly available).
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlAvailabilityType availability_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $availability_type = 0;
 
     /**
      * Constructor.
@@ -182,8 +206,12 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *           The storage capacity available to the database, in GB.
      *           The minimum (and default) size is 10GB.
      *     @type string $zone
-     *           The Google Cloud Platform zone where your Cloud SQL datdabse instance is
+     *           The Google Cloud Platform zone where your Cloud SQL database instance is
      *           located.
+     *     @type string $secondary_zone
+     *           Optional. The Google Cloud Platform zone where the failover Cloud SQL
+     *           database instance is located. Used when the Cloud SQL database availability
+     *           type is REGIONAL (i.e. multiple zones / highly available).
      *     @type string $source_id
      *           The Database Migration Service source connection profile ID,
      *           in the format:
@@ -194,6 +222,14 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *           Output only. Indicates If this connection profile root password is stored.
      *     @type string $collation
      *           The Cloud SQL default instance level collation.
+     *     @type string $cmek_key_name
+     *           The KMS key name used for the csql instance.
+     *     @type int $availability_type
+     *           Optional. Availability type. Potential values:
+     *           *  `ZONAL`: The instance serves data from only one zone. Outages in that
+     *           zone affect data availability.
+     *           *  `REGIONAL`: The instance can serve data from more than one zone in a
+     *           region (it is highly available).
      * }
      */
     public function __construct($data = NULL) {
@@ -641,7 +677,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * The Google Cloud Platform zone where your Cloud SQL datdabse instance is
+     * The Google Cloud Platform zone where your Cloud SQL database instance is
      * located.
      *
      * Generated from protobuf field <code>string zone = 11;</code>
@@ -653,7 +689,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Platform zone where your Cloud SQL datdabse instance is
+     * The Google Cloud Platform zone where your Cloud SQL database instance is
      * located.
      *
      * Generated from protobuf field <code>string zone = 11;</code>
@@ -664,6 +700,36 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Google Cloud Platform zone where the failover Cloud SQL
+     * database instance is located. Used when the Cloud SQL database availability
+     * type is REGIONAL (i.e. multiple zones / highly available).
+     *
+     * Generated from protobuf field <code>string secondary_zone = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSecondaryZone()
+    {
+        return $this->secondary_zone;
+    }
+
+    /**
+     * Optional. The Google Cloud Platform zone where the failover Cloud SQL
+     * database instance is located. Used when the Cloud SQL database availability
+     * type is REGIONAL (i.e. multiple zones / highly available).
+     *
+     * Generated from protobuf field <code>string secondary_zone = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecondaryZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secondary_zone = $var;
 
         return $this;
     }
@@ -772,6 +838,66 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->collation = $var;
+
+        return $this;
+    }
+
+    /**
+     * The KMS key name used for the csql instance.
+     *
+     * Generated from protobuf field <code>string cmek_key_name = 16;</code>
+     * @return string
+     */
+    public function getCmekKeyName()
+    {
+        return $this->cmek_key_name;
+    }
+
+    /**
+     * The KMS key name used for the csql instance.
+     *
+     * Generated from protobuf field <code>string cmek_key_name = 16;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCmekKeyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cmek_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Availability type. Potential values:
+     * *  `ZONAL`: The instance serves data from only one zone. Outages in that
+     * zone affect data availability.
+     * *  `REGIONAL`: The instance can serve data from more than one zone in a
+     * region (it is highly available).
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlAvailabilityType availability_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAvailabilityType()
+    {
+        return $this->availability_type;
+    }
+
+    /**
+     * Optional. Availability type. Potential values:
+     * *  `ZONAL`: The instance serves data from only one zone. Outages in that
+     * zone affect data availability.
+     * *  `REGIONAL`: The instance can serve data from more than one zone in a
+     * region (it is highly available).
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlAvailabilityType availability_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAvailabilityType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\CloudDms\V1\CloudSqlSettings\SqlAvailabilityType::class);
+        $this->availability_type = $var;
 
         return $this;
     }

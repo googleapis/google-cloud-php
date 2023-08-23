@@ -39,7 +39,7 @@ function update_tunnel_dest_group_sample(string $tunnelDestGroupName): void
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $tunnelDestGroup = (new TunnelDestGroup())
         ->setName($tunnelDestGroupName);
 

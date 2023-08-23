@@ -47,6 +47,25 @@ class SetNodeTemplateNodeGroupRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                                                    $project                                  Project ID for this request.
+     * @param string                                                    $zone                                     The name of the zone for this request.
+     * @param string                                                    $nodeGroup                                Name of the NodeGroup resource to update.
+     * @param \Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest $nodeGroupsSetNodeTemplateRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetNodeTemplateNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $nodeGroup, \Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest $nodeGroupsSetNodeTemplateRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsSetNodeTemplateRequestResource($nodeGroupsSetNodeTemplateRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

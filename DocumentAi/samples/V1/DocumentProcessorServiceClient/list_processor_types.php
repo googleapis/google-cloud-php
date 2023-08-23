@@ -31,10 +31,9 @@ use Google\Cloud\DocumentAI\V1\ProcessorType;
 /**
  * Lists the processor types that exist.
  *
- * @param string $formattedParent The location of processor type to list.
- *                                The available processor types may depend on the allow-listing on projects.
- *                                Format: `projects/{project}/locations/{location}`
- *                                Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The location of processor types to list.
+ *                                Format: `projects/{project}/locations/{location}`. Please see
+ *                                {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
  */
 function list_processor_types_sample(string $formattedParent): void
 {

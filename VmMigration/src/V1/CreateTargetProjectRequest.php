@@ -51,6 +51,24 @@ class CreateTargetProjectRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                     $parent          Required. The TargetProject's parent. Please see
+     *                                                                    {@see VmMigrationClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VMMigration\V1\TargetProject $targetProject   Required. The create request body.
+     * @param string                                     $targetProjectId Required. The target_project identifier.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CreateTargetProjectRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VMMigration\V1\TargetProject $targetProject, string $targetProjectId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTargetProject($targetProject)
+            ->setTargetProjectId($targetProjectId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

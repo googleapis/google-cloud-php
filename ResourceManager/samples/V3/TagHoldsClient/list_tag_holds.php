@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudresourcemanager_v3_generated_TagHolds_ListTagHolds_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ResourceManager\V3\Client\TagHoldsClient;
+use Google\Cloud\ResourceManager\V3\ListTagHoldsRequest;
 use Google\Cloud\ResourceManager\V3\TagHold;
-use Google\Cloud\ResourceManager\V3\TagHoldsClient;
 
 /**
  * Lists TagHolds under a TagValue.
@@ -40,10 +41,14 @@ function list_tag_holds_sample(string $formattedParent): void
     // Create a client.
     $tagHoldsClient = new TagHoldsClient();
 
+    // Prepare the request message.
+    $request = (new ListTagHoldsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $tagHoldsClient->listTagHolds($formattedParent);
+        $response = $tagHoldsClient->listTagHolds($request);
 
         /** @var TagHold $element */
         foreach ($response as $element) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_JobService_ListDataLabelingJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\DataLabelingJob;
-use Google\Cloud\AIPlatform\V1\JobServiceClient;
+use Google\Cloud\AIPlatform\V1\ListDataLabelingJobsRequest;
 
 /**
  * Lists DataLabelingJobs in a Location.
@@ -40,10 +41,14 @@ function list_data_labeling_jobs_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDataLabelingJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listDataLabelingJobs($formattedParent);
+        $response = $jobServiceClient->listDataLabelingJobs($request);
 
         /** @var DataLabelingJob $element */
         foreach ($response as $element) {

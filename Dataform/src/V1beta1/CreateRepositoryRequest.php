@@ -37,6 +37,26 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     private $repository_id = '';
 
     /**
+     * @param string                                    $parent       Required. The location in which to create the repository. Must be in the format
+     *                                                                `projects/&#42;/locations/*`. Please see
+     *                                                                {@see DataformClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Dataform\V1beta1\Repository $repository   Required. The repository to create.
+     * @param string                                    $repositoryId Required. The ID to use for the repository, which will become the final component of
+     *                                                                the repository's resource name.
+     *
+     * @return \Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataform\V1beta1\Repository $repository, string $repositoryId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRepository($repository)
+            ->setRepositoryId($repositoryId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

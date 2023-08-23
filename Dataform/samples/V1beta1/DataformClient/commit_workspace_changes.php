@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_CommitWorkspaceChanges_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
 
 /**
  * Applies a Git commit for uncommitted files in a Workspace.
@@ -47,10 +48,13 @@ function commit_workspace_changes_sample(
     $author = (new CommitAuthor())
         ->setName($authorName)
         ->setEmailAddress($authorEmailAddress);
+    $request = (new CommitWorkspaceChangesRequest())
+        ->setName($formattedName)
+        ->setAuthor($author);
 
     // Call the API and handle any network failures.
     try {
-        $dataformClient->commitWorkspaceChanges($formattedName, $author);
+        $dataformClient->commitWorkspaceChanges($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

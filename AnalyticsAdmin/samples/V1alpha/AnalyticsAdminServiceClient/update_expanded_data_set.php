@@ -39,7 +39,7 @@ function update_expanded_data_set_sample(string $expandedDataSetDisplayName): vo
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $expandedDataSet = (new ExpandedDataSet())
         ->setDisplayName($expandedDataSetDisplayName);
     $updateMask = new FieldMask();

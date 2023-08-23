@@ -51,6 +51,21 @@ class ListLiveConfigsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The project that contains the list of live configs, in the
+     *                       form of `projects/{project_number}/locations/{location}`. Please see
+     *                       {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\ListLiveConfigsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

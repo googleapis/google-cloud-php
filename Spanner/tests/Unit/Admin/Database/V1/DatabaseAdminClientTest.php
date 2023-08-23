@@ -366,10 +366,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         $name = 'name3373707';
         $versionRetentionPeriod = 'versionRetentionPeriod907249289';
         $defaultLeader = 'defaultLeader1941180615';
+        $enableDropProtection = false;
+        $reconciling = false;
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
         $expectedResponse->setVersionRetentionPeriod($versionRetentionPeriod);
         $expectedResponse->setDefaultLeader($defaultLeader);
+        $expectedResponse->setEnableDropProtection($enableDropProtection);
+        $expectedResponse->setReconciling($reconciling);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -659,10 +663,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $versionRetentionPeriod = 'versionRetentionPeriod907249289';
         $defaultLeader = 'defaultLeader1941180615';
+        $enableDropProtection = false;
+        $reconciling = false;
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
         $expectedResponse->setVersionRetentionPeriod($versionRetentionPeriod);
         $expectedResponse->setDefaultLeader($defaultLeader);
+        $expectedResponse->setEnableDropProtection($enableDropProtection);
+        $expectedResponse->setReconciling($reconciling);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -1195,10 +1203,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         $name = 'name3373707';
         $versionRetentionPeriod = 'versionRetentionPeriod907249289';
         $defaultLeader = 'defaultLeader1941180615';
+        $enableDropProtection = false;
+        $reconciling = false;
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
         $expectedResponse->setVersionRetentionPeriod($versionRetentionPeriod);
         $expectedResponse->setDefaultLeader($defaultLeader);
+        $expectedResponse->setEnableDropProtection($enableDropProtection);
+        $expectedResponse->setReconciling($reconciling);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1492,6 +1504,141 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $versionRetentionPeriod = 'versionRetentionPeriod907249289';
+        $defaultLeader = 'defaultLeader1941180615';
+        $enableDropProtection = false;
+        $reconciling = false;
+        $expectedResponse = new Database();
+        $expectedResponse->setName($name);
+        $expectedResponse->setVersionRetentionPeriod($versionRetentionPeriod);
+        $expectedResponse->setDefaultLeader($defaultLeader);
+        $expectedResponse->setEnableDropProtection($enableDropProtection);
+        $expectedResponse->setReconciling($reconciling);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $database = new Database();
+        $databaseName = 'databaseName-459093338';
+        $database->setName($databaseName);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateDatabase($database, $updateMask);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDatabase();
+        $this->assertProtobufEquals($database, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDatabaseTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $database = new Database();
+        $databaseName = 'databaseName-459093338';
+        $database->setName($databaseName);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateDatabase($database, $updateMask);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDatabaseTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */

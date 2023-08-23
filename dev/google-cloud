@@ -16,12 +16,17 @@
  * limitations under the License.
  */
 
+if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
+    exit('run composer in the "dev" directory (e.g. composer install -d dev)');
+}
+
 require __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\Dev\Command\AddComponentCommand;
-use Google\Cloud\Dev\Command\DocFxCommand;
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
-use Google\Cloud\Dev\Command\ReleaseCommand;
+use Google\Cloud\Dev\Command\DocFxCommand;
+use Google\Cloud\Dev\Command\RepoInfoCommand;
+use Google\Cloud\Dev\Command\ReleaseInfoCommand;
 use Google\Cloud\Dev\Command\SplitCommand;
 use Symfony\Component\Console\Application;
 
@@ -37,8 +42,9 @@ $rootDirectory = realpath(__DIR__ . '/../') . '/';
 
 $app = new Application;
 $app->add(new AddComponentCommand($rootDirectory));
-$app->add(new DocFxCommand());
 $app->add(new ComponentInfoCommand());
-$app->add(new ReleaseCommand($rootDirectory));
+$app->add(new DocFxCommand());
+$app->add(new RepoInfoCommand());
+$app->add(new ReleaseInfoCommand());
 $app->add(new SplitCommand($rootDirectory));
 $app->run();

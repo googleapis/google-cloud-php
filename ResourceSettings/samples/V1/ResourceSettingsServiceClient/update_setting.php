@@ -56,7 +56,7 @@ function update_setting_sample(): void
     // Create a client.
     $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $setting = new Setting();
 
     // Call the API and handle any network failures.

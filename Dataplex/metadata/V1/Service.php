@@ -27,7 +27,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-÷]
+•b
 &google/cloud/dataplex/v1/service.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/analyze.proto(google/cloud/dataplex/v1/resources.proto$google/cloud/dataplex/v1/tasks.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"³
 CreateLakeRequest9
 parent (	B)àAúA#
@@ -170,7 +170,20 @@ page_token (	BàA
 dataplex.googleapis.com/Task"B
 GetJobRequest1
 name (	B#àAúA
-dataplex.googleapis.com/Job"x
+dataplex.googleapis.com/Job"²
+RunTaskRequest2
+name (	B$àAúA
+dataplex.googleapis.com/TaskI
+labels (24.google.cloud.dataplex.v1.RunTaskRequest.LabelsEntryBàAE
+args (22.google.cloud.dataplex.v1.RunTaskRequest.ArgsEntryBàA-
+LabelsEntry
+key (	
+value (	:8+
+	ArgsEntry
+key (	
+value (	:8"=
+RunTaskResponse*
+job (2.google.cloud.dataplex.v1.Job"x
 ListJobsRequest4
 parent (	B$àAúA
 dataplex.googleapis.com/Task
@@ -219,7 +232,7 @@ page_token (	BàA
 filter (	BàA"d
 ListSessionsResponse3
 sessions (2!.google.cloud.dataplex.v1.Session
-next_page_token (	2‚1
+next_page_token (	2¬2
 DataplexServiceÃ
 
 CreateLake+.google.cloud.dataplex.v1.CreateLakeRequest.google.longrunning.Operation"i‚Óä“1")/v1/{parent=projects/*/locations/*}/lakes:lakeÚAparent,lake,lake_idÊA
@@ -266,7 +279,8 @@ DeleteTask+.google.cloud.dataplex.v1.DeleteTaskRequest.google.longrunning.Ope
 google.protobuf.EmptyOperationMetadata¨
 	ListTasks*.google.cloud.dataplex.v1.ListTasksRequest+.google.cloud.dataplex.v1.ListTasksResponse"B‚Óä“31/v1/{parent=projects/*/locations/*/lakes/*}/tasksÚAparent•
 GetTask(.google.cloud.dataplex.v1.GetTaskRequest.google.cloud.dataplex.v1.Task"@‚Óä“31/v1/{name=projects/*/locations/*/lakes/*/tasks/*}ÚAname¬
-ListJobs).google.cloud.dataplex.v1.ListJobsRequest*.google.cloud.dataplex.v1.ListJobsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/lakes/*/tasks/*}/jobsÚAparent™
+ListJobs).google.cloud.dataplex.v1.ListJobsRequest*.google.cloud.dataplex.v1.ListJobsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/lakes/*/tasks/*}/jobsÚAparent§
+RunTask(.google.cloud.dataplex.v1.RunTaskRequest).google.cloud.dataplex.v1.RunTaskResponse"G‚Óä“:"5/v1/{name=projects/*/locations/*/lakes/*/tasks/*}:run:*ÚAname™
 GetJob\'.google.cloud.dataplex.v1.GetJobRequest.google.cloud.dataplex.v1.Job"G‚Óä“:8/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}ÚAname¢
 	CancelJob*.google.cloud.dataplex.v1.CancelJobRequest.google.protobuf.Empty"Q‚Óä“D"?/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}:cancel:*ÚAnameý
 CreateEnvironment2.google.cloud.dataplex.v1.CreateEnvironmentRequest.google.longrunning.Operation"”‚Óä“G"8/v1/{parent=projects/*/locations/*/lakes/*}/environments:environmentÚA!parent,environment,environment_idÊA 

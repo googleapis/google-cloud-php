@@ -44,7 +44,7 @@ function create_game_server_config_sample(string $formattedParent, string $confi
     // Create a client.
     $gameServerConfigsServiceClient = new GameServerConfigsServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $gameServerConfig = new GameServerConfig();
 
     // Call the API and handle any network failures.

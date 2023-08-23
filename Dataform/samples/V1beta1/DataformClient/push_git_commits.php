@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataform_v1beta1_generated_Dataform_PushGitCommits_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataform\V1beta1\DataformClient;
+use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
+use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
 
 /**
  * Pushes Git commits from a Workspace to the Repository's remote.
@@ -37,9 +38,13 @@ function push_git_commits_sample(string $formattedName): void
     // Create a client.
     $dataformClient = new DataformClient();
 
+    // Prepare the request message.
+    $request = (new PushGitCommitsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataformClient->pushGitCommits($formattedName);
+        $dataformClient->pushGitCommits($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_ModelService_ListModelEvaluations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
-use Google\Cloud\AIPlatform\V1\ModelServiceClient;
 
 /**
  * Lists ModelEvaluations in a Model.
@@ -40,10 +41,14 @@ function list_model_evaluations_sample(string $formattedParent): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListModelEvaluationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $modelServiceClient->listModelEvaluations($formattedParent);
+        $response = $modelServiceClient->listModelEvaluations($request);
 
         /** @var ModelEvaluation $element */
         foreach ($response as $element) {

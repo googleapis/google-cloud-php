@@ -41,7 +41,7 @@ function update_table_spec_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $tableSpec = new TableSpec();
 
     // Call the API and handle any network failures.

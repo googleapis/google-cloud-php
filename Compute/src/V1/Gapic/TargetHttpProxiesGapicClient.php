@@ -74,6 +74,9 @@ use Google\Cloud\Compute\V1\UrlMapReference;
  *     $targetHttpProxiesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\TargetHttpProxiesClient} to use the new surface.
  */
 class TargetHttpProxiesGapicClient
 {
