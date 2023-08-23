@@ -9,8 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The result of [JobService.BatchUpdateJobs][google.cloud.talent.v4.JobService.BatchUpdateJobs]. It's used to
- * replace [google.longrunning.Operation.response][google.longrunning.Operation.response] in case of success.
+ * The result of
+ * [JobService.BatchUpdateJobs][google.cloud.talent.v4.JobService.BatchUpdateJobs].
+ * It's used to replace
+ * [google.longrunning.Operation.response][google.longrunning.Operation.response]
+ * in case of success.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4.BatchUpdateJobsResponse</code>
  */

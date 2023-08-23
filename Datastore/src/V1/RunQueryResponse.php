@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Datastore.RunQuery][google.datastore.v1.Datastore.RunQuery].
+ * The response for
+ * [Datastore.RunQuery][google.datastore.v1.Datastore.RunQuery].
  *
  * Generated from protobuf message <code>google.datastore.v1.RunQueryResponse</code>
  */
@@ -27,6 +28,17 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.Query query = 2;</code>
      */
     private $query = null;
+    /**
+     * The identifier of the transaction that was started as part of this
+     * RunQuery request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     */
+    private $transaction = '';
 
     /**
      * Constructor.
@@ -38,6 +50,13 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *           A batch of query results (always present).
      *     @type \Google\Cloud\Datastore\V1\Query $query
      *           The parsed form of the `GqlQuery` from the request, if it was set.
+     *     @type string $transaction
+     *           The identifier of the transaction that was started as part of this
+     *           RunQuery request.
+     *           Set only when
+     *           [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     *           was set in
+     *           [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +132,42 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\Query::class);
         $this->query = $var;
+
+        return $this;
+    }
+
+    /**
+     * The identifier of the transaction that was started as part of this
+     * RunQuery request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     * @return string
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * The identifier of the transaction that was started as part of this
+     * RunQuery request.
+     * Set only when
+     * [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
+     * was set in
+     * [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
+     *
+     * Generated from protobuf field <code>bytes transaction = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTransaction($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->transaction = $var;
 
         return $this;
     }

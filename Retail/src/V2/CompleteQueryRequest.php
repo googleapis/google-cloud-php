@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Auto-complete parameters.
+ * Autocomplete parameters.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.CompleteQueryRequest</code>
  */
@@ -55,8 +55,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $language_codes;
     /**
-     * The device type context for completion suggestions.
-     * It is useful to apply different suggestions on different device types, e.g.
+     * The device type context for completion suggestions. We recommend that you
+     * leave this field empty.
+     * It can apply different suggestions on different device types, e.g.
      * `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      * types.
      * Supported formats:
@@ -93,6 +94,17 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_suggestions = 5;</code>
      */
     private $max_suggestions = 0;
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * If this is set, it should be exactly matched with
+     * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
+     * per-entity autocomplete results.
+     *
+     * Generated from protobuf field <code>string entity = 10;</code>
+     */
+    private $entity = '';
 
     /**
      * Constructor.
@@ -124,8 +136,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
      *           number of language codes is 3.
      *     @type string $device_type
-     *           The device type context for completion suggestions.
-     *           It is useful to apply different suggestions on different device types, e.g.
+     *           The device type context for completion suggestions. We recommend that you
+     *           leave this field empty.
+     *           It can apply different suggestions on different device types, e.g.
      *           `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      *           types.
      *           Supported formats:
@@ -150,6 +163,13 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions].
      *           The maximum allowed max suggestions is 20. If it is set higher, it will be
      *           capped by 20.
+     *     @type string $entity
+     *           The entity for customers that may run multiple different entities, domains,
+     *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     *           `google.com`, `youtube.com`, etc.
+     *           If this is set, it should be exactly matched with
+     *           [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
+     *           per-entity autocomplete results.
      * }
      */
     public function __construct($data = NULL) {
@@ -292,8 +312,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device type context for completion suggestions.
-     * It is useful to apply different suggestions on different device types, e.g.
+     * The device type context for completion suggestions. We recommend that you
+     * leave this field empty.
+     * It can apply different suggestions on different device types, e.g.
      * `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      * types.
      * Supported formats:
@@ -311,8 +332,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device type context for completion suggestions.
-     * It is useful to apply different suggestions on different device types, e.g.
+     * The device type context for completion suggestions. We recommend that you
+     * leave this field empty.
+     * It can apply different suggestions on different device types, e.g.
      * `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      * types.
      * Supported formats:
@@ -407,6 +429,42 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_suggestions = $var;
+
+        return $this;
+    }
+
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * If this is set, it should be exactly matched with
+     * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
+     * per-entity autocomplete results.
+     *
+     * Generated from protobuf field <code>string entity = 10;</code>
+     * @return string
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * The entity for customers that may run multiple different entities, domains,
+     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * `google.com`, `youtube.com`, etc.
+     * If this is set, it should be exactly matched with
+     * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
+     * per-entity autocomplete results.
+     *
+     * Generated from protobuf field <code>string entity = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entity = $var;
 
         return $this;
     }

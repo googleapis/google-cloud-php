@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,9 +43,9 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The fingerprint of the public key to update. Public keys are identified by
-     *           their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *           `users/{user}/sshPublicKeys/{fingerprint}`.
+     *           Required. The fingerprint of the public key to update. Public keys are
+     *           identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *           is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     @type \Google\Cloud\OsLogin\Common\SshPublicKey $ssh_public_key
      *           Required. The SSH public key and expiration time.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -58,9 +58,9 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -71,9 +71,9 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

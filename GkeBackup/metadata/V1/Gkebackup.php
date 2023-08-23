@@ -24,12 +24,13 @@ class Gkebackup
         \GPBMetadata\Google\Cloud\Gkebackup\V1\RestorePlan::initOnce();
         \GPBMetadata\Google\Cloud\Gkebackup\V1\Volume::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-éO
-)google/cloud/gkebackup/v1/gkebackup.protogoogle.cloud.gkebackup.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/gkebackup/v1/backup.proto+google/cloud/gkebackup/v1/backup_plan.proto\'google/cloud/gkebackup/v1/restore.proto,google/cloud/gkebackup/v1/restore_plan.proto&google/cloud/gkebackup/v1/volume.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"€
+ÿO
+)google/cloud/gkebackup/v1/gkebackup.protogoogle.cloud.gkebackup.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/gkebackup/v1/backup.proto+google/cloud/gkebackup/v1/backup_plan.proto\'google/cloud/gkebackup/v1/restore.proto,google/cloud/gkebackup/v1/restore_plan.proto&google/cloud/gkebackup/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"€
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
 end_time (2.google.protobuf.TimestampBàA
@@ -216,8 +217,8 @@ GetRestore,.google.cloud.gkebackup.v1.GetRestoreRequest".google.cloud.gkebacku
 DeleteRestore/.google.cloud.gkebackup.v1.DeleteRestoreRequest.google.longrunning.Operation"w‚Óä“=*;/v1/{name=projects/*/locations/*/restorePlans/*/restores/*}ÚAnameÊA*
 google.protobuf.EmptyOperationMetadataà
 ListVolumeRestores4.google.cloud.gkebackup.v1.ListVolumeRestoresRequest5.google.cloud.gkebackup.v1.ListVolumeRestoresResponse"]‚Óä“NL/v1/{parent=projects/*/locations/*/restorePlans/*/restores/*}/volumeRestoresÚAparentÍ
-GetVolumeRestore2.google.cloud.gkebackup.v1.GetVolumeRestoreRequest(.google.cloud.gkebackup.v1.VolumeRestore"[‚Óä“NL/v1/{name=projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*}ÚAnameLÊAgkebackup.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¨
-com.google.cloud.gkebackup.v1BGKEBackupProtoPZBgoogle.golang.org/genproto/googleapis/cloud/gkebackup/v1;gkebackupªGoogle.Cloud.GkeBackup.V1ÊGoogle\\Cloud\\GkeBackup\\V1êGoogle::Cloud::GkeBackup::V1êA^
+GetVolumeRestore2.google.cloud.gkebackup.v1.GetVolumeRestoreRequest(.google.cloud.gkebackup.v1.VolumeRestore"[‚Óä“NL/v1/{name=projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*}ÚAnameLÊAgkebackup.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¡
+com.google.cloud.gkebackup.v1BGKEBackupProtoPZ;cloud.google.com/go/gkebackup/apiv1/gkebackuppb;gkebackuppbªGoogle.Cloud.GkeBackup.V1ÊGoogle\\Cloud\\GkeBackup\\V1êGoogle::Cloud::GkeBackup::V1êA^
  container.googleapis.com/Cluster:projects/{project}/locations/{location}/clusters/{cluster}êAx
 !cloudkms.googleapis.com/CryptoKeySprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}bproto3'
         , true);

@@ -182,9 +182,38 @@
                                 "deleteTagBinding"
                             ]
                         },
+                        "ListEffectiveTags": {
+                            "methods": [
+                                "listEffectiveTags"
+                            ]
+                        },
                         "ListTagBindings": {
                             "methods": [
                                 "listTagBindings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TagHolds": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TagHoldsGapicClient",
+                    "rpcs": {
+                        "CreateTagHold": {
+                            "methods": [
+                                "createTagHold"
+                            ]
+                        },
+                        "DeleteTagHold": {
+                            "methods": [
+                                "deleteTagHold"
+                            ]
+                        },
+                        "ListTagHolds": {
+                            "methods": [
+                                "listTagHolds"
                             ]
                         }
                     }
@@ -209,6 +238,11 @@
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
+                            ]
+                        },
+                        "GetNamespacedTagKey": {
+                            "methods": [
+                                "getNamespacedTagKey"
                             ]
                         },
                         "GetTagKey": {
@@ -258,6 +292,11 @@
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
+                            ]
+                        },
+                        "GetNamespacedTagValue": {
+                            "methods": [
+                                "getNamespacedTagValue"
                             ]
                         },
                         "GetTagValue": {

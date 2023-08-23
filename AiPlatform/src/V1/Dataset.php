@@ -23,24 +23,23 @@ class Dataset extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the Dataset.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
-     * Optional. The description of the Dataset.
+     * The description of the Dataset.
      *
-     * Generated from protobuf field <code>string description = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 16;</code>
      */
     private $description = '';
     /**
-     * Required. Points to a YAML file stored on Google Cloud Storage describing additional
-     * information about the Dataset.
-     * The schema is defined as an OpenAPI 3.0.2 Schema Object.
-     * The schema files that can be used here are found in
-     * gs://google-cloud-aiplatform/schema/dataset/metadata/.
+     * Required. Points to a YAML file stored on Google Cloud Storage describing
+     * additional information about the Dataset. The schema is defined as an
+     * OpenAPI 3.0.2 Schema Object. The schema files that can be used here are
+     * found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
      *
      * Generated from protobuf field <code>string metadata_schema_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,6 +50,13 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $metadata = null;
+    /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $data_item_count = 0;
     /**
      * Output only. Timestamp when this Dataset was created.
      *
@@ -81,11 +87,25 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      * and are immutable. Following system labels exist for each Dataset:
      * * "aiplatform.googleapis.com/dataset_metadata_schema": output only, its
-     *   value is the [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] title.
+     *   value is the
+     *   [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      */
     private $labels;
+    /**
+     * All SavedQueries belong to the Dataset will be returned in List/Get
+     * Dataset response. The annotation_specs field
+     * will not be populated except for UI cases which will only use
+     * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
+     * In CreateDataset request, a SavedQuery is created together if
+     * this field is set, up to one SavedQuery can be set in CreateDatasetRequest.
+     * The SavedQuery should not contain any AnnotationSpec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 9;</code>
+     */
+    private $saved_queries;
     /**
      * Customer-managed encryption key spec for a Dataset. If set, this Dataset
      * and all sub-resources of this Dataset will be secured by this key.
@@ -93,6 +113,15 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
      */
     private $encryption_spec = null;
+    /**
+     * Output only. The resource name of the Artifact that was created in
+     * MetadataStore when creating the Dataset. The Artifact resource name pattern
+     * is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $metadata_artifact = '';
 
     /**
      * Constructor.
@@ -104,18 +133,20 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the Dataset.
      *     @type string $display_name
      *           Required. The user-defined name of the Dataset.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type string $description
-     *           Optional. The description of the Dataset.
+     *           The description of the Dataset.
      *     @type string $metadata_schema_uri
-     *           Required. Points to a YAML file stored on Google Cloud Storage describing additional
-     *           information about the Dataset.
-     *           The schema is defined as an OpenAPI 3.0.2 Schema Object.
-     *           The schema files that can be used here are found in
-     *           gs://google-cloud-aiplatform/schema/dataset/metadata/.
+     *           Required. Points to a YAML file stored on Google Cloud Storage describing
+     *           additional information about the Dataset. The schema is defined as an
+     *           OpenAPI 3.0.2 Schema Object. The schema files that can be used here are
+     *           found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
      *     @type \Google\Protobuf\Value $metadata
      *           Required. Additional information about the Dataset.
+     *     @type int|string $data_item_count
+     *           Output only. The number of DataItems in this Dataset. Only apply for
+     *           non-structured Dataset.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this Dataset was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -134,10 +165,25 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      *           and are immutable. Following system labels exist for each Dataset:
      *           * "aiplatform.googleapis.com/dataset_metadata_schema": output only, its
-     *             value is the [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] title.
+     *             value is the
+     *             [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     *             title.
+     *     @type array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $saved_queries
+     *           All SavedQueries belong to the Dataset will be returned in List/Get
+     *           Dataset response. The annotation_specs field
+     *           will not be populated except for UI cases which will only use
+     *           [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
+     *           In CreateDataset request, a SavedQuery is created together if
+     *           this field is set, up to one SavedQuery can be set in CreateDatasetRequest.
+     *           The SavedQuery should not contain any AnnotationSpec.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Dataset. If set, this Dataset
      *           and all sub-resources of this Dataset will be secured by this key.
+     *     @type string $metadata_artifact
+     *           Output only. The resource name of the Artifact that was created in
+     *           MetadataStore when creating the Dataset. The Artifact resource name pattern
+     *           is
+     *           `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,7 +219,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the Dataset.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -186,7 +232,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the Dataset.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -202,9 +248,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of the Dataset.
+     * The description of the Dataset.
      *
-     * Generated from protobuf field <code>string description = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 16;</code>
      * @return string
      */
     public function getDescription()
@@ -213,9 +259,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of the Dataset.
+     * The description of the Dataset.
      *
-     * Generated from protobuf field <code>string description = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 16;</code>
      * @param string $var
      * @return $this
      */
@@ -228,11 +274,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Points to a YAML file stored on Google Cloud Storage describing additional
-     * information about the Dataset.
-     * The schema is defined as an OpenAPI 3.0.2 Schema Object.
-     * The schema files that can be used here are found in
-     * gs://google-cloud-aiplatform/schema/dataset/metadata/.
+     * Required. Points to a YAML file stored on Google Cloud Storage describing
+     * additional information about the Dataset. The schema is defined as an
+     * OpenAPI 3.0.2 Schema Object. The schema files that can be used here are
+     * found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
      *
      * Generated from protobuf field <code>string metadata_schema_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -243,11 +288,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Points to a YAML file stored on Google Cloud Storage describing additional
-     * information about the Dataset.
-     * The schema is defined as an OpenAPI 3.0.2 Schema Object.
-     * The schema files that can be used here are found in
-     * gs://google-cloud-aiplatform/schema/dataset/metadata/.
+     * Required. Points to a YAML file stored on Google Cloud Storage describing
+     * additional information about the Dataset. The schema is defined as an
+     * OpenAPI 3.0.2 Schema Object. The schema files that can be used here are
+     * found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
      *
      * Generated from protobuf field <code>string metadata_schema_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -293,6 +337,34 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getDataItemCount()
+    {
+        return $this->data_item_count;
+    }
+
+    /**
+     * Output only. The number of DataItems in this Dataset. Only apply for
+     * non-structured Dataset.
+     *
+     * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDataItemCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->data_item_count = $var;
 
         return $this;
     }
@@ -408,7 +480,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      * and are immutable. Following system labels exist for each Dataset:
      * * "aiplatform.googleapis.com/dataset_metadata_schema": output only, its
-     *   value is the [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] title.
+     *   value is the
+     *   [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -429,7 +503,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      * and are immutable. Following system labels exist for each Dataset:
      * * "aiplatform.googleapis.com/dataset_metadata_schema": output only, its
-     *   value is the [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri] title.
+     *   value is the
+     *   [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
+     *   title.
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -439,6 +515,44 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * All SavedQueries belong to the Dataset will be returned in List/Get
+     * Dataset response. The annotation_specs field
+     * will not be populated except for UI cases which will only use
+     * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
+     * In CreateDataset request, a SavedQuery is created together if
+     * this field is set, up to one SavedQuery can be set in CreateDatasetRequest.
+     * The SavedQuery should not contain any AnnotationSpec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSavedQueries()
+    {
+        return $this->saved_queries;
+    }
+
+    /**
+     * All SavedQueries belong to the Dataset will be returned in List/Get
+     * Dataset response. The annotation_specs field
+     * will not be populated except for UI cases which will only use
+     * [annotation_spec_count][google.cloud.aiplatform.v1.SavedQuery.annotation_spec_count].
+     * In CreateDataset request, a SavedQuery is created together if
+     * this field is set, up to one SavedQuery can be set in CreateDatasetRequest.
+     * The SavedQuery should not contain any AnnotationSpec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 9;</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSavedQueries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\SavedQuery::class);
+        $this->saved_queries = $arr;
 
         return $this;
     }
@@ -477,6 +591,38 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in
+     * MetadataStore when creating the Dataset. The Artifact resource name pattern
+     * is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getMetadataArtifact()
+    {
+        return $this->metadata_artifact;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in
+     * MetadataStore when creating the Dataset. The Artifact resource name pattern
+     * is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadataArtifact($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata_artifact = $var;
 
         return $this;
     }

@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent location where this [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource
-     * will be created.
+     * Required. The parent location where this
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+     * created.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -26,18 +27,20 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The specification of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
+     * Required. The specification of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureClient azure_client = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $azure_client = null;
     /**
-     * Required. A client provided ID the resource. Must be unique within the parent
-     * resource.
-     * The provided ID will be part of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-     * resource name formatted as
+     * Required. A client provided ID the resource. Must be unique within the
+     * parent resource.
+     * The provided ID will be part of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *
      * Generated from protobuf field <code>string azure_client_id = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,26 +53,63 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                     $parent        Required. The parent location where this
+     *                                                                  [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+     *                                                                  created.
+     *
+     *                                                                  Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *                                                                  See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                                                                  for more details on Google Cloud resource names. Please see
+     *                                                                  {@see AzureClustersClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureClient $azureClient   Required. The specification of the
+     *                                                                  [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
+     * @param string                                     $azureClientId Required. A client provided ID the resource. Must be unique within the
+     *                                                                  parent resource.
+     *
+     *                                                                  The provided ID will be part of the
+     *                                                                  [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+     *                                                                  formatted as
+     *                                                                  `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
+     *
+     *                                                                  Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\CreateAzureClientRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeMultiCloud\V1\AzureClient $azureClient, string $azureClientId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAzureClient($azureClient)
+            ->setAzureClientId($azureClientId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent location where this [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource
-     *           will be created.
+     *           Required. The parent location where this
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+     *           created.
      *           Location names are formatted as `projects/<project-id>/locations/<region>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on Google Cloud resource names.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureClient $azure_client
-     *           Required. The specification of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
+     *           Required. The specification of the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
      *     @type string $azure_client_id
-     *           Required. A client provided ID the resource. Must be unique within the parent
-     *           resource.
-     *           The provided ID will be part of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-     *           resource name formatted as
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *           The provided ID will be part of the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+     *           formatted as
      *           `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
-     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validate_only
      *           If set, only validate the request, but do not actually create the client.
      * }
@@ -80,8 +120,9 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent location where this [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource
-     * will be created.
+     * Required. The parent location where this
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+     * created.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -95,8 +136,9 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent location where this [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource
-     * will be created.
+     * Required. The parent location where this
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+     * created.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -114,7 +156,8 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The specification of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
+     * Required. The specification of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureClient azure_client = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AzureClient|null
@@ -135,7 +178,8 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The specification of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
+     * Required. The specification of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureClient azure_client = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureClient $var
@@ -150,12 +194,13 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the parent
-     * resource.
-     * The provided ID will be part of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-     * resource name formatted as
+     * Required. A client provided ID the resource. Must be unique within the
+     * parent resource.
+     * The provided ID will be part of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *
      * Generated from protobuf field <code>string azure_client_id = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -166,12 +211,13 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the parent
-     * resource.
-     * The provided ID will be part of the [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
-     * resource name formatted as
+     * Required. A client provided ID the resource. Must be unique within the
+     * parent resource.
+     * The provided ID will be part of the
+     * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *
      * Generated from protobuf field <code>string azure_client_id = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

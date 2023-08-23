@@ -25,7 +25,6 @@ namespace Google\Cloud\Orchestration\Airflow\Service\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersionsClient;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class ImageVersionsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ImageVersionsClient
-     */
+    /** @return ImageVersionsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class ImageVersionsClientTest extends GeneratedTest
         return new ImageVersionsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listImageVersionsTest()
     {
         $transport = $this->createTransport();
@@ -100,9 +91,7 @@ class ImageVersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listImageVersionsExceptionTest()
     {
         $transport = $this->createTransport();

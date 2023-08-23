@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
+ * Request message for
+ * [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ImportDocumentsRequest</code>
  */
@@ -49,7 +50,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/knowledgeBases/<Knowledge Base ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\GcsSources $gcs_source
-     *           The Google Cloud Storage location for the documents.
+     *           Optional. The Google Cloud Storage location for the documents.
      *           The path can include a wildcard.
      *           These URIs may have the forms
      *           `gs://<bucket-name>/<object-name>`.
@@ -97,13 +98,13 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Storage location for the documents.
+     * Optional. The Google Cloud Storage location for the documents.
      * The path can include a wildcard.
      * These URIs may have the forms
      * `gs://<bucket-name>/<object-name>`.
      * `gs://<bucket-name>/<object-path>/&#42;.<extension>`.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GcsSources gcs_source = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GcsSources gcs_source = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\GcsSources|null
      */
     public function getGcsSource()
@@ -117,13 +118,13 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Storage location for the documents.
+     * Optional. The Google Cloud Storage location for the documents.
      * The path can include a wildcard.
      * These URIs may have the forms
      * `gs://<bucket-name>/<object-name>`.
      * `gs://<bucket-name>/<object-path>/&#42;.<extension>`.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GcsSources gcs_source = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GcsSources gcs_source = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\GcsSources $var
      * @return $this
      */

@@ -21,6 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -43,6 +44,7 @@ class CollectionReference extends Query
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
+    use TimestampTrait;
 
     /**
      * @var ConnectionInterface
@@ -255,6 +257,8 @@ class CollectionReference extends Query
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<DocumentReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      */
     public function listDocuments(array $options = [])
     {
@@ -265,6 +269,8 @@ class CollectionReference extends Query
             'collectionId' => $this->pathId($this->name),
             'mask' => []
         ];
+
+        $options = $this->formatReadTimeOption($options);
 
         return new ItemIterator(
             new PageIterator(

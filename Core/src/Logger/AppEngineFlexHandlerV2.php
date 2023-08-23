@@ -24,6 +24,8 @@ use Monolog\Logger;
  * Monolog 2.x handler for logging on App Engine flexible environment.
  *
  * If you are using Monolog 1.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandler} instead.
+ * If you are using Monolog 3.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandlerV3} instead.
+ * @internal
  */
 class AppEngineFlexHandlerV2 extends StreamHandler
 {

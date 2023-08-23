@@ -35,9 +35,9 @@ class Secrets extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Build\V1\SecretManagerSecret[]|\Google\Protobuf\Internal\RepeatedField $secret_manager
+     *     @type array<\Google\Cloud\Build\V1\SecretManagerSecret>|\Google\Protobuf\Internal\RepeatedField $secret_manager
      *           Secrets in Secret Manager and associated secret environment variable.
-     *     @type \Google\Cloud\Build\V1\InlineSecret[]|\Google\Protobuf\Internal\RepeatedField $inline
+     *     @type array<\Google\Cloud\Build\V1\InlineSecret>|\Google\Protobuf\Internal\RepeatedField $inline
      *           Secrets encrypted with KMS key and the associated secret environment
      *           variable.
      * }
@@ -62,7 +62,7 @@ class Secrets extends \Google\Protobuf\Internal\Message
      * Secrets in Secret Manager and associated secret environment variable.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.SecretManagerSecret secret_manager = 1;</code>
-     * @param \Google\Cloud\Build\V1\SecretManagerSecret[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\SecretManagerSecret>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretManager($var)
@@ -90,7 +90,7 @@ class Secrets extends \Google\Protobuf\Internal\Message
      * variable.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.InlineSecret inline = 2;</code>
-     * @param \Google\Cloud\Build\V1\InlineSecret[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\InlineSecret>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInline($var)

@@ -23,21 +23,18 @@
 namespace Google\Cloud\AutoMl\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
-
 use Google\Cloud\AutoMl\V1\BatchPredictOutputConfig;
 use Google\Cloud\AutoMl\V1\BatchPredictResult;
 use Google\Cloud\AutoMl\V1\ExamplePayload;
 use Google\Cloud\AutoMl\V1\GcsDestination;
 use Google\Cloud\AutoMl\V1\GcsSource;
-use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 use Google\Cloud\AutoMl\V1\PredictResponse;
+use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class PredictionServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PredictionServiceClient
-     */
+    /** @return PredictionServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,14 +69,12 @@ class PredictionServiceClientTest extends GeneratedTest
         return new PredictionServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchPredictTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -156,14 +145,12 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchPredictExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -223,9 +210,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function predictTest()
     {
         $transport = $this->createTransport();
@@ -253,9 +238,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function predictExceptionTest()
     {
         $transport = $this->createTransport();

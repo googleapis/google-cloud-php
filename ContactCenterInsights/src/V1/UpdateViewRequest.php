@@ -29,6 +29,21 @@ class UpdateViewRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ContactCenterInsights\V1\View $view       Required. The new view.
+     * @param \Google\Protobuf\FieldMask                  $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ContactCenterInsights\V1\View $view, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setView($view)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

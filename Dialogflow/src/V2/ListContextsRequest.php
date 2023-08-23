@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
+ * The request message for
+ * [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListContextsRequest</code>
  */
@@ -39,6 +40,25 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The session to list all contexts from.
+     *                       Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                       `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                       ID>/sessions/<Session ID>`.
+     *                       If `Environment ID` is not specified, we assume default 'draft'
+     *                       environment. If `User ID` is not specified, we assume default '-' user. Please see
+     *                       {@see ContextsClient::sessionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListContextsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

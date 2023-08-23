@@ -35,6 +35,21 @@ class InsertPublicAdvertisedPrefixeRequest extends \Google\Protobuf\Internal\Mes
     private $request_id = null;
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\PublicAdvertisedPrefix $publicAdvertisedPrefixResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertPublicAdvertisedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\PublicAdvertisedPrefix $publicAdvertisedPrefixResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefixResource($publicAdvertisedPrefixResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

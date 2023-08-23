@@ -227,7 +227,7 @@ class VizierServiceGrpcClient extends \Grpc\BaseStub {
      * Checks  whether a Trial should stop or not. Returns a
      * long-running operation. When the operation is successful,
      * it will contain a
-     * [CheckTrialEarlyStoppingStateResponse][google.cloud.ml.v1.CheckTrialEarlyStoppingStateResponse].
+     * [CheckTrialEarlyStoppingStateResponse][google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse].
      * @param \Google\Cloud\AIPlatform\V1\CheckTrialEarlyStoppingStateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

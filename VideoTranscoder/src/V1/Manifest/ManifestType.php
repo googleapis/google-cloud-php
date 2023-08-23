@@ -7,7 +7,7 @@ namespace Google\Cloud\Video\Transcoder\V1\Manifest;
 use UnexpectedValueException;
 
 /**
- * The manifest type can be either `HLS` or `DASH`.
+ * The manifest type, which corresponds to the adaptive streaming format used.
  *
  * Protobuf type <code>google.cloud.video.transcoder.v1.Manifest.ManifestType</code>
  */
@@ -20,13 +20,13 @@ class ManifestType
      */
     const MANIFEST_TYPE_UNSPECIFIED = 0;
     /**
-     * Create `HLS` manifest. The corresponding file extension is `.m3u8`.
+     * Create an HLS manifest. The corresponding file extension is `.m3u8`.
      *
      * Generated from protobuf enum <code>HLS = 1;</code>
      */
     const HLS = 1;
     /**
-     * Create `DASH` manifest. The corresponding file extension is `.mpd`.
+     * Create an MPEG-DASH manifest. The corresponding file extension is `.mpd`.
      *
      * Generated from protobuf enum <code>DASH = 2;</code>
      */

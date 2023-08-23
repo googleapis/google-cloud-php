@@ -16,41 +16,41 @@ use Google\Protobuf\Internal\GPBUtil;
 class QueueStats extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. An estimation of the number of tasks in the queue, that is, the tasks in
-     * the queue that haven't been executed, the tasks in the queue which the
-     * queue has dispatched but has not yet received a reply for, and the failed
-     * tasks that the queue is retrying.
+     * Output only. An estimation of the number of tasks in the queue, that is,
+     * the tasks in the queue that haven't been executed, the tasks in the queue
+     * which the queue has dispatched but has not yet received a reply for, and
+     * the failed tasks that the queue is retrying.
      *
      * Generated from protobuf field <code>int64 tasks_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $tasks_count = 0;
     /**
-     * Output only. An estimation of the nearest time in the future where a task in the queue
-     * is scheduled to be executed.
+     * Output only. An estimation of the nearest time in the future where a task
+     * in the queue is scheduled to be executed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp oldest_estimated_arrival_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $oldest_estimated_arrival_time = null;
     /**
-     * Output only. The number of tasks that the queue has dispatched and received a reply for
-     * during the last minute. This variable counts both successful and
-     * non-successful executions.
+     * Output only. The number of tasks that the queue has dispatched and received
+     * a reply for during the last minute. This variable counts both successful
+     * and non-successful executions.
      *
      * Generated from protobuf field <code>int64 executed_last_minute_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $executed_last_minute_count = 0;
     /**
-     * Output only. The number of requests that the queue has dispatched but has not received
-     * a reply for yet.
+     * Output only. The number of requests that the queue has dispatched but has
+     * not received a reply for yet.
      *
      * Generated from protobuf field <code>int64 concurrent_dispatches_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $concurrent_dispatches_count = 0;
     /**
-     * Output only. The current maximum number of tasks per second executed by the queue.
-     * The maximum value of this variable is controlled by the RateLimits of the
-     * Queue. However, this value could be less to avoid overloading the endpoints
-     * tasks in the queue are targeting.
+     * Output only. The current maximum number of tasks per second executed by the
+     * queue. The maximum value of this variable is controlled by the RateLimits
+     * of the Queue. However, this value could be less to avoid overloading the
+     * endpoints tasks in the queue are targeting.
      *
      * Generated from protobuf field <code>double effective_execution_rate = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -63,25 +63,25 @@ class QueueStats extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $tasks_count
-     *           Output only. An estimation of the number of tasks in the queue, that is, the tasks in
-     *           the queue that haven't been executed, the tasks in the queue which the
-     *           queue has dispatched but has not yet received a reply for, and the failed
-     *           tasks that the queue is retrying.
+     *           Output only. An estimation of the number of tasks in the queue, that is,
+     *           the tasks in the queue that haven't been executed, the tasks in the queue
+     *           which the queue has dispatched but has not yet received a reply for, and
+     *           the failed tasks that the queue is retrying.
      *     @type \Google\Protobuf\Timestamp $oldest_estimated_arrival_time
-     *           Output only. An estimation of the nearest time in the future where a task in the queue
-     *           is scheduled to be executed.
+     *           Output only. An estimation of the nearest time in the future where a task
+     *           in the queue is scheduled to be executed.
      *     @type int|string $executed_last_minute_count
-     *           Output only. The number of tasks that the queue has dispatched and received a reply for
-     *           during the last minute. This variable counts both successful and
-     *           non-successful executions.
+     *           Output only. The number of tasks that the queue has dispatched and received
+     *           a reply for during the last minute. This variable counts both successful
+     *           and non-successful executions.
      *     @type int|string $concurrent_dispatches_count
-     *           Output only. The number of requests that the queue has dispatched but has not received
-     *           a reply for yet.
+     *           Output only. The number of requests that the queue has dispatched but has
+     *           not received a reply for yet.
      *     @type float $effective_execution_rate
-     *           Output only. The current maximum number of tasks per second executed by the queue.
-     *           The maximum value of this variable is controlled by the RateLimits of the
-     *           Queue. However, this value could be less to avoid overloading the endpoints
-     *           tasks in the queue are targeting.
+     *           Output only. The current maximum number of tasks per second executed by the
+     *           queue. The maximum value of this variable is controlled by the RateLimits
+     *           of the Queue. However, this value could be less to avoid overloading the
+     *           endpoints tasks in the queue are targeting.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,10 +90,10 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An estimation of the number of tasks in the queue, that is, the tasks in
-     * the queue that haven't been executed, the tasks in the queue which the
-     * queue has dispatched but has not yet received a reply for, and the failed
-     * tasks that the queue is retrying.
+     * Output only. An estimation of the number of tasks in the queue, that is,
+     * the tasks in the queue that haven't been executed, the tasks in the queue
+     * which the queue has dispatched but has not yet received a reply for, and
+     * the failed tasks that the queue is retrying.
      *
      * Generated from protobuf field <code>int64 tasks_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -104,10 +104,10 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An estimation of the number of tasks in the queue, that is, the tasks in
-     * the queue that haven't been executed, the tasks in the queue which the
-     * queue has dispatched but has not yet received a reply for, and the failed
-     * tasks that the queue is retrying.
+     * Output only. An estimation of the number of tasks in the queue, that is,
+     * the tasks in the queue that haven't been executed, the tasks in the queue
+     * which the queue has dispatched but has not yet received a reply for, and
+     * the failed tasks that the queue is retrying.
      *
      * Generated from protobuf field <code>int64 tasks_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -122,8 +122,8 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An estimation of the nearest time in the future where a task in the queue
-     * is scheduled to be executed.
+     * Output only. An estimation of the nearest time in the future where a task
+     * in the queue is scheduled to be executed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp oldest_estimated_arrival_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -144,8 +144,8 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An estimation of the nearest time in the future where a task in the queue
-     * is scheduled to be executed.
+     * Output only. An estimation of the nearest time in the future where a task
+     * in the queue is scheduled to be executed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp oldest_estimated_arrival_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -160,9 +160,9 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of tasks that the queue has dispatched and received a reply for
-     * during the last minute. This variable counts both successful and
-     * non-successful executions.
+     * Output only. The number of tasks that the queue has dispatched and received
+     * a reply for during the last minute. This variable counts both successful
+     * and non-successful executions.
      *
      * Generated from protobuf field <code>int64 executed_last_minute_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -173,9 +173,9 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of tasks that the queue has dispatched and received a reply for
-     * during the last minute. This variable counts both successful and
-     * non-successful executions.
+     * Output only. The number of tasks that the queue has dispatched and received
+     * a reply for during the last minute. This variable counts both successful
+     * and non-successful executions.
      *
      * Generated from protobuf field <code>int64 executed_last_minute_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -190,8 +190,8 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of requests that the queue has dispatched but has not received
-     * a reply for yet.
+     * Output only. The number of requests that the queue has dispatched but has
+     * not received a reply for yet.
      *
      * Generated from protobuf field <code>int64 concurrent_dispatches_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -202,8 +202,8 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of requests that the queue has dispatched but has not received
-     * a reply for yet.
+     * Output only. The number of requests that the queue has dispatched but has
+     * not received a reply for yet.
      *
      * Generated from protobuf field <code>int64 concurrent_dispatches_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -218,10 +218,10 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current maximum number of tasks per second executed by the queue.
-     * The maximum value of this variable is controlled by the RateLimits of the
-     * Queue. However, this value could be less to avoid overloading the endpoints
-     * tasks in the queue are targeting.
+     * Output only. The current maximum number of tasks per second executed by the
+     * queue. The maximum value of this variable is controlled by the RateLimits
+     * of the Queue. However, this value could be less to avoid overloading the
+     * endpoints tasks in the queue are targeting.
      *
      * Generated from protobuf field <code>double effective_execution_rate = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -232,10 +232,10 @@ class QueueStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current maximum number of tasks per second executed by the queue.
-     * The maximum value of this variable is controlled by the RateLimits of the
-     * Queue. However, this value could be less to avoid overloading the endpoints
-     * tasks in the queue are targeting.
+     * Output only. The current maximum number of tasks per second executed by the
+     * queue. The maximum value of this variable is controlled by the RateLimits
+     * of the Queue. However, this value could be less to avoid overloading the
+     * endpoints tasks in the queue are targeting.
      *
      * Generated from protobuf field <code>double effective_execution_rate = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var

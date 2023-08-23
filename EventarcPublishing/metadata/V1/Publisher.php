@@ -19,7 +19,7 @@ class Publisher
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
+ç
 
 3google/cloud/eventarc/publishing/v1/publisher.proto#google.cloud.eventarc.publishing.v1google/api/client.protogoogle/protobuf/any.proto"~
 %PublishChannelConnectionEventsRequest
@@ -34,8 +34,8 @@ class Publisher
 PublishEventsResponse2–
 	Publisherò
 PublishChannelConnectionEventsJ.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsRequestK.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsResponse"]Ç”‰ìW"R/v1/{channel_connection=projects/*/locations/*/channelConnections/*}:publishEvents:*–
-PublishEvents9.google.cloud.eventarc.publishing.v1.PublishEventsRequest:.google.cloud.eventarc.publishing.v1.PublishEventsResponse"HÇ”‰ìB"=/v1/{channel=projects/*/locations/*/channels/*}:publishEvents:*U A!eventarcpublishing.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBˇ
-\'com.google.cloud.eventarc.publishing.v1BPublisherProtoPZLgoogle.golang.org/genproto/googleapis/cloud/eventarc/publishing/v1;publisher™#Google.Cloud.Eventarc.Publishing.V1 #Google\\Cloud\\Eventarc\\Publishing\\V1Í\'Google::Cloud::Eventarc::Publishing::V1bproto3'
+PublishEvents9.google.cloud.eventarc.publishing.v1.PublishEventsRequest:.google.cloud.eventarc.publishing.v1.PublishEventsResponse"HÇ”‰ìB"=/v1/{channel=projects/*/locations/*/channels/*}:publishEvents:*U A!eventarcpublishing.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB˙
+\'com.google.cloud.eventarc.publishing.v1BPublisherProtoPZGcloud.google.com/go/eventarc/publishing/apiv1/publishingpb;publishingpb™#Google.Cloud.Eventarc.Publishing.V1 #Google\\Cloud\\Eventarc\\Publishing\\V1Í\'Google::Cloud::Eventarc::Publishing::V1bproto3'
         , true);
 
         static::$is_initialized = true;

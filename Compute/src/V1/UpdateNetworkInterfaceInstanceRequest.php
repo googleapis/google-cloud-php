@@ -53,6 +53,27 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
     private $zone = '';
 
     /**
+     * @param string                                    $project                  Project ID for this request.
+     * @param string                                    $zone                     The name of the zone for this request.
+     * @param string                                    $instance                 The instance name for this request.
+     * @param string                                    $networkInterface         The name of the network interface to update.
+     * @param \Google\Cloud\Compute\V1\NetworkInterface $networkInterfaceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateNetworkInterfaceInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, string $networkInterface, \Google\Cloud\Compute\V1\NetworkInterface $networkInterfaceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setNetworkInterface($networkInterface)
+            ->setNetworkInterfaceResource($networkInterfaceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

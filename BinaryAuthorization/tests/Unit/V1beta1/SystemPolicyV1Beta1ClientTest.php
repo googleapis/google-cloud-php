@@ -25,7 +25,6 @@ namespace Google\Cloud\BinaryAuthorization\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BinaryAuthorization\V1beta1\Policy;
 use Google\Cloud\BinaryAuthorization\V1beta1\SystemPolicyV1Beta1Client;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class SystemPolicyV1Beta1ClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SystemPolicyV1Beta1Client
-     */
+    /** @return SystemPolicyV1Beta1Client */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
         return new SystemPolicyV1Beta1Client($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSystemPolicyTest()
     {
         $transport = $this->createTransport();
@@ -97,9 +88,7 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSystemPolicyExceptionTest()
     {
         $transport = $this->createTransport();

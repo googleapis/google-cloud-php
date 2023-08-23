@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.CreateBatchPredictionJob][google.cloud.aiplatform.v1.JobService.CreateBatchPredictionJob].
+ * Request message for
+ * [JobService.CreateBatchPredictionJob][google.cloud.aiplatform.v1.JobService.CreateBatchPredictionJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateBatchPredictionJobRequest</code>
  */
 class CreateBatchPredictionJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Location to create the BatchPredictionJob in.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to create the
+     * BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,14 +31,31 @@ class CreateBatchPredictionJobRequest extends \Google\Protobuf\Internal\Message
     private $batch_prediction_job = null;
 
     /**
+     * @param string                                         $parent             Required. The resource name of the Location to create the
+     *                                                                           BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
+     *                                                                           Please see {@see JobServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\BatchPredictionJob $batchPredictionJob Required. The BatchPredictionJob to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateBatchPredictionJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\BatchPredictionJob $batchPredictionJob): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBatchPredictionJob($batchPredictionJob);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the Location to create the BatchPredictionJob in.
-     *           Format: `projects/{project}/locations/{location}`
+     *           Required. The resource name of the Location to create the
+     *           BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\AIPlatform\V1\BatchPredictionJob $batch_prediction_job
      *           Required. The BatchPredictionJob to create.
      * }
@@ -48,8 +66,8 @@ class CreateBatchPredictionJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location to create the BatchPredictionJob in.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to create the
+     * BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +78,8 @@ class CreateBatchPredictionJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Location to create the BatchPredictionJob in.
-     * Format: `projects/{project}/locations/{location}`
+     * Required. The resource name of the Location to create the
+     * BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

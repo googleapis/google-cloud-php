@@ -25,6 +25,21 @@ class SubscribeListingRequest extends \Google\Protobuf\Internal\Message
     protected $destination;
 
     /**
+     * @param string $name Required. Resource name of the listing that you want to subscribe to.
+     *                     e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
+     *                     {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

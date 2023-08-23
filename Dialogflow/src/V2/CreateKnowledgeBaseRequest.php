@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KnowledgeBases.CreateKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.CreateKnowledgeBase].
+ * Request message for
+ * [KnowledgeBases.CreateKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.CreateKnowledgeBase].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateKnowledgeBaseRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeBase knowledge_base = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $knowledge_base = null;
+
+    /**
+     * @param string                                    $parent        Required. The project to create a knowledge base for.
+     *                                                                 Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                                 {@see KnowledgeBasesClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeBase $knowledgeBase Required. The knowledge base to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateKnowledgeBaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\KnowledgeBase $knowledgeBase): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setKnowledgeBase($knowledgeBase);
+    }
 
     /**
      * Constructor.

@@ -54,6 +54,30 @@ class ListEvaluationJobsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Evaluation job resource parent. Format:
+     *                       "projects/<var>{project_id}</var>"
+     *                       Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
+     * @param string $filter Optional. You can filter the jobs to list by model_id (also known as
+     *                       model_name, as described in
+     *                       [EvaluationJob.modelVersion][google.cloud.datalabeling.v1beta1.EvaluationJob.model_version]) or by
+     *                       evaluation job state (as described in [EvaluationJob.state][google.cloud.datalabeling.v1beta1.EvaluationJob.state]). To filter
+     *                       by both criteria, use the `AND` operator or the `OR` operator. For example,
+     *                       you can use the following string for your filter:
+     *                       "evaluation<span>_</span>job.model_id = <var>{model_name}</var> AND
+     *                       evaluation<span>_</span>job.state = <var>{evaluation_job_state}</var>"
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\ListEvaluationJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

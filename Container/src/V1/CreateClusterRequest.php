@@ -50,6 +50,46 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param string                             $projectId Deprecated. The Google Developers Console [project ID or project
+     *                                                      number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                                                      This field has been deprecated and replaced by the parent field.
+     * @param string                             $zone      Deprecated. The name of the Google Compute Engine
+     *                                                      [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                                                      cluster resides. This field has been deprecated and replaced by the parent
+     *                                                      field.
+     * @param \Google\Cloud\Container\V1\Cluster $cluster   Required. A [cluster
+     *                                                      resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
+     *
+     * @return \Google\Cloud\Container\V1\CreateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone, \Google\Cloud\Container\V1\Cluster $cluster): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone)
+            ->setCluster($cluster);
+    }
+
+    /**
+     * @param string                             $parent  The parent (project and location) where the cluster will be created.
+     *                                                    Specified in the format `projects/&#42;/locations/*`.
+     * @param \Google\Cloud\Container\V1\Cluster $cluster Required. A [cluster
+     *                                                    resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
+     *
+     * @return \Google\Cloud\Container\V1\CreateClusterRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentCluster(string $parent, \Google\Cloud\Container\V1\Cluster $cluster): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCluster($cluster);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

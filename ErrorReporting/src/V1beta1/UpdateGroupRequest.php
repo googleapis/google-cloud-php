@@ -23,6 +23,19 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     private $group = null;
 
     /**
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $group Required. The group which replaces the resource on the server.
+     *
+     * @return \Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $group): self
+    {
+        return (new self())
+            ->setGroup($group);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,7 +24,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -54,6 +54,12 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 8;</code>
      */
     private $launch_stage = 0;
+    /**
+     * A set of Cloud Storage URIs of sample documents for this processor.
+     *
+     * Generated from protobuf field <code>repeated string sample_document_uris = 9;</code>
+     */
+    private $sample_document_uris;
 
     /**
      * Constructor.
@@ -65,7 +71,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      *           The resource name of the processor type.
      *           Format: `projects/{project}/processorTypes/{processor_type}`
      *     @type string $type
-     *           The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     *           The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *     @type string $category
      *           The processor category, used by UI to group processor types.
      *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $available_locations
@@ -75,6 +81,8 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      *           processor of this processor type. Otherwise, users need to request access.
      *     @type int $launch_stage
      *           Launch stage of the processor type
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sample_document_uris
+     *           A set of Cloud Storage URIs of sample documents for this processor.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,7 +119,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -122,7 +130,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var
@@ -238,6 +246,32 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Api\LaunchStage::class);
         $this->launch_stage = $var;
+
+        return $this;
+    }
+
+    /**
+     * A set of Cloud Storage URIs of sample documents for this processor.
+     *
+     * Generated from protobuf field <code>repeated string sample_document_uris = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSampleDocumentUris()
+    {
+        return $this->sample_document_uris;
+    }
+
+    /**
+     * A set of Cloud Storage URIs of sample documents for this processor.
+     *
+     * Generated from protobuf field <code>repeated string sample_document_uris = 9;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSampleDocumentUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->sample_document_uris = $arr;
 
         return $this;
     }

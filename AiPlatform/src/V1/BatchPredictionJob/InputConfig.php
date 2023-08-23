@@ -9,9 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configures the input to [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob].
- * See [Model.supported_input_storage_formats][google.cloud.aiplatform.v1.Model.supported_input_storage_formats] for Model's supported input
- * formats, and how instances should be expressed via any of them.
+ * Configures the input to
+ * [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob]. See
+ * [Model.supported_input_storage_formats][google.cloud.aiplatform.v1.Model.supported_input_storage_formats]
+ * for Model's supported input formats, and how instances should be expressed
+ * via any of them.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig</code>
  */

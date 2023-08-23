@@ -45,6 +45,36 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
     private $policy_id = '';
 
     /**
+     * @param string                      $parent   Required. The resource that the policy is attached to, along with the kind of policy
+     *                                              to create. Format: `policies/{attachment_point}/denypolicies`
+     *
+     *
+     *                                              The attachment point is identified by its URL-encoded full resource name,
+     *                                              which means that the forward-slash character, `/`, must be written as
+     *                                              `%2F`. For example,
+     *                                              `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`.
+     *
+     *                                              For organizations and folders, use the numeric ID in the full resource
+     *                                              name. For projects, you can use the alphanumeric or the numeric ID.
+     * @param \Google\Cloud\Iam\V2\Policy $policy   Required. The policy to create.
+     * @param string                      $policyId The ID to use for this policy, which will become the final component of
+     *                                              the policy's resource name. The ID must contain 3 to 63 characters. It can
+     *                                              contain lowercase letters and numbers, as well as dashes (`-`) and periods
+     *                                              (`.`). The first character must be a lowercase letter.
+     *
+     * @return \Google\Cloud\Iam\V2\CreatePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Iam\V2\Policy $policy, string $policyId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPolicy($policy)
+            ->setPolicyId($policyId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

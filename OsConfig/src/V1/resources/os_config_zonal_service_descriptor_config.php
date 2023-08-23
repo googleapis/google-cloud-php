@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'DeleteOSPolicyAssignment' => [
                 'longRunning' => [
@@ -21,6 +30,15 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateOSPolicyAssignment' => [
@@ -32,6 +50,64 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'os_policy_assignment.name',
+                        'fieldAccessors' => [
+                            'getOsPolicyAssignment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetInventory' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\Inventory',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOSPolicyAssignment' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\OSPolicyAssignment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOSPolicyAssignmentReport' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetVulnerabilityReport' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\VulnerabilityReport',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'ListInventories' => [
                 'pageStreaming' => [
@@ -41,6 +117,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getInventories',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\ListInventoriesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'ListOSPolicyAssignmentReports' => [
@@ -52,6 +138,16 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getOsPolicyAssignmentReports',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentReportsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListOSPolicyAssignmentRevisions' => [
                 'pageStreaming' => [
@@ -61,6 +157,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getOsPolicyAssignments',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'ListOSPolicyAssignments' => [
@@ -72,6 +178,16 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getOsPolicyAssignments',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListVulnerabilityReports' => [
                 'pageStreaming' => [
@@ -82,6 +198,27 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getVulnerabilityReports',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OsConfig\V1\ListVulnerabilityReportsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'templateMap' => [
+                'instance' => 'projects/{project}/zones/{zone}/instances/{instance}',
+                'instanceOSPolicyAssignment' => 'projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}',
+                'inventory' => 'projects/{project}/locations/{location}/instances/{instance}/inventory',
+                'location' => 'projects/{project}/locations/{location}',
+                'oSPolicyAssignment' => 'projects/{project}/locations/{location}/osPolicyAssignments/{os_policy_assignment}',
+                'oSPolicyAssignmentReport' => 'projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/report',
+                'projectLocationInstance' => 'projects/{project}/locations/{location}/instances/{instance}',
+                'projectZoneInstance' => 'projects/{project}/zones/{zone}/instances/{instance}',
+                'vulnerabilityReport' => 'projects/{project}/locations/{location}/instances/{instance}/vulnerabilityReport',
             ],
         ],
     ],

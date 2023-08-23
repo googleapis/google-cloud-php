@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.GetDocument][google.firestore.v1.Firestore.GetDocument].
+ * The request for
+ * [Firestore.GetDocument][google.firestore.v1.Firestore.GetDocument].
  *
  * Generated from protobuf message <code>google.firestore.v1.GetDocumentRequest</code>
  */
@@ -49,7 +50,9 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      *           Reads the document in a transaction.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Reads the version of the document at the given time.
-     *           This may not be older than 270 seconds.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,7 +161,9 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads the version of the document at the given time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -175,7 +180,9 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads the version of the document at the given time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -45,6 +45,36 @@ class CreateAgentPoolRequest extends \Google\Protobuf\Internal\Message
     private $agent_pool_id = '';
 
     /**
+     * @param string                                     $projectId   Required. The ID of the Google Cloud project that owns the
+     *                                                                agent pool.
+     * @param \Google\Cloud\StorageTransfer\V1\AgentPool $agentPool   Required. The agent pool to create.
+     * @param string                                     $agentPoolId Required. The ID of the agent pool to create.
+     *
+     *                                                                The `agent_pool_id` must meet the following requirements:
+     *
+     *                                                                *   Length of 128 characters or less.
+     *                                                                *   Not start with the string `goog`.
+     *                                                                *   Start with a lowercase ASCII character, followed by:
+     *                                                                *   Zero or more: lowercase Latin alphabet characters, numerals,
+     *                                                                hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`).
+     *                                                                *   One or more numerals or lowercase ASCII characters.
+     *
+     *                                                                As expressed by the regular expression:
+     *                                                                `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
+     *
+     * @return \Google\Cloud\StorageTransfer\V1\CreateAgentPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, \Google\Cloud\StorageTransfer\V1\AgentPool $agentPool, string $agentPoolId): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setAgentPool($agentPool)
+            ->setAgentPoolId($agentPoolId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

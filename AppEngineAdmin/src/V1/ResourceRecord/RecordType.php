@@ -66,6 +66,4 @@ class RecordType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RecordType::class, \Google\Cloud\AppEngine\V1\ResourceRecord_RecordType::class);
 

@@ -187,7 +187,7 @@ class RateLimiter
      * @param int $requestTimeMillis The time used to calculate the number of
      *        available tokens.
      * @return void
-     * @throws InvalidArgumentException If request time is before last token refill time.
+     * @throws \InvalidArgumentException If request time is before last token refill time.
      */
     private function refillTokens($requestTimeMillis)
     {

@@ -28,7 +28,7 @@ class Eventarc
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸<
+°<
 \'google/cloud/eventarc/v1/eventarc.protogoogle.cloud.eventarc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/eventarc/v1/channel.proto1google/cloud/eventarc/v1/channel_connection.proto(google/cloud/eventarc/v1/discovery.proto4google/cloud/eventarc/v1/google_channel_config.proto&google/cloud/eventarc/v1/trigger.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"J
 GetTriggerRequest5
 name (	B\'àAúA!
@@ -163,8 +163,8 @@ GetChannel+.google.cloud.eventarc.v1.GetChannelRequest!.google.cloud.eventarc.
 DeleteChannelConnection8.google.cloud.eventarc.v1.DeleteChannelConnectionRequest.google.longrunning.Operation"n‚Óä“8*6/v1/{name=projects/*/locations/*/channelConnections/*}ÚAnameÊA&
 ChannelConnectionOperationMetadataÆ
 GetGoogleChannelConfig7.google.cloud.eventarc.v1.GetGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"D‚Óä“75/v1/{name=projects/*/locations/*/googleChannelConfig}ÚAname—
-UpdateGoogleChannelConfig:.google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"Ž‚Óä“d2K/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}:google_channel_configÚA!google_channel_config,update_maskKÊAeventarc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÅ
-com.google.cloud.eventarc.v1BEventarcProtoPZ@google.golang.org/genproto/googleapis/cloud/eventarc/v1;eventarcªGoogle.Cloud.Eventarc.V1ÊGoogle\\Cloud\\Eventarc\\V1êGoogle::Cloud::Eventarc::V1bproto3'
+UpdateGoogleChannelConfig:.google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"Ž‚Óä“d2K/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}:google_channel_configÚA!google_channel_config,update_maskKÊAeventarc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB½
+com.google.cloud.eventarc.v1BEventarcProtoPZ8cloud.google.com/go/eventarc/apiv1/eventarcpb;eventarcpbªGoogle.Cloud.Eventarc.V1ÊGoogle\\Cloud\\Eventarc\\V1êGoogle::Cloud::Eventarc::V1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -23,11 +23,16 @@ class AttackComplexity
      * Generated from protobuf enum <code>ATTACK_COMPLEXITY_HIGH = 2;</code>
      */
     const ATTACK_COMPLEXITY_HIGH = 2;
+    /**
+     * Generated from protobuf enum <code>ATTACK_COMPLEXITY_MEDIUM = 3;</code>
+     */
+    const ATTACK_COMPLEXITY_MEDIUM = 3;
 
     private static $valueToName = [
         self::ATTACK_COMPLEXITY_UNSPECIFIED => 'ATTACK_COMPLEXITY_UNSPECIFIED',
         self::ATTACK_COMPLEXITY_LOW => 'ATTACK_COMPLEXITY_LOW',
         self::ATTACK_COMPLEXITY_HIGH => 'ATTACK_COMPLEXITY_HIGH',
+        self::ATTACK_COMPLEXITY_MEDIUM => 'ATTACK_COMPLEXITY_MEDIUM',
     ];
 
     public static function name($value)

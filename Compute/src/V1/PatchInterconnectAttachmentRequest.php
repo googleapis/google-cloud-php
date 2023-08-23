@@ -47,6 +47,25 @@ class PatchInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Messa
     private $request_id = null;
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $region                         Name of the region scoping this request.
+     * @param string                                          $interconnectAttachment         Name of the interconnect attachment to patch.
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachment $interconnectAttachmentResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\PatchInterconnectAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $interconnectAttachment, \Google\Cloud\Compute\V1\InterconnectAttachment $interconnectAttachmentResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInterconnectAttachment($interconnectAttachment)
+            ->setInterconnectAttachmentResource($interconnectAttachmentResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

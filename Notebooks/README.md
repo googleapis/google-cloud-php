@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-notebooks/v/stable)](https://packagist.org/packages/google/cloud-notebooks) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-notebooks.svg)](https://packagist.org/packages/google/cloud-notebooks)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-notebooks/latest/notebooks/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-notebooks/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

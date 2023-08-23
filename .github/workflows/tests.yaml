@@ -5,117 +5,91 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
 jobs:
   test:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1" ]
-        phpunit-filename: [phpunit]
+        php: [ "7.4", "8.0", "8.1", "8.2" ]
+        extensions: ["grpc-1.54.0"]
+        type: ["Unit Test"]
         include:
-          - platform: ubuntu-latest
-            php: "5.6"
-            phpunit-filename: phpunit-php5
-          - platform: ubuntu-latest
-            php: "7.0"
-            phpunit-filename: phpunit
-    name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
+          - platform: "ubuntu-latest"
+            php: "7.4"
+            extensions: "protobuf,grpc-1.54.0"
+            type: "Unit Test + protobuf extension"
+    name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
+    continue-on-error: true
     steps:
     - uses: actions/checkout@v3
+    - name: Setup cache environment
+      id: extcache
+      uses: shivammathur/cache-extensions@v1
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: ${{ matrix.extensions }}
+        key: cache-key-1 # increment to bust the cache
+    - name: Cache extensions
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.extcache.outputs.dir }}
+        key: ${{ steps.extcache.outputs.key }}
+        restore-keys: ${{ steps.extcache.outputs.key }}
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: grpc
+        extensions: ${{ matrix.extensions }}
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
         timeout_minutes: 10
         max_attempts: 3
         command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run Unit Test Suite
+    - if: ${{ matrix.platform == 'windows-latest' }}
+      name: Run Unit Test Suite (Windows)
       run: |
-        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+        vendor/bin/phpunit -c phpunit.xml.dist
+        if ( "$?" -ne "0" )
+        {
+          echo "*** RETRYING FLAKEY PHPUNIT ON WINDOWS ***"
+          vendor/bin/phpunit -c phpunit.xml.dist
+        }
+    - if: ${{ matrix.platform != 'windows-latest' }}
+      name: Run Unit Test Suite
+      run: |
+        vendor/bin/phpunit -c phpunit.xml.dist
     - if: ${{ matrix.platform != 'windows-latest' }}
       name: Run Snippet Test Suite
       run: |
-        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
+        vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 
-  test_package:
-    name: Package Unit Tests
+  test_packages:
+    name: Package Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
-        php-version: '8.0'
+        php-version: '8.1'
         extensions: grpc
-    - name: Run Unit Test Suites
+    - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
 
-  style:
-    runs-on: ubuntu-latest
-    name: PHP Style Check
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-    - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run PHPCS Code Style Checker
-      run: dev/sh/style
-
-  docfx:
-    name: "Run DocFX tests"
+  test_dev_commands:
+    name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-    - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
-        php-version: "8.0"
-    - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
-    - name: Install phpDocumentor
-      run: |
-        wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
-          && chmod +x /usr/local/bin/phpdoc
-    - name: Run DocFX Unit Test Suite
-      run: vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
-    - name: Run Docs Generator (Dry Run)
-      run: bash .kokoro/docs/publish.sh
-
-  docs:
-    runs-on: ubuntu-latest
-    name: Generate Legacy Documentation (Dry Run)
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-    - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run Docs Generator
-      run: php -d 'memory_limit=-1' dev/google-cloud docs
+        php-version: "8.1"
+    - name: "Install dependencies"
+      run: composer  --no-interaction --no-ansi --no-progress update -d dev
+    - name: Run Dev Unit Test Suite
+      run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist

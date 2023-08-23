@@ -575,8 +575,8 @@ class Breakpoint
             if ($this->variableTable->isFull()) {
                 break;
             }
-            $value = isset($local['value']) ? $local['value'] : null;
-            $hash = isset($local['id']) ? $local['id'] : null;
+            $value = $local['value'] ?? null;
+            $hash = $local['id'] ?? null;
             try {
                 $variable = $this->addVariable($local['name'], $value, $hash);
             } catch (BufferFullException $e) {

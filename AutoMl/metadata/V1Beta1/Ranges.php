@@ -16,12 +16,12 @@ class Ranges
         }
         $pool->internalAddGeneratedFile(
             '
-Ø
+•
 (google/cloud/automl/v1beta1/ranges.protogoogle.cloud.automl.v1beta1")
 DoubleRange
 start (
-end (B≤
-com.google.cloud.automl.v1beta1BRangesProtoPZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+end (B®
+com.google.cloud.automl.v1beta1BRangesProtoPZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

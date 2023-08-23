@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.DeleteBatchPredictionJob][google.cloud.aiplatform.v1.JobService.DeleteBatchPredictionJob].
+ * Request message for
+ * [JobService.DeleteBatchPredictionJob][google.cloud.aiplatform.v1.JobService.DeleteBatchPredictionJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteBatchPredictionJobRequest</code>
  */
@@ -23,6 +24,22 @@ class DeleteBatchPredictionJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the BatchPredictionJob resource to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
+     *                     Please see {@see JobServiceClient::batchPredictionJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteBatchPredictionJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

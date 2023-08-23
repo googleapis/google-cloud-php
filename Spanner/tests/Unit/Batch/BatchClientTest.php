@@ -27,10 +27,12 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Google\Cloud\Spanner\SpannerClient;
 
 /**
  * @group spanner
@@ -39,8 +41,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class BatchClientTest extends TestCase
 {
-    use ExpectException;
     use OperationRefreshTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
     use TimeTrait;
 
@@ -51,7 +53,7 @@ class BatchClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->getConnStub();
         $this->client = TestHelpers::stub(BatchClient::class, [
@@ -147,7 +149,7 @@ class BatchClientTest extends TestCase
 
     public function testMissingPartitionTypeKey()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid partition data.');
 
         $data = base64_encode(json_encode(['hello' => 'world']));
@@ -156,10 +158,40 @@ class BatchClientTest extends TestCase
 
     public function testInvalidPartitionType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid partition type.');
 
         $data = base64_encode(json_encode([BatchClient::PARTITION_TYPE_KEY => uniqid('this-is-not-real')]));
         $this->client->partitionFromString($data);
+    }
+
+    public function testSnapshotDatabaseRole()
+    {
+        $time = time();
+
+        $client = TestHelpers::stub(BatchClient::class, [
+            new Operation($this->connection->reveal(), false),
+            self::DATABASE,
+            ['databaseRole' => 'Reader']
+        ], [
+            'operation'
+        ]);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()->willReturn([
+                'id' => self::TRANSACTION,
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
+            ]);
+
+        $this->connection->createSession(Argument::withEntry(
+            'session',
+            ['labels' => [], 'creator_role' => 'Reader']
+        ))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::SESSION
+            ]);
+
+        $snapshot = $client->snapshot();
     }
 }

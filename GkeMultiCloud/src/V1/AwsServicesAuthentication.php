@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class AwsServicesAuthentication extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Amazon Resource Name (ARN) of the role that the Anthos Multi-Cloud API
-     * will assume when managing AWS resources on your account.
+     * Required. The Amazon Resource Name (ARN) of the role that the Anthos
+     * Multi-Cloud API will assume when managing AWS resources on your account.
      *
      * Generated from protobuf field <code>string role_arn = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,8 +37,8 @@ class AwsServicesAuthentication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $role_arn
-     *           Required. The Amazon Resource Name (ARN) of the role that the Anthos Multi-Cloud API
-     *           will assume when managing AWS resources on your account.
+     *           Required. The Amazon Resource Name (ARN) of the role that the Anthos
+     *           Multi-Cloud API will assume when managing AWS resources on your account.
      *     @type string $role_session_name
      *           Optional. An identifier for the assumed role session.
      *           When unspecified, it defaults to `multicloud-service-agent`.
@@ -50,8 +50,8 @@ class AwsServicesAuthentication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Amazon Resource Name (ARN) of the role that the Anthos Multi-Cloud API
-     * will assume when managing AWS resources on your account.
+     * Required. The Amazon Resource Name (ARN) of the role that the Anthos
+     * Multi-Cloud API will assume when managing AWS resources on your account.
      *
      * Generated from protobuf field <code>string role_arn = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,8 +62,8 @@ class AwsServicesAuthentication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Amazon Resource Name (ARN) of the role that the Anthos Multi-Cloud API
-     * will assume when managing AWS resources on your account.
+     * Required. The Amazon Resource Name (ARN) of the role that the Anthos
+     * Multi-Cloud API will assume when managing AWS resources on your account.
      *
      * Generated from protobuf field <code>string role_arn = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

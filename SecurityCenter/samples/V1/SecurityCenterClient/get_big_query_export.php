@@ -28,9 +28,9 @@ use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
- * Gets a big query export.
+ * Gets a BigQuery export.
  *
- * @param string $formattedName Name of the big query export to retrieve. Its format is
+ * @param string $formattedName Name of the BigQuery export to retrieve. Its format is
  *                              organizations/{organization}/bigQueryExports/{export_id},
  *                              folders/{folder}/bigQueryExports/{export_id}, or
  *                              projects/{project}/bigQueryExports/{export_id}

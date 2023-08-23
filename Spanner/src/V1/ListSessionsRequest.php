@@ -50,6 +50,20 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $database Required. The database in which to list sessions. Please see
+     *                         {@see SpannerClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\V1\ListSessionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database): self
+    {
+        return (new self())
+            ->setDatabase($database);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

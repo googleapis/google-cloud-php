@@ -32,6 +32,25 @@ class CreateContactRequest extends \Google\Protobuf\Internal\Message
     private $contact = null;
 
     /**
+     * @param string                                     $parent  Required. The resource to save this contact for.
+     *                                                            Format: organizations/{organization_id}, folders/{folder_id} or
+     *                                                            projects/{project_id}
+     *                                                            Please see {@see EssentialContactsServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\EssentialContacts\V1\Contact $contact Required. The contact to create. Must specify an email address and language
+     *                                                            tag.
+     *
+     * @return \Google\Cloud\EssentialContacts\V1\CreateContactRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\EssentialContacts\V1\Contact $contact): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setContact($contact);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

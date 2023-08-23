@@ -28,6 +28,7 @@ use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
+use Google\Cloud\BigQuery\Json;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
@@ -37,14 +38,17 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class BigQueryClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
     const DATASET_ID = 'myDatasetId';
@@ -63,7 +67,7 @@ class BigQueryClientTest extends TestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -673,5 +677,12 @@ class BigQueryClientTest extends TestCase
         $this->assertEquals(self::PROJECT_ID, $config['projectId']);
         $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
         $this->assertEquals('world', $config['location']);
+    }
+
+    public function testGetsJson()
+    {
+        $json = $this->getClient()->json(json_encode(['id' => 1]));
+
+        $this->assertInstanceOf(Json::class, $json);
     }
 }

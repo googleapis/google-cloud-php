@@ -42,6 +42,12 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
+     * Output only. Number of issues in this issue model.
+     *
+     * Generated from protobuf field <code>int64 issue_count = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $issue_count = 0;
+    /**
      * Output only. State of the model.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -54,11 +60,24 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      */
     private $input_data_config = null;
     /**
-     * Output only. Immutable. The issue model's label statistics on its training data.
+     * Output only. Immutable. The issue model's label statistics on its training
+     * data.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelLabelStats training_stats = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $training_stats = null;
+    /**
+     * Type of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.ModelType model_type = 9;</code>
+     */
+    private $model_type = 0;
+    /**
+     * Language of the model.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     */
+    private $language_code = '';
 
     /**
      * Constructor.
@@ -76,12 +95,19 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which this issue model was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The most recent time at which the issue model was updated.
+     *     @type int|string $issue_count
+     *           Output only. Number of issues in this issue model.
      *     @type int $state
      *           Output only. State of the model.
      *     @type \Google\Cloud\ContactCenterInsights\V1\IssueModel\InputDataConfig $input_data_config
      *           Configs for the input data that used to create the issue model.
      *     @type \Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats $training_stats
-     *           Output only. Immutable. The issue model's label statistics on its training data.
+     *           Output only. Immutable. The issue model's label statistics on its training
+     *           data.
+     *     @type int $model_type
+     *           Type of the model.
+     *     @type string $language_code
+     *           Language of the model.
      * }
      */
     public function __construct($data = NULL) {
@@ -218,6 +244,32 @@ class IssueModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Number of issues in this issue model.
+     *
+     * Generated from protobuf field <code>int64 issue_count = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getIssueCount()
+    {
+        return $this->issue_count;
+    }
+
+    /**
+     * Output only. Number of issues in this issue model.
+     *
+     * Generated from protobuf field <code>int64 issue_count = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setIssueCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->issue_count = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. State of the model.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -280,7 +332,8 @@ class IssueModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The issue model's label statistics on its training data.
+     * Output only. Immutable. The issue model's label statistics on its training
+     * data.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelLabelStats training_stats = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats|null
@@ -301,7 +354,8 @@ class IssueModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The issue model's label statistics on its training data.
+     * Output only. Immutable. The issue model's label statistics on its training
+     * data.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelLabelStats training_stats = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats $var
@@ -311,6 +365,58 @@ class IssueModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats::class);
         $this->training_stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.ModelType model_type = 9;</code>
+     * @return int
+     */
+    public function getModelType()
+    {
+        return $this->model_type;
+    }
+
+    /**
+     * Type of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.ModelType model_type = 9;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setModelType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ContactCenterInsights\V1\IssueModel\ModelType::class);
+        $this->model_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Language of the model.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Language of the model.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
 
         return $this;
     }

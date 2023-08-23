@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/analytics-data/v/stable)](https://packagist.org/packages/google/analytics-data) [![Packagist](https://img.shields.io/packagist/dm/google/analytics-data.svg)](https://packagist.org/packages/google/analytics-data)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/analytics-data/latest/analyticsdata/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/analytics-data/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

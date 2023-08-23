@@ -30,6 +30,23 @@ class CreatePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
     private $prediction_api_key_registration = null;
 
     /**
+     * @param string                                                                  $parent                       Required. The parent resource path.
+     *                                                                                                              `projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store`. Please see
+     *                                                                                                              {@see PredictionApiKeyRegistryClient::eventStoreName()} for help formatting this field.
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration $predictionApiKeyRegistration Required. The prediction API key registration.
+     *
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\CreatePredictionApiKeyRegistrationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration $predictionApiKeyRegistration): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPredictionApiKeyRegistration($predictionApiKeyRegistration);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

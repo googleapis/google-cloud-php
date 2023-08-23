@@ -40,6 +40,31 @@ class CreateApiVersionRequest extends \Google\Protobuf\Internal\Message
     private $api_version_id = '';
 
     /**
+     * @param string                                     $parent       Required. The parent, which owns this collection of versions.
+     *                                                                 Format: `projects/&#42;/locations/&#42;/apis/*`
+     *                                                                 Please see {@see RegistryClient::apiName()} for help formatting this field.
+     * @param \Google\Cloud\ApigeeRegistry\V1\ApiVersion $apiVersion   Required. The version to create.
+     * @param string                                     $apiVersionId Required. The ID to use for the version, which will become the final component of
+     *                                                                 the version's resource name.
+     *
+     *                                                                 This value should be 1-63 characters, and valid characters
+     *                                                                 are /[a-z][0-9]-/.
+     *
+     *                                                                 Following AIP-162, IDs must not have the form of a UUID.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\CreateApiVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ApigeeRegistry\V1\ApiVersion $apiVersion, string $apiVersionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setApiVersion($apiVersion)
+            ->setApiVersionId($apiVersionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

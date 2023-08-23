@@ -44,6 +44,9 @@ class Query extends \Google\Protobuf\Internal\Message
      * The properties to make distinct. The query results will contain the first
      * result for each distinct combination of values for the given properties
      * (if empty, all results are returned).
+     * Requires:
+     * * If `order` is specified, the set of distinct on properties must appear
+     * before the non-distinct on properties in `order`.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyReference distinct_on = 6;</code>
      */
@@ -102,6 +105,9 @@ class Query extends \Google\Protobuf\Internal\Message
      *           The properties to make distinct. The query results will contain the first
      *           result for each distinct combination of values for the given properties
      *           (if empty, all results are returned).
+     *           Requires:
+     *           * If `order` is specified, the set of distinct on properties must appear
+     *           before the non-distinct on properties in `order`.
      *     @type string $start_cursor
      *           A starting point for the query results. Query cursors are
      *           returned in query result batches and
@@ -247,6 +253,9 @@ class Query extends \Google\Protobuf\Internal\Message
      * The properties to make distinct. The query results will contain the first
      * result for each distinct combination of values for the given properties
      * (if empty, all results are returned).
+     * Requires:
+     * * If `order` is specified, the set of distinct on properties must appear
+     * before the non-distinct on properties in `order`.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyReference distinct_on = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -260,6 +269,9 @@ class Query extends \Google\Protobuf\Internal\Message
      * The properties to make distinct. The query results will contain the first
      * result for each distinct combination of values for the given properties
      * (if empty, all results are returned).
+     * Requires:
+     * * If `order` is specified, the set of distinct on properties must appear
+     * before the non-distinct on properties in `order`.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyReference distinct_on = 6;</code>
      * @param array<\Google\Cloud\Datastore\V1\PropertyReference>|\Google\Protobuf\Internal\RepeatedField $var

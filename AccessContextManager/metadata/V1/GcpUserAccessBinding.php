@@ -18,15 +18,15 @@ class GcpUserAccessBinding
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ë
+ì
 Egoogle/identity/accesscontextmanager/v1/gcp_user_access_binding.proto\'google.identity.accesscontextmanager.v1google/api/resource.proto"£
 GcpUserAccessBinding
 name (	BàA
 	group_key (	BàAàAN
 access_levels (	B7àAúA1
 /accesscontextmanager.googleapis.com/AccessLevel:ŒêAˆ
-8accesscontextmanager.googleapis.com/GcpUserAccessBindingLorganizations/{organization}/gcpUserAccessBindings/{gcp_user_access_binding}B¯
-+com.google.identity.accesscontextmanager.v1BGcpUserAccessBindingProtoPZ[google.golang.org/genproto/googleapis/identity/accesscontextmanager/v1;accesscontextmanager¢GACMª\'Google.Identity.AccessContextManager.V1Ê\'Google\\Identity\\AccessContextManager\\V1ê*Google::Identity::AccessContextManager::V1bproto3'
+8accesscontextmanager.googleapis.com/GcpUserAccessBindingLorganizations/{organization}/gcpUserAccessBindings/{gcp_user_access_binding}B°
++com.google.identity.accesscontextmanager.v1BGcpUserAccessBindingProtoPZ\\cloud.google.com/go/accesscontextmanager/apiv1/accesscontextmanagerpb;accesscontextmanagerpb¢GACMª\'Google.Identity.AccessContextManager.V1Ê\'Google\\Identity\\AccessContextManager\\V1ê*Google::Identity::AccessContextManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

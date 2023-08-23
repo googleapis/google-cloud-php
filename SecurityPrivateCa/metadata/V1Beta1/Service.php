@@ -24,7 +24,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˝S
+ˆS
 5google/cloud/security/privateca/v1beta1/service.proto\'google.cloud.security.privateca.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/security/privateca/v1beta1/resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Á
 CreateCertificateRequestE
 parent (	B5‡A˙A/
@@ -189,8 +189,8 @@ page_token (	B‡A
 UpdateCertificateRevocationListO.google.cloud.security.privateca.v1beta1.UpdateCertificateRevocationListRequest.google.longrunning.Operation"˘Ç”‰ìó2x/v1beta1/{certificate_revocation_list.name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}:certificate_revocation_list⁄A\'certificate_revocation_list,update_mask A.
 CertificateRevocationListOperationMetadataÿ
 GetReusableConfigA.google.cloud.security.privateca.v1beta1.GetReusableConfigRequest7.google.cloud.security.privateca.v1beta1.ReusableConfig"GÇ”‰ì:8/v1beta1/{name=projects/*/locations/*/reusableConfigs/*}⁄AnameÎ
-ListReusableConfigsC.google.cloud.security.privateca.v1beta1.ListReusableConfigsRequestD.google.cloud.security.privateca.v1beta1.ListReusableConfigsResponse"IÇ”‰ì:8/v1beta1/{parent=projects/*/locations/*}/reusableConfigs⁄AparentL Aprivateca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBñ
-+com.google.cloud.security.privateca.v1beta1BPrivateCaProtoPZPgoogle.golang.org/genproto/googleapis/cloud/security/privateca/v1beta1;privateca¯™\'Google.Cloud.Security.PrivateCA.V1Beta1 \'Google\\Cloud\\Security\\PrivateCA\\V1beta1Í+Google::Cloud::Security::PrivateCA::V1beta1bproto3'
+ListReusableConfigsC.google.cloud.security.privateca.v1beta1.ListReusableConfigsRequestD.google.cloud.security.privateca.v1beta1.ListReusableConfigsResponse"IÇ”‰ì:8/v1beta1/{parent=projects/*/locations/*}/reusableConfigs⁄AparentL Aprivateca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBè
++com.google.cloud.security.privateca.v1beta1BPrivateCaProtoPZIcloud.google.com/go/security/privateca/apiv1beta1/privatecapb;privatecapb¯™\'Google.Cloud.Security.PrivateCA.V1Beta1 \'Google\\Cloud\\Security\\PrivateCA\\V1beta1Í+Google::Cloud::Security::PrivateCA::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

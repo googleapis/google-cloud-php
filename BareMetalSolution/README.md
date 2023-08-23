@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-bare-metal-solution/v/stable)](https://packagist.org/packages/google/cloud-bare-metal-solution) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bare-metal-solution.svg)](https://packagist.org/packages/google/cloud-bare-metal-solution)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-bare-metal-solution/latest/baremetalsolution/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-bare-metal-solution/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

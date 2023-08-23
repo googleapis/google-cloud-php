@@ -56,6 +56,12 @@ class RouteType
      * Generated from protobuf enum <code>PEERING_DYNAMIC = 6;</code>
      */
     const PEERING_DYNAMIC = 6;
+    /**
+     * Policy based route.
+     *
+     * Generated from protobuf enum <code>POLICY_BASED = 7;</code>
+     */
+    const POLICY_BASED = 7;
 
     private static $valueToName = [
         self::ROUTE_TYPE_UNSPECIFIED => 'ROUTE_TYPE_UNSPECIFIED',
@@ -65,6 +71,7 @@ class RouteType
         self::PEERING_SUBNET => 'PEERING_SUBNET',
         self::PEERING_STATIC => 'PEERING_STATIC',
         self::PEERING_DYNAMIC => 'PEERING_DYNAMIC',
+        self::POLICY_BASED => 'POLICY_BASED',
     ];
 
     public static function name($value)
@@ -92,6 +99,4 @@ class RouteType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RouteType::class, \Google\Cloud\NetworkManagement\V1\RouteInfo_RouteType::class);
 

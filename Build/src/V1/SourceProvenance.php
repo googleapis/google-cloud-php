@@ -93,7 +93,7 @@ class SourceProvenance extends \Google\Protobuf\Internal\Message
      */
     public function getResolvedStorageSource()
     {
-        return isset($this->resolved_storage_source) ? $this->resolved_storage_source : null;
+        return $this->resolved_storage_source;
     }
 
     public function hasResolvedStorageSource()
@@ -131,7 +131,7 @@ class SourceProvenance extends \Google\Protobuf\Internal\Message
      */
     public function getResolvedRepoSource()
     {
-        return isset($this->resolved_repo_source) ? $this->resolved_repo_source : null;
+        return $this->resolved_repo_source;
     }
 
     public function hasResolvedRepoSource()
@@ -170,7 +170,7 @@ class SourceProvenance extends \Google\Protobuf\Internal\Message
      */
     public function getResolvedStorageSourceManifest()
     {
-        return isset($this->resolved_storage_source_manifest) ? $this->resolved_storage_source_manifest : null;
+        return $this->resolved_storage_source_manifest;
     }
 
     public function hasResolvedStorageSourceManifest()

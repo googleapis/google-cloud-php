@@ -33,7 +33,7 @@ class PrivateIPv6GoogleAccess
      */
     const PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE = 2;
     /**
-     * Enables priate IPv6 access to and from Google Services
+     * Enables private IPv6 access to and from Google Services
      *
      * Generated from protobuf enum <code>PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL = 3;</code>
      */

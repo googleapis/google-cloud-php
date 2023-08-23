@@ -57,6 +57,21 @@ class ListAppGatewaysRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the AppGateway location using the form:
+     *                       `projects/{project_id}/locations/{location_id}`
+     *                       Please see {@see AppGatewaysServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BeyondCorp\AppGateways\V1\ListAppGatewaysRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

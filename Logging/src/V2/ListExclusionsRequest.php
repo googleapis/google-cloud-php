@@ -44,6 +44,25 @@ class ListExclusionsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. The parent resource whose exclusions are to be listed.
+     *
+     *                       "projects/[PROJECT_ID]"
+     *                       "organizations/[ORGANIZATION_ID]"
+     *                       "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *                       "folders/[FOLDER_ID]"
+     *                       Please see {@see ConfigServiceV2Client::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\ListExclusionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

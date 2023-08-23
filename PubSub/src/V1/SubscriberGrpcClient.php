@@ -165,9 +165,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Pulls messages from the server. The server may return `UNAVAILABLE` if
-     * there are too many concurrent pull requests pending for the given
-     * subscription.
+     * Pulls messages from the server.
      * @param \Google\Cloud\PubSub\V1\PullRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -221,10 +219,10 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Gets the configuration details of a snapshot. Snapshots are used in
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow you to manage message acknowledgments in bulk. That
-     * is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.
+     * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
+     * which allow you to manage message acknowledgments in bulk. That is, you can
+     * set the acknowledgment state of messages in an existing subscription to the
+     * state captured by a snapshot.
      * @param \Google\Cloud\PubSub\V1\GetSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -289,11 +287,10 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Updates an existing snapshot. Snapshots are used in
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
-     * operations, which allow
-     * you to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.
+     * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
+     * which allow you to manage message acknowledgments in bulk. That is, you can
+     * set the acknowledgment state of messages in an existing subscription to the
+     * state captured by a snapshot.
      * @param \Google\Cloud\PubSub\V1\UpdateSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

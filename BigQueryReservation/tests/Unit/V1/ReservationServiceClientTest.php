@@ -23,11 +23,9 @@
 namespace Google\Cloud\BigQuery\Reservation\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\BigQuery\Reservation\V1\Assignment;
 use Google\Cloud\BigQuery\Reservation\V1\BiReservation;
 use Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment;
@@ -50,25 +48,19 @@ use stdClass;
  */
 class ReservationServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ReservationServiceClient
-     */
+    /** @return ReservationServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +69,7 @@ class ReservationServiceClientTest extends GeneratedTest
         return new ReservationServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAssignmentTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +131,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
@@ -176,9 +162,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +195,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createReservationTest()
     {
         $transport = $this->createTransport();
@@ -248,9 +230,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createReservationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -283,9 +263,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAssignmentTest()
     {
         $transport = $this->createTransport();
@@ -309,9 +287,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -344,9 +320,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
@@ -370,9 +344,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -405,9 +377,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteReservationTest()
     {
         $transport = $this->createTransport();
@@ -431,9 +401,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteReservationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -466,9 +434,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBiReservationTest()
     {
         $transport = $this->createTransport();
@@ -497,9 +463,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBiReservationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -532,9 +496,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
@@ -565,9 +527,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -600,9 +560,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getReservationTest()
     {
         $transport = $this->createTransport();
@@ -637,9 +595,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getReservationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -672,9 +628,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssignmentsTest()
     {
         $transport = $this->createTransport();
@@ -709,9 +663,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -744,9 +696,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCapacityCommitmentsTest()
     {
         $transport = $this->createTransport();
@@ -781,9 +731,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCapacityCommitmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -816,9 +764,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReservationsTest()
     {
         $transport = $this->createTransport();
@@ -853,9 +799,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReservationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -888,9 +832,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function mergeCapacityCommitmentsTest()
     {
         $transport = $this->createTransport();
@@ -917,9 +859,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function mergeCapacityCommitmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -950,9 +890,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveAssignmentTest()
     {
         $transport = $this->createTransport();
@@ -981,9 +919,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1016,9 +952,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAllAssignmentsTest()
     {
         $transport = $this->createTransport();
@@ -1053,9 +987,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAllAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1088,9 +1020,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAssignmentsTest()
     {
         $transport = $this->createTransport();
@@ -1125,9 +1055,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1160,9 +1088,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function splitCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
@@ -1187,9 +1113,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function splitCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1222,9 +1146,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAssignmentTest()
     {
         $transport = $this->createTransport();
@@ -1249,9 +1171,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1282,9 +1202,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBiReservationTest()
     {
         $transport = $this->createTransport();
@@ -1309,9 +1227,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBiReservationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1342,9 +1258,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
@@ -1371,9 +1285,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1404,9 +1316,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateReservationTest()
     {
         $transport = $this->createTransport();
@@ -1437,9 +1347,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateReservationExceptionTest()
     {
         $transport = $this->createTransport();

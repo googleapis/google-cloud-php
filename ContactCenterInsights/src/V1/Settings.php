@@ -75,6 +75,13 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Settings.AnalysisConfig analysis_config = 7;</code>
      */
     private $analysis_config = null;
+    /**
+     * Default DLP redaction resources to be applied while ingesting
+     * conversations.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 10;</code>
+     */
+    private $redaction_config = null;
 
     /**
      * Constructor.
@@ -114,6 +121,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           projects/{project}/topics/{topic}
      *     @type \Google\Cloud\ContactCenterInsights\V1\Settings\AnalysisConfig $analysis_config
      *           Default analysis settings.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\RedactionConfig $redaction_config
+     *           Default DLP redaction resources to be applied while ingesting
+     *           conversations.
      * }
      */
     public function __construct($data = NULL) {
@@ -375,6 +385,44 @@ class Settings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\Settings\AnalysisConfig::class);
         $this->analysis_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Default DLP redaction resources to be applied while ingesting
+     * conversations.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 10;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\RedactionConfig|null
+     */
+    public function getRedactionConfig()
+    {
+        return $this->redaction_config;
+    }
+
+    public function hasRedactionConfig()
+    {
+        return isset($this->redaction_config);
+    }
+
+    public function clearRedactionConfig()
+    {
+        unset($this->redaction_config);
+    }
+
+    /**
+     * Default DLP redaction resources to be applied while ingesting
+     * conversations.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 10;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\RedactionConfig $var
+     * @return $this
+     */
+    public function setRedactionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\RedactionConfig::class);
+        $this->redaction_config = $var;
 
         return $this;
     }

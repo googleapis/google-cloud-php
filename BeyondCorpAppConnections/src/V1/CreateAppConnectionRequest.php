@@ -62,6 +62,28 @@ class CreateAppConnectionRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                                   $parent          Required. The resource project name of the AppConnection location using the
+     *                                                                                  form: `projects/{project_id}/locations/{location_id}`
+     *                                                                                  Please see {@see AppConnectionsServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection $appConnection   Required. A BeyondCorp AppConnection resource.
+     * @param string                                                   $appConnectionId Optional. User-settable AppConnection resource ID.
+     *                                                                                  * Must start with a letter.
+     *                                                                                  * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
+     *                                                                                  * Must end with a number or a letter.
+     *
+     * @return \Google\Cloud\BeyondCorp\AppConnections\V1\CreateAppConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection $appConnection, string $appConnectionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAppConnection($appConnection)
+            ->setAppConnectionId($appConnectionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

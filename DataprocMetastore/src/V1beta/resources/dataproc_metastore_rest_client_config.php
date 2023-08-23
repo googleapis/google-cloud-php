@@ -27,6 +27,18 @@ return [
             ],
         ],
         'google.cloud.metastore.v1beta.DataprocMetastore' => [
+            'AlterMetadataResourceLocation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{service=projects/*/locations/*/services/*}:alterLocation',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/services/*}/backups',
@@ -172,6 +184,42 @@ return [
                     ],
                 ],
             ],
+            'MoveTableToDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{service=projects/*/locations/*/services/*}:moveTableToDatabase',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryMetadata' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{service=projects/*/locations/*/services/*}:queryMetadata',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/**}:removeIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreService' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{service=projects/*/locations/*/services/*}:restore',
@@ -221,6 +269,24 @@ return [
             'GetIamPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/backups/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/federations/*}:getIamPolicy',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -233,6 +299,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/backups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/federations/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -245,6 +333,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/federations/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -255,6 +365,18 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/operations/*}',
@@ -290,4 +412,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

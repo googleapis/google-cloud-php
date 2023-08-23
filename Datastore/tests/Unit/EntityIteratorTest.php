@@ -20,12 +20,15 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityPageIterator;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class EntityIteratorTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testGetsMoreResultsType()
     {
         $moreResultsType = 'NOT_FINISHED';

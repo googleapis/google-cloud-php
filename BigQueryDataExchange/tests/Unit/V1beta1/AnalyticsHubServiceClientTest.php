@@ -23,18 +23,16 @@
 namespace Google\Cloud\BigQuery\DataExchange\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\BigQuery\DataExchange\V1beta1\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListDataExchangesResponse;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListListingsResponse;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListOrgDataExchangesResponse;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
@@ -52,25 +50,19 @@ use stdClass;
  */
 class AnalyticsHubServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AnalyticsHubServiceClient
-     */
+    /** @return AnalyticsHubServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -79,9 +71,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         return new AnalyticsHubServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDataExchangeTest()
     {
         $transport = $this->createTransport();
@@ -128,9 +118,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDataExchangeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -167,9 +155,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createListingTest()
     {
         $transport = $this->createTransport();
@@ -218,9 +204,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createListingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -259,9 +243,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDataExchangeTest()
     {
         $transport = $this->createTransport();
@@ -285,9 +267,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDataExchangeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -320,9 +300,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteListingTest()
     {
         $transport = $this->createTransport();
@@ -346,9 +324,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteListingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -381,9 +357,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataExchangeTest()
     {
         $transport = $this->createTransport();
@@ -422,9 +396,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataExchangeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -457,9 +429,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -488,9 +458,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -523,9 +491,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getListingTest()
     {
         $transport = $this->createTransport();
@@ -564,9 +530,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getListingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -599,9 +563,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataExchangesTest()
     {
         $transport = $this->createTransport();
@@ -636,9 +598,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataExchangesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -671,9 +631,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listListingsTest()
     {
         $transport = $this->createTransport();
@@ -708,9 +666,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listListingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -743,9 +699,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOrgDataExchangesTest()
     {
         $transport = $this->createTransport();
@@ -780,9 +734,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOrgDataExchangesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -815,9 +767,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -849,9 +799,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -885,9 +833,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function subscribeListingTest()
     {
         $transport = $this->createTransport();
@@ -912,9 +858,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function subscribeListingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -947,9 +891,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -977,9 +919,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1013,9 +953,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataExchangeTest()
     {
         $transport = $this->createTransport();
@@ -1059,9 +997,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDataExchangeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1097,9 +1033,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateListingTest()
     {
         $transport = $this->createTransport();
@@ -1145,9 +1079,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateListingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1185,9 +1117,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1214,9 +1144,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1247,9 +1175,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -1280,9 +1206,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

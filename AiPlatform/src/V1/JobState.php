@@ -75,15 +75,18 @@ class JobState
      */
     const JOB_STATE_EXPIRED = 9;
     /**
-     * The job is being updated. The job is only able to be updated at RUNNING
-     * state; if the update operation succeeds, job goes back to RUNNING state; if
-     * the update operation fails, the job goes back to RUNNING state with error
-     * messages written to [ModelDeploymentMonitoringJob.partial_errors][] field
-     * if it is a ModelDeploymentMonitoringJob.
+     * The job is being updated. Only jobs in the `RUNNING` state can be updated.
+     * After updating, the job goes back to the `RUNNING` state.
      *
      * Generated from protobuf enum <code>JOB_STATE_UPDATING = 10;</code>
      */
     const JOB_STATE_UPDATING = 10;
+    /**
+     * The job is partially succeeded, some results may be missing due to errors.
+     *
+     * Generated from protobuf enum <code>JOB_STATE_PARTIALLY_SUCCEEDED = 11;</code>
+     */
+    const JOB_STATE_PARTIALLY_SUCCEEDED = 11;
 
     private static $valueToName = [
         self::JOB_STATE_UNSPECIFIED => 'JOB_STATE_UNSPECIFIED',
@@ -97,6 +100,7 @@ class JobState
         self::JOB_STATE_PAUSED => 'JOB_STATE_PAUSED',
         self::JOB_STATE_EXPIRED => 'JOB_STATE_EXPIRED',
         self::JOB_STATE_UPDATING => 'JOB_STATE_UPDATING',
+        self::JOB_STATE_PARTIALLY_SUCCEEDED => 'JOB_STATE_PARTIALLY_SUCCEEDED',
     ];
 
     public static function name($value)

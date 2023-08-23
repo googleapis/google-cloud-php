@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for review document method.
+ * Response message for the
+ * [ReviewDocument][google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ReviewDocumentResponse</code>
  */

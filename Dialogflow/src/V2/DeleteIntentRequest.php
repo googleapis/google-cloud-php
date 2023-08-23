@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Intents.DeleteIntent][google.cloud.dialogflow.v2.Intents.DeleteIntent].
+ * The request message for
+ * [Intents.DeleteIntent][google.cloud.dialogflow.v2.Intents.DeleteIntent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteIntentRequest</code>
  */
@@ -23,6 +24,22 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the intent to delete. If this intent has direct or
+     *                     indirect followup intents, we also delete them.
+     *                     Format: `projects/<Project ID>/agent/intents/<Intent ID>`. Please see
+     *                     {@see IntentsClient::intentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

@@ -40,7 +40,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *           Legitimate event score from 0.0 to 1.0.
      *           (1.0 means very likely legitimate traffic while 0.0 means very likely
      *           non-legitimate traffic).
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
      *           Reasons contributing to the risk analysis verdict.
      * }
      */
@@ -94,7 +94,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * Reasons contributing to the risk analysis verdict.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReasons($var)

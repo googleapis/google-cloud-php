@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore\Tests\System;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Datastore does not use the default deletion queue. Because of the way
@@ -37,7 +37,7 @@ class DatastoreTestCase extends TestCase
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -47,7 +47,8 @@ class DatastoreTestCase extends TestCase
 
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
-            'namespaceId' => uniqid(self::TESTING_PREFIX)
+            'namespaceId' => uniqid(self::TESTING_PREFIX),
+            'databaseId' => '',
         ];
 
         self::$restClient = new DatastoreClient($config + [
@@ -78,13 +79,20 @@ class DatastoreTestCase extends TestCase
         });
     }
 
-    public function clientProvider()
+    public function defaultDbClientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             'restClient' => [self::$restClient],
             'grpcClient' => [self::$grpcClient]
         ];
+    }
+
+    public static function skipEmulatorTests()
+    {
+        if ((bool) getenv("DATASTORE_EMULATOR_HOST")) {
+            self::markTestSkipped('This test is not supported by the emulator.');
+        }
     }
 }

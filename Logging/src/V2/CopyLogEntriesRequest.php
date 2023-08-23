@@ -24,8 +24,8 @@ class CopyLogEntriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. A filter specifying which log entries to copy. The filter must be no more
-     * than 20k characters. An empty filter matches all log entries.
+     * Optional. A filter specifying which log entries to copy. The filter must be
+     * no more than 20k characters. An empty filter matches all log entries.
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,8 +48,8 @@ class CopyLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           For example:
      *             `"projects/my-project/locations/global/buckets/my-source-bucket"`
      *     @type string $filter
-     *           Optional. A filter specifying which log entries to copy. The filter must be no more
-     *           than 20k characters. An empty filter matches all log entries.
+     *           Optional. A filter specifying which log entries to copy. The filter must be
+     *           no more than 20k characters. An empty filter matches all log entries.
      *     @type string $destination
      *           Required. Destination to which to copy log entries.
      * }
@@ -90,8 +90,8 @@ class CopyLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter specifying which log entries to copy. The filter must be no more
-     * than 20k characters. An empty filter matches all log entries.
+     * Optional. A filter specifying which log entries to copy. The filter must be
+     * no more than 20k characters. An empty filter matches all log entries.
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -102,8 +102,8 @@ class CopyLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter specifying which log entries to copy. The filter must be no more
-     * than 20k characters. An empty filter matches all log entries.
+     * Optional. A filter specifying which log entries to copy. The filter must be
+     * no more than 20k characters. An empty filter matches all log entries.
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

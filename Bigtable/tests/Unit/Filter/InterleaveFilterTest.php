@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\InterleaveFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Interleave;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
@@ -31,7 +31,7 @@ class InterleaveFilterTest extends TestCase
 {
     private $interleaveFilter;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->interleaveFilter = new InterleaveFilter;
     }

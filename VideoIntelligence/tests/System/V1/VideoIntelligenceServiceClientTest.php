@@ -35,7 +35,7 @@ class VideoIntelligenceServiceClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [self::$restClient],
@@ -43,7 +43,7 @@ class VideoIntelligenceServiceClientTest extends TestCase
         ];
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -72,7 +72,7 @@ class VideoIntelligenceServiceClientTest extends TestCase
      */
     public function testAnnotateVideo(VideoIntelligenceServiceClient $client)
     {
-        $inputUri = "gs://cloudmleap/video/next/animals.mp4";
+        $inputUri = "gs://cloud-samples-data/video/cat.mp4";
         $features = [
             Feature::LABEL_DETECTION,
             Feature::SHOT_CHANGE_DETECTION,
@@ -90,6 +90,5 @@ class VideoIntelligenceServiceClientTest extends TestCase
 
         $results = $operationResponse->getResult();
         $this->assertInstanceOf(AnnotateVideoResponse::class, $results);
-
     }
 }

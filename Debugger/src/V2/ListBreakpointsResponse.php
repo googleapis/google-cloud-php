@@ -38,7 +38,7 @@ class ListBreakpointsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Debugger\V2\Breakpoint[]|\Google\Protobuf\Internal\RepeatedField $breakpoints
+     *     @type array<\Google\Cloud\Debugger\V2\Breakpoint>|\Google\Protobuf\Internal\RepeatedField $breakpoints
      *           List of breakpoints matching the request.
      *           The fields `id` and `location` are guaranteed to be set on each breakpoint.
      *           The fields: `stack_frames`, `evaluated_expressions` and `variable_table`
@@ -74,7 +74,7 @@ class ListBreakpointsResponse extends \Google\Protobuf\Internal\Message
      * are cleared on each breakpoint regardless of its status.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.Breakpoint breakpoints = 1;</code>
-     * @param \Google\Cloud\Debugger\V2\Breakpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\Breakpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBreakpoints($var)

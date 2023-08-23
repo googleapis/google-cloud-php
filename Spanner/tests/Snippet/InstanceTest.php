@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -41,6 +42,7 @@ use Prophecy\Argument;
 class InstanceTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -52,7 +54,7 @@ class InstanceTest extends SnippetTestCase
     private $connection;
     private $instance;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -398,5 +400,15 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
+    }
+
+    public function testDatabaseWithDatabaseRole()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'database', 1);
+        $snippet->addLocal('instance', $this->instance);
+
+        $res = $snippet->invoke('database');
+        $this->assertInstanceOf(Database::class, $res->returnVal());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
     }
 }

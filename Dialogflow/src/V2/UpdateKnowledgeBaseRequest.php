@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KnowledgeBases.UpdateKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.UpdateKnowledgeBase].
+ * Request message for
+ * [KnowledgeBases.UpdateKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.UpdateKnowledgeBase].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateKnowledgeBaseRequest</code>
  */
@@ -29,6 +30,23 @@ class UpdateKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeBase $knowledgeBase Required. The knowledge base to update.
+     * @param \Google\Protobuf\FieldMask                $updateMask    Optional. Not specified means `update all`.
+     *                                                                 Currently, only `display_name` can be updated, an InvalidArgument will be
+     *                                                                 returned for attempting to update other fields.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateKnowledgeBaseRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\KnowledgeBase $knowledgeBase, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setKnowledgeBase($knowledgeBase)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

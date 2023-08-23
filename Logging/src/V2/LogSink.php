@@ -62,14 +62,15 @@ class LogSink extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Optional. If set to true, then this sink is disabled and it does not export any log
-     * entries.
+     * Optional. If set to true, then this sink is disabled and it does not export
+     * any log entries.
      *
      * Generated from protobuf field <code>bool disabled = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $disabled = false;
     /**
-     * Optional. Log entries that match any of these exclusion filters will not be exported.
+     * Optional. Log entries that match any of these exclusion filters will not be
+     * exported.
      * If a log entry is matched by both `filter` and one of `exclusion_filters`
      * it will not be exported.
      *
@@ -84,9 +85,10 @@ class LogSink extends \Google\Protobuf\Internal\Message
      */
     protected $output_version_format = 0;
     /**
-     * Output only. An IAM identity&mdash;a service account or group&mdash;under which Cloud
-     * Logging writes the exported log entries to the sink's destination. This
-     * field is set by
+     * Output only. An IAM identity&mdash;a service account or group&mdash;under
+     * which Cloud Logging writes the exported log entries to the sink's
+     * destination. This field is either set by specifying
+     * `custom_writer_identity` or set automatically by
      * [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink] and
      * [sinks.update][google.logging.v2.ConfigServiceV2.UpdateSink] based on the
      * value of `unique_writer_identity` in those methods.
@@ -97,20 +99,20 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Consult the destination service's documentation to determine the
      * appropriate IAM roles to assign to the identity.
      * Sinks that have a destination that is a log bucket in the same project as
-     * the sink do not have a writer_identity and no additional permissions are
+     * the sink cannot have a writer_identity and no additional permissions are
      * required.
      *
      * Generated from protobuf field <code>string writer_identity = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $writer_identity = '';
     /**
-     * Optional. This field applies only to sinks owned by organizations and folders. If the
-     * field is false, the default, only the logs owned by the sink's parent
-     * resource are available for export. If the field is true, then log entries
-     * from all the projects, folders, and billing accounts contained in the
-     * sink's parent resource are also available for export. Whether a particular
-     * log entry from the children is exported depends on the sink's filter
-     * expression.
+     * Optional. This field applies only to sinks owned by organizations and
+     * folders. If the field is false, the default, only the logs owned by the
+     * sink's parent resource are available for export. If the field is true, then
+     * log entries from all the projects, folders, and billing accounts contained
+     * in the sink's parent resource are also available for export. Whether a
+     * particular log entry from the children is exported depends on the sink's
+     * filter expression.
      * For example, if this field is true, then the filter
      * `resource.type=gce_instance` would export all Compute Engine VM instance
      * log entries from all projects in the sink's parent.
@@ -171,18 +173,20 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *           Optional. A description of this sink.
      *           The maximum length of the description is 8000 characters.
      *     @type bool $disabled
-     *           Optional. If set to true, then this sink is disabled and it does not export any log
-     *           entries.
+     *           Optional. If set to true, then this sink is disabled and it does not export
+     *           any log entries.
      *     @type array<\Google\Cloud\Logging\V2\LogExclusion>|\Google\Protobuf\Internal\RepeatedField $exclusions
-     *           Optional. Log entries that match any of these exclusion filters will not be exported.
+     *           Optional. Log entries that match any of these exclusion filters will not be
+     *           exported.
      *           If a log entry is matched by both `filter` and one of `exclusion_filters`
      *           it will not be exported.
      *     @type int $output_version_format
      *           Deprecated. This field is unused.
      *     @type string $writer_identity
-     *           Output only. An IAM identity&mdash;a service account or group&mdash;under which Cloud
-     *           Logging writes the exported log entries to the sink's destination. This
-     *           field is set by
+     *           Output only. An IAM identity&mdash;a service account or group&mdash;under
+     *           which Cloud Logging writes the exported log entries to the sink's
+     *           destination. This field is either set by specifying
+     *           `custom_writer_identity` or set automatically by
      *           [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink] and
      *           [sinks.update][google.logging.v2.ConfigServiceV2.UpdateSink] based on the
      *           value of `unique_writer_identity` in those methods.
@@ -193,16 +197,16 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *           Consult the destination service's documentation to determine the
      *           appropriate IAM roles to assign to the identity.
      *           Sinks that have a destination that is a log bucket in the same project as
-     *           the sink do not have a writer_identity and no additional permissions are
+     *           the sink cannot have a writer_identity and no additional permissions are
      *           required.
      *     @type bool $include_children
-     *           Optional. This field applies only to sinks owned by organizations and folders. If the
-     *           field is false, the default, only the logs owned by the sink's parent
-     *           resource are available for export. If the field is true, then log entries
-     *           from all the projects, folders, and billing accounts contained in the
-     *           sink's parent resource are also available for export. Whether a particular
-     *           log entry from the children is exported depends on the sink's filter
-     *           expression.
+     *           Optional. This field applies only to sinks owned by organizations and
+     *           folders. If the field is false, the default, only the logs owned by the
+     *           sink's parent resource are available for export. If the field is true, then
+     *           log entries from all the projects, folders, and billing accounts contained
+     *           in the sink's parent resource are also available for export. Whether a
+     *           particular log entry from the children is exported depends on the sink's
+     *           filter expression.
      *           For example, if this field is true, then the filter
      *           `resource.type=gce_instance` would export all Compute Engine VM instance
      *           log entries from all projects in the sink's parent.
@@ -366,8 +370,8 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, then this sink is disabled and it does not export any log
-     * entries.
+     * Optional. If set to true, then this sink is disabled and it does not export
+     * any log entries.
      *
      * Generated from protobuf field <code>bool disabled = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -378,8 +382,8 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, then this sink is disabled and it does not export any log
-     * entries.
+     * Optional. If set to true, then this sink is disabled and it does not export
+     * any log entries.
      *
      * Generated from protobuf field <code>bool disabled = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -394,7 +398,8 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Log entries that match any of these exclusion filters will not be exported.
+     * Optional. Log entries that match any of these exclusion filters will not be
+     * exported.
      * If a log entry is matched by both `filter` and one of `exclusion_filters`
      * it will not be exported.
      *
@@ -407,7 +412,8 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Log entries that match any of these exclusion filters will not be exported.
+     * Optional. Log entries that match any of these exclusion filters will not be
+     * exported.
      * If a log entry is matched by both `filter` and one of `exclusion_filters`
      * it will not be exported.
      *
@@ -454,9 +460,10 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An IAM identity&mdash;a service account or group&mdash;under which Cloud
-     * Logging writes the exported log entries to the sink's destination. This
-     * field is set by
+     * Output only. An IAM identity&mdash;a service account or group&mdash;under
+     * which Cloud Logging writes the exported log entries to the sink's
+     * destination. This field is either set by specifying
+     * `custom_writer_identity` or set automatically by
      * [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink] and
      * [sinks.update][google.logging.v2.ConfigServiceV2.UpdateSink] based on the
      * value of `unique_writer_identity` in those methods.
@@ -467,7 +474,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Consult the destination service's documentation to determine the
      * appropriate IAM roles to assign to the identity.
      * Sinks that have a destination that is a log bucket in the same project as
-     * the sink do not have a writer_identity and no additional permissions are
+     * the sink cannot have a writer_identity and no additional permissions are
      * required.
      *
      * Generated from protobuf field <code>string writer_identity = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -479,9 +486,10 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An IAM identity&mdash;a service account or group&mdash;under which Cloud
-     * Logging writes the exported log entries to the sink's destination. This
-     * field is set by
+     * Output only. An IAM identity&mdash;a service account or group&mdash;under
+     * which Cloud Logging writes the exported log entries to the sink's
+     * destination. This field is either set by specifying
+     * `custom_writer_identity` or set automatically by
      * [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink] and
      * [sinks.update][google.logging.v2.ConfigServiceV2.UpdateSink] based on the
      * value of `unique_writer_identity` in those methods.
@@ -492,7 +500,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Consult the destination service's documentation to determine the
      * appropriate IAM roles to assign to the identity.
      * Sinks that have a destination that is a log bucket in the same project as
-     * the sink do not have a writer_identity and no additional permissions are
+     * the sink cannot have a writer_identity and no additional permissions are
      * required.
      *
      * Generated from protobuf field <code>string writer_identity = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -508,13 +516,13 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field applies only to sinks owned by organizations and folders. If the
-     * field is false, the default, only the logs owned by the sink's parent
-     * resource are available for export. If the field is true, then log entries
-     * from all the projects, folders, and billing accounts contained in the
-     * sink's parent resource are also available for export. Whether a particular
-     * log entry from the children is exported depends on the sink's filter
-     * expression.
+     * Optional. This field applies only to sinks owned by organizations and
+     * folders. If the field is false, the default, only the logs owned by the
+     * sink's parent resource are available for export. If the field is true, then
+     * log entries from all the projects, folders, and billing accounts contained
+     * in the sink's parent resource are also available for export. Whether a
+     * particular log entry from the children is exported depends on the sink's
+     * filter expression.
      * For example, if this field is true, then the filter
      * `resource.type=gce_instance` would export all Compute Engine VM instance
      * log entries from all projects in the sink's parent.
@@ -532,13 +540,13 @@ class LogSink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field applies only to sinks owned by organizations and folders. If the
-     * field is false, the default, only the logs owned by the sink's parent
-     * resource are available for export. If the field is true, then log entries
-     * from all the projects, folders, and billing accounts contained in the
-     * sink's parent resource are also available for export. Whether a particular
-     * log entry from the children is exported depends on the sink's filter
-     * expression.
+     * Optional. This field applies only to sinks owned by organizations and
+     * folders. If the field is false, the default, only the logs owned by the
+     * sink's parent resource are available for export. If the field is true, then
+     * log entries from all the projects, folders, and billing accounts contained
+     * in the sink's parent resource are also available for export. Whether a
+     * particular log entry from the children is exported depends on the sink's
+     * filter expression.
      * For example, if this field is true, then the filter
      * `resource.type=gce_instance` would export all Compute Engine VM instance
      * log entries from all projects in the sink's parent.

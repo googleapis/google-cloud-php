@@ -30,6 +30,13 @@ class CommitmentPlan
      */
     const FLEX = 3;
     /**
+     * Same as FLEX, should only be used if flat-rate commitments are still
+     * available.
+     *
+     * Generated from protobuf enum <code>FLEX_FLAT_RATE = 7 [deprecated = true];</code>
+     */
+    const FLEX_FLAT_RATE = 7;
+    /**
      * Trial commitments have a committed period of 182 days after becoming
      * ACTIVE. After that, they are converted to a new commitment based on the
      * `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so
@@ -47,6 +54,13 @@ class CommitmentPlan
      */
     const MONTHLY = 2;
     /**
+     * Same as MONTHLY, should only be used if flat-rate commitments are still
+     * available.
+     *
+     * Generated from protobuf enum <code>MONTHLY_FLAT_RATE = 8 [deprecated = true];</code>
+     */
+    const MONTHLY_FLAT_RATE = 8;
+    /**
      * Annual commitments have a committed period of 365 days after becoming
      * ACTIVE. After that they are converted to a new commitment based on the
      * renewal_plan.
@@ -54,13 +68,44 @@ class CommitmentPlan
      * Generated from protobuf enum <code>ANNUAL = 4;</code>
      */
     const ANNUAL = 4;
+    /**
+     * Same as ANNUAL, should only be used if flat-rate commitments are still
+     * available.
+     *
+     * Generated from protobuf enum <code>ANNUAL_FLAT_RATE = 9 [deprecated = true];</code>
+     */
+    const ANNUAL_FLAT_RATE = 9;
+    /**
+     * 3-year commitments have a committed period of 1095(3 * 365) days after
+     * becoming ACTIVE. After that they are converted to a new commitment based
+     * on the renewal_plan.
+     *
+     * Generated from protobuf enum <code>THREE_YEAR = 10;</code>
+     */
+    const THREE_YEAR = 10;
+    /**
+     * Should only be used for `renewal_plan` and is only meaningful if
+     * edition is specified to values other than EDITION_UNSPECIFIED. Otherwise
+     * CreateCapacityCommitmentRequest or UpdateCapacityCommitmentRequest will
+     * be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. If the
+     * renewal_plan is NONE, capacity commitment will be removed at the end of
+     * its commitment period.
+     *
+     * Generated from protobuf enum <code>NONE = 6;</code>
+     */
+    const NONE = 6;
 
     private static $valueToName = [
         self::COMMITMENT_PLAN_UNSPECIFIED => 'COMMITMENT_PLAN_UNSPECIFIED',
         self::FLEX => 'FLEX',
+        self::FLEX_FLAT_RATE => 'FLEX_FLAT_RATE',
         self::TRIAL => 'TRIAL',
         self::MONTHLY => 'MONTHLY',
+        self::MONTHLY_FLAT_RATE => 'MONTHLY_FLAT_RATE',
         self::ANNUAL => 'ANNUAL',
+        self::ANNUAL_FLAT_RATE => 'ANNUAL_FLAT_RATE',
+        self::THREE_YEAR => 'THREE_YEAR',
+        self::NONE => 'NONE',
     ];
 
     public static function name($value)
@@ -84,6 +129,4 @@ class CommitmentPlan
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CommitmentPlan::class, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment_CommitmentPlan::class);
 

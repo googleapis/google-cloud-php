@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/grafeas/v/stable)](https://packagist.org/packages/google/grafeas) [![Packagist](https://img.shields.io/packagist/dm/google/grafeas.svg)](https://packagist.org/packages/google/grafeas)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/grafeas/latest/grafeas/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/grafeas/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

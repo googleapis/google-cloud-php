@@ -10,33 +10,47 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The request message for listing TagValues for the specified TagKey.
+ * Resource name for TagKey, parent of the TagValues to be listed,
+ * in the format `tagKeys/123`.
  *
  * Generated from protobuf message <code>google.cloud.resourcemanager.v3.ListTagValuesRequest</code>
  */
 class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name for TagKey, parent of the TagValues to be listed,
-     * in the format `tagKeys/123`.
+     * Required.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of TagValues to return in the response. The server
-     * allows a maximum of 300 TagValues to return. If unspecified, the server
-     * will use 100 as the default.
+     * Optional. The maximum number of TagValues to return in the response. The
+     * server allows a maximum of 300 TagValues to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A pagination token returned from a previous call to `ListTagValues`
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * `ListTagValues` that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\ListTagValuesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -45,15 +59,14 @@ class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name for TagKey, parent of the TagValues to be listed,
-     *           in the format `tagKeys/123`.
+     *           Required.
      *     @type int $page_size
-     *           Optional. The maximum number of TagValues to return in the response. The server
-     *           allows a maximum of 300 TagValues to return. If unspecified, the server
-     *           will use 100 as the default.
+     *           Optional. The maximum number of TagValues to return in the response. The
+     *           server allows a maximum of 300 TagValues to return. If unspecified, the
+     *           server will use 100 as the default.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous call to `ListTagValues`
-     *           that indicates where this listing should continue from.
+     *           Optional. A pagination token returned from a previous call to
+     *           `ListTagValues` that indicates where this listing should continue from.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,8 +75,7 @@ class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name for TagKey, parent of the TagValues to be listed,
-     * in the format `tagKeys/123`.
+     * Required.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +86,7 @@ class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name for TagKey, parent of the TagValues to be listed,
-     * in the format `tagKeys/123`.
+     * Required.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -90,9 +101,9 @@ class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagValues to return in the response. The server
-     * allows a maximum of 300 TagValues to return. If unspecified, the server
-     * will use 100 as the default.
+     * Optional. The maximum number of TagValues to return in the response. The
+     * server allows a maximum of 300 TagValues to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -103,9 +114,9 @@ class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagValues to return in the response. The server
-     * allows a maximum of 300 TagValues to return. If unspecified, the server
-     * will use 100 as the default.
+     * Optional. The maximum number of TagValues to return in the response. The
+     * server allows a maximum of 300 TagValues to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -120,8 +131,8 @@ class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `ListTagValues`
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * `ListTagValues` that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -132,8 +143,8 @@ class ListTagValuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to `ListTagValues`
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * `ListTagValues` that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

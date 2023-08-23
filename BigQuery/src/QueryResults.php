@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -62,7 +63,7 @@ class QueryResults implements \IteratorAggregate
     private $mapper;
 
     /**
-     * @param array Default options to be used for calls to get query results.
+     * @var array Default options to be used for calls to get query results.
      */
     private $queryResultsOptions;
 
@@ -160,7 +161,7 @@ class QueryResults implements \IteratorAggregate
         $options += $this->queryResultsOptions;
         $this->waitUntilComplete($options);
         $schema = $this->info['schema']['fields'];
-        $returnRawResults = isset($options['returnRawResults']) ? $options['returnRawResults'] : false;
+        $returnRawResults = $options['returnRawResults'] ?? false;
 
         return new ItemIterator(
             new PageIterator(
@@ -338,7 +339,7 @@ class QueryResults implements \IteratorAggregate
      * $job = $queryResults->job();
      * ```
      *
-     * @return array
+     * @return Job
      */
     public function job()
     {

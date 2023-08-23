@@ -50,6 +50,13 @@ class State
      * Generated from protobuf enum <code>PAUSED = 5;</code>
      */
     const PAUSED = 5;
+    /**
+     * The subtask is pending a dependency. It will be scheduled once its
+     * dependencies are done.
+     *
+     * Generated from protobuf enum <code>PENDING_DEPENDENCY = 6;</code>
+     */
+    const PENDING_DEPENDENCY = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -58,6 +65,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::PAUSED => 'PAUSED',
+        self::PENDING_DEPENDENCY => 'PENDING_DEPENDENCY',
     ];
 
     public static function name($value)

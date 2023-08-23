@@ -150,7 +150,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
     private $shipment_type = '';
     /**
      * Specifies a label for this shipment. This label is reported in the response
-     * in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * in the `shipment_label` of the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 12;</code>
      */
@@ -168,7 +169,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
      */
     private $ignore = false;
     /**
-     * Deprecated: Use [Shipment.load_demands][] instead.
+     * Deprecated: Use
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 3 [deprecated = true];</code>
      * @deprecated
@@ -268,7 +271,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           `shipment_type`.
      *     @type string $label
      *           Specifies a label for this shipment. This label is reported in the response
-     *           in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     *           in the `shipment_label` of the corresponding
+     *           [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *     @type bool $ignore
      *           If true, skip this shipment, but don't apply a `penalty_cost`.
      *           Ignoring a shipment results in a validation error when there are any
@@ -278,7 +282,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           related pickup/delivery visits from the performing route.
      *           `precedence_rules` that reference ignored shipments will also be ignored.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
-     *           Deprecated: Use [Shipment.load_demands][] instead.
+     *           Deprecated: Use
+     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -740,7 +746,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies a label for this shipment. This label is reported in the response
-     * in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * in the `shipment_label` of the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 12;</code>
      * @return string
@@ -752,7 +759,8 @@ class Shipment extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies a label for this shipment. This label is reported in the response
-     * in the `shipment_label` of the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * in the `shipment_label` of the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 12;</code>
      * @param string $var
@@ -805,7 +813,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Shipment.load_demands][] instead.
+     * Deprecated: Use
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 3 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -818,7 +828,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Shipment.load_demands][] instead.
+     * Deprecated: Use
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 3 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var

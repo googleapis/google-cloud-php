@@ -19,6 +19,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not to enable Alias IPs in the GKE cluster.
      * If `true`, a VPC-native cluster is created.
+     * This field is only supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     * VPC-native GKE clusters.
      *
      * Generated from protobuf field <code>bool use_ip_aliases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -35,35 +38,42 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *     @type bool $use_ip_aliases
      *           Optional. Whether or not to enable Alias IPs in the GKE cluster.
      *           If `true`, a VPC-native cluster is created.
+     *           This field is only supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     *           VPC-native GKE clusters.
      *     @type string $cluster_secondary_range_name
      *           Optional. The name of the GKE cluster's secondary range used to allocate
      *           IP addresses to pods.
-     *           This field is applicable only when `use_ip_aliases` is true.
+     *           For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     *           this field is applicable only when `use_ip_aliases` is true.
      *     @type string $cluster_ipv4_cidr_block
      *           Optional. The IP address range used to allocate IP addresses to pods in
      *           the GKE cluster.
-     *           This field is applicable only when `use_ip_aliases` is true.
+     *           For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     *           this field is applicable only when `use_ip_aliases` is true.
      *           Set to blank to have GKE choose a range with the default size.
      *           Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific
      *           netmask.
      *           Set to a
-     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      *           `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      *           to use.
      *     @type string $services_secondary_range_name
      *           Optional. The name of the services' secondary range used to allocate
      *           IP addresses to the GKE cluster.
-     *           This field is applicable only when `use_ip_aliases` is true.
+     *           For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     *           this field is applicable only when `use_ip_aliases` is true.
      *     @type string $services_ipv4_cidr_block
      *           Optional. The IP address range of the services IP addresses in this
      *           GKE cluster.
-     *           This field is applicable only when `use_ip_aliases` is true.
+     *           For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     *           this field is applicable only when `use_ip_aliases` is true.
      *           Set to blank to have GKE choose a range with the default size.
      *           Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific
      *           netmask.
      *           Set to a
-     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      *           `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      *           to use.
@@ -77,6 +87,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not to enable Alias IPs in the GKE cluster.
      * If `true`, a VPC-native cluster is created.
+     * This field is only supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     * VPC-native GKE clusters.
      *
      * Generated from protobuf field <code>bool use_ip_aliases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -89,6 +102,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not to enable Alias IPs in the GKE cluster.
      * If `true`, a VPC-native cluster is created.
+     * This field is only supported for Cloud Composer environments in versions
+     * composer-1.*.*-airflow-*.*.*. Environments in newer versions always use
+     * VPC-native GKE clusters.
      *
      * Generated from protobuf field <code>bool use_ip_aliases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -105,7 +121,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the GKE cluster's secondary range used to allocate
      * IP addresses to pods.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      *
      * Generated from protobuf field <code>string cluster_secondary_range_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -123,7 +140,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the GKE cluster's secondary range used to allocate
      * IP addresses to pods.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      *
      * Generated from protobuf field <code>string cluster_secondary_range_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -140,12 +158,13 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The IP address range used to allocate IP addresses to pods in
      * the GKE cluster.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      * Set to blank to have GKE choose a range with the default size.
      * Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific
      * netmask.
      * Set to a
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
@@ -166,12 +185,13 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The IP address range used to allocate IP addresses to pods in
      * the GKE cluster.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      * Set to blank to have GKE choose a range with the default size.
      * Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific
      * netmask.
      * Set to a
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
@@ -191,7 +211,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the services' secondary range used to allocate
      * IP addresses to the GKE cluster.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      *
      * Generated from protobuf field <code>string services_secondary_range_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -209,7 +230,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the services' secondary range used to allocate
      * IP addresses to the GKE cluster.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      *
      * Generated from protobuf field <code>string services_secondary_range_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -226,12 +248,13 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The IP address range of the services IP addresses in this
      * GKE cluster.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      * Set to blank to have GKE choose a range with the default size.
      * Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific
      * netmask.
      * Set to a
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
@@ -252,12 +275,13 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The IP address range of the services IP addresses in this
      * GKE cluster.
-     * This field is applicable only when `use_ip_aliases` is true.
+     * For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*,
+     * this field is applicable only when `use_ip_aliases` is true.
      * Set to blank to have GKE choose a range with the default size.
      * Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific
      * netmask.
      * Set to a
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.

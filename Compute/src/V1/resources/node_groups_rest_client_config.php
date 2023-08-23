@@ -244,6 +244,28 @@ return [
                     ],
                 ],
             ],
+            'SimulateMaintenanceEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{node_group}/simulateMaintenanceEvent',
+                'body' => 'node_groups_simulate_maintenance_event_request_resource',
+                'placeholders' => [
+                    'node_group' => [
+                        'getters' => [
+                            'getNodeGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/testIamPermissions',

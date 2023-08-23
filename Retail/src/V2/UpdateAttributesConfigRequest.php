@@ -36,6 +36,28 @@ class UpdateAttributesConfigRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Retail\V2\AttributesConfig $attributesConfig Required. The [AttributesConfig][google.cloud.retail.v2.AttributesConfig]
+     *                                                                   to update.
+     * @param \Google\Protobuf\FieldMask               $updateMask       Indicates which fields in the provided
+     *                                                                   [AttributesConfig][google.cloud.retail.v2.AttributesConfig] to update. The
+     *                                                                   following is the only supported field:
+     *
+     *                                                                   * [AttributesConfig.catalog_attributes][google.cloud.retail.v2.AttributesConfig.catalog_attributes]
+     *
+     *                                                                   If not set, all supported fields are updated.
+     *
+     * @return \Google\Cloud\Retail\V2\UpdateAttributesConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Retail\V2\AttributesConfig $attributesConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAttributesConfig($attributesConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

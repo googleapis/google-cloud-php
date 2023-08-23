@@ -23,11 +23,9 @@
 namespace Google\Cloud\Talent\Tests\Unit\V4;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Talent\V4\ListTenantsResponse;
 use Google\Cloud\Talent\V4\Tenant;
 use Google\Cloud\Talent\V4\TenantServiceClient;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class TenantServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TenantServiceClient
-     */
+    /** @return TenantServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +61,7 @@ class TenantServiceClientTest extends GeneratedTest
         return new TenantServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTenantTest()
     {
         $transport = $this->createTransport();
@@ -105,9 +95,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTenantExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +131,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTenantTest()
     {
         $transport = $this->createTransport();
@@ -169,9 +155,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTenantExceptionTest()
     {
         $transport = $this->createTransport();
@@ -204,9 +188,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTenantTest()
     {
         $transport = $this->createTransport();
@@ -235,9 +217,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTenantExceptionTest()
     {
         $transport = $this->createTransport();
@@ -270,9 +250,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTenantsTest()
     {
         $transport = $this->createTransport();
@@ -307,9 +285,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTenantsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -342,9 +318,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTenantTest()
     {
         $transport = $this->createTransport();
@@ -375,9 +349,7 @@ class TenantServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTenantExceptionTest()
     {
         $transport = $this->createTransport();

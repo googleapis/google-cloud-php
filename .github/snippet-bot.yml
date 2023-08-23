@@ -1,0 +1,2 @@
+ignoreFiles:
+  - dev/tests/fixtures/**

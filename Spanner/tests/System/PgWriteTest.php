@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -26,7 +29,6 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Rpc\Code;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -35,15 +37,14 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class PgWriteTest extends SpannerPgTestCase
 {
-    use ExpectException;
     use TimeTrait;
 
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::TABLE_NAME . ' (
@@ -65,6 +66,7 @@ class PgWriteTest extends SpannerPgTestCase
                 arraytimestampfield timestamptz[],
                 arraydatefield date[],
                 arraypgnumericfield numeric[],
+                arraypgjsonbfield jsonb[],
                 PRIMARY KEY (id)
             )',
             'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
@@ -252,6 +254,8 @@ class PgWriteTest extends SpannerPgTestCase
             [$this->randId(), 'arraydatefield', null],
             [$this->randId(), 'arraypgnumericfield', []],
             [$this->randId(), 'arraypgnumericfield', null],
+            [$this->randId(), 'arraypgjsonbfield', null],
+            [$this->randId(), 'arraypgjsonbfield', []],
         ];
     }
 
@@ -297,6 +301,8 @@ class PgWriteTest extends SpannerPgTestCase
             [$this->randId(), 'arraytimestampfield', [new Timestamp(new \DateTime),null,new Timestamp(new \DateTime)]],
             [$this->randId(), 'arraydatefield', [new Date(new \DateTime),null,new Date(new \DateTime)]],
             [$this->randId(), 'arraypgnumericfield', [new PgNumeric("0.12345"),null,new PgNumeric("12345")]],
+            [$this->randId(), 'arraypgjsonbfield', [new PgJsonb('{"a":1.1,"b":"hello"}'),null,
+            new PgJsonb(["a" => 1, "b" => null]),new PgJsonb('{}'),new PgJsonb([])]],
         ];
     }
 
@@ -337,7 +343,7 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function testWriteToNonExistentTableFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
 
@@ -346,7 +352,7 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function testWriteToNonExistentColumnFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
 
@@ -355,7 +361,7 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function testWriteIncorrectTypeToColumn()
     {
-        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+        $this->expectException(FailedPreconditionException::class);
 
         $db = self::$database;
 
@@ -892,7 +898,7 @@ class PgWriteTest extends SpannerPgTestCase
      */
     public function testExecuteUpdateBatchNoStatementsThrowsException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $db = self::$database;
         $res = $db->runTransaction(function ($t) {

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.PurgeContexts][google.cloud.aiplatform.v1.MetadataService.PurgeContexts].
+ * Request message for
+ * [MetadataService.PurgeContexts][google.cloud.aiplatform.v1.MetadataService.PurgeContexts].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.PurgeContextsRequest</code>
  */
@@ -38,6 +39,22 @@ class PurgeContextsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $force = false;
+
+    /**
+     * @param string $parent Required. The metadata store to purge Contexts from.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                       Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\PurgeContextsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

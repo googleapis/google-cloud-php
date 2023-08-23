@@ -38,7 +38,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * "disk free"; some of the space will be used by the operating system and
      * build utilities. Also note that this is the minimum disk size that will be
      * allocated for the build -- the build may run with a larger disk than
-     * requested. At present, the maximum disk size is 1000GB; builds that request
+     * requested. At present, the maximum disk size is 2000GB; builds that request
      * more than the maximum are rejected with an error.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 6;</code>
@@ -63,20 +63,35 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      */
     private $dynamic_substitutions = false;
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to include built-in and custom substitutions as env variables
+     * for all build steps.
+     *
+     * Generated from protobuf field <code>bool automap_substitutions = 22;</code>
+     */
+    private $automap_substitutions = false;
+    /**
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>
      */
     private $log_streaming_option = 0;
     /**
-     * Option to specify a `WorkerPool` for the build.
-     * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     * This field is experimental.
+     * This field deprecated; please use `pool.name` instead.
      *
-     * Generated from protobuf field <code>string worker_pool = 7;</code>
+     * Generated from protobuf field <code>string worker_pool = 7 [deprecated = true];</code>
+     * @deprecated
      */
-    private $worker_pool = '';
+    protected $worker_pool = '';
+    /**
+     * Optional. Specification for execution on a `WorkerPool`.
+     * See [running builds in a private
+     * pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.PoolOption pool = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $pool = null;
     /**
      * Option to specify the logging mode, which determines if and where build
      * logs are stored.
@@ -115,6 +130,12 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Volume volumes = 14;</code>
      */
     private $volumes;
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_logs_bucket_behavior = 0;
 
     /**
      * Constructor.
@@ -122,7 +143,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $source_provenance_hash
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $source_provenance_hash
      *           Requested hash for SourceProvenance.
      *     @type int $requested_verify_option
      *           Requested verifiability options.
@@ -133,7 +154,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           "disk free"; some of the space will be used by the operating system and
      *           build utilities. Also note that this is the minimum disk size that will be
      *           allocated for the build -- the build may run with a larger disk than
-     *           requested. At present, the maximum disk size is 1000GB; builds that request
+     *           requested. At present, the maximum disk size is 2000GB; builds that request
      *           more than the maximum are rejected with an error.
      *     @type int $substitution_option
      *           Option to specify behavior when there is an error in the substitution
@@ -145,28 +166,34 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           operations to the substitutions.
      *           NOTE: this is always enabled for triggered builds and cannot be
      *           overridden in the build configuration file.
+     *     @type bool $automap_substitutions
+     *           Option to include built-in and custom substitutions as env variables
+     *           for all build steps.
      *     @type int $log_streaming_option
-     *           Option to define build log streaming behavior to Google Cloud
+     *           Option to define build log streaming behavior to Cloud
      *           Storage.
      *     @type string $worker_pool
-     *           Option to specify a `WorkerPool` for the build.
-     *           Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     *           This field is experimental.
+     *           This field deprecated; please use `pool.name` instead.
+     *     @type \Google\Cloud\Build\V1\BuildOptions\PoolOption $pool
+     *           Optional. Specification for execution on a `WorkerPool`.
+     *           See [running builds in a private
+     *           pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     *           for more information.
      *     @type int $logging
      *           Option to specify the logging mode, which determines if and where build
      *           logs are stored.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $env
      *           A list of global environment variable definitions that will exist for all
      *           build steps in this build. If a variable is defined in both globally and in
      *           a build step, the variable will use the build step value.
      *           The elements are of the form "KEY=VALUE" for the environment variable "KEY"
      *           being given the value "VALUE".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $secret_env
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secret_env
      *           A list of global environment variables, which are encrypted using a Cloud
      *           Key Management Service crypto key. These values must be specified in the
      *           build's `Secret`. These variables will be available to all build steps
      *           in this build.
-     *     @type \Google\Cloud\Build\V1\Volume[]|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type array<\Google\Cloud\Build\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           Global list of volumes to mount for ALL build steps
      *           Each volume is created as an empty volume prior to starting the build
      *           process. Upon completion of the build, volumes and their contents are
@@ -174,6 +201,8 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           defined a build step.
      *           Using a global volume in a build with only one step is not valid as
      *           it is indicative of a build request with an incorrect configuration.
+     *     @type int $default_logs_bucket_behavior
+     *           Optional. Option to specify how default logs buckets are setup.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,7 +225,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * Requested hash for SourceProvenance.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Hash.HashType source_provenance_hash = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceProvenanceHash($var)
@@ -264,7 +293,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * "disk free"; some of the space will be used by the operating system and
      * build utilities. Also note that this is the minimum disk size that will be
      * allocated for the build -- the build may run with a larger disk than
-     * requested. At present, the maximum disk size is 1000GB; builds that request
+     * requested. At present, the maximum disk size is 2000GB; builds that request
      * more than the maximum are rejected with an error.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 6;</code>
@@ -280,7 +309,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * "disk free"; some of the space will be used by the operating system and
      * build utilities. Also note that this is the minimum disk size that will be
      * allocated for the build -- the build may run with a larger disk than
-     * requested. At present, the maximum disk size is 1000GB; builds that request
+     * requested. At present, the maximum disk size is 2000GB; builds that request
      * more than the maximum are rejected with an error.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 6;</code>
@@ -360,7 +389,35 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to include built-in and custom substitutions as env variables
+     * for all build steps.
+     *
+     * Generated from protobuf field <code>bool automap_substitutions = 22;</code>
+     * @return bool
+     */
+    public function getAutomapSubstitutions()
+    {
+        return $this->automap_substitutions;
+    }
+
+    /**
+     * Option to include built-in and custom substitutions as env variables
+     * for all build steps.
+     *
+     * Generated from protobuf field <code>bool automap_substitutions = 22;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutomapSubstitutions($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->automap_substitutions = $var;
+
+        return $this;
+    }
+
+    /**
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>
@@ -372,7 +429,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>
@@ -388,31 +445,73 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to specify a `WorkerPool` for the build.
-     * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     * This field is experimental.
+     * This field deprecated; please use `pool.name` instead.
      *
-     * Generated from protobuf field <code>string worker_pool = 7;</code>
+     * Generated from protobuf field <code>string worker_pool = 7 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getWorkerPool()
     {
+        @trigger_error('worker_pool is deprecated.', E_USER_DEPRECATED);
         return $this->worker_pool;
     }
 
     /**
-     * Option to specify a `WorkerPool` for the build.
-     * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
-     * This field is experimental.
+     * This field deprecated; please use `pool.name` instead.
      *
-     * Generated from protobuf field <code>string worker_pool = 7;</code>
+     * Generated from protobuf field <code>string worker_pool = 7 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setWorkerPool($var)
     {
+        @trigger_error('worker_pool is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->worker_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specification for execution on a `WorkerPool`.
+     * See [running builds in a private
+     * pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.PoolOption pool = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Build\V1\BuildOptions\PoolOption|null
+     */
+    public function getPool()
+    {
+        return $this->pool;
+    }
+
+    public function hasPool()
+    {
+        return isset($this->pool);
+    }
+
+    public function clearPool()
+    {
+        unset($this->pool);
+    }
+
+    /**
+     * Optional. Specification for execution on a `WorkerPool`.
+     * See [running builds in a private
+     * pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.PoolOption pool = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Build\V1\BuildOptions\PoolOption $var
+     * @return $this
+     */
+    public function setPool($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\BuildOptions\PoolOption::class);
+        $this->pool = $var;
 
         return $this;
     }
@@ -468,7 +567,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * being given the value "VALUE".
      *
      * Generated from protobuf field <code>repeated string env = 12;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnv($var)
@@ -500,7 +599,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * in this build.
      *
      * Generated from protobuf field <code>repeated string secret_env = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretEnv($var)
@@ -538,13 +637,39 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      * it is indicative of a build request with an incorrect configuration.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.Volume volumes = 14;</code>
-     * @param \Google\Cloud\Build\V1\Volume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumes($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Build\V1\Volume::class);
         $this->volumes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultLogsBucketBehavior()
+    {
+        return $this->default_logs_bucket_behavior;
+    }
+
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.DefaultLogsBucketBehavior default_logs_bucket_behavior = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultLogsBucketBehavior($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Build\V1\BuildOptions\DefaultLogsBucketBehavior::class);
+        $this->default_logs_bucket_behavior = $var;
 
         return $this;
     }

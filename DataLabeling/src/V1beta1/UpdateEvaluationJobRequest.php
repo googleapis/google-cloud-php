@@ -35,6 +35,29 @@ class UpdateEvaluationJobRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataLabeling\V1beta1\EvaluationJob $evaluationJob Required. Evaluation job that is going to be updated.
+     * @param \Google\Protobuf\FieldMask                       $updateMask    Optional. Mask for which fields to update. You can only provide the
+     *                                                                        following fields:
+     *
+     *                                                                        * `evaluationJobConfig.humanAnnotationConfig.instruction`
+     *                                                                        * `evaluationJobConfig.exampleCount`
+     *                                                                        * `evaluationJobConfig.exampleSamplePercentage`
+     *
+     *                                                                        You can provide more than one of these fields by separating them with
+     *                                                                        commas.
+     *
+     * @return \Google\Cloud\DataLabeling\V1beta1\UpdateEvaluationJobRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataLabeling\V1beta1\EvaluationJob $evaluationJob, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEvaluationJob($evaluationJob)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

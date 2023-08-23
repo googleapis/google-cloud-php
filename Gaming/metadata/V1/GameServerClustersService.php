@@ -20,7 +20,7 @@ class GameServerClustersService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∑
+≠
 9google/cloud/gaming/v1/game_server_clusters_service.protogoogle.cloud.gaming.v1google/api/client.proto1google/cloud/gaming/v1/game_server_clusters.proto#google/longrunning/operations.proto2ä
 GameServerClustersServiceŸ
 ListGameServerClusters5.google.cloud.gaming.v1.ListGameServerClustersRequest6.google.cloud.gaming.v1.ListGameServerClustersResponse"PÇ”‰ìA?/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters⁄Aparent∆
@@ -33,8 +33,8 @@ class GameServerClustersService
 PreviewDeleteGameServerCluster=.google.cloud.gaming.v1.PreviewDeleteGameServerClusterRequest>.google.cloud.gaming.v1.PreviewDeleteGameServerClusterResponse"UÇ”‰ìO*M/v1/{name=projects/*/locations/*/realms/*/gameServerClusters/*}:previewDeleteÆ
 UpdateGameServerCluster6.google.cloud.gaming.v1.UpdateGameServerClusterRequest.google.longrunning.Operation"ªÇ”‰ìj2S/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}:game_server_cluster⁄Agame_server_cluster,update_mask A&
 GameServerClusterOperationMetadataü
-PreviewUpdateGameServerCluster=.google.cloud.gaming.v1.PreviewUpdateGameServerClusterRequest>.google.cloud.gaming.v1.PreviewUpdateGameServerClusterResponse"~Ç”‰ìx2a/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}:previewUpdate:game_server_clusterO Agameservices.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB\\
-com.google.cloud.gaming.v1PZ<google.golang.org/genproto/googleapis/cloud/gaming/v1;gamingbproto3'
+PreviewUpdateGameServerCluster=.google.cloud.gaming.v1.PreviewUpdateGameServerClusterRequest>.google.cloud.gaming.v1.PreviewUpdateGameServerClusterResponse"~Ç”‰ìx2a/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}:previewUpdate:game_server_clusterO Agameservices.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBR
+com.google.cloud.gaming.v1PZ2cloud.google.com/go/gaming/apiv1/gamingpb;gamingpbbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -18,26 +18,26 @@
 namespace Google\Cloud\Debugger\Tests\Unit;
 
 use Google\Cloud\Debugger\CliDaemon;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group debugger
  */
 class CliDaemonTest extends TestCase
 {
-    use ExpectException;
-
     public function testClientConfig()
     {
-        new CliDaemon([
+        $cliDaemon = new CliDaemon([
             'config' => implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), 'data', 'daemon_config.php'])
         ]);
+
+        $this->assertInstanceOf(CliDaemon::class, $cliDaemon);
     }
 
     public function testClientConfigMissing()
     {
-        $this->expectException('UnexpectedValueException');
+        $this->expectException(\UnexpectedValueException::class);
 
         new CliDaemon([
             'config' => 'non-existent-file'
@@ -46,7 +46,7 @@ class CliDaemonTest extends TestCase
 
     public function testClientConfigWrongReturn()
     {
-        $this->expectException('UnexpectedValueException');
+        $this->expectException(\UnexpectedValueException::class);
 
         new CliDaemon([
             'config' => implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), 'data', 'daemon_config_wrong_return.php'])
@@ -55,14 +55,16 @@ class CliDaemonTest extends TestCase
 
     public function testSourceRoot()
     {
-        new CliDaemon([
+        $cliDaemon = new CliDaemon([
             'sourceRoot' => '.'
         ]);
+
+        $this->assertInstanceOf(CliDaemon::class, $cliDaemon);
     }
 
     public function testSourceRootMissing()
     {
-        $this->expectException('UnexpectedValueException');
+        $this->expectException(\UnexpectedValueException::class);
 
         new CliDaemon([
             'sourceRoot' => 'non-existent-directory'
@@ -71,7 +73,7 @@ class CliDaemonTest extends TestCase
 
     public function testSourceRootInvalid()
     {
-        $this->expectException('UnexpectedValueException');
+        $this->expectException(\UnexpectedValueException::class);
 
         new CliDaemon([
             'sourceRoot' => __FILE__
@@ -80,7 +82,7 @@ class CliDaemonTest extends TestCase
 
     public function testDefaults()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         new CliDaemon();
     }

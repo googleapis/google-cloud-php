@@ -29,7 +29,6 @@ namespace Google\Cloud\OsLogin\V1beta\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -37,6 +36,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\OsLogin\Common\SshPublicKey;
+use Google\Cloud\OsLogin\V1beta\CreateSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\DeletePosixAccountRequest;
 use Google\Cloud\OsLogin\V1beta\DeleteSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\GetLoginProfileRequest;
@@ -44,6 +44,8 @@ use Google\Cloud\OsLogin\V1beta\GetSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyResponse;
 use Google\Cloud\OsLogin\V1beta\LoginProfile;
+use Google\Cloud\OsLogin\V1beta\SignSshPublicKeyRequest;
+use Google\Cloud\OsLogin\V1beta\SignSshPublicKeyResponse;
 use Google\Cloud\OsLogin\V1beta\UpdateSshPublicKeyRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -60,8 +62,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $osLoginServiceClient = new OsLoginServiceClient();
  * try {
- *     $formattedName = $osLoginServiceClient->posixAccountName('[USER]', '[PROJECT]');
- *     $osLoginServiceClient->deletePosixAccount($formattedName);
+ *     $formattedParent = $osLoginServiceClient->userName('[USER]');
+ *     $sshPublicKey = new SshPublicKey();
+ *     $response = $osLoginServiceClient->createSshPublicKey($formattedParent, $sshPublicKey);
  * } finally {
  *     $osLoginServiceClient->close();
  * }
@@ -78,29 +81,19 @@ class OsLoginServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.oslogin.v1beta.OsLoginService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'oslogin.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
@@ -296,9 +289,6 @@ class OsLoginServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'oslogin.googleapis.com:443'.
@@ -328,7 +318,7 @@ class OsLoginServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -356,6 +346,62 @@ class OsLoginServiceGapicClient
     }
 
     /**
+     * Create an SSH public key
+     *
+     * Sample code:
+     * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
+     * try {
+     *     $formattedParent = $osLoginServiceClient->userName('[USER]');
+     *     $sshPublicKey = new SshPublicKey();
+     *     $response = $osLoginServiceClient->createSshPublicKey($formattedParent, $sshPublicKey);
+     * } finally {
+     *     $osLoginServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string       $parent       Required. The unique ID for the user in format `users/{user}`.
+     * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
+     * @param array        $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createSshPublicKey(
+        $parent,
+        $sshPublicKey,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateSshPublicKeyRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSshPublicKey($sshPublicKey);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateSshPublicKey',
+            SshPublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Deletes a POSIX account.
      *
      * Sample code:
@@ -369,9 +415,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A reference to the POSIX account to update. POSIX accounts are identified
-     *                             by the project ID they are associated with. A reference to the POSIX
-     *                             account is in format `users/{user}/projects/{project}`.
+     * @param string $name         Required. A reference to the POSIX account to update. POSIX accounts are
+     *                             identified by the project ID they are associated with. A reference to the
+     *                             POSIX account is in format `users/{user}/projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -419,9 +465,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The fingerprint of the public key to update. Public keys are identified by
-     *                             their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *                             `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param string $name         Required. The fingerprint of the public key to update. Public keys are
+     *                             identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                             is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -478,6 +524,9 @@ class OsLoginServiceGapicClient
      *           The project ID of the Google Cloud Platform project.
      *     @type string $systemId
      *           A system ID for filtering the results of the request.
+     *     @type int $view
+     *           The view configures whether to retrieve security keys information.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\OsLogin\V1beta\LoginProfileView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -502,6 +551,10 @@ class OsLoginServiceGapicClient
 
         if (isset($optionalArgs['systemId'])) {
             $request->setSystemId($optionalArgs['systemId']);
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -532,9 +585,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are identified
-     *                             by their SHA-256 fingerprint. The fingerprint of the public key is in
-     *                             format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are
+     *                             identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                             is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -594,6 +647,9 @@ class OsLoginServiceGapicClient
      *           The unique ID for the user in format `users/{user}`.
      *     @type string $projectId
      *           The project ID of the Google Cloud Platform project.
+     *     @type int $view
+     *           The view configures whether to retrieve security keys information.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\OsLogin\V1beta\LoginProfileView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -620,6 +676,10 @@ class OsLoginServiceGapicClient
             $request->setProjectId($optionalArgs['projectId']);
         }
 
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -629,6 +689,68 @@ class OsLoginServiceGapicClient
         return $this->startCall(
             'ImportSshPublicKey',
             ImportSshPublicKeyResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Signs an SSH public key for a user to authenticate to an instance.
+     *
+     * Sample code:
+     * ```
+     * $osLoginServiceClient = new OsLoginServiceClient();
+     * try {
+     *     $response = $osLoginServiceClient->signSshPublicKey();
+     * } finally {
+     *     $osLoginServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $sshPublicKey
+     *           The SSH public key to sign.
+     *     @type string $parent
+     *           The parent project and zone for the signing request. This is needed to
+     *           properly ensure per-organization ISS processing and potentially to provide
+     *           for the possibility of zone-specific certificates used in the signing
+     *           process.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsLogin\V1beta\SignSshPublicKeyResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function signSshPublicKey(array $optionalArgs = [])
+    {
+        $request = new SignSshPublicKeyRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['sshPublicKey'])) {
+            $request->setSshPublicKey($optionalArgs['sshPublicKey']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SignSshPublicKey',
+            SignSshPublicKeyResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -650,9 +772,9 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         Required. The fingerprint of the public key to update. Public keys are identified by
-     *                                   their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *                                   `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param string       $name         Required. The fingerprint of the public key to update. Public keys are
+     *                                   identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                                   is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
      * @param array        $optionalArgs {
      *     Optional.

@@ -207,6 +207,51 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlServerAuditConfig sql_server_audit_config = 29;</code>
      */
     private $sql_server_audit_config = null;
+    /**
+     * Optional. The edition of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $edition = 0;
+    /**
+     * Specifies if connections must use Cloud SQL connectors.
+     * Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     * can be connected without Cloud SQL
+     * Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     * Connectors)
+     * Note that using REQUIRED disables all existing authorized networks. If
+     * this field is not specified when creating a new instance, NOT_REQUIRED is
+     * used. If this field is not specified when patching or updating an existing
+     * instance, it is left unchanged in the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Settings.ConnectorEnforcement connector_enforcement = 32;</code>
+     */
+    private $connector_enforcement = 0;
+    /**
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     */
+    private $deletion_protection_enabled = null;
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 34;</code>
+     */
+    private $time_zone = '';
+    /**
+     * Specifies advance machine configuration for the instance
+     * relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.AdvancedMachineFeatures advanced_machine_features = 35;</code>
+     */
+    private $advanced_machine_features = null;
+    /**
+     * Configuration for data cache.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DataCacheConfig data_cache_config = 37;</code>
+     */
+    private $data_cache_config = null;
 
     /**
      * Constructor.
@@ -299,6 +344,27 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           The local user password validation policy of the instance.
      *     @type \Google\Cloud\Sql\V1beta4\SqlServerAuditConfig $sql_server_audit_config
      *           SQL Server specific audit configuration.
+     *     @type int $edition
+     *           Optional. The edition of the instance.
+     *     @type int $connector_enforcement
+     *           Specifies if connections must use Cloud SQL connectors.
+     *           Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     *           can be connected without Cloud SQL
+     *           Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     *           Connectors)
+     *           Note that using REQUIRED disables all existing authorized networks. If
+     *           this field is not specified when creating a new instance, NOT_REQUIRED is
+     *           used. If this field is not specified when patching or updating an existing
+     *           instance, it is left unchanged in the instance.
+     *     @type \Google\Protobuf\BoolValue $deletion_protection_enabled
+     *           Configuration to protect against accidental instance deletion.
+     *     @type string $time_zone
+     *           Server timezone, relevant only for Cloud SQL for SQL Server.
+     *     @type \Google\Cloud\Sql\V1beta4\AdvancedMachineFeatures $advanced_machine_features
+     *           Specifies advance machine configuration for the instance
+     *           relevant only for SQL Server.
+     *     @type \Google\Cloud\Sql\V1beta4\DataCacheConfig $data_cache_config
+     *           Configuration for data cache.
      * }
      */
     public function __construct($data = NULL) {
@@ -1379,6 +1445,237 @@ class Settings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\SqlServerAuditConfig::class);
         $this->sql_server_audit_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The edition of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * Optional. The edition of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\Settings\Edition::class);
+        $this->edition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies if connections must use Cloud SQL connectors.
+     * Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     * can be connected without Cloud SQL
+     * Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     * Connectors)
+     * Note that using REQUIRED disables all existing authorized networks. If
+     * this field is not specified when creating a new instance, NOT_REQUIRED is
+     * used. If this field is not specified when patching or updating an existing
+     * instance, it is left unchanged in the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Settings.ConnectorEnforcement connector_enforcement = 32;</code>
+     * @return int
+     */
+    public function getConnectorEnforcement()
+    {
+        return $this->connector_enforcement;
+    }
+
+    /**
+     * Specifies if connections must use Cloud SQL connectors.
+     * Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
+     * can be connected without Cloud SQL
+     * Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL
+     * Connectors)
+     * Note that using REQUIRED disables all existing authorized networks. If
+     * this field is not specified when creating a new instance, NOT_REQUIRED is
+     * used. If this field is not specified when patching or updating an existing
+     * instance, it is left unchanged in the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Settings.ConnectorEnforcement connector_enforcement = 32;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConnectorEnforcement($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\Settings\ConnectorEnforcement::class);
+        $this->connector_enforcement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getDeletionProtectionEnabled()
+    {
+        return $this->deletion_protection_enabled;
+    }
+
+    public function hasDeletionProtectionEnabled()
+    {
+        return isset($this->deletion_protection_enabled);
+    }
+
+    public function clearDeletionProtectionEnabled()
+    {
+        unset($this->deletion_protection_enabled);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getDeletionProtectionEnabled()</code>
+
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @return bool|null
+     */
+    public function getDeletionProtectionEnabledValue()
+    {
+        return $this->readWrapperValue("deletion_protection_enabled");
+    }
+
+    /**
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setDeletionProtectionEnabled($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->deletion_protection_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Configuration to protect against accidental instance deletion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setDeletionProtectionEnabledValue($var)
+    {
+        $this->writeWrapperValue("deletion_protection_enabled", $var);
+        return $this;}
+
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 34;</code>
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->time_zone;
+    }
+
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>string time_zone = 34;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTimeZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->time_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies advance machine configuration for the instance
+     * relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.AdvancedMachineFeatures advanced_machine_features = 35;</code>
+     * @return \Google\Cloud\Sql\V1beta4\AdvancedMachineFeatures|null
+     */
+    public function getAdvancedMachineFeatures()
+    {
+        return $this->advanced_machine_features;
+    }
+
+    public function hasAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features);
+    }
+
+    public function clearAdvancedMachineFeatures()
+    {
+        unset($this->advanced_machine_features);
+    }
+
+    /**
+     * Specifies advance machine configuration for the instance
+     * relevant only for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.AdvancedMachineFeatures advanced_machine_features = 35;</code>
+     * @param \Google\Cloud\Sql\V1beta4\AdvancedMachineFeatures $var
+     * @return $this
+     */
+    public function setAdvancedMachineFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\AdvancedMachineFeatures::class);
+        $this->advanced_machine_features = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for data cache.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DataCacheConfig data_cache_config = 37;</code>
+     * @return \Google\Cloud\Sql\V1beta4\DataCacheConfig|null
+     */
+    public function getDataCacheConfig()
+    {
+        return $this->data_cache_config;
+    }
+
+    public function hasDataCacheConfig()
+    {
+        return isset($this->data_cache_config);
+    }
+
+    public function clearDataCacheConfig()
+    {
+        unset($this->data_cache_config);
+    }
+
+    /**
+     * Configuration for data cache.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DataCacheConfig data_cache_config = 37;</code>
+     * @param \Google\Cloud\Sql\V1beta4\DataCacheConfig $var
+     * @return $this
+     */
+    public function setDataCacheConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\DataCacheConfig::class);
+        $this->data_cache_config = $var;
 
         return $this;
     }

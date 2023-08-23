@@ -23,7 +23,7 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the AnnotationSpec.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -42,8 +42,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,15 +59,15 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of the AnnotationSpec.
      *     @type string $display_name
      *           Required. The user-defined name of the AnnotationSpec.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this AnnotationSpec was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when AnnotationSpec was last updated.
      *     @type string $etag
-     *           Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     *           "overwrite" update happens.
+     *           Optional. Used to perform consistent read-modify-write updates. If not set,
+     *           a blind "overwrite" update happens.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,7 +103,7 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the AnnotationSpec.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -116,7 +116,7 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the AnnotationSpec.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -204,8 +204,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -216,8 +216,8 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Used to perform consistent read-modify-write updates. If not set, a blind
-     * "overwrite" update happens.
+     * Optional. Used to perform consistent read-modify-write updates. If not set,
+     * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

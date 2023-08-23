@@ -17,8 +17,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The ID of the format in which the Model must be exported. Each Model
-     * lists the [export formats it supports][google.cloud.aiplatform.v1.Model.supported_export_formats].
-     * If no value is provided here, then the first from the list of the Model's
+     * lists the [export formats it
+     * supports][google.cloud.aiplatform.v1.Model.supported_export_formats]. If
+     * no value is provided here, then the first from the list of the Model's
      * supported formats is used by default.
      *
      * Generated from protobuf field <code>string export_format_id = 1;</code>
@@ -55,8 +56,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $export_format_id
      *           The ID of the format in which the Model must be exported. Each Model
-     *           lists the [export formats it supports][google.cloud.aiplatform.v1.Model.supported_export_formats].
-     *           If no value is provided here, then the first from the list of the Model's
+     *           lists the [export formats it
+     *           supports][google.cloud.aiplatform.v1.Model.supported_export_formats]. If
+     *           no value is provided here, then the first from the list of the Model's
      *           supported formats is used by default.
      *     @type \Google\Cloud\AIPlatform\V1\GcsDestination $artifact_destination
      *           The Cloud Storage location where the Model artifact is to be
@@ -81,8 +83,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The ID of the format in which the Model must be exported. Each Model
-     * lists the [export formats it supports][google.cloud.aiplatform.v1.Model.supported_export_formats].
-     * If no value is provided here, then the first from the list of the Model's
+     * lists the [export formats it
+     * supports][google.cloud.aiplatform.v1.Model.supported_export_formats]. If
+     * no value is provided here, then the first from the list of the Model's
      * supported formats is used by default.
      *
      * Generated from protobuf field <code>string export_format_id = 1;</code>
@@ -95,8 +98,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The ID of the format in which the Model must be exported. Each Model
-     * lists the [export formats it supports][google.cloud.aiplatform.v1.Model.supported_export_formats].
-     * If no value is provided here, then the first from the list of the Model's
+     * lists the [export formats it
+     * supports][google.cloud.aiplatform.v1.Model.supported_export_formats]. If
+     * no value is provided here, then the first from the list of the Model's
      * supported formats is used by default.
      *
      * Generated from protobuf field <code>string export_format_id = 1;</code>

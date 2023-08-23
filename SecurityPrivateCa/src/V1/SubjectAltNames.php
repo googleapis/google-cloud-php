@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] corresponds to a more modern way of listing what
- * the asserted identity is in a certificate (i.e., compared to the "common
- * name" in the distinguished name).
+ * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
+ * corresponds to a more modern way of listing what the asserted identity is in
+ * a certificate (i.e., compared to the "common name" in the distinguished
+ * name).
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.SubjectAltNames</code>
  */

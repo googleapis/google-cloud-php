@@ -25,7 +25,7 @@ class UserEventService
         \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‘
+•
 Bgoogle/cloud/recommendationengine/v1beta1/user_event_service.proto)google.cloud.recommendationengine.v1beta1google/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto6google/cloud/recommendationengine/v1beta1/import.proto:google/cloud/recommendationengine/v1beta1/user_event.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.protogoogle/api/client.proto"‰
 PurgeUserEventsRequestF
 parent (	B6àAúA0
@@ -68,8 +68,8 @@ user_eventÚAparent,user_eventæ
 PurgeUserEventsA.google.cloud.recommendationengine.v1beta1.PurgeUserEventsRequest.google.longrunning.Operation"ý‚Óä“W"R/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents:purge:*ÊA†
 Agoogle.cloud.recommendationengine.v1beta1.PurgeUserEventsResponseAgoogle.cloud.recommendationengine.v1beta1.PurgeUserEventsMetadataÚAparent,filter,force†
 ImportUserEventsB.google.cloud.recommendationengine.v1beta1.ImportUserEventsRequest.google.longrunning.Operation"Ž‚Óä“X"S/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents:import:*ÊA~
-Bgoogle.cloud.recommendationengine.v1beta1.ImportUserEventsResponse8google.cloud.recommendationengine.v1beta1.ImportMetadataÚA,parent,request_id,input_config,errors_configWÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŸ
--com.google.cloud.recommendationengine.v1beta1PZ]google.golang.org/genproto/googleapis/cloud/recommendationengine/v1beta1;recommendationengine¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
+Bgoogle.cloud.recommendationengine.v1beta1.ImportUserEventsResponse8google.cloud.recommendationengine.v1beta1.ImportMetadataÚA,parent,request_id,input_config,errors_configWÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB£
+-com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -33,8 +33,9 @@ use Google\Cloud\Vision\V1\ImageSource;
 use Google\Cloud\Vision\V1\ProductSearchParams;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use GuzzleHttp\Promise\FulfilledPromise;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
@@ -42,13 +43,14 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class ImageAnnotatorClientExtensionTest extends TestCase
 {
+    use ProphecyTrait;
     use VisionHelpersTrait;
 
     /** @var ImageAnnotatorClient */
     private $client;
     private $transport;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new ImageAnnotatorClient([

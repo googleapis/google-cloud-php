@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-logging/v/stable)](https://packagist.org/packages/google/cloud-logging) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-logging.svg)](https://packagist.org/packages/google/cloud-logging)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-logging/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-logging/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

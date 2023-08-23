@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-run/v/stable)](https://packagist.org/packages/google/cloud-run) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-run.svg)](https://packagist.org/packages/google/cloud-run)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-run/latest/run/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-run/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

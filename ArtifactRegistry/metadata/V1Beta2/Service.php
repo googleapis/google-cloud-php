@@ -30,7 +30,7 @@ class Service
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‹7
+Ÿ7
 6google/devtools/artifactregistry/v1beta2/service.proto(google.devtools.artifactregistry.v1beta2google/api/client.proto;google/devtools/artifactregistry/v1beta2/apt_artifact.proto3google/devtools/artifactregistry/v1beta2/file.proto6google/devtools/artifactregistry/v1beta2/package.proto9google/devtools/artifactregistry/v1beta2/repository.proto7google/devtools/artifactregistry/v1beta2/settings.proto2google/devtools/artifactregistry/v1beta2/tag.proto6google/devtools/artifactregistry/v1beta2/version.proto;google/devtools/artifactregistry/v1beta2/yum_artifact.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"
 OperationMetadata2Ê/
 ArtifactRegistryﬂ
@@ -68,8 +68,8 @@ GetVersion;.google.devtools.artifactregistry.v1beta2.GetVersionRequest1.google
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"NÇ”‰ìHF/v1beta2/{resource=projects/*/locations/*/repositories/*}:getIamPolicy¬
 TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"WÇ”‰ìQ"L/v1beta2/{resource=projects/*/locations/*/repositories/*}:testIamPermissions:*œ
 GetProjectSettingsC.google.devtools.artifactregistry.v1beta2.GetProjectSettingsRequest9.google.devtools.artifactregistry.v1beta2.ProjectSettings"9Ç”‰ì,*/v1beta2/{name=projects/*/projectSettings}⁄Anameê
-UpdateProjectSettingsF.google.devtools.artifactregistry.v1beta2.UpdateProjectSettingsRequest9.google.devtools.artifactregistry.v1beta2.ProjectSettings"tÇ”‰ìO2;/v1beta2/{project_settings.name=projects/*/projectSettings}:project_settings⁄Aproject_settings,update_maskå Aartifactregistry.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBì
-,com.google.devtools.artifactregistry.v1beta2BServiceProtoPZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry™%Google.Cloud.ArtifactRegistry.V1Beta2 %Google\\Cloud\\ArtifactRegistry\\V1beta2Í(Google::Cloud::ArtifactRegistry::V1beta2bproto3'
+UpdateProjectSettingsF.google.devtools.artifactregistry.v1beta2.UpdateProjectSettingsRequest9.google.devtools.artifactregistry.v1beta2.ProjectSettings"tÇ”‰ìO2;/v1beta2/{project_settings.name=projects/*/projectSettings}:project_settings⁄Aproject_settings,update_maskå Aartifactregistry.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBê
+,com.google.devtools.artifactregistry.v1beta2BServiceProtoPZUcloud.google.com/go/artifactregistry/apiv1beta2/artifactregistrypb;artifactregistrypb™%Google.Cloud.ArtifactRegistry.V1Beta2 %Google\\Cloud\\ArtifactRegistry\\V1beta2Í(Google::Cloud::ArtifactRegistry::V1beta2bproto3'
         , true);
 
         static::$is_initialized = true;

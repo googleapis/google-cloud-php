@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.UpdateDatabase][google.firestore.admin.v1.FirestoreAdmin.UpdateDatabase].
+ * The request for
+ * [FirestoreAdmin.UpdateDatabase][google.firestore.admin.v1.FirestoreAdmin.UpdateDatabase].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.UpdateDatabaseRequest</code>
  */
@@ -27,6 +28,21 @@ class UpdateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Firestore\Admin\V1\Database $database   Required. The database to update.
+     * @param \Google\Protobuf\FieldMask                $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Firestore\Admin\V1\Database $database, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDatabase($database)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

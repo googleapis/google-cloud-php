@@ -24,7 +24,7 @@ use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
@@ -33,17 +33,17 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class DatastoreSessionHandlerTest extends SnippetTestCase
 {
-    use ExpectException;
     use DatastoreOperationRefreshTrait;
+    use ProphecyTrait;
 
     const TRANSACTION = 'transaction-id';
 
     private $connection;
     private $client;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         // Since the tests in this class must run in isolation, they won't be
         // recognized as having been covered, and will cause a CI error.
@@ -53,7 +53,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         self::snippetFromClass(DatastoreSessionHandler::class, 1);
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], [
@@ -107,7 +107,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
     public function testClassErrorHandler()
     {
-        $this->expectException('\RuntimeException');
+        $this->expectException(\RuntimeException::class);
 
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class, 1);
         $snippet->replace('$datastore = new DatastoreClient();', '');
@@ -116,8 +116,8 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             Argument::withEntry('transaction', self::TRANSACTION),
             Argument::that(function ($args) {
                 return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                 && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                 && isset($args['keys'][0]['path'][0]['name']);
+                    && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
+                    && isset($args['keys'][0]['path'][0]['name']);
             })
         ))->shouldBeCalled()->willReturn([]);
 

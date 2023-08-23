@@ -23,7 +23,7 @@ class AlertService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç
+ê
 (google/monitoring/v3/alert_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/monitoring/v3/alert.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"•
 CreateAlertPolicyRequest;
 name (	B-àAúA\'%monitoring.googleapis.com/AlertPolicy<
@@ -54,8 +54,8 @@ total_size ("‰
 GetAlertPolicy+.google.monitoring.v3.GetAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"4‚Óä“\'%/v3/{name=projects/*/alertPolicies/*}ÚAnameµ
 CreateAlertPolicy..google.monitoring.v3.CreateAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"M‚Óä“3"#/v3/{name=projects/*}/alertPolicies:alert_policyÚAname,alert_policy‘
 DeleteAlertPolicy..google.monitoring.v3.DeleteAlertPolicyRequest.google.protobuf.Empty"4‚Óä“\'*%/v3/{name=projects/*/alertPolicies/*}ÚAnameË
-UpdateAlertPolicy..google.monitoring.v3.UpdateAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"c‚Óä“B22/v3/{alert_policy.name=projects/*/alertPolicies/*}:alert_policyÚAupdate_mask,alert_policy©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÉ
-com.google.monitoring.v3BAlertServiceProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+UpdateAlertPolicy..google.monitoring.v3.UpdateAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"c‚Óä“B22/v3/{alert_policy.name=projects/*/alertPolicies/*}:alert_policyÚAupdate_mask,alert_policy©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÌ
+com.google.monitoring.v3BAlertServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 
         static::$is_initialized = true;

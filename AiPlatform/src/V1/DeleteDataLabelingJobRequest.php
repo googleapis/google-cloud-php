@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.DeleteDataLabelingJob][google.cloud.aiplatform.v1.JobService.DeleteDataLabelingJob].
+ * Request message for
+ * [JobService.DeleteDataLabelingJob][google.cloud.aiplatform.v1.JobService.DeleteDataLabelingJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteDataLabelingJobRequest</code>
  */
@@ -23,6 +24,22 @@ class DeleteDataLabelingJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the DataLabelingJob to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
+     *                     Please see {@see JobServiceClient::dataLabelingJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteDataLabelingJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

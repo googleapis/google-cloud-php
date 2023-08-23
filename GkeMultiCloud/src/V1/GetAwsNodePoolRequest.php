@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to describe.
+     * Required. The name of the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     * describe.
      * `AwsNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -27,13 +29,37 @@ class GetAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the
+     *                     [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     *                     describe.
+     *
+     *                     `AwsNodePool` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud resource names. Please see
+     *                     {@see AwsClustersClient::awsNodePoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GetAwsNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to describe.
+     *           Required. The name of the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     *           describe.
      *           `AwsNodePool` names are formatted as
      *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -46,7 +72,9 @@ class GetAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to describe.
+     * Required. The name of the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     * describe.
      * `AwsNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
@@ -61,7 +89,9 @@ class GetAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to describe.
+     * Required. The name of the
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     * describe.
      * `AwsNodePool` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)

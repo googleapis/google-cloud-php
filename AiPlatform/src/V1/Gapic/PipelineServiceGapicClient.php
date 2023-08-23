@@ -27,10 +27,8 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -88,43 +86,55 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient} to use the new
+ * surface.
  */
 class PipelineServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.PipelineService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $artifactNameTemplate;
+
+    private static $contextNameTemplate;
+
+    private static $customJobNameTemplate;
+
+    private static $endpointNameTemplate;
+
+    private static $executionNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $metadataStoreNameTemplate;
+
+    private static $modelNameTemplate;
 
     private static $networkNameTemplate;
 
     private static $pipelineJobNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $trainingPipelineNameTemplate;
 
@@ -158,6 +168,61 @@ class PipelineServiceGapicClient
         ];
     }
 
+    private static function getArtifactNameTemplate()
+    {
+        if (self::$artifactNameTemplate == null) {
+            self::$artifactNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}'
+            );
+        }
+
+        return self::$artifactNameTemplate;
+    }
+
+    private static function getContextNameTemplate()
+    {
+        if (self::$contextNameTemplate == null) {
+            self::$contextNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}'
+            );
+        }
+
+        return self::$contextNameTemplate;
+    }
+
+    private static function getCustomJobNameTemplate()
+    {
+        if (self::$customJobNameTemplate == null) {
+            self::$customJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/customJobs/{custom_job}'
+            );
+        }
+
+        return self::$customJobNameTemplate;
+    }
+
+    private static function getEndpointNameTemplate()
+    {
+        if (self::$endpointNameTemplate == null) {
+            self::$endpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$endpointNameTemplate;
+    }
+
+    private static function getExecutionNameTemplate()
+    {
+        if (self::$executionNameTemplate == null) {
+            self::$executionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}'
+            );
+        }
+
+        return self::$executionNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -167,6 +232,28 @@ class PipelineServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getMetadataStoreNameTemplate()
+    {
+        if (self::$metadataStoreNameTemplate == null) {
+            self::$metadataStoreNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/metadataStores/{metadata_store}'
+            );
+        }
+
+        return self::$metadataStoreNameTemplate;
+    }
+
+    private static function getModelNameTemplate()
+    {
+        if (self::$modelNameTemplate == null) {
+            self::$modelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/models/{model}'
+            );
+        }
+
+        return self::$modelNameTemplate;
     }
 
     private static function getNetworkNameTemplate()
@@ -191,6 +278,28 @@ class PipelineServiceGapicClient
         return self::$pipelineJobNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getTrainingPipelineNameTemplate()
     {
         if (self::$trainingPipelineNameTemplate == null) {
@@ -206,14 +315,136 @@ class PipelineServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'artifact' => self::getArtifactNameTemplate(),
+                'context' => self::getContextNameTemplate(),
+                'customJob' => self::getCustomJobNameTemplate(),
+                'endpoint' => self::getEndpointNameTemplate(),
+                'execution' => self::getExecutionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'metadataStore' => self::getMetadataStoreNameTemplate(),
+                'model' => self::getModelNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
                 'pipelineJob' => self::getPipelineJobNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
                 'trainingPipeline' => self::getTrainingPipelineNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a artifact
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $artifact
+     *
+     * @return string The formatted artifact resource.
+     */
+    public static function artifactName(
+        $project,
+        $location,
+        $metadataStore,
+        $artifact
+    ) {
+        return self::getArtifactNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'artifact' => $artifact,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a context
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $context
+     *
+     * @return string The formatted context resource.
+     */
+    public static function contextName(
+        $project,
+        $location,
+        $metadataStore,
+        $context
+    ) {
+        return self::getContextNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a custom_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $customJob
+     *
+     * @return string The formatted custom_job resource.
+     */
+    public static function customJobName($project, $location, $customJob)
+    {
+        return self::getCustomJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'custom_job' => $customJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a endpoint
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted endpoint resource.
+     */
+    public static function endpointName($project, $location, $endpoint)
+    {
+        return self::getEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a execution
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     * @param string $execution
+     *
+     * @return string The formatted execution resource.
+     */
+    public static function executionName(
+        $project,
+        $location,
+        $metadataStore,
+        $execution
+    ) {
+        return self::getExecutionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+            'execution' => $execution,
+        ]);
     }
 
     /**
@@ -230,6 +461,47 @@ class PipelineServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * metadata_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataStore
+     *
+     * @return string The formatted metadata_store resource.
+     */
+    public static function metadataStoreName(
+        $project,
+        $location,
+        $metadataStore
+    ) {
+        return self::getMetadataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_store' => $metadataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a model
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $model
+     *
+     * @return string The formatted model resource.
+     */
+    public static function modelName($project, $location, $model)
+    {
+        return self::getModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'model' => $model,
         ]);
     }
 
@@ -271,6 +543,53 @@ class PipelineServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * training_pipeline resource.
      *
      * @param string $project
@@ -295,9 +614,18 @@ class PipelineServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - artifact: projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}
+     * - context: projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}
+     * - customJob: projects/{project}/locations/{location}/customJobs/{custom_job}
+     * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - execution: projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}
      * - location: projects/{project}/locations/{location}
+     * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
+     * - model: projects/{project}/locations/{location}/models/{model}
      * - network: projects/{project}/global/networks/{network}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - trainingPipeline: projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -380,9 +708,6 @@ class PipelineServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -412,7 +737,7 @@ class PipelineServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -442,12 +767,15 @@ class PipelineServiceGapicClient
      * Cancels a PipelineJob.
      * Starts asynchronous cancellation on the PipelineJob. The server
      * makes a best effort to cancel the pipeline, but success is not
-     * guaranteed. Clients can use [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]
+     * or other methods to check whether the cancellation succeeded or whether the
      * pipeline completed despite cancellation. On successful cancellation,
      * the PipelineJob is not deleted; instead it becomes a pipeline with
-     * a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`, and [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
+     * a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value
+     * with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding
+     * to `Code.CANCELLED`, and
+     * [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
      * `CANCELLED`.
      *
      * Sample code:
@@ -499,13 +827,17 @@ class PipelineServiceGapicClient
      * Cancels a TrainingPipeline.
      * Starts asynchronous cancellation on the TrainingPipeline. The server
      * makes a best effort to cancel the pipeline, but success is not
-     * guaranteed. Clients can use [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline] or
-     * other methods to check whether the cancellation succeeded or whether the
+     * guaranteed. Clients can use
+     * [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]
+     * or other methods to check whether the cancellation succeeded or whether the
      * pipeline completed despite cancellation. On successful cancellation,
      * the TrainingPipeline is not deleted; instead it becomes a pipeline with
-     * a [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`, and [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state] is set to
-     * `CANCELLED`.
+     * a
+     * [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`, and
+     * [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state]
+     * is set to `CANCELLED`.
      *
      * Sample code:
      * ```
@@ -634,8 +966,8 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent           Required. The resource name of the Location to create the TrainingPipeline in.
-     *                                           Format: `projects/{project}/locations/{location}`
+     * @param string           $parent           Required. The resource name of the Location to create the TrainingPipeline
+     *                                           in. Format: `projects/{project}/locations/{location}`
      * @param TrainingPipeline $trainingPipeline Required. The TrainingPipeline to create.
      * @param array            $optionalArgs     {
      *     Optional.
@@ -1087,8 +1419,8 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the TrainingPipelines from.
-     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The resource name of the Location to list the TrainingPipelines
+     *                             from. Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *

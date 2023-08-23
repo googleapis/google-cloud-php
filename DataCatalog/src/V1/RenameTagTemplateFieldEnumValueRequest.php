@@ -23,11 +23,29 @@ class RenameTagTemplateFieldEnumValueRequest extends \Google\Protobuf\Internal\M
      */
     private $name = '';
     /**
-     * Required. The new display name of the enum value. For example, `my_new_enum_value`.
+     * Required. The new display name of the enum value. For example,
+     * `my_new_enum_value`.
      *
      * Generated from protobuf field <code>string new_enum_value_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $new_enum_value_display_name = '';
+
+    /**
+     * @param string $name                    Required. The name of the enum field value. Please see
+     *                                        {@see DataCatalogClient::tagTemplateFieldEnumValueName()} for help formatting this field.
+     * @param string $newEnumValueDisplayName Required. The new display name of the enum value. For example,
+     *                                        `my_new_enum_value`.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $newEnumValueDisplayName): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNewEnumValueDisplayName($newEnumValueDisplayName);
+    }
 
     /**
      * Constructor.
@@ -38,7 +56,8 @@ class RenameTagTemplateFieldEnumValueRequest extends \Google\Protobuf\Internal\M
      *     @type string $name
      *           Required. The name of the enum field value.
      *     @type string $new_enum_value_display_name
-     *           Required. The new display name of the enum value. For example, `my_new_enum_value`.
+     *           Required. The new display name of the enum value. For example,
+     *           `my_new_enum_value`.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +92,8 @@ class RenameTagTemplateFieldEnumValueRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. The new display name of the enum value. For example, `my_new_enum_value`.
+     * Required. The new display name of the enum value. For example,
+     * `my_new_enum_value`.
      *
      * Generated from protobuf field <code>string new_enum_value_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -84,7 +104,8 @@ class RenameTagTemplateFieldEnumValueRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. The new display name of the enum value. For example, `my_new_enum_value`.
+     * Required. The new display name of the enum value. For example,
+     * `my_new_enum_value`.
      *
      * Generated from protobuf field <code>string new_enum_value_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

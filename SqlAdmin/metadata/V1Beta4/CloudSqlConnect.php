@@ -22,19 +22,21 @@ class CloudSqlConnect
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
+¨
 0google/cloud/sql/v1beta4/cloud_sql_connect.protogoogle.cloud.sql.v1beta4google/api/client.protogoogle/api/field_behavior.proto2google/cloud/sql/v1beta4/cloud_sql_resources.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"r
 GetConnectSettingsRequest
 instance (	
 project (	2
-	read_time (2.google.protobuf.TimestampB‡A"≠
+	read_time (2.google.protobuf.TimestampB‡A"‘
 ConnectSettings
 kind (	9
 server_ca_cert (2!.google.cloud.sql.v1beta4.SslCert9
 ip_addresses (2#.google.cloud.sql.v1beta4.IpMapping
 region (	F
 database_version (2,.google.cloud.sql.v1beta4.SqlDatabaseVersion>
-backend_type  (2(.google.cloud.sql.v1beta4.SqlBackendType"‹
+backend_type  (2(.google.cloud.sql.v1beta4.SqlBackendType
+psc_enabled! (
+dns_name" (	"‹
 GenerateEphemeralCertRequest
 instance (	
 project (	
@@ -47,8 +49,8 @@ public_key (	
 ephemeral_cert (2!.google.cloud.sql.v1beta4.SslCert2∏
 SqlConnectService¬
 GetConnectSettings3.google.cloud.sql.v1beta4.GetConnectSettingsRequest).google.cloud.sql.v1beta4.ConnectSettings"LÇ”‰ìFD/sql/v1beta4/projects/{project}/instances/{instance}/connectSettingsﬂ
-GenerateEphemeralCert6.google.cloud.sql.v1beta4.GenerateEphemeralCertRequest7.google.cloud.sql.v1beta4.GenerateEphemeralCertResponse"UÇ”‰ìO"J/sql/v1beta4/projects/{project}/instances/{instance}:generateEphemeralCert:*| Asqladmin.googleapis.com“A_https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/sqlservice.adminBs
-com.google.cloud.sql.v1beta4BCloudSqlConnectProtoPZ;google.golang.org/genproto/googleapis/cloud/sql/v1beta4;sqlbproto3'
+GenerateEphemeralCert6.google.cloud.sql.v1beta4.GenerateEphemeralCertRequest7.google.cloud.sql.v1beta4.GenerateEphemeralCertResponse"UÇ”‰ìO"J/sql/v1beta4/projects/{project}/instances/{instance}:generateEphemeralCert:*| Asqladmin.googleapis.com“A_https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/sqlservice.adminBf
+com.google.cloud.sql.v1beta4BCloudSqlConnectProtoPZ.cloud.google.com/go/sql/apiv1beta4/sqlpb;sqlpbbproto3'
         , true);
 
         static::$is_initialized = true;

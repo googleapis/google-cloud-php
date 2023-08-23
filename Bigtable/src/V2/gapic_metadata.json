@@ -15,6 +15,11 @@
                                 "checkAndMutateRow"
                             ]
                         },
+                        "GenerateInitialChangeStreamPartitions": {
+                            "methods": [
+                                "generateInitialChangeStreamPartitions"
+                            ]
+                        },
                         "MutateRow": {
                             "methods": [
                                 "mutateRow"
@@ -28,6 +33,11 @@
                         "PingAndWarm": {
                             "methods": [
                                 "pingAndWarm"
+                            ]
+                        },
+                        "ReadChangeStream": {
+                            "methods": [
+                                "readChangeStream"
                             ]
                         },
                         "ReadModifyWriteRow": {

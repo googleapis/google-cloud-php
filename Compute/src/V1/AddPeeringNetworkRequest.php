@@ -41,6 +41,23 @@ class AddPeeringNetworkRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                             $project                           Project ID for this request.
+     * @param string                                             $network                           Name of the network resource to add peering to.
+     * @param \Google\Cloud\Compute\V1\NetworksAddPeeringRequest $networksAddPeeringRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddPeeringNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $network, \Google\Cloud\Compute\V1\NetworksAddPeeringRequest $networksAddPeeringRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetwork($network)
+            ->setNetworksAddPeeringRequestResource($networksAddPeeringRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

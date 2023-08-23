@@ -21,7 +21,7 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      * `AzureServerConfig` names are formatted as
      * `projects/<project-number>/locations/<region>/azureServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -50,7 +50,7 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      *           `AzureServerConfig` names are formatted as
      *           `projects/<project-number>/locations/<region>/azureServerConfig`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *           for more details on GCP resource names.
+     *           for more details on Google Cloud Platform resource names.
      *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $valid_versions
      *           List of valid Kubernetes versions.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_azure_regions
@@ -67,7 +67,7 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      * `AzureServerConfig` names are formatted as
      * `projects/<project-number>/locations/<region>/azureServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -82,7 +82,7 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      * `AzureServerConfig` names are formatted as
      * `projects/<project-number>/locations/<region>/azureServerConfig`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

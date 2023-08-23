@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ResourceCommitment;
 use UnexpectedValueException;
 
 /**
- * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
+ * Type of resource for which this commitment applies. Possible values are VCPU, MEMORY, LOCAL_SSD, and ACCELERATOR.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourceCommitment.Type</code>
  */

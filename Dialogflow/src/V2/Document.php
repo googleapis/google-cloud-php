@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A knowledge document to be used by a [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
+ * A knowledge document to be used by a
+ * [KnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBase].
  * For more information, see the [knowledge base
  * guide](https://cloud.google.com/dialogflow/docs/how/knowledge-bases).
  * Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
@@ -57,7 +58,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * fails, we will keep the document unchanged.
      * If a reload fails with internal errors, the system will try to reload the
      * document on the next day.
-     * If a reload fails with non-retriable errors (e.g. PERMISION_DENIED), the
+     * If a reload fails with non-retriable errors (e.g. PERMISSION_DENIED), the
      * system will not try to reload the document anymore. You need to manually
      * reload the document successfully by calling `ReloadDocument` and clear the
      * errors.
@@ -129,7 +130,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           fails, we will keep the document unchanged.
      *           If a reload fails with internal errors, the system will try to reload the
      *           document on the next day.
-     *           If a reload fails with non-retriable errors (e.g. PERMISION_DENIED), the
+     *           If a reload fails with non-retriable errors (e.g. PERMISSION_DENIED), the
      *           system will not try to reload the document anymore. You need to manually
      *           reload the document successfully by calling `ReloadDocument` and clear the
      *           errors.
@@ -349,7 +350,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * fails, we will keep the document unchanged.
      * If a reload fails with internal errors, the system will try to reload the
      * document on the next day.
-     * If a reload fails with non-retriable errors (e.g. PERMISION_DENIED), the
+     * If a reload fails with non-retriable errors (e.g. PERMISSION_DENIED), the
      * system will not try to reload the document anymore. You need to manually
      * reload the document successfully by calling `ReloadDocument` and clear the
      * errors.
@@ -372,7 +373,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * fails, we will keep the document unchanged.
      * If a reload fails with internal errors, the system will try to reload the
      * document on the next day.
-     * If a reload fails with non-retriable errors (e.g. PERMISION_DENIED), the
+     * If a reload fails with non-retriable errors (e.g. PERMISSION_DENIED), the
      * system will not try to reload the document anymore. You need to manually
      * reload the document successfully by calling `ReloadDocument` and clear the
      * errors.

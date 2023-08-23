@@ -25,7 +25,7 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ó(
+Ÿ(
 *google/cloud/secrets/v1beta1/service.protogoogle.cloud.secrets.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto,google/cloud/secrets/v1beta1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ä
 ListSecretsRequestC
 parent (	B3‡A˙A-
@@ -101,8 +101,8 @@ total_size ("[
 DestroySecretVersion9.google.cloud.secrets.v1beta1.DestroySecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"IÇ”‰ì<"7/v1beta1/{name=projects/*/secrets/*/versions/*}:destroy:*⁄Anameã
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"@Ç”‰ì:"5/v1beta1/{resource=projects/*/secrets/*}:setIamPolicy:*à
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"=Ç”‰ì75/v1beta1/{resource=projects/*/secrets/*}:getIamPolicy±
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"FÇ”‰ì@";/v1beta1/{resource=projects/*/secrets/*}:testIamPermissions:*P Asecretmanager.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÑ
-&com.google.cloud.secretmanager.v1beta1BServiceProtoPZOgoogle.golang.org/genproto/googleapis/cloud/secretmanager/v1beta1;secretmanager¯¢GSM™"Google.Cloud.SecretManager.V1Beta1 "Google\\Cloud\\SecretManager\\V1beta1Í%Google::Cloud::SecretManager::V1beta1bproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"FÇ”‰ì@";/v1beta1/{resource=projects/*/secrets/*}:testIamPermissions:*P Asecretmanager.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÔ
+&com.google.cloud.secretmanager.v1beta1BServiceProtoPZ:cloud.google.com/go/secrets/apiv1beta1/secretspb;secretspb¯¢GSM™"Google.Cloud.SecretManager.V1Beta1 "Google\\Cloud\\SecretManager\\V1beta1Í%Google::Cloud::SecretManager::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

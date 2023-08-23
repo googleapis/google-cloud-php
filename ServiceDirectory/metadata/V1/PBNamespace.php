@@ -18,16 +18,17 @@ class PBNamespace
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-
-0google/cloud/servicedirectory/v1/namespace.proto google.cloud.servicedirectory.v1google/api/resource.proto"‹
+“
+0google/cloud/servicedirectory/v1/namespace.proto google.cloud.servicedirectory.v1google/api/resource.proto"
 	Namespace
 name (	BàAL
-labels (27.google.cloud.servicedirectory.v1.Namespace.LabelsEntryBàA-
+labels (27.google.cloud.servicedirectory.v1.Namespace.LabelsEntryBàA
+uid (	BàA-
 LabelsEntry
 key (	
 value (	:8:nêAk
 )servicedirectory.googleapis.com/Namespace>projects/{project}/locations/{location}/namespaces/{namespace}Bù
-$com.google.cloud.servicedirectory.v1BNamespaceProtoPZPgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1;servicedirectoryøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
+$com.google.cloud.servicedirectory.v1BNamespaceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypbøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
         , true);
 
         static::$is_initialized = true;

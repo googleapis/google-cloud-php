@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Explanation of a prediction (provided in [PredictResponse.predictions][google.cloud.aiplatform.v1.PredictResponse.predictions])
- * produced by the Model on a given [instance][google.cloud.aiplatform.v1.ExplainRequest.instances].
+ * Explanation of a prediction (provided in
+ * [PredictResponse.predictions][google.cloud.aiplatform.v1.PredictResponse.predictions])
+ * produced by the Model on a given
+ * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Explanation</code>
  */
@@ -22,13 +24,18 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * predict only one score, there is only one attibution that explains the
      * predicted output. For Models that predict multiple outputs, such as
      * multiclass Models that predict multiple classes, each element explains one
-     * specific item. [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] can be used to identify which
-     * output this attribution is explaining.
-     * If users set [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k], the attributions are sorted
-     * by [instance_output_value][Attributions.instance_output_value] in
-     * descending order. If [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices] is specified,
-     * the attributions are stored by [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] in the same
-     * order as they appear in the output_indices.
+     * specific item.
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * can be used to identify which output this attribution is explaining.
+     * If users set
+     * [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k],
+     * the attributions are sorted by
+     * [instance_output_value][Attributions.instance_output_value] in descending
+     * order. If
+     * [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices]
+     * is specified, the attributions are stored by
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * in the same order as they appear in the output_indices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -54,13 +61,18 @@ class Explanation extends \Google\Protobuf\Internal\Message
      *           predict only one score, there is only one attibution that explains the
      *           predicted output. For Models that predict multiple outputs, such as
      *           multiclass Models that predict multiple classes, each element explains one
-     *           specific item. [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] can be used to identify which
-     *           output this attribution is explaining.
-     *           If users set [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k], the attributions are sorted
-     *           by [instance_output_value][Attributions.instance_output_value] in
-     *           descending order. If [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices] is specified,
-     *           the attributions are stored by [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] in the same
-     *           order as they appear in the output_indices.
+     *           specific item.
+     *           [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     *           can be used to identify which output this attribution is explaining.
+     *           If users set
+     *           [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k],
+     *           the attributions are sorted by
+     *           [instance_output_value][Attributions.instance_output_value] in descending
+     *           order. If
+     *           [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices]
+     *           is specified, the attributions are stored by
+     *           [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     *           in the same order as they appear in the output_indices.
      *     @type array<\Google\Cloud\AIPlatform\V1\Neighbor>|\Google\Protobuf\Internal\RepeatedField $neighbors
      *           Output only. List of the nearest neighbors for example-based explanations.
      *           For models deployed with the examples explanations feature enabled, the
@@ -78,13 +90,18 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * predict only one score, there is only one attibution that explains the
      * predicted output. For Models that predict multiple outputs, such as
      * multiclass Models that predict multiple classes, each element explains one
-     * specific item. [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] can be used to identify which
-     * output this attribution is explaining.
-     * If users set [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k], the attributions are sorted
-     * by [instance_output_value][Attributions.instance_output_value] in
-     * descending order. If [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices] is specified,
-     * the attributions are stored by [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] in the same
-     * order as they appear in the output_indices.
+     * specific item.
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * can be used to identify which output this attribution is explaining.
+     * If users set
+     * [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k],
+     * the attributions are sorted by
+     * [instance_output_value][Attributions.instance_output_value] in descending
+     * order. If
+     * [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices]
+     * is specified, the attributions are stored by
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * in the same order as they appear in the output_indices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -100,13 +117,18 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * predict only one score, there is only one attibution that explains the
      * predicted output. For Models that predict multiple outputs, such as
      * multiclass Models that predict multiple classes, each element explains one
-     * specific item. [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] can be used to identify which
-     * output this attribution is explaining.
-     * If users set [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k], the attributions are sorted
-     * by [instance_output_value][Attributions.instance_output_value] in
-     * descending order. If [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices] is specified,
-     * the attributions are stored by [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] in the same
-     * order as they appear in the output_indices.
+     * specific item.
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * can be used to identify which output this attribution is explaining.
+     * If users set
+     * [ExplanationParameters.top_k][google.cloud.aiplatform.v1.ExplanationParameters.top_k],
+     * the attributions are sorted by
+     * [instance_output_value][Attributions.instance_output_value] in descending
+     * order. If
+     * [ExplanationParameters.output_indices][google.cloud.aiplatform.v1.ExplanationParameters.output_indices]
+     * is specified, the attributions are stored by
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * in the same order as they appear in the output_indices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\Attribution>|\Google\Protobuf\Internal\RepeatedField $var

@@ -23,16 +23,16 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Maximum number of asset to return. The service may return fewer than
-     * this value. If unspecified, at most 10 assets will be returned. The
+     * Optional. Maximum number of asset to return. The service may return fewer
+     * than this value. If unspecified, at most 10 assets will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Page token received from a previous `ListAssets` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListAssets` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListAssets` must match the call that provided the page
      * token.
      *
@@ -53,6 +53,21 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the parent zone:
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
+     *                       {@see DataplexServiceClient::zoneName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\ListAssetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -62,12 +77,12 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent zone:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *     @type int $page_size
-     *           Optional. Maximum number of asset to return. The service may return fewer than
-     *           this value. If unspecified, at most 10 assets will be returned. The
+     *           Optional. Maximum number of asset to return. The service may return fewer
+     *           than this value. If unspecified, at most 10 assets will be returned. The
      *           maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. Page token received from a previous `ListAssets` call. Provide this to
-     *           retrieve the subsequent page. When paginating, all other parameters
+     *           Optional. Page token received from a previous `ListAssets` call. Provide
+     *           this to retrieve the subsequent page. When paginating, all other parameters
      *           provided to `ListAssets` must match the call that provided the page
      *           token.
      *     @type string $filter
@@ -110,8 +125,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of asset to return. The service may return fewer than
-     * this value. If unspecified, at most 10 assets will be returned. The
+     * Optional. Maximum number of asset to return. The service may return fewer
+     * than this value. If unspecified, at most 10 assets will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -123,8 +138,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of asset to return. The service may return fewer than
-     * this value. If unspecified, at most 10 assets will be returned. The
+     * Optional. Maximum number of asset to return. The service may return fewer
+     * than this value. If unspecified, at most 10 assets will be returned. The
      * maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -140,8 +155,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListAssets` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListAssets` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListAssets` must match the call that provided the page
      * token.
      *
@@ -154,8 +169,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Page token received from a previous `ListAssets` call. Provide this to
-     * retrieve the subsequent page. When paginating, all other parameters
+     * Optional. Page token received from a previous `ListAssets` call. Provide
+     * this to retrieve the subsequent page. When paginating, all other parameters
      * provided to `ListAssets` must match the call that provided the page
      * token.
      *

@@ -20,7 +20,7 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,19 +30,40 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
      * The `nextPageToken` value returned from a previous
-     * [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters] request, if any.
+     * [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The parent location which owns this collection of
+     *                       [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources.
+     *
+     *                       Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                       for more details on Google Cloud Platform resource names. Please see
+     *                       {@see AzureClustersClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\ListAzureClustersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -55,17 +76,18 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
      *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources.
      *           Location names are formatted as `projects/<project-id>/locations/<region>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *           for more details on GCP resource names.
+     *           for more details on Google Cloud Platform resource names.
      *     @type int $page_size
      *           The maximum number of items to return.
      *           If not specified, a default value of 50 will be used by the service.
      *           Regardless of the pageSize value, the response can include a partial list
      *           and a caller should only rely on response's
-     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token] to determine if
-     *           there are more instances left to be queried.
+     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token]
+     *           to determine if there are more instances left to be queried.
      *     @type string $page_token
      *           The `nextPageToken` value returned from a previous
-     *           [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters] request, if any.
+     *           [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters]
+     *           request, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +100,7 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,7 +115,7 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -112,8 +134,8 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -128,8 +150,8 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureClustersResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -145,7 +167,8 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters] request, if any.
+     * [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -157,7 +180,8 @@ class ListAzureClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters] request, if any.
+     * [azureClusters.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureClusters]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

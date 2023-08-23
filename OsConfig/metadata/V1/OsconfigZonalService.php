@@ -23,7 +23,7 @@ class OsconfigZonalService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å
+Ý
 5google/cloud/osconfig/v1/osconfig_zonal_service.protogoogle.cloud.osconfig.v1google/api/client.proto(google/cloud/osconfig/v1/inventory.proto;google/cloud/osconfig/v1/os_policy_assignment_reports.proto4google/cloud/osconfig/v1/os_policy_assignments.proto,google/cloud/osconfig/v1/vulnerability.proto#google/longrunning/operations.proto2¬
 OsConfigZonalService¾
 CreateOSPolicyAssignment9.google.cloud.osconfig.v1.CreateOSPolicyAssignmentRequest.google.longrunning.Operation"Ç‚Óä“O"7/v1/{parent=projects/*/locations/*}/osPolicyAssignments:os_policy_assignmentÚA3parent,os_policy_assignment,os_policy_assignment_idÊA9
@@ -40,8 +40,8 @@ class OsconfigZonalService
 GetInventory-.google.cloud.osconfig.v1.GetInventoryRequest#.google.cloud.osconfig.v1.Inventory"F‚Óä“97/v1/{name=projects/*/locations/*/instances/*/inventory}ÚAnameÄ
 ListInventories0.google.cloud.osconfig.v1.ListInventoriesRequest1.google.cloud.osconfig.v1.ListInventoriesResponse"L‚Óä“=;/v1/{parent=projects/*/locations/*/instances/*}/inventoriesÚAparentÒ
 GetVulnerabilityReport7.google.cloud.osconfig.v1.GetVulnerabilityReportRequest-.google.cloud.osconfig.v1.VulnerabilityReport"P‚Óä“CA/v1/{name=projects/*/locations/*/instances/*/vulnerabilityReport}ÚAnameè
-ListVulnerabilityReports9.google.cloud.osconfig.v1.ListVulnerabilityReportsRequest:.google.cloud.osconfig.v1.ListVulnerabilityReportsResponse"U‚Óä“FD/v1/{parent=projects/*/locations/*/instances/*}/vulnerabilityReportsÚAparentKÊAosconfig.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÑ
-com.google.cloud.osconfig.v1BOsConfigZonalServiceProtoPZ@google.golang.org/genproto/googleapis/cloud/osconfig/v1;osconfigªGoogle.Cloud.OsConfig.V1ÊGoogle\\Cloud\\OsConfig\\V1êGoogle::Cloud::OsConfig::V1bproto3'
+ListVulnerabilityReports9.google.cloud.osconfig.v1.ListVulnerabilityReportsRequest:.google.cloud.osconfig.v1.ListVulnerabilityReportsResponse"U‚Óä“FD/v1/{parent=projects/*/locations/*/instances/*}/vulnerabilityReportsÚAparentKÊAosconfig.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÉ
+com.google.cloud.osconfig.v1BOsConfigZonalServiceProtoPZ8cloud.google.com/go/osconfig/apiv1/osconfigpb;osconfigpbªGoogle.Cloud.OsConfig.V1ÊGoogle\\Cloud\\OsConfig\\V1êGoogle::Cloud::OsConfig::V1bproto3'
         , true);
 
         static::$is_initialized = true;

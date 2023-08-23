@@ -27,23 +27,24 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
      * Required. The task's current schedule time, available in the
      * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     * to ensure that your worker currently holds the lease.
+     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     * This restriction is to ensure that your worker currently holds the lease.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $schedule_time = null;
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
-     * payloads, might be desirable to return only when needed because
-     * of its large size or because of the sensitivity of data that it
-     * contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta2.Task] will be returned.
+     * By default response_view is
+     * [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     * retrieved by default because some data, such as payloads, might be
+     * desirable to return only when needed because of its large size or because
+     * of the sensitivity of data that it contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 3;</code>
      */
@@ -62,19 +63,20 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
      *           Required. The task's current schedule time, available in the
      *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     *           to ensure that your worker currently holds the lease.
+     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *           This restriction is to ensure that your worker currently holds the lease.
      *     @type int $response_view
-     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     *           returned.
-     *           By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     *           information is retrieved by default because some data, such as
-     *           payloads, might be desirable to return only when needed because
-     *           of its large size or because of the sensitivity of data that it
-     *           contains.
-     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     *           permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     *           The response_view specifies which subset of the
+     *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
+     *           By default response_view is
+     *           [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     *           retrieved by default because some data, such as payloads, might be
+     *           desirable to return only when needed because of its large size or because
+     *           of the sensitivity of data that it contains.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     *           requires `cloudtasks.tasks.fullView` [Google
+     *           IAM](https://cloud.google.com/iam/) permission on the
+     *           [Task][google.cloud.tasks.v2beta2.Task] resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,8 +116,8 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
      * Required. The task's current schedule time, available in the
      * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     * to ensure that your worker currently holds the lease.
+     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     * This restriction is to ensure that your worker currently holds the lease.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -139,8 +141,8 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
      * Required. The task's current schedule time, available in the
      * [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
      * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response. This restriction is
-     * to ensure that your worker currently holds the lease.
+     * [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     * This restriction is to ensure that your worker currently holds the lease.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -155,16 +157,17 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
-     * payloads, might be desirable to return only when needed because
-     * of its large size or because of the sensitivity of data that it
-     * contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta2.Task] will be returned.
+     * By default response_view is
+     * [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     * retrieved by default because some data, such as payloads, might be
+     * desirable to return only when needed because of its large size or because
+     * of the sensitivity of data that it contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 3;</code>
      * @return int
@@ -175,16 +178,17 @@ class CancelLeaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta2.Task] will be
-     * returned.
-     * By default response_view is [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all
-     * information is retrieved by default because some data, such as
-     * payloads, might be desirable to return only when needed because
-     * of its large size or because of the sensitivity of data that it
-     * contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Task][google.cloud.tasks.v2beta2.Task] resource.
+     * The response_view specifies which subset of the
+     * [Task][google.cloud.tasks.v2beta2.Task] will be returned.
+     * By default response_view is
+     * [BASIC][google.cloud.tasks.v2beta2.Task.View.BASIC]; not all information is
+     * retrieved by default because some data, such as payloads, might be
+     * desirable to return only when needed because of its large size or because
+     * of the sensitivity of data that it contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Task][google.cloud.tasks.v2beta2.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.Task.View response_view = 3;</code>
      * @param int $var

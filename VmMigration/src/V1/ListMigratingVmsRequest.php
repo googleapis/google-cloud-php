@@ -59,6 +59,20 @@ class ListMigratingVmsRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of MigratingVms. Please see
+     *                       {@see VmMigrationClient::sourceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\ListMigratingVmsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

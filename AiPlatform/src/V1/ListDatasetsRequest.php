@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.ListDatasets][google.cloud.aiplatform.v1.DatasetService.ListDatasets].
+ * Request message for
+ * [DatasetService.ListDatasets][google.cloud.aiplatform.v1.DatasetService.ListDatasets].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListDatasetsRequest</code>
  */
@@ -67,6 +68,21 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
+
+    /**
+     * @param string $parent Required. The name of the Dataset's parent resource.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see DatasetServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListDatasetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

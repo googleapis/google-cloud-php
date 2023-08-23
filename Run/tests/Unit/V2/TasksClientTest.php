@@ -25,7 +25,6 @@ namespace Google\Cloud\Run\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Run\V2\ListTasksResponse;
 use Google\Cloud\Run\V2\Task;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class TasksClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TasksClient
-     */
+    /** @return TasksClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class TasksClientTest extends GeneratedTest
         return new TasksClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaskTest()
     {
         $transport = $this->createTransport();
@@ -90,6 +81,8 @@ class TasksClientTest extends GeneratedTest
         $index = 100346066;
         $retried = 1098377527;
         $encryptionKey = 'encryptionKey-1122344029';
+        $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Task();
         $expectedResponse->setName($name2);
@@ -104,6 +97,8 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setIndex($index);
         $expectedResponse->setRetried($retried);
         $expectedResponse->setEncryptionKey($encryptionKey);
+        $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -120,9 +115,7 @@ class TasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaskExceptionTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +148,7 @@ class TasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTasksTest()
     {
         $transport = $this->createTransport();
@@ -192,9 +183,7 @@ class TasksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTasksExceptionTest()
     {
         $transport = $this->createTransport();

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-vm-migration/v/stable)](https://packagist.org/packages/google/cloud-vm-migration) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-vm-migration.svg)](https://packagist.org/packages/google/cloud-vm-migration)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-vm-migration/latest/vmmigration/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-vm-migration/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

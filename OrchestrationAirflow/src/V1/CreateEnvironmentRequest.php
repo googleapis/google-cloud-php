@@ -30,6 +30,22 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     private $environment = null;
 
     /**
+     * @param string                                                     $parent      The parent must be of the form
+     *                                                                                "projects/{projectId}/locations/{locationId}".
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\Environment $environment The environment to create.
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\CreateEnvironmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Orchestration\Airflow\Service\V1\Environment $environment): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEnvironment($environment);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

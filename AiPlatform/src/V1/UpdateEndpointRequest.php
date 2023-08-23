@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
+ * Request message for
+ * [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateEndpointRequest</code>
  */
@@ -22,11 +23,28 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
      */
     private $endpoint = null;
     /**
-     * Required. The update mask applies to the resource. See [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * Required. The update mask applies to the resource. See
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\AIPlatform\V1\Endpoint $endpoint   Required. The Endpoint which replaces the resource on the server.
+     * @param \Google\Protobuf\FieldMask           $updateMask Required. The update mask applies to the resource. See
+     *                                                         [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Endpoint $endpoint, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -37,7 +55,8 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Endpoint $endpoint
      *           Required. The Endpoint which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The update mask applies to the resource. See [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     *           Required. The update mask applies to the resource. See
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +101,8 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The update mask applies to the resource. See [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * Required. The update mask applies to the resource. See
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -103,7 +123,8 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The update mask applies to the resource. See [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * Required. The update mask applies to the resource. See
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -33,6 +33,12 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project_id = 3;</code>
      */
     private $project_id = '';
+    /**
+     * The view configures whether to retrieve security keys information.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfileView view = 4;</code>
+     */
+    private $view = 0;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *           Required. The SSH public key and expiration time.
      *     @type string $project_id
      *           The project ID of the Google Cloud Platform project.
+     *     @type int $view
+     *           The view configures whether to retrieve security keys information.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +145,32 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The view configures whether to retrieve security keys information.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfileView view = 4;</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * The view configures whether to retrieve security keys information.
+     *
+     * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfileView view = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OsLogin\V1beta\LoginProfileView::class);
+        $this->view = $var;
 
         return $this;
     }

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-web-security-scanner/v/stable)](https://packagist.org/packages/google/cloud-web-security-scanner) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-web-security-scanner.svg)](https://packagist.org/packages/google/cloud-web-security-scanner)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-web-security-scanner/latest/websecurityscanner/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-web-security-scanner/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

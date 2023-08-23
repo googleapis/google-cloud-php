@@ -26,6 +26,9 @@ class Strategy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\Standard $standard
      *           Standard deployment strategy executes a single deploy and allows
      *           verifying the deployment.
+     *     @type \Google\Cloud\Deploy\V1\Canary $canary
+     *           Canary deployment strategy provides progressive percentage based
+     *           deployments to a Target.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,6 +65,39 @@ class Strategy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Standard::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Canary deployment strategy provides progressive percentage based
+     * deployments to a Target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Canary canary = 2;</code>
+     * @return \Google\Cloud\Deploy\V1\Canary|null
+     */
+    public function getCanary()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasCanary()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Canary deployment strategy provides progressive percentage based
+     * deployments to a Target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Canary canary = 2;</code>
+     * @param \Google\Cloud\Deploy\V1\Canary $var
+     * @return $this
+     */
+    public function setCanary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Canary::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

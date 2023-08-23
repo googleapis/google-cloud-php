@@ -23,8 +23,9 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\Rest;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -32,10 +33,12 @@ use Psr\Http\Message\RequestInterface;
  */
 class RestTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $successBody;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
@@ -87,6 +90,38 @@ class RestTest extends TestCase
         $this->assertEquals(json_decode($this->successBody, true), $rest->$method($options));
     }
 
+    /**
+     * @dataProvider methodProvider
+     */
+    public function testSendWithRoutingHeaders($method)
+    {
+        $optionsWithDatabaseId = ['databaseId' => 'dbId'];
+        $optionsWithProjectId = ['projectId' => 'prodId'];
+
+        $request = new Request('GET', '/somewhere');
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
+        $requestBuilder->build(
+            Argument::type('string'),
+            Argument::type('string'),
+            Argument::type('array')
+        )->willReturn($request);
+
+        $rest = new Rest();
+        $rest->setRequestBuilder($requestBuilder->reveal());
+
+        $args = [];
+        $this->validateMethodHasHeaders($rest, $method, $args, false);
+
+        $args = $optionsWithDatabaseId;
+        $this->validateMethodHasHeaders($rest, $method, $args, false);
+
+        $args = $optionsWithProjectId;
+        $this->validateMethodHasHeaders($rest, $method, $args, false);
+
+        $args = $optionsWithProjectId + $optionsWithDatabaseId;
+        $this->validateMethodHasHeaders($rest, $method, $args, true);
+    }
+
     public function methodProvider()
     {
         return [
@@ -97,5 +132,30 @@ class RestTest extends TestCase
             ['rollback'],
             ['runQuery'],
         ];
+    }
+
+    private function validateMethodHasHeaders($rest, $method, $args, $isHeaderExpected)
+    {
+        $isCalled = 0;
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::that(function ($options) use ($isHeaderExpected, $args, &$isCalled) {
+                $isCalled++;
+                if ($isHeaderExpected) {
+                    $expectedHeaderValue = sprintf(
+                        'project_id=%s&database_id=%s',
+                        $args['projectId'],
+                        $args['databaseId']
+                    );
+                    return $expectedHeaderValue ===
+                        $options['restOptions']['headers']['x-goog-request-params'];
+                } else {
+                    return !isset($options['restOptions']['headers']['x-goog-request-params']);
+                }
+            })
+        )->willReturn(new Response(200, [], $this->successBody));
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+        $rest->$method($args);
+        $this->assertEquals(1, $isCalled);
     }
 }

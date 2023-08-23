@@ -20,6 +20,12 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
     private $id = null;
+    /**
+     * The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
+     *
+     * Generated from protobuf field <code>optional int32 sensitivity = 27532959;</code>
+     */
+    private $sensitivity = null;
 
     /**
      * Constructor.
@@ -29,6 +35,8 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Expression ID should uniquely identify the origin of the expression. E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set version 2.9.1 rule id 973337. The ID could be used to determine the individual attack definition that has been detected. It could also be used to exclude it from the policy in case of false positive. required
+     *     @type int $sensitivity
+     *           The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,6 +76,42 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
+     *
+     * Generated from protobuf field <code>optional int32 sensitivity = 27532959;</code>
+     * @return int
+     */
+    public function getSensitivity()
+    {
+        return isset($this->sensitivity) ? $this->sensitivity : 0;
+    }
+
+    public function hasSensitivity()
+    {
+        return isset($this->sensitivity);
+    }
+
+    public function clearSensitivity()
+    {
+        unset($this->sensitivity);
+    }
+
+    /**
+     * The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
+     *
+     * Generated from protobuf field <code>optional int32 sensitivity = 27532959;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSensitivity($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->sensitivity = $var;
 
         return $this;
     }

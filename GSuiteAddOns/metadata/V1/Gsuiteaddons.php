@@ -29,7 +29,7 @@ class Gsuiteaddons
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ž%
+š%
 /google/cloud/gsuiteaddons/v1/gsuiteaddons.protogoogle.cloud.gsuiteaddons.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto>google/apps/script/type/calendar/calendar_addon_manifest.proto6google/apps/script/type/docs/docs_addon_manifest.proto8google/apps/script/type/drive/drive_addon_manifest.proto8google/apps/script/type/gmail/gmail_addon_manifest.proto-google/apps/script/type/script_manifest.proto:google/apps/script/type/sheets/sheets_addon_manifest.proto:google/apps/script/type/slides/slides_addon_manifest.protogoogle/protobuf/empty.protogoogle/protobuf/wrappers.proto"Z
 GetAuthorizationRequest?
 name (	B1àAúA+
@@ -106,8 +106,8 @@ deployment¡
 DeleteDeployment5.google.cloud.gsuiteaddons.v1.DeleteDeploymentRequest.google.protobuf.Empty"2‚Óä“%*#/v1/{name=projects/*/deployments/*}ÚAname¢
 InstallDeployment6.google.cloud.gsuiteaddons.v1.InstallDeploymentRequest.google.protobuf.Empty"=‚Óä“0"+/v1/{name=projects/*/deployments/*}:install:*ÚAname¨
 UninstallDeployment8.google.cloud.gsuiteaddons.v1.UninstallDeploymentRequest.google.protobuf.Empty"?‚Óä“2"-/v1/{name=projects/*/deployments/*}:uninstall:*ÚAname¸
-GetInstallStatus5.google.cloud.gsuiteaddons.v1.GetInstallStatusRequest+.google.cloud.gsuiteaddons.v1.InstallStatus"@‚Óä“31/v1/{name=projects/*/deployments/*/installStatus}ÚAnameOÊAgsuiteaddons.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBá
- com.google.cloud.gsuiteaddons.v1BGSuiteAddOnsProtoPZHgoogle.golang.org/genproto/googleapis/cloud/gsuiteaddons/v1;gsuiteaddonsªGoogle.Cloud.GSuiteAddOns.V1ÊGoogle\\Cloud\\GSuiteAddOns\\V1êGoogle::Cloud::GSuiteAddOns::V1bproto3'
+GetInstallStatus5.google.cloud.gsuiteaddons.v1.GetInstallStatusRequest+.google.cloud.gsuiteaddons.v1.InstallStatus"@‚Óä“31/v1/{name=projects/*/deployments/*/installStatus}ÚAnameOÊAgsuiteaddons.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÝ
+ com.google.cloud.gsuiteaddons.v1BGSuiteAddOnsProtoPZDcloud.google.com/go/gsuiteaddons/apiv1/gsuiteaddonspb;gsuiteaddonspbªGoogle.Cloud.GSuiteAddOns.V1ÊGoogle\\Cloud\\GSuiteAddOns\\V1êGoogle::Cloud::GSuiteAddOns::V1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -166,7 +166,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      *           `var_table_index`, `type` goes next to `value`. The interpretation of
      *           a type is agent specific. It is recommended to include the dynamic type
      *           rather than a static type of an object.
-     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $members
+     *     @type array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $members
      *           Members contained or pointed to by the variable.
      *     @type \Google\Protobuf\Int32Value $var_table_index
      *           Reference to a variable in the shared variable table. More than
@@ -293,7 +293,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      * Members contained or pointed to by the variable.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.Variable members = 3;</code>
-     * @param \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMembers($var)

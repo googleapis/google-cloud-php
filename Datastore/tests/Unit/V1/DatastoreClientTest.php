@@ -25,7 +25,6 @@ namespace Google\Cloud\Datastore\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Datastore\V1\AllocateIdsResponse;
 use Google\Cloud\Datastore\V1\BeginTransactionResponse;
@@ -36,6 +35,7 @@ use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\PartitionId;
 use Google\Cloud\Datastore\V1\ReserveIdsResponse;
 use Google\Cloud\Datastore\V1\RollbackResponse;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -47,25 +47,19 @@ use stdClass;
  */
 class DatastoreClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DatastoreClient
-     */
+    /** @return DatastoreClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +68,7 @@ class DatastoreClientTest extends GeneratedTest
         return new DatastoreClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function allocateIdsTest()
     {
         $transport = $this->createTransport();
@@ -104,9 +96,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function allocateIdsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -140,9 +130,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function beginTransactionTest()
     {
         $transport = $this->createTransport();
@@ -169,9 +157,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function beginTransactionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -204,9 +190,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitTest()
     {
         $transport = $this->createTransport();
@@ -239,9 +223,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitExceptionTest()
     {
         $transport = $this->createTransport();
@@ -276,9 +258,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupTest()
     {
         $transport = $this->createTransport();
@@ -287,7 +267,9 @@ class DatastoreClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $transaction = '-34';
         $expectedResponse = new LookupResponse();
+        $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -306,9 +288,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -342,9 +322,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reserveIdsTest()
     {
         $transport = $this->createTransport();
@@ -372,9 +350,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reserveIdsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -408,9 +384,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackTest()
     {
         $transport = $this->createTransport();
@@ -438,9 +412,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rollbackExceptionTest()
     {
         $transport = $this->createTransport();
@@ -474,9 +446,67 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function runAggregationQueryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $transaction = '-34';
+        $expectedResponse = new RunAggregationQueryResponse();
+        $expectedResponse->setTransaction($transaction);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $response = $gapicClient->runAggregationQuery($projectId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.datastore.v1.Datastore/RunAggregationQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function runAggregationQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        try {
+            $gapicClient->runAggregationQuery($projectId);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function runQueryTest()
     {
         $transport = $this->createTransport();
@@ -485,7 +515,9 @@ class DatastoreClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $transaction = '-34';
         $expectedResponse = new RunQueryResponse();
+        $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -504,9 +536,7 @@ class DatastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runQueryExceptionTest()
     {
         $transport = $this->createTransport();

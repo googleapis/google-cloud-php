@@ -21,6 +21,7 @@ use Google\Cloud\Core\Logger\AppEngineFlexHandlerFactory;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 use Google\Cloud\Core\Logger\AppEngineFlexHandlerV2;
+use Google\Cloud\Core\Logger\AppEngineFlexHandlerV3;
 
 /**
  * @group core
@@ -40,6 +41,13 @@ class AppEngineFlexHandlerFactoryTest extends TestCase
         $this->skipIfNotMonologVersion(2);
 
         $this->assertInstanceOf(AppEngineFlexHandlerV2::class, AppEngineFlexHandlerFactory::build());
+    }
+
+    public function testBuildMonologV3Handler()
+    {
+        $this->skipIfNotMonologVersion(3);
+
+        $this->assertInstanceOf(AppEngineFlexHandlerV3::class, AppEngineFlexHandlerFactory::build());
     }
 
     private function skipIfNotMonologVersion($expected)

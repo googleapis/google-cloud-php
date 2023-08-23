@@ -24,15 +24,18 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\MessageBuilder;
 use Google\Cloud\PubSub\PubSubClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class MessageBuilderTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $builder;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->builder = new MessageBuilder;
     }

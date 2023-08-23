@@ -25,20 +25,20 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
  */
 class ResultTest extends SnippetTestCase
 {
-    use AssertIsType;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $database;
     private $result;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

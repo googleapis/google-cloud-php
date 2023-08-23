@@ -28,21 +28,21 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
  */
 class StorageObjectTest extends SnippetTestCase
 {
-    use AssertStringContains;
     use KeyPairGenerateTrait;
+    use ProphecyTrait;
 
     const OBJECT = 'my-object';
     const BUCKET = 'my-bucket';
@@ -50,7 +50,7 @@ class StorageObjectTest extends SnippetTestCase
     private $connection;
     private $object;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->object = TestHelpers::stub(StorageObject::class, [
@@ -309,17 +309,17 @@ class StorageObjectTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'downloadAsStream', 1);
         $snippet->addLocal('object', $this->object);
-        $this->connection->downloadObject([
-                'restOptions' => [
-                    'headers' => [
-                        'Range' => 'bytes=0-4'
-                    ]
-                ],
-                'bucket' => 'my-bucket',
-                'object' => 'my-object'
-            ])
-            ->shouldBeCalled()
-            ->willReturn(Utils::streamFor('test'));
+        $this->connection->downloadObject(Argument::allOf(
+            Argument::withEntry('bucket', 'my-bucket'),
+            Argument::withEntry('object', 'my-object'),
+            Argument::withEntry('restOptions', Argument::allOf(
+                Argument::withEntry('headers', Argument::allOf(
+                    Argument::withKey('Range')
+                ))
+            ))
+        ))
+        ->shouldBeCalled()
+        ->willReturn(Utils::streamFor('test'));
         $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
@@ -333,7 +333,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->downloadObjectAsync(Argument::any())
             ->shouldBeCalled()
             ->willReturn(
-                Promise\promise_for(Utils::streamFor('test'))
+                Create::promiseFor(Utils::streamFor('test'))
             );
 
         $this->object->___setProperty('connection', $this->connection->reveal());
@@ -355,7 +355,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->downloadObjectAsync(Argument::any())
             ->shouldBeCalled()
             ->willReturn(
-                Promise\promise_for(Utils::streamFor('test'))
+                Create::promiseFor(Utils::streamFor('test'))
             );
 
         $this->object->___setProperty('connection', $this->connection->reveal());
@@ -678,7 +678,7 @@ class StorageObjectTest extends SnippetTestCase
 
     public function signedUploadSessionSnippet()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [$this->snippetFromMethod(StorageObject::class, 'beginSignedUploadSession')],

@@ -37,6 +37,9 @@
     @type \Google\Rpc\Status $error
           If set, represents the error message for the failed request. The
           `responses` field will not be set in this case.
+    @type ImageContext        $imageContext  Additional context that may accompany the image.
+    @type string $exampleString
+          Ensure special chars are decoded, such as alice&#64;example.com.
 }"
             variable="data"
             type="array"

@@ -16,12 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The consumer-side network configuration for the Dataproc Metastore
-     * instance.
+     * Immutable. The consumer-side network configuration for the Dataproc
+     * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $consumers;
+    /**
+     * Enables custom routes to be imported and exported for the Dataproc
+     * Metastore service's peered VPC network.
+     *
+     * Generated from protobuf field <code>bool custom_routes_enabled = 2;</code>
+     */
+    private $custom_routes_enabled = false;
 
     /**
      * Constructor.
@@ -30,8 +37,11 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $consumers
-     *           Immutable. The consumer-side network configuration for the Dataproc Metastore
-     *           instance.
+     *           Immutable. The consumer-side network configuration for the Dataproc
+     *           Metastore instance.
+     *     @type bool $custom_routes_enabled
+     *           Enables custom routes to be imported and exported for the Dataproc
+     *           Metastore service's peered VPC network.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +50,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The consumer-side network configuration for the Dataproc Metastore
-     * instance.
+     * Immutable. The consumer-side network configuration for the Dataproc
+     * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -52,8 +62,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The consumer-side network configuration for the Dataproc Metastore
-     * instance.
+     * Immutable. The consumer-side network configuration for the Dataproc
+     * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $var
@@ -63,6 +73,34 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer::class);
         $this->consumers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Enables custom routes to be imported and exported for the Dataproc
+     * Metastore service's peered VPC network.
+     *
+     * Generated from protobuf field <code>bool custom_routes_enabled = 2;</code>
+     * @return bool
+     */
+    public function getCustomRoutesEnabled()
+    {
+        return $this->custom_routes_enabled;
+    }
+
+    /**
+     * Enables custom routes to be imported and exported for the Dataproc
+     * Metastore service's peered VPC network.
+     *
+     * Generated from protobuf field <code>bool custom_routes_enabled = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCustomRoutesEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->custom_routes_enabled = $var;
 
         return $this;
     }

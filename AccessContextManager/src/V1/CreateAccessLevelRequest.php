@@ -35,6 +35,29 @@ class CreateAccessLevelRequest extends \Google\Protobuf\Internal\Message
     private $access_level = null;
 
     /**
+     * @param string                                               $parent      Required. Resource name for the access policy which owns this [Access
+     *                                                                          Level] [google.identity.accesscontextmanager.v1.AccessLevel].
+     *
+     *                                                                          Format: `accessPolicies/{policy_id}`
+     *                                                                          Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
+     * @param \Google\Identity\AccessContextManager\V1\AccessLevel $accessLevel Required. The [Access Level]
+     *                                                                          [google.identity.accesscontextmanager.v1.AccessLevel] to create.
+     *                                                                          Syntactic correctness of the [Access Level]
+     *                                                                          [google.identity.accesscontextmanager.v1.AccessLevel] is a
+     *                                                                          precondition for creation.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\CreateAccessLevelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Identity\AccessContextManager\V1\AccessLevel $accessLevel): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAccessLevel($accessLevel);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

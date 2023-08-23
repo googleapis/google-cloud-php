@@ -41,6 +41,21 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Parent name of the form:
+     *                       `projects/{project_number or project_id}/endpoints/{endpoint}`. Please see
+     *                       {@see ConnectionServiceClient::endpointName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeConnect\V1\ListConnectionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

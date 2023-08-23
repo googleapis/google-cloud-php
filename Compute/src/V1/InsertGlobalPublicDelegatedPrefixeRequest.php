@@ -35,6 +35,21 @@ class InsertGlobalPublicDelegatedPrefixeRequest extends \Google\Protobuf\Interna
     private $request_id = null;
 
     /**
+     * @param string                                         $project                       Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\PublicDelegatedPrefix $publicDelegatedPrefixResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertGlobalPublicDelegatedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\PublicDelegatedPrefix $publicDelegatedPrefixResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

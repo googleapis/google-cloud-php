@@ -24,6 +24,22 @@ class GetAccessPolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name for the access policy to get.
+     *
+     *                     Format `accessPolicies/{policy_id}`
+     *                     Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\GetAccessPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

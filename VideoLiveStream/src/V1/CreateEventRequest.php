@@ -54,6 +54,27 @@ class CreateEventRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                                  $parent  Required. The parent channel for the resource, in the form of:
+     *                                                         `projects/{project}/locations/{location}/channels/{channelId}`. Please see
+     *                                                         {@see LivestreamServiceClient::channelName()} for help formatting this field.
+     * @param \Google\Cloud\Video\LiveStream\V1\Event $event   Required. The event resource to be created.
+     * @param string                                  $eventId Required. The ID of the event resource to be created.
+     *                                                         This value must be 1-63 characters, begin and end with `[a-z0-9]`,
+     *                                                         could contain dashes (-) in between.
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\CreateEventRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\LiveStream\V1\Event $event, string $eventId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEvent($event)
+            ->setEventId($eventId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

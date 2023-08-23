@@ -23,7 +23,7 @@ class ServingConfigService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÿ
+õ
 3google/cloud/retail/v2/serving_config_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto+google/cloud/retail/v2/serving_config.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"·
 CreateServingConfigRequest5
 parent (	B%àAúA
@@ -66,8 +66,8 @@ control_id (	BàA2²
 ListServingConfigs1.google.cloud.retail.v2.ListServingConfigsRequest2.google.cloud.retail.v2.ListServingConfigsResponse"N‚Óä“?=/v2/{parent=projects/*/locations/*/catalogs/*}/servingConfigsÚAparentÎ
 
 AddControl).google.cloud.retail.v2.AddControlRequest%.google.cloud.retail.v2.ServingConfig"n‚Óä“W"R/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:addControl:*ÚAserving_config×
-RemoveControl,.google.cloud.retail.v2.RemoveControlRequest%.google.cloud.retail.v2.ServingConfig"q‚Óä“Z"U/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:removeControl:*ÚAserving_configIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÎ
-com.google.cloud.retail.v2BServingConfigServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
+RemoveControl,.google.cloud.retail.v2.RemoveControlRequest%.google.cloud.retail.v2.ServingConfig"q‚Óä“Z"U/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:removeControl:*ÚAserving_configIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÄ
+com.google.cloud.retail.v2BServingConfigServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

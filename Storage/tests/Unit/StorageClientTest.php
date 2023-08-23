@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
@@ -28,9 +29,9 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\Utils;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -38,12 +39,12 @@ use Prophecy\Argument;
  */
 class StorageClientTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const PROJECT = 'my-project';
     public $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->client = TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);
@@ -57,7 +58,11 @@ class StorageClientTest extends TestCase
 
     public function testGetBucketRequesterPaysDefaultProjectId()
     {
-        $this->connection->getBucket(Argument::withEntry('userProject', self::PROJECT));
+        $this->connection->projectId()->willReturn(self::PROJECT);
+        $this->connection->getBucket(Argument::allOf(
+            Argument::withEntry('bucket', 'myBucket'),
+            Argument::withEntry('userProject', self::PROJECT)
+        ))->shouldBeCalled();
         $this->client->___setProperty('connection', $this->connection->reveal());
         $bucket = $this->client->bucket('myBucket', true);
 
@@ -273,7 +278,7 @@ class StorageClientTest extends TestCase
      */
     public function testMethodsFailWithoutProjectId($method, array $args = [])
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $client = TestHelpers::stub(StorageClientStub::class, [], ['projectId']);
         $client->___setProperty('projectId', null);

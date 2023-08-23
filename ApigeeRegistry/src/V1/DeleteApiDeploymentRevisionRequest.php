@@ -26,6 +26,24 @@ class DeleteApiDeploymentRevisionRequest extends \Google\Protobuf\Internal\Messa
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the deployment revision to be deleted,
+     *                     with a revision ID explicitly included.
+     *
+     *                     Example:
+     *                     `projects/sample/locations/global/apis/petstore/deployments/prod&#64;c7cfa2a8`
+     *                     Please see {@see RegistryClient::apiDeploymentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\DeleteApiDeploymentRevisionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

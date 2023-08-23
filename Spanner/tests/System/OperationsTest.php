@@ -19,31 +19,39 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
  */
 class OperationsTest extends SpannerTestCase
 {
+    use DatabaseRoleTrait;
+
     private static $id1;
     private static $id2;
     private static $name1;
     private static $name2;
+    private static $isSetup = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
+        if (self::$isSetup) {
+            return;
+        }
         self::$id1 = rand(1000, 9999);
         self::$id2 = rand(1, 999);
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$database->insert(self::TEST_TABLE_NAME, [
             'id' => self::$id1,
             'name' => self::$name1,
             'birthday' => new Date(new \DateTime('2000-01-01'))
         ]);
+        self::$isSetup = true;
     }
 
     public function testInsert()
@@ -189,6 +197,57 @@ class OperationsTest extends SpannerTestCase
         ]);
 
         $this->assertEmpty(iterator_to_array($res->rows()));
+    }
+
+    /**
+     * @dataProvider insertDbProvider
+     */
+    public function testInsertWithDbRole($db, $values, $expected)
+    {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+
+        $error = null;
+
+        try {
+            $res = $db->insert(self::TEST_TABLE_NAME, $values);
+        } catch (ServiceException $e) {
+            $error = $e;
+        }
+
+        if ($expected === null) {
+            $this->assertEquals($error, $expected);
+        } else {
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+        }
+    }
+
+    /**
+     * @dataProvider readDbProvider
+     */
+    public function testReadWithDbRole($db, $expected)
+    {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+
+        $error = null;
+        $keySet = self::$client->keySet([
+            'keys' => [self::$id1]
+        ]);
+        $columns = ['id', 'name', 'birthday'];
+
+        try {
+            $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
+            $row = $res->rows()->current();
+        } catch (ServiceException $e) {
+            $error = $e;
+        }
+
+        if ($expected === null) {
+            $this->assertEquals(self::$id1, $row['id']);
+        } else {
+            $this->assertEquals($error->getServiceException()->getStatus(), $expected);
+        }
     }
 
     private function getRow()

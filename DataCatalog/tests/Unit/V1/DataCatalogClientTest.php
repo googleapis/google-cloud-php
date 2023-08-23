@@ -23,20 +23,21 @@
 namespace Google\Cloud\DataCatalog\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\DataCatalog\V1\Contacts;
 use Google\Cloud\DataCatalog\V1\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\Entry;
 use Google\Cloud\DataCatalog\V1\EntryGroup;
 use Google\Cloud\DataCatalog\V1\EntryOverview;
 use Google\Cloud\DataCatalog\V1\FieldType;
+use Google\Cloud\DataCatalog\V1\ImportEntriesResponse;
 use Google\Cloud\DataCatalog\V1\ListEntriesResponse;
 use Google\Cloud\DataCatalog\V1\ListEntryGroupsResponse;
 use Google\Cloud\DataCatalog\V1\ListTagsResponse;
+use Google\Cloud\DataCatalog\V1\ReconcileTagsResponse;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResponse;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResult;
@@ -48,6 +49,9 @@ use Google\Cloud\DataCatalog\V1\TagTemplateField;
 use Google\Cloud\DataCatalog\V1\UnstarEntryResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -59,25 +63,19 @@ use stdClass;
  */
 class DataCatalogClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DataCatalogClient
-     */
+    /** @return DataCatalogClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -86,9 +84,7 @@ class DataCatalogClientTest extends GeneratedTest
         return new DataCatalogClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryTest()
     {
         $transport = $this->createTransport();
@@ -133,9 +129,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -170,9 +164,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -206,9 +198,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +232,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTest()
     {
         $transport = $this->createTransport();
@@ -287,9 +275,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -330,9 +316,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -376,9 +360,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +402,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -465,9 +445,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
@@ -504,9 +482,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryTest()
     {
         $transport = $this->createTransport();
@@ -530,9 +506,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -565,9 +539,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -591,9 +563,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -626,9 +596,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTest()
     {
         $transport = $this->createTransport();
@@ -652,9 +620,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -687,9 +653,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -716,9 +680,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -752,9 +714,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -781,9 +741,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +775,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryTest()
     {
         $transport = $this->createTransport();
@@ -858,9 +814,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -893,9 +847,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -926,9 +878,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -961,9 +911,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -992,9 +940,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1027,9 +973,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -1060,9 +1004,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1095,9 +1037,128 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function importEntriesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importEntriesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $upsertedEntriesCount = 250168367;
+        $deletedEntriesCount = 167383302;
+        $expectedResponse = new ImportEntriesResponse();
+        $expectedResponse->setUpsertedEntriesCount($upsertedEntriesCount);
+        $expectedResponse->setDeletedEntriesCount($deletedEntriesCount);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/importEntriesTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $response = $gapicClient->importEntries($formattedParent);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ImportEntries', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importEntriesTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function importEntriesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importEntriesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $response = $gapicClient->importEntries($formattedParent);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importEntriesTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function listEntriesTest()
     {
         $transport = $this->createTransport();
@@ -1132,9 +1193,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1167,9 +1226,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntryGroupsTest()
     {
         $transport = $this->createTransport();
@@ -1204,9 +1261,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntryGroupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1239,9 +1294,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagsTest()
     {
         $transport = $this->createTransport();
@@ -1276,9 +1329,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1311,9 +1362,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupEntryTest()
     {
         $transport = $this->createTransport();
@@ -1348,9 +1397,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1381,9 +1428,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryContactsTest()
     {
         $transport = $this->createTransport();
@@ -1411,9 +1456,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryContactsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1447,9 +1490,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryOverviewTest()
     {
         $transport = $this->createTransport();
@@ -1479,9 +1520,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyEntryOverviewExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1515,9 +1554,134 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function reconcileTagsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/reconcileTagsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $createdTagsCount = 986601696;
+        $updatedTagsCount = 344847213;
+        $deletedTagsCount = 59637071;
+        $expectedResponse = new ReconcileTagsResponse();
+        $expectedResponse->setCreatedTagsCount($createdTagsCount);
+        $expectedResponse->setUpdatedTagsCount($updatedTagsCount);
+        $expectedResponse->setDeletedTagsCount($deletedTagsCount);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/reconcileTagsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedTagTemplate = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $response = $gapicClient->reconcileTags($formattedParent, $formattedTagTemplate);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ReconcileTags', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTagTemplate();
+        $this->assertProtobufEquals($formattedTagTemplate, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/reconcileTagsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function reconcileTagsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/reconcileTagsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedTagTemplate = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $response = $gapicClient->reconcileTags($formattedParent, $formattedTagTemplate);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/reconcileTagsTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function renameTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -1555,9 +1719,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function renameTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1591,9 +1753,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function renameTagTemplateFieldEnumValueTest()
     {
         $transport = $this->createTransport();
@@ -1631,9 +1791,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function renameTagTemplateFieldEnumValueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1667,9 +1825,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchCatalogTest()
     {
         $transport = $this->createTransport();
@@ -1678,12 +1834,14 @@ class DataCatalogClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $totalSize = 705419236;
         $nextPageToken = '';
         $resultsElement = new SearchCatalogResult();
         $results = [
             $resultsElement,
         ];
         $expectedResponse = new SearchCatalogResponse();
+        $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
@@ -1707,9 +1865,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchCatalogExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1743,9 +1899,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1777,9 +1931,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1813,9 +1965,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function starEntryTest()
     {
         $transport = $this->createTransport();
@@ -1840,9 +1990,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function starEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1875,9 +2023,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1905,9 +2051,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1941,9 +2085,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unstarEntryTest()
     {
         $transport = $this->createTransport();
@@ -1968,9 +2110,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unstarEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2003,9 +2143,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryTest()
     {
         $transport = $this->createTransport();
@@ -2044,9 +2182,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2079,9 +2215,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryGroupTest()
     {
         $transport = $this->createTransport();
@@ -2112,9 +2246,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2147,9 +2279,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTest()
     {
         $transport = $this->createTransport();
@@ -2189,9 +2319,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2231,9 +2359,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateTest()
     {
         $transport = $this->createTransport();
@@ -2271,9 +2397,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2313,9 +2437,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -2355,9 +2477,7 @@ class DataCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();

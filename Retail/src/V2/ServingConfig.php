@@ -52,12 +52,12 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * highest-priced items first. This setting could result in a decrease in
      * click-through and conversion rates.
      *  Allowed values are:
-     * * 'no-price-reranking'
-     * * 'low-price-raranking'
-     * * 'medium-price-reranking'
-     * * 'high-price-reranking'
+     * * `no-price-reranking`
+     * * `low-price-reranking`
+     * * `medium-price-reranking`
+     * * `high-price-reranking`
      * If not specified, we choose default based on model type. Default value:
-     * 'no-price-reranking'.
+     * `no-price-reranking`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
@@ -196,14 +196,14 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
     private $ignore_control_ids;
     /**
      * How much diversity to use in recommendation model results e.g.
-     * 'medium-diversity' or 'high-diversity'. Currently supported values:
-     * * 'no-diversity'
-     * * 'low-diversity'
-     * * 'medium-diversity'
-     * * 'high-diversity'
-     * * 'auto-diversity'
+     * `medium-diversity` or `high-diversity`. Currently supported values:
+     * * `no-diversity`
+     * * `low-diversity`
+     * * `medium-diversity`
+     * * `high-diversity`
+     * * `auto-diversity`
      * If not specified, we choose default based on recommendation model
-     * type. Default value: 'no-diversity'.
+     * type. Default value: `no-diversity`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
@@ -212,12 +212,20 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      */
     private $diversity_level = '';
     /**
-     * Whether to add additional category filters on the 'similar-items' model.
+     * What kind of diversity to use - data driven or rule based. If unset, the
+     * server behavior defaults to
+     * [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig.DiversityType diversity_type = 20;</code>
+     */
+    private $diversity_type = 0;
+    /**
+     * Whether to add additional category filters on the `similar-items` model.
      * If not specified, we enable it by default.
      *  Allowed values are:
-     * * 'no-category-match': No additional filtering of original results from
+     * * `no-category-match`: No additional filtering of original results from
      *   the model and the customer's filters.
-     * * 'relaxed-category-match': Only keep results with categories that match
+     * * `relaxed-category-match`: Only keep results with categories that match
      *   at least one item categories in the PredictRequests's context item.
      *   * If customer also sends filters in the PredictRequest, then the results
      *   will satisfy both conditions (user given and category match).
@@ -283,12 +291,12 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           highest-priced items first. This setting could result in a decrease in
      *           click-through and conversion rates.
      *            Allowed values are:
-     *           * 'no-price-reranking'
-     *           * 'low-price-raranking'
-     *           * 'medium-price-reranking'
-     *           * 'high-price-reranking'
+     *           * `no-price-reranking`
+     *           * `low-price-reranking`
+     *           * `medium-price-reranking`
+     *           * `high-price-reranking`
      *           If not specified, we choose default based on model type. Default value:
-     *           'no-price-reranking'.
+     *           `no-price-reranking`.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
@@ -383,24 +391,28 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type string $diversity_level
      *           How much diversity to use in recommendation model results e.g.
-     *           'medium-diversity' or 'high-diversity'. Currently supported values:
-     *           * 'no-diversity'
-     *           * 'low-diversity'
-     *           * 'medium-diversity'
-     *           * 'high-diversity'
-     *           * 'auto-diversity'
+     *           `medium-diversity` or `high-diversity`. Currently supported values:
+     *           * `no-diversity`
+     *           * `low-diversity`
+     *           * `medium-diversity`
+     *           * `high-diversity`
+     *           * `auto-diversity`
      *           If not specified, we choose default based on recommendation model
-     *           type. Default value: 'no-diversity'.
+     *           type. Default value: `no-diversity`.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *     @type int $diversity_type
+     *           What kind of diversity to use - data driven or rule based. If unset, the
+     *           server behavior defaults to
+     *           [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
      *     @type string $enable_category_filter_level
-     *           Whether to add additional category filters on the 'similar-items' model.
+     *           Whether to add additional category filters on the `similar-items` model.
      *           If not specified, we enable it by default.
      *            Allowed values are:
-     *           * 'no-category-match': No additional filtering of original results from
+     *           * `no-category-match`: No additional filtering of original results from
      *             the model and the customer's filters.
-     *           * 'relaxed-category-match': Only keep results with categories that match
+     *           * `relaxed-category-match`: Only keep results with categories that match
      *             at least one item categories in the PredictRequests's context item.
      *             * If customer also sends filters in the PredictRequest, then the results
      *             will satisfy both conditions (user given and category match).
@@ -537,12 +549,12 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * highest-priced items first. This setting could result in a decrease in
      * click-through and conversion rates.
      *  Allowed values are:
-     * * 'no-price-reranking'
-     * * 'low-price-raranking'
-     * * 'medium-price-reranking'
-     * * 'high-price-reranking'
+     * * `no-price-reranking`
+     * * `low-price-reranking`
+     * * `medium-price-reranking`
+     * * `high-price-reranking`
      * If not specified, we choose default based on model type. Default value:
-     * 'no-price-reranking'.
+     * `no-price-reranking`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
@@ -562,12 +574,12 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * highest-priced items first. This setting could result in a decrease in
      * click-through and conversion rates.
      *  Allowed values are:
-     * * 'no-price-reranking'
-     * * 'low-price-raranking'
-     * * 'medium-price-reranking'
-     * * 'high-price-reranking'
+     * * `no-price-reranking`
+     * * `low-price-reranking`
+     * * `medium-price-reranking`
+     * * `high-price-reranking`
      * If not specified, we choose default based on model type. Default value:
-     * 'no-price-reranking'.
+     * `no-price-reranking`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
@@ -994,14 +1006,14 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * How much diversity to use in recommendation model results e.g.
-     * 'medium-diversity' or 'high-diversity'. Currently supported values:
-     * * 'no-diversity'
-     * * 'low-diversity'
-     * * 'medium-diversity'
-     * * 'high-diversity'
-     * * 'auto-diversity'
+     * `medium-diversity` or `high-diversity`. Currently supported values:
+     * * `no-diversity`
+     * * `low-diversity`
+     * * `medium-diversity`
+     * * `high-diversity`
+     * * `auto-diversity`
      * If not specified, we choose default based on recommendation model
-     * type. Default value: 'no-diversity'.
+     * type. Default value: `no-diversity`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
@@ -1016,14 +1028,14 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * How much diversity to use in recommendation model results e.g.
-     * 'medium-diversity' or 'high-diversity'. Currently supported values:
-     * * 'no-diversity'
-     * * 'low-diversity'
-     * * 'medium-diversity'
-     * * 'high-diversity'
-     * * 'auto-diversity'
+     * `medium-diversity` or `high-diversity`. Currently supported values:
+     * * `no-diversity`
+     * * `low-diversity`
+     * * `medium-diversity`
+     * * `high-diversity`
+     * * `auto-diversity`
      * If not specified, we choose default based on recommendation model
-     * type. Default value: 'no-diversity'.
+     * type. Default value: `no-diversity`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
@@ -1041,12 +1053,42 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to add additional category filters on the 'similar-items' model.
+     * What kind of diversity to use - data driven or rule based. If unset, the
+     * server behavior defaults to
+     * [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig.DiversityType diversity_type = 20;</code>
+     * @return int
+     */
+    public function getDiversityType()
+    {
+        return $this->diversity_type;
+    }
+
+    /**
+     * What kind of diversity to use - data driven or rule based. If unset, the
+     * server behavior defaults to
+     * [RULE_BASED_DIVERSITY][google.cloud.retail.v2.ServingConfig.DiversityType.RULE_BASED_DIVERSITY].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig.DiversityType diversity_type = 20;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiversityType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Retail\V2\ServingConfig\DiversityType::class);
+        $this->diversity_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to add additional category filters on the `similar-items` model.
      * If not specified, we enable it by default.
      *  Allowed values are:
-     * * 'no-category-match': No additional filtering of original results from
+     * * `no-category-match`: No additional filtering of original results from
      *   the model and the customer's filters.
-     * * 'relaxed-category-match': Only keep results with categories that match
+     * * `relaxed-category-match`: Only keep results with categories that match
      *   at least one item categories in the PredictRequests's context item.
      *   * If customer also sends filters in the PredictRequest, then the results
      *   will satisfy both conditions (user given and category match).
@@ -1063,12 +1105,12 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to add additional category filters on the 'similar-items' model.
+     * Whether to add additional category filters on the `similar-items` model.
      * If not specified, we enable it by default.
      *  Allowed values are:
-     * * 'no-category-match': No additional filtering of original results from
+     * * `no-category-match`: No additional filtering of original results from
      *   the model and the customer's filters.
-     * * 'relaxed-category-match': Only keep results with categories that match
+     * * `relaxed-category-match`: Only keep results with categories that match
      *   at least one item categories in the PredictRequests's context item.
      *   * If customer also sends filters in the PredictRequest, then the results
      *   will satisfy both conditions (user given and category match).

@@ -101,7 +101,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type string $asset
      *           Output only. The relative resource name of the asset, of the form:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $data_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_locations
      *           The list of data locations associated with this action. Cloud Storage
      *           locations are represented as URI paths(E.g.
      *           `gs://bucket/table1/year=2020/month=Jan/`). BigQuery locations refer to
@@ -359,7 +359,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * `bigquery.googleapis.com/projects/project-id/datasets/dataset-id`).
      *
      * Generated from protobuf field <code>repeated string data_locations = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataLocations($var)

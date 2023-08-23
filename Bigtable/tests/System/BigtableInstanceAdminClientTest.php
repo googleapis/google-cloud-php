@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class BigtableInstanceAdminClientTest extends TestCase
 {
@@ -30,7 +30,7 @@ class BigtableInstanceAdminClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [self::$restClient],
@@ -38,7 +38,7 @@ class BigtableInstanceAdminClientTest extends TestCase
         ];
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

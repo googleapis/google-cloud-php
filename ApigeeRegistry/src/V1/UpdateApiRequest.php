@@ -41,6 +41,27 @@ class UpdateApiRequest extends \Google\Protobuf\Internal\Message
     private $allow_missing = false;
 
     /**
+     * @param \Google\Cloud\ApigeeRegistry\V1\Api $api        Required. The API to update.
+     *
+     *                                                        The `name` field is used to identify the API to update.
+     *                                                        Format: `projects/&#42;/locations/&#42;/apis/*`
+     * @param \Google\Protobuf\FieldMask          $updateMask The list of fields to be updated. If omitted, all fields are updated that
+     *                                                        are set in the request message (fields set to default values are ignored).
+     *                                                        If an asterisk "*" is specified, all fields are updated, including fields
+     *                                                        that are unspecified/default in the request.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\UpdateApiRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ApigeeRegistry\V1\Api $api, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setApi($api)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

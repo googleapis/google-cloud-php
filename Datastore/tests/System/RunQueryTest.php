@@ -17,13 +17,15 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\Aggregation;
 
 /**
  * @group datastore
  * @group datastore-query
  */
-class RunQueryTest extends DatastoreTestCase
+class RunQueryTest extends DatastoreMultipleDbTestCase
 {
     private static $ancestor;
     private static $kind = 'Person';
@@ -50,9 +52,9 @@ class RunQueryTest extends DatastoreTestCase
         ]
     ];
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
         self::$ancestor = self::$restClient->key(self::$kind, 'Grandpa Frank');
         $key1 = self::$restClient->key(self::$kind, 'Frank');
         $key1->ancestorKey(self::$ancestor);
@@ -78,8 +80,45 @@ class RunQueryTest extends DatastoreTestCase
         self::$localDeletionQueue->add($key3);
     }
 
+    public static function tearDownAfterClass(): void
+    {
+        self::tearDownFixtures();
+    }
+
     /**
-     * @dataProvider clientProvider
+     * @dataProvider multiDbClientProvider
+     */
+    public function testQueryMultipleDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertCount(0, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testQueryDefaultDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertEquals(self::$data[0], $results[0]->get());
+        $this->assertEquals(self::$data[1], $results[1]->get());
+        $this->assertEquals(self::$data[2], $results[2]->get());
+        $this->assertEquals(self::$data[3], $results[3]->get());
+        $this->assertCount(4, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOrder(DatastoreClient $client)
     {
@@ -97,7 +136,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithFilter(DatastoreClient $client)
     {
@@ -114,7 +153,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithAncestor(DatastoreClient $client)
     {
@@ -131,7 +170,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithProjection(DatastoreClient $client)
     {
@@ -156,7 +195,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithDistinctOn(DatastoreClient $client)
     {
@@ -172,7 +211,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithKeysOnly(DatastoreClient $client)
     {
@@ -189,7 +228,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOffset(DatastoreClient $client)
     {
@@ -204,7 +243,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithStartCursor(DatastoreClient $client)
     {
@@ -227,7 +266,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithEndCursor(DatastoreClient $client)
     {
@@ -248,7 +287,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithLimit(DatastoreClient $client)
     {
@@ -263,7 +302,23 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testQueryWithEmptyResult(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'does_not_exist');
+
+        $results = $this->runQueryAndSortResults($client, $query);
+        $resultsWithLimit = $this->runQueryAndSortResults($client, $query->limit(1));
+
+        $this->assertCount(0, $results);
+        $this->assertCount(0, $resultsWithLimit);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithBindings(DatastoreClient $client)
     {
@@ -280,7 +335,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithLiteral(DatastoreClient $client)
     {
@@ -292,6 +347,227 @@ class RunQueryTest extends DatastoreTestCase
 
         $this->assertEquals(self::$data[2], $results[0]->get());
         $this->assertCount(1, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testRunQueryWithReadTime(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $kind = 'NewPerson';
+        $lastName = 'Geller';
+        $newLastName = 'Bing';
+        $key = $client->key($kind, time());
+        $person = $client->entity($key, [
+            'lastName' => $lastName
+        ]);
+        $client->insert($person);
+        self::$localDeletionQueue->add($key);
+
+        sleep(2);
+
+        $time = new Timestamp(new \DateTime());
+
+        sleep(2);
+
+        $person = $client->lookup($key);
+        $person['lastName'] = $newLastName;
+        $client->update($person);
+
+        sleep(2);
+
+        $query = $client->query()
+            ->kind($kind)
+            ->filter('__key__', '=', $key);
+        $result = $client->runQuery($query);
+        $personListEntities = iterator_to_array($result);
+
+        // Person lastName should be the lastName AFTER update
+        $this->assertEquals($personListEntities[0]['lastName'], $newLastName);
+
+        // Person lastName should be the lastName BEFORE update
+        $result = $client->runQuery($query, ['readTime' => $time]);
+        $personListEntities = iterator_to_array($result);
+        $this->assertEquals($personListEntities[0]['lastName'], $lastName);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryShouldFailForIncorrectAlias(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('alias does not exist');
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith')
+            ->aggregation(Aggregation::count());
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $results->get('total');
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryWithFilter(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith')
+            ->aggregation(Aggregation::count()->alias('total'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationOverQueryWithFilter(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith');
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query)
+            ->addAggregation(Aggregation::count());
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('property_1'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationGqlQueryWithFilter(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $aggregationQuery = $client->gqlQuery("SELECT count(*) as total From Person WHERE lastName = 'Smith'", [
+            'allowLiterals' => true
+        ])
+        ->aggregation();
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationOverGqlQueryWithFilter(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $query = $client->gqlQuery("SELECT count(*) as total From Person WHERE lastName = 'Smith'", [
+            'allowLiterals' => true
+        ]);
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query);
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryWithLimit(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith')
+            ->limit(2);
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query)
+            ->addAggregation(Aggregation::count()->alias('total_upto_2'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(2, $results->get('total_upto_2'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationGqlQueryWithLimit(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $queryString = sprintf(
+            "AGGREGATE
+                COUNT_UP_TO(2) AS total_upto_2
+            OVER (
+                SELECT * From Person WHERE lastName = 'Smith'
+            )",
+        );
+        $query = $client->gqlQuery(
+            $queryString,
+            ['allowLiterals' => true]
+        );
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query);
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(2, $results->get('total_upto_2'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationQueryWithMultipleAggregations(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->filter('lastName', '=', 'Smith');
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query)
+            ->addAggregation(Aggregation::count()->alias('total_count'))
+            ->addAggregation(Aggregation::count()->alias('max_count'));
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total_count'));
+        $this->assertEquals(3, $results->get('max_count'));
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testAggregationGqlQueryWithMultipleAggregations(DatastoreClient $client)
+    {
+        $this->skipEmulatorTests();
+        $queryString = sprintf(
+            "AGGREGATE
+                COUNT(*) AS total_count,
+                COUNT_UP_TO(1) AS count_up_to_1,
+                COUNT_UP_TO(2) AS count_up_to_2
+            OVER (
+                SELECT * From Person WHERE lastName = 'Smith'
+            )",
+        );
+        $query = $client->gqlQuery(
+            $queryString,
+            ['allowLiterals' => true]
+        );
+        $aggregationQuery = $client->aggregationQuery()
+            ->over($query);
+
+        $results = $client->runAggregationQuery($aggregationQuery);
+
+        $this->assertEquals(3, $results->get('total_count'));
+        $this->assertEquals(2, $results->get('count_up_to_2'));
+        $this->assertEquals(1, $results->get('count_up_to_1'));
     }
 
     private function runQueryAndSortResults($client, $query)

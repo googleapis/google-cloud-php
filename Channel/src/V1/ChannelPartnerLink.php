@@ -54,8 +54,8 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. Public identifier that a customer must use to generate a transfer token
-     * to move to this distributor-reseller combination.
+     * Output only. Public identifier that a customer must use to generate a
+     * transfer token to move to this distributor-reseller combination.
      *
      * Generated from protobuf field <code>string public_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -87,8 +87,8 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp of when the channel partner link is updated.
      *     @type string $public_id
-     *           Output only. Public identifier that a customer must use to generate a transfer token
-     *           to move to this distributor-reseller combination.
+     *           Output only. Public identifier that a customer must use to generate a
+     *           transfer token to move to this distributor-reseller combination.
      *     @type \Google\Cloud\Channel\V1\CloudIdentityInfo $channel_partner_cloud_identity_info
      *           Output only. Cloud Identity info of the channel partner (IR).
      * }
@@ -277,8 +277,8 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Public identifier that a customer must use to generate a transfer token
-     * to move to this distributor-reseller combination.
+     * Output only. Public identifier that a customer must use to generate a
+     * transfer token to move to this distributor-reseller combination.
      *
      * Generated from protobuf field <code>string public_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -289,8 +289,8 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Public identifier that a customer must use to generate a transfer token
-     * to move to this distributor-reseller combination.
+     * Output only. Public identifier that a customer must use to generate a
+     * transfer token to move to this distributor-reseller combination.
      *
      * Generated from protobuf field <code>string public_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

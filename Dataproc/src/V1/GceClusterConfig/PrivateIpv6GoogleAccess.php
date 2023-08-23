@@ -19,7 +19,8 @@ class PrivateIpv6GoogleAccess
 {
     /**
      * If unspecified, Compute Engine default behavior will apply, which
-     * is the same as [INHERIT_FROM_SUBNETWORK][google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess.INHERIT_FROM_SUBNETWORK].
+     * is the same as
+     * [INHERIT_FROM_SUBNETWORK][google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess.INHERIT_FROM_SUBNETWORK].
      *
      * Generated from protobuf enum <code>PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED = 0;</code>
      */

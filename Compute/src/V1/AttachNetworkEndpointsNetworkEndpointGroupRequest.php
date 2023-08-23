@@ -47,6 +47,25 @@ class AttachNetworkEndpointsNetworkEndpointGroupRequest extends \Google\Protobuf
     private $zone = '';
 
     /**
+     * @param string                                                               $project                                             Project ID for this request.
+     * @param string                                                               $zone                                                The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param string                                                               $networkEndpointGroup                                The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     * @param \Google\Cloud\Compute\V1\NetworkEndpointGroupsAttachEndpointsRequest $networkEndpointGroupsAttachEndpointsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AttachNetworkEndpointsNetworkEndpointGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $networkEndpointGroup, \Google\Cloud\Compute\V1\NetworkEndpointGroupsAttachEndpointsRequest $networkEndpointGroupsAttachEndpointsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setNetworkEndpointGroup($networkEndpointGroup)
+            ->setNetworkEndpointGroupsAttachEndpointsRequestResource($networkEndpointGroupsAttachEndpointsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

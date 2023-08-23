@@ -52,6 +52,18 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
+     */
+    private $resource_policies;
+    /**
+     * [Output Only] Status information for Reservation resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatus resource_status = 249429315;</code>
+     */
+    private $resource_status = null;
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -64,7 +76,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Share-settings for shared-reservation
+     * Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      */
@@ -113,12 +125,16 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#reservations for reservations.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_policies
+     *           Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
+     *     @type \Google\Cloud\Compute\V1\AllocationResourceStatus $resource_status
+     *           [Output Only] Status information for Reservation resource.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
-     *           Share-settings for shared-reservation
+     *           Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUReservation $specific_reservation
      *           Reservation for instances with specific machine shapes.
      *     @type bool $specific_reservation_required
@@ -352,6 +368,68 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourcePolicies()
+    {
+        return $this->resource_policies;
+    }
+
+    /**
+     * Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourcePolicies($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Status information for Reservation resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatus resource_status = 249429315;</code>
+     * @return \Google\Cloud\Compute\V1\AllocationResourceStatus|null
+     */
+    public function getResourceStatus()
+    {
+        return $this->resource_status;
+    }
+
+    public function hasResourceStatus()
+    {
+        return isset($this->resource_status);
+    }
+
+    public function clearResourceStatus()
+    {
+        unset($this->resource_status);
+    }
+
+    /**
+     * [Output Only] Status information for Reservation resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatus resource_status = 249429315;</code>
+     * @param \Google\Cloud\Compute\V1\AllocationResourceStatus $var
+     * @return $this
+     */
+    public function setResourceStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationResourceStatus::class);
+        $this->resource_status = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -424,7 +502,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Share-settings for shared-reservation
+     * Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      * @return \Google\Cloud\Compute\V1\ShareSettings|null
@@ -445,7 +523,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Share-settings for shared-reservation
+     * Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      * @param \Google\Cloud\Compute\V1\ShareSettings $var

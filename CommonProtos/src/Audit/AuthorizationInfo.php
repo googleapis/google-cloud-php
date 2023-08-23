@@ -179,7 +179,7 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getResourceAttributes()
     {
-        return isset($this->resource_attributes) ? $this->resource_attributes : null;
+        return $this->resource_attributes;
     }
 
     public function hasResourceAttributes()

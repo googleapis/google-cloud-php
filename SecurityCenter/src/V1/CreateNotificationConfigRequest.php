@@ -26,8 +26,8 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * Unique identifier provided by the client within the parent scope.
-     * It must be between 1 and 128 characters, and contains alphanumeric
-     * characters, underscores or hyphens only.
+     * It must be between 1 and 128 characters and contain alphanumeric
+     * characters, underscores, or hyphens only.
      *
      * Generated from protobuf field <code>string config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,6 +42,51 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
     private $notification_config = null;
 
     /**
+     * @param string                                             $parent             Required. Resource name of the new notification config's parent. Its format
+     *                                                                               is "organizations/[organization_id]", "folders/[folder_id]", or
+     *                                                                               "projects/[project_id]". Please see
+     *                                                                               {@see SecurityCenterClient::projectName()} for help formatting this field.
+     * @param string                                             $configId           Required.
+     *                                                                               Unique identifier provided by the client within the parent scope.
+     *                                                                               It must be between 1 and 128 characters and contain alphanumeric
+     *                                                                               characters, underscores, or hyphens only.
+     * @param \Google\Cloud\SecurityCenter\V1\NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
+     *                                                                               account will be ignored as they are both output only fields on this
+     *                                                                               resource.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $configId, \Google\Cloud\SecurityCenter\V1\NotificationConfig $notificationConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConfigId($configId)
+            ->setNotificationConfig($notificationConfig);
+    }
+
+    /**
+     * @param string                                             $parent             Required. Resource name of the new notification config's parent. Its format
+     *                                                                               is "organizations/[organization_id]", "folders/[folder_id]", or
+     *                                                                               "projects/[project_id]". Please see
+     *                                                                               {@see SecurityCenterClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\SecurityCenter\V1\NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
+     *                                                                               account will be ignored as they are both output only fields on this
+     *                                                                               resource.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentNotificationConfig(string $parent, \Google\Cloud\SecurityCenter\V1\NotificationConfig $notificationConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNotificationConfig($notificationConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -54,8 +99,8 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type string $config_id
      *           Required.
      *           Unique identifier provided by the client within the parent scope.
-     *           It must be between 1 and 128 characters, and contains alphanumeric
-     *           characters, underscores or hyphens only.
+     *           It must be between 1 and 128 characters and contain alphanumeric
+     *           characters, underscores, or hyphens only.
      *     @type \Google\Cloud\SecurityCenter\V1\NotificationConfig $notification_config
      *           Required. The notification config being created. The name and the service
      *           account will be ignored as they are both output only fields on this
@@ -100,8 +145,8 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * Unique identifier provided by the client within the parent scope.
-     * It must be between 1 and 128 characters, and contains alphanumeric
-     * characters, underscores or hyphens only.
+     * It must be between 1 and 128 characters and contain alphanumeric
+     * characters, underscores, or hyphens only.
      *
      * Generated from protobuf field <code>string config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -114,8 +159,8 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * Unique identifier provided by the client within the parent scope.
-     * It must be between 1 and 128 characters, and contains alphanumeric
-     * characters, underscores or hyphens only.
+     * It must be between 1 and 128 characters and contain alphanumeric
+     * characters, underscores, or hyphens only.
      *
      * Generated from protobuf field <code>string config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

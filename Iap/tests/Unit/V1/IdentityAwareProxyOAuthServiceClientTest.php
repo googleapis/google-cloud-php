@@ -23,11 +23,9 @@
 namespace Google\Cloud\Iap\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iap\V1\Brand;
 use Google\Cloud\Iap\V1\IdentityAwareProxyClient;
 use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return IdentityAwareProxyOAuthServiceClient
-     */
+    /** @return IdentityAwareProxyOAuthServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         return new IdentityAwareProxyOAuthServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBrandTest()
     {
         $transport = $this->createTransport();
@@ -109,9 +99,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBrandExceptionTest()
     {
         $transport = $this->createTransport();
@@ -145,9 +133,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIdentityAwareProxyClientTest()
     {
         $transport = $this->createTransport();
@@ -181,9 +167,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIdentityAwareProxyClientExceptionTest()
     {
         $transport = $this->createTransport();
@@ -217,9 +201,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIdentityAwareProxyClientTest()
     {
         $transport = $this->createTransport();
@@ -243,9 +225,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIdentityAwareProxyClientExceptionTest()
     {
         $transport = $this->createTransport();
@@ -278,9 +258,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBrandTest()
     {
         $transport = $this->createTransport();
@@ -313,9 +291,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBrandExceptionTest()
     {
         $transport = $this->createTransport();
@@ -348,9 +324,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIdentityAwareProxyClientTest()
     {
         $transport = $this->createTransport();
@@ -381,9 +355,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIdentityAwareProxyClientExceptionTest()
     {
         $transport = $this->createTransport();
@@ -416,9 +388,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBrandsTest()
     {
         $transport = $this->createTransport();
@@ -443,9 +413,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBrandsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -478,9 +446,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIdentityAwareProxyClientsTest()
     {
         $transport = $this->createTransport();
@@ -515,9 +481,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIdentityAwareProxyClientsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -550,9 +514,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetIdentityAwareProxyClientSecretTest()
     {
         $transport = $this->createTransport();
@@ -583,9 +545,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetIdentityAwareProxyClientSecretExceptionTest()
     {
         $transport = $this->createTransport();

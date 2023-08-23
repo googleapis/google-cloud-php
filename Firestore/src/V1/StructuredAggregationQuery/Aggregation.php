@@ -9,14 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines a aggregation that produces a single result.
+ * Defines an aggregation that produces a single result.
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredAggregationQuery.Aggregation</code>
  */
 class Aggregation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into.
+     * Optional. Optional name of the field to store the result of the
+     * aggregation into.
      * If not provided, Firestore will pick a default name following the format
      * `field_<incremental_id++>`. For example:
      * ```
@@ -24,7 +25,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2),
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4)
+     *   COUNT(*)
      * OVER (
      *   ...
      * );
@@ -35,14 +36,15 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2) AS field_1,
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4) AS field_2
+     *   COUNT(*) AS field_2
      * OVER (
      *   ...
      * );
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,8 +59,13 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Count $count
      *           Count aggregator.
+     *     @type \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Sum $sum
+     *           Sum aggregator.
+     *     @type \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Avg $avg
+     *           Average aggregator.
      *     @type string $alias
-     *           Optional. Optional name of the field to store the result of the aggregation into.
+     *           Optional. Optional name of the field to store the result of the
+     *           aggregation into.
      *           If not provided, Firestore will pick a default name following the format
      *           `field_<incremental_id++>`. For example:
      *           ```
@@ -66,7 +73,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *             COUNT_UP_TO(1) AS count_up_to_1,
      *             COUNT_UP_TO(2),
      *             COUNT_UP_TO(3) AS count_up_to_3,
-     *             COUNT_UP_TO(4)
+     *             COUNT(*)
      *           OVER (
      *             ...
      *           );
@@ -77,14 +84,15 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *             COUNT_UP_TO(1) AS count_up_to_1,
      *             COUNT_UP_TO(2) AS field_1,
      *             COUNT_UP_TO(3) AS count_up_to_3,
-     *             COUNT_UP_TO(4) AS field_2
+     *             COUNT(*) AS field_2
      *           OVER (
      *             ...
      *           );
      *           ```
      *           Requires:
      *           * Must be unique across all aggregation aliases.
-     *           * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     *           * Conform to [document field name][google.firestore.v1.Document.fields]
+     *           limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,7 +132,70 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into.
+     * Sum aggregator.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredAggregationQuery.Aggregation.Sum sum = 2;</code>
+     * @return \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Sum|null
+     */
+    public function getSum()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasSum()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Sum aggregator.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredAggregationQuery.Aggregation.Sum sum = 2;</code>
+     * @param \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Sum $var
+     * @return $this
+     */
+    public function setSum($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Sum::class);
+        $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Average aggregator.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredAggregationQuery.Aggregation.Avg avg = 3;</code>
+     * @return \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Avg|null
+     */
+    public function getAvg()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasAvg()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Average aggregator.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredAggregationQuery.Aggregation.Avg avg = 3;</code>
+     * @param \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Avg $var
+     * @return $this
+     */
+    public function setAvg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation\Avg::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional name of the field to store the result of the
+     * aggregation into.
      * If not provided, Firestore will pick a default name following the format
      * `field_<incremental_id++>`. For example:
      * ```
@@ -132,7 +203,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2),
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4)
+     *   COUNT(*)
      * OVER (
      *   ...
      * );
@@ -143,14 +214,15 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2) AS field_1,
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4) AS field_2
+     *   COUNT(*) AS field_2
      * OVER (
      *   ...
      * );
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,7 +233,8 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into.
+     * Optional. Optional name of the field to store the result of the
+     * aggregation into.
      * If not provided, Firestore will pick a default name following the format
      * `field_<incremental_id++>`. For example:
      * ```
@@ -169,7 +242,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2),
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4)
+     *   COUNT(*)
      * OVER (
      *   ...
      * );
@@ -180,14 +253,15 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *   COUNT_UP_TO(1) AS count_up_to_1,
      *   COUNT_UP_TO(2) AS field_1,
      *   COUNT_UP_TO(3) AS count_up_to_3,
-     *   COUNT_UP_TO(4) AS field_2
+     *   COUNT(*) AS field_2
      * OVER (
      *   ...
      * );
      * ```
      * Requires:
      * * Must be unique across all aggregation aliases.
-     * * Conform to [document field name][google.firestore.v1.Document.fields] limitations.
+     * * Conform to [document field name][google.firestore.v1.Document.fields]
+     * limitations.
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

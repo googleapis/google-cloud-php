@@ -17,15 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExportDataConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A filter on Annotations of the Dataset. Only Annotations on to-be-exported
-     * DataItems(specified by [data_items_filter][]) that match this filter will
-     * be exported. The filter syntax is the same as in
+     * An expression for filtering what part of the Dataset is to be exported.
+     * Only Annotations that match this filter will be exported. The filter syntax
+     * is the same as in
      * [ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
      *
      * Generated from protobuf field <code>string annotations_filter = 2;</code>
      */
     private $annotations_filter = '';
     protected $destination;
+    protected $split;
 
     /**
      * Constructor.
@@ -43,10 +44,12 @@ class ExportDataConfig extends \Google\Protobuf\Internal\Message
      *           which are named with the corresponding annotations' schema title. Inside
      *           these sub directories, a schema.yaml will be created to describe the
      *           output format.
+     *     @type \Google\Cloud\AIPlatform\V1\ExportFractionSplit $fraction_split
+     *           Split based on fractions defining the size of each set.
      *     @type string $annotations_filter
-     *           A filter on Annotations of the Dataset. Only Annotations on to-be-exported
-     *           DataItems(specified by [data_items_filter][]) that match this filter will
-     *           be exported. The filter syntax is the same as in
+     *           An expression for filtering what part of the Dataset is to be exported.
+     *           Only Annotations that match this filter will be exported. The filter syntax
+     *           is the same as in
      *           [ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
      * }
      */
@@ -103,9 +106,40 @@ class ExportDataConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A filter on Annotations of the Dataset. Only Annotations on to-be-exported
-     * DataItems(specified by [data_items_filter][]) that match this filter will
-     * be exported. The filter syntax is the same as in
+     * Split based on fractions defining the size of each set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportFractionSplit fraction_split = 5;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ExportFractionSplit|null
+     */
+    public function getFractionSplit()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasFractionSplit()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Split based on fractions defining the size of each set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportFractionSplit fraction_split = 5;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ExportFractionSplit $var
+     * @return $this
+     */
+    public function setFractionSplit($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ExportFractionSplit::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * An expression for filtering what part of the Dataset is to be exported.
+     * Only Annotations that match this filter will be exported. The filter syntax
+     * is the same as in
      * [ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
      *
      * Generated from protobuf field <code>string annotations_filter = 2;</code>
@@ -117,9 +151,9 @@ class ExportDataConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A filter on Annotations of the Dataset. Only Annotations on to-be-exported
-     * DataItems(specified by [data_items_filter][]) that match this filter will
-     * be exported. The filter syntax is the same as in
+     * An expression for filtering what part of the Dataset is to be exported.
+     * Only Annotations that match this filter will be exported. The filter syntax
+     * is the same as in
      * [ListAnnotations][google.cloud.aiplatform.v1.DatasetService.ListAnnotations].
      *
      * Generated from protobuf field <code>string annotations_filter = 2;</code>
@@ -140,6 +174,14 @@ class ExportDataConfig extends \Google\Protobuf\Internal\Message
     public function getDestination()
     {
         return $this->whichOneof("destination");
+    }
+
+    /**
+     * @return string
+     */
+    public function getSplit()
+    {
+        return $this->whichOneof("split");
     }
 
 }

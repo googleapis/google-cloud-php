@@ -22,19 +22,19 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      */
     private $enabled = false;
     /**
-     * Optional. The list of patterns to apply for selecting data to include during
-     * discovery if only a subset of the data should considered. For Cloud
-     * Storage bucket assets, these are interpreted as glob patterns used to
-     * match object names. For BigQuery dataset assets, these are
-     * interpreted as patterns to match table names.
+     * Optional. The list of patterns to apply for selecting data to include
+     * during discovery if only a subset of the data should considered. For
+     * Cloud Storage bucket assets, these are interpreted as glob patterns used
+     * to match object names. For BigQuery dataset assets, these are interpreted
+     * as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string include_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $include_patterns;
     /**
-     * Optional. The list of patterns to apply for selecting data to exclude during
-     * discovery.  For Cloud Storage bucket assets, these are interpreted as
-     * glob patterns used to match object names. For BigQuery dataset assets,
+     * Optional. The list of patterns to apply for selecting data to exclude
+     * during discovery.  For Cloud Storage bucket assets, these are interpreted
+     * as glob patterns used to match object names. For BigQuery dataset assets,
      * these are interpreted as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string exclude_patterns = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -62,31 +62,30 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Required. Whether discovery is enabled.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_patterns
-     *           Optional. The list of patterns to apply for selecting data to include during
-     *           discovery if only a subset of the data should considered. For Cloud
-     *           Storage bucket assets, these are interpreted as glob patterns used to
-     *           match object names. For BigQuery dataset assets, these are
-     *           interpreted as patterns to match table names.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclude_patterns
-     *           Optional. The list of patterns to apply for selecting data to exclude during
-     *           discovery.  For Cloud Storage bucket assets, these are interpreted as
-     *           glob patterns used to match object names. For BigQuery dataset assets,
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_patterns
+     *           Optional. The list of patterns to apply for selecting data to include
+     *           during discovery if only a subset of the data should considered. For
+     *           Cloud Storage bucket assets, these are interpreted as glob patterns used
+     *           to match object names. For BigQuery dataset assets, these are interpreted
+     *           as patterns to match table names.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_patterns
+     *           Optional. The list of patterns to apply for selecting data to exclude
+     *           during discovery.  For Cloud Storage bucket assets, these are interpreted
+     *           as glob patterns used to match object names. For BigQuery dataset assets,
      *           these are interpreted as patterns to match table names.
      *     @type \Google\Cloud\Dataplex\V1\Zone\DiscoverySpec\CsvOptions $csv_options
      *           Optional. Configuration for CSV data.
      *     @type \Google\Cloud\Dataplex\V1\Zone\DiscoverySpec\JsonOptions $json_options
      *           Optional. Configuration for Json data.
      *     @type string $schedule
-     *           Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running
-     *           discovery periodically. Successive discovery runs must be scheduled at
-     *           least 60 minutes apart.
-     *           The default value is to run discovery every 60 minutes.
-     *           To explicitly set a timezone to the cron tab, apply a prefix in the
-     *           cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or TZ=${IANA_TIME_ZONE}".
-     *           The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone
-     *           database. For example, "CRON_TZ=America/New_York 1 * * * *", or
-     *           "TZ=America/New_York 1 * * * *".
+     *           Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for
+     *           running discovery periodically. Successive discovery runs must be
+     *           scheduled at least 60 minutes apart. The default value is to run
+     *           discovery every 60 minutes. To explicitly set a timezone to the cron
+     *           tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
+     *           TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
+     *           from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+     *           * * * *`, or `TZ=America/New_York 1 * * * *`.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,11 +120,11 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of patterns to apply for selecting data to include during
-     * discovery if only a subset of the data should considered. For Cloud
-     * Storage bucket assets, these are interpreted as glob patterns used to
-     * match object names. For BigQuery dataset assets, these are
-     * interpreted as patterns to match table names.
+     * Optional. The list of patterns to apply for selecting data to include
+     * during discovery if only a subset of the data should considered. For
+     * Cloud Storage bucket assets, these are interpreted as glob patterns used
+     * to match object names. For BigQuery dataset assets, these are interpreted
+     * as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string include_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -136,14 +135,14 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of patterns to apply for selecting data to include during
-     * discovery if only a subset of the data should considered. For Cloud
-     * Storage bucket assets, these are interpreted as glob patterns used to
-     * match object names. For BigQuery dataset assets, these are
-     * interpreted as patterns to match table names.
+     * Optional. The list of patterns to apply for selecting data to include
+     * during discovery if only a subset of the data should considered. For
+     * Cloud Storage bucket assets, these are interpreted as glob patterns used
+     * to match object names. For BigQuery dataset assets, these are interpreted
+     * as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string include_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludePatterns($var)
@@ -155,9 +154,9 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of patterns to apply for selecting data to exclude during
-     * discovery.  For Cloud Storage bucket assets, these are interpreted as
-     * glob patterns used to match object names. For BigQuery dataset assets,
+     * Optional. The list of patterns to apply for selecting data to exclude
+     * during discovery.  For Cloud Storage bucket assets, these are interpreted
+     * as glob patterns used to match object names. For BigQuery dataset assets,
      * these are interpreted as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string exclude_patterns = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -169,13 +168,13 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of patterns to apply for selecting data to exclude during
-     * discovery.  For Cloud Storage bucket assets, these are interpreted as
-     * glob patterns used to match object names. For BigQuery dataset assets,
+     * Optional. The list of patterns to apply for selecting data to exclude
+     * during discovery.  For Cloud Storage bucket assets, these are interpreted
+     * as glob patterns used to match object names. For BigQuery dataset assets,
      * these are interpreted as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string exclude_patterns = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludePatterns($var)
@@ -259,15 +258,14 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running
-     * discovery periodically. Successive discovery runs must be scheduled at
-     * least 60 minutes apart.
-     * The default value is to run discovery every 60 minutes.
-     * To explicitly set a timezone to the cron tab, apply a prefix in the
-     * cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or TZ=${IANA_TIME_ZONE}".
-     * The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone
-     * database. For example, "CRON_TZ=America/New_York 1 * * * *", or
-     * "TZ=America/New_York 1 * * * *".
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for
+     * running discovery periodically. Successive discovery runs must be
+     * scheduled at least 60 minutes apart. The default value is to run
+     * discovery every 60 minutes. To explicitly set a timezone to the cron
+     * tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
+     * TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
+     * from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+     * * * * *`, or `TZ=America/New_York 1 * * * *`.
      *
      * Generated from protobuf field <code>string schedule = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -283,15 +281,14 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running
-     * discovery periodically. Successive discovery runs must be scheduled at
-     * least 60 minutes apart.
-     * The default value is to run discovery every 60 minutes.
-     * To explicitly set a timezone to the cron tab, apply a prefix in the
-     * cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or TZ=${IANA_TIME_ZONE}".
-     * The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone
-     * database. For example, "CRON_TZ=America/New_York 1 * * * *", or
-     * "TZ=America/New_York 1 * * * *".
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for
+     * running discovery periodically. Successive discovery runs must be
+     * scheduled at least 60 minutes apart. The default value is to run
+     * discovery every 60 minutes. To explicitly set a timezone to the cron
+     * tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
+     * TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string
+     * from IANA time zone database. For example, `CRON_TZ=America/New_York 1
+     * * * * *`, or `TZ=America/New_York 1 * * * *`.
      *
      * Generated from protobuf field <code>string schedule = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

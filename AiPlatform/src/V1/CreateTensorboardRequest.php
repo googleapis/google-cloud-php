@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.CreateTensorboard][google.cloud.aiplatform.v1.TensorboardService.CreateTensorboard].
+ * Request message for
+ * [TensorboardService.CreateTensorboard][google.cloud.aiplatform.v1.TensorboardService.CreateTensorboard].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateTensorboardRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateTensorboardRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tensorboard tensorboard = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tensorboard = null;
+
+    /**
+     * @param string                                  $parent      Required. The resource name of the Location to create the Tensorboard in.
+     *                                                             Format: `projects/{project}/locations/{location}`
+     *                                                             Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Tensorboard $tensorboard Required. The Tensorboard to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateTensorboardRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Tensorboard $tensorboard): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTensorboard($tensorboard);
+    }
 
     /**
      * Constructor.

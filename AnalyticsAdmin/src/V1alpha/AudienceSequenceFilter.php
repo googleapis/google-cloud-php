@@ -29,8 +29,8 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
      */
     private $sequence_maximum_duration = null;
     /**
-     * Required. An ordered sequence of steps. A user must complete each step in order to
-     * join the sequence filter.
+     * Required. An ordered sequence of steps. A user must complete each step in
+     * order to join the sequence filter.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceSequenceFilter.AudienceSequenceStep sequence_steps = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,8 +47,8 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $sequence_maximum_duration
      *           Optional. Defines the time period in which the whole sequence must occur.
      *     @type array<\Google\Analytics\Admin\V1alpha\AudienceSequenceFilter\AudienceSequenceStep>|\Google\Protobuf\Internal\RepeatedField $sequence_steps
-     *           Required. An ordered sequence of steps. A user must complete each step in order to
-     *           join the sequence filter.
+     *           Required. An ordered sequence of steps. A user must complete each step in
+     *           order to join the sequence filter.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,8 +119,8 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An ordered sequence of steps. A user must complete each step in order to
-     * join the sequence filter.
+     * Required. An ordered sequence of steps. A user must complete each step in
+     * order to join the sequence filter.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceSequenceFilter.AudienceSequenceStep sequence_steps = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -131,8 +131,8 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An ordered sequence of steps. A user must complete each step in order to
-     * join the sequence filter.
+     * Required. An ordered sequence of steps. A user must complete each step in
+     * order to join the sequence filter.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceSequenceFilter.AudienceSequenceStep sequence_steps = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Analytics\Admin\V1alpha\AudienceSequenceFilter\AudienceSequenceStep>|\Google\Protobuf\Internal\RepeatedField $var

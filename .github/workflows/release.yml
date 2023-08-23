@@ -3,7 +3,10 @@ on:
     push:
         tags:
             - "*"
+    workflow_dispatch:
 
+permissions:
+    contents: read
 jobs:
     docs:
         name: "Split and Release Components"
@@ -17,14 +20,14 @@ jobs:
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '7.4'
+            php-version: '8.1'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
           uses: nick-fields/retry@v2
           with:
             timeout_minutes: 10
             max_attempts: 3
-            command: composer update
+            command: composer update -d dev
         - id: getTag
           name: Get Tag
           run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
@@ -32,4 +35,7 @@ jobs:
           env:
             tagName: ${{ steps.getTag.outputs.tag }}
           run: |
-            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName -t ${{ secrets.SPLIT_TOKEN }}
+            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName \
+              -t ${{ secrets.SPLIT_TOKEN }} \
+              --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
+              --packagist-token=${{ secrets.PACKAGIST_TOKEN }}

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.CreateTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.CreateTensorboardTimeSeries].
+ * Request message for
+ * [TensorboardService.CreateTensorboardTimeSeries][google.cloud.aiplatform.v1.TensorboardService.CreateTensorboardTimeSeries].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequest</code>
  */
@@ -25,10 +26,10 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      */
     private $parent = '';
     /**
-     * Optional. The user specified unique ID to use for the TensorboardTimeSeries, which
-     * will become the final component of the TensorboardTimeSeries's resource
-     * name.
-     * This value should match "[a-z0-9][a-z0-9-]{0, 127}"
+     * Optional. The user specified unique ID to use for the
+     * TensorboardTimeSeries, which becomes the final component of the
+     * TensorboardTimeSeries's resource name. This value should match
+     * "[a-z0-9][a-z0-9-]{0, 127}"
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,6 +40,25 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries tensorboard_time_series = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tensorboard_time_series = null;
+
+    /**
+     * @param string                                            $parent                Required. The resource name of the TensorboardRun to create the
+     *                                                                                 TensorboardTimeSeries in.
+     *                                                                                 Format:
+     *                                                                                 `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                                                                                 Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTensorboardTimeSeries($tensorboardTimeSeries);
+    }
 
     /**
      * Constructor.
@@ -52,10 +72,10 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      *           Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *     @type string $tensorboard_time_series_id
-     *           Optional. The user specified unique ID to use for the TensorboardTimeSeries, which
-     *           will become the final component of the TensorboardTimeSeries's resource
-     *           name.
-     *           This value should match "[a-z0-9][a-z0-9-]{0, 127}"
+     *           Optional. The user specified unique ID to use for the
+     *           TensorboardTimeSeries, which becomes the final component of the
+     *           TensorboardTimeSeries's resource name. This value should match
+     *           "[a-z0-9][a-z0-9-]{0, 127}"
      *     @type \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboard_time_series
      *           Required. The TensorboardTimeSeries to create.
      * }
@@ -98,10 +118,10 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Optional. The user specified unique ID to use for the TensorboardTimeSeries, which
-     * will become the final component of the TensorboardTimeSeries's resource
-     * name.
-     * This value should match "[a-z0-9][a-z0-9-]{0, 127}"
+     * Optional. The user specified unique ID to use for the
+     * TensorboardTimeSeries, which becomes the final component of the
+     * TensorboardTimeSeries's resource name. This value should match
+     * "[a-z0-9][a-z0-9-]{0, 127}"
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -112,10 +132,10 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Optional. The user specified unique ID to use for the TensorboardTimeSeries, which
-     * will become the final component of the TensorboardTimeSeries's resource
-     * name.
-     * This value should match "[a-z0-9][a-z0-9-]{0, 127}"
+     * Optional. The user specified unique ID to use for the
+     * TensorboardTimeSeries, which becomes the final component of the
+     * TensorboardTimeSeries's resource name. This value should match
+     * "[a-z0-9][a-z0-9-]{0, 127}"
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -259,6 +259,36 @@ class CloudDeployGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Advances a Rollout in a given project and location.
+     * @param \Google\Cloud\Deploy\V1\AdvanceRolloutRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AdvanceRollout(\Google\Cloud\Deploy\V1\AdvanceRolloutRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/AdvanceRollout',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\AdvanceRolloutResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Cancels a Rollout in a given project and location.
+     * @param \Google\Cloud\Deploy\V1\CancelRolloutRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CancelRollout(\Google\Cloud\Deploy\V1\CancelRolloutRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/CancelRollout',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\CancelRolloutResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists Rollouts in a given project and location.
      * @param \Google\Cloud\Deploy\V1\ListRolloutsRequest $argument input argument
      * @param array $metadata metadata
@@ -304,6 +334,21 @@ class CloudDeployGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Ignores the specified Job in a Rollout.
+     * @param \Google\Cloud\Deploy\V1\IgnoreJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function IgnoreJob(\Google\Cloud\Deploy\V1\IgnoreJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/IgnoreJob',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\IgnoreJobResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Retries the specified Job in a Rollout.
      * @param \Google\Cloud\Deploy\V1\RetryJobRequest $argument input argument
      * @param array $metadata metadata
@@ -345,6 +390,21 @@ class CloudDeployGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/GetJobRun',
         $argument,
         ['\Google\Cloud\Deploy\V1\JobRun', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Terminates a Job Run in a given project and location.
+     * @param \Google\Cloud\Deploy\V1\TerminateJobRunRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function TerminateJobRun(\Google\Cloud\Deploy\V1\TerminateJobRunRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.deploy.v1.CloudDeploy/TerminateJobRun',
+        $argument,
+        ['\Google\Cloud\Deploy\V1\TerminateJobRunResponse', 'decode'],
         $metadata, $options);
     }
 

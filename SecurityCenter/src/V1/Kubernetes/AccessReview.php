@@ -9,15 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Conveys information about a Kubernetes access review (e.g. kubectl auth
- * can-i ...) that was involved in a finding.
+ * Conveys information about a Kubernetes access review (such as one returned
+ * by a [`kubectl auth
+ * can-i`](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access)
+ * command) that was involved in a finding.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Kubernetes.AccessReview</code>
  */
 class AccessReview extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Group is the API Group of the Resource. "*" means all.
+     * The API group of the resource. "*" means all.
      *
      * Generated from protobuf field <code>string group = 1;</code>
      */
@@ -31,32 +33,32 @@ class AccessReview extends \Google\Protobuf\Internal\Message
      */
     private $ns = '';
     /**
-     * Name is the name of the resource being requested. Empty means all.
+     * The name of the resource being requested. Empty means all.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
     /**
-     * Resource is the optional resource type requested. "*" means all.
+     * The optional resource type requested. "*" means all.
      *
      * Generated from protobuf field <code>string resource = 4;</code>
      */
     private $resource = '';
     /**
-     * Subresource is the optional subresource type.
+     * The optional subresource type.
      *
      * Generated from protobuf field <code>string subresource = 5;</code>
      */
     private $subresource = '';
     /**
-     * Verb is a Kubernetes resource API verb, like: get, list, watch, create,
-     * update, delete, proxy. "*" means all.
+     * A Kubernetes resource API verb, like get, list, watch, create, update,
+     * delete, proxy. "*" means all.
      *
      * Generated from protobuf field <code>string verb = 6;</code>
      */
     private $verb = '';
     /**
-     * Version is the API Version of the Resource. "*" means all.
+     * The API version of the resource. "*" means all.
      *
      * Generated from protobuf field <code>string version = 7;</code>
      */
@@ -69,22 +71,22 @@ class AccessReview extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $group
-     *           Group is the API Group of the Resource. "*" means all.
+     *           The API group of the resource. "*" means all.
      *     @type string $ns
      *           Namespace of the action being requested. Currently, there is no
      *           distinction between no namespace and all namespaces.  Both
      *           are represented by "" (empty).
      *     @type string $name
-     *           Name is the name of the resource being requested. Empty means all.
+     *           The name of the resource being requested. Empty means all.
      *     @type string $resource
-     *           Resource is the optional resource type requested. "*" means all.
+     *           The optional resource type requested. "*" means all.
      *     @type string $subresource
-     *           Subresource is the optional subresource type.
+     *           The optional subresource type.
      *     @type string $verb
-     *           Verb is a Kubernetes resource API verb, like: get, list, watch, create,
-     *           update, delete, proxy. "*" means all.
+     *           A Kubernetes resource API verb, like get, list, watch, create, update,
+     *           delete, proxy. "*" means all.
      *     @type string $version
-     *           Version is the API Version of the Resource. "*" means all.
+     *           The API version of the resource. "*" means all.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +95,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Group is the API Group of the Resource. "*" means all.
+     * The API group of the resource. "*" means all.
      *
      * Generated from protobuf field <code>string group = 1;</code>
      * @return string
@@ -104,7 +106,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Group is the API Group of the Resource. "*" means all.
+     * The API group of the resource. "*" means all.
      *
      * Generated from protobuf field <code>string group = 1;</code>
      * @param string $var
@@ -149,7 +151,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name is the name of the resource being requested. Empty means all.
+     * The name of the resource being requested. Empty means all.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @return string
@@ -160,7 +162,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name is the name of the resource being requested. Empty means all.
+     * The name of the resource being requested. Empty means all.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
@@ -175,7 +177,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource is the optional resource type requested. "*" means all.
+     * The optional resource type requested. "*" means all.
      *
      * Generated from protobuf field <code>string resource = 4;</code>
      * @return string
@@ -186,7 +188,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource is the optional resource type requested. "*" means all.
+     * The optional resource type requested. "*" means all.
      *
      * Generated from protobuf field <code>string resource = 4;</code>
      * @param string $var
@@ -201,7 +203,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subresource is the optional subresource type.
+     * The optional subresource type.
      *
      * Generated from protobuf field <code>string subresource = 5;</code>
      * @return string
@@ -212,7 +214,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subresource is the optional subresource type.
+     * The optional subresource type.
      *
      * Generated from protobuf field <code>string subresource = 5;</code>
      * @param string $var
@@ -227,8 +229,8 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Verb is a Kubernetes resource API verb, like: get, list, watch, create,
-     * update, delete, proxy. "*" means all.
+     * A Kubernetes resource API verb, like get, list, watch, create, update,
+     * delete, proxy. "*" means all.
      *
      * Generated from protobuf field <code>string verb = 6;</code>
      * @return string
@@ -239,8 +241,8 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Verb is a Kubernetes resource API verb, like: get, list, watch, create,
-     * update, delete, proxy. "*" means all.
+     * A Kubernetes resource API verb, like get, list, watch, create, update,
+     * delete, proxy. "*" means all.
      *
      * Generated from protobuf field <code>string verb = 6;</code>
      * @param string $var
@@ -255,7 +257,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Version is the API Version of the Resource. "*" means all.
+     * The API version of the resource. "*" means all.
      *
      * Generated from protobuf field <code>string version = 7;</code>
      * @return string
@@ -266,7 +268,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Version is the API Version of the Resource. "*" means all.
+     * The API version of the resource. "*" means all.
      *
      * Generated from protobuf field <code>string version = 7;</code>
      * @param string $var

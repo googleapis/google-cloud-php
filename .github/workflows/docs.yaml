@@ -1,0 +1,42 @@
+name: DocFX Test Suite
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  docfx:
+    name: "Run DocFX tests"
+    runs-on: ubuntu-latest
+    env:
+      PHPDOC_ENV: prod
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: "8.1"
+    - name: Extract phpDocumentor
+      id: extract
+      uses: shrink/actions-docker-extract@v2
+      with:
+        image: "phpdoc/phpdoc:20230522201300af6fb5"
+        path: "/opt/phpdoc/."
+    - name: Symlink phpDocumentor
+      run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc
+    - name: Install Dependencies
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: composer --no-interaction --no-ansi --no-progress update -d dev
+    - name: Run DocFX Unit Test Suite
+      run: dev/vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
+    - name: Run Docs Generator (Dry Run)
+      run: .kokoro/docs/publish.sh

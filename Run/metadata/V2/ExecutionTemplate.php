@@ -18,7 +18,7 @@ class ExecutionTemplate
         \GPBMetadata\Google\Cloud\Run\V2\TaskTemplate::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ï
+Â
 ,google/cloud/run/v2/execution_template.protogoogle.cloud.run.v2\'google/cloud/run/v2/task_template.proto"ë
 ExecutionTemplateB
 labels (22.google.cloud.run.v2.ExecutionTemplate.LabelsEntryL
@@ -32,8 +32,8 @@ task_count (8
 value (	:82
 AnnotationsEntry
 key (	
-value (	:8Bk
-com.google.cloud.run.v2BExecutionTemplateProtoPZ6google.golang.org/genproto/googleapis/cloud/run/v2;runbproto3'
+value (	:8B^
+com.google.cloud.run.v2BExecutionTemplateProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
         static::$is_initialized = true;

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.CreateSessionEntityType].
+ * The request message for
+ * [SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.CreateSessionEntityType].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateSessionEntityTypeRequest</code>
  */
@@ -32,6 +33,27 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $session_entity_type = null;
+
+    /**
+     * @param string                                        $parent            Required. The session to create a session entity type for.
+     *                                                                         Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                                                                         `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *                                                                         sessions/<Session ID>`.
+     *                                                                         If `Environment ID` is not specified, we assume default 'draft'
+     *                                                                         environment. If `User ID` is not specified, we assume default '-' user. Please see
+     *                                                                         {@see SessionEntityTypesClient::sessionName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType Required. The session entity type to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSessionEntityType($sessionEntityType);
+    }
 
     /**
      * Constructor.

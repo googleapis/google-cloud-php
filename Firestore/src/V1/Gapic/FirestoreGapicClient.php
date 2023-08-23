@@ -26,11 +26,9 @@ namespace Google\Cloud\Firestore\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -79,8 +77,8 @@ use Google\Protobuf\Timestamp;
  * document database that simplifies storing, syncing, and querying data for
  * your mobile, web, and IoT apps at global scale. Its client libraries provide
  * live synchronization and offline support, while its security features and
- * integrations with Firebase and Google Cloud Platform (GCP) accelerate
- * building truly serverless apps.
+ * integrations with Firebase and Google Cloud Platform accelerate building
+ * truly serverless apps.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -99,34 +97,27 @@ use Google\Protobuf\Timestamp;
  *     $firestoreClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Firestore\V1\Client\FirestoreClient} to use the new surface.
  */
 class FirestoreGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.firestore.v1.Firestore';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'firestore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
@@ -157,9 +148,6 @@ class FirestoreGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'firestore.googleapis.com:443'.
@@ -189,7 +177,7 @@ class FirestoreGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -259,7 +247,10 @@ class FirestoreGapicClient
      *           stream.
      *     @type Timestamp $readTime
      *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
+     *
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -302,7 +293,8 @@ class FirestoreGapicClient
      * The BatchWrite method does not apply the write operations atomically
      * and can apply them out of order. Method does not allow more than one write
      * per document. Each write succeeds or fails independently. See the
-     * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the success status of each write.
+     * [BatchWriteResponse][google.firestore.v1.BatchWriteResponse] for the
+     * success status of each write.
      *
      * If you require an atomically applied set of writes, use
      * [Commit][google.firestore.v1.Firestore.Commit] instead.
@@ -481,7 +473,8 @@ class FirestoreGapicClient
      * @param string   $parent       Required. The parent resource. For example:
      *                               `projects/{project_id}/databases/{database_id}/documents` or
      *                               `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
-     * @param string   $collectionId Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`.
+     * @param string   $collectionId Required. The collection ID, relative to `parent`, to list. For example:
+     *                               `chatrooms`.
      * @param string   $documentId   The client-assigned document ID to use for this document.
      *
      *                               Optional. If not specified, an ID will be assigned by the service.
@@ -596,7 +589,10 @@ class FirestoreGapicClient
      *           Reads the document in a transaction.
      *     @type Timestamp $readTime
      *           Reads the version of the document at the given time.
-     *           This may not be older than 270 seconds.
+     *
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -674,7 +670,10 @@ class FirestoreGapicClient
      *           been generated by a previous call to the API.
      *     @type Timestamp $readTime
      *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
+     *
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -738,11 +737,16 @@ class FirestoreGapicClient
      * @param string $parent       Required. The parent resource name. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents` or
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *
      *                             For example:
      *                             `projects/my-project/databases/my-database/documents` or
      *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param string $collectionId Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
-     *                             or `messages`.
+     * @param string $collectionId Optional. The collection ID, relative to `parent`, to list.
+     *
+     *                             For example: `chatrooms` or `messages`.
+     *
+     *                             This is optional, and when not provided, Firestore will list documents
+     *                             from all collections under the provided `parent`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -756,25 +760,36 @@ class FirestoreGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $orderBy
-     *           The order to sort results by. For example: `priority desc, name`.
+     *           Optional. The optional ordering of the documents to return.
+     *
+     *           For example: `priority desc, __name__ desc`.
+     *
+     *           This mirrors the [`ORDER BY`][google.firestore.v1.StructuredQuery.order_by]
+     *           used in Firestore queries but in a string representation. When absent,
+     *           documents are ordered based on `__name__ ASC`.
      *     @type DocumentMask $mask
-     *           The fields to return. If not set, returns all fields.
+     *           Optional. The fields to return. If not set, returns all fields.
      *
      *           If a document has a field that is not present in this mask, that field
      *           will not be returned in the response.
      *     @type string $transaction
-     *           Reads documents in a transaction.
+     *           Perform the read as part of an already active transaction.
      *     @type Timestamp $readTime
-     *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
-     *     @type bool $showMissing
-     *           If the list should show missing documents. A missing document is a
-     *           document that does not exist but has sub-documents. These documents will
-     *           be returned with a key but will not have fields, [Document.create_time][google.firestore.v1.Document.create_time],
-     *           or [Document.update_time][google.firestore.v1.Document.update_time] set.
+     *           Perform the read at the provided time.
      *
-     *           Requests with `show_missing` may not specify `where` or
-     *           `order_by`.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
+     *     @type bool $showMissing
+     *           If the list should show missing documents.
+     *
+     *           A document is missing if it does not exist, but there are sub-documents
+     *           nested underneath it. When true, such missing documents will be returned
+     *           with a key but will not have fields,
+     *           [`create_time`][google.firestore.v1.Document.create_time], or
+     *           [`update_time`][google.firestore.v1.Document.update_time] set.
+     *
+     *           Requests with `show_missing` may not specify `where` or `order_by`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -827,7 +842,8 @@ class FirestoreGapicClient
     }
 
     /**
-     * Listens to changes.
+     * Listens to changes. This method is only available via gRPC or WebChannel
+     * (not REST).
      *
      * Sample code:
      * ```
@@ -947,7 +963,10 @@ class FirestoreGapicClient
      *           there are additional values to be retrieved.
      *     @type Timestamp $readTime
      *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
+     *
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1000,7 +1019,7 @@ class FirestoreGapicClient
      * $firestoreClient = new FirestoreClient();
      * try {
      *     $database = 'database';
-     *     $transaction = '';
+     *     $transaction = '...';
      *     $firestoreClient->rollback($database, $transaction);
      * } finally {
      *     $firestoreClient->close();
@@ -1036,8 +1055,9 @@ class FirestoreGapicClient
     /**
      * Runs an aggregation query.
      *
-     * Rather than producing [Document][google.firestore.v1.Document] results like [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery],
-     * this API allows running an aggregation to produce a series of
+     * Rather than producing [Document][google.firestore.v1.Document] results like
+     * [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery], this API
+     * allows running an aggregation to produce a series of
      * [AggregationResult][google.firestore.v1.AggregationResult] server-side.
      *
      * High-Level Example:
@@ -1085,9 +1105,9 @@ class FirestoreGapicClient
      *     @type Timestamp $readTime
      *           Executes the query at the given timestamp.
      *
-     *           Requires:
-     *
-     *           * Cannot be more than 270 seconds in the past.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1163,7 +1183,10 @@ class FirestoreGapicClient
      *           stream.
      *     @type Timestamp $readTime
      *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
+     *
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1265,7 +1288,8 @@ class FirestoreGapicClient
     }
 
     /**
-     * Streams batches of document updates and deletes, in order.
+     * Streams batches of document updates and deletes, in order. This method is
+     * only available via gRPC or WebChannel (not REST).
      *
      * Sample code:
      * ```

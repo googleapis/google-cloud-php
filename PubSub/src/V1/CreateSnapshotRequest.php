@@ -19,9 +19,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * Required. User-provided name for this snapshot. If the name is not provided
      * in the request, the server will assign a random name for this snapshot on
      * the same project as the subscription. Note that for REST API requests, you
-     * must specify a name.  See the <a
-     * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
-     * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * must specify a name.  See the [resource name
+     * rules](https://cloud.google.com/pubsub/docs/admin#resource_names). Format
+     * is `projects/{project}/snapshots/{snap}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,12 +41,42 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $subscription = '';
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing
+     * labels](https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 3;</code>
      */
     private $labels;
+
+    /**
+     * @param string $name         Required. User-provided name for this snapshot. If the name is not provided
+     *                             in the request, the server will assign a random name for this snapshot on
+     *                             the same project as the subscription. Note that for REST API requests, you
+     *                             must specify a name.  See the [resource name
+     *                             rules](https://cloud.google.com/pubsub/docs/admin#resource_names). Format
+     *                             is `projects/{project}/snapshots/{snap}`. Please see
+     *                             {@see SubscriberClient::snapshotName()} for help formatting this field.
+     * @param string $subscription Required. The subscription whose backlog the snapshot retains.
+     *                             Specifically, the created snapshot is guaranteed to retain:
+     *                             (a) The existing backlog on the subscription. More precisely, this is
+     *                             defined as the messages in the subscription's backlog that are
+     *                             unacknowledged upon the successful completion of the
+     *                             `CreateSnapshot` request; as well as:
+     *                             (b) Any messages published to the subscription's topic following the
+     *                             successful completion of the CreateSnapshot request.
+     *                             Format is `projects/{project}/subscriptions/{sub}`. Please see
+     *                             {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\CreateSnapshotRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $subscription): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSubscription($subscription);
+    }
 
     /**
      * Constructor.
@@ -58,9 +88,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *           Required. User-provided name for this snapshot. If the name is not provided
      *           in the request, the server will assign a random name for this snapshot on
      *           the same project as the subscription. Note that for REST API requests, you
-     *           must specify a name.  See the <a
-     *           href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
-     *           name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     *           must specify a name.  See the [resource name
+     *           rules](https://cloud.google.com/pubsub/docs/admin#resource_names). Format
+     *           is `projects/{project}/snapshots/{snap}`.
      *     @type string $subscription
      *           Required. The subscription whose backlog the snapshot retains.
      *           Specifically, the created snapshot is guaranteed to retain:
@@ -72,8 +102,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *                successful completion of the CreateSnapshot request.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     *           managing labels</a>.
+     *           See [Creating and managing
+     *           labels](https://cloud.google.com/pubsub/docs/labels).
      * }
      */
     public function __construct($data = NULL) {
@@ -85,9 +115,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * Required. User-provided name for this snapshot. If the name is not provided
      * in the request, the server will assign a random name for this snapshot on
      * the same project as the subscription. Note that for REST API requests, you
-     * must specify a name.  See the <a
-     * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
-     * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * must specify a name.  See the [resource name
+     * rules](https://cloud.google.com/pubsub/docs/admin#resource_names). Format
+     * is `projects/{project}/snapshots/{snap}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -101,9 +131,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * Required. User-provided name for this snapshot. If the name is not provided
      * in the request, the server will assign a random name for this snapshot on
      * the same project as the subscription. Note that for REST API requests, you
-     * must specify a name.  See the <a
-     * href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource
-     * name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * must specify a name.  See the [resource name
+     * rules](https://cloud.google.com/pubsub/docs/admin#resource_names). Format
+     * is `projects/{project}/snapshots/{snap}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -160,8 +190,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing
+     * labels](https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -172,8 +202,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-     * managing labels</a>.
+     * See [Creating and managing
+     * labels](https://cloud.google.com/pubsub/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

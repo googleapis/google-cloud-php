@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.SplitCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.SplitCapacityCommitment].
+ * The request for
+ * [ReservationService.SplitCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.SplitCapacityCommitment].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.SplitCapacityCommitmentRequest</code>
  */
@@ -28,6 +29,23 @@ class SplitCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 slot_count = 2;</code>
      */
     private $slot_count = 0;
+
+    /**
+     * @param string $name      Required. The resource name e.g.,:
+     *                          `projects/myproject/locations/US/capacityCommitments/123`
+     *                          Please see {@see ReservationServiceClient::capacityCommitmentName()} for help formatting this field.
+     * @param int    $slotCount Number of slots in the capacity commitment after the split.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, int $slotCount): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSlotCount($slotCount);
+    }
 
     /**
      * Constructor.

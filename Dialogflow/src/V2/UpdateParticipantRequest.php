@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Participants.UpdateParticipant][google.cloud.dialogflow.v2.Participants.UpdateParticipant].
+ * The request message for
+ * [Participants.UpdateParticipant][google.cloud.dialogflow.v2.Participants.UpdateParticipant].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateParticipantRequest</code>
  */
@@ -27,6 +28,21 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\Participant $participant Required. The participant to update.
+     * @param \Google\Protobuf\FieldMask              $updateMask  Required. The mask to specify which fields to update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateParticipantRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Participant $participant, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setParticipant($participant)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

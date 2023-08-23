@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Properties of the provided event token.
+ *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.TokenProperties</code>
  */
 class TokenProperties extends \Google\Protobuf\Internal\Message
@@ -36,11 +38,25 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * The hostname of the page on which the token was generated.
+     * The hostname of the page on which the token was generated (Web keys only).
      *
      * Generated from protobuf field <code>string hostname = 4;</code>
      */
     private $hostname = '';
+    /**
+     * The name of the Android package with which the token was generated (Android
+     * keys only).
+     *
+     * Generated from protobuf field <code>string android_package_name = 8;</code>
+     */
+    private $android_package_name = '';
+    /**
+     * The ID of the iOS bundle with which the token was generated (iOS keys
+     * only).
+     *
+     * Generated from protobuf field <code>string ios_bundle_id = 9;</code>
+     */
+    private $ios_bundle_id = '';
     /**
      * Action name provided at token generation.
      *
@@ -65,7 +81,13 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The timestamp corresponding to the generation of the token.
      *     @type string $hostname
-     *           The hostname of the page on which the token was generated.
+     *           The hostname of the page on which the token was generated (Web keys only).
+     *     @type string $android_package_name
+     *           The name of the Android package with which the token was generated (Android
+     *           keys only).
+     *     @type string $ios_bundle_id
+     *           The ID of the iOS bundle with which the token was generated (iOS keys
+     *           only).
      *     @type string $action
      *           Action name provided at token generation.
      * }
@@ -172,7 +194,7 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hostname of the page on which the token was generated.
+     * The hostname of the page on which the token was generated (Web keys only).
      *
      * Generated from protobuf field <code>string hostname = 4;</code>
      * @return string
@@ -183,7 +205,7 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hostname of the page on which the token was generated.
+     * The hostname of the page on which the token was generated (Web keys only).
      *
      * Generated from protobuf field <code>string hostname = 4;</code>
      * @param string $var
@@ -193,6 +215,62 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->hostname = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the Android package with which the token was generated (Android
+     * keys only).
+     *
+     * Generated from protobuf field <code>string android_package_name = 8;</code>
+     * @return string
+     */
+    public function getAndroidPackageName()
+    {
+        return $this->android_package_name;
+    }
+
+    /**
+     * The name of the Android package with which the token was generated (Android
+     * keys only).
+     *
+     * Generated from protobuf field <code>string android_package_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAndroidPackageName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->android_package_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ID of the iOS bundle with which the token was generated (iOS keys
+     * only).
+     *
+     * Generated from protobuf field <code>string ios_bundle_id = 9;</code>
+     * @return string
+     */
+    public function getIosBundleId()
+    {
+        return $this->ios_bundle_id;
+    }
+
+    /**
+     * The ID of the iOS bundle with which the token was generated (iOS keys
+     * only).
+     *
+     * Generated from protobuf field <code>string ios_bundle_id = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIosBundleId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ios_bundle_id = $var;
 
         return $this;
     }

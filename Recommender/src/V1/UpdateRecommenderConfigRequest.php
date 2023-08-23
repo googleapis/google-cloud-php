@@ -36,6 +36,21 @@ class UpdateRecommenderConfigRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Recommender\V1\RecommenderConfig $recommenderConfig Required. The RecommenderConfig to update.
+     * @param \Google\Protobuf\FieldMask                     $updateMask        The list of fields to be updated.
+     *
+     * @return \Google\Cloud\Recommender\V1\UpdateRecommenderConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Recommender\V1\RecommenderConfig $recommenderConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setRecommenderConfig($recommenderConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,9 +24,12 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 trait ResultTestTrait
 {
+    use ProphecyTrait;
+
     public function streamingDataProvider()
     {
         foreach ($this->getStreamingDataFixture()['tests'] as $test) {

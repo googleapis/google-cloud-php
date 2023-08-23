@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class BillingAccount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the billing account. The resource name has the form
-     * `billingAccounts/{billing_account_id}`. For example,
+     * Output only. The resource name of the billing account. The resource name
+     * has the form `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      * billing account `012345-567890-ABCDEF`.
      *
@@ -27,9 +27,10 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. True if the billing account is open, and will therefore be charged for any
-     * usage on associated projects. False if the billing account is closed, and
-     * therefore projects associated with it will be unable to use paid services.
+     * Output only. True if the billing account is open, and will therefore be
+     * charged for any usage on associated projects. False if the billing account
+     * is closed, and therefore projects associated with it will be unable to use
+     * paid services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -59,14 +60,15 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the billing account. The resource name has the form
-     *           `billingAccounts/{billing_account_id}`. For example,
+     *           Output only. The resource name of the billing account. The resource name
+     *           has the form `billingAccounts/{billing_account_id}`. For example,
      *           `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      *           billing account `012345-567890-ABCDEF`.
      *     @type bool $open
-     *           Output only. True if the billing account is open, and will therefore be charged for any
-     *           usage on associated projects. False if the billing account is closed, and
-     *           therefore projects associated with it will be unable to use paid services.
+     *           Output only. True if the billing account is open, and will therefore be
+     *           charged for any usage on associated projects. False if the billing account
+     *           is closed, and therefore projects associated with it will be unable to use
+     *           paid services.
      *     @type string $display_name
      *           The display name given to the billing account, such as `My Billing
      *           Account`. This name is displayed in the Google Cloud Console.
@@ -84,8 +86,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the billing account. The resource name has the form
-     * `billingAccounts/{billing_account_id}`. For example,
+     * Output only. The resource name of the billing account. The resource name
+     * has the form `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      * billing account `012345-567890-ABCDEF`.
      *
@@ -98,8 +100,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the billing account. The resource name has the form
-     * `billingAccounts/{billing_account_id}`. For example,
+     * Output only. The resource name of the billing account. The resource name
+     * has the form `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      * billing account `012345-567890-ABCDEF`.
      *
@@ -116,9 +118,10 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. True if the billing account is open, and will therefore be charged for any
-     * usage on associated projects. False if the billing account is closed, and
-     * therefore projects associated with it will be unable to use paid services.
+     * Output only. True if the billing account is open, and will therefore be
+     * charged for any usage on associated projects. False if the billing account
+     * is closed, and therefore projects associated with it will be unable to use
+     * paid services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -129,9 +132,10 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. True if the billing account is open, and will therefore be charged for any
-     * usage on associated projects. False if the billing account is closed, and
-     * therefore projects associated with it will be unable to use paid services.
+     * Output only. True if the billing account is open, and will therefore be
+     * charged for any usage on associated projects. False if the billing account
+     * is closed, and therefore projects associated with it will be unable to use
+     * paid services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

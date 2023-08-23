@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class TimeSeriesData extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ID of the TensorboardTimeSeries, which will become the final component
-     * of the TensorboardTimeSeries' resource name
+     * Required. The ID of the TensorboardTimeSeries, which will become the final
+     * component of the TensorboardTimeSeries' resource name
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tensorboard_time_series_id = '';
     /**
-     * Required. Immutable. The value type of this time series. All the values in this time series data
-     * must match this value type.
+     * Required. Immutable. The value type of this time series. All the values in
+     * this time series data must match this value type.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.ValueType value_type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -43,11 +43,11 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $tensorboard_time_series_id
-     *           Required. The ID of the TensorboardTimeSeries, which will become the final component
-     *           of the TensorboardTimeSeries' resource name
+     *           Required. The ID of the TensorboardTimeSeries, which will become the final
+     *           component of the TensorboardTimeSeries' resource name
      *     @type int $value_type
-     *           Required. Immutable. The value type of this time series. All the values in this time series data
-     *           must match this value type.
+     *           Required. Immutable. The value type of this time series. All the values in
+     *           this time series data must match this value type.
      *     @type array<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. Data points in this time series.
      * }
@@ -58,8 +58,8 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the TensorboardTimeSeries, which will become the final component
-     * of the TensorboardTimeSeries' resource name
+     * Required. The ID of the TensorboardTimeSeries, which will become the final
+     * component of the TensorboardTimeSeries' resource name
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -70,8 +70,8 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the TensorboardTimeSeries, which will become the final component
-     * of the TensorboardTimeSeries' resource name
+     * Required. The ID of the TensorboardTimeSeries, which will become the final
+     * component of the TensorboardTimeSeries' resource name
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -86,8 +86,8 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The value type of this time series. All the values in this time series data
-     * must match this value type.
+     * Required. Immutable. The value type of this time series. All the values in
+     * this time series data must match this value type.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.ValueType value_type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -98,8 +98,8 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The value type of this time series. All the values in this time series data
-     * must match this value type.
+     * Required. Immutable. The value type of this time series. All the values in
+     * this time series data must match this value type.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.ValueType value_type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var

@@ -20,7 +20,7 @@ class SavedQuery
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ë
+å
 ,google/cloud/aiplatform/v1/saved_query.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"æ
 
 SavedQuery
@@ -35,8 +35,8 @@ SavedQuery
  (BàA
 etag (	$
 support_automl_training	 (BàA:€êA}
-$aiplatform.googleapis.com/SavedQueryUprojects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}BÓ
-com.google.cloud.aiplatform.v1BSavedQueryProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+$aiplatform.googleapis.com/SavedQueryUprojects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}BÍ
+com.google.cloud.aiplatform.v1BSavedQueryProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

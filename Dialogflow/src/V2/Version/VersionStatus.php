@@ -66,6 +66,4 @@ class VersionStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VersionStatus::class, \Google\Cloud\Dialogflow\V2\Version_VersionStatus::class);
 

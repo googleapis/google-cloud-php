@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class TensorboardBlob extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. A URI safe key uniquely identifying a blob. Can be used to locate the blob
-     * stored in the Cloud Storage bucket of the consumer project.
+     * Output only. A URI safe key uniquely identifying a blob. Can be used to
+     * locate the blob stored in the Cloud Storage bucket of the consumer project.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -37,8 +37,8 @@ class TensorboardBlob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           Output only. A URI safe key uniquely identifying a blob. Can be used to locate the blob
-     *           stored in the Cloud Storage bucket of the consumer project.
+     *           Output only. A URI safe key uniquely identifying a blob. Can be used to
+     *           locate the blob stored in the Cloud Storage bucket of the consumer project.
      *     @type string $data
      *           Optional. The bytes of the blob is not present unless it's returned by the
      *           ReadTensorboardBlobData endpoint.
@@ -50,8 +50,8 @@ class TensorboardBlob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A URI safe key uniquely identifying a blob. Can be used to locate the blob
-     * stored in the Cloud Storage bucket of the consumer project.
+     * Output only. A URI safe key uniquely identifying a blob. Can be used to
+     * locate the blob stored in the Cloud Storage bucket of the consumer project.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -62,8 +62,8 @@ class TensorboardBlob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A URI safe key uniquely identifying a blob. Can be used to locate the blob
-     * stored in the Cloud Storage bucket of the consumer project.
+     * Output only. A URI safe key uniquely identifying a blob. Can be used to
+     * locate the blob stored in the Cloud Storage bucket of the consumer project.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

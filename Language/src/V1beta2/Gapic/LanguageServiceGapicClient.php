@@ -27,7 +27,6 @@
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RetrySettings;
@@ -41,7 +40,6 @@ use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
-
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features;
@@ -50,6 +48,8 @@ use Google\Cloud\Language\V1beta2\ClassificationModelOptions;
 use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
 use Google\Cloud\Language\V1beta2\Document;
+use Google\Cloud\Language\V1beta2\ModerateTextRequest;
+use Google\Cloud\Language\V1beta2\ModerateTextResponse;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -74,29 +74,19 @@ class LanguageServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.language.v1beta2.LanguageService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'language.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-language',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -127,9 +117,6 @@ class LanguageServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'language.googleapis.com:443'.
@@ -159,7 +146,7 @@ class LanguageServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -233,8 +220,10 @@ class LanguageServiceGapicClient
     }
 
     /**
-     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities] in the text and analyzes
-     * sentiment associated with each entity and its mentions.
+     * Finds entities, similar to
+     * [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities]
+     * in the text and analyzes sentiment associated with each entity and its
+     * mentions.
      *
      * Sample code:
      * ```
@@ -458,5 +447,42 @@ class LanguageServiceGapicClient
         }
 
         return $this->startCall('ClassifyText', ClassifyTextResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Moderates a document for harmful and sensitive categories.
+     *
+     * Sample code:
+     * ```
+     * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
+     * try {
+     *     $document = new Google\Cloud\Language\V1beta2\Document();
+     *     $response = $languageServiceClient->moderateText($document);
+     * } finally {
+     *     $languageServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Document $document     Required. Input document.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Language\V1beta2\ModerateTextResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function moderateText($document, array $optionalArgs = [])
+    {
+        $request = new ModerateTextRequest();
+        $request->setDocument($document);
+        return $this->startCall('ModerateText', ModerateTextResponse::class, $optionalArgs, $request)->wait();
     }
 }

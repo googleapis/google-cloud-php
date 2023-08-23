@@ -45,6 +45,42 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
     protected $intent_batch;
 
     /**
+     * @param string $parent         Required. The name of the agent to update or create intents in.
+     *                               Format: `projects/<Project ID>/agent`. Please see
+     *                               {@see IntentsClient::agentName()} for help formatting this field.
+     * @param string $intentBatchUri The URI to a Google Cloud Storage file containing intents to update or
+     *                               create. The file format can either be a serialized proto (of IntentBatch
+     *                               type) or JSON object. Note: The URI must start with "gs://".
+     *
+     * @return \Google\Cloud\Dialogflow\V2\BatchUpdateIntentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $intentBatchUri): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIntentBatchUri($intentBatchUri);
+    }
+
+    /**
+     * @param string                                  $parent            Required. The name of the agent to update or create intents in.
+     *                                                                   Format: `projects/<Project ID>/agent`. Please see
+     *                                                                   {@see IntentsClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\IntentBatch $intentBatchInline The collection of intents to update or create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\BatchUpdateIntentsRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentIntentBatchInline(string $parent, \Google\Cloud\Dialogflow\V2\IntentBatch $intentBatchInline): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIntentBatchInline($intentBatchInline);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

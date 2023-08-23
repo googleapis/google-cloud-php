@@ -18,16 +18,13 @@
 namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Datastore\DatastoreClient;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group datastore
  * @group datastore-key
  */
-class AllocateKeyTest extends DatastoreTestCase
+class AllocateKeyTest extends DatastoreMultipleDbTestCase
 {
-    use AssertIsType;
-
     /**
      * @dataProvider clientProvider
      */

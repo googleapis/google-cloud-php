@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Firestore.PartitionQuery][google.firestore.v1.Firestore.PartitionQuery].
+ * The response for
+ * [Firestore.PartitionQuery][google.firestore.v1.Firestore.PartitionQuery].
  *
  * Generated from protobuf message <code>google.firestore.v1.PartitionQueryResponse</code>
  */

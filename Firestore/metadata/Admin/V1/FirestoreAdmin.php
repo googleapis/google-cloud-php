@@ -26,10 +26,15 @@ class FirestoreAdmin
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-µ&
+—)
 /google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Q
 ListDatabasesRequest9
-parent (	B)‡A˙A#!firestore.googleapis.com/Database"O
+parent (	B)‡A˙A#!firestore.googleapis.com/Database"®
+CreateDatabaseRequest9
+parent (	B)‡A˙A#!firestore.googleapis.com/Database:
+database (2#.google.firestore.admin.v1.DatabaseB‡A
+database_id (	B‡A"
+CreateDatabaseMetadata"O
 ListDatabasesResponse6
 	databases (2#.google.firestore.admin.v1.Database"M
 GetDatabaseRequest7
@@ -84,7 +89,7 @@ page_token (	"_
 name (	B)‡A˙A#
 !firestore.googleapis.com/Database
 collection_ids (	
-input_uri_prefix (	2í
+input_uri_prefix (	2Ó
 FirestoreAdmin€
 CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~Ç”‰ìG">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:index⁄Aparent,index A
 IndexIndexOperationMetadataΩ
@@ -99,12 +104,14 @@ ListFields,.google.firestore.admin.v1.ListFieldsRequest-.google.firestore.admi
 ExportDocuments1.google.firestore.admin.v1.ExportDocumentsRequest.google.longrunning.Operation"xÇ”‰ì6"1/v1/{name=projects/*/databases/*}:exportDocuments:*⁄Aname A2
 ExportDocumentsResponseExportDocumentsMetadata€
 ImportDocuments1.google.firestore.admin.v1.ImportDocumentsRequest.google.longrunning.Operation"vÇ”‰ì6"1/v1/{name=projects/*/databases/*}:importDocuments:*⁄Aname A0
-google.protobuf.EmptyImportDocumentsMetadataì
+google.protobuf.EmptyImportDocumentsMetadataŸ
+CreateDatabase0.google.firestore.admin.v1.CreateDatabaseRequest.google.longrunning.Operation"vÇ”‰ì-"!/v1/{parent=projects/*}/databases:database⁄Aparent,database,database_id A"
+DatabaseCreateDatabaseMetadataì
 GetDatabase-.google.firestore.admin.v1.GetDatabaseRequest#.google.firestore.admin.v1.Database"0Ç”‰ì#!/v1/{name=projects/*/databases/*}⁄Aname¶
 ListDatabases/.google.firestore.admin.v1.ListDatabasesRequest0.google.firestore.admin.v1.ListDatabasesResponse"2Ç”‰ì#!/v1/{parent=projects/*}/databases⁄Aparent€
 UpdateDatabase0.google.firestore.admin.v1.UpdateDatabaseRequest.google.longrunning.Operation"xÇ”‰ì62*/v1/{database.name=projects/*/databases/*}:database⁄Adatabase,update_mask A"
-DatabaseUpdateDatabaseMetadatav Afirestore.googleapis.com“AXhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/datastoreB™
-com.google.firestore.admin.v1BFirestoreAdminProtoPZ>google.golang.org/genproto/googleapis/firestore/admin/v1;admin¢GCFS™Google.Cloud.Firestore.Admin.V1 Google\\Cloud\\Firestore\\Admin\\V1Í#Google::Cloud::Firestore::Admin::V1ÍAL
+DatabaseUpdateDatabaseMetadatav Afirestore.googleapis.com“AXhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/datastoreB•
+com.google.firestore.admin.v1BFirestoreAdminProtoPZ9cloud.google.com/go/firestore/apiv1/admin/adminpb;adminpb¢GCFS™Google.Cloud.Firestore.Admin.V1 Google\\Cloud\\Firestore\\Admin\\V1Í#Google::Cloud::Firestore::Admin::V1ÍAL
 !firestore.googleapis.com/Location\'projects/{project}/locations/{location}ÍAq
 (firestore.googleapis.com/CollectionGroupEprojects/{project}/databases/{database}/collectionGroups/{collection}bproto3'
         , true);

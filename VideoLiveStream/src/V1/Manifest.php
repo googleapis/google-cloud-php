@@ -17,7 +17,8 @@ class Manifest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the generated file. The default is `manifest` with the
-     * extension suffix corresponding to the `Manifest` [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
+     * extension suffix corresponding to the `Manifest`
+     * [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
      * manifests are added to the channel, each must have a unique file name.
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
@@ -30,8 +31,9 @@ class Manifest extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Required. List of `MuxStream` [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear in this
-     * manifest.
+     * Required. List of `MuxStream`
+     * [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
+     * in this manifest.
      * - For HLS, either `fmp4` or `ts` mux streams can be specified but not
      * mixed.
      * - For DASH, only `fmp4` mux streams can be specified.
@@ -59,6 +61,16 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      */
     private $segment_keep_duration = null;
+    /**
+     * Whether to use the timecode, as specified in timecode config, when setting:
+     * - `availabilityStartTime` attribute in DASH manifests.
+     * - `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
+     * If false, ignore the input timecode and use the time from system clock
+     * when the manifest is first generated. This is the default behavior.
+     *
+     * Generated from protobuf field <code>bool use_timecode_as_timeline = 6;</code>
+     */
+    private $use_timecode_as_timeline = false;
 
     /**
      * Constructor.
@@ -68,13 +80,15 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $file_name
      *           The name of the generated file. The default is `manifest` with the
-     *           extension suffix corresponding to the `Manifest` [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
+     *           extension suffix corresponding to the `Manifest`
+     *           [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
      *           manifests are added to the channel, each must have a unique file name.
      *     @type int $type
      *           Required. Type of the manifest, can be `HLS` or `DASH`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mux_streams
-     *           Required. List of `MuxStream` [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear in this
-     *           manifest.
+     *           Required. List of `MuxStream`
+     *           [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
+     *           in this manifest.
      *           - For HLS, either `fmp4` or `ts` mux streams can be specified but not
      *           mixed.
      *           - For DASH, only `fmp4` mux streams can be specified.
@@ -90,6 +104,12 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           errors while accessing segments which are listed in the manifest that the
      *           player has, but were already deleted from the output Google Cloud Storage
      *           bucket. Default value is `60s`.
+     *     @type bool $use_timecode_as_timeline
+     *           Whether to use the timecode, as specified in timecode config, when setting:
+     *           - `availabilityStartTime` attribute in DASH manifests.
+     *           - `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
+     *           If false, ignore the input timecode and use the time from system clock
+     *           when the manifest is first generated. This is the default behavior.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +119,8 @@ class Manifest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the generated file. The default is `manifest` with the
-     * extension suffix corresponding to the `Manifest` [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
+     * extension suffix corresponding to the `Manifest`
+     * [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
      * manifests are added to the channel, each must have a unique file name.
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
@@ -112,7 +133,8 @@ class Manifest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the generated file. The default is `manifest` with the
-     * extension suffix corresponding to the `Manifest` [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
+     * extension suffix corresponding to the `Manifest`
+     * [type][google.cloud.video.livestream.v1.Manifest.type]. If multiple
      * manifests are added to the channel, each must have a unique file name.
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
@@ -154,8 +176,9 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of `MuxStream` [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear in this
-     * manifest.
+     * Required. List of `MuxStream`
+     * [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
+     * in this manifest.
      * - For HLS, either `fmp4` or `ts` mux streams can be specified but not
      * mixed.
      * - For DASH, only `fmp4` mux streams can be specified.
@@ -169,8 +192,9 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of `MuxStream` [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear in this
-     * manifest.
+     * Required. List of `MuxStream`
+     * [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
+     * in this manifest.
      * - For HLS, either `fmp4` or `ts` mux streams can be specified but not
      * mixed.
      * - For DASH, only `fmp4` mux streams can be specified.
@@ -261,6 +285,40 @@ class Manifest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->segment_keep_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to use the timecode, as specified in timecode config, when setting:
+     * - `availabilityStartTime` attribute in DASH manifests.
+     * - `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
+     * If false, ignore the input timecode and use the time from system clock
+     * when the manifest is first generated. This is the default behavior.
+     *
+     * Generated from protobuf field <code>bool use_timecode_as_timeline = 6;</code>
+     * @return bool
+     */
+    public function getUseTimecodeAsTimeline()
+    {
+        return $this->use_timecode_as_timeline;
+    }
+
+    /**
+     * Whether to use the timecode, as specified in timecode config, when setting:
+     * - `availabilityStartTime` attribute in DASH manifests.
+     * - `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
+     * If false, ignore the input timecode and use the time from system clock
+     * when the manifest is first generated. This is the default behavior.
+     *
+     * Generated from protobuf field <code>bool use_timecode_as_timeline = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseTimecodeAsTimeline($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_timecode_as_timeline = $var;
 
         return $this;
     }

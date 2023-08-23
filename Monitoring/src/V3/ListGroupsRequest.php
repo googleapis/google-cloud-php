@@ -40,6 +40,22 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     protected $filter;
 
     /**
+     * @param string $name Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     *                     whose groups are to be listed. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

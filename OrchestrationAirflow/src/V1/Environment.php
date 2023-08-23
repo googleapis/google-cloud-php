@@ -31,8 +31,8 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $config = null;
     /**
-     * Output only. The UUID (Universally Unique IDentifier) associated with this environment.
-     * This value is generated when the environment is created.
+     * Output only. The UUID (Universally Unique IDentifier) associated with this
+     * environment. This value is generated when the environment is created.
      *
      * Generated from protobuf field <code>string uuid = 3;</code>
      */
@@ -82,8 +82,8 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentConfig $config
      *           Configuration parameters for this environment.
      *     @type string $uuid
-     *           Output only. The UUID (Universally Unique IDentifier) associated with this environment.
-     *           This value is generated when the environment is created.
+     *           Output only. The UUID (Universally Unique IDentifier) associated with this
+     *           environment. This value is generated when the environment is created.
      *     @type int $state
      *           The current state of the environment.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -174,8 +174,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The UUID (Universally Unique IDentifier) associated with this environment.
-     * This value is generated when the environment is created.
+     * Output only. The UUID (Universally Unique IDentifier) associated with this
+     * environment. This value is generated when the environment is created.
      *
      * Generated from protobuf field <code>string uuid = 3;</code>
      * @return string
@@ -186,8 +186,8 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The UUID (Universally Unique IDentifier) associated with this environment.
-     * This value is generated when the environment is created.
+     * Output only. The UUID (Universally Unique IDentifier) associated with this
+     * environment. This value is generated when the environment is created.
      *
      * Generated from protobuf field <code>string uuid = 3;</code>
      * @param string $var

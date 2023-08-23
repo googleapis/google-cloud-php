@@ -14,8 +14,7 @@ use UnexpectedValueException;
 class DynamicFacetableOption
 {
     /**
-     * Value used when unset. Defaults to
-     * [DYNAMIC_FACETABLE_ENABLED][google.cloud.retail.v2.CatalogAttribute.DynamicFacetableOption.DYNAMIC_FACETABLE_ENABLED].
+     * Value used when unset.
      *
      * Generated from protobuf enum <code>DYNAMIC_FACETABLE_OPTION_UNSPECIFIED = 0;</code>
      */

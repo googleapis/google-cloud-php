@@ -27,12 +27,9 @@ namespace Google\Cloud\Filestore\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -41,39 +38,46 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Filestore\V1\Backup;
 use Google\Cloud\Filestore\V1\CreateBackupRequest;
 use Google\Cloud\Filestore\V1\CreateInstanceRequest;
+use Google\Cloud\Filestore\V1\CreateSnapshotRequest;
 use Google\Cloud\Filestore\V1\DeleteBackupRequest;
 use Google\Cloud\Filestore\V1\DeleteInstanceRequest;
+use Google\Cloud\Filestore\V1\DeleteSnapshotRequest;
 use Google\Cloud\Filestore\V1\GetBackupRequest;
 use Google\Cloud\Filestore\V1\GetInstanceRequest;
+use Google\Cloud\Filestore\V1\GetSnapshotRequest;
 use Google\Cloud\Filestore\V1\Instance;
 use Google\Cloud\Filestore\V1\ListBackupsRequest;
 use Google\Cloud\Filestore\V1\ListBackupsResponse;
 use Google\Cloud\Filestore\V1\ListInstancesRequest;
 use Google\Cloud\Filestore\V1\ListInstancesResponse;
+use Google\Cloud\Filestore\V1\ListSnapshotsRequest;
+use Google\Cloud\Filestore\V1\ListSnapshotsResponse;
 use Google\Cloud\Filestore\V1\RestoreInstanceRequest;
+use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Cloud\Filestore\V1\UpdateBackupRequest;
 use Google\Cloud\Filestore\V1\UpdateInstanceRequest;
+use Google\Cloud\Filestore\V1\UpdateSnapshotRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Configures and manages Cloud Filestore resources.
+ * Service Description: Configures and manages Filestore resources.
  *
- * Cloud Filestore Manager v1.
+ * Filestore Manager v1.
  *
- * The `file.googleapis.com` service implements the Cloud Filestore API and
+ * The `file.googleapis.com` service implements the Filestore API and
  * defines the following resource model for managing instances:
  * * The service works with a collection of cloud projects, named: `/projects/*`
  * * Each project has a collection of available locations, named: `/locations/*`
  * * Each location has a collection of instances and backups, named:
  * `/instances/*` and `/backups/*` respectively.
- * * As such, Cloud Filestore instances are resources of the form:
+ * * As such, Filestore instances are resources of the form:
  * `/projects/{project_number}/locations/{location_id}/instances/{instance_id}`
  * and backups are resources of the form:
  * `/projects/{project_number}/locations/{location_id}/backup/{backup_id}`
  *
- * Note that location_id must be a GCP `zone` for instances and but to a GCP
- * `region` for backups; for example:
+ * Note that location_id must be a Google Cloud `zone` for instances, but
+ * a Google Cloud `region` for backups; for example:
  * * `projects/12345/locations/us-central1-c/instances/my-filestore`
  * * `projects/12345/locations/us-central1/backups/my-backup`
  *
@@ -90,7 +94,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -107,7 +111,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -121,34 +125,28 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient} to use the new
+ * surface.
  */
 class CloudFilestoreManagerGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.filestore.v1.CloudFilestoreManager';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'file.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -158,6 +156,8 @@ class CloudFilestoreManagerGapicClient
     private static $instanceNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $snapshotNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -224,6 +224,17 @@ class CloudFilestoreManagerGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getSnapshotNameTemplate()
+    {
+        if (self::$snapshotNameTemplate == null) {
+            self::$snapshotNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/instances/{instance}/snapshots/{snapshot}'
+            );
+        }
+
+        return self::$snapshotNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -231,6 +242,7 @@ class CloudFilestoreManagerGapicClient
                 'backup' => self::getBackupNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'snapshot' => self::getSnapshotNameTemplate(),
             ];
         }
 
@@ -293,12 +305,38 @@ class CloudFilestoreManagerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a snapshot
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instance
+     * @param string $snapshot
+     *
+     * @return string The formatted snapshot resource.
+     */
+    public static function snapshotName(
+        $project,
+        $location,
+        $instance,
+        $snapshot
+    ) {
+        return self::getSnapshotNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'instance' => $instance,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/backups/{backup}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
+     * - snapshot: projects/{project}/locations/{location}/instances/{instance}/snapshots/{snapshot}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -380,9 +418,6 @@ class CloudFilestoreManagerGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'file.googleapis.com:443'.
@@ -412,7 +447,7 @@ class CloudFilestoreManagerGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -452,7 +487,7 @@ class CloudFilestoreManagerGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -469,7 +504,7 @@ class CloudFilestoreManagerGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -480,8 +515,8 @@ class CloudFilestoreManagerGapicClient
      * ```
      *
      * @param string $parent       Required. The backup's project and location, in the format
-     *                             `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     *                             backup locations map to GCP regions, for example **us-west1**.
+     *                             `projects/{project_number}/locations/{location}`. In Filestore,
+     *                             backup locations map to Google Cloud regions, for example **us-west1**.
      * @param Backup $backup       Required. A [backup resource][google.cloud.filestore.v1.Backup]
      * @param string $backupId     Required. The ID to use for the backup.
      *                             The ID must be unique within the specified project and location.
@@ -546,7 +581,7 @@ class CloudFilestoreManagerGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -563,7 +598,7 @@ class CloudFilestoreManagerGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -574,8 +609,8 @@ class CloudFilestoreManagerGapicClient
      * ```
      *
      * @param string   $parent       Required. The instance's project and location, in the format
-     *                               `projects/{project_id}/locations/{location}`. In Cloud Filestore,
-     *                               locations map to GCP zones, for example **us-west1-b**.
+     *                               `projects/{project_id}/locations/{location}`. In Filestore,
+     *                               locations map to Google Cloud zones, for example **us-west1-b**.
      * @param string   $instanceId   Required. The name of the instance to create.
      *                               The name must be unique for the specified project and location.
      * @param Instance $instance     Required. An [instance resource][google.cloud.filestore.v1.Instance]
@@ -612,6 +647,94 @@ class CloudFilestoreManagerGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'CreateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates a snapshot.
+     *
+     * Sample code:
+     * ```
+     * $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
+     * try {
+     *     $formattedParent = $cloudFilestoreManagerClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $snapshotId = 'snapshot_id';
+     *     $snapshot = new Snapshot();
+     *     $operationResponse = $cloudFilestoreManagerClient->createSnapshot($formattedParent, $snapshotId, $snapshot);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudFilestoreManagerClient->createSnapshot($formattedParent, $snapshotId, $snapshot);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudFilestoreManagerClient->resumeOperation($operationName, 'createSnapshot');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudFilestoreManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The Filestore Instance to create the snapshots of, in the format
+     *                               `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     * @param string   $snapshotId   Required. The ID to use for the snapshot.
+     *                               The ID must be unique within the specified instance.
+     *
+     *                               This value must start with a lowercase letter followed by up to 62
+     *                               lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * @param Snapshot $snapshot     Required. A snapshot resource.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createSnapshot(
+        $parent,
+        $snapshotId,
+        $snapshot,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSnapshotId($snapshotId);
+        $request->setSnapshot($snapshot);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateSnapshot',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -732,6 +855,9 @@ class CloudFilestoreManagerGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $force
+     *           If set to true, all snapshots of the instance will also be deleted.
+     *           (Otherwise, the request will only work if the instance has no snapshots.)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -748,6 +874,10 @@ class CloudFilestoreManagerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -756,6 +886,78 @@ class CloudFilestoreManagerGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DeleteInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a snapshot.
+     *
+     * Sample code:
+     * ```
+     * $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
+     * try {
+     *     $formattedName = $cloudFilestoreManagerClient->snapshotName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[SNAPSHOT]');
+     *     $operationResponse = $cloudFilestoreManagerClient->deleteSnapshot($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudFilestoreManagerClient->deleteSnapshot($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudFilestoreManagerClient->resumeOperation($operationName, 'deleteSnapshot');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudFilestoreManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The snapshot resource name, in the format
+     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteSnapshot($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteSnapshot',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -861,6 +1063,55 @@ class CloudFilestoreManagerGapicClient
     }
 
     /**
+     * Gets the details of a specific snapshot.
+     *
+     * Sample code:
+     * ```
+     * $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
+     * try {
+     *     $formattedName = $cloudFilestoreManagerClient->snapshotName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[SNAPSHOT]');
+     *     $response = $cloudFilestoreManagerClient->getSnapshot($formattedName);
+     * } finally {
+     *     $cloudFilestoreManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The snapshot resource name, in the format
+     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Filestore\V1\Snapshot
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSnapshot($name, array $optionalArgs = [])
+    {
+        $request = new GetSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetSnapshot',
+            Snapshot::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists all backups in a project for either a specified location or for all
      * locations.
      *
@@ -889,9 +1140,9 @@ class CloudFilestoreManagerGapicClient
      *
      * @param string $parent       Required. The project and location for which to retrieve backup
      *                             information, in the format
-     *                             `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     *                             backup locations map to GCP regions, for example **us-west1**. To retrieve
-     *                             backup information for all locations, use "-" for the
+     *                             `projects/{project_number}/locations/{location}`. In Filestore, backup
+     *                             locations map to Google Cloud regions, for example **us-west1**. To
+     *                             retrieve backup information for all locations, use "-" for the
      *                             `{location}` value.
      * @param array  $optionalArgs {
      *     Optional.
@@ -984,8 +1235,9 @@ class CloudFilestoreManagerGapicClient
      *
      * @param string $parent       Required. The project and location for which to retrieve instance
      *                             information, in the format `projects/{project_id}/locations/{location}`. In
-     *                             Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To
-     *                             retrieve instance information for all locations, use "-" for the
+     *                             Cloud Filestore, locations map to Google Cloud zones, for example
+     *                             **us-west1-b**. To retrieve instance information for all locations, use "-"
+     *                             for the
      *                             `{location}` value.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1050,6 +1302,98 @@ class CloudFilestoreManagerGapicClient
     }
 
     /**
+     * Lists all snapshots in a project for either a specified location
+     * or for all locations.
+     *
+     * Sample code:
+     * ```
+     * $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
+     * try {
+     *     $formattedParent = $cloudFilestoreManagerClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudFilestoreManagerClient->listSnapshots($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudFilestoreManagerClient->listSnapshots($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudFilestoreManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The instance for which to retrieve snapshot information,
+     *                             in the format
+     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $orderBy
+     *           Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     *     @type string $filter
+     *           List filter.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSnapshots($parent, array $optionalArgs = [])
+    {
+        $request = new ListSnapshotsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListSnapshots',
+            $optionalArgs,
+            ListSnapshotsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Restores an existing instance's file share from a backup.
      *
      * The capacity of the instance needs to be equal to or larger than the
@@ -1066,7 +1410,7 @@ class CloudFilestoreManagerGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1083,7 +1427,7 @@ class CloudFilestoreManagerGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1095,8 +1439,8 @@ class CloudFilestoreManagerGapicClient
      *
      * @param string $name         Required. The resource name of the instance, in the format
      *                             `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
-     * @param string $fileShare    Required. Name of the file share in the Cloud Filestore instance that the
-     *                             backup is being restored to.
+     * @param string $fileShare    Required. Name of the file share in the Filestore instance that the backup
+     *                             is being restored to.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1151,7 +1495,7 @@ class CloudFilestoreManagerGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1168,7 +1512,7 @@ class CloudFilestoreManagerGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1226,7 +1570,7 @@ class CloudFilestoreManagerGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1243,7 +1587,7 @@ class CloudFilestoreManagerGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1296,6 +1640,86 @@ class CloudFilestoreManagerGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the settings of a specific snapshot.
+     *
+     * Sample code:
+     * ```
+     * $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $snapshot = new Snapshot();
+     *     $operationResponse = $cloudFilestoreManagerClient->updateSnapshot($updateMask, $snapshot);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudFilestoreManagerClient->updateSnapshot($updateMask, $snapshot);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudFilestoreManagerClient->resumeOperation($operationName, 'updateSnapshot');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudFilestoreManagerClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask   Required. Mask of fields to update. At least one path must be supplied in
+     *                                this field.
+     * @param Snapshot  $snapshot     Required. A snapshot resource.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateSnapshot(
+        $updateMask,
+        $snapshot,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setSnapshot($snapshot);
+        $requestParamHeaders['snapshot.name'] = $snapshot->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateSnapshot',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

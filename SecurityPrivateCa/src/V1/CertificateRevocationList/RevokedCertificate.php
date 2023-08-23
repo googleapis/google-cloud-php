@@ -9,27 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a revoked [Certificate][google.cloud.security.privateca.v1.Certificate].
+ * Describes a revoked
+ * [Certificate][google.cloud.security.privateca.v1.Certificate].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate</code>
  */
 class RevokedCertificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name for the [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * The resource name for the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string certificate = 1 [(.google.api.resource_reference) = {</code>
      */
     private $certificate = '';
     /**
-     * The serial number of the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * The serial number of the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>string hex_serial_number = 2;</code>
      */
     private $hex_serial_number = '';
     /**
-     * The reason the [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * The reason the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_reason = 3;</code>
      */
@@ -42,12 +47,16 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $certificate
-     *           The resource name for the [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     *           The resource name for the
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] in the
+     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *     @type string $hex_serial_number
-     *           The serial number of the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     *           The serial number of the
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate].
      *     @type int $revocation_reason
-     *           The reason the [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     *           The reason the
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     *           revoked.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +65,9 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * The resource name for the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string certificate = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -68,8 +78,9 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * The resource name for the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
      * Generated from protobuf field <code>string certificate = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -84,7 +95,8 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The serial number of the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * The serial number of the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>string hex_serial_number = 2;</code>
      * @return string
@@ -95,7 +107,8 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The serial number of the [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * The serial number of the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>string hex_serial_number = 2;</code>
      * @param string $var
@@ -110,7 +123,9 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The reason the [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * The reason the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_reason = 3;</code>
      * @return int
@@ -121,7 +136,9 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The reason the [Certificate][google.cloud.security.privateca.v1.Certificate] was revoked.
+     * The reason the
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] was
+     * revoked.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_reason = 3;</code>
      * @param int $var

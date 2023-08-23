@@ -51,6 +51,24 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                             $parent  Required. The Group's parent. Please see
+     *                                                    {@see VmMigrationClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VMMigration\V1\Group $group   Required. The create request body.
+     * @param string                             $groupId Required. The group identifier.
+     *
+     * @return \Google\Cloud\VMMigration\V1\CreateGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VMMigration\V1\Group $group, string $groupId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGroup($group)
+            ->setGroupId($groupId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -101,6 +101,13 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string channel_partner_id = 13;</code>
      */
     private $channel_partner_id = '';
+    /**
+     * Optional. External CRM ID for the customer.
+     * Populated only if a CRM ID exists for this customer.
+     *
+     * Generated from protobuf field <code>string correlation_id = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $correlation_id = '';
 
     /**
      * Constructor.
@@ -146,6 +153,9 @@ class Customer extends \Google\Protobuf\Internal\Message
      *     @type string $channel_partner_id
      *           Cloud Identity ID of the customer's channel partner.
      *           Populated only if a channel partner exists for this customer.
+     *     @type string $correlation_id
+     *           Optional. External CRM ID for the customer.
+     *           Populated only if a CRM ID exists for this customer.
      * }
      */
     public function __construct($data = NULL) {
@@ -539,6 +549,34 @@ class Customer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->channel_partner_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. External CRM ID for the customer.
+     * Populated only if a CRM ID exists for this customer.
+     *
+     * Generated from protobuf field <code>string correlation_id = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCorrelationId()
+    {
+        return $this->correlation_id;
+    }
+
+    /**
+     * Optional. External CRM ID for the customer.
+     * Populated only if a CRM ID exists for this customer.
+     *
+     * Generated from protobuf field <code>string correlation_id = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCorrelationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->correlation_id = $var;
 
         return $this;
     }

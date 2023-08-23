@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.GetArtifact][google.cloud.aiplatform.v1.MetadataService.GetArtifact].
+ * Request message for
+ * [MetadataService.GetArtifact][google.cloud.aiplatform.v1.MetadataService.GetArtifact].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetArtifactRequest</code>
  */
@@ -23,6 +24,22 @@ class GetArtifactRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The resource name of the Artifact to retrieve.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     *                     Please see {@see MetadataServiceClient::artifactName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetArtifactRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

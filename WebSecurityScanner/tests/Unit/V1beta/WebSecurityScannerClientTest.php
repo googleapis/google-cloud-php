@@ -23,16 +23,14 @@
 namespace Google\Cloud\WebSecurityScanner\Tests\Unit\V1beta;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\WebSecurityScanner\V1beta\CrawledUrl;
 use Google\Cloud\WebSecurityScanner\V1beta\Finding;
 use Google\Cloud\WebSecurityScanner\V1beta\ListCrawledUrlsResponse;
-use Google\Cloud\WebSecurityScanner\V1beta\ListFindingsResponse;
 use Google\Cloud\WebSecurityScanner\V1beta\ListFindingTypeStatsResponse;
+use Google\Cloud\WebSecurityScanner\V1beta\ListFindingsResponse;
 use Google\Cloud\WebSecurityScanner\V1beta\ListScanConfigsResponse;
 use Google\Cloud\WebSecurityScanner\V1beta\ListScanRunsResponse;
 use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig;
@@ -50,25 +48,19 @@ use stdClass;
  */
 class WebSecurityScannerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return WebSecurityScannerClient
-     */
+    /** @return WebSecurityScannerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +69,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         return new WebSecurityScannerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createScanConfigTest()
     {
         $transport = $this->createTransport();
@@ -117,9 +107,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -157,9 +145,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteScanConfigTest()
     {
         $transport = $this->createTransport();
@@ -183,9 +169,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -218,9 +202,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFindingTest()
     {
         $transport = $this->createTransport();
@@ -265,9 +247,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFindingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -300,9 +280,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getScanConfigTest()
     {
         $transport = $this->createTransport();
@@ -333,9 +311,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -368,9 +344,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getScanRunTest()
     {
         $transport = $this->createTransport();
@@ -405,9 +379,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getScanRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -440,9 +412,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCrawledUrlsTest()
     {
         $transport = $this->createTransport();
@@ -477,9 +447,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCrawledUrlsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -512,9 +480,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFindingTypeStatsTest()
     {
         $transport = $this->createTransport();
@@ -539,9 +505,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFindingTypeStatsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -574,9 +538,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFindingsTest()
     {
         $transport = $this->createTransport();
@@ -614,9 +576,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFindingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -650,9 +610,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listScanConfigsTest()
     {
         $transport = $this->createTransport();
@@ -687,9 +645,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listScanConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -722,9 +678,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listScanRunsTest()
     {
         $transport = $this->createTransport();
@@ -759,9 +713,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listScanRunsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -794,9 +746,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startScanRunTest()
     {
         $transport = $this->createTransport();
@@ -831,9 +781,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startScanRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -866,9 +814,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopScanRunTest()
     {
         $transport = $this->createTransport();
@@ -903,9 +849,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopScanRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -938,9 +882,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateScanConfigTest()
     {
         $transport = $this->createTransport();
@@ -978,9 +920,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateScanConfigExceptionTest()
     {
         $transport = $this->createTransport();

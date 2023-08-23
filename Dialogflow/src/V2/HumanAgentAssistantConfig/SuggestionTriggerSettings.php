@@ -103,6 +103,4 @@ class SuggestionTriggerSettings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SuggestionTriggerSettings::class, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig_SuggestionTriggerSettings::class);
 

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [Documents.ListDocuments][google.cloud.dialogflow.v2.Documents.ListDocuments].
+ * Request message for
+ * [Documents.ListDocuments][google.cloud.dialogflow.v2.Documents.ListDocuments].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListDocumentsRequest</code>
  */
@@ -56,6 +57,22 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 4;</code>
      */
     private $filter = '';
+
+    /**
+     * @param string $parent Required. The knowledge base to list all documents for.
+     *                       Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+     *                       {@see DocumentsClient::knowledgeBaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListDocumentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

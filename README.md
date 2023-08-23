@@ -9,68 +9,7 @@ PHP 7.4 | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/b
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud)
 
-* [Homepage](http://googleapis.github.io/google-cloud-php)
-* [API Documentation](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/servicebuilder)
-
-This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
-* [Cloud AutoML](AutoMl)
-* [Cloud Firestore](Firestore)
-* [Cloud Spanner](Spanner)
-* [Google BigQuery](BigQuery)
-* [Google Bigtable](Bigtable)
-* [Google Cloud Asset](Asset)
-* [Google Cloud BigQuery Data Transfer](BigQueryDataTransfer)
-* [Google Cloud BigQuery Storage](BigQueryStorage)
-* [Google Cloud Billing](Billing)
-* [Google Cloud Compute](Compute)
-* [Google Cloud Container](Container)
-* [Google Cloud Dataproc](Dataproc)
-* [Google Cloud Datastore](Datastore)
-* [Google Cloud Data Catalog](DataCatalog)
-* [Google Cloud IoT](Iot)
-* [Google Cloud KMS](Kms)
-* [Google Cloud OsLogin](OsLogin)
-* [Google Cloud Pub/Sub](PubSub)
-* [Google Cloud Recaptcha Enterprise](RecaptchaEnterprise)
-* [Google Cloud Redis](Redis)
-* [Google Cloud Scheduler](Scheduler)
-* [Google Cloud Security Command Center](SecurityCenter)
-* [Google Cloud Speech](Speech)
-* [Google Cloud Storage](Storage)
-* [Google Cloud Tasks](Tasks)
-* [Google Cloud Text-to-Speech](TextToSpeech)
-* [Google Cloud Translation](Translate)
-* [Google Cloud Video Intelligence](VideoIntelligence)
-* [Google Cloud Vision](Vision)
-* [Google Cloud Web Risk](WebRisk)
-* [Google DLP](Dlp)
-* [Google Stackdriver Debugger](Debugger)
-* [Google Stackdriver Logging](Logging)
-* [Google Stackdriver Monitoring](Monitoring)
-* [Google Stackdriver Trace](Trace)
-* [Recommender](Recommender)
-* [Secret Manager](SecretManager)
-
-This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
-
-* [Dialogflow API](Dialogflow)
-* [Google Analytics Admin](AnalyticsAdmin)
-* [Google Analytics Data](AnalyticsData)
-* [Google Certificate Authority Service](SecurityPrivateCa)
-* [Google Cloud Assured Workloads](AssuredWorkloads)
-* [Google Cloud BigQuery Connection](BigQueryConnection)
-* [Google Cloud BigQuery Reservation](BigQueryReservation)
-* [Google Cloud Channel](Channel)
-* [Google Cloud Datastore Admin](DatastoreAdmin)
-* [Google Cloud Natural Language](Language)
-* [Google Cloud Retail](Retail)
-* [Google Cloud Talent Solution](Talent)
-* [Google Cloud Web Security Scanner](WebSecurityScanner)
-* [Google Cloud Workflows](Workflows)
-* [Google Service Directory](ServiceDirectory)
-* [Google Stackdriver Error Reporting](ErrorReporting)
-* [Memorystore for Memcached](Memcache)
-* [Recommendations AI](RecommendationEngine)
+View the [list of supported APIs and Services](https://cloud.google.com/php/docs/reference).
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -192,8 +131,7 @@ $spanner = new SpannerClient([
 
 ## PHP Versions Supported
 
-All client libraries support PHP 5.6 and above, with the exception of
-[Google Cloud Compute](Compute), which supports PHP 7.0 and above.
+All client libraries support PHP 7.4 and above.
 
 ## Versioning
 
@@ -220,8 +158,8 @@ Contributions to this library are always welcome and highly encouraged.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more information on how to get started.
 
-This repository is not an official support channel. If you have support questions, 
-file a support request through the normal Google support channels, 
+This repository is not an official support channel. If you have support questions,
+file a support request through the normal Google support channels,
 or post questions on a forum such as [StackOverflow](http://stackoverflow.com/questions/tagged/google-cloud-platform+php).
 
 ## License

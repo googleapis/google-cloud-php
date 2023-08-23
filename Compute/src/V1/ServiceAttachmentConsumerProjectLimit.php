@@ -21,6 +21,12 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
      */
     private $connection_limit = null;
     /**
+     * The network URL for the network to set the limit for.
+     *
+     * Generated from protobuf field <code>optional string network_url = 207194078;</code>
+     */
+    private $network_url = null;
+    /**
      * The project id or number for the project to set the limit for.
      *
      * Generated from protobuf field <code>optional string project_id_or_num = 349783336;</code>
@@ -35,6 +41,8 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
      *
      *     @type int $connection_limit
      *           The value of the limit to set.
+     *     @type string $network_url
+     *           The network URL for the network to set the limit for.
      *     @type string $project_id_or_num
      *           The project id or number for the project to set the limit for.
      * }
@@ -76,6 +84,42 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     {
         GPBUtil::checkUint32($var);
         $this->connection_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * The network URL for the network to set the limit for.
+     *
+     * Generated from protobuf field <code>optional string network_url = 207194078;</code>
+     * @return string
+     */
+    public function getNetworkUrl()
+    {
+        return isset($this->network_url) ? $this->network_url : '';
+    }
+
+    public function hasNetworkUrl()
+    {
+        return isset($this->network_url);
+    }
+
+    public function clearNetworkUrl()
+    {
+        unset($this->network_url);
+    }
+
+    /**
+     * The network URL for the network to set the limit for.
+     *
+     * Generated from protobuf field <code>optional string network_url = 207194078;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetworkUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network_url = $var;
 
         return $this;
     }

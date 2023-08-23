@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTagBindingsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A possibly paginated list of TagBindings for the specified TagValue or
-     * resource.
+     * A possibly paginated list of TagBindings for the specified resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagBinding tag_bindings = 1;</code>
      */
@@ -43,8 +42,7 @@ class ListTagBindingsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\ResourceManager\V3\TagBinding>|\Google\Protobuf\Internal\RepeatedField $tag_bindings
-     *           A possibly paginated list of TagBindings for the specified TagValue or
-     *           resource.
+     *           A possibly paginated list of TagBindings for the specified resource.
      *     @type string $next_page_token
      *           Pagination token.
      *           If the result set is too large to fit in a single response, this token
@@ -62,8 +60,7 @@ class ListTagBindingsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A possibly paginated list of TagBindings for the specified TagValue or
-     * resource.
+     * A possibly paginated list of TagBindings for the specified resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagBinding tag_bindings = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -74,8 +71,7 @@ class ListTagBindingsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A possibly paginated list of TagBindings for the specified TagValue or
-     * resource.
+     * A possibly paginated list of TagBindings for the specified resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagBinding tag_bindings = 1;</code>
      * @param array<\Google\Cloud\ResourceManager\V3\TagBinding>|\Google\Protobuf\Internal\RepeatedField $var

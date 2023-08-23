@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.QueryContextLineageSubgraph][google.cloud.aiplatform.v1.MetadataService.QueryContextLineageSubgraph].
+ * Request message for
+ * [MetadataService.QueryContextLineageSubgraph][google.cloud.aiplatform.v1.MetadataService.QueryContextLineageSubgraph].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.QueryContextLineageSubgraphRequest</code>
  */
@@ -27,6 +28,27 @@ class QueryContextLineageSubgraphRequest extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>string context = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $context = '';
+
+    /**
+     * @param string $context Required. The resource name of the Context whose Artifacts and Executions
+     *                        should be retrieved as a LineageSubgraph.
+     *                        Format:
+     *                        `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *
+     *                        The request may error with FAILED_PRECONDITION if the number of Artifacts,
+     *                        the number of Executions, or the number of Events that would be returned
+     *                        for the Context exceeds 1000. Please see
+     *                        {@see MetadataServiceClient::contextName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest
+     *
+     * @experimental
+     */
+    public static function build(string $context): self
+    {
+        return (new self())
+            ->setContext($context);
+    }
 
     /**
      * Constructor.

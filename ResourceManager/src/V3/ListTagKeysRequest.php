@@ -16,16 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the new TagKey's parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the TagKey's parent.
+     * Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of TagKeys to return in the response. The server allows
-     * a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     * as the default.
+     * Optional. The maximum number of TagKeys to return in the response. The
+     * server allows a maximum of 300 TagKeys to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,18 +40,34 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name of the TagKey's parent.
+     *                       Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     *                       `projects/{project_number}`
+     *
+     * @return \Google\Cloud\ResourceManager\V3\ListTagKeysRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the new TagKey's parent.
-     *           Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     *           Required. The resource name of the TagKey's parent.
+     *           Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     *           `projects/{project_number}`
      *     @type int $page_size
-     *           Optional. The maximum number of TagKeys to return in the response. The server allows
-     *           a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     *           as the default.
+     *           Optional. The maximum number of TagKeys to return in the response. The
+     *           server allows a maximum of 300 TagKeys to return. If unspecified, the
+     *           server will use 100 as the default.
      *     @type string $page_token
      *           Optional. A pagination token returned from a previous call to `ListTagKey`
      *           that indicates where this listing should continue from.
@@ -62,8 +79,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the new TagKey's parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the TagKey's parent.
+     * Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +92,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the new TagKey's parent.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the TagKey's parent.
+     * Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     * `projects/{project_number}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -90,9 +109,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagKeys to return in the response. The server allows
-     * a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     * as the default.
+     * Optional. The maximum number of TagKeys to return in the response. The
+     * server allows a maximum of 300 TagKeys to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -103,9 +122,9 @@ class ListTagKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of TagKeys to return in the response. The server allows
-     * a maximum of 300 TagKeys to return. If unspecified, the server will use 100
-     * as the default.
+     * Optional. The maximum number of TagKeys to return in the response. The
+     * server allows a maximum of 300 TagKeys to return. If unspecified, the
+     * server will use 100 as the default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

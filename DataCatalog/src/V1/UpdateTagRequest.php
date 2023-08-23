@@ -34,6 +34,39 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\DataCatalog\V1\Tag $tag Required. The updated tag. The "name" field must be set.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateTagRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\DataCatalog\V1\Tag $tag): self
+    {
+        return (new self())
+            ->setTag($tag);
+    }
+
+    /**
+     * @param \Google\Cloud\DataCatalog\V1\Tag $tag        Required. The updated tag. The "name" field must be set.
+     * @param \Google\Protobuf\FieldMask       $updateMask Names of fields whose values to overwrite on a tag. Currently, a tag has
+     *                                                     the only modifiable field with the name `fields`.
+     *
+     *                                                     In general, if this parameter is absent or empty, all modifiable fields
+     *                                                     are overwritten. If such fields are non-required and omitted in the
+     *                                                     request body, their values are emptied.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateTagRequest
+     *
+     * @experimental
+     */
+    public static function buildFromTagUpdateMask(\Google\Cloud\DataCatalog\V1\Tag $tag, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTag($tag)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

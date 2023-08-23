@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
+ * The request for
+ * [Firestore.RunAggregationQuery][google.firestore.v1.Firestore.RunAggregationQuery].
  *
  * Generated from protobuf message <code>google.firestore.v1.RunAggregationQueryRequest</code>
  */
@@ -53,8 +54,9 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      *           stream.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Executes the query at the given timestamp.
-     *           Requires:
-     *           * Cannot be more than 270 seconds in the past.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      * }
      */
     public function __construct($data = NULL) {
@@ -199,8 +201,9 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Executes the query at the given timestamp.
-     * Requires:
-     * * Cannot be more than 270 seconds in the past.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -217,8 +220,9 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Executes the query at the given timestamp.
-     * Requires:
-     * * Cannot be more than 270 seconds in the past.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var

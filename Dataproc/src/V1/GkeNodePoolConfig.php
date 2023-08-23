@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The configuration of a GKE NodePool used by a [Dataproc-on-GKE
+ * The configuration of a GKE node pool used by a [Dataproc-on-GKE
  * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.GkeNodePoolConfig</code>
@@ -25,17 +25,20 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The list of Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available) where
-     * NodePool's nodes will be located.
-     * **Note:** Currently, only one zone may be specified.
-     * If a location is not specified during NodePool creation, Dataproc will
-     * choose a location.
+     * node pool nodes associated with a Dataproc on GKE virtual cluster
+     * will be located.
+     * **Note:** All node pools associated with a virtual cluster
+     * must be located in the same region as the virtual cluster, and they must
+     * be located in the same zone within that region.
+     * If a location is not specified during node pool creation, Dataproc on GKE
+     * will choose the zone.
      *
      * Generated from protobuf field <code>repeated string locations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $locations;
     /**
-     * Optional. The autoscaler configuration for this NodePool. The autoscaler is enabled
-     * only when a valid configuration is present.
+     * Optional. The autoscaler configuration for this node pool. The autoscaler
+     * is enabled only when a valid configuration is present.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAutoscalingConfig autoscaling = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -52,13 +55,16 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           Optional. The list of Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) where
-     *           NodePool's nodes will be located.
-     *           **Note:** Currently, only one zone may be specified.
-     *           If a location is not specified during NodePool creation, Dataproc will
-     *           choose a location.
+     *           node pool nodes associated with a Dataproc on GKE virtual cluster
+     *           will be located.
+     *           **Note:** All node pools associated with a virtual cluster
+     *           must be located in the same region as the virtual cluster, and they must
+     *           be located in the same zone within that region.
+     *           If a location is not specified during node pool creation, Dataproc on GKE
+     *           will choose the zone.
      *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAutoscalingConfig $autoscaling
-     *           Optional. The autoscaler configuration for this NodePool. The autoscaler is enabled
-     *           only when a valid configuration is present.
+     *           Optional. The autoscaler configuration for this node pool. The autoscaler
+     *           is enabled only when a valid configuration is present.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,10 +111,13 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The list of Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available) where
-     * NodePool's nodes will be located.
-     * **Note:** Currently, only one zone may be specified.
-     * If a location is not specified during NodePool creation, Dataproc will
-     * choose a location.
+     * node pool nodes associated with a Dataproc on GKE virtual cluster
+     * will be located.
+     * **Note:** All node pools associated with a virtual cluster
+     * must be located in the same region as the virtual cluster, and they must
+     * be located in the same zone within that region.
+     * If a location is not specified during node pool creation, Dataproc on GKE
+     * will choose the zone.
      *
      * Generated from protobuf field <code>repeated string locations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -121,10 +130,13 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The list of Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available) where
-     * NodePool's nodes will be located.
-     * **Note:** Currently, only one zone may be specified.
-     * If a location is not specified during NodePool creation, Dataproc will
-     * choose a location.
+     * node pool nodes associated with a Dataproc on GKE virtual cluster
+     * will be located.
+     * **Note:** All node pools associated with a virtual cluster
+     * must be located in the same region as the virtual cluster, and they must
+     * be located in the same zone within that region.
+     * If a location is not specified during node pool creation, Dataproc on GKE
+     * will choose the zone.
      *
      * Generated from protobuf field <code>repeated string locations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -139,8 +151,8 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The autoscaler configuration for this NodePool. The autoscaler is enabled
-     * only when a valid configuration is present.
+     * Optional. The autoscaler configuration for this node pool. The autoscaler
+     * is enabled only when a valid configuration is present.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAutoscalingConfig autoscaling = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAutoscalingConfig|null
@@ -161,8 +173,8 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The autoscaler configuration for this NodePool. The autoscaler is enabled
-     * only when a valid configuration is present.
+     * Optional. The autoscaler configuration for this node pool. The autoscaler
+     * is enabled only when a valid configuration is present.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAutoscalingConfig autoscaling = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAutoscalingConfig $var

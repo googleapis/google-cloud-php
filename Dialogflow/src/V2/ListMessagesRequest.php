@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages].
+ * The request message for
+ * [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListMessagesRequest</code>
  */
@@ -48,6 +49,22 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The name of the conversation to list messages for.
+     *                       Format: `projects/<Project ID>/locations/<Location
+     *                       ID>/conversations/<Conversation ID>`
+     *                       Please see {@see ConversationsClient::conversationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListMessagesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

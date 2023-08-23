@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.ListSavedQueries][google.cloud.aiplatform.v1.DatasetService.ListSavedQueries].
+ * Request message for
+ * [DatasetService.ListSavedQueries][google.cloud.aiplatform.v1.DatasetService.ListSavedQueries].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListSavedQueriesRequest</code>
  */
@@ -54,6 +55,22 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
+
+    /**
+     * @param string $parent Required. The resource name of the Dataset to list SavedQueries from.
+     *                       Format:
+     *                       `projects/{project}/locations/{location}/datasets/{dataset}`
+     *                       Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

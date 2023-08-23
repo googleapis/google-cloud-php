@@ -85,6 +85,7 @@ class DeletionQueue
      * Process all items in the deletion queue.
      *
      * @return void
+     * @throws ApiException
      *
      * @experimental
      * @internal

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.CreateReservation][google.cloud.bigquery.reservation.v1.ReservationService.CreateReservation].
+ * The request for
+ * [ReservationService.CreateReservation][google.cloud.bigquery.reservation.v1.ReservationService.CreateReservation].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.CreateReservationRequest</code>
  */
@@ -36,6 +37,27 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation reservation = 3;</code>
      */
     private $reservation = null;
+
+    /**
+     * @param string                                            $parent        Required. Project, location. E.g.,
+     *                                                                         `projects/myproject/locations/US`
+     *                                                                         Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Reservation $reservation   Definition of the new reservation to create.
+     * @param string                                            $reservationId The reservation ID. It must only contain lower case alphanumeric
+     *                                                                         characters or dashes. It must start with a letter and must not end
+     *                                                                         with a dash. Its maximum length is 64 characters.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\BigQuery\Reservation\V1\Reservation $reservation, string $reservationId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setReservation($reservation)
+            ->setReservationId($reservationId);
+    }
 
     /**
      * Constructor.

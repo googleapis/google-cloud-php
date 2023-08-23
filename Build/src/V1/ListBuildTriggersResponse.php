@@ -34,7 +34,7 @@ class ListBuildTriggersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Build\V1\BuildTrigger[]|\Google\Protobuf\Internal\RepeatedField $triggers
+     *     @type array<\Google\Cloud\Build\V1\BuildTrigger>|\Google\Protobuf\Internal\RepeatedField $triggers
      *           `BuildTriggers` for the project, sorted by `create_time` descending.
      *     @type string $next_page_token
      *           Token to receive the next page of results.
@@ -60,7 +60,7 @@ class ListBuildTriggersResponse extends \Google\Protobuf\Internal\Message
      * `BuildTriggers` for the project, sorted by `create_time` descending.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.BuildTrigger triggers = 1;</code>
-     * @param \Google\Cloud\Build\V1\BuildTrigger[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\BuildTrigger>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTriggers($var)

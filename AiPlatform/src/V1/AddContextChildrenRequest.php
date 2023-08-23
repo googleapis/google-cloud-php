@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.AddContextChildren][google.cloud.aiplatform.v1.MetadataService.AddContextChildren].
+ * Request message for
+ * [MetadataService.AddContextChildren][google.cloud.aiplatform.v1.MetadataService.AddContextChildren].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.AddContextChildrenRequest</code>
  */
@@ -29,6 +30,25 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string child_contexts = 2 [(.google.api.resource_reference) = {</code>
      */
     private $child_contexts;
+
+    /**
+     * @param string   $context       Required. The resource name of the parent Context.
+     *
+     *                                Format:
+     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *                                Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
+     * @param string[] $childContexts The resource names of the child Contexts.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\AddContextChildrenRequest
+     *
+     * @experimental
+     */
+    public static function build(string $context, array $childContexts): self
+    {
+        return (new self())
+            ->setContext($context)
+            ->setChildContexts($childContexts);
+    }
 
     /**
      * Constructor.

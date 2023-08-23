@@ -20,7 +20,7 @@ namespace Google\Cloud\Scheduler\Tests\System\V1beta1;
 use Google\Cloud\Scheduler\V1beta1\AppEngineHttpTarget;
 use Google\Cloud\Scheduler\V1beta1\CloudSchedulerClient;
 use Google\Cloud\Scheduler\V1beta1\Job;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group scheduler
@@ -36,7 +36,7 @@ class CloudSchedulerSmokeTest extends TestCase
 
     public function clientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         return [
             [self::$grpcClient],
@@ -44,7 +44,7 @@ class CloudSchedulerSmokeTest extends TestCase
         ];
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;

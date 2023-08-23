@@ -26,8 +26,9 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     private $overwrite_objects_already_existing_in_sink = false;
     /**
      * Whether objects that exist only in the sink should be deleted.
-     * **Note:** This option and [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer] are
-     * mutually exclusive.
+     * **Note:** This option and
+     * [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer]
+     * are mutually exclusive.
      *
      * Generated from protobuf field <code>bool delete_objects_unique_in_sink = 2;</code>
      */
@@ -35,8 +36,9 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     /**
      * Whether objects should be deleted from the source after they are
      * transferred to the sink.
-     * **Note:** This option and [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink] are mutually
-     * exclusive.
+     * **Note:** This option and
+     * [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink]
+     * are mutually exclusive.
      *
      * Generated from protobuf field <code>bool delete_objects_from_source_after_transfer = 3;</code>
      */
@@ -69,13 +71,15 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
      *           are overwritten with the source object.
      *     @type bool $delete_objects_unique_in_sink
      *           Whether objects that exist only in the sink should be deleted.
-     *           **Note:** This option and [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer] are
-     *           mutually exclusive.
+     *           **Note:** This option and
+     *           [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer]
+     *           are mutually exclusive.
      *     @type bool $delete_objects_from_source_after_transfer
      *           Whether objects should be deleted from the source after they are
      *           transferred to the sink.
-     *           **Note:** This option and [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink] are mutually
-     *           exclusive.
+     *           **Note:** This option and
+     *           [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink]
+     *           are mutually exclusive.
      *     @type int $overwrite_when
      *           When to overwrite objects that already exist in the sink. If not set,
      *           overwrite behavior is determined by
@@ -123,8 +127,9 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether objects that exist only in the sink should be deleted.
-     * **Note:** This option and [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer] are
-     * mutually exclusive.
+     * **Note:** This option and
+     * [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer]
+     * are mutually exclusive.
      *
      * Generated from protobuf field <code>bool delete_objects_unique_in_sink = 2;</code>
      * @return bool
@@ -136,8 +141,9 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether objects that exist only in the sink should be deleted.
-     * **Note:** This option and [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer] are
-     * mutually exclusive.
+     * **Note:** This option and
+     * [delete_objects_from_source_after_transfer][google.storagetransfer.v1.TransferOptions.delete_objects_from_source_after_transfer]
+     * are mutually exclusive.
      *
      * Generated from protobuf field <code>bool delete_objects_unique_in_sink = 2;</code>
      * @param bool $var
@@ -154,8 +160,9 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     /**
      * Whether objects should be deleted from the source after they are
      * transferred to the sink.
-     * **Note:** This option and [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink] are mutually
-     * exclusive.
+     * **Note:** This option and
+     * [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink]
+     * are mutually exclusive.
      *
      * Generated from protobuf field <code>bool delete_objects_from_source_after_transfer = 3;</code>
      * @return bool
@@ -168,8 +175,9 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     /**
      * Whether objects should be deleted from the source after they are
      * transferred to the sink.
-     * **Note:** This option and [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink] are mutually
-     * exclusive.
+     * **Note:** This option and
+     * [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink]
+     * are mutually exclusive.
      *
      * Generated from protobuf field <code>bool delete_objects_from_source_after_transfer = 3;</code>
      * @param bool $var

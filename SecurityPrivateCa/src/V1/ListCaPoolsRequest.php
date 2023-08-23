@@ -25,12 +25,13 @@ class ListCaPoolsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Limit on the number of [CaPools][google.cloud.security.privateca.v1.CaPool] to
-     * include in the response.
-     * Further [CaPools][google.cloud.security.privateca.v1.CaPool] can subsequently be
-     * obtained by including the
-     * [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Limit on the number of
+     * [CaPools][google.cloud.security.privateca.v1.CaPool] to include in the
+     * response. Further [CaPools][google.cloud.security.privateca.v1.CaPool] can
+     * subsequently be obtained by including the
+     * [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,6 +57,22 @@ class ListCaPoolsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the location associated with the
+     *                       [CaPools][google.cloud.security.privateca.v1.CaPool], in the format
+     *                       `projects/&#42;/locations/*`. Please see
+     *                       {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\ListCaPoolsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -66,12 +83,13 @@ class ListCaPoolsRequest extends \Google\Protobuf\Internal\Message
      *           [CaPools][google.cloud.security.privateca.v1.CaPool], in the format
      *           `projects/&#42;&#47;locations/&#42;`.
      *     @type int $page_size
-     *           Optional. Limit on the number of [CaPools][google.cloud.security.privateca.v1.CaPool] to
-     *           include in the response.
-     *           Further [CaPools][google.cloud.security.privateca.v1.CaPool] can subsequently be
-     *           obtained by including the
-     *           [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token] in a subsequent
-     *           request. If unspecified, the server will pick an appropriate default.
+     *           Optional. Limit on the number of
+     *           [CaPools][google.cloud.security.privateca.v1.CaPool] to include in the
+     *           response. Further [CaPools][google.cloud.security.privateca.v1.CaPool] can
+     *           subsequently be obtained by including the
+     *           [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token]
+     *           in a subsequent request. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Pagination token, returned earlier via
      *           [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token].
@@ -117,12 +135,13 @@ class ListCaPoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Limit on the number of [CaPools][google.cloud.security.privateca.v1.CaPool] to
-     * include in the response.
-     * Further [CaPools][google.cloud.security.privateca.v1.CaPool] can subsequently be
-     * obtained by including the
-     * [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Limit on the number of
+     * [CaPools][google.cloud.security.privateca.v1.CaPool] to include in the
+     * response. Further [CaPools][google.cloud.security.privateca.v1.CaPool] can
+     * subsequently be obtained by including the
+     * [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -133,12 +152,13 @@ class ListCaPoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Limit on the number of [CaPools][google.cloud.security.privateca.v1.CaPool] to
-     * include in the response.
-     * Further [CaPools][google.cloud.security.privateca.v1.CaPool] can subsequently be
-     * obtained by including the
-     * [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Limit on the number of
+     * [CaPools][google.cloud.security.privateca.v1.CaPool] to include in the
+     * response. Further [CaPools][google.cloud.security.privateca.v1.CaPool] can
+     * subsequently be obtained by including the
+     * [ListCaPoolsResponse.next_page_token][google.cloud.security.privateca.v1.ListCaPoolsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

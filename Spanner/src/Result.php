@@ -178,6 +178,7 @@ class Result implements \IteratorAggregate
         $call = $this->call;
         $generator = null;
         $shouldRetry = false;
+        $isResultsYielded = false;
         $backoff = new ExponentialBackoff($this->retries, function ($ex) {
             if ($ex instanceof ServiceException) {
                 return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
@@ -209,13 +210,13 @@ class Result implements \IteratorAggregate
                         list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
 
                         foreach ($yieldableRows as $row) {
+                            $isResultsYielded = true;
                             yield $this->mapper->decodeValues($this->columns, $row, $format);
                         }
                     }
 
                     // Now that we've yielded all available rows, flush the buffer.
                     $bufferedResults = [];
-                    $shouldRetry = $hasResumeToken;
 
                     // If the last item in the buffer had a chunked value let's
                     // hold on to it so we can stitch it together into a yieldable
@@ -225,6 +226,8 @@ class Result implements \IteratorAggregate
                     }
                 }
 
+                // retry without resume token when results have not yielded
+                $shouldRetry = !$isResultsYielded || $hasResumeToken;
                 $generator->next();
                 $valid = $generator->valid();
             } catch (ServiceException $ex) {
@@ -397,9 +400,7 @@ class Result implements \IteratorAggregate
                 continue;
             }
 
-            $resultValues = isset($result['values'])
-                ? $result['values']
-                : [];
+            $resultValues = $result['values'] ?? [];
 
             $values = $shouldMergeValues
                 ? $this->mergeValues($values, $resultValues)
@@ -434,9 +435,7 @@ class Result implements \IteratorAggregate
      */
     private function setResultData(array $result, $format)
     {
-        $this->stats = isset($result['stats'])
-            ? $result['stats']
-            : null;
+        $this->stats = $result['stats'] ?? null;
 
         if ($this->isSetAndTrue($result, 'resumeToken')) {
             $this->resumeToken = $result['resumeToken'];

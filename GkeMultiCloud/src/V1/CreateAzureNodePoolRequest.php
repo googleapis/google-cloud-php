@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource where this node pool will be created.
+     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource where this node pool will be created.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -25,18 +26,20 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The specification of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
+     * Required. The specification of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $azure_node_pool = null;
     /**
-     * Required. A client provided ID the resource. Must be unique within the parent
-     * resource.
-     * The provided ID will be part of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     * resource name formatted as
+     * Required. A client provided ID the resource. Must be unique within the
+     * parent resource.
+     * The provided ID will be part of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *
      * Generated from protobuf field <code>string azure_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,25 +53,61 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param string                                       $parent          Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *                                                                      resource where this node pool will be created.
+     *
+     *                                                                      Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *                                                                      See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                                                                      for more details on Google Cloud resource names. Please see
+     *                                                                      {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azureNodePool   Required. The specification of the
+     *                                                                      [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
+     * @param string                                       $azureNodePoolId Required. A client provided ID the resource. Must be unique within the
+     *                                                                      parent resource.
+     *
+     *                                                                      The provided ID will be part of the
+     *                                                                      [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+     *                                                                      formatted as
+     *                                                                      `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
+     *
+     *                                                                      Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\CreateAzureNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azureNodePool, string $azureNodePoolId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setAzureNodePool($azureNodePool)
+            ->setAzureNodePoolId($azureNodePoolId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource where this node pool will be created.
+     *           Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *           resource where this node pool will be created.
      *           Location names are formatted as `projects/<project-id>/locations/<region>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on Google Cloud resource names.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azure_node_pool
-     *           Required. The specification of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
+     *           Required. The specification of the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
      *     @type string $azure_node_pool_id
-     *           Required. A client provided ID the resource. Must be unique within the parent
-     *           resource.
-     *           The provided ID will be part of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     *           resource name formatted as
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *           The provided ID will be part of the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+     *           formatted as
      *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
-     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validate_only
      *           If set, only validate the request, but do not actually create the node
      *           pool.
@@ -80,7 +119,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource where this node pool will be created.
+     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource where this node pool will be created.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -94,7 +134,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource where this node pool will be created.
+     * Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     * resource where this node pool will be created.
      * Location names are formatted as `projects/<project-id>/locations/<region>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      * for more details on Google Cloud resource names.
@@ -112,7 +153,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The specification of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
+     * Required. The specification of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\AzureNodePool|null
@@ -133,7 +175,8 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The specification of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
+     * Required. The specification of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $var
@@ -148,12 +191,13 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the parent
-     * resource.
-     * The provided ID will be part of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     * resource name formatted as
+     * Required. A client provided ID the resource. Must be unique within the
+     * parent resource.
+     * The provided ID will be part of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *
      * Generated from protobuf field <code>string azure_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -164,12 +208,13 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client provided ID the resource. Must be unique within the parent
-     * resource.
-     * The provided ID will be part of the [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     * resource name formatted as
+     * Required. A client provided ID the resource. Must be unique within the
+     * parent resource.
+     * The provided ID will be part of the
+     * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+     * formatted as
      * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
-     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 40 characters.
+     * Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *
      * Generated from protobuf field <code>string azure_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

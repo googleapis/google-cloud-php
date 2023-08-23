@@ -34,6 +34,12 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      */
     private $imported_feature_value_count = 0;
     /**
+     * The source URI from where Feature values are imported.
+     *
+     * Generated from protobuf field <code>repeated string source_uris = 4;</code>
+     */
+    private $source_uris;
+    /**
      * The number of rows in input source that weren't imported due to either
      * * Not having any featureValues.
      * * Having a null entityId.
@@ -50,6 +56,13 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>int64 timestamp_outside_retention_rows_count = 7;</code>
      */
     private $timestamp_outside_retention_rows_count = 0;
+    /**
+     * List of ImportFeatureValues operations running under a single EntityType
+     * that are blocking this operation.
+     *
+     * Generated from protobuf field <code>repeated int64 blocking_operation_ids = 8;</code>
+     */
+    private $blocking_operation_ids;
 
     /**
      * Constructor.
@@ -63,6 +76,8 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      *           Number of entities that have been imported by the operation.
      *     @type int|string $imported_feature_value_count
      *           Number of Feature values that have been imported by the operation.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_uris
+     *           The source URI from where Feature values are imported.
      *     @type int|string $invalid_row_count
      *           The number of rows in input source that weren't imported due to either
      *           * Not having any featureValues.
@@ -72,6 +87,9 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      *     @type int|string $timestamp_outside_retention_rows_count
      *           The number rows that weren't ingested due to having timestamps outside the
      *           retention boundary.
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_operation_ids
+     *           List of ImportFeatureValues operations running under a single EntityType
+     *           that are blocking this operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,6 +186,32 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
     }
 
     /**
+     * The source URI from where Feature values are imported.
+     *
+     * Generated from protobuf field <code>repeated string source_uris = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceUris()
+    {
+        return $this->source_uris;
+    }
+
+    /**
+     * The source URI from where Feature values are imported.
+     *
+     * Generated from protobuf field <code>repeated string source_uris = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->source_uris = $arr;
+
+        return $this;
+    }
+
+    /**
      * The number of rows in input source that weren't imported due to either
      * * Not having any featureValues.
      * * Having a null entityId.
@@ -225,6 +269,34 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
     {
         GPBUtil::checkInt64($var);
         $this->timestamp_outside_retention_rows_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of ImportFeatureValues operations running under a single EntityType
+     * that are blocking this operation.
+     *
+     * Generated from protobuf field <code>repeated int64 blocking_operation_ids = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getBlockingOperationIds()
+    {
+        return $this->blocking_operation_ids;
+    }
+
+    /**
+     * List of ImportFeatureValues operations running under a single EntityType
+     * that are blocking this operation.
+     *
+     * Generated from protobuf field <code>repeated int64 blocking_operation_ids = 8;</code>
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setBlockingOperationIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
+        $this->blocking_operation_ids = $arr;
 
         return $this;
     }

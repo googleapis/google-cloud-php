@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Versions.UpdateVersion][google.cloud.dialogflow.v2.Versions.UpdateVersion].
+ * The request message for
+ * [Versions.UpdateVersion][google.cloud.dialogflow.v2.Versions.UpdateVersion].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateVersionRequest</code>
  */
@@ -31,6 +32,26 @@ class UpdateVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\Version $version    Required. The version to update.
+     *                                                        Supported formats:
+     *
+     *                                                        - `projects/<Project ID>/agent/versions/<Version ID>`
+     *                                                        - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *                                                        ID>`
+     * @param \Google\Protobuf\FieldMask          $updateMask Required. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Version $version, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setVersion($version)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

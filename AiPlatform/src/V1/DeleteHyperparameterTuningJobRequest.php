@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.DeleteHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.DeleteHyperparameterTuningJob].
+ * Request message for
+ * [JobService.DeleteHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.DeleteHyperparameterTuningJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteHyperparameterTuningJobRequest</code>
  */
@@ -23,6 +24,22 @@ class DeleteHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the HyperparameterTuningJob resource to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
+     *                     Please see {@see JobServiceClient::hyperparameterTuningJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteHyperparameterTuningJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

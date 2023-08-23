@@ -26,13 +26,15 @@ use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\StructuredQuery;
-use Google\Cloud\Firestore\V1\StructuredQuery_CollectionSelector;
+use Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector;
 use Google\Cloud\Firestore\V1\TransactionOptions;
-use Google\Cloud\Firestore\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\V1\Write;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -42,13 +44,14 @@ class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
     use GrpcTrait;
+    use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
@@ -86,13 +89,54 @@ class GrpcTest extends TestCase
         $this->sendAndAssert('batchGetDocuments', $args, $expected);
     }
 
+    public function testBatchGetDocumentsWithReadTime()
+    {
+        $documents = [
+            sprintf(
+                'projects/%s/databases/%s/documents/%s',
+                self::PROJECT,
+                self::DATABASE,
+                'a/b'
+            ),
+            sprintf(
+                'projects/%s/databases/%s/documents/%s',
+                self::PROJECT,
+                self::DATABASE,
+                'a/c'
+            )
+        ];
+
+        $args = [
+            'database' => sprintf(
+                'projects/%s/databases/%s',
+                self::PROJECT,
+                self::DATABASE
+            ),
+            'documents' => $documents,
+            'readTime' => [
+                'seconds' => 202320232,
+                'nanos' => 0
+            ]
+        ];
+
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['database'],
+            $args['documents'],
+            $this->header() + ['readTime' => $protobufTimestamp]
+        ];
+
+        $this->sendAndAssert('batchGetDocuments', $args, $expected);
+    }
+
     public function testBeginTransaction()
     {
         $args = [
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
         ];
 
-        $rw = new TransactionOptions_ReadWrite;
+        $rw = new ReadWrite();
 
         $options = new TransactionOptions;
         $options->setReadWrite($rw);
@@ -112,7 +156,7 @@ class GrpcTest extends TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
         ];
 
-        $rw = new TransactionOptions_ReadWrite;
+        $rw = new ReadWrite();
         $rw->setRetryTransaction($args['retryTransaction']);
 
         $options = new TransactionOptions;
@@ -188,6 +232,29 @@ class GrpcTest extends TestCase
         $this->sendAndAssert('listCollectionIds', $args, $expected);
     }
 
+    public function testListCollectionIdsWithReadTime()
+    {
+        $args = [
+            'parent' => sprintf(
+                'projects/%s/databases/%s/documents',
+                self::PROJECT,
+                self::DATABASE
+            ),
+            'readTime' => [
+                'seconds' => 123456789,
+                'nanos' => 0
+            ]
+        ];
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['parent'],
+            $this->header() + ['readTime' => $protobufTimestamp]
+        ];
+
+        $this->sendAndAssert('listCollectionIds', $args, $expected);
+    }
+
     public function testListDocuments()
     {
         $args = [
@@ -202,6 +269,33 @@ class GrpcTest extends TestCase
             [
                 'showMissing' => true,
                 'mask' => new DocumentMask(['field_paths' => []]),
+            ] + $this->header()
+        ];
+
+        $this->sendAndAssert('listDocuments', $args, $expected);
+    }
+
+    public function testListDocumentsWithReadTime()
+    {
+        $args = [
+            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            'collectionId' => 'coll1',
+            'mask' => [],
+            'readTime' => [
+                'seconds' => 123456789,
+                'nanos' => 0
+            ]
+        ];
+
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['parent'],
+            $args['collectionId'],
+            [
+                'showMissing' => true,
+                'mask' => new DocumentMask(['field_paths' => []]),
+                'readTime' => $protobufTimestamp
             ] + $this->header()
         ];
 
@@ -227,7 +321,7 @@ class GrpcTest extends TestCase
             'structuredQuery' => ['from' => [['collectionId' => 'parent']]]
         ];
 
-        $from = new StructuredQuery_CollectionSelector;
+        $from = new CollectionSelector();
         $from->setCollectionId('parent');
         $q = new StructuredQuery;
         $q->setFrom([$from]);
@@ -235,6 +329,35 @@ class GrpcTest extends TestCase
         $expected = [
             $args['parent'],
             ['structuredQuery' => $q] + $this->header()
+        ];
+
+        $this->sendAndAssert('runQuery', $args, $expected);
+    }
+
+    public function testRunQueryWithReadTime()
+    {
+        $args = [
+            'parent' => 'parent!',
+            'structuredQuery' => ['from' => [['collectionId' => 'parent']]],
+            'readTime' => [
+                'seconds' => 123456789,
+                'nanos' => 0
+            ]
+        ];
+
+        $from = new CollectionSelector();
+        $from->setCollectionId('parent');
+        $q = new StructuredQuery;
+        $q->setFrom([$from]);
+
+        $protobufTimestamp = new ProtobufTimestamp();
+        $protobufTimestamp->setSeconds($args['readTime']['seconds']);
+        $expected = [
+            $args['parent'],
+            [
+                'structuredQuery' => $q,
+                'readTime' => $protobufTimestamp
+            ] + $this->header()
         ];
 
         $this->sendAndAssert('runQuery', $args, $expected);
@@ -281,7 +404,8 @@ class GrpcTest extends TestCase
     {
         return [
             "headers" => [
-                "google-cloud-resource-prefix" => ["projects/test/databases/(default)"]
+                "google-cloud-resource-prefix" => ["projects/test/databases/(default)"],
+                "x-goog-request-params" => ["project_id=test&database_id=(default)"]
             ]
         ];
     }

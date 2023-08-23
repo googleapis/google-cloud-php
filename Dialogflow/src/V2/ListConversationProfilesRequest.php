@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [ConversationProfiles.ListConversationProfiles][google.cloud.dialogflow.v2.ConversationProfiles.ListConversationProfiles].
+ * The request message for
+ * [ConversationProfiles.ListConversationProfiles][google.cloud.dialogflow.v2.ConversationProfiles.ListConversationProfiles].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListConversationProfilesRequest</code>
  */
@@ -35,6 +36,21 @@ class ListConversationProfilesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The project to list all conversation profiles from.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                       {@see ConversationProfilesClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListConversationProfilesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

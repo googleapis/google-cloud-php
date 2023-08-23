@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-security-public-ca/v/stable)](https://packagist.org/packages/google/cloud-security-public-ca) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-security-public-ca.svg)](https://packagist.org/packages/google/cloud-security-public-ca)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-security-public-ca/latest/securitypublicca/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-security-public-ca/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

@@ -20,12 +20,15 @@ namespace Google\Cloud\Storage\Tests\Unit\Connection;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class IamBucketTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @dataProvider methodProvider
      */

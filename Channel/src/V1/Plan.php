@@ -47,7 +47,7 @@ class Plan extends \Google\Protobuf\Internal\Message
     private $trial_period = null;
     /**
      * Reseller Billing account to charge after an offer transaction.
-     * Only present for Google Cloud Platform offers.
+     * Only present for Google Cloud offers.
      *
      * Generated from protobuf field <code>string billing_account = 5;</code>
      */
@@ -75,7 +75,7 @@ class Plan extends \Google\Protobuf\Internal\Message
      *           of the trial period.
      *     @type string $billing_account
      *           Reseller Billing account to charge after an offer transaction.
-     *           Only present for Google Cloud Platform offers.
+     *           Only present for Google Cloud offers.
      * }
      */
     public function __construct($data = NULL) {
@@ -221,7 +221,7 @@ class Plan extends \Google\Protobuf\Internal\Message
 
     /**
      * Reseller Billing account to charge after an offer transaction.
-     * Only present for Google Cloud Platform offers.
+     * Only present for Google Cloud offers.
      *
      * Generated from protobuf field <code>string billing_account = 5;</code>
      * @return string
@@ -233,7 +233,7 @@ class Plan extends \Google\Protobuf\Internal\Message
 
     /**
      * Reseller Billing account to charge after an offer transaction.
-     * Only present for Google Cloud Platform offers.
+     * Only present for Google Cloud offers.
      *
      * Generated from protobuf field <code>string billing_account = 5;</code>
      * @param string $var

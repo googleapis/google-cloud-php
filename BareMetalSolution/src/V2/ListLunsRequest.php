@@ -36,6 +36,20 @@ class ListLunsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Parent value for ListLunsRequest. Please see
+     *                       {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\ListLunsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

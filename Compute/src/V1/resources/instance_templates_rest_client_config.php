@@ -3,6 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.InstanceTemplates' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/instanceTemplates',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/instanceTemplates/{instance_template}',

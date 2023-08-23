@@ -66,6 +66,29 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $name Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *                     which to execute the request. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]
+     *
+     *                     This names the container
+     *                     in which to look for the notification channels; it does not name a
+     *                     specific channel. To query a specific channel by REST resource name, use
+     *                     the
+     *                     [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+     *                     operation.
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListNotificationChannelsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

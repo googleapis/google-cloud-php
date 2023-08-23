@@ -46,15 +46,17 @@ class SmoothGradConfig extends \Google\Protobuf\Internal\Message
      *           deviation of the input feature. Refer to section 3.2 of the SmoothGrad
      *           paper: https://arxiv.org/pdf/1706.03825.pdf. Defaults to 0.1.
      *           If the distribution is different per feature, set
-     *           [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma] instead
-     *           for each feature.
+     *           [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]
+     *           instead for each feature.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureNoiseSigma $feature_noise_sigma
-     *           This is similar to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma], but
-     *           provides additional flexibility. A separate noise sigma can be provided
-     *           for each feature, which is useful if their distributions are different.
-     *           No noise is added to features that are not set. If this field is unset,
-     *           [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma] will be used for all
-     *           features.
+     *           This is similar to
+     *           [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma],
+     *           but provides additional flexibility. A separate noise sigma can be
+     *           provided for each feature, which is useful if their distributions are
+     *           different. No noise is added to features that are not set. If this field
+     *           is unset,
+     *           [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
+     *           will be used for all features.
      *     @type int $noisy_sample_count
      *           The number of gradient samples to use for
      *           approximation. The higher this number, the more accurate the gradient
@@ -77,8 +79,8 @@ class SmoothGradConfig extends \Google\Protobuf\Internal\Message
      * deviation of the input feature. Refer to section 3.2 of the SmoothGrad
      * paper: https://arxiv.org/pdf/1706.03825.pdf. Defaults to 0.1.
      * If the distribution is different per feature, set
-     * [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma] instead
-     * for each feature.
+     * [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]
+     * instead for each feature.
      *
      * Generated from protobuf field <code>float noise_sigma = 1;</code>
      * @return float
@@ -103,8 +105,8 @@ class SmoothGradConfig extends \Google\Protobuf\Internal\Message
      * deviation of the input feature. Refer to section 3.2 of the SmoothGrad
      * paper: https://arxiv.org/pdf/1706.03825.pdf. Defaults to 0.1.
      * If the distribution is different per feature, set
-     * [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma] instead
-     * for each feature.
+     * [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]
+     * instead for each feature.
      *
      * Generated from protobuf field <code>float noise_sigma = 1;</code>
      * @param float $var
@@ -119,12 +121,14 @@ class SmoothGradConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is similar to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma], but
-     * provides additional flexibility. A separate noise sigma can be provided
-     * for each feature, which is useful if their distributions are different.
-     * No noise is added to features that are not set. If this field is unset,
-     * [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma] will be used for all
-     * features.
+     * This is similar to
+     * [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma],
+     * but provides additional flexibility. A separate noise sigma can be
+     * provided for each feature, which is useful if their distributions are
+     * different. No noise is added to features that are not set. If this field
+     * is unset,
+     * [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
+     * will be used for all features.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureNoiseSigma feature_noise_sigma = 2;</code>
      * @return \Google\Cloud\AIPlatform\V1\FeatureNoiseSigma|null
@@ -140,12 +144,14 @@ class SmoothGradConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is similar to [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma], but
-     * provides additional flexibility. A separate noise sigma can be provided
-     * for each feature, which is useful if their distributions are different.
-     * No noise is added to features that are not set. If this field is unset,
-     * [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma] will be used for all
-     * features.
+     * This is similar to
+     * [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma],
+     * but provides additional flexibility. A separate noise sigma can be
+     * provided for each feature, which is useful if their distributions are
+     * different. No noise is added to features that are not set. If this field
+     * is unset,
+     * [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
+     * will be used for all features.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureNoiseSigma feature_noise_sigma = 2;</code>
      * @param \Google\Cloud\AIPlatform\V1\FeatureNoiseSigma $var

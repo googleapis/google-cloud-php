@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Versions.CreateVersion][google.cloud.dialogflow.v2.Versions.CreateVersion].
+ * The request message for
+ * [Versions.CreateVersion][google.cloud.dialogflow.v2.Versions.CreateVersion].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateVersionRequest</code>
  */
@@ -30,6 +31,26 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Version version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $version = null;
+
+    /**
+     * @param string                              $parent  Required. The agent to create a version for.
+     *                                                     Supported formats:
+     *
+     *                                                     - `projects/<Project ID>/agent`
+     *                                                     - `projects/<Project ID>/locations/<Location ID>/agent`
+     *                                                     Please see {@see VersionsClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Version $version Required. The version to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Version $version): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setVersion($version);
+    }
 
     /**
      * Constructor.

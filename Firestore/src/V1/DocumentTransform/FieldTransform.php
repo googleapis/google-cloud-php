@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class FieldTransform extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The path of the field. See [Document.fields][google.firestore.v1.Document.fields] for the field path syntax
-     * reference.
+     * The path of the field. See
+     * [Document.fields][google.firestore.v1.Document.fields] for the field path
+     * syntax reference.
      *
      * Generated from protobuf field <code>string field_path = 1;</code>
      */
@@ -31,8 +32,9 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $field_path
-     *           The path of the field. See [Document.fields][google.firestore.v1.Document.fields] for the field path syntax
-     *           reference.
+     *           The path of the field. See
+     *           [Document.fields][google.firestore.v1.Document.fields] for the field path
+     *           syntax reference.
      *     @type int $set_to_server_value
      *           Sets the field to the given server value.
      *     @type \Google\Cloud\Firestore\V1\Value $increment
@@ -97,8 +99,9 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of the field. See [Document.fields][google.firestore.v1.Document.fields] for the field path syntax
-     * reference.
+     * The path of the field. See
+     * [Document.fields][google.firestore.v1.Document.fields] for the field path
+     * syntax reference.
      *
      * Generated from protobuf field <code>string field_path = 1;</code>
      * @return string
@@ -109,8 +112,9 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of the field. See [Document.fields][google.firestore.v1.Document.fields] for the field path syntax
-     * reference.
+     * The path of the field. See
+     * [Document.fields][google.firestore.v1.Document.fields] for the field path
+     * syntax reference.
      *
      * Generated from protobuf field <code>string field_path = 1;</code>
      * @param string $var

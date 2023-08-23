@@ -42,7 +42,7 @@ class View extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * String with specific view properties.
+     * String with specific view properties, must be non-empty.
      *
      * Generated from protobuf field <code>string value = 5;</code>
      */
@@ -65,7 +65,7 @@ class View extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The most recent time at which the view was updated.
      *     @type string $value
-     *           String with specific view properties.
+     *           String with specific view properties, must be non-empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,7 +202,7 @@ class View extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String with specific view properties.
+     * String with specific view properties, must be non-empty.
      *
      * Generated from protobuf field <code>string value = 5;</code>
      * @return string
@@ -213,7 +213,7 @@ class View extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String with specific view properties.
+     * String with specific view properties, must be non-empty.
      *
      * Generated from protobuf field <code>string value = 5;</code>
      * @param string $var

@@ -22,7 +22,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Fleet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the Fleet host project where this cluster will be registered.
+     * Required. The name of the Fleet host project where this cluster will be
+     * registered.
      * Project names are formatted as
      * `projects/<project-number>`.
      *
@@ -30,7 +31,8 @@ class Fleet extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * Output only. The name of the managed Hub Membership resource associated to this cluster.
+     * Output only. The name of the managed Hub Membership resource associated to
+     * this cluster.
      * Membership names are formatted as
      * `projects/<project-number>/locations/global/membership/<cluster-id>`.
      *
@@ -45,11 +47,13 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project
-     *           Required. The name of the Fleet host project where this cluster will be registered.
+     *           Required. The name of the Fleet host project where this cluster will be
+     *           registered.
      *           Project names are formatted as
      *           `projects/<project-number>`.
      *     @type string $membership
-     *           Output only. The name of the managed Hub Membership resource associated to this cluster.
+     *           Output only. The name of the managed Hub Membership resource associated to
+     *           this cluster.
      *           Membership names are formatted as
      *           `projects/<project-number>/locations/global/membership/<cluster-id>`.
      * }
@@ -60,7 +64,8 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Fleet host project where this cluster will be registered.
+     * Required. The name of the Fleet host project where this cluster will be
+     * registered.
      * Project names are formatted as
      * `projects/<project-number>`.
      *
@@ -73,7 +78,8 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Fleet host project where this cluster will be registered.
+     * Required. The name of the Fleet host project where this cluster will be
+     * registered.
      * Project names are formatted as
      * `projects/<project-number>`.
      *
@@ -90,7 +96,8 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the managed Hub Membership resource associated to this cluster.
+     * Output only. The name of the managed Hub Membership resource associated to
+     * this cluster.
      * Membership names are formatted as
      * `projects/<project-number>/locations/global/membership/<cluster-id>`.
      *
@@ -103,7 +110,8 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the managed Hub Membership resource associated to this cluster.
+     * Output only. The name of the managed Hub Membership resource associated to
+     * this cluster.
      * Membership names are formatted as
      * `projects/<project-number>/locations/global/membership/<cluster-id>`.
      *

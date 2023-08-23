@@ -21,7 +21,7 @@ class Realms
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
+¡
 #google/cloud/gaming/v1/realms.protogoogle.cloud.gaming.v1google/api/resource.proto#google/cloud/gaming/v1/common.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"«
 ListRealmsRequest9
 parent (	B)àAúA#!gameservices.googleapis.com/Realm
@@ -65,8 +65,8 @@ page_token (	BàA
 LabelsEntry
 key (	
 value (	:8:^êA[
-!gameservices.googleapis.com/Realm6projects/{project}/locations/{location}/realms/{realm}B\\
-com.google.cloud.gaming.v1PZ<google.golang.org/genproto/googleapis/cloud/gaming/v1;gamingbproto3'
+!gameservices.googleapis.com/Realm6projects/{project}/locations/{location}/realms/{realm}BR
+com.google.cloud.gaming.v1PZ2cloud.google.com/go/gaming/apiv1/gamingpb;gamingpbbproto3'
         , true);
 
         static::$is_initialized = true;

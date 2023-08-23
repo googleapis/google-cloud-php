@@ -24,14 +24,14 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
  */
 class MessageTest extends SnippetTestCase
 {
-    use AssertIsType;
+    use ProphecyTrait;
 
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
     const TOPIC = 'projects/my-awesome-project/topics/topic-name';
@@ -40,7 +40,7 @@ class MessageTest extends SnippetTestCase
     private $metadata;
     private $message;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->msg = [
             'data' => 'hello world',

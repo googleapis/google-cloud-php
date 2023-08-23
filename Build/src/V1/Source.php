@@ -24,13 +24,16 @@ class Source extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Build\V1\StorageSource $storage_source
-     *           If provided, get the source from this location in Google Cloud Storage.
+     *           If provided, get the source from this location in Cloud Storage.
      *     @type \Google\Cloud\Build\V1\RepoSource $repo_source
      *           If provided, get the source from this location in a Cloud Source
      *           Repository.
+     *     @type \Google\Cloud\Build\V1\GitSource $git_source
+     *           If provided, get the source from this Git repository.
      *     @type \Google\Cloud\Build\V1\StorageSourceManifest $storage_source_manifest
-     *           If provided, get the source from this manifest in Google Cloud Storage.
-     *           This feature is in Preview.
+     *           If provided, get the source from this manifest in Cloud Storage.
+     *           This feature is in Preview; see description
+     *           [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +42,7 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, get the source from this location in Google Cloud Storage.
+     * If provided, get the source from this location in Cloud Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSource storage_source = 2;</code>
      * @return \Google\Cloud\Build\V1\StorageSource|null
@@ -55,7 +58,7 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, get the source from this location in Google Cloud Storage.
+     * If provided, get the source from this location in Cloud Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSource storage_source = 2;</code>
      * @param \Google\Cloud\Build\V1\StorageSource $var
@@ -103,8 +106,40 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage.
-     * This feature is in Preview.
+     * If provided, get the source from this Git repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitSource git_source = 5;</code>
+     * @return \Google\Cloud\Build\V1\GitSource|null
+     */
+    public function getGitSource()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasGitSource()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * If provided, get the source from this Git repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitSource git_source = 5;</code>
+     * @param \Google\Cloud\Build\V1\GitSource $var
+     * @return $this
+     */
+    public function setGitSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\GitSource::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * If provided, get the source from this manifest in Cloud Storage.
+     * This feature is in Preview; see description
+     * [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSourceManifest storage_source_manifest = 8;</code>
      * @return \Google\Cloud\Build\V1\StorageSourceManifest|null
@@ -120,8 +155,9 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage.
-     * This feature is in Preview.
+     * If provided, get the source from this manifest in Cloud Storage.
+     * This feature is in Preview; see description
+     * [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.StorageSourceManifest storage_source_manifest = 8;</code>
      * @param \Google\Cloud\Build\V1\StorageSourceManifest $var

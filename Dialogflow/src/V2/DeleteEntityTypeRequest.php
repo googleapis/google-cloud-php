@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [EntityTypes.DeleteEntityType][google.cloud.dialogflow.v2.EntityTypes.DeleteEntityType].
+ * The request message for
+ * [EntityTypes.DeleteEntityType][google.cloud.dialogflow.v2.EntityTypes.DeleteEntityType].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteEntityTypeRequest</code>
  */
@@ -22,6 +23,21 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the entity type to delete.
+     *                     Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. Please see
+     *                     {@see EntityTypesClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

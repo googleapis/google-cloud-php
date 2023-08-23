@@ -381,9 +381,13 @@ class DocumentReference
      *
      * @param array $options Configuration options.
      * @return ItemIterator<CollectionReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      */
     public function collections(array $options = [])
     {
+        $options = $this->formatReadTimeOption($options);
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
@@ -411,7 +415,10 @@ class DocumentReference
      */
     protected function batchFactory()
     {
-        return new WriteBatch(
+        if (!class_exists(WriteBatch::class)) {
+            class_alias(BulkWriter::class, WriteBatch::class);
+        }
+        return new BulkWriter(
             $this->connection,
             $this->valueMapper,
             $this->databaseFromName($this->name)

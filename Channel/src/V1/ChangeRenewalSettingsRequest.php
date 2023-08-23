@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ChangeRenewalSettings][google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings].
+ * Request message for
+ * [CloudChannelService.ChangeRenewalSettings][google.cloud.channel.v1.CloudChannelService.ChangeRenewalSettings].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ChangeRenewalSettingsRequest</code>
  */
@@ -30,8 +31,9 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $renewal_settings = null;
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -57,8 +59,9 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Channel\V1\RenewalSettings $renewal_settings
      *           Required. New renewal settings.
      *     @type string $request_id
-     *           Optional. You can specify an optional unique request ID, and if you need to retry
-     *           your request, the server will know to ignore the request if it's complete.
+     *           Optional. You can specify an optional unique request ID, and if you need to
+     *           retry your request, the server will know to ignore the request if it's
+     *           complete.
      *           For example, you make an initial request and the request times out. If you
      *           make the request again with the same request ID, the server can check if
      *           it received the original operation with the same request ID. If it did, it
@@ -140,8 +143,9 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it
@@ -159,8 +163,9 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. You can specify an optional unique request ID, and if you need to retry
-     * your request, the server will know to ignore the request if it's complete.
+     * Optional. You can specify an optional unique request ID, and if you need to
+     * retry your request, the server will know to ignore the request if it's
+     * complete.
      * For example, you make an initial request and the request times out. If you
      * make the request again with the same request ID, the server can check if
      * it received the original operation with the same request ID. If it did, it

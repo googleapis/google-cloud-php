@@ -24,8 +24,9 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -38,29 +39,29 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $generation = 0;
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $labels;
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $annotations;
     /**
-     * Output only. Represents time when the execution was acknowledged by the execution
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the execution was acknowledged by the
+     * execution controller. It is not guaranteed to be set in happens-before
+     * order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -74,8 +75,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Output only. Represents time when the execution was completed. It is not guaranteed to
-     * be set in happens-before order across separate operations.
+     * Output only. Represents time when the execution was completed. It is not
+     * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -102,10 +103,14 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = null;
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview
-     * features in that stage. On read, describes whether the resource uses
-     * preview features. Launch Stages are defined at [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by
+     * [Google Cloud Platform Launch
+     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     * `ALPHA`, `BETA`, and `GA`.
+     * <p>Note that this value might not be what was used
+     * as input. For example, if ALPHA was provided as input in the parent
+     * resource, but only BETA and GA-level features are were, this field will be
+     * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      */
@@ -117,22 +122,19 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $job = '';
     /**
-     * Output only. Specifies the maximum desired number of tasks the execution should
-     * run at any given time. Must be <= task_count. The actual number of
+     * Output only. Specifies the maximum desired number of tasks the execution
+     * should run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     * the work left to do is less than max parallelism. More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * the work left to do is less than max parallelism.
      *
      * Generated from protobuf field <code>int32 parallelism = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $parallelism = 0;
     /**
-     * Output only. Specifies the desired number of tasks the execution should run.
-     * Setting to 1 means that parallelism is limited to 1 and the success of
+     * Output only. Specifies the desired number of tasks the execution should
+     * run. Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *
      * Generated from protobuf field <code>int32 task_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -144,23 +146,25 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $template = null;
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reconciling = false;
     /**
-     * Output only. The Condition of this Execution, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Execution, containing its readiness
+     * status, and detailed error information in case it did not reach the desired
+     * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $conditions;
     /**
-     * Output only. The generation of this Execution. See comments in `reconciling` for
-     * additional information on reconciliation process in Cloud Run.
+     * Output only. The generation of this Execution. See comments in
+     * `reconciling` for additional information on reconciliation process in Cloud
+     * Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -184,6 +188,31 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $failed_count = 0;
     /**
+     * Output only. The number of tasks which reached phase Cancelled.
+     *
+     * Generated from protobuf field <code>int32 cancelled_count = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cancelled_count = 0;
+    /**
+     * Output only. The number of tasks which have retried at least once.
+     *
+     * Generated from protobuf field <code>int32 retried_count = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $retried_count = 0;
+    /**
+     * Output only. URI where logs for this execution can be found in Cloud
+     * Console.
+     *
+     * Generated from protobuf field <code>string log_uri = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $log_uri = '';
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -200,34 +229,35 @@ class Execution extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The unique name of this Execution.
      *     @type string $uid
-     *           Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     *           string and guaranteed to remain unchanged until the resource is deleted.
+     *           Output only. Server assigned unique identifier for the Execution. The value
+     *           is a UUID4 string and guaranteed to remain unchanged until the resource is
+     *           deleted.
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           KRM-style labels for the resource.
-     *           User-provided labels are shared with Google's billing system, so they can
-     *           be used to filter, or break down billing charges by team, component,
-     *           environment, state, etc. For more information, visit
+     *           Output only. Unstructured key value map that can be used to organize and
+     *           categorize objects. User-provided labels are shared with Google's billing
+     *           system, so they can be used to filter, or break down billing charges by
+     *           team, component, environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels
-     *           Cloud Run will populate some labels with 'run.googleapis.com' or
-     *           'serving.knative.dev' namespaces. Those labels are read-only, and user
-     *           changes will not be preserved.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           KRM-style annotations for the resource.
+     *           Output only. Unstructured key value map that may
+     *           be set by external tools to store and arbitrary metadata.
+     *           They are not queryable and should be preserved
+     *           when modifying objects.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Represents time when the execution was acknowledged by the execution
-     *           controller. It is not guaranteed to be set in happens-before order across
-     *           separate operations.
+     *           Output only. Represents time when the execution was acknowledged by the
+     *           execution controller. It is not guaranteed to be set in happens-before
+     *           order across separate operations.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. Represents time when the execution started to run.
      *           It is not guaranteed to be set in happens-before order across separate
      *           operations.
      *     @type \Google\Protobuf\Timestamp $completion_time
-     *           Output only. Represents time when the execution was completed. It is not guaranteed to
-     *           be set in happens-before order across separate operations.
+     *           Output only. Represents time when the execution was completed. It is not
+     *           guaranteed to be set in happens-before order across separate operations.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Protobuf\Timestamp $delete_time
@@ -238,43 +268,55 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           permamently deleted. It is only populated as a response to a Delete
      *           request.
      *     @type int $launch_stage
-     *           Set the launch stage to a preview stage on write to allow use of preview
-     *           features in that stage. On read, describes whether the resource uses
-     *           preview features. Launch Stages are defined at [Google Cloud Platform
-     *           Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *           The least stable launch stage needed to create this resource, as defined by
+     *           [Google Cloud Platform Launch
+     *           Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *           `ALPHA`, `BETA`, and `GA`.
+     *           <p>Note that this value might not be what was used
+     *           as input. For example, if ALPHA was provided as input in the parent
+     *           resource, but only BETA and GA-level features are were, this field will be
+     *           BETA.
      *     @type string $job
      *           Output only. The name of the parent Job.
      *     @type int $parallelism
-     *           Output only. Specifies the maximum desired number of tasks the execution should
-     *           run at any given time. Must be <= task_count. The actual number of
+     *           Output only. Specifies the maximum desired number of tasks the execution
+     *           should run at any given time. Must be <= task_count. The actual number of
      *           tasks running in steady state will be less than this number when
      *           ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     *           the work left to do is less than max parallelism. More info:
-     *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     *           the work left to do is less than max parallelism.
      *     @type int $task_count
-     *           Output only. Specifies the desired number of tasks the execution should run.
-     *           Setting to 1 means that parallelism is limited to 1 and the success of
+     *           Output only. Specifies the desired number of tasks the execution should
+     *           run. Setting to 1 means that parallelism is limited to 1 and the success of
      *           that task signals the success of the execution.
-     *           More info:
-     *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *     @type \Google\Cloud\Run\V2\TaskTemplate $template
      *           Output only. The template used to create tasks for this execution.
      *     @type bool $reconciling
-     *           Output only. Indicates whether the resource's reconciliation is still in progress.
-     *           See comments in `Job.reconciling` for additional information on
+     *           Output only. Indicates whether the resource's reconciliation is still in
+     *           progress. See comments in `Job.reconciling` for additional information on
      *           reconciliation process in Cloud Run.
      *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
-     *           Output only. The Condition of this Execution, containing its readiness status, and
-     *           detailed error information in case it did not reach the desired state.
+     *           Output only. The Condition of this Execution, containing its readiness
+     *           status, and detailed error information in case it did not reach the desired
+     *           state.
      *     @type int|string $observed_generation
-     *           Output only. The generation of this Execution. See comments in `reconciling` for
-     *           additional information on reconciliation process in Cloud Run.
+     *           Output only. The generation of this Execution. See comments in
+     *           `reconciling` for additional information on reconciliation process in Cloud
+     *           Run.
      *     @type int $running_count
      *           Output only. The number of actively running tasks.
      *     @type int $succeeded_count
      *           Output only. The number of tasks which reached phase Succeeded.
      *     @type int $failed_count
      *           Output only. The number of tasks which reached phase Failed.
+     *     @type int $cancelled_count
+     *           Output only. The number of tasks which reached phase Cancelled.
+     *     @type int $retried_count
+     *           Output only. The number of tasks which have retried at least once.
+     *     @type string $log_uri
+     *           Output only. URI where logs for this execution can be found in Cloud
+     *           Console.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -312,8 +354,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -324,8 +367,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
-     * string and guaranteed to remain unchanged until the resource is deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value
+     * is a UUID4 string and guaranteed to remain unchanged until the resource is
+     * deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -368,17 +412,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -387,17 +428,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style labels for the resource.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Output only. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels
-     * Cloud Run will populate some labels with 'run.googleapis.com' or
-     * 'serving.knative.dev' namespaces. Those labels are read-only, and user
-     * changes will not be preserved.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -410,9 +448,12 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -421,9 +462,12 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KRM-style annotations for the resource.
+     * Output only. Unstructured key value map that may
+     * be set by external tools to store and arbitrary metadata.
+     * They are not queryable and should be preserved
+     * when modifying objects.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -436,9 +480,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was acknowledged by the execution
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the execution was acknowledged by the
+     * execution controller. It is not guaranteed to be set in happens-before
+     * order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -459,9 +503,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was acknowledged by the execution
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the execution was acknowledged by the
+     * execution controller. It is not guaranteed to be set in happens-before
+     * order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -516,8 +560,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was completed. It is not guaranteed to
-     * be set in happens-before order across separate operations.
+     * Output only. Represents time when the execution was completed. It is not
+     * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -538,8 +582,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was completed. It is not guaranteed to
-     * be set in happens-before order across separate operations.
+     * Output only. Represents time when the execution was completed. It is not
+     * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -668,10 +712,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview
-     * features in that stage. On read, describes whether the resource uses
-     * preview features. Launch Stages are defined at [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by
+     * [Google Cloud Platform Launch
+     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     * `ALPHA`, `BETA`, and `GA`.
+     * <p>Note that this value might not be what was used
+     * as input. For example, if ALPHA was provided as input in the parent
+     * resource, but only BETA and GA-level features are were, this field will be
+     * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      * @return int
@@ -682,10 +730,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview
-     * features in that stage. On read, describes whether the resource uses
-     * preview features. Launch Stages are defined at [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by
+     * [Google Cloud Platform Launch
+     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     * `ALPHA`, `BETA`, and `GA`.
+     * <p>Note that this value might not be what was used
+     * as input. For example, if ALPHA was provided as input in the parent
+     * resource, but only BETA and GA-level features are were, this field will be
+     * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      * @param int $var
@@ -726,12 +778,11 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the maximum desired number of tasks the execution should
-     * run at any given time. Must be <= task_count. The actual number of
+     * Output only. Specifies the maximum desired number of tasks the execution
+     * should run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     * the work left to do is less than max parallelism. More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * the work left to do is less than max parallelism.
      *
      * Generated from protobuf field <code>int32 parallelism = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -742,12 +793,11 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the maximum desired number of tasks the execution should
-     * run at any given time. Must be <= task_count. The actual number of
+     * Output only. Specifies the maximum desired number of tasks the execution
+     * should run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
-     * the work left to do is less than max parallelism. More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * the work left to do is less than max parallelism.
      *
      * Generated from protobuf field <code>int32 parallelism = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -762,11 +812,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the desired number of tasks the execution should run.
-     * Setting to 1 means that parallelism is limited to 1 and the success of
+     * Output only. Specifies the desired number of tasks the execution should
+     * run. Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *
      * Generated from protobuf field <code>int32 task_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -777,11 +825,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the desired number of tasks the execution should run.
-     * Setting to 1 means that parallelism is limited to 1 and the success of
+     * Output only. Specifies the desired number of tasks the execution should
+     * run. Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
-     * More info:
-     * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *
      * Generated from protobuf field <code>int32 task_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -832,8 +878,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -845,8 +891,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in progress.
-     * See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in
+     * progress. See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -862,8 +908,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Execution, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Execution, containing its readiness
+     * status, and detailed error information in case it did not reach the desired
+     * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -874,8 +921,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Execution, containing its readiness status, and
-     * detailed error information in case it did not reach the desired state.
+     * Output only. The Condition of this Execution, containing its readiness
+     * status, and detailed error information in case it did not reach the desired
+     * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
@@ -890,8 +938,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Execution. See comments in `reconciling` for
-     * additional information on reconciliation process in Cloud Run.
+     * Output only. The generation of this Execution. See comments in
+     * `reconciling` for additional information on reconciliation process in Cloud
+     * Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -902,8 +951,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Execution. See comments in `reconciling` for
-     * additional information on reconciliation process in Cloud Run.
+     * Output only. The generation of this Execution. See comments in
+     * `reconciling` for additional information on reconciliation process in Cloud
+     * Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -991,6 +1041,112 @@ class Execution extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->failed_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of tasks which reached phase Cancelled.
+     *
+     * Generated from protobuf field <code>int32 cancelled_count = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getCancelledCount()
+    {
+        return $this->cancelled_count;
+    }
+
+    /**
+     * Output only. The number of tasks which reached phase Cancelled.
+     *
+     * Generated from protobuf field <code>int32 cancelled_count = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCancelledCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->cancelled_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of tasks which have retried at least once.
+     *
+     * Generated from protobuf field <code>int32 retried_count = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getRetriedCount()
+    {
+        return $this->retried_count;
+    }
+
+    /**
+     * Output only. The number of tasks which have retried at least once.
+     *
+     * Generated from protobuf field <code>int32 retried_count = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRetriedCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->retried_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. URI where logs for this execution can be found in Cloud
+     * Console.
+     *
+     * Generated from protobuf field <code>string log_uri = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLogUri()
+    {
+        return $this->log_uri;
+    }
+
+    /**
+     * Output only. URI where logs for this execution can be found in Cloud
+     * Console.
+     *
+     * Generated from protobuf field <code>string log_uri = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLogUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->log_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

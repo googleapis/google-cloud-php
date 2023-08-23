@@ -47,6 +47,25 @@ class AddNodesNodeGroupRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                                             $project                           Project ID for this request.
+     * @param string                                             $zone                              The name of the zone for this request.
+     * @param string                                             $nodeGroup                         Name of the NodeGroup resource.
+     * @param \Google\Cloud\Compute\V1\NodeGroupsAddNodesRequest $nodeGroupsAddNodesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddNodesNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $nodeGroup, \Google\Cloud\Compute\V1\NodeGroupsAddNodesRequest $nodeGroupsAddNodesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsAddNodesRequestResource($nodeGroupsAddNodesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

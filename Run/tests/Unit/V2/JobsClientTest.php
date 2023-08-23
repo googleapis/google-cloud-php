@@ -23,14 +23,11 @@
 namespace Google\Cloud\Run\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
-
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Run\V2\Execution;
 use Google\Cloud\Run\V2\ExecutionTemplate;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class JobsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return JobsClient
-     */
+    /** @return JobsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,14 +69,12 @@ class JobsClientTest extends GeneratedTest
         return new JobsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -111,6 +100,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
@@ -123,6 +113,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -174,14 +165,12 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -237,14 +226,12 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -270,6 +257,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
@@ -282,6 +270,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -323,14 +312,12 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -380,9 +367,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -411,9 +396,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -446,9 +429,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTest()
     {
         $transport = $this->createTransport();
@@ -467,6 +448,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
@@ -479,6 +461,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -495,9 +478,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -530,9 +511,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsTest()
     {
         $transport = $this->createTransport();
@@ -567,9 +546,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -602,14 +579,12 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runJobTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -636,6 +611,10 @@ class JobsClientTest extends GeneratedTest
         $runningCount = 261439119;
         $succeededCount = 633694641;
         $failedCount = 2013829491;
+        $cancelledCount = 1921113249;
+        $retriedCount = 1654679545;
+        $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -649,6 +628,10 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setRunningCount($runningCount);
         $expectedResponse->setSucceededCount($succeededCount);
         $expectedResponse->setFailedCount($failedCount);
+        $expectedResponse->setCancelledCount($cancelledCount);
+        $expectedResponse->setRetriedCount($retriedCount);
+        $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -690,14 +673,12 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -747,9 +728,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -781,9 +760,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +794,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -847,9 +822,7 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -883,14 +856,12 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -916,6 +887,7 @@ class JobsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $executionCount = 1646136616;
         $reconciling = false;
+        $satisfiesPzs = false;
         $etag = 'etag3123477';
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
@@ -928,6 +900,7 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setExecutionCount($executionCount);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -973,14 +946,12 @@ class JobsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

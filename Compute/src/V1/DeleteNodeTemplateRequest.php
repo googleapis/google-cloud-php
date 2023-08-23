@@ -41,6 +41,23 @@ class DeleteNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project      Project ID for this request.
+     * @param string $region       The name of the region for this request.
+     * @param string $nodeTemplate Name of the NodeTemplate resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteNodeTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $nodeTemplate): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNodeTemplate($nodeTemplate);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -38,6 +38,21 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $project Required. The name of the project in which to list topics.
+     *                        Format is `projects/{project-id}`. Please see
+     *                        {@see PublisherClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\PubSub\V1\ListTopicsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project): self
+    {
+        return (new self())
+            ->setProject($project);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

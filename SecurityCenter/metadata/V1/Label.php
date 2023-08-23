@@ -16,13 +16,13 @@ class Label
         }
         $pool->internalAddGeneratedFile(
             '
-ã
+á
 *google/cloud/securitycenter/v1/label.protogoogle.cloud.securitycenter.v1"$
 Label
 name (	
-value (	Bæ
+value (	Bä
 "com.google.cloud.securitycenter.v1B
-LabelProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+LabelProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

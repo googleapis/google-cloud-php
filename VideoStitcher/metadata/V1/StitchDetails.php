@@ -20,7 +20,7 @@ class StitchDetails
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
+ä
 3google/cloud/video/stitcher/v1/stitch_details.protogoogle.cloud.video.stitcher.v1google/api/resource.protogoogle/protobuf/duration.protogoogle/protobuf/struct.proto"‡
 VodStitchDetail
 name (	I
@@ -35,8 +35,8 @@ class StitchDetails
 
 MediaEntry
 key (	%
-value (2.google.protobuf.Value:8B‚
-"com.google.cloud.video.stitcher.v1BStitchDetailsProtoPZFgoogle.golang.org/genproto/googleapis/cloud/video/stitcher/v1;stitcherbproto3'
+value (2.google.protobuf.Value:8Bz
+"com.google.cloud.video.stitcher.v1BStitchDetailsProtoPZ>cloud.google.com/go/video/stitcher/apiv1/stitcherpb;stitcherpbbproto3'
         , true);
 
         static::$is_initialized = true;

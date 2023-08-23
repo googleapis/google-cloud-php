@@ -20,8 +20,8 @@ class Tensorboard
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ì
-,google/cloud/aiplatform/v1/tensorboard.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.protogoogle/protobuf/timestamp.proto"²
+Ú
+,google/cloud/aiplatform/v1/tensorboard.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.protogoogle/protobuf/timestamp.proto"Æ
 Tensorboard
 name (	BàA
 display_name (	BàA
@@ -33,12 +33,14 @@ class Tensorboard
 create_time (2.google.protobuf.TimestampBàA4
 update_time (2.google.protobuf.TimestampBàAC
 labels (23.google.cloud.aiplatform.v1.Tensorboard.LabelsEntry
-etag	 (	-
+etag	 (	
+
+is_default (-
 LabelsEntry
 key (	
 value (	:8:nêAk
-%aiplatform.googleapis.com/TensorboardBprojects/{project}/locations/{location}/tensorboards/{tensorboard}BÔ
-com.google.cloud.aiplatform.v1BTensorboardProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+%aiplatform.googleapis.com/TensorboardBprojects/{project}/locations/{location}/tensorboards/{tensorboard}BÎ
+com.google.cloud.aiplatform.v1BTensorboardProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

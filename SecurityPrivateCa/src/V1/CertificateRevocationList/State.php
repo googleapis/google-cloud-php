@@ -7,7 +7,9 @@ namespace Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList;
 use UnexpectedValueException;
 
 /**
- * The state of a [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList], indicating if it is current.
+ * The state of a
+ * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList],
+ * indicating if it is current.
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.CertificateRevocationList.State</code>
  */
@@ -20,13 +22,17 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * The [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] is up to date.
+     * The
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * is up to date.
      *
      * Generated from protobuf enum <code>ACTIVE = 1;</code>
      */
     const ACTIVE = 1;
     /**
-     * The [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList] is no longer current.
+     * The
+     * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
+     * is no longer current.
      *
      * Generated from protobuf enum <code>SUPERSEDED = 2;</code>
      */

@@ -23,15 +23,12 @@
 namespace Google\Cloud\AIPlatform\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\CheckTrialEarlyStoppingStateResponse;
 use Google\Cloud\AIPlatform\V1\ListOptimalTrialsResponse;
-
 use Google\Cloud\AIPlatform\V1\ListStudiesResponse;
 use Google\Cloud\AIPlatform\V1\ListTrialsResponse;
 use Google\Cloud\AIPlatform\V1\Measurement;
@@ -58,25 +55,19 @@ use stdClass;
  */
 class VizierServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return VizierServiceClient
-     */
+    /** @return VizierServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -85,9 +76,7 @@ class VizierServiceClientTest extends GeneratedTest
         return new VizierServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addTrialMeasurementTest()
     {
         $transport = $this->createTransport();
@@ -125,9 +114,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addTrialMeasurementExceptionTest()
     {
         $transport = $this->createTransport();
@@ -161,14 +148,12 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkTrialEarlyStoppingStateTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -227,14 +212,12 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkTrialEarlyStoppingStateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -284,9 +267,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeTrialTest()
     {
         $transport = $this->createTransport();
@@ -321,9 +302,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeTrialExceptionTest()
     {
         $transport = $this->createTransport();
@@ -356,9 +335,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createStudyTest()
     {
         $transport = $this->createTransport();
@@ -400,9 +377,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createStudyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -444,9 +419,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTrialTest()
     {
         $transport = $this->createTransport();
@@ -484,9 +457,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTrialExceptionTest()
     {
         $transport = $this->createTransport();
@@ -520,9 +491,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteStudyTest()
     {
         $transport = $this->createTransport();
@@ -546,9 +515,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteStudyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -581,9 +548,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTrialTest()
     {
         $transport = $this->createTransport();
@@ -607,9 +572,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTrialExceptionTest()
     {
         $transport = $this->createTransport();
@@ -642,9 +605,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getStudyTest()
     {
         $transport = $this->createTransport();
@@ -675,9 +636,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getStudyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -710,9 +669,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTrialTest()
     {
         $transport = $this->createTransport();
@@ -747,9 +704,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTrialExceptionTest()
     {
         $transport = $this->createTransport();
@@ -782,9 +737,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOptimalTrialsTest()
     {
         $transport = $this->createTransport();
@@ -809,9 +762,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOptimalTrialsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -844,9 +795,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listStudiesTest()
     {
         $transport = $this->createTransport();
@@ -881,9 +830,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listStudiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -916,9 +863,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTrialsTest()
     {
         $transport = $this->createTransport();
@@ -953,9 +898,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTrialsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -988,9 +931,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupStudyTest()
     {
         $transport = $this->createTransport();
@@ -1024,9 +965,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupStudyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1060,9 +999,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopTrialTest()
     {
         $transport = $this->createTransport();
@@ -1097,9 +1034,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopTrialExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1132,14 +1067,12 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestTrialsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1202,14 +1135,12 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suggestTrialsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1261,9 +1192,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1290,9 +1219,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1323,9 +1250,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -1356,9 +1281,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1389,9 +1312,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1420,9 +1341,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1455,9 +1374,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1489,9 +1406,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1525,9 +1440,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1555,9 +1468,7 @@ class VizierServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

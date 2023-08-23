@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * When performing a visit, a predefined amount may be added to the vehicle
  * load if it's a pickup, or subtracted if it's a delivery. This message
- * defines such amount. See [load_demands][google.cloud.optimization.v1.Shipment.load_demands].
+ * defines such amount. See
+ * [load_demands][google.cloud.optimization.v1.Shipment.load_demands].
  *
  * Generated from protobuf message <code>google.cloud.optimization.v1.Shipment.Load</code>
  */

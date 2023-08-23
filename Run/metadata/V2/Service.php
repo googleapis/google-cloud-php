@@ -30,7 +30,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˙"
+£#
 !google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"Æ
 CreateServiceRequest2
 parent (	B"‡A˙Arun.googleapis.com/Service2
@@ -58,7 +58,7 @@ page_token (	
 name (	B"‡A˙A
 run.googleapis.com/Service
 validate_only (
-etag (	"ò
+etag (	"Œ
 Service
 name (	
 description (	
@@ -91,6 +91,8 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 run.googleapis.com/RevisionG
 traffic_statuses# (2(.google.cloud.run.v2.TrafficTargetStatusB‡A
 uri$ (	B‡A
+custom_audiences% (	
+satisfies_pzs& (B‡A
 reconcilingb (B‡A
 etagc (	B‡A-
 LabelsEntry
@@ -117,8 +119,8 @@ GetService&.google.cloud.run.v2.GetServiceRequest.google.cloud.run.v2.Service
 ServiceServiceê
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"EÇ”‰ì?=/v2/{resource=projects/*/locations/*/services/*}:getIamPolicyì
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"HÇ”‰ìB"=/v2/{resource=projects/*/locations/*/services/*}:setIamPolicy:*π
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"NÇ”‰ìH"C/v2/{resource=projects/*/locations/*/services/*}:testIamPermissions:*F Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBa
-com.google.cloud.run.v2BServiceProtoPZ6google.golang.org/genproto/googleapis/cloud/run/v2;runbproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"NÇ”‰ìH"C/v2/{resource=projects/*/locations/*/services/*}:testIamPermissions:*F Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBT
+com.google.cloud.run.v2BServiceProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
         static::$is_initialized = true;

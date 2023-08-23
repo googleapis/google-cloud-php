@@ -23,11 +23,9 @@
 namespace Google\Cloud\Retail\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Retail\V2\AttributesConfig;
 use Google\Cloud\Retail\V2\Catalog;
 use Google\Cloud\Retail\V2\CatalogAttribute;
@@ -47,25 +45,19 @@ use stdClass;
  */
 class CatalogServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CatalogServiceClient
-     */
+    /** @return CatalogServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +66,7 @@ class CatalogServiceClientTest extends GeneratedTest
         return new CatalogServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addCatalogAttributeTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addCatalogAttributeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -146,9 +134,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAttributesConfigTest()
     {
         $transport = $this->createTransport();
@@ -175,9 +161,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAttributesConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -210,9 +194,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCompletionConfigTest()
     {
         $transport = $this->createTransport();
@@ -253,9 +235,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCompletionConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -288,9 +268,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDefaultBranchTest()
     {
         $transport = $this->createTransport();
@@ -315,9 +293,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDefaultBranchExceptionTest()
     {
         $transport = $this->createTransport();
@@ -348,9 +324,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCatalogsTest()
     {
         $transport = $this->createTransport();
@@ -385,9 +359,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCatalogsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +392,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeCatalogAttributeTest()
     {
         $transport = $this->createTransport();
@@ -452,9 +422,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeCatalogAttributeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -488,9 +456,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceCatalogAttributeTest()
     {
         $transport = $this->createTransport();
@@ -522,9 +488,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceCatalogAttributeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -560,9 +524,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDefaultBranchTest()
     {
         $transport = $this->createTransport();
@@ -582,9 +544,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDefaultBranchExceptionTest()
     {
         $transport = $this->createTransport();
@@ -615,9 +575,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAttributesConfigTest()
     {
         $transport = $this->createTransport();
@@ -646,9 +604,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAttributesConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -683,9 +639,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCatalogTest()
     {
         $transport = $this->createTransport();
@@ -720,9 +674,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCatalogExceptionTest()
     {
         $transport = $this->createTransport();
@@ -761,9 +713,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCompletionConfigTest()
     {
         $transport = $this->createTransport();
@@ -806,9 +756,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCompletionConfigExceptionTest()
     {
         $transport = $this->createTransport();

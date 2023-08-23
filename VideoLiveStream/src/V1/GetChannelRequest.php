@@ -24,6 +24,21 @@ class GetChannelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the channel resource, in the form of:
+     *                     `projects/{project}/locations/{location}/channels/{channelId}`. Please see
+     *                     {@see LivestreamServiceClient::channelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Video\LiveStream\V1\GetChannelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -44,6 +44,14 @@ class PaginationTest extends TestCase
         self::$zonesClient = new ZonesClient();
         self::$acceleratorTypesClient = new AcceleratorTypesClient();
         self::$zone = 'us-central1-a';
+
+        // test needs 4 or more instances
+        $response = self::$instancesClient->aggregatedList(self::$projectId);
+        $page = $response->getPage();
+        $allResults = self::getInstancesFromAggregatedPage($page);
+        if (count($allResults) < 4) {
+            self::fail('Atleast 4 instances are required for test run');
+        }
     }
 
     public static function tearDownAfterClass(): void
@@ -80,7 +88,9 @@ class PaginationTest extends TestCase
         $nextPage = $page->getNextPage(1);
         $content = iterator_to_array($page->getIterator());
         $nextContent = iterator_to_array($nextPage->getIterator());
-        self::assertNotEquals($content, $nextContent);
+        self::assertCount(1, $content);
+        self::assertCount(1, $nextContent);
+        self::assertNotEquals($content[0]->getId(), $nextContent[0]->getid());
     }
 
     public function  testNextPageSize()
@@ -165,9 +175,13 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(1);
-        $content = iterator_to_array($page->getIterator());
-        $nextContent = iterator_to_array($nextPage->getIterator());
-        self::assertNotEquals($content, $nextContent);
+        $content = self::getInstancesFromAggregatedPage($page);
+        $nextContent = self::getInstancesFromAggregatedPage($nextPage);
+
+        self::assertNotEquals(
+            current($content)->getId(),
+            current($nextContent)->getid()
+        );
     }
 
     public function  testAggregatedNextPageSize()
@@ -178,11 +192,7 @@ class PaginationTest extends TestCase
         );
         $page = $response->getPage();
         $nextPage = $page->getNextPage(2);
-        $nextContent = [];
-        foreach ($nextPage->getIterator() as $zone => $instancesList) {
-            $pageResults = iterator_to_array($instancesList->getInstances());
-            $nextContent = array_merge($nextContent, $pageResults);
-        }
+        $nextContent = self::getInstancesFromAggregatedPage($nextPage);
         self::assertCount(2, $nextContent);
     }
 
@@ -193,11 +203,17 @@ class PaginationTest extends TestCase
             ['maxResults' => 3]
         );
         $page = $response->getPage();
-        $allResults = [];
-        foreach ($page->getIterator() as $zone => $instancesList) {
-            $zoneResults = iterator_to_array($instancesList->getInstances());
-            $allResults = array_merge($allResults, $zoneResults);
-        }
+        $allResults = self::getInstancesFromAggregatedPage($page);
         self::assertCount(3, $allResults);
+    }
+
+    private static function getInstancesFromAggregatedPage($page)
+    {
+        $results = [];
+        foreach ($page->getIterator() as $zone => $instancesList) {
+            $pageResults = iterator_to_array($instancesList->getInstances());
+            $results = array_merge($results, $pageResults);
+        }
+        return $results;
     }
 }

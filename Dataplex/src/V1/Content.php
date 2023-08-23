@@ -23,16 +23,17 @@ class Content extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. System generated globally unique ID for the content. This ID will be
-     * different if the content is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the content. This ID
+     * will be different if the content is deleted and re-created with the same
+     * name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $uid = '';
     /**
-     * Required. The path for the Content file, represented as directory structure.
-     * Unique within a lake.
-     * Limited to alphanumerics, hyphens, underscores, dots and slashes.
+     * Required. The path for the Content file, represented as directory
+     * structure. Unique within a lake. Limited to alphanumerics, hyphens,
+     * underscores, dots and slashes.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -74,12 +75,13 @@ class Content extends \Google\Protobuf\Internal\Message
      *           Output only. The relative resource name of the content, of the form:
      *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}/content/{content_id}
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the content. This ID will be
-     *           different if the content is deleted and re-created with the same name.
+     *           Output only. System generated globally unique ID for the content. This ID
+     *           will be different if the content is deleted and re-created with the same
+     *           name.
      *     @type string $path
-     *           Required. The path for the Content file, represented as directory structure.
-     *           Unique within a lake.
-     *           Limited to alphanumerics, hyphens, underscores, dots and slashes.
+     *           Required. The path for the Content file, represented as directory
+     *           structure. Unique within a lake. Limited to alphanumerics, hyphens,
+     *           underscores, dots and slashes.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Content creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -130,8 +132,9 @@ class Content extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the content. This ID will be
-     * different if the content is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the content. This ID
+     * will be different if the content is deleted and re-created with the same
+     * name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -142,8 +145,9 @@ class Content extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the content. This ID will be
-     * different if the content is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the content. This ID
+     * will be different if the content is deleted and re-created with the same
+     * name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -158,9 +162,9 @@ class Content extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The path for the Content file, represented as directory structure.
-     * Unique within a lake.
-     * Limited to alphanumerics, hyphens, underscores, dots and slashes.
+     * Required. The path for the Content file, represented as directory
+     * structure. Unique within a lake. Limited to alphanumerics, hyphens,
+     * underscores, dots and slashes.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -171,9 +175,9 @@ class Content extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The path for the Content file, represented as directory structure.
-     * Unique within a lake.
-     * Limited to alphanumerics, hyphens, underscores, dots and slashes.
+     * Required. The path for the Content file, represented as directory
+     * structure. Unique within a lake. Limited to alphanumerics, hyphens,
+     * underscores, dots and slashes.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

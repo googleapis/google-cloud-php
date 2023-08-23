@@ -41,6 +41,23 @@ class InsertSubnetworkRequest extends \Google\Protobuf\Internal\Message
     private $subnetwork_resource = null;
 
     /**
+     * @param string                              $project            Project ID for this request.
+     * @param string                              $region             Name of the region scoping this request.
+     * @param \Google\Cloud\Compute\V1\Subnetwork $subnetworkResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertSubnetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\Subnetwork $subnetworkResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetworkResource($subnetworkResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

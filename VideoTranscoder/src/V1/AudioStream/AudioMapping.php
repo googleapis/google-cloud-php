@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class AudioMapping extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs in the
-     * `Job.edit_list`.
+     * Required. The `EditAtom.key` that references the atom with audio inputs
+     * in the `Job.edit_list`.
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -61,8 +61,8 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $atom_key
-     *           Required. The `EditAtom.key` that references the atom with audio inputs in the
-     *           `Job.edit_list`.
+     *           Required. The `EditAtom.key` that references the atom with audio inputs
+     *           in the `Job.edit_list`.
      *     @type string $input_key
      *           Required. The `Input.key` that identifies the input file.
      *     @type int $input_track
@@ -82,8 +82,8 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs in the
-     * `Job.edit_list`.
+     * Required. The `EditAtom.key` that references the atom with audio inputs
+     * in the `Job.edit_list`.
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -94,8 +94,8 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs in the
-     * `Job.edit_list`.
+     * Required. The `EditAtom.key` that references the atom with audio inputs
+     * in the `Job.edit_list`.
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

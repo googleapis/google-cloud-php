@@ -18,8 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\GeoPoint;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -27,8 +27,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class GeoPointTest extends TestCase
 {
-    use ExpectException;
-
     public function testGeoPoint()
     {
         $point = new GeoPoint(1.1, 2.2);
@@ -60,7 +58,7 @@ class GeoPointTest extends TestCase
      */
     public function testCheckContext($method)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $point = new GeoPoint(1.1, 2.2);
         $point->$method(222.33);
@@ -71,7 +69,7 @@ class GeoPointTest extends TestCase
      */
     public function testInvalidType($method)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $method = 'set' . ucfirst($method);
         $point = new GeoPoint(1.1, 2.2);
@@ -83,7 +81,7 @@ class GeoPointTest extends TestCase
      */
     public function testSetNullValue($method)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $method = 'set' . ucfirst($method);
         $point = new GeoPoint(1.1, 2.2, true);

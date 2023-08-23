@@ -28,6 +28,15 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $user_event = null;
+    /**
+     * If set to true, the user event will be written asynchronously after
+     * validation, and the API will respond without waiting for the write.
+     * Therefore, silent failures can occur even if the API returns success. In
+     * case of silent failures, error messages can be found in Stackdriver logs.
+     *
+     * Generated from protobuf field <code>bool write_async = 3;</code>
+     */
+    private $write_async = false;
 
     /**
      * Constructor.
@@ -40,6 +49,11 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      *           `projects/1234/locations/global/catalogs/default_catalog`.
      *     @type \Google\Cloud\Retail\V2\UserEvent $user_event
      *           Required. User event to write.
+     *     @type bool $write_async
+     *           If set to true, the user event will be written asynchronously after
+     *           validation, and the API will respond without waiting for the write.
+     *           Therefore, silent failures can occur even if the API returns success. In
+     *           case of silent failures, error messages can be found in Stackdriver logs.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +121,38 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\UserEvent::class);
         $this->user_event = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true, the user event will be written asynchronously after
+     * validation, and the API will respond without waiting for the write.
+     * Therefore, silent failures can occur even if the API returns success. In
+     * case of silent failures, error messages can be found in Stackdriver logs.
+     *
+     * Generated from protobuf field <code>bool write_async = 3;</code>
+     * @return bool
+     */
+    public function getWriteAsync()
+    {
+        return $this->write_async;
+    }
+
+    /**
+     * If set to true, the user event will be written asynchronously after
+     * validation, and the API will respond without waiting for the write.
+     * Therefore, silent failures can occur even if the API returns success. In
+     * case of silent failures, error messages can be found in Stackdriver logs.
+     *
+     * Generated from protobuf field <code>bool write_async = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setWriteAsync($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->write_async = $var;
 
         return $this;
     }

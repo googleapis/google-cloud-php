@@ -25,6 +25,7 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
@@ -59,6 +60,10 @@ use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
 use Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
@@ -83,6 +88,10 @@ use Google\Protobuf\Timestamp;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient} to use
+ * the new surface.
  */
 class DataTransferServiceGapicClient
 {
@@ -522,9 +531,6 @@ class DataTransferServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'bigquerydatatransfer.googleapis.com:443'.
@@ -554,7 +560,7 @@ class DataTransferServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -636,10 +642,11 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent         Required. The BigQuery project id where the transfer configuration should be created.
-     *                                       Must be in the format projects/{project_id}/locations/{location_id} or
-     *                                       projects/{project_id}. If specified location and location of the
-     *                                       destination bigquery dataset do not match - the request will fail.
+     * @param string         $parent         Required. The BigQuery project id where the transfer configuration should
+     *                                       be created. Must be in the format
+     *                                       projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+     *                                       specified location and location of the destination bigquery dataset do not
+     *                                       match - the request will fail.
      * @param TransferConfig $transferConfig Required. Data transfer configuration to create.
      * @param array          $optionalArgs   {
      *     Optional.
@@ -675,7 +682,7 @@ class DataTransferServiceGapicClient
      *           Note that this should not be set when `service_account_name` is used to
      *           create the transfer config.
      *     @type string $serviceAccountName
-     *           Optional service account name. If this field is set, the transfer config
+     *           Optional service account email. If this field is set, the transfer config
      *           will be created with this service account's credentials. It requires that
      *           the requesting user calling this API has permissions to act as this service
      *           account.
@@ -733,8 +740,8 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for example:
-     *                             `projects/{project_id}/transferConfigs/{config_id}` or
+     * @param string $name         Required. The field will contain name of the resource requested, for
+     *                             example: `projects/{project_id}/transferConfigs/{config_id}` or
      *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -772,8 +779,9 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for example:
-     *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     * @param string $name         Required. The field will contain name of the resource requested, for
+     *                             example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *                             or
      *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -865,8 +873,8 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for example:
-     *                             `projects/{project_id}/dataSources/{data_source_id}` or
+     * @param string $name         Required. The field will contain name of the resource requested, for
+     *                             example: `projects/{project_id}/dataSources/{data_source_id}` or
      *                             `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -906,8 +914,8 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for example:
-     *                             `projects/{project_id}/transferConfigs/{config_id}` or
+     * @param string $name         Required. The field will contain name of the resource requested, for
+     *                             example: `projects/{project_id}/transferConfigs/{config_id}` or
      *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -947,8 +955,9 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for example:
-     *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     * @param string $name         Required. The field will contain name of the resource requested, for
+     *                             example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *                             or
      *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1000,8 +1009,8 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The BigQuery project id for which data sources should be returned.
-     *                             Must be in the form: `projects/{project_id}` or
+     * @param string $parent       Required. The BigQuery project id for which data sources should be
+     *                             returned. Must be in the form: `projects/{project_id}` or
      *                             `projects/{project_id}/locations/{location_id}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1225,8 +1234,8 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of transfer configuration for which transfer runs should be retrieved.
-     *                             Format of transfer configuration resource name is:
+     * @param string $parent       Required. Name of transfer configuration for which transfer runs should be
+     *                             retrieved. Format of transfer configuration resource name is:
      *                             `projects/{project_id}/transferConfigs/{config_id}` or
      *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      * @param array  $optionalArgs {
@@ -1363,10 +1372,15 @@ class DataTransferServiceGapicClient
      *           `projects/{project_id}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type TimeRange $requestedTimeRange
-     *           Time range for the transfer runs that should be started.
+     *           A time_range start and end timestamp for historical data files or reports
+     *           that are scheduled to be transferred by the scheduled transfer run.
+     *           requested_time_range must be a past time and cannot include future time
+     *           values.
      *     @type Timestamp $requestedRunTime
-     *           Specific run_time for a transfer run to be started. The
-     *           requested_run_time must not be in the future.
+     *           A run_time timestamp for historical data files or reports
+     *           that are scheduled to be transferred by the scheduled transfer run.
+     *           requested_run_time must be a past time and cannot include future time
+     *           values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1451,7 +1465,7 @@ class DataTransferServiceGapicClient
      *           Note that this should not be set when `service_account_name` is used to
      *           update the transfer config.
      *     @type string $serviceAccountName
-     *           Optional service account name. If this field is set, the transfer config
+     *           Optional service account email. If this field is set, the transfer config
      *           will be created with this service account's credentials. It requires that
      *           the requesting user calling this API has permissions to act as this service
      *           account.
@@ -1492,5 +1506,124 @@ class DataTransferServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateTransferConfig', TransferConfig::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
+     * try {
+     *     $response = $dataTransferServiceClient->getLocation();
+     * } finally {
+     *     $dataTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataTransferServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataTransferServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 }

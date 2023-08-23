@@ -30,8 +30,8 @@ use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
 /**
  * Retrieves a supported data source and returns its settings.
  *
- * @param string $formattedName The field will contain name of the resource requested, for example:
- *                              `projects/{project_id}/dataSources/{data_source_id}` or
+ * @param string $formattedName The field will contain name of the resource requested, for
+ *                              example: `projects/{project_id}/dataSources/{data_source_id}` or
  *                              `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
  *                              Please see {@see DataTransferServiceClient::dataSourceName()} for help formatting this field.
  */

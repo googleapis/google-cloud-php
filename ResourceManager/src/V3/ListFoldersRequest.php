@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFoldersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the organization or folder whose folders are
-     * being listed.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The name of the parent resource whose folders are being listed.
+     * Only children of this parent resource are listed; descendants are not
+     * listed.
+     * If the parent is a folder, use the value `folders/{folder_id}`. If the
+     * parent is an organization, use the value `organizations/{org_id}`.
      * Access to this method is controlled by checking the
      * `resourcemanager.folders.list` permission on the `parent`.
      *
@@ -26,8 +28,9 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of folders to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The
+     * server can return fewer folders than requested. If unspecified, server
+     * picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,20 +52,44 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The name of the parent resource whose folders are being listed.
+     *                       Only children of this parent resource are listed; descendants are not
+     *                       listed.
+     *
+     *                       If the parent is a folder, use the value `folders/{folder_id}`. If the
+     *                       parent is an organization, use the value `organizations/{org_id}`.
+     *
+     *                       Access to this method is controlled by checking the
+     *                       `resourcemanager.folders.list` permission on the `parent`.
+     *
+     * @return \Google\Cloud\ResourceManager\V3\ListFoldersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the organization or folder whose folders are
-     *           being listed.
-     *           Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     *           Required. The name of the parent resource whose folders are being listed.
+     *           Only children of this parent resource are listed; descendants are not
+     *           listed.
+     *           If the parent is a folder, use the value `folders/{folder_id}`. If the
+     *           parent is an organization, use the value `organizations/{org_id}`.
      *           Access to this method is controlled by checking the
      *           `resourcemanager.folders.list` permission on the `parent`.
      *     @type int $page_size
-     *           Optional. The maximum number of folders to return in the response.
-     *           If unspecified, server picks an appropriate default.
+     *           Optional. The maximum number of folders to return in the response. The
+     *           server can return fewer folders than requested. If unspecified, server
+     *           picks an appropriate default.
      *     @type string $page_token
      *           Optional. A pagination token returned from a previous call to `ListFolders`
      *           that indicates where this listing should continue from.
@@ -78,9 +105,11 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the organization or folder whose folders are
-     * being listed.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The name of the parent resource whose folders are being listed.
+     * Only children of this parent resource are listed; descendants are not
+     * listed.
+     * If the parent is a folder, use the value `folders/{folder_id}`. If the
+     * parent is an organization, use the value `organizations/{org_id}`.
      * Access to this method is controlled by checking the
      * `resourcemanager.folders.list` permission on the `parent`.
      *
@@ -93,9 +122,11 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the organization or folder whose folders are
-     * being listed.
-     * Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The name of the parent resource whose folders are being listed.
+     * Only children of this parent resource are listed; descendants are not
+     * listed.
+     * If the parent is a folder, use the value `folders/{folder_id}`. If the
+     * parent is an organization, use the value `organizations/{org_id}`.
      * Access to this method is controlled by checking the
      * `resourcemanager.folders.list` permission on the `parent`.
      *
@@ -112,8 +143,9 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of folders to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The
+     * server can return fewer folders than requested. If unspecified, server
+     * picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -124,8 +156,9 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of folders to return in the response.
-     * If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The
+     * server can return fewer folders than requested. If unspecified, server
+     * picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

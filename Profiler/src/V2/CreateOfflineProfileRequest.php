@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * CreateOfflineProfileRequest describes a profile resource offline creation
- * request. Profile field must be set.
+ * request.
  *
  * Generated from protobuf message <code>google.devtools.cloudprofiler.v2.CreateOfflineProfileRequest</code>
  */
@@ -19,7 +19,7 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -28,6 +28,21 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Profile profile = 2;</code>
      */
     private $profile = null;
+
+    /**
+     * @param string                            $parent  Parent project to create the profile in.
+     * @param \Google\Cloud\Profiler\V2\Profile $profile Contents of the profile to create.
+     *
+     * @return \Google\Cloud\Profiler\V2\CreateOfflineProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Profiler\V2\Profile $profile): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProfile($profile);
+    }
 
     /**
      * Constructor.
@@ -49,7 +64,7 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -60,7 +75,7 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent project to create the profile in.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

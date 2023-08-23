@@ -10,8 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Metadata of the input of a feature.
- * Fields other than [InputMetadata.input_baselines][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.input_baselines] are applicable only
- * for Models that are using Vertex AI-provided images for Tensorflow.
+ * Fields other than
+ * [InputMetadata.input_baselines][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.input_baselines]
+ * are applicable only for Models that are using Vertex AI-provided images for
+ * Tensorflow.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata</code>
  */
@@ -21,15 +23,16 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * Baseline inputs for this feature.
      * If no baseline is specified, Vertex AI chooses the baseline for this
      * feature. If multiple baselines are specified, Vertex AI returns the
-     * average attributions across them in [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     * average attributions across them in
+     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      * For Vertex AI-provided Tensorflow images (both 1.x and 2.x), the shape
      * of each baseline must match the shape of the input tensor. If a scalar is
      * provided, we broadcast to the same shape as the input tensor.
      * For custom images, the element of the baselines must be in the same
      * format as the feature's input in the
-     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The schema of any single instance
-     * may be specified via Endpoint's DeployedModels'
-     * [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
+     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The
+     * schema of any single instance may be specified via Endpoint's
+     * DeployedModels' [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
@@ -83,8 +86,9 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
     private $dense_shape_tensor_name = '';
     /**
      * A list of feature names for each index in the input tensor.
-     * Required when the input [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding] is BAG_OF_FEATURES,
-     * BAG_OF_FEATURES_SPARSE, INDICATOR.
+     * Required when the input
+     * [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding]
+     * is BAG_OF_FEATURES, BAG_OF_FEATURES_SPARSE, INDICATOR.
      *
      * Generated from protobuf field <code>repeated string index_feature_mapping = 8;</code>
      */
@@ -92,9 +96,11 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Encoded tensor is a transformation of the input tensor. Must be provided
      * if choosing
-     * [Integrated Gradients attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
-     * or [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution] and the
-     * input tensor is not differentiable.
+     * [Integrated Gradients
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
+     * or [XRAI
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]
+     * and the input tensor is not differentiable.
      * An encoded tensor is generated if the input tensor is encoded by a lookup
      * table.
      *
@@ -121,7 +127,8 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * name will be treated as one feature when computing attributions. Features
      * grouped together can have different shapes in value. If provided, there
      * will be one single attribution generated in
-     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions], keyed by the group name.
+     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions],
+     * keyed by the group name.
      *
      * Generated from protobuf field <code>string group_name = 12;</code>
      */
@@ -137,15 +144,16 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *           Baseline inputs for this feature.
      *           If no baseline is specified, Vertex AI chooses the baseline for this
      *           feature. If multiple baselines are specified, Vertex AI returns the
-     *           average attributions across them in [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     *           average attributions across them in
+     *           [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      *           For Vertex AI-provided Tensorflow images (both 1.x and 2.x), the shape
      *           of each baseline must match the shape of the input tensor. If a scalar is
      *           provided, we broadcast to the same shape as the input tensor.
      *           For custom images, the element of the baselines must be in the same
      *           format as the feature's input in the
-     *           [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The schema of any single instance
-     *           may be specified via Endpoint's DeployedModels'
-     *           [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
+     *           [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The
+     *           schema of any single instance may be specified via Endpoint's
+     *           DeployedModels' [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *     @type string $input_tensor_name
@@ -171,14 +179,17 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *           https://www.tensorflow.org/api_docs/python/tf/sparse/SparseTensor.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $index_feature_mapping
      *           A list of feature names for each index in the input tensor.
-     *           Required when the input [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding] is BAG_OF_FEATURES,
-     *           BAG_OF_FEATURES_SPARSE, INDICATOR.
+     *           Required when the input
+     *           [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding]
+     *           is BAG_OF_FEATURES, BAG_OF_FEATURES_SPARSE, INDICATOR.
      *     @type string $encoded_tensor_name
      *           Encoded tensor is a transformation of the input tensor. Must be provided
      *           if choosing
-     *           [Integrated Gradients attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
-     *           or [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution] and the
-     *           input tensor is not differentiable.
+     *           [Integrated Gradients
+     *           attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
+     *           or [XRAI
+     *           attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]
+     *           and the input tensor is not differentiable.
      *           An encoded tensor is generated if the input tensor is encoded by a lookup
      *           table.
      *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $encoded_baselines
@@ -193,7 +204,8 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *           name will be treated as one feature when computing attributions. Features
      *           grouped together can have different shapes in value. If provided, there
      *           will be one single attribution generated in
-     *           [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions], keyed by the group name.
+     *           [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions],
+     *           keyed by the group name.
      * }
      */
     public function __construct($data = NULL) {
@@ -205,15 +217,16 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * Baseline inputs for this feature.
      * If no baseline is specified, Vertex AI chooses the baseline for this
      * feature. If multiple baselines are specified, Vertex AI returns the
-     * average attributions across them in [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     * average attributions across them in
+     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      * For Vertex AI-provided Tensorflow images (both 1.x and 2.x), the shape
      * of each baseline must match the shape of the input tensor. If a scalar is
      * provided, we broadcast to the same shape as the input tensor.
      * For custom images, the element of the baselines must be in the same
      * format as the feature's input in the
-     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The schema of any single instance
-     * may be specified via Endpoint's DeployedModels'
-     * [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
+     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The
+     * schema of any single instance may be specified via Endpoint's
+     * DeployedModels' [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
@@ -229,15 +242,16 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * Baseline inputs for this feature.
      * If no baseline is specified, Vertex AI chooses the baseline for this
      * feature. If multiple baselines are specified, Vertex AI returns the
-     * average attributions across them in [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
+     * average attributions across them in
+     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions].
      * For Vertex AI-provided Tensorflow images (both 1.x and 2.x), the shape
      * of each baseline must match the shape of the input tensor. If a scalar is
      * provided, we broadcast to the same shape as the input tensor.
      * For custom images, the element of the baselines must be in the same
      * format as the feature's input in the
-     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The schema of any single instance
-     * may be specified via Endpoint's DeployedModels'
-     * [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
+     * [instance][google.cloud.aiplatform.v1.ExplainRequest.instances][]. The
+     * schema of any single instance may be specified via Endpoint's
+     * DeployedModels' [Model's][google.cloud.aiplatform.v1.DeployedModel.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
@@ -439,8 +453,9 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of feature names for each index in the input tensor.
-     * Required when the input [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding] is BAG_OF_FEATURES,
-     * BAG_OF_FEATURES_SPARSE, INDICATOR.
+     * Required when the input
+     * [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding]
+     * is BAG_OF_FEATURES, BAG_OF_FEATURES_SPARSE, INDICATOR.
      *
      * Generated from protobuf field <code>repeated string index_feature_mapping = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -452,8 +467,9 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of feature names for each index in the input tensor.
-     * Required when the input [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding] is BAG_OF_FEATURES,
-     * BAG_OF_FEATURES_SPARSE, INDICATOR.
+     * Required when the input
+     * [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding]
+     * is BAG_OF_FEATURES, BAG_OF_FEATURES_SPARSE, INDICATOR.
      *
      * Generated from protobuf field <code>repeated string index_feature_mapping = 8;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -470,9 +486,11 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Encoded tensor is a transformation of the input tensor. Must be provided
      * if choosing
-     * [Integrated Gradients attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
-     * or [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution] and the
-     * input tensor is not differentiable.
+     * [Integrated Gradients
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
+     * or [XRAI
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]
+     * and the input tensor is not differentiable.
      * An encoded tensor is generated if the input tensor is encoded by a lookup
      * table.
      *
@@ -487,9 +505,11 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Encoded tensor is a transformation of the input tensor. Must be provided
      * if choosing
-     * [Integrated Gradients attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
-     * or [XRAI attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution] and the
-     * input tensor is not differentiable.
+     * [Integrated Gradients
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]
+     * or [XRAI
+     * attribution][google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]
+     * and the input tensor is not differentiable.
      * An encoded tensor is generated if the input tensor is encoded by a lookup
      * table.
      *
@@ -578,7 +598,8 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * name will be treated as one feature when computing attributions. Features
      * grouped together can have different shapes in value. If provided, there
      * will be one single attribution generated in
-     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions], keyed by the group name.
+     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions],
+     * keyed by the group name.
      *
      * Generated from protobuf field <code>string group_name = 12;</code>
      * @return string
@@ -593,7 +614,8 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * name will be treated as one feature when computing attributions. Features
      * grouped together can have different shapes in value. If provided, there
      * will be one single attribution generated in
-     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions], keyed by the group name.
+     * [Attribution.feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions],
+     * keyed by the group name.
      *
      * Generated from protobuf field <code>string group_name = 12;</code>
      * @param string $var

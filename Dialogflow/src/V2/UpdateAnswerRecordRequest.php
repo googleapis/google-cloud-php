@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord].
+ * Request message for
+ * [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateAnswerRecordRequest</code>
  */
@@ -27,6 +28,21 @@ class UpdateAnswerRecordRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\AnswerRecord $answerRecord Required. Answer record to update.
+     * @param \Google\Protobuf\FieldMask               $updateMask   Required. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateAnswerRecordRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\AnswerRecord $answerRecord, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAnswerRecord($answerRecord)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

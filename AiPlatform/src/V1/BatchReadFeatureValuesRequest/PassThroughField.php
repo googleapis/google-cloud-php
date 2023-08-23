@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PassThroughField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the field in the CSV header or the name of the column in
-     * BigQuery table. The naming restriction is the same as [Feature.name][google.cloud.aiplatform.v1.Feature.name].
+     * Required. The name of the field in the CSV header or the name of the
+     * column in BigQuery table. The naming restriction is the same as
+     * [Feature.name][google.cloud.aiplatform.v1.Feature.name].
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +31,9 @@ class PassThroughField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $field_name
-     *           Required. The name of the field in the CSV header or the name of the column in
-     *           BigQuery table. The naming restriction is the same as [Feature.name][google.cloud.aiplatform.v1.Feature.name].
+     *           Required. The name of the field in the CSV header or the name of the
+     *           column in BigQuery table. The naming restriction is the same as
+     *           [Feature.name][google.cloud.aiplatform.v1.Feature.name].
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +42,9 @@ class PassThroughField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the field in the CSV header or the name of the column in
-     * BigQuery table. The naming restriction is the same as [Feature.name][google.cloud.aiplatform.v1.Feature.name].
+     * Required. The name of the field in the CSV header or the name of the
+     * column in BigQuery table. The naming restriction is the same as
+     * [Feature.name][google.cloud.aiplatform.v1.Feature.name].
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -52,8 +55,9 @@ class PassThroughField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the field in the CSV header or the name of the column in
-     * BigQuery table. The naming restriction is the same as [Feature.name][google.cloud.aiplatform.v1.Feature.name].
+     * Required. The name of the field in the CSV header or the name of the
+     * column in BigQuery table. The naming restriction is the same as
+     * [Feature.name][google.cloud.aiplatform.v1.Feature.name].
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -23,15 +23,12 @@
 namespace Google\Cloud\Gaming\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Gaming\V1\GameServerCluster;
 use Google\Cloud\Gaming\V1\GameServerClustersServiceClient;
-
 use Google\Cloud\Gaming\V1\ListGameServerClustersResponse;
 use Google\Cloud\Gaming\V1\PreviewCreateGameServerClusterResponse;
 use Google\Cloud\Gaming\V1\PreviewDeleteGameServerClusterResponse;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class GameServerClustersServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GameServerClustersServiceClient
-     */
+    /** @return GameServerClustersServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,14 +69,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         return new GameServerClustersServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -156,14 +145,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -217,14 +204,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -281,14 +266,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -338,9 +321,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerClusterTest()
     {
         $transport = $this->createTransport();
@@ -371,9 +352,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
@@ -406,9 +385,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGameServerClustersTest()
     {
         $transport = $this->createTransport();
@@ -443,9 +420,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGameServerClustersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -478,9 +453,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewCreateGameServerClusterTest()
     {
         $transport = $this->createTransport();
@@ -515,9 +488,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewCreateGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
@@ -554,9 +525,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewDeleteGameServerClusterTest()
     {
         $transport = $this->createTransport();
@@ -583,9 +552,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewDeleteGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
@@ -618,9 +585,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewUpdateGameServerClusterTest()
     {
         $transport = $this->createTransport();
@@ -652,9 +617,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewUpdateGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
@@ -690,14 +653,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGameServerClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -765,14 +726,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGameServerClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

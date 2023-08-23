@@ -70,7 +70,8 @@ class State
     /**
      * Specifies that the task was not triggered because the task's trigger
      * policy is not satisfied. The trigger policy is specified in the
-     * `condition` field of [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec].
+     * `condition` field of
+     * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec].
      *
      * Generated from protobuf enum <code>NOT_TRIGGERED = 9;</code>
      */

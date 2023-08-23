@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VizierService.ListStudies][google.cloud.aiplatform.v1.VizierService.ListStudies].
+ * Request message for
+ * [VizierService.ListStudies][google.cloud.aiplatform.v1.VizierService.ListStudies].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListStudiesRequest</code>
  */
@@ -36,6 +37,21 @@ class ListStudiesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
+
+    /**
+     * @param string $parent Required. The resource name of the Location to list the Study from.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see VizierServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListStudiesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

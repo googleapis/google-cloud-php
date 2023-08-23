@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [JobService.CancelHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.CancelHyperparameterTuningJob].
+ * Request message for
+ * [JobService.CancelHyperparameterTuningJob][google.cloud.aiplatform.v1.JobService.CancelHyperparameterTuningJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CancelHyperparameterTuningJobRequest</code>
  */
@@ -23,6 +24,22 @@ class CancelHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the HyperparameterTuningJob to cancel.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
+     *                     Please see {@see JobServiceClient::hyperparameterTuningJobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CancelHyperparameterTuningJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

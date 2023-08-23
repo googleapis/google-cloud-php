@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "SchemaServiceGapicClient",
                     "rpcs": {
+                        "CommitSchema": {
+                            "methods": [
+                                "commitSchema"
+                            ]
+                        },
                         "CreateSchema": {
                             "methods": [
                                 "createSchema"
@@ -20,14 +25,29 @@
                                 "deleteSchema"
                             ]
                         },
+                        "DeleteSchemaRevision": {
+                            "methods": [
+                                "deleteSchemaRevision"
+                            ]
+                        },
                         "GetSchema": {
                             "methods": [
                                 "getSchema"
                             ]
                         },
+                        "ListSchemaRevisions": {
+                            "methods": [
+                                "listSchemaRevisions"
+                            ]
+                        },
                         "ListSchemas": {
                             "methods": [
                                 "listSchemas"
+                            ]
+                        },
+                        "RollbackSchema": {
+                            "methods": [
+                                "rollbackSchema"
                             ]
                         },
                         "ValidateMessage": {

@@ -17,7 +17,7 @@ class Deploy
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º
+¹
  google/appengine/v1/deploy.protogoogle.appengine.v1"»
 
 Deployment9
@@ -42,8 +42,8 @@ source_url (	
 ZipInfo
 
 source_url (	
-files_count (B½
-com.google.appengine.v1BDeployProtoPZ<google.golang.org/genproto/googleapis/appengine/v1;appengineªGoogle.Cloud.AppEngine.V1ÊGoogle\\Cloud\\AppEngine\\V1êGoogle::Cloud::AppEngine::V1bproto3'
+files_count (B¼
+com.google.appengine.v1BDeployProtoPZ;cloud.google.com/go/appengine/apiv1/appenginepb;appenginepbªGoogle.Cloud.AppEngine.V1ÊGoogle\\Cloud\\AppEngine\\V1êGoogle::Cloud::AppEngine::V1bproto3'
         , true);
 
         static::$is_initialized = true;

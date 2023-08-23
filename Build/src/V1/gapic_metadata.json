@@ -2,22 +2,102 @@
     "schema": "1.0",
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
-    "protoPackage": "google.devtools.build.v1",
+    "protoPackage": "google.devtools.cloudbuild.v1",
     "libraryPackage": "Google\\Cloud\\Build\\V1",
     "services": {
-        "PublishBuildEvent": {
+        "CloudBuild": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PublishBuildEventGapicClient",
+                    "libraryClient": "CloudBuildGapicClient",
                     "rpcs": {
-                        "PublishBuildToolEventStream": {
+                        "ApproveBuild": {
                             "methods": [
-                                "publishBuildToolEventStream"
+                                "approveBuild"
                             ]
                         },
-                        "PublishLifecycleEvent": {
+                        "CancelBuild": {
                             "methods": [
-                                "publishLifecycleEvent"
+                                "cancelBuild"
+                            ]
+                        },
+                        "CreateBuild": {
+                            "methods": [
+                                "createBuild"
+                            ]
+                        },
+                        "CreateBuildTrigger": {
+                            "methods": [
+                                "createBuildTrigger"
+                            ]
+                        },
+                        "CreateWorkerPool": {
+                            "methods": [
+                                "createWorkerPool"
+                            ]
+                        },
+                        "DeleteBuildTrigger": {
+                            "methods": [
+                                "deleteBuildTrigger"
+                            ]
+                        },
+                        "DeleteWorkerPool": {
+                            "methods": [
+                                "deleteWorkerPool"
+                            ]
+                        },
+                        "GetBuild": {
+                            "methods": [
+                                "getBuild"
+                            ]
+                        },
+                        "GetBuildTrigger": {
+                            "methods": [
+                                "getBuildTrigger"
+                            ]
+                        },
+                        "GetWorkerPool": {
+                            "methods": [
+                                "getWorkerPool"
+                            ]
+                        },
+                        "ListBuildTriggers": {
+                            "methods": [
+                                "listBuildTriggers"
+                            ]
+                        },
+                        "ListBuilds": {
+                            "methods": [
+                                "listBuilds"
+                            ]
+                        },
+                        "ListWorkerPools": {
+                            "methods": [
+                                "listWorkerPools"
+                            ]
+                        },
+                        "ReceiveTriggerWebhook": {
+                            "methods": [
+                                "receiveTriggerWebhook"
+                            ]
+                        },
+                        "RetryBuild": {
+                            "methods": [
+                                "retryBuild"
+                            ]
+                        },
+                        "RunBuildTrigger": {
+                            "methods": [
+                                "runBuildTrigger"
+                            ]
+                        },
+                        "UpdateBuildTrigger": {
+                            "methods": [
+                                "updateBuildTrigger"
+                            ]
+                        },
+                        "UpdateWorkerPool": {
+                            "methods": [
+                                "updateWorkerPool"
                             ]
                         }
                     }

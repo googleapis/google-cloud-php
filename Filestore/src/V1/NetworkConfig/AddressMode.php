@@ -7,7 +7,7 @@ namespace Google\Cloud\Filestore\V1\NetworkConfig;
 use UnexpectedValueException;
 
 /**
- * Internet protocol versions supported by Cloud Filestore.
+ * Internet protocol versions supported by Filestore.
  *
  * Protobuf type <code>google.cloud.filestore.v1.NetworkConfig.AddressMode</code>
  */
@@ -52,6 +52,4 @@ class AddressMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AddressMode::class, \Google\Cloud\Filestore\V1\NetworkConfig_AddressMode::class);
 

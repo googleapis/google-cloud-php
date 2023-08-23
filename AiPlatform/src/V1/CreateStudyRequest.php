@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [VizierService.CreateStudy][google.cloud.aiplatform.v1.VizierService.CreateStudy].
+ * Request message for
+ * [VizierService.CreateStudy][google.cloud.aiplatform.v1.VizierService.CreateStudy].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateStudyRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateStudyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Study study = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $study = null;
+
+    /**
+     * @param string                            $parent Required. The resource name of the Location to create the CustomJob in.
+     *                                                  Format: `projects/{project}/locations/{location}`
+     *                                                  Please see {@see VizierServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Study $study  Required. The Study configuration used to create the Study.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateStudyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Study $study): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setStudy($study);
+    }
 
     /**
      * Constructor.

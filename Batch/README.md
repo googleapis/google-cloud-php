@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-batch/v/stable)](https://packagist.org/packages/google/cloud-batch) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-batch.svg)](https://packagist.org/packages/google/cloud-batch)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-batch/latest/batch/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-batch/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

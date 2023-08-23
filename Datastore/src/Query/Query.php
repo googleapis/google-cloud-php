@@ -116,7 +116,9 @@ class Query implements QueryInterface
         '>'  => self::OP_GREATER_THAN,
         '>=' => self::OP_GREATER_THAN_OR_EQUAL,
         '='  => self::OP_EQUALS,
-        '!='  => self::OP_NOT_EQUALS
+        '!='  => self::OP_NOT_EQUALS,
+        'IN' => self::OP_IN,
+        'NOT IN' => self::OP_NOT_IN
     ];
 
     /**
@@ -236,37 +238,68 @@ class Query implements QueryInterface
      * If the top-level filter is specified as a propertyFilter, it will be replaced.
      * Any composite filters will be preserved and the new filter will be added.
      *
+     * Filters can be added either by supplying three arguments
+     * `(string $property, string $operator, mixed $value)` to add a property
+     * filter to the root `AND` filter or by using a single argument invocation
+     * `(array $filter)` to add an array representation of Composite / Property
+     * Filter to the root `AND` filter. They can also be mixed and used together.
+     *
      * Example:
      * ```
+     * // Using (string $property, string $operator, mixed $value) invocation
+     * // to add property filter.
      * $query->filter('firstName', '=', 'Bob')
      *     ->filter('lastName', '=', 'Testguy');
      * ```
      *
+     * Using (array $filter) invocation to add composite/property filter.
+     * ```
+     * use Google\Cloud\Datastore\Query\Filter;
+     * $filterA = Filter::or([$testFilter, ...$testFilters]); // OR filter
+     * $filterB = Filter::and([$testFilter, ...$testFilters]); // AND filter
+     * $filterC = Filter::where('foo', 'NOT IN', ['bar']); // Property filter
+     * $query->filter($filterA)
+     *     ->filter($filterB)
+     *     ->filter($filterC)
+     *     ->filter('foo', '<', 'bar');
+     * ```
+     *
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1 Allowed Operators
      *
-     * @param string $property The property to filter.
-     * @param string $operator The operator to use in the filter. A list of
+     * @param string|array $filterOrProperty Either a string property name or
+     *        an array representation of Property/Composite filter returned
+     *        by Filter::and(), Filter::or() and Filter::where().
+     * @param string|null $operator [optional] The operator to use in the filter
+     *        if property name is used in the first argument. A list of
      *        allowed operators may be found
      *        [here](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1).
      *        Short comparison operators are provided for convenience and are
      *        mapped to their datastore-compatible equivalents. Available short
-     *        operators are `=`, `!=`, `<`, `<=`, `>`, and `>=`.
-     * @param mixed $value The value to check.
+     *        operators are `=`, `!=`, `<`, `<=`, `>`, `>=`, `IN` and `NOT IN`.
+     * @param mixed $value [optional] The value to check if property name is
+     *        used in the first argument.
      * @return Query
      */
-    public function filter($property, $operator, $value)
+    public function filter($filterOrProperty, $operator = null, $value = null)
     {
-        if (!isset($this->query['filter']) || !isset($this->query['filter']['compositeFilter'])) {
+        if (!isset($this->query['filter']) ||
+            !isset($this->query['filter']['compositeFilter'])
+        ) {
             $this->initializeFilter();
         }
 
-        $this->query['filter']['compositeFilter']['filters'][] = [
-            'propertyFilter' => [
-                'property' => $this->propertyName($property),
-                'value' => $this->entityMapper->valueObject($value),
-                'op' => $this->mapOperator($operator)
-            ]
-        ];
+        if (is_string($filterOrProperty)) {
+            $this->query['filter']['compositeFilter']['filters'][] = [
+                'propertyFilter' => [
+                    'property' => $this->propertyName($filterOrProperty),
+                    'value' => $this->entityMapper->valueObject($value),
+                    'op' => $this->mapOperator($operator)
+                ]
+            ];
+        } else {
+            $this->query['filter']['compositeFilter']['filters'][] =
+                $this->convertFilterToApiFormat($filterOrProperty);
+        }
 
         return $this;
     }
@@ -459,9 +492,6 @@ class Query implements QueryInterface
     /**
      * Return a service-compliant array.
      *
-     * This method is intended for use internally by the PHP client.
-     *
-     * @access private
      * @return array
      */
     public function queryObject()
@@ -478,6 +508,14 @@ class Query implements QueryInterface
     public function queryKey()
     {
         return "query";
+    }
+
+    public function aggregation(Aggregation $aggregation)
+    {
+        $aggregationQuery = new AggregationQuery($this);
+        $aggregationQuery->addAggregation($aggregation);
+
+        return $aggregationQuery;
     }
 
     /**
@@ -538,5 +576,28 @@ class Query implements QueryInterface
         }
 
         return $operator;
+    }
+
+    /**
+     * Converts the filter array data to proper API format recursively.
+     */
+    private function convertFilterToApiFormat($filterArray)
+    {
+        if (array_key_exists('propertyFilter', $filterArray)) {
+            $propertyFilter = $filterArray['propertyFilter'];
+            $filterArray['propertyFilter'] = [
+                'property' => $this->propertyName($propertyFilter['property']),
+                'value' => $this->entityMapper->valueObject($propertyFilter['value']),
+                'op' => $this->mapOperator($propertyFilter['op'])
+            ];
+        } else {
+            $filters = $filterArray['compositeFilter']['filters'];
+            foreach ($filters as &$filter) {
+                $filter = $this->convertFilterToApiFormat($filter);
+            }
+            $filterArray['compositeFilter']['filters'] = $filters;
+        }
+
+        return $filterArray;
     }
 }

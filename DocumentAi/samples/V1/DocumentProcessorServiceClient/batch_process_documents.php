@@ -33,7 +33,8 @@ use Google\Rpc\Status;
  * LRO endpoint to batch process many documents. The output is written
  * to Cloud Storage as JSON in the [Document] format.
  *
- * @param string $name The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+ * @param string $name The resource name of
+ *                     [Processor][google.cloud.documentai.v1.Processor] or
  *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
  *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
  *                     or
@@ -51,7 +52,7 @@ function batch_process_documents_sample(string $name): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var BatchProcessResponse $response */
+            /** @var BatchProcessResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

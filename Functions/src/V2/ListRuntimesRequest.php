@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListRuntimesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location from which the runtimes should be listed,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`
+     * Required. The project and location from which the runtimes should be
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,14 +31,29 @@ class ListRuntimesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The project and location from which the runtimes should be
+     *                       listed, specified in the format `projects/&#42;/locations/*`
+     *                       Please see {@see FunctionServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Functions\V2\ListRuntimesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location from which the runtimes should be listed,
-     *           specified in the format `projects/&#42;&#47;locations/&#42;`
+     *           Required. The project and location from which the runtimes should be
+     *           listed, specified in the format `projects/&#42;&#47;locations/&#42;`
      *     @type string $filter
      *           The filter for Runtimes that match the filter expression,
      *           following the syntax outlined in https://google.aip.dev/160.
@@ -50,8 +65,8 @@ class ListRuntimesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location from which the runtimes should be listed,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`
+     * Required. The project and location from which the runtimes should be
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -62,8 +77,8 @@ class ListRuntimesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location from which the runtimes should be listed,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`
+     * Required. The project and location from which the runtimes should be
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

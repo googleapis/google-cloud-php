@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [Documents.UpdateDocument][google.cloud.dialogflow.v2.Documents.UpdateDocument].
+ * Request message for
+ * [Documents.UpdateDocument][google.cloud.dialogflow.v2.Documents.UpdateDocument].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateDocumentRequest</code>
  */
@@ -29,6 +30,23 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\Document $document   Required. The document to update.
+     * @param \Google\Protobuf\FieldMask           $updateMask Optional. Not specified means `update all`.
+     *                                                         Currently, only `display_name` can be updated, an InvalidArgument will be
+     *                                                         returned for attempting to update other fields.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Document $document, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDocument($document)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

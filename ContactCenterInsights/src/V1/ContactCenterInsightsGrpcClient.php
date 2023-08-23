@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2021 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -44,6 +44,23 @@ class ContactCenterInsightsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateConversation',
         $argument,
         ['\Google\Cloud\ContactCenterInsights\V1\Conversation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Create a longrunning conversation upload operation. This method differs
+     * from CreateConversation by allowing audio transcription and optional DLP
+     * redaction.
+     * @param \Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UploadConversation(\Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UploadConversation',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -165,6 +182,37 @@ class ContactCenterInsightsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteAnalysis',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyzes multiple conversations in a single request.
+     * @param \Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BulkAnalyzeConversations(\Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkAnalyzeConversations',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Imports conversations and processes them according to the user's
+     * configuration.
+     * @param \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function IngestConversations(\Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/IngestConversations',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -332,6 +380,21 @@ class ContactCenterInsightsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateIssue',
         $argument,
         ['\Google\Cloud\ContactCenterInsights\V1\Issue', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an issue.
+     * @param \Google\Cloud\ContactCenterInsights\V1\DeleteIssueRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteIssue(\Google\Cloud\ContactCenterInsights\V1\DeleteIssueRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteIssue',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 

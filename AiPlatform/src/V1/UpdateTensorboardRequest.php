@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.UpdateTensorboard][google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboard].
+ * Request message for
+ * [TensorboardService.UpdateTensorboard][google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboard].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateTensorboardRequest</code>
  */
@@ -19,8 +20,8 @@ class UpdateTensorboardRequest extends \Google\Protobuf\Internal\Message
      * Required. Field mask is used to specify the fields to be overwritten in the
      * Tensorboard resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten if new
+     * the full request. A field is overwritten if it's in the mask. If the
+     * user does not provide a mask then all fields are overwritten if new
      * values are specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -36,6 +37,28 @@ class UpdateTensorboardRequest extends \Google\Protobuf\Internal\Message
     private $tensorboard = null;
 
     /**
+     * @param \Google\Cloud\AIPlatform\V1\Tensorboard $tensorboard Required. The Tensorboard's `name` field is used to identify the
+     *                                                             Tensorboard to be updated. Format:
+     *                                                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param \Google\Protobuf\FieldMask              $updateMask  Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                             Tensorboard resource by the update.
+     *                                                             The fields specified in the update_mask are relative to the resource, not
+     *                                                             the full request. A field is overwritten if it's in the mask. If the
+     *                                                             user does not provide a mask then all fields are overwritten if new
+     *                                                             values are specified.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateTensorboardRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Tensorboard $tensorboard, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTensorboard($tensorboard)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -45,8 +68,8 @@ class UpdateTensorboardRequest extends \Google\Protobuf\Internal\Message
      *           Required. Field mask is used to specify the fields to be overwritten in the
      *           Tensorboard resource by the update.
      *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it is in the mask. If the
-     *           user does not provide a mask then all fields will be overwritten if new
+     *           the full request. A field is overwritten if it's in the mask. If the
+     *           user does not provide a mask then all fields are overwritten if new
      *           values are specified.
      *     @type \Google\Cloud\AIPlatform\V1\Tensorboard $tensorboard
      *           Required. The Tensorboard's `name` field is used to identify the
@@ -63,8 +86,8 @@ class UpdateTensorboardRequest extends \Google\Protobuf\Internal\Message
      * Required. Field mask is used to specify the fields to be overwritten in the
      * Tensorboard resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten if new
+     * the full request. A field is overwritten if it's in the mask. If the
+     * user does not provide a mask then all fields are overwritten if new
      * values are specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -89,8 +112,8 @@ class UpdateTensorboardRequest extends \Google\Protobuf\Internal\Message
      * Required. Field mask is used to specify the fields to be overwritten in the
      * Tensorboard resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields will be overwritten if new
+     * the full request. A field is overwritten if it's in the mask. If the
+     * user does not provide a mask then all fields are overwritten if new
      * values are specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>

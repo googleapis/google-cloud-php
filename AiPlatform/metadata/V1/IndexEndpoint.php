@@ -17,11 +17,12 @@ class IndexEndpoint
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\MachineResources::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\ServiceNetworking::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-
-/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.protogoogle/protobuf/timestamp.proto"È
+ô
+/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"þ
 IndexEndpoint
 name (	BàA
 display_name (	BàA
@@ -33,7 +34,10 @@ class IndexEndpoint
 update_time (2.google.protobuf.TimestampBàA
 network	 (	BàA-
 enable_private_service_connect
- (BàA-
+ (BàAd
+private_service_connect_config (27.google.cloud.aiplatform.v1.PrivateServiceConnectConfigBàA$
+public_endpoint_enabled (BàA(
+public_endpoint_domain_name (	BàA-
 LabelsEntry
 key (	
 value (	:8:uêAr
@@ -60,8 +64,8 @@ class IndexEndpoint
 allowed_issuers (	"Y
 IndexPrivateEndpoints
 match_grpc_address (	BàA
-service_attachment (	BàABÖ
-com.google.cloud.aiplatform.v1BIndexEndpointProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+service_attachment (	BàABÐ
+com.google.cloud.aiplatform.v1BIndexEndpointProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

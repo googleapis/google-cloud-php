@@ -35,6 +35,23 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $zone     The name of the zone for this request.
+     * @param string $nodeType Name of the node type to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetNodeTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $nodeType): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setNodeType($nodeType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

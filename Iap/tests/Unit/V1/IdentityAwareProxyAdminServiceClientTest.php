@@ -23,11 +23,9 @@
 namespace Google\Cloud\Iap\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Iap\V1\IapSettings;
@@ -45,25 +43,19 @@ use stdClass;
  */
 class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return IdentityAwareProxyAdminServiceClient
-     */
+    /** @return IdentityAwareProxyAdminServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +64,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         return new IdentityAwareProxyAdminServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTunnelDestGroupTest()
     {
         $transport = $this->createTransport();
@@ -109,9 +99,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTunnelDestGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -148,9 +136,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTunnelDestGroupTest()
     {
         $transport = $this->createTransport();
@@ -174,9 +160,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTunnelDestGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -209,9 +193,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -240,9 +222,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -275,9 +255,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIapSettingsTest()
     {
         $transport = $this->createTransport();
@@ -304,9 +282,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIapSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -339,9 +315,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTunnelDestGroupTest()
     {
         $transport = $this->createTransport();
@@ -368,9 +342,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTunnelDestGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -403,9 +375,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTunnelDestGroupsTest()
     {
         $transport = $this->createTransport();
@@ -440,9 +410,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTunnelDestGroupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -475,9 +443,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -509,9 +475,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -545,9 +509,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -575,9 +537,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -611,9 +571,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIapSettingsTest()
     {
         $transport = $this->createTransport();
@@ -642,9 +600,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIapSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -679,9 +635,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTunnelDestGroupTest()
     {
         $transport = $this->createTransport();
@@ -710,9 +664,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTunnelDestGroupExceptionTest()
     {
         $transport = $this->createTransport();

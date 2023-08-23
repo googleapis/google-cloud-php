@@ -32,7 +32,7 @@ class PubSubTestCase extends SystemTestCase
 
     public function clientProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
 
         $result = [
             'grpc' => [self::$grpcClient],
@@ -43,7 +43,7 @@ class PubSubTestCase extends SystemTestCase
         return $result;
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -59,6 +59,7 @@ class PubSubTestCase extends SystemTestCase
             'transport' => 'grpc',
         ]);
         self::setUsingEmulatorForClassPrefix((bool) getenv('PUBSUB_EMULATOR_HOST'));
+        self::setupQueue();
         self::$hasSetUp = true;
     }
 

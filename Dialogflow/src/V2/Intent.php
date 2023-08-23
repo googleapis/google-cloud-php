@@ -24,7 +24,9 @@ class Intent extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The unique identifier of this intent.
-     * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     * Required for
+     * [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and
+     * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -168,9 +170,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Read-only after creation. The unique identifier of the parent intent in the
      * chain of followup intents. You can set this field when creating an intent,
-     * for example with [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
-     * [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents], in order to make this
-     * intent a followup intent.
+     * for example with
+     * [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
+     * [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents],
+     * in order to make this intent a followup intent.
      * It identifies the parent followup intent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -178,8 +181,9 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $parent_followup_intent_name = '';
     /**
-     * Output only. Read-only. Information about all followup intents that have this intent as
-     * a direct or indirect parent. We populate this field only in the output.
+     * Output only. Read-only. Information about all followup intents that have
+     * this intent as a direct or indirect parent. We populate this field only in
+     * the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -193,7 +197,9 @@ class Intent extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Optional. The unique identifier of this intent.
-     *           Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     *           Required for
+     *           [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and
+     *           [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      *           methods.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type string $display_name
@@ -265,14 +271,16 @@ class Intent extends \Google\Protobuf\Internal\Message
      *     @type string $parent_followup_intent_name
      *           Read-only after creation. The unique identifier of the parent intent in the
      *           chain of followup intents. You can set this field when creating an intent,
-     *           for example with [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
-     *           [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents], in order to make this
-     *           intent a followup intent.
+     *           for example with
+     *           [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
+     *           [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents],
+     *           in order to make this intent a followup intent.
      *           It identifies the parent followup intent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type array<\Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo>|\Google\Protobuf\Internal\RepeatedField $followup_intent_info
-     *           Output only. Read-only. Information about all followup intents that have this intent as
-     *           a direct or indirect parent. We populate this field only in the output.
+     *           Output only. Read-only. Information about all followup intents that have
+     *           this intent as a direct or indirect parent. We populate this field only in
+     *           the output.
      * }
      */
     public function __construct($data = NULL) {
@@ -282,7 +290,9 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The unique identifier of this intent.
-     * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     * Required for
+     * [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and
+     * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -296,7 +306,9 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The unique identifier of this intent.
-     * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     * Required for
+     * [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and
+     * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
      * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -821,9 +833,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Read-only after creation. The unique identifier of the parent intent in the
      * chain of followup intents. You can set this field when creating an intent,
-     * for example with [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
-     * [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents], in order to make this
-     * intent a followup intent.
+     * for example with
+     * [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
+     * [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents],
+     * in order to make this intent a followup intent.
      * It identifies the parent followup intent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -838,9 +851,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Read-only after creation. The unique identifier of the parent intent in the
      * chain of followup intents. You can set this field when creating an intent,
-     * for example with [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
-     * [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents], in order to make this
-     * intent a followup intent.
+     * for example with
+     * [CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent] or
+     * [BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents],
+     * in order to make this intent a followup intent.
      * It identifies the parent followup intent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -857,8 +871,9 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Read-only. Information about all followup intents that have this intent as
-     * a direct or indirect parent. We populate this field only in the output.
+     * Output only. Read-only. Information about all followup intents that have
+     * this intent as a direct or indirect parent. We populate this field only in
+     * the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -869,8 +884,9 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Read-only. Information about all followup intents that have this intent as
-     * a direct or indirect parent. We populate this field only in the output.
+     * Output only. Read-only. Information about all followup intents that have
+     * this intent as a direct or indirect parent. We populate this field only in
+     * the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo>|\Google\Protobuf\Internal\RepeatedField $var

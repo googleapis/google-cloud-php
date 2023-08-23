@@ -34,6 +34,20 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     private $transaction = null;
+    /**
+     * A SQL query can be parameterized. In PLAN mode, these parameters can be
+     * undeclared. This indicates the field names and types for those undeclared
+     * parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
+     * Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     * `undeclared_parameters` value like:
+     *     "fields": [
+     *       { "name": "UserId", "type": { "code": "INT64" } },
+     *       { "name": "UserName", "type": { "code": "STRING" } },
+     *     ]
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.StructType undeclared_parameters = 3;</code>
+     */
+    private $undeclared_parameters = null;
 
     /**
      * Constructor.
@@ -52,6 +66,16 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\Transaction $transaction
      *           If the read or SQL query began a transaction as a side-effect, the
      *           information about the new transaction is yielded here.
+     *     @type \Google\Cloud\Spanner\V1\StructType $undeclared_parameters
+     *           A SQL query can be parameterized. In PLAN mode, these parameters can be
+     *           undeclared. This indicates the field names and types for those undeclared
+     *           parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
+     *           Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     *           `undeclared_parameters` value like:
+     *               "fields": [
+     *                 { "name": "UserId", "type": { "code": "INT64" } },
+     *                 { "name": "UserName", "type": { "code": "STRING" } },
+     *               ]
      * }
      */
     public function __construct($data = NULL) {
@@ -141,6 +165,58 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Transaction::class);
         $this->transaction = $var;
+
+        return $this;
+    }
+
+    /**
+     * A SQL query can be parameterized. In PLAN mode, these parameters can be
+     * undeclared. This indicates the field names and types for those undeclared
+     * parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
+     * Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     * `undeclared_parameters` value like:
+     *     "fields": [
+     *       { "name": "UserId", "type": { "code": "INT64" } },
+     *       { "name": "UserName", "type": { "code": "STRING" } },
+     *     ]
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.StructType undeclared_parameters = 3;</code>
+     * @return \Google\Cloud\Spanner\V1\StructType|null
+     */
+    public function getUndeclaredParameters()
+    {
+        return $this->undeclared_parameters;
+    }
+
+    public function hasUndeclaredParameters()
+    {
+        return isset($this->undeclared_parameters);
+    }
+
+    public function clearUndeclaredParameters()
+    {
+        unset($this->undeclared_parameters);
+    }
+
+    /**
+     * A SQL query can be parameterized. In PLAN mode, these parameters can be
+     * undeclared. This indicates the field names and types for those undeclared
+     * parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
+     * Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     * `undeclared_parameters` value like:
+     *     "fields": [
+     *       { "name": "UserId", "type": { "code": "INT64" } },
+     *       { "name": "UserName", "type": { "code": "STRING" } },
+     *     ]
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.StructType undeclared_parameters = 3;</code>
+     * @param \Google\Cloud\Spanner\V1\StructType $var
+     * @return $this
+     */
+    public function setUndeclaredParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\StructType::class);
+        $this->undeclared_parameters = $var;
 
         return $this;
     }

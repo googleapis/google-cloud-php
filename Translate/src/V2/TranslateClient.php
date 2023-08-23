@@ -19,6 +19,8 @@ namespace Google\Cloud\Translate\V2;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Translate\V2\Connection\ConnectionInterface;
 use Google\Cloud\Translate\V2\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
@@ -113,7 +115,7 @@ class TranslateClient
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      * }
-     * @throws \InvalidArgumentException
+     * @throws GoogleException
      */
     public function __construct(array $config = [])
     {
@@ -121,9 +123,7 @@ class TranslateClient
             ? $config['key']
             : null;
 
-        $this->targetLanguage = isset($config['target'])
-            ? $config['target']
-            : self::ENGLISH_LANGUAGE_CODE;
+        $this->targetLanguage = $config['target'] ?? self::ENGLISH_LANGUAGE_CODE;
 
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
@@ -179,6 +179,7 @@ class TranslateClient
      *         the detected or provided language of the provided input, an
      *         `input` key containing the original string, and a `text` key
      *         containing the translated result.
+     * @throws ServiceException
      */
     public function translate($string, array $options = [])
     {
@@ -231,6 +232,7 @@ class TranslateClient
      *         `source` key containing the detected or provided language of the
      *         provided input, an `input` key containing the original string,
      *         and a `text` key containing the translated result.
+     * @throws ServiceException
      */
     public function translateBatch(array $strings, array $options = [])
     {
@@ -254,9 +256,7 @@ class TranslateClient
 
         if (isset($response['data']['translations'])) {
             foreach ($response['data']['translations'] as $key => $translation) {
-                $source = isset($translation['detectedSourceLanguage'])
-                    ? $translation['detectedSourceLanguage']
-                    : $options['source'];
+                $source = $translation['detectedSourceLanguage'] ?? $options['source'];
 
                 $model = (isset($translation['model']))
                     ? $translation['model']
@@ -293,6 +293,7 @@ class TranslateClient
      *         containing the original string, and in most cases a `confidence`
      *         key containing a value between 0 - 1 signifying the confidence of
      *         the result.
+     * @throws ServiceException
      */
     public function detectLanguage($string, array $options = [])
     {
@@ -323,6 +324,7 @@ class TranslateClient
      *         containing the original string, and in most cases a `confidence`
      *         key containing a value between 0 - 1 signifying the confidence of
      *         the result.
+     * @throws ServiceException
      */
     public function detectLanguageBatch(array $strings, array $options = [])
     {
@@ -336,11 +338,16 @@ class TranslateClient
         foreach ($response['data']['detections'] as $key => $detection) {
             $detection = $detection[0];
 
-            $detections[] = array_filter([
-                'languageCode' => $detection['language'],
-                'input' => $strings[$key],
-                'confidence' => isset($detection['confidence']) ? $detection['confidence'] : null
-            ]);
+            $detections[] = array_filter(
+                [
+                    'languageCode' => $detection['language'],
+                    'input' => $strings[$key],
+                    'confidence' => isset($detection['confidence']) ? $detection['confidence'] : null
+                ],
+                function ($value) {
+                    return !is_null($value);
+                }
+            );
         }
 
         return $detections;
@@ -364,6 +371,7 @@ class TranslateClient
      *
      * @param array $options [optional] Configuration Options.
      * @return array A list of supported ISO 639-1 language codes.
+     * @throws ServiceException
      */
     public function languages(array $options = [])
     {
@@ -405,6 +413,7 @@ class TranslateClient
      *         key containing the ISO 639-1 code for the supported language and
      *         a `name` key containing the name of the language written in the
      *         target language.
+     * @throws ServiceException
      */
     public function localizedLanguages(array $options = [])
     {

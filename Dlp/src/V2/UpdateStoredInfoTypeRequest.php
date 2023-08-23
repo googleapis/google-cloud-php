@@ -39,6 +39,28 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                                    $name       Required. Resource name of organization and storedInfoType to be updated, for
+     *                                                              example `organizations/433245324/storedInfoTypes/432452342` or
+     *                                                              projects/project-id/storedInfoTypes/432452342. Please see
+     *                                                              {@see DlpServiceClient::storedInfoTypeName()} for help formatting this field.
+     * @param \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $config     Updated configuration for the storedInfoType. If not provided, a new
+     *                                                              version of the storedInfoType will be created with the existing
+     *                                                              configuration.
+     * @param \Google\Protobuf\FieldMask                $updateMask Mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $config, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setConfig($config)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

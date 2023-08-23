@@ -27,10 +27,8 @@ namespace Google\Cloud\ResourceManager\V3\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -39,6 +37,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ResourceManager\V3\CreateTagBindingRequest;
 use Google\Cloud\ResourceManager\V3\DeleteTagBindingRequest;
+use Google\Cloud\ResourceManager\V3\ListEffectiveTagsRequest;
+use Google\Cloud\ResourceManager\V3\ListEffectiveTagsResponse;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsResponse;
 use Google\Cloud\ResourceManager\V3\TagBinding;
@@ -46,7 +46,7 @@ use Google\LongRunning\Operation;
 
 /**
  * Service Description: Allow users to create and manage TagBindings between TagValues and
- * different cloud resources throughout the GCP resource hierarchy.
+ * different Google Cloud resources throughout the GCP resource hierarchy.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -59,7 +59,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -76,7 +76,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -90,34 +90,28 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ResourceManager\V3\Client\TagBindingsClient} to use the new
+ * surface.
  */
 class TagBindingsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.resourcemanager.v3.TagBindings';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudresourcemanager.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
@@ -259,9 +253,6 @@ class TagBindingsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudresourcemanager.googleapis.com:443'.
@@ -291,7 +282,7 @@ class TagBindingsGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -318,8 +309,7 @@ class TagBindingsGapicClient
     }
 
     /**
-     * Creates a TagBinding between a TagValue and a cloud resource
-     * (currently project, folder, or organization).
+     * Creates a TagBinding between a TagValue and a Google Cloud resource.
      *
      * Sample code:
      * ```
@@ -330,7 +320,7 @@ class TagBindingsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -347,7 +337,7 @@ class TagBindingsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -362,8 +352,8 @@ class TagBindingsGapicClient
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set to true to perform the validations necessary for creating the resource,
-     *           but not actually perform the action.
+     *           Optional. Set to true to perform the validations necessary for creating the
+     *           resource, but not actually perform the action.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -450,8 +440,75 @@ class TagBindingsGapicClient
     }
 
     /**
-     * Lists the TagBindings for the given cloud resource, as specified with
-     * `parent`.
+     * Return a list of effective tags for the given Google Cloud resource, as
+     * specified in `parent`.
+     *
+     * Sample code:
+     * ```
+     * $tagBindingsClient = new TagBindingsClient();
+     * try {
+     *     $parent = 'parent';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $tagBindingsClient->listEffectiveTags($parent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $tagBindingsClient->listEffectiveTags($parent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $tagBindingsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The full resource name of a resource for which you want to list
+     *                             the effective tags. E.g.
+     *                             "//cloudresourcemanager.googleapis.com/projects/123"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listEffectiveTags($parent, array $optionalArgs = [])
+    {
+        $request = new ListEffectiveTagsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        return $this->getPagedListResponse('ListEffectiveTags', $optionalArgs, ListEffectiveTagsResponse::class, $request);
+    }
+
+    /**
+     * Lists the TagBindings for the given Google Cloud resource, as specified
+     * with `parent`.
      *
      * NOTE: The `parent` field is expected to be a full resource name:
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
@@ -479,9 +536,9 @@ class TagBindingsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The full resource name of a resource for which you want to list existing
-     *                             TagBindings.
-     *                             E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+     * @param string $parent       Required. The full resource name of a resource for which you want to list
+     *                             existing TagBindings. E.g.
+     *                             "//cloudresourcemanager.googleapis.com/projects/123"
      * @param array  $optionalArgs {
      *     Optional.
      *

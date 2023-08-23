@@ -143,13 +143,23 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     private $email_preferences = null;
     /**
-     * Output only. Information about the user whose credentials are used to transfer data.
-     * Populated only for `transferConfigs.get` requests. In case the user
-     * information is not available, this field will not be populated.
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $owner_info = null;
+    /**
+     * The encryption configuration part. Currently, it is only used for the
+     * optional KMS key name. The BigQuery service account of your project must be
+     * granted permissions to use the key. Read methods will return the key name
+     * applied in effect. Write methods will apply the key if it is present, or
+     * otherwise try to apply project default keys if it is absent.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EncryptionConfiguration encryption_configuration = 28;</code>
+     */
+    private $encryption_configuration = null;
     protected $destination;
 
     /**
@@ -223,9 +233,15 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           Email notifications will be sent according to these preferences
      *           to the email address of the user who owns this transfer config.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo $owner_info
-     *           Output only. Information about the user whose credentials are used to transfer data.
-     *           Populated only for `transferConfigs.get` requests. In case the user
-     *           information is not available, this field will not be populated.
+     *           Output only. Information about the user whose credentials are used to
+     *           transfer data. Populated only for `transferConfigs.get` requests. In case
+     *           the user information is not available, this field will not be populated.
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EncryptionConfiguration $encryption_configuration
+     *           The encryption configuration part. Currently, it is only used for the
+     *           optional KMS key name. The BigQuery service account of your project must be
+     *           granted permissions to use the key. Read methods will return the key name
+     *           applied in effect. Write methods will apply the key if it is present, or
+     *           otherwise try to apply project default keys if it is absent.
      * }
      */
     public function __construct($data = NULL) {
@@ -769,9 +785,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the user whose credentials are used to transfer data.
-     * Populated only for `transferConfigs.get` requests. In case the user
-     * information is not available, this field will not be populated.
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo|null
@@ -792,9 +808,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the user whose credentials are used to transfer data.
-     * Populated only for `transferConfigs.get` requests. In case the user
-     * information is not available, this field will not be populated.
+     * Output only. Information about the user whose credentials are used to
+     * transfer data. Populated only for `transferConfigs.get` requests. In case
+     * the user information is not available, this field will not be populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo $var
@@ -804,6 +820,50 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\UserInfo::class);
         $this->owner_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The encryption configuration part. Currently, it is only used for the
+     * optional KMS key name. The BigQuery service account of your project must be
+     * granted permissions to use the key. Read methods will return the key name
+     * applied in effect. Write methods will apply the key if it is present, or
+     * otherwise try to apply project default keys if it is absent.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EncryptionConfiguration encryption_configuration = 28;</code>
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\EncryptionConfiguration|null
+     */
+    public function getEncryptionConfiguration()
+    {
+        return $this->encryption_configuration;
+    }
+
+    public function hasEncryptionConfiguration()
+    {
+        return isset($this->encryption_configuration);
+    }
+
+    public function clearEncryptionConfiguration()
+    {
+        unset($this->encryption_configuration);
+    }
+
+    /**
+     * The encryption configuration part. Currently, it is only used for the
+     * optional KMS key name. The BigQuery service account of your project must be
+     * granted permissions to use the key. Read methods will return the key name
+     * applied in effect. Write methods will apply the key if it is present, or
+     * otherwise try to apply project default keys if it is absent.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EncryptionConfiguration encryption_configuration = 28;</code>
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\EncryptionConfiguration $var
+     * @return $this
+     */
+    public function setEncryptionConfiguration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\EncryptionConfiguration::class);
+        $this->encryption_configuration = $var;
 
         return $this;
     }

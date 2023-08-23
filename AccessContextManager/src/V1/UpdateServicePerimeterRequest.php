@@ -30,6 +30,22 @@ class UpdateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter $servicePerimeter Required. The updated `ServicePerimeter`. Syntactic correctness of the
+     *                                                                                    `ServicePerimeter` is a precondition for creation.
+     * @param \Google\Protobuf\FieldMask                                $updateMask       Required. Mask to control which fields get updated. Must be non-empty.
+     *
+     * @return \Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Identity\AccessContextManager\V1\ServicePerimeter $servicePerimeter, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setServicePerimeter($servicePerimeter)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

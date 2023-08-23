@@ -19,9 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Document extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An IANA published MIME type (also referred to as media type). For more
-     * information, see
-     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      */
@@ -33,9 +32,10 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     private $text = '';
     /**
-     * Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5 [deprecated = true];</code>
+     * @deprecated
      */
     private $text_styles;
     /**
@@ -45,22 +45,25 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     private $pages;
     /**
-     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     * entities in this list may cross shard boundaries.
+     * A list of entities detected on
+     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      */
     private $entities;
     /**
-     * Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Placeholder.  Relationship among
+     * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      */
     private $entity_relations;
     /**
-     * Placeholder.  A list of text corrections made to [Document.text][google.cloud.documentai.v1.Document.text].  This
-     * is usually used for annotating corrections to OCR mistakes.  Text changes
-     * for a given revision may not overlap with each other.
+     * Placeholder.  A list of text corrections made to
+     * [Document.text][google.cloud.documentai.v1.Document.text].  This is usually
+     * used for annotating corrections to OCR mistakes.  Text changes for a given
+     * revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
      */
@@ -94,33 +97,34 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           Optional. Currently supports Google Cloud Storage URI of the form
-     *              `gs://bucket_name/object_name`. Object versioning is not supported.
-     *              See [Google Cloud Storage Request
-     *              URIs](https://cloud.google.com/storage/docs/reference-uris) for more
-     *              info.
+     *           `gs://bucket_name/object_name`. Object versioning is not supported.
+     *           For more information, refer to [Google Cloud Storage Request
+     *           URIs](https://cloud.google.com/storage/docs/reference-uris).
      *     @type string $content
      *           Optional. Inline document content, represented as a stream of bytes.
      *           Note: As with all `bytes` fields, protobuffers use a pure binary
      *           representation, whereas JSON representations use base64.
      *     @type string $mime_type
-     *           An IANA published MIME type (also referred to as media type). For more
-     *           information, see
-     *           https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *           An IANA published [media type (MIME
+     *           type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *     @type string $text
      *           Optional. UTF-8 encoded text in reading order from the document.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Style>|\Google\Protobuf\Internal\RepeatedField $text_styles
-     *           Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     *           Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page>|\Google\Protobuf\Internal\RepeatedField $pages
      *           Visual page layout for the [Document][google.cloud.documentai.v1.Document].
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
-     *           A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     *           entities in this list may cross shard boundaries.
+     *           A list of entities detected on
+     *           [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     *           shards, entities in this list may cross shard boundaries.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\EntityRelation>|\Google\Protobuf\Internal\RepeatedField $entity_relations
-     *           Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     *           Placeholder.  Relationship among
+     *           [Document.entities][google.cloud.documentai.v1.Document.entities].
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\TextChange>|\Google\Protobuf\Internal\RepeatedField $text_changes
-     *           Placeholder.  A list of text corrections made to [Document.text][google.cloud.documentai.v1.Document.text].  This
-     *           is usually used for annotating corrections to OCR mistakes.  Text changes
-     *           for a given revision may not overlap with each other.
+     *           Placeholder.  A list of text corrections made to
+     *           [Document.text][google.cloud.documentai.v1.Document.text].  This is usually
+     *           used for annotating corrections to OCR mistakes.  Text changes for a given
+     *           revision may not overlap with each other.
      *     @type \Google\Cloud\DocumentAI\V1\Document\ShardInfo $shard_info
      *           Information about the sharding if this document is sharded part of a larger
      *           document. If the document is not sharded, this message is not specified.
@@ -137,10 +141,9 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Currently supports Google Cloud Storage URI of the form
-     *    `gs://bucket_name/object_name`. Object versioning is not supported.
-     *    See [Google Cloud Storage Request
-     *    URIs](https://cloud.google.com/storage/docs/reference-uris) for more
-     *    info.
+     * `gs://bucket_name/object_name`. Object versioning is not supported.
+     * For more information, refer to [Google Cloud Storage Request
+     * URIs](https://cloud.google.com/storage/docs/reference-uris).
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -157,10 +160,9 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Currently supports Google Cloud Storage URI of the form
-     *    `gs://bucket_name/object_name`. Object versioning is not supported.
-     *    See [Google Cloud Storage Request
-     *    URIs](https://cloud.google.com/storage/docs/reference-uris) for more
-     *    info.
+     * `gs://bucket_name/object_name`. Object versioning is not supported.
+     * For more information, refer to [Google Cloud Storage Request
+     * URIs](https://cloud.google.com/storage/docs/reference-uris).
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -210,9 +212,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IANA published MIME type (also referred to as media type). For more
-     * information, see
-     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      * @return string
@@ -223,9 +224,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IANA published MIME type (also referred to as media type). For more
-     * information, see
-     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      * @param string $var
@@ -266,25 +266,29 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getTextStyles()
     {
+        @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
         return $this->text_styles;
     }
 
     /**
-     * Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5 [deprecated = true];</code>
      * @param array<\Google\Cloud\DocumentAI\V1\Document\Style>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setTextStyles($var)
     {
+        @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Style::class);
         $this->text_styles = $arr;
 
@@ -318,8 +322,9 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     * entities in this list may cross shard boundaries.
+     * A list of entities detected on
+     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -330,8 +335,9 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     * entities in this list may cross shard boundaries.
+     * A list of entities detected on
+     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
@@ -346,7 +352,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Placeholder.  Relationship among
+     * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -357,7 +364,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Placeholder.  Relationship among
+     * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      * @param array<\Google\Cloud\DocumentAI\V1\Document\EntityRelation>|\Google\Protobuf\Internal\RepeatedField $var
@@ -372,9 +380,10 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Placeholder.  A list of text corrections made to [Document.text][google.cloud.documentai.v1.Document.text].  This
-     * is usually used for annotating corrections to OCR mistakes.  Text changes
-     * for a given revision may not overlap with each other.
+     * Placeholder.  A list of text corrections made to
+     * [Document.text][google.cloud.documentai.v1.Document.text].  This is usually
+     * used for annotating corrections to OCR mistakes.  Text changes for a given
+     * revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -385,9 +394,10 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Placeholder.  A list of text corrections made to [Document.text][google.cloud.documentai.v1.Document.text].  This
-     * is usually used for annotating corrections to OCR mistakes.  Text changes
-     * for a given revision may not overlap with each other.
+     * Placeholder.  A list of text corrections made to
+     * [Document.text][google.cloud.documentai.v1.Document.text].  This is usually
+     * used for annotating corrections to OCR mistakes.  Text changes for a given
+     * revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
      * @param array<\Google\Cloud\DocumentAI\V1\Document\TextChange>|\Google\Protobuf\Internal\RepeatedField $var

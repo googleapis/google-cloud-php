@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels].
+ * Request message for
+ * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListModelsRequest</code>
  */
@@ -26,7 +27,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      * An expression for filtering the results of the request. For field names
      * both snake_case and camelCase are supported.
      *   * `model` supports = and !=. `model` represents the Model ID,
-     *     i.e. the last segment of the Model's [resource name][google.cloud.aiplatform.v1.Model.name].
+     *     i.e. the last segment of the Model's [resource
+     *     name][google.cloud.aiplatform.v1.Model.name].
      *   * `display_name` supports = and !=
      *   * `labels` supports general map functions that is:
      *     * `labels.key=value` - key:value equality
@@ -49,8 +51,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token] of the previous
-     * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels] call.
+     * [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -75,6 +79,21 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The resource name of the Location to list the Models from.
+     *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see ModelServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ListModelsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -87,7 +106,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *           An expression for filtering the results of the request. For field names
      *           both snake_case and camelCase are supported.
      *             * `model` supports = and !=. `model` represents the Model ID,
-     *               i.e. the last segment of the Model's [resource name][google.cloud.aiplatform.v1.Model.name].
+     *               i.e. the last segment of the Model's [resource
+     *               name][google.cloud.aiplatform.v1.Model.name].
      *             * `display_name` supports = and !=
      *             * `labels` supports general map functions that is:
      *               * `labels.key=value` - key:value equality
@@ -102,8 +122,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           The standard list page token.
      *           Typically obtained via
-     *           [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token] of the previous
-     *           [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels] call.
+     *           [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token]
+     *           of the previous
+     *           [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels]
+     *           call.
      *     @type \Google\Protobuf\FieldMask $read_mask
      *           Mask specifying which fields to read.
      *     @type string $order_by
@@ -153,7 +175,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      * An expression for filtering the results of the request. For field names
      * both snake_case and camelCase are supported.
      *   * `model` supports = and !=. `model` represents the Model ID,
-     *     i.e. the last segment of the Model's [resource name][google.cloud.aiplatform.v1.Model.name].
+     *     i.e. the last segment of the Model's [resource
+     *     name][google.cloud.aiplatform.v1.Model.name].
      *   * `display_name` supports = and !=
      *   * `labels` supports general map functions that is:
      *     * `labels.key=value` - key:value equality
@@ -176,7 +199,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      * An expression for filtering the results of the request. For field names
      * both snake_case and camelCase are supported.
      *   * `model` supports = and !=. `model` represents the Model ID,
-     *     i.e. the last segment of the Model's [resource name][google.cloud.aiplatform.v1.Model.name].
+     *     i.e. the last segment of the Model's [resource
+     *     name][google.cloud.aiplatform.v1.Model.name].
      *   * `display_name` supports = and !=
      *   * `labels` supports general map functions that is:
      *     * `labels.key=value` - key:value equality
@@ -228,8 +252,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token] of the previous
-     * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels] call.
+     * [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -242,8 +268,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The standard list page token.
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token] of the previous
-     * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels] call.
+     * [ListModelsResponse.next_page_token][google.cloud.aiplatform.v1.ListModelsResponse.next_page_token]
+     * of the previous
+     * [ModelService.ListModels][google.cloud.aiplatform.v1.ModelService.ListModels]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

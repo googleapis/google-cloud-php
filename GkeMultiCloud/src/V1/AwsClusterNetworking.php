@@ -26,17 +26,17 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      */
     private $vpc_id = '';
     /**
-     * Required. All pods in the cluster are assigned an IPv4 address from these ranges.
-     * Only a single range is supported.
-     * This field cannot be changed after creation.
+     * Required. All pods in the cluster are assigned an IPv4 address from these
+     * ranges. Only a single range is supported. This field cannot be changed
+     * after creation.
      *
      * Generated from protobuf field <code>repeated string pod_address_cidr_blocks = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $pod_address_cidr_blocks;
     /**
-     * Required. All services in the cluster are assigned an IPv4 address from these ranges.
-     * Only a single range is supported.
-     * This field cannot be changed after creation.
+     * Required. All services in the cluster are assigned an IPv4 address from
+     * these ranges. Only a single range is supported. This field cannot be
+     * changed after creation.
      *
      * Generated from protobuf field <code>repeated string service_address_cidr_blocks = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,13 +53,13 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      *           (i.e. control plane and node pools) run on a single VPC.
      *           This field cannot be changed after creation.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pod_address_cidr_blocks
-     *           Required. All pods in the cluster are assigned an IPv4 address from these ranges.
-     *           Only a single range is supported.
-     *           This field cannot be changed after creation.
+     *           Required. All pods in the cluster are assigned an IPv4 address from these
+     *           ranges. Only a single range is supported. This field cannot be changed
+     *           after creation.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_address_cidr_blocks
-     *           Required. All services in the cluster are assigned an IPv4 address from these ranges.
-     *           Only a single range is supported.
-     *           This field cannot be changed after creation.
+     *           Required. All services in the cluster are assigned an IPv4 address from
+     *           these ranges. Only a single range is supported. This field cannot be
+     *           changed after creation.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,9 +98,9 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All pods in the cluster are assigned an IPv4 address from these ranges.
-     * Only a single range is supported.
-     * This field cannot be changed after creation.
+     * Required. All pods in the cluster are assigned an IPv4 address from these
+     * ranges. Only a single range is supported. This field cannot be changed
+     * after creation.
      *
      * Generated from protobuf field <code>repeated string pod_address_cidr_blocks = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -111,9 +111,9 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All pods in the cluster are assigned an IPv4 address from these ranges.
-     * Only a single range is supported.
-     * This field cannot be changed after creation.
+     * Required. All pods in the cluster are assigned an IPv4 address from these
+     * ranges. Only a single range is supported. This field cannot be changed
+     * after creation.
      *
      * Generated from protobuf field <code>repeated string pod_address_cidr_blocks = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -128,9 +128,9 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All services in the cluster are assigned an IPv4 address from these ranges.
-     * Only a single range is supported.
-     * This field cannot be changed after creation.
+     * Required. All services in the cluster are assigned an IPv4 address from
+     * these ranges. Only a single range is supported. This field cannot be
+     * changed after creation.
      *
      * Generated from protobuf field <code>repeated string service_address_cidr_blocks = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -141,9 +141,9 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All services in the cluster are assigned an IPv4 address from these ranges.
-     * Only a single range is supported.
-     * This field cannot be changed after creation.
+     * Required. All services in the cluster are assigned an IPv4 address from
+     * these ranges. Only a single range is supported. This field cannot be
+     * changed after creation.
      *
      * Generated from protobuf field <code>repeated string service_address_cidr_blocks = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -10,10 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A processor version is an implementation of a processor. Each processor
- * can have multiple versions, pre-trained by Google internally or up-trained
- * by the customer. At a time, a processor can only have one default version
- * version. So the processor's behavior (when processing documents) is defined
- * by a default version
+ * can have multiple versions, pretrained by Google internally or uptrained
+ * by the customer. A processor can only have one default version at a time.
+ * Its document-processing behavior is defined by that version.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ProcessorVersion</code>
  */
@@ -52,6 +51,12 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
+     * The most recently invoked evaluation for the processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     */
+    private $latest_evaluation = null;
+    /**
      * The KMS key name used for encryption.
      *
      * Generated from protobuf field <code>string kms_key_name = 9;</code>
@@ -64,9 +69,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     private $kms_key_version_name = '';
     /**
-     * Denotes that this ProcessorVersion is managed by google.
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *
-     * Generated from protobuf field <code>bool google_managed = 11;</code>
+     * Generated from protobuf field <code>bool google_managed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $google_managed = false;
     /**
@@ -94,12 +99,14 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *           The state of the processor version.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time the processor version was created.
+     *     @type \Google\Cloud\DocumentAI\V1\EvaluationReference $latest_evaluation
+     *           The most recently invoked evaluation for the processor version.
      *     @type string $kms_key_name
      *           The KMS key name used for encryption.
      *     @type string $kms_key_version_name
      *           The KMS key version with which data is encrypted.
      *     @type bool $google_managed
-     *           Denotes that this ProcessorVersion is managed by google.
+     *           Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo $deprecation_info
      *           If set, information about the eventual deprecation of this version.
      * }
@@ -264,6 +271,42 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The most recently invoked evaluation for the processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     * @return \Google\Cloud\DocumentAI\V1\EvaluationReference|null
+     */
+    public function getLatestEvaluation()
+    {
+        return $this->latest_evaluation;
+    }
+
+    public function hasLatestEvaluation()
+    {
+        return isset($this->latest_evaluation);
+    }
+
+    public function clearLatestEvaluation()
+    {
+        unset($this->latest_evaluation);
+    }
+
+    /**
+     * The most recently invoked evaluation for the processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     * @param \Google\Cloud\DocumentAI\V1\EvaluationReference $var
+     * @return $this
+     */
+    public function setLatestEvaluation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\EvaluationReference::class);
+        $this->latest_evaluation = $var;
+
+        return $this;
+    }
+
+    /**
      * The KMS key name used for encryption.
      *
      * Generated from protobuf field <code>string kms_key_name = 9;</code>
@@ -316,9 +359,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this ProcessorVersion is managed by google.
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *
-     * Generated from protobuf field <code>bool google_managed = 11;</code>
+     * Generated from protobuf field <code>bool google_managed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getGoogleManaged()
@@ -327,9 +370,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this ProcessorVersion is managed by google.
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *
-     * Generated from protobuf field <code>bool google_managed = 11;</code>
+     * Generated from protobuf field <code>bool google_managed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

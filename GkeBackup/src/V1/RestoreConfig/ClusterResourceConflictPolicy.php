@@ -29,8 +29,8 @@ class ClusterResourceConflictPolicy
     const USE_EXISTING_VERSION = 1;
     /**
      * Delete the existing version before re-creating it from the Backup.
-     * Note that this is a dangerous option which could cause unintentional
-     * data loss if used inappropriately - for example, deleting a CRD will
+     * This is a dangerous option which could cause unintentional
+     * data loss if used inappropriately. For example, deleting a CRD will
      * cause Kubernetes to delete all CRs of that type.
      *
      * Generated from protobuf enum <code>USE_BACKUP_VERSION = 2;</code>

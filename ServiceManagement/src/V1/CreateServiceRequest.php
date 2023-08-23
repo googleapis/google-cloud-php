@@ -23,6 +23,19 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     private $service = null;
 
     /**
+     * @param \Google\Cloud\ServiceManagement\V1\ManagedService $service Required. Initial values for the service resource.
+     *
+     * @return \Google\Cloud\ServiceManagement\V1\CreateServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ServiceManagement\V1\ManagedService $service): self
+    {
+        return (new self())
+            ->setService($service);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

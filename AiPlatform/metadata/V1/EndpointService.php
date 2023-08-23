@@ -21,11 +21,12 @@ class EndpointService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Endpoint::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É
-1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"©
+Ã%
+1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"©
 CreateEndpointRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/Location;
@@ -76,7 +77,16 @@ page_token (	BàA2
 value (:8"
 UndeployModelResponse"p
 UndeployModelOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2€
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Ø
+MutateDeployedModelRequest<
+endpoint (	B*àAúA$
+"aiplatform.googleapis.com/EndpointF
+deployed_model (2).google.cloud.aiplatform.v1.DeployedModelBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"`
+MutateDeployedModelResponseA
+deployed_model (2).google.cloud.aiplatform.v1.DeployedModel"v
+$MutateDeployedModelOperationMetadataN
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2®
 EndpointService‚
 CreateEndpoint1.google.cloud.aiplatform.v1.CreateEndpointRequest.google.longrunning.Operation"‚Óä“9"-/v1/{parent=projects/*/locations/*}/endpoints:endpointÚAparent,endpointÚAparent,endpoint,endpoint_idÊA+
 EndpointCreateEndpointOperationMetadata¡
@@ -88,8 +98,10 @@ page_token (	BàA2
 DeployModel..google.cloud.aiplatform.v1.DeployModelRequest.google.longrunning.Operation"¦‚Óä“B"=/v1/{endpoint=projects/*/locations/*/endpoints/*}:deployModel:*ÚA%endpoint,deployed_model,traffic_splitÊA3
 DeployModelResponseDeployModelOperationMetadata’
 UndeployModel0.google.cloud.aiplatform.v1.UndeployModelRequest.google.longrunning.Operation"¯‚Óä“D"?/v1/{endpoint=projects/*/locations/*/endpoints/*}:undeployModel:*ÚA(endpoint,deployed_model_id,traffic_splitÊA7
-UndeployModelResponseUndeployModelOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
-com.google.cloud.aiplatform.v1BEndpointServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+UndeployModelResponseUndeployModelOperationMetadata«
+MutateDeployedModel6.google.cloud.aiplatform.v1.MutateDeployedModelRequest.google.longrunning.Operation"¼‚Óä“J"E/v1/{endpoint=projects/*/locations/*/endpoints/*}:mutateDeployedModel:*ÚA#endpoint,deployed_model,update_maskÊAC
+MutateDeployedModelResponse$MutateDeployedModelOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
+com.google.cloud.aiplatform.v1BEndpointServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

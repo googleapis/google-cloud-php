@@ -25,20 +25,24 @@ use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group datastore
  */
 class QueryTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $datastore;
     private $connection;
     private $operation;
     private $query;
 
-    public function set_up()
+    public function setUp(): void
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
 
@@ -133,7 +137,20 @@ class QueryTest extends SnippetTestCase
         $this->assertEquals($this->propertyName('Person'), $this->query->queryObject()['kind'][0]);
     }
 
-    public function testFilter()
+    public function testFilterAsFilterAdder()
+    {
+        $filter = Filter::where('foo', '=', 'bar');
+        $snippet = $this->snippetFromMethod(Query::class, 'filter', 1);
+        $snippet->addLocal('query', $this->query);
+        $snippet->addLocal('testFilter', $filter);
+        $snippet->addLocal('testFilters', []);
+
+        $snippet->invoke();
+
+        $this->assertCount(4, $this->query->queryObject()['filter']['compositeFilter']['filters']);
+    }
+
+    public function testFilterAsPropertyFilterAdder()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'filter');
         $snippet->addLocal('query', $this->query);

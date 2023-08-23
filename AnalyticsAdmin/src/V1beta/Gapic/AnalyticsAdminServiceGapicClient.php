@@ -26,10 +26,14 @@
 
 namespace Google\Analytics\Admin\V1beta\Gapic;
 
+use Google\Analytics\Admin\V1beta\AccessDateRange;
+use Google\Analytics\Admin\V1beta\AccessDimension;
+use Google\Analytics\Admin\V1beta\AccessFilterExpression;
+use Google\Analytics\Admin\V1beta\AccessMetric;
+use Google\Analytics\Admin\V1beta\AccessOrderBy;
 use Google\Analytics\Admin\V1beta\Account;
 use Google\Analytics\Admin\V1beta\AcknowledgeUserDataCollectionRequest;
 use Google\Analytics\Admin\V1beta\AcknowledgeUserDataCollectionResponse;
-
 use Google\Analytics\Admin\V1beta\ArchiveCustomDimensionRequest;
 use Google\Analytics\Admin\V1beta\ArchiveCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\ConversionEvent;
@@ -64,12 +68,11 @@ use Google\Analytics\Admin\V1beta\GetDataStreamRequest;
 use Google\Analytics\Admin\V1beta\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\GetPropertyRequest;
 use Google\Analytics\Admin\V1beta\GoogleAdsLink;
-use Google\Analytics\Admin\V1beta\ListAccountsRequest;
-use Google\Analytics\Admin\V1beta\ListAccountsResponse;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesResponse;
+use Google\Analytics\Admin\V1beta\ListAccountsRequest;
+use Google\Analytics\Admin\V1beta\ListAccountsResponse;
 use Google\Analytics\Admin\V1beta\ListConversionEventsRequest;
-
 use Google\Analytics\Admin\V1beta\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1beta\ListCustomDimensionsRequest;
 use Google\Analytics\Admin\V1beta\ListCustomDimensionsResponse;
@@ -89,6 +92,8 @@ use Google\Analytics\Admin\V1beta\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1beta\Property;
 use Google\Analytics\Admin\V1beta\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1beta\ProvisionAccountTicketResponse;
+use Google\Analytics\Admin\V1beta\RunAccessReportRequest;
+use Google\Analytics\Admin\V1beta\RunAccessReportResponse;
 use Google\Analytics\Admin\V1beta\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1beta\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1beta\UpdateAccountRequest;
@@ -134,35 +139,29 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient} to use the
+ * new surface.
+ *
  * @experimental
  */
 class AnalyticsAdminServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.admin.v1beta.AnalyticsAdminService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticsadmin.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics.edit',
         'https://www.googleapis.com/auth/analytics.readonly',
@@ -593,9 +592,6 @@ class AnalyticsAdminServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'analyticsadmin.googleapis.com:443'.
@@ -625,7 +621,7 @@ class AnalyticsAdminServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -656,7 +652,8 @@ class AnalyticsAdminServiceGapicClient
      * Acknowledges the terms of user data collection for the specified property.
      *
      * This acknowledgement must be completed (either in the Google Analytics UI
-     * or via this API) before MeasurementProtocolSecret resources may be created.
+     * or through this API) before MeasurementProtocolSecret resources may be
+     * created.
      *
      * Sample code:
      * ```
@@ -671,8 +668,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string $property        Required. The property for which to acknowledge user data collection.
-     * @param string $acknowledgement Required. An acknowledgement that the caller of this method understands the terms
-     *                                of user data collection.
+     * @param string $acknowledgement Required. An acknowledgement that the caller of this method understands the
+     *                                terms of user data collection.
      *
      *                                This field must contain the exact value:
      *                                "I acknowledge that I have the necessary privacy disclosures and rights
@@ -802,8 +799,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param ConversionEvent $conversionEvent Required. The conversion event to create.
-     * @param string          $parent          Required. The resource name of the parent property where this conversion event will
-     *                                         be created. Format: properties/123
+     * @param string          $parent          Required. The resource name of the parent property where this conversion
+     *                                         event will be created. Format: properties/123
      * @param array           $optionalArgs    {
      *     Optional.
      *
@@ -1400,7 +1397,7 @@ class AnalyticsAdminServiceGapicClient
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not an GA4 Property.
+     * Returns an error if the target is not found, or is not a GA4 Property.
      *
      * Sample code:
      * ```
@@ -2578,7 +2575,7 @@ class AnalyticsAdminServiceGapicClient
      *           The account to create.
      *     @type string $redirectUri
      *           Redirect URI where the user will be sent after accepting Terms of Service.
-     *           Must be configured in Developers Console as a Redirect URI
+     *           Must be configured in Cloud Console as a Redirect URI.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2603,6 +2600,166 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return $this->startCall('ProvisionAccountTicket', ProvisionAccountTicketResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Returns a customized report of data access records. The report provides
+     * records of each time a user reads Google Analytics reporting data. Access
+     * records are retained for up to 2 years.
+     *
+     * Data Access Reports can be requested for a property. The property must be
+     * in Google Analytics 360. This method is only available to Administrators.
+     *
+     * These data access records include GA4 UI Reporting, GA4 UI Explorations,
+     * GA4 Data API, and other products like Firebase & Admob that can retrieve
+     * data from Google Analytics through a linkage. These records don't include
+     * property configuration changes like adding a stream or changing a
+     * property's time zone. For configuration change history, see
+     * [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $response = $analyticsAdminServiceClient->runAccessReport();
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $entity
+     *           The Data Access Report supports requesting at the property level or account
+     *           level. If requested at the account level, Data Access Reports include all
+     *           access for all properties under that account.
+     *
+     *           To request at the property level, entity should be for example
+     *           'properties/123' if "123" is your GA4 property ID. To request at the
+     *           account level, entity should be for example 'accounts/1234' if "1234" is
+     *           your GA4 Account ID.
+     *     @type AccessDimension[] $dimensions
+     *           The dimensions requested and displayed in the response. Requests are
+     *           allowed up to 9 dimensions.
+     *     @type AccessMetric[] $metrics
+     *           The metrics requested and displayed in the response. Requests are allowed
+     *           up to 10 metrics.
+     *     @type AccessDateRange[] $dateRanges
+     *           Date ranges of access records to read. If multiple date ranges are
+     *           requested, each response row will contain a zero based date range index. If
+     *           two date ranges overlap, the access records for the overlapping days is
+     *           included in the response rows for both date ranges. Requests are allowed up
+     *           to 2 date ranges.
+     *     @type AccessFilterExpression $dimensionFilter
+     *           Dimension filters let you restrict report response to specific
+     *           dimension values which match the filter. For example, filtering on access
+     *           records of a single user. To learn more, see [Fundamentals of Dimension
+     *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     *           for examples. Metrics cannot be used in this filter.
+     *     @type AccessFilterExpression $metricFilter
+     *           Metric filters allow you to restrict report response to specific metric
+     *           values which match the filter. Metric filters are applied after aggregating
+     *           the report's rows, similar to SQL having-clause. Dimensions cannot be used
+     *           in this filter.
+     *     @type int $offset
+     *           The row count of the start row. The first row is counted as row 0. If
+     *           offset is unspecified, it is treated as 0. If offset is zero, then this
+     *           method will return the first page of results with `limit` entries.
+     *
+     *           To learn more about this pagination parameter, see
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     *     @type int $limit
+     *           The number of rows to return. If unspecified, 10,000 rows are returned. The
+     *           API returns a maximum of 100,000 rows per request, no matter how many you
+     *           ask for. `limit` must be positive.
+     *
+     *           The API may return fewer rows than the requested `limit`, if there aren't
+     *           as many remaining rows as the `limit`. For instance, there are fewer than
+     *           300 possible values for the dimension `country`, so when reporting on only
+     *           `country`, you can't get more than 300 rows, even if you set `limit` to a
+     *           higher value.
+     *
+     *           To learn more about this pagination parameter, see
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     *     @type string $timeZone
+     *           This request's time zone if specified. If unspecified, the property's time
+     *           zone is used. The request's time zone is used to interpret the start & end
+     *           dates of the report.
+     *
+     *           Formatted as strings from the IANA Time Zone database
+     *           (https://www.iana.org/time-zones); for example "America/New_York" or
+     *           "Asia/Tokyo".
+     *     @type AccessOrderBy[] $orderBys
+     *           Specifies how rows are ordered in the response.
+     *     @type bool $returnEntityQuota
+     *           Toggles whether to return the current state of this Analytics Property's
+     *           quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
+     *           requests, this field must be false.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1beta\RunAccessReportResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function runAccessReport(array $optionalArgs = [])
+    {
+        $request = new RunAccessReportRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['entity'])) {
+            $request->setEntity($optionalArgs['entity']);
+            $requestParamHeaders['entity'] = $optionalArgs['entity'];
+        }
+
+        if (isset($optionalArgs['dimensions'])) {
+            $request->setDimensions($optionalArgs['dimensions']);
+        }
+
+        if (isset($optionalArgs['metrics'])) {
+            $request->setMetrics($optionalArgs['metrics']);
+        }
+
+        if (isset($optionalArgs['dateRanges'])) {
+            $request->setDateRanges($optionalArgs['dateRanges']);
+        }
+
+        if (isset($optionalArgs['dimensionFilter'])) {
+            $request->setDimensionFilter($optionalArgs['dimensionFilter']);
+        }
+
+        if (isset($optionalArgs['metricFilter'])) {
+            $request->setMetricFilter($optionalArgs['metricFilter']);
+        }
+
+        if (isset($optionalArgs['offset'])) {
+            $request->setOffset($optionalArgs['offset']);
+        }
+
+        if (isset($optionalArgs['limit'])) {
+            $request->setLimit($optionalArgs['limit']);
+        }
+
+        if (isset($optionalArgs['timeZone'])) {
+            $request->setTimeZone($optionalArgs['timeZone']);
+        }
+
+        if (isset($optionalArgs['orderBys'])) {
+            $request->setOrderBys($optionalArgs['orderBys']);
+        }
+
+        if (isset($optionalArgs['returnEntityQuota'])) {
+            $request->setReturnEntityQuota($optionalArgs['returnEntityQuota']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RunAccessReport', RunAccessReportResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2632,7 +2789,8 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $account      Required. The account resource for which to return change history resources.
+     * @param string $account      Required. The account resource for which to return change history
+     *                             resources.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2640,15 +2798,16 @@ class AnalyticsAdminServiceGapicClient
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
      *     @type int[] $resourceType
-     *           Optional. If set, only return changes if they are for a resource that matches at
-     *           least one of these types.
+     *           Optional. If set, only return changes if they are for a resource that
+     *           matches at least one of these types.
      *           For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1beta\ChangeHistoryResourceType}
      *     @type int[] $action
-     *           Optional. If set, only return changes that match one or more of these types of
-     *           actions.
+     *           Optional. If set, only return changes that match one or more of these types
+     *           of actions.
      *           For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1beta\ActionType}
      *     @type string[] $actorEmail
-     *           Optional. If set, only return changes if they are made by a user in this list.
+     *           Optional. If set, only return changes if they are made by a user in this
+     *           list.
      *     @type Timestamp $earliestChangeTime
      *           Optional. If set, only return changes made after this time (inclusive).
      *     @type Timestamp $latestChangeTime
@@ -2734,9 +2893,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param Account   $account      Required. The account to update.
      *                                The account's `name` field is used to identify the account.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (for example, "field_to_update"). Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -2778,9 +2938,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -2826,9 +2986,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -2877,9 +3037,10 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param DataRetentionSettings $dataRetentionSettings Required. The settings to update.
      *                                                     The `name` field is used to identify the settings to be updated.
-     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake case
-     *                                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                                     the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake
+     *                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                     replace the entire entity, use one path with the string "*" to match all
+     *                                                     fields.
      * @param array                 $optionalArgs          {
      *     Optional.
      *
@@ -2921,9 +3082,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
+     *                                updated. To replace the entire entity, use one path with the string "*" to
+     *                                match all fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -2969,9 +3130,10 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -3068,9 +3230,10 @@ class AnalyticsAdminServiceGapicClient
      * @param Property  $property     Required. The property to update.
      *                                The property's `name` field is used to identify the property to be
      *                                updated.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                the entire entity, use one path with the string "*" to match all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
      * @param array     $optionalArgs {
      *     Optional.
      *

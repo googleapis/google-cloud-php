@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A job that uses a [Model][google.cloud.aiplatform.v1.BatchPredictionJob.model] to produce predictions
- * on multiple [input instances][google.cloud.aiplatform.v1.BatchPredictionJob.input_config]. If
+ * A job that uses a
+ * [Model][google.cloud.aiplatform.v1.BatchPredictionJob.model] to produce
+ * predictions on multiple [input
+ * instances][google.cloud.aiplatform.v1.BatchPredictionJob.input_config]. If
  * predictions for significant portion of the instances fail, the job may finish
  * without attempting predictions for all remaining instances.
  *
@@ -37,13 +39,22 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      */
     private $model = '';
     /**
-     * Output only. The version ID of the Model that produces the predictions via this job.
+     * Output only. The version ID of the Model that produces the predictions via
+     * this job.
      *
      * Generated from protobuf field <code>string model_version_id = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -57,9 +68,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      */
     private $unmanaged_container_model = null;
     /**
-     * Required. Input configuration of the instances on which predictions are performed.
-     * The schema of any single instance may be specified via
-     * the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * Required. Input configuration of the instances on which predictions are
+     * performed. The schema of any single instance may be specified via the
+     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
@@ -67,8 +78,16 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      */
     private $input_config = null;
     /**
+     * Configuration for how to convert batch prediction input instances to the
+     * prediction instances that are sent to the Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig instance_config = 27;</code>
+     */
+    private $instance_config = null;
+    /**
      * The parameters that govern the predictions. The schema of the parameters
-     * may be specified via the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * may be specified via the
+     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -90,7 +109,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     private $output_config = null;
     /**
      * The config of resources used by the Model during the batch prediction. If
-     * the Model [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
+     * the Model
+     * [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
      * DEDICATED_RESOURCES this config may be provided (and the job will use these
      * resources), if the Model doesn't support AUTOMATIC_RESOURCES, this config
      * must be provided.
@@ -99,9 +119,21 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      */
     private $dedicated_resources = null;
     /**
-     * Immutable. Parameters configuring the batch behavior. Currently only applicable when
-     * [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources] are used (in other cases Vertex AI does
-     * the tuning itself).
+     * The service account that the DeployedModel's container runs as. If not
+     * specified, a system generated one will be used, which
+     * has minimal permissions and the custom container, if used, may not have
+     * enough permission to access other Google Cloud resources.
+     * Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 29;</code>
+     */
+    private $service_account = '';
+    /**
+     * Immutable. Parameters configuring the batch behavior. Currently only
+     * applicable when
+     * [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources]
+     * are used (in other cases Vertex AI does the tuning itself).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ManualBatchTuningParameters manual_batch_tuning_parameters = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -110,26 +142,39 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Generate explanation with the batch prediction results.
      * When set to `true`, the batch prediction output changes based on the
      * `predictions_format` field of the
-     * [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config] object:
+     * [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config]
+     * object:
      *  * `bigquery`: output includes a column named `explanation`. The value
-     *    is a struct that conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *    is a struct that conforms to the
+     *    [Explanation][google.cloud.aiplatform.v1.Explanation] object.
      *  * `jsonl`: The JSON objects on each line include an additional entry
      *    keyed `explanation`. The value of the entry is a JSON object that
-     *    conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *    conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation]
+     *    object.
      *  * `csv`: Generating explanations for CSV format is not supported.
-     * If this field is set to true, either the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] or
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] must be populated.
+     * If this field is set to true, either the
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * must be populated.
      *
      * Generated from protobuf field <code>bool generate_explanation = 23;</code>
      */
     private $generate_explanation = false;
     /**
      * Explanation configuration for this BatchPredictionJob. Can be
-     * specified only if [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation] is set to `true`.
-     * This value overrides the value of [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]. All fields of
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] are optional in the request. If a field of the
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] object is not populated, the corresponding field of
-     * the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] object is inherited.
+     * specified only if
+     * [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation]
+     * is set to `true`.
+     * This value overrides the value of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec].
+     * All fields of
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * are optional in the request. If a field of the
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * object is not populated, the corresponding field of the
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * object is inherited.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpec explanation_spec = 25;</code>
      */
@@ -157,14 +202,14 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Output only. Partial failures encountered.
      * For example, single files that can't be read.
      * This field never exceeds 20 entries.
-     * Status details fields contain standard GCP error details.
+     * Status details fields contain standard Google Cloud error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $partial_failures;
     /**
-     * Output only. Information about resources that had been consumed by this job.
-     * Provided in real time at best effort basis, as well as a final value
+     * Output only. Information about resources that had been consumed by this
+     * job. Provided in real time at best effort basis, as well as a final value
      * once the job completes.
      * Note: This field currently may be not populated for batch predictions that
      * use AutoML Models.
@@ -185,15 +230,15 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. Time when the BatchPredictionJob for the first time entered the
-     * `JOB_STATE_RUNNING` state.
+     * Output only. Time when the BatchPredictionJob for the first time entered
+     * the `JOB_STATE_RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $start_time = null;
     /**
-     * Output only. Time when the BatchPredictionJob entered any of the following states:
-     * `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
+     * Output only. Time when the BatchPredictionJob entered any of the following
+     * states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -222,6 +267,17 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
     private $encryption_spec = null;
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Cloud Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/logging/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     */
+    private $disable_container_logging = false;
 
     /**
      * Constructor.
@@ -240,22 +296,35 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           and their resources.
      *           Exactly one of model and unmanaged_container_model must be set.
      *           The model resource name may contain version id or version alias to specify
-     *           the version, if no version is specified, the default version will be used.
+     *           the version.
+     *            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                        or
+     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *           if no version is specified, the default version will be deployed.
+     *           The model resource could also be a publisher model.
+     *            Example: `publishers/{publisher}/models/{model}`
+     *                        or
+     *                     `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *     @type string $model_version_id
-     *           Output only. The version ID of the Model that produces the predictions via this job.
+     *           Output only. The version ID of the Model that produces the predictions via
+     *           this job.
      *     @type \Google\Cloud\AIPlatform\V1\UnmanagedContainerModel $unmanaged_container_model
      *           Contains model information necessary to perform batch prediction without
      *           requiring uploading to model registry.
      *           Exactly one of model and unmanaged_container_model must be set.
      *     @type \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InputConfig $input_config
-     *           Required. Input configuration of the instances on which predictions are performed.
-     *           The schema of any single instance may be specified via
-     *           the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     *           Required. Input configuration of the instances on which predictions are
+     *           performed. The schema of any single instance may be specified via the
+     *           [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
+     *     @type \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig $instance_config
+     *           Configuration for how to convert batch prediction input instances to the
+     *           prediction instances that are sent to the Model.
      *     @type \Google\Protobuf\Value $model_parameters
      *           The parameters that govern the predictions. The schema of the parameters
-     *           may be specified via the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     *           may be specified via the
+     *           [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *     @type \Google\Cloud\AIPlatform\V1\BatchPredictionJob\OutputConfig $output_config
@@ -269,34 +338,56 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           [prediction_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.prediction_schema_uri].
      *     @type \Google\Cloud\AIPlatform\V1\BatchDedicatedResources $dedicated_resources
      *           The config of resources used by the Model during the batch prediction. If
-     *           the Model [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
+     *           the Model
+     *           [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
      *           DEDICATED_RESOURCES this config may be provided (and the job will use these
      *           resources), if the Model doesn't support AUTOMATIC_RESOURCES, this config
      *           must be provided.
+     *     @type string $service_account
+     *           The service account that the DeployedModel's container runs as. If not
+     *           specified, a system generated one will be used, which
+     *           has minimal permissions and the custom container, if used, may not have
+     *           enough permission to access other Google Cloud resources.
+     *           Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     *           permission on this service account.
      *     @type \Google\Cloud\AIPlatform\V1\ManualBatchTuningParameters $manual_batch_tuning_parameters
-     *           Immutable. Parameters configuring the batch behavior. Currently only applicable when
-     *           [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources] are used (in other cases Vertex AI does
-     *           the tuning itself).
+     *           Immutable. Parameters configuring the batch behavior. Currently only
+     *           applicable when
+     *           [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources]
+     *           are used (in other cases Vertex AI does the tuning itself).
      *     @type bool $generate_explanation
      *           Generate explanation with the batch prediction results.
      *           When set to `true`, the batch prediction output changes based on the
      *           `predictions_format` field of the
-     *           [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config] object:
+     *           [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config]
+     *           object:
      *            * `bigquery`: output includes a column named `explanation`. The value
-     *              is a struct that conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *              is a struct that conforms to the
+     *              [Explanation][google.cloud.aiplatform.v1.Explanation] object.
      *            * `jsonl`: The JSON objects on each line include an additional entry
      *              keyed `explanation`. The value of the entry is a JSON object that
-     *              conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *              conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation]
+     *              object.
      *            * `csv`: Generating explanations for CSV format is not supported.
-     *           If this field is set to true, either the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] or
-     *           [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] must be populated.
+     *           If this field is set to true, either the
+     *           [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     *           or
+     *           [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     *           must be populated.
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationSpec $explanation_spec
      *           Explanation configuration for this BatchPredictionJob. Can be
-     *           specified only if [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation] is set to `true`.
-     *           This value overrides the value of [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]. All fields of
-     *           [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] are optional in the request. If a field of the
-     *           [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] object is not populated, the corresponding field of
-     *           the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] object is inherited.
+     *           specified only if
+     *           [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation]
+     *           is set to `true`.
+     *           This value overrides the value of
+     *           [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec].
+     *           All fields of
+     *           [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     *           are optional in the request. If a field of the
+     *           [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     *           object is not populated, the corresponding field of the
+     *           [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     *           object is inherited.
      *     @type \Google\Cloud\AIPlatform\V1\BatchPredictionJob\OutputInfo $output_info
      *           Output only. Information further describing the output of this job.
      *     @type int $state
@@ -308,10 +399,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           Output only. Partial failures encountered.
      *           For example, single files that can't be read.
      *           This field never exceeds 20 entries.
-     *           Status details fields contain standard GCP error details.
+     *           Status details fields contain standard Google Cloud error details.
      *     @type \Google\Cloud\AIPlatform\V1\ResourcesConsumed $resources_consumed
-     *           Output only. Information about resources that had been consumed by this job.
-     *           Provided in real time at best effort basis, as well as a final value
+     *           Output only. Information about resources that had been consumed by this
+     *           job. Provided in real time at best effort basis, as well as a final value
      *           once the job completes.
      *           Note: This field currently may be not populated for batch predictions that
      *           use AutoML Models.
@@ -320,11 +411,11 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when the BatchPredictionJob was created.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Output only. Time when the BatchPredictionJob for the first time entered the
-     *           `JOB_STATE_RUNNING` state.
+     *           Output only. Time when the BatchPredictionJob for the first time entered
+     *           the `JOB_STATE_RUNNING` state.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Output only. Time when the BatchPredictionJob entered any of the following states:
-     *           `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
+     *           Output only. Time when the BatchPredictionJob entered any of the following
+     *           states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Time when the BatchPredictionJob was most recently updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -337,6 +428,13 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           Customer-managed encryption key options for a BatchPredictionJob. If this
      *           is set, then all resources created by the BatchPredictionJob will be
      *           encrypted with the provided encryption key.
+     *     @type bool $disable_container_logging
+     *           For custom-trained Models and AutoML Tabular Models, the container of the
+     *           DeployedModel instances will send `stderr` and `stdout` streams to
+     *           Cloud Logging by default. Please note that the logs incur cost,
+     *           which are subject to [Cloud Logging
+     *           pricing](https://cloud.google.com/logging/pricing).
+     *           User can disable container logging by setting this flag to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -403,7 +501,15 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -420,7 +526,15 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
-     * the version, if no version is specified, the default version will be used.
+     * the version.
+     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * if no version is specified, the default version will be deployed.
+     * The model resource could also be a publisher model.
+     *  Example: `publishers/{publisher}/models/{model}`
+     *              or
+     *           `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -435,7 +549,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The version ID of the Model that produces the predictions via this job.
+     * Output only. The version ID of the Model that produces the predictions via
+     * this job.
      *
      * Generated from protobuf field <code>string model_version_id = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -446,7 +561,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The version ID of the Model that produces the predictions via this job.
+     * Output only. The version ID of the Model that produces the predictions via
+     * this job.
      *
      * Generated from protobuf field <code>string model_version_id = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -501,9 +617,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input configuration of the instances on which predictions are performed.
-     * The schema of any single instance may be specified via
-     * the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * Required. Input configuration of the instances on which predictions are
+     * performed. The schema of any single instance may be specified via the
+     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
@@ -526,9 +642,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input configuration of the instances on which predictions are performed.
-     * The schema of any single instance may be specified via
-     * the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * Required. Input configuration of the instances on which predictions are
+     * performed. The schema of any single instance may be specified via the
+     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
@@ -545,8 +661,47 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for how to convert batch prediction input instances to the
+     * prediction instances that are sent to the Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig instance_config = 27;</code>
+     * @return \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig|null
+     */
+    public function getInstanceConfig()
+    {
+        return $this->instance_config;
+    }
+
+    public function hasInstanceConfig()
+    {
+        return isset($this->instance_config);
+    }
+
+    public function clearInstanceConfig()
+    {
+        unset($this->instance_config);
+    }
+
+    /**
+     * Configuration for how to convert batch prediction input instances to the
+     * prediction instances that are sent to the Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig instance_config = 27;</code>
+     * @param \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig $var
+     * @return $this
+     */
+    public function setInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BatchPredictionJob\InstanceConfig::class);
+        $this->instance_config = $var;
+
+        return $this;
+    }
+
+    /**
      * The parameters that govern the predictions. The schema of the parameters
-     * may be specified via the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * may be specified via the
+     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -570,7 +725,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
 
     /**
      * The parameters that govern the predictions. The schema of the parameters
-     * may be specified via the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
+     * may be specified via the
+     * [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
      * [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      * [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *
@@ -638,7 +794,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
 
     /**
      * The config of resources used by the Model during the batch prediction. If
-     * the Model [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
+     * the Model
+     * [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
      * DEDICATED_RESOURCES this config may be provided (and the job will use these
      * resources), if the Model doesn't support AUTOMATIC_RESOURCES, this config
      * must be provided.
@@ -663,7 +820,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
 
     /**
      * The config of resources used by the Model during the batch prediction. If
-     * the Model [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
+     * the Model
+     * [supports][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]
      * DEDICATED_RESOURCES this config may be provided (and the job will use these
      * resources), if the Model doesn't support AUTOMATIC_RESOURCES, this config
      * must be provided.
@@ -681,9 +839,46 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Parameters configuring the batch behavior. Currently only applicable when
-     * [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources] are used (in other cases Vertex AI does
-     * the tuning itself).
+     * The service account that the DeployedModel's container runs as. If not
+     * specified, a system generated one will be used, which
+     * has minimal permissions and the custom container, if used, may not have
+     * enough permission to access other Google Cloud resources.
+     * Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 29;</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * The service account that the DeployedModel's container runs as. If not
+     * specified, a system generated one will be used, which
+     * has minimal permissions and the custom container, if used, may not have
+     * enough permission to access other Google Cloud resources.
+     * Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 29;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Parameters configuring the batch behavior. Currently only
+     * applicable when
+     * [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources]
+     * are used (in other cases Vertex AI does the tuning itself).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ManualBatchTuningParameters manual_batch_tuning_parameters = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\AIPlatform\V1\ManualBatchTuningParameters|null
@@ -704,9 +899,10 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Parameters configuring the batch behavior. Currently only applicable when
-     * [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources] are used (in other cases Vertex AI does
-     * the tuning itself).
+     * Immutable. Parameters configuring the batch behavior. Currently only
+     * applicable when
+     * [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources]
+     * are used (in other cases Vertex AI does the tuning itself).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ManualBatchTuningParameters manual_batch_tuning_parameters = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AIPlatform\V1\ManualBatchTuningParameters $var
@@ -724,15 +920,21 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Generate explanation with the batch prediction results.
      * When set to `true`, the batch prediction output changes based on the
      * `predictions_format` field of the
-     * [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config] object:
+     * [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config]
+     * object:
      *  * `bigquery`: output includes a column named `explanation`. The value
-     *    is a struct that conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *    is a struct that conforms to the
+     *    [Explanation][google.cloud.aiplatform.v1.Explanation] object.
      *  * `jsonl`: The JSON objects on each line include an additional entry
      *    keyed `explanation`. The value of the entry is a JSON object that
-     *    conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *    conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation]
+     *    object.
      *  * `csv`: Generating explanations for CSV format is not supported.
-     * If this field is set to true, either the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] or
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] must be populated.
+     * If this field is set to true, either the
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * must be populated.
      *
      * Generated from protobuf field <code>bool generate_explanation = 23;</code>
      * @return bool
@@ -746,15 +948,21 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Generate explanation with the batch prediction results.
      * When set to `true`, the batch prediction output changes based on the
      * `predictions_format` field of the
-     * [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config] object:
+     * [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config]
+     * object:
      *  * `bigquery`: output includes a column named `explanation`. The value
-     *    is a struct that conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *    is a struct that conforms to the
+     *    [Explanation][google.cloud.aiplatform.v1.Explanation] object.
      *  * `jsonl`: The JSON objects on each line include an additional entry
      *    keyed `explanation`. The value of the entry is a JSON object that
-     *    conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation] object.
+     *    conforms to the [Explanation][google.cloud.aiplatform.v1.Explanation]
+     *    object.
      *  * `csv`: Generating explanations for CSV format is not supported.
-     * If this field is set to true, either the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] or
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] must be populated.
+     * If this field is set to true, either the
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * must be populated.
      *
      * Generated from protobuf field <code>bool generate_explanation = 23;</code>
      * @param bool $var
@@ -770,11 +978,18 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Explanation configuration for this BatchPredictionJob. Can be
-     * specified only if [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation] is set to `true`.
-     * This value overrides the value of [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]. All fields of
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] are optional in the request. If a field of the
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] object is not populated, the corresponding field of
-     * the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] object is inherited.
+     * specified only if
+     * [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation]
+     * is set to `true`.
+     * This value overrides the value of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec].
+     * All fields of
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * are optional in the request. If a field of the
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * object is not populated, the corresponding field of the
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * object is inherited.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpec explanation_spec = 25;</code>
      * @return \Google\Cloud\AIPlatform\V1\ExplanationSpec|null
@@ -796,11 +1011,18 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Explanation configuration for this BatchPredictionJob. Can be
-     * specified only if [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation] is set to `true`.
-     * This value overrides the value of [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]. All fields of
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] are optional in the request. If a field of the
-     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec] object is not populated, the corresponding field of
-     * the [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec] object is inherited.
+     * specified only if
+     * [generate_explanation][google.cloud.aiplatform.v1.BatchPredictionJob.generate_explanation]
+     * is set to `true`.
+     * This value overrides the value of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec].
+     * All fields of
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * are optional in the request. If a field of the
+     * [explanation_spec][google.cloud.aiplatform.v1.BatchPredictionJob.explanation_spec]
+     * object is not populated, the corresponding field of the
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * object is inherited.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpec explanation_spec = 25;</code>
      * @param \Google\Cloud\AIPlatform\V1\ExplanationSpec $var
@@ -918,7 +1140,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Output only. Partial failures encountered.
      * For example, single files that can't be read.
      * This field never exceeds 20 entries.
-     * Status details fields contain standard GCP error details.
+     * Status details fields contain standard Google Cloud error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -932,7 +1154,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Output only. Partial failures encountered.
      * For example, single files that can't be read.
      * This field never exceeds 20 entries.
-     * Status details fields contain standard GCP error details.
+     * Status details fields contain standard Google Cloud error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
@@ -947,8 +1169,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about resources that had been consumed by this job.
-     * Provided in real time at best effort basis, as well as a final value
+     * Output only. Information about resources that had been consumed by this
+     * job. Provided in real time at best effort basis, as well as a final value
      * once the job completes.
      * Note: This field currently may be not populated for batch predictions that
      * use AutoML Models.
@@ -972,8 +1194,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about resources that had been consumed by this job.
-     * Provided in real time at best effort basis, as well as a final value
+     * Output only. Information about resources that had been consumed by this
+     * job. Provided in real time at best effort basis, as well as a final value
      * once the job completes.
      * Note: This field currently may be not populated for batch predictions that
      * use AutoML Models.
@@ -1063,8 +1285,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the BatchPredictionJob for the first time entered the
-     * `JOB_STATE_RUNNING` state.
+     * Output only. Time when the BatchPredictionJob for the first time entered
+     * the `JOB_STATE_RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -1085,8 +1307,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the BatchPredictionJob for the first time entered the
-     * `JOB_STATE_RUNNING` state.
+     * Output only. Time when the BatchPredictionJob for the first time entered
+     * the `JOB_STATE_RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -1101,8 +1323,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the BatchPredictionJob entered any of the following states:
-     * `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
+     * Output only. Time when the BatchPredictionJob entered any of the following
+     * states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -1123,8 +1345,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the BatchPredictionJob entered any of the following states:
-     * `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
+     * Output only. Time when the BatchPredictionJob entered any of the following
+     * states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -1244,6 +1466,42 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Cloud Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/logging/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     * @return bool
+     */
+    public function getDisableContainerLogging()
+    {
+        return $this->disable_container_logging;
+    }
+
+    /**
+     * For custom-trained Models and AutoML Tabular Models, the container of the
+     * DeployedModel instances will send `stderr` and `stdout` streams to
+     * Cloud Logging by default. Please note that the logs incur cost,
+     * which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/logging/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableContainerLogging($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_container_logging = $var;
 
         return $this;
     }

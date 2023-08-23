@@ -25,7 +25,6 @@ namespace Google\Cloud\Sql\Tests\Unit\V1beta4;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1beta4\ConnectSettings;
 use Google\Cloud\Sql\V1beta4\GenerateEphemeralCertResponse;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class SqlConnectServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SqlConnectServiceClient
-     */
+    /** @return SqlConnectServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
         return new SqlConnectServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateEphemeralCertTest()
     {
         $transport = $this->createTransport();
@@ -90,9 +81,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateEphemeralCertExceptionTest()
     {
         $transport = $this->createTransport();
@@ -123,9 +112,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectSettingsTest()
     {
         $transport = $this->createTransport();
@@ -136,9 +123,13 @@ class SqlConnectServiceClientTest extends GeneratedTest
         // Mock response
         $kind = 'kind3292052';
         $region = 'region-934795532';
+        $pscEnabled = true;
+        $dnsName = 'dnsName411992033';
         $expectedResponse = new ConnectSettings();
         $expectedResponse->setKind($kind);
         $expectedResponse->setRegion($region);
+        $expectedResponse->setPscEnabled($pscEnabled);
+        $expectedResponse->setDnsName($dnsName);
         $transport->addResponse($expectedResponse);
         $response = $gapicClient->getConnectSettings();
         $this->assertEquals($expectedResponse, $response);
@@ -150,9 +141,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectSettingsExceptionTest()
     {
         $transport = $this->createTransport();

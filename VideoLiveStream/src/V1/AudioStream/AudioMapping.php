@@ -16,17 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class AudioMapping extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The `Channel` [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that identifies the input that this
-     * audio mapping applies to. If an active input doesn't have an audio
-     * mapping, the primary audio track in the input stream will be selected.
+     * Required. The `Channel`
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     * that identifies the input that this audio mapping applies to. If an
+     * active input doesn't have an audio mapping, the primary audio track in
+     * the input stream will be selected.
      *
      * Generated from protobuf field <code>string input_key = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_key = '';
     /**
      * Required. The zero-based index of the track in the input stream.
-     * All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in the same [AudioStream][google.cloud.video.livestream.v1.AudioStream]
-     * must have the same input track.
+     * All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in
+     * the same [AudioStream][google.cloud.video.livestream.v1.AudioStream] must
+     * have the same input track.
      *
      * Generated from protobuf field <code>int32 input_track = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,11 +42,19 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     private $input_channel = 0;
     /**
      * Required. The zero-based index of the channel in the output audio stream.
-     * Must be consistent with the [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
+     * Must be consistent with the
+     * [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
      *
      * Generated from protobuf field <code>int32 output_channel = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_channel = 0;
+    /**
+     * Audio volume control in dB. Negative values decrease volume,
+     * positive values increase. The default is 0.
+     *
+     * Generated from protobuf field <code>double gain_db = 5;</code>
+     */
+    private $gain_db = 0.0;
 
     /**
      * Constructor.
@@ -52,18 +63,25 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $input_key
-     *           Required. The `Channel` [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that identifies the input that this
-     *           audio mapping applies to. If an active input doesn't have an audio
-     *           mapping, the primary audio track in the input stream will be selected.
+     *           Required. The `Channel`
+     *           [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     *           that identifies the input that this audio mapping applies to. If an
+     *           active input doesn't have an audio mapping, the primary audio track in
+     *           the input stream will be selected.
      *     @type int $input_track
      *           Required. The zero-based index of the track in the input stream.
-     *           All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in the same [AudioStream][google.cloud.video.livestream.v1.AudioStream]
-     *           must have the same input track.
+     *           All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in
+     *           the same [AudioStream][google.cloud.video.livestream.v1.AudioStream] must
+     *           have the same input track.
      *     @type int $input_channel
      *           Required. The zero-based index of the channel in the input stream.
      *     @type int $output_channel
      *           Required. The zero-based index of the channel in the output audio stream.
-     *           Must be consistent with the [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
+     *           Must be consistent with the
+     *           [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
+     *     @type float $gain_db
+     *           Audio volume control in dB. Negative values decrease volume,
+     *           positive values increase. The default is 0.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +90,11 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `Channel` [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that identifies the input that this
-     * audio mapping applies to. If an active input doesn't have an audio
-     * mapping, the primary audio track in the input stream will be selected.
+     * Required. The `Channel`
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     * that identifies the input that this audio mapping applies to. If an
+     * active input doesn't have an audio mapping, the primary audio track in
+     * the input stream will be selected.
      *
      * Generated from protobuf field <code>string input_key = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -85,9 +105,11 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `Channel` [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key] that identifies the input that this
-     * audio mapping applies to. If an active input doesn't have an audio
-     * mapping, the primary audio track in the input stream will be selected.
+     * Required. The `Channel`
+     * [InputAttachment.key][google.cloud.video.livestream.v1.InputAttachment.key]
+     * that identifies the input that this audio mapping applies to. If an
+     * active input doesn't have an audio mapping, the primary audio track in
+     * the input stream will be selected.
      *
      * Generated from protobuf field <code>string input_key = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -103,8 +125,9 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The zero-based index of the track in the input stream.
-     * All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in the same [AudioStream][google.cloud.video.livestream.v1.AudioStream]
-     * must have the same input track.
+     * All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in
+     * the same [AudioStream][google.cloud.video.livestream.v1.AudioStream] must
+     * have the same input track.
      *
      * Generated from protobuf field <code>int32 input_track = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -116,8 +139,9 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The zero-based index of the track in the input stream.
-     * All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in the same [AudioStream][google.cloud.video.livestream.v1.AudioStream]
-     * must have the same input track.
+     * All [mapping][google.cloud.video.livestream.v1.AudioStream.mapping]s in
+     * the same [AudioStream][google.cloud.video.livestream.v1.AudioStream] must
+     * have the same input track.
      *
      * Generated from protobuf field <code>int32 input_track = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -159,7 +183,8 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The zero-based index of the channel in the output audio stream.
-     * Must be consistent with the [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
+     * Must be consistent with the
+     * [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
      *
      * Generated from protobuf field <code>int32 output_channel = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -171,7 +196,8 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The zero-based index of the channel in the output audio stream.
-     * Must be consistent with the [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
+     * Must be consistent with the
+     * [input_channel][google.cloud.video.livestream.v1.AudioStream.AudioMapping.input_channel].
      *
      * Generated from protobuf field <code>int32 output_channel = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -181,6 +207,34 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->output_channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Audio volume control in dB. Negative values decrease volume,
+     * positive values increase. The default is 0.
+     *
+     * Generated from protobuf field <code>double gain_db = 5;</code>
+     * @return float
+     */
+    public function getGainDb()
+    {
+        return $this->gain_db;
+    }
+
+    /**
+     * Audio volume control in dB. Negative values decrease volume,
+     * positive values increase. The default is 0.
+     *
+     * Generated from protobuf field <code>double gain_db = 5;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setGainDb($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->gain_db = $var;
 
         return $this;
     }

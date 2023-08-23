@@ -24,11 +24,29 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. A list of new spans. The span names must not match existing
-     * spans, or the results are undefined.
+     * spans, otherwise the results are undefined.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $spans;
+
+    /**
+     * @param string                        $name  Required. The name of the project where the spans belong. The format is
+     *                                             `projects/[PROJECT_ID]`. Please see
+     *                                             {@see TraceServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Trace\V2\Span[] $spans Required. A list of new spans. The span names must not match existing
+     *                                             spans, otherwise the results are undefined.
+     *
+     * @return \Google\Cloud\Trace\V2\BatchWriteSpansRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $spans): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setSpans($spans);
+    }
 
     /**
      * Constructor.
@@ -41,7 +59,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
      *           `projects/[PROJECT_ID]`.
      *     @type array<\Google\Cloud\Trace\V2\Span>|\Google\Protobuf\Internal\RepeatedField $spans
      *           Required. A list of new spans. The span names must not match existing
-     *           spans, or the results are undefined.
+     *           spans, otherwise the results are undefined.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +97,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A list of new spans. The span names must not match existing
-     * spans, or the results are undefined.
+     * spans, otherwise the results are undefined.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -91,7 +109,7 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A list of new spans. The span names must not match existing
-     * spans, or the results are undefined.
+     * spans, otherwise the results are undefined.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\Trace\V2\Span>|\Google\Protobuf\Internal\RepeatedField $var

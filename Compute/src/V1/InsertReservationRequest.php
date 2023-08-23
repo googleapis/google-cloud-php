@@ -41,6 +41,23 @@ class InsertReservationRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                               $project             Project ID for this request.
+     * @param string                               $zone                Name of the zone for this request.
+     * @param \Google\Cloud\Compute\V1\Reservation $reservationResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertReservationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, \Google\Cloud\Compute\V1\Reservation $reservationResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setReservationResource($reservationResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

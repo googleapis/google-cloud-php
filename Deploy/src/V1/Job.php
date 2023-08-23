@@ -28,8 +28,15 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. The name of the `JobRun` responsible for the most recent invocation of this
-     * Job.
+     * Output only. Additional information on why the Job was skipped, if
+     * available.
+     *
+     * Generated from protobuf field <code>string skip_message = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $skip_message = '';
+    /**
+     * Output only. The name of the `JobRun` responsible for the most recent
+     * invocation of this Job.
      *
      * Generated from protobuf field <code>string job_run = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -46,13 +53,24 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. The ID of the Job.
      *     @type int $state
      *           Output only. The current state of the Job.
+     *     @type string $skip_message
+     *           Output only. Additional information on why the Job was skipped, if
+     *           available.
      *     @type string $job_run
-     *           Output only. The name of the `JobRun` responsible for the most recent invocation of this
-     *           Job.
+     *           Output only. The name of the `JobRun` responsible for the most recent
+     *           invocation of this Job.
      *     @type \Google\Cloud\Deploy\V1\DeployJob $deploy_job
      *           Output only. A deploy Job.
      *     @type \Google\Cloud\Deploy\V1\VerifyJob $verify_job
      *           Output only. A verify Job.
+     *     @type \Google\Cloud\Deploy\V1\PredeployJob $predeploy_job
+     *           Output only. A predeploy Job.
+     *     @type \Google\Cloud\Deploy\V1\PostdeployJob $postdeploy_job
+     *           Output only. A postdeploy Job.
+     *     @type \Google\Cloud\Deploy\V1\CreateChildRolloutJob $create_child_rollout_job
+     *           Output only. A createChildRollout Job.
+     *     @type \Google\Cloud\Deploy\V1\AdvanceChildRolloutJob $advance_child_rollout_job
+     *           Output only. An advanceChildRollout Job.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,8 +131,36 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the `JobRun` responsible for the most recent invocation of this
-     * Job.
+     * Output only. Additional information on why the Job was skipped, if
+     * available.
+     *
+     * Generated from protobuf field <code>string skip_message = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSkipMessage()
+    {
+        return $this->skip_message;
+    }
+
+    /**
+     * Output only. Additional information on why the Job was skipped, if
+     * available.
+     *
+     * Generated from protobuf field <code>string skip_message = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSkipMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->skip_message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the `JobRun` responsible for the most recent
+     * invocation of this Job.
      *
      * Generated from protobuf field <code>string job_run = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -125,8 +171,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the `JobRun` responsible for the most recent invocation of this
-     * Job.
+     * Output only. The name of the `JobRun` responsible for the most recent
+     * invocation of this Job.
      *
      * Generated from protobuf field <code>string job_run = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -198,6 +244,130 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\VerifyJob::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A predeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PredeployJob predeploy_job = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\PredeployJob|null
+     */
+    public function getPredeployJob()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasPredeployJob()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Output only. A predeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PredeployJob predeploy_job = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\PredeployJob $var
+     * @return $this
+     */
+    public function setPredeployJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PredeployJob::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A postdeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PostdeployJob postdeploy_job = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\PostdeployJob|null
+     */
+    public function getPostdeployJob()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasPostdeployJob()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Output only. A postdeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PostdeployJob postdeploy_job = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\PostdeployJob $var
+     * @return $this
+     */
+    public function setPostdeployJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PostdeployJob::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A createChildRollout Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CreateChildRolloutJob create_child_rollout_job = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\CreateChildRolloutJob|null
+     */
+    public function getCreateChildRolloutJob()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasCreateChildRolloutJob()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Output only. A createChildRollout Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CreateChildRolloutJob create_child_rollout_job = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\CreateChildRolloutJob $var
+     * @return $this
+     */
+    public function setCreateChildRolloutJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CreateChildRolloutJob::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. An advanceChildRollout Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AdvanceChildRolloutJob advance_child_rollout_job = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\AdvanceChildRolloutJob|null
+     */
+    public function getAdvanceChildRolloutJob()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasAdvanceChildRolloutJob()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Output only. An advanceChildRollout Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AdvanceChildRolloutJob advance_child_rollout_job = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\AdvanceChildRolloutJob $var
+     * @return $this
+     */
+    public function setAdvanceChildRolloutJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\AdvanceChildRolloutJob::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

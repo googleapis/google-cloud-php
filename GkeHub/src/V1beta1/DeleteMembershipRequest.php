@@ -38,6 +38,14 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+    /**
+     * Optional. If set to true, any subresource from this Membership will also be
+     * deleted. Otherwise, the request will only work if the Membership has no
+     * subresource.
+     *
+     * Generated from protobuf field <code>bool force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $force = false;
 
     /**
      * Constructor.
@@ -60,6 +68,10 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, any subresource from this Membership will also be
+     *           deleted. Otherwise, the request will only work if the Membership has no
+     *           subresource.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +149,36 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, any subresource from this Membership will also be
+     * deleted. Otherwise, the request will only work if the Membership has no
+     * subresource.
+     *
+     * Generated from protobuf field <code>bool force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Optional. If set to true, any subresource from this Membership will also be
+     * deleted. Otherwise, the request will only work if the Membership has no
+     * subresource.
+     *
+     * Generated from protobuf field <code>bool force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

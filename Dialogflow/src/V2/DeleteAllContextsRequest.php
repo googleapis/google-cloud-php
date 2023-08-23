@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2.Contexts.DeleteAllContexts].
+ * The request message for
+ * [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2.Contexts.DeleteAllContexts].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteAllContextsRequest</code>
  */
@@ -26,6 +27,25 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+
+    /**
+     * @param string $parent Required. The name of the session to delete all contexts from. Format:
+     *                       `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *                       ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *                       ID>`.
+     *                       If `Environment ID` is not specified we assume default 'draft' environment.
+     *                       If `User ID` is not specified, we assume default '-' user. Please see
+     *                       {@see ContextsClient::sessionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteAllContextsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Diagnostics information about interconnect, contains detailed and current technical information about Google's side of the connection.
+ * Diagnostics information about the Interconnect connection, which contains detailed and current technical information about Google's side of the connection.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectDiagnostics</code>
  */
@@ -21,6 +21,20 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
      */
     private $arp_caches;
+    /**
+     * The aggregation type of the bundle interface.
+     * Check the BundleAggregationType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_aggregation_type = 434939028;</code>
+     */
+    private $bundle_aggregation_type = null;
+    /**
+     * The operational status of the bundle interface.
+     * Check the BundleOperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_operational_status = 106433500;</code>
+     */
+    private $bundle_operational_status = null;
     /**
      * A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *
@@ -42,6 +56,12 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry>|\Google\Protobuf\Internal\RepeatedField $arp_caches
      *           A list of InterconnectDiagnostics.ARPEntry objects, describing individual neighbors currently seen by the Google router in the ARP cache for the Interconnect. This will be empty when the Interconnect is not bundled.
+     *     @type string $bundle_aggregation_type
+     *           The aggregation type of the bundle interface.
+     *           Check the BundleAggregationType enum for the list of possible values.
+     *     @type string $bundle_operational_status
+     *           The operational status of the bundle interface.
+     *           Check the BundleOperationalStatus enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus>|\Google\Protobuf\Internal\RepeatedField $links
      *           A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *     @type string $mac_address
@@ -75,6 +95,82 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry::class);
         $this->arp_caches = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The aggregation type of the bundle interface.
+     * Check the BundleAggregationType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_aggregation_type = 434939028;</code>
+     * @return string
+     */
+    public function getBundleAggregationType()
+    {
+        return isset($this->bundle_aggregation_type) ? $this->bundle_aggregation_type : '';
+    }
+
+    public function hasBundleAggregationType()
+    {
+        return isset($this->bundle_aggregation_type);
+    }
+
+    public function clearBundleAggregationType()
+    {
+        unset($this->bundle_aggregation_type);
+    }
+
+    /**
+     * The aggregation type of the bundle interface.
+     * Check the BundleAggregationType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_aggregation_type = 434939028;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBundleAggregationType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->bundle_aggregation_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The operational status of the bundle interface.
+     * Check the BundleOperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_operational_status = 106433500;</code>
+     * @return string
+     */
+    public function getBundleOperationalStatus()
+    {
+        return isset($this->bundle_operational_status) ? $this->bundle_operational_status : '';
+    }
+
+    public function hasBundleOperationalStatus()
+    {
+        return isset($this->bundle_operational_status);
+    }
+
+    public function clearBundleOperationalStatus()
+    {
+        unset($this->bundle_operational_status);
+    }
+
+    /**
+     * The operational status of the bundle interface.
+     * Check the BundleOperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string bundle_operational_status = 106433500;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBundleOperationalStatus($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->bundle_operational_status = $var;
 
         return $this;
     }

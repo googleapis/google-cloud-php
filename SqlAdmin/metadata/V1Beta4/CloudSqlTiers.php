@@ -18,7 +18,7 @@ class CloudSqlTiers
         \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”
+∆
 .google/cloud/sql/v1beta4/cloud_sql_tiers.protogoogle.cloud.sql.v1beta4google/api/client.proto"&
 SqlTiersListRequest
 project (	"P
@@ -33,8 +33,8 @@ class CloudSqlTiers
 Disk_Quota (
 region (	2£
 SqlTiersServiceë
-List-.google.cloud.sql.v1beta4.SqlTiersListRequest+.google.cloud.sql.v1beta4.TiersListResponse"-Ç”‰ì\'%/sql/v1beta4/projects/{project}/tiers| Asqladmin.googleapis.com“A_https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/sqlservice.adminBq
-com.google.cloud.sql.v1beta4BCloudSqlTiersProtoPZ;google.golang.org/genproto/googleapis/cloud/sql/v1beta4;sqlbproto3'
+List-.google.cloud.sql.v1beta4.SqlTiersListRequest+.google.cloud.sql.v1beta4.TiersListResponse"-Ç”‰ì\'%/sql/v1beta4/projects/{project}/tiers| Asqladmin.googleapis.com“A_https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/sqlservice.adminBd
+com.google.cloud.sql.v1beta4BCloudSqlTiersProtoPZ.cloud.google.com/go/sql/apiv1beta4/sqlpb;sqlpbbproto3'
         , true);
 
         static::$is_initialized = true;

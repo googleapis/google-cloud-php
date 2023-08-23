@@ -29,8 +29,8 @@ class CheckUpgradeResponse extends \Google\Protobuf\Internal\Message
      */
     private $contains_pypi_modules_conflict = 0;
     /**
-     * Output only. Extract from a docker image build log containing information about pypi
-     * modules conflicts.
+     * Output only. Extract from a docker image build log containing information
+     * about pypi modules conflicts.
      *
      * Generated from protobuf field <code>string pypi_conflict_build_log_extract = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -60,8 +60,8 @@ class CheckUpgradeResponse extends \Google\Protobuf\Internal\Message
      *     @type int $contains_pypi_modules_conflict
      *           Output only. Whether build has succeeded or failed on modules conflicts.
      *     @type string $pypi_conflict_build_log_extract
-     *           Output only. Extract from a docker image build log containing information about pypi
-     *           modules conflicts.
+     *           Output only. Extract from a docker image build log containing information
+     *           about pypi modules conflicts.
      *     @type string $image_version
      *           Composer image for which the build was happening.
      *     @type array|\Google\Protobuf\Internal\MapField $pypi_dependencies
@@ -127,8 +127,8 @@ class CheckUpgradeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Extract from a docker image build log containing information about pypi
-     * modules conflicts.
+     * Output only. Extract from a docker image build log containing information
+     * about pypi modules conflicts.
      *
      * Generated from protobuf field <code>string pypi_conflict_build_log_extract = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -139,8 +139,8 @@ class CheckUpgradeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Extract from a docker image build log containing information about pypi
-     * modules conflicts.
+     * Output only. Extract from a docker image build log containing information
+     * about pypi modules conflicts.
      *
      * Generated from protobuf field <code>string pypi_conflict_build_log_extract = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

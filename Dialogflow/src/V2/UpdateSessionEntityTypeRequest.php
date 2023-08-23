@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.UpdateSessionEntityType].
+ * The request message for
+ * [SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.UpdateSessionEntityType].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateSessionEntityTypeRequest</code>
  */
@@ -27,6 +28,34 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType Required. The session entity type to update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType): self
+    {
+        return (new self())
+            ->setSessionEntityType($sessionEntityType);
+    }
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType Required. The session entity type to update.
+     * @param \Google\Protobuf\FieldMask                    $updateMask        Optional. The mask to control which fields get updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function buildFromSessionEntityTypeUpdateMask(\Google\Cloud\Dialogflow\V2\SessionEntityType $sessionEntityType, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSessionEntityType($sessionEntityType)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

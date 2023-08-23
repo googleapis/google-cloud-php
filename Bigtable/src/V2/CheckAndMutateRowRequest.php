@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the table to which the conditional mutation should be
-     * applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the conditional mutation
+     * should be applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,7 +31,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $app_profile_id = '';
     /**
-     * Required. The key of the row to which the conditional mutation should be applied.
+     * Required. The key of the row to which the conditional mutation should be
+     * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -68,21 +68,96 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     private $false_mutations;
 
     /**
+     * @param string                               $tableName       Required. The unique name of the table to which the conditional mutation
+     *                                                              should be applied. Values are of the form
+     *                                                              `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                                                              {@see BigtableClient::tableName()} for help formatting this field.
+     * @param string                               $rowKey          Required. The key of the row to which the conditional mutation should be
+     *                                                              applied.
+     * @param \Google\Cloud\Bigtable\V2\RowFilter  $predicateFilter The filter to be applied to the contents of the specified row. Depending
+     *                                                              on whether or not any results are yielded, either `true_mutations` or
+     *                                                              `false_mutations` will be executed. If unset, checks that the row contains
+     *                                                              any values at all.
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $trueMutations   Changes to be atomically applied to the specified row if `predicate_filter`
+     *                                                              yields at least one cell when applied to `row_key`. Entries are applied in
+     *                                                              order, meaning that earlier mutations can be masked by later ones.
+     *                                                              Must contain at least one entry if `false_mutations` is empty, and at most
+     *                                                              100000.
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $falseMutations  Changes to be atomically applied to the specified row if `predicate_filter`
+     *                                                              does not yield any cells when applied to `row_key`. Entries are applied in
+     *                                                              order, meaning that earlier mutations can be masked by later ones.
+     *                                                              Must contain at least one entry if `true_mutations` is empty, and at most
+     *                                                              100000.
+     *
+     * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tableName, string $rowKey, \Google\Cloud\Bigtable\V2\RowFilter $predicateFilter, array $trueMutations, array $falseMutations): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setRowKey($rowKey)
+            ->setPredicateFilter($predicateFilter)
+            ->setTrueMutations($trueMutations)
+            ->setFalseMutations($falseMutations);
+    }
+
+    /**
+     * @param string                               $tableName       Required. The unique name of the table to which the conditional mutation
+     *                                                              should be applied. Values are of the form
+     *                                                              `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                                                              {@see BigtableClient::tableName()} for help formatting this field.
+     * @param string                               $rowKey          Required. The key of the row to which the conditional mutation should be
+     *                                                              applied.
+     * @param \Google\Cloud\Bigtable\V2\RowFilter  $predicateFilter The filter to be applied to the contents of the specified row. Depending
+     *                                                              on whether or not any results are yielded, either `true_mutations` or
+     *                                                              `false_mutations` will be executed. If unset, checks that the row contains
+     *                                                              any values at all.
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $trueMutations   Changes to be atomically applied to the specified row if `predicate_filter`
+     *                                                              yields at least one cell when applied to `row_key`. Entries are applied in
+     *                                                              order, meaning that earlier mutations can be masked by later ones.
+     *                                                              Must contain at least one entry if `false_mutations` is empty, and at most
+     *                                                              100000.
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $falseMutations  Changes to be atomically applied to the specified row if `predicate_filter`
+     *                                                              does not yield any cells when applied to `row_key`. Entries are applied in
+     *                                                              order, meaning that earlier mutations can be masked by later ones.
+     *                                                              Must contain at least one entry if `true_mutations` is empty, and at most
+     *                                                              100000.
+     * @param string                               $appProfileId    This value specifies routing for replication. If not specified, the
+     *                                                              "default" application profile will be used.
+     *
+     * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest
+     *
+     * @experimental
+     */
+    public static function buildFromTableNameRowKeyPredicateFilterTrueMutationsFalseMutationsAppProfileId(string $tableName, string $rowKey, \Google\Cloud\Bigtable\V2\RowFilter $predicateFilter, array $trueMutations, array $falseMutations, string $appProfileId): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setRowKey($rowKey)
+            ->setPredicateFilter($predicateFilter)
+            ->setTrueMutations($trueMutations)
+            ->setFalseMutations($falseMutations)
+            ->setAppProfileId($appProfileId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           Required. The unique name of the table to which the conditional mutation should be
-     *           applied.
-     *           Values are of the form
+     *           Required. The unique name of the table to which the conditional mutation
+     *           should be applied. Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type string $row_key
-     *           Required. The key of the row to which the conditional mutation should be applied.
+     *           Required. The key of the row to which the conditional mutation should be
+     *           applied.
      *     @type \Google\Cloud\Bigtable\V2\RowFilter $predicate_filter
      *           The filter to be applied to the contents of the specified row. Depending
      *           on whether or not any results are yielded, either `true_mutations` or
@@ -108,9 +183,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the conditional mutation should be
-     * applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the conditional mutation
+     * should be applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -122,9 +196,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the conditional mutation should be
-     * applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the conditional mutation
+     * should be applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -168,7 +241,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The key of the row to which the conditional mutation should be applied.
+     * Required. The key of the row to which the conditional mutation should be
+     * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -179,7 +253,8 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The key of the row to which the conditional mutation should be applied.
+     * Required. The key of the row to which the conditional mutation should be
+     * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -87,7 +87,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '1.39.1';
+    const VERSION = '1.46.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -184,12 +184,22 @@ class PubSubClient
      * @param string $name The topic name
      * @param array $options [optional] Configuration Options. For available
      *        configuration options, refer to
-     *        {@see Google\Cloud\PubSub\Topic::create()}.
+     *        {@see Google\Cloud\PubSub\Topic::create()} {
+     *        @type bool $enableCompression Flag to enable compression of messages
+     *              before publishing. Set the flag to `true` to enable compression.
+     *              Defaults to `false`. Messsages are compressed if their total
+     *              size >= `compressionBytesThreshold`, whose default value has
+     *              been experimentally derived after performance evaluations.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed. This only takes effect
+     *              if `enableCompression` is set to `true`. Defaults to `240`.
+     *              (This value is experiementally derived after performance evaluations.)
+     * }.
      * @return Topic
      */
     public function createTopic($name, array $options = [])
     {
-        $topic = $this->topicFactory($name);
+        $topic = $this->topicFactory($name, $options);
         $topic->create($options);
 
         return $topic;
@@ -211,11 +221,23 @@ class PubSubClient
      * ```
      *
      * @param string $name The topic name
+     * @param array $options [optional] Configuration Options {
+     *        @type bool $enableCompression Flag to enable compression of messages
+     *              before publishing. Set the flag to `true` to enable compression.
+     *              Defaults to `false`. Messsages are compressed if their total
+     *              size >= `compressionBytesThreshold`, whose default value has
+     *              been experimentally derived after performance evaluations.
+     *        @type int $compressionBytesThreshold The threshold byte size
+     *              above which messages are compressed. This only takes effect
+     *              if `enableCompression` is set to `true`. Defaults to `240`.
+     *              (This value is experiementally derived after performance evaluations.)
+     * }
+
      * @return Topic
      */
-    public function topic($name)
+    public function topic($name, $options = [])
     {
-        return $this->topicFactory($name);
+        return $this->topicFactory($name, $options);
     }
 
     /**
@@ -642,7 +664,7 @@ class PubSubClient
      *     for definition. The array representation allows for validation of
      *     messages using ad-hoc schema; these do not have to exist in the
      *     current project in order to be used for validation.
-     * @param string $message The message to validate.
+     * @param string $message The base64 encoded message to validate.
      * @param string $encoding Either `JSON` or `BINARY`.
      * @param array $options [optional] Configuration options
      * @return void
@@ -783,10 +805,14 @@ class PubSubClient
      */
     public function __debugInfo()
     {
-        return [
-            'connection' => get_class($this->connection),
-            'projectId' => $this->projectId,
-            'encode' => $this->encode
-        ];
+        $debugInfo = [];
+        if ($this->connection) {
+            $debugInfo['connection'] = get_class($this->connection);
+        }
+
+        $debugInfo['projectId'] = $this->projectId;
+        $debugInfo['encode'] = $this->encode;
+
+        return $debugInfo;
     }
 }

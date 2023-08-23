@@ -52,6 +52,69 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     protected $job;
 
     /**
+     * @param string                                $parent     Required. Parent resource name.
+     *
+     *                                                          The format of this value varies depending on whether you have [specified a
+     *                                                          processing
+     *                                                          location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *                                                          + Projects scope, location specified:<br/>
+     *                                                          `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                                                          + Projects scope, no location specified (defaults to global):<br/>
+     *                                                          `projects/`<var>PROJECT_ID</var>
+     *
+     *                                                          The following example `parent` string specifies a parent project with the
+     *                                                          identifier `example-project`, and specifies the `europe-west3` location
+     *                                                          for processing data:
+     *
+     *                                                          parent=projects/example-project/locations/europe-west3
+     *                                                          Please see {@see DlpServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Dlp\V2\InspectJobConfig $inspectJob An inspection job scans a storage repository for InfoTypes.
+     *
+     * @return \Google\Cloud\Dlp\V2\CreateDlpJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dlp\V2\InspectJobConfig $inspectJob): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInspectJob($inspectJob);
+    }
+
+    /**
+     * @param string                                     $parent  Required. Parent resource name.
+     *
+     *                                                            The format of this value varies depending on whether you have [specified a
+     *                                                            processing
+     *                                                            location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *                                                            + Projects scope, location specified:<br/>
+     *                                                            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                                                            + Projects scope, no location specified (defaults to global):<br/>
+     *                                                            `projects/`<var>PROJECT_ID</var>
+     *
+     *                                                            The following example `parent` string specifies a parent project with the
+     *                                                            identifier `example-project`, and specifies the `europe-west3` location
+     *                                                            for processing data:
+     *
+     *                                                            parent=projects/example-project/locations/europe-west3
+     *                                                            Please see {@see DlpServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $riskJob A risk analysis job calculates re-identification risk metrics for a
+     *                                                            BigQuery table.
+     *
+     * @return \Google\Cloud\Dlp\V2\CreateDlpJobRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentRiskJob(string $parent, \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $riskJob): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRiskJob($riskJob);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

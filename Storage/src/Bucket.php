@@ -288,8 +288,8 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
-        $encryptionKey = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
-        $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
+        $encryptionKey = $options['encryptionKey'] ?? null;
+        $encryptionKeySHA256 = $options['encryptionKeySHA256'] ?? null;
 
         $response = $this->connection->insertObject(
             $this->formatEncryptionHeaders($options) + $this->identity + [
@@ -391,8 +391,8 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
-        $encryptionKey = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
-        $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
+        $encryptionKey = $options['encryptionKey'] ?? null;
+        $encryptionKeySHA256 = $options['encryptionKeySHA256'] ?? null;
 
         $promise = $this->connection->insertObject(
             $this->formatEncryptionHeaders($options) +
@@ -590,9 +590,9 @@ class Bucket
      */
     public function object($name, array $options = [])
     {
-        $generation = isset($options['generation']) ? $options['generation'] : null;
-        $encryptionKey = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
-        $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
+        $generation = $options['generation'] ?? null;
+        $encryptionKey = $options['encryptionKey'] ?? null;
+        $encryptionKeySHA256 = $options['encryptionKeySHA256'] ?? null;
 
         return new StorageObject(
             $this->connection,
@@ -647,6 +647,9 @@ class Bucket
      *           distinct results. **Defaults to** `false`.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
+     *     @type string $matchGlob A glob pattern to filter results. The string
+     *           value must be UTF-8 encoded. See:
+     *           https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-object-glob
      * }
      * @return ObjectIterator<StorageObject>
      */
@@ -1065,9 +1068,7 @@ class Bucket
 
                 if ($sourceObject instanceof StorageObject) {
                     $name = $sourceObject->name();
-                    $generation = isset($sourceObject->identity()['generation'])
-                        ? $sourceObject->identity()['generation']
-                        : null;
+                    $generation = $sourceObject->identity()['generation'] ?? null;
                 }
 
                 return array_filter([

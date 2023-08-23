@@ -28,9 +28,10 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group pubsub
@@ -38,7 +39,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class SubscriptionTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const PROJECT = 'project-id';
     const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
@@ -49,7 +50,7 @@ class SubscriptionTest extends TestCase
     private $ackIds;
     private $messages;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [
@@ -112,7 +113,7 @@ class SubscriptionTest extends TestCase
 
     public function testCreateWithoutTopicName()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $subscription = new Subscription(
             $this->connection->reveal(),
@@ -513,7 +514,7 @@ class SubscriptionTest extends TestCase
         ];
 
         $ex = $this->generateEodException($metadata);
-        
+
         $this->connection->acknowledge(Argument::allOf(
             Argument::withEntry('ackIds', $this->ackIds),
             Argument::withKey('subscription')
@@ -650,12 +651,9 @@ class SubscriptionTest extends TestCase
         $this->assertIsNotArray($failedMsgs);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testAcknowledgeBatchInvalidArgument()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->subscription->acknowledgeBatch(['foo']);
     }
@@ -760,7 +758,7 @@ class SubscriptionTest extends TestCase
         ];
 
         $ex = $this->generateEodException($metadata);
-        
+
         $this->connection->modifyAckDeadline(Argument::allOf(
             Argument::withEntry('ackIds', $this->ackIds),
             Argument::withKey('subscription'),
@@ -903,12 +901,9 @@ class SubscriptionTest extends TestCase
         $this->assertIsNotArray($failedMsgs);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testModifyAckDeadlineBatchInvalidArgument()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $this->subscription->modifyAckDeadlineBatch(['foo'], 100);
     }
@@ -978,6 +973,69 @@ class SubscriptionTest extends TestCase
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals([], $this->subscription->detach());
+    }
+
+    public function testCreateSubscriptionWithCloudStorageConfig()
+    {
+        $bucket = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => new Duration(3, 1e+9)
+        ];
+        $bucketString = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => '3.1s'
+        ];
+        $this->connection->createSubscription(Argument::allOf(
+            Argument::withEntry('foo', 'bar'),
+            Argument::withEntry('cloudStorageConfig', $bucketString)
+        ))->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
+
+        $this->connection->getSubscription()->shouldNotBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $sub = $this->subscription->create([
+            'foo' => 'bar',
+            'cloudStorageConfig' => $bucket
+        ]);
+
+        $this->assertEquals($sub['name'], self::SUBSCRIPTION);
+        $this->assertEquals($sub['topic'], self::TOPIC);
+    }
+
+    public function testUpdateSubscriptionWithCloudStorageConfig()
+    {
+        $bucket = [
+            'bucket' => 'pubsub-test-bucket',
+            'maxDuration' => new Duration(3, 1e+9)
+        ];
+        $bucketString = [
+            'name' => 'projects/project-id/subscriptions/subscription-name',
+            'cloudStorageConfig' => [
+                'bucket' => 'pubsub-test-bucket',
+                'maxDuration' => '3.1s'
+                ]
+            ];
+        $this->connection->updateSubscription(
+            Argument::containing($bucketString)
+        )->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ])->shouldBeCalledTimes(1);
+
+        $this->connection->getSubscription()->shouldNotBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $sub = $this->subscription->update([
+            'cloudStorageConfig' => $bucket
+        ]);
+
+        $this->assertEquals($sub['name'], self::SUBSCRIPTION);
+        $this->assertEquals($sub['topic'], self::TOPIC);
     }
 
     // Helper method to generate the exception sent during an invalid EOD operation

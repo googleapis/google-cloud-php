@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Description of audio data to be recognized.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.RecognitionMetadata</code>
  */
 class RecognitionMetadata extends \Google\Protobuf\Internal\Message

@@ -39,14 +39,17 @@ class OutputMetadata extends \Google\Protobuf\Internal\Message
      *           outputs by their values.
      *           The shape of the value must be an n-dimensional array of strings. The
      *           number of dimensions must match that of the outputs to be explained.
-     *           The [Attribution.output_display_name][google.cloud.aiplatform.v1.Attribution.output_display_name] is populated by locating in the
-     *           mapping with [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     *           The
+     *           [Attribution.output_display_name][google.cloud.aiplatform.v1.Attribution.output_display_name]
+     *           is populated by locating in the mapping with
+     *           [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *     @type string $display_name_mapping_key
      *           Specify a field name in the prediction to look for the display name.
      *           Use this if the prediction contains the display names for the outputs.
      *           The display names in the prediction must have the same shape of the
-     *           outputs, so that it can be located by [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] for
-     *           a specific output.
+     *           outputs, so that it can be located by
+     *           [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     *           for a specific output.
      *     @type string $output_tensor_name
      *           Name of the output tensor. Required and is only applicable to Vertex
      *           AI provided images for Tensorflow.
@@ -66,8 +69,10 @@ class OutputMetadata extends \Google\Protobuf\Internal\Message
      * outputs by their values.
      * The shape of the value must be an n-dimensional array of strings. The
      * number of dimensions must match that of the outputs to be explained.
-     * The [Attribution.output_display_name][google.cloud.aiplatform.v1.Attribution.output_display_name] is populated by locating in the
-     * mapping with [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * The
+     * [Attribution.output_display_name][google.cloud.aiplatform.v1.Attribution.output_display_name]
+     * is populated by locating in the mapping with
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *
      * Generated from protobuf field <code>.google.protobuf.Value index_display_name_mapping = 1;</code>
      * @return \Google\Protobuf\Value|null
@@ -91,8 +96,10 @@ class OutputMetadata extends \Google\Protobuf\Internal\Message
      * outputs by their values.
      * The shape of the value must be an n-dimensional array of strings. The
      * number of dimensions must match that of the outputs to be explained.
-     * The [Attribution.output_display_name][google.cloud.aiplatform.v1.Attribution.output_display_name] is populated by locating in the
-     * mapping with [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index].
+     * The
+     * [Attribution.output_display_name][google.cloud.aiplatform.v1.Attribution.output_display_name]
+     * is populated by locating in the mapping with
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index].
      *
      * Generated from protobuf field <code>.google.protobuf.Value index_display_name_mapping = 1;</code>
      * @param \Google\Protobuf\Value $var
@@ -110,8 +117,9 @@ class OutputMetadata extends \Google\Protobuf\Internal\Message
      * Specify a field name in the prediction to look for the display name.
      * Use this if the prediction contains the display names for the outputs.
      * The display names in the prediction must have the same shape of the
-     * outputs, so that it can be located by [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] for
-     * a specific output.
+     * outputs, so that it can be located by
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * for a specific output.
      *
      * Generated from protobuf field <code>string display_name_mapping_key = 2;</code>
      * @return string
@@ -130,8 +138,9 @@ class OutputMetadata extends \Google\Protobuf\Internal\Message
      * Specify a field name in the prediction to look for the display name.
      * Use this if the prediction contains the display names for the outputs.
      * The display names in the prediction must have the same shape of the
-     * outputs, so that it can be located by [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index] for
-     * a specific output.
+     * outputs, so that it can be located by
+     * [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
+     * for a specific output.
      *
      * Generated from protobuf field <code>string display_name_mapping_key = 2;</code>
      * @param string $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Participants.GetParticipant][google.cloud.dialogflow.v2.Participants.GetParticipant].
+ * The request message for
+ * [Participants.GetParticipant][google.cloud.dialogflow.v2.Participants.GetParticipant].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetParticipantRequest</code>
  */
@@ -23,6 +24,22 @@ class GetParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the participant. Format:
+     *                     `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
+     *                     ID>/participants/<Participant ID>`. Please see
+     *                     {@see ParticipantsClient::participantName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetParticipantRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

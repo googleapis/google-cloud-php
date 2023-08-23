@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit\Connection;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner-admin
@@ -34,7 +34,7 @@ class IamInstanceTest extends TestCase
 
     private $iam;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->getConnStub();
 

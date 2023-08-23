@@ -30,6 +30,21 @@ class UpdateNamespaceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ServiceDirectory\V1\PBNamespace $namespace  Required. The updated namespace.
+     * @param \Google\Protobuf\FieldMask                    $updateMask Required. List of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\ServiceDirectory\V1\UpdateNamespaceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ServiceDirectory\V1\PBNamespace $namespace, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setNamespace($namespace)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -482,12 +482,19 @@ class Instance
      * $database = $instance->database('my-database');
      * ```
      *
+     * Database role configured on the database object
+     * will be applied to the session created by this object.
+     * ```
+     * $database = $instance->database('my-database', ['databaseRole' => 'Reader']);
+     * ```
+     *
      * @param string $name The database name
      * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database
      */
@@ -502,7 +509,8 @@ class Instance
             $name,
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
-            isset($options['database']) ? $options['database'] : []
+            isset($options['database']) ? $options['database'] : [],
+            isset($options['databaseRole']) ? $options['databaseRole'] : ''
         );
     }
 

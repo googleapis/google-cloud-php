@@ -20,17 +20,18 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * voice based on the other parameters such as language_code and
      * [ssml_gender][google.cloud.dialogflow.v2.VoiceSelectionParams.ssml_gender].
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $name = '';
     /**
      * Optional. The preferred gender of the voice. If not set, the service will
      * choose a voice based on the other parameters such as language_code and
-     * [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that this is only a preference, not requirement. If a
-     * voice of the appropriate gender is not available, the synthesizer should
-     * substitute a voice with a different gender rather than failing the request.
+     * [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that
+     * this is only a preference, not requirement. If a voice of the appropriate
+     * gender is not available, the synthesizer should substitute a voice with a
+     * different gender rather than failing the request.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SsmlVoiceGender ssml_gender = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SsmlVoiceGender ssml_gender = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ssml_gender = 0;
 
@@ -47,9 +48,10 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *     @type int $ssml_gender
      *           Optional. The preferred gender of the voice. If not set, the service will
      *           choose a voice based on the other parameters such as language_code and
-     *           [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that this is only a preference, not requirement. If a
-     *           voice of the appropriate gender is not available, the synthesizer should
-     *           substitute a voice with a different gender rather than failing the request.
+     *           [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that
+     *           this is only a preference, not requirement. If a voice of the appropriate
+     *           gender is not available, the synthesizer should substitute a voice with a
+     *           different gender rather than failing the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +64,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * voice based on the other parameters such as language_code and
      * [ssml_gender][google.cloud.dialogflow.v2.VoiceSelectionParams.ssml_gender].
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -75,7 +77,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * voice based on the other parameters such as language_code and
      * [ssml_gender][google.cloud.dialogflow.v2.VoiceSelectionParams.ssml_gender].
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -90,11 +92,12 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The preferred gender of the voice. If not set, the service will
      * choose a voice based on the other parameters such as language_code and
-     * [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that this is only a preference, not requirement. If a
-     * voice of the appropriate gender is not available, the synthesizer should
-     * substitute a voice with a different gender rather than failing the request.
+     * [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that
+     * this is only a preference, not requirement. If a voice of the appropriate
+     * gender is not available, the synthesizer should substitute a voice with a
+     * different gender rather than failing the request.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SsmlVoiceGender ssml_gender = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SsmlVoiceGender ssml_gender = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getSsmlGender()
@@ -105,11 +108,12 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The preferred gender of the voice. If not set, the service will
      * choose a voice based on the other parameters such as language_code and
-     * [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that this is only a preference, not requirement. If a
-     * voice of the appropriate gender is not available, the synthesizer should
-     * substitute a voice with a different gender rather than failing the request.
+     * [name][google.cloud.dialogflow.v2.VoiceSelectionParams.name]. Note that
+     * this is only a preference, not requirement. If a voice of the appropriate
+     * gender is not available, the synthesizer should substitute a voice with a
+     * different gender rather than failing the request.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SsmlVoiceGender ssml_gender = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SsmlVoiceGender ssml_gender = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

@@ -19,13 +19,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Link extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The [TRACE_ID] for a trace within a project.
+     * The `[TRACE_ID]` for a trace within a project.
      *
      * Generated from protobuf field <code>string trace_id = 1;</code>
      */
     private $trace_id = '';
     /**
-     * The [SPAN_ID] for a span within a trace.
+     * The `[SPAN_ID]` for a span within a trace.
      *
      * Generated from protobuf field <code>string span_id = 2;</code>
      */
@@ -37,8 +37,8 @@ class Link extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * A set of attributes on the link. You have have up to  32 attributes per
-     * link.
+     * A set of attributes on the link. Up to 32 attributes can be
+     * specified per link.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 4;</code>
      */
@@ -51,14 +51,14 @@ class Link extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $trace_id
-     *           The [TRACE_ID] for a trace within a project.
+     *           The `[TRACE_ID]` for a trace within a project.
      *     @type string $span_id
-     *           The [SPAN_ID] for a span within a trace.
+     *           The `[SPAN_ID]` for a span within a trace.
      *     @type int $type
      *           The relationship of the current span relative to the linked span.
      *     @type \Google\Cloud\Trace\V2\Span\Attributes $attributes
-     *           A set of attributes on the link. You have have up to  32 attributes per
-     *           link.
+     *           A set of attributes on the link. Up to 32 attributes can be
+     *           specified per link.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,7 +67,7 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [TRACE_ID] for a trace within a project.
+     * The `[TRACE_ID]` for a trace within a project.
      *
      * Generated from protobuf field <code>string trace_id = 1;</code>
      * @return string
@@ -78,7 +78,7 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [TRACE_ID] for a trace within a project.
+     * The `[TRACE_ID]` for a trace within a project.
      *
      * Generated from protobuf field <code>string trace_id = 1;</code>
      * @param string $var
@@ -93,7 +93,7 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [SPAN_ID] for a span within a trace.
+     * The `[SPAN_ID]` for a span within a trace.
      *
      * Generated from protobuf field <code>string span_id = 2;</code>
      * @return string
@@ -104,7 +104,7 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [SPAN_ID] for a span within a trace.
+     * The `[SPAN_ID]` for a span within a trace.
      *
      * Generated from protobuf field <code>string span_id = 2;</code>
      * @param string $var
@@ -145,8 +145,8 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of attributes on the link. You have have up to  32 attributes per
-     * link.
+     * A set of attributes on the link. Up to 32 attributes can be
+     * specified per link.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 4;</code>
      * @return \Google\Cloud\Trace\V2\Span\Attributes|null
@@ -167,8 +167,8 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of attributes on the link. You have have up to  32 attributes per
-     * link.
+     * A set of attributes on the link. Up to 32 attributes can be
+     * specified per link.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 4;</code>
      * @param \Google\Cloud\Trace\V2\Span\Attributes $var

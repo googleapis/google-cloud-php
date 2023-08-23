@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\DeadlineExceededException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -27,16 +28,14 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class ReadTest extends SpannerTestCase
 {
-    use ExpectException;
-
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];
     private static $dataset;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$readTableName = uniqid(self::TESTING_PREFIX);
         self::$rangeTableName = uniqid(self::TESTING_PREFIX);
@@ -438,7 +437,7 @@ class ReadTest extends SpannerTestCase
      */
     public function testReadInvalidDatabase()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$client->connect('google-cloud-php-system-tests', uniqid(self::TESTING_PREFIX));
         $keyset = new KeySet(['all' => true]);
@@ -451,7 +450,7 @@ class ReadTest extends SpannerTestCase
      */
     public function testReadInvalidTable()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
@@ -464,7 +463,7 @@ class ReadTest extends SpannerTestCase
      */
     public function testReadInvalidColumn()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
@@ -477,7 +476,7 @@ class ReadTest extends SpannerTestCase
      */
     public function testReadFailsOnDeadlineExceeded()
     {
-        $this->expectException('Google\Cloud\Core\Exception\DeadlineExceededException');
+        $this->expectException(DeadlineExceededException::class);
 
         $this->skipEmulatorTests();
         $db = self::$database;

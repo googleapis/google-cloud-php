@@ -7,7 +7,9 @@ namespace Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
 use UnexpectedValueException;
 
 /**
- * The type of a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority], indicating its issuing chain.
+ * The type of a
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
+ * indicating its issuing chain.
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.CertificateAuthority.Type</code>
  */
@@ -26,7 +28,8 @@ class Type
      */
     const SELF_SIGNED = 1;
     /**
-     * Subordinate CA. Could be issued by a Private CA [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * Subordinate CA. Could be issued by a Private CA
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * or an unmanaged CA.
      *
      * Generated from protobuf enum <code>SUBORDINATE = 2;</code>

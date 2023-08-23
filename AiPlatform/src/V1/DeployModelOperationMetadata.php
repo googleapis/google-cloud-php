@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Runtime operation information for [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
+ * Runtime operation information for
+ * [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeployModelOperationMetadata</code>
  */

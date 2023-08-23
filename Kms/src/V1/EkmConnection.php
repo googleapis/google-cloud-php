@@ -55,6 +55,24 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
+    /**
+     * Optional. Describes who can perform control plane operations on the EKM. If
+     * unset, this defaults to
+     * [MANUAL][google.cloud.kms.v1.EkmConnection.KeyManagementMode.MANUAL].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.EkmConnection.KeyManagementMode key_management_mode = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $key_management_mode = 0;
+    /**
+     * Optional. Identifies the EKM Crypto Space that this
+     * [EkmConnection][google.cloud.kms.v1.EkmConnection] maps to. Note: This
+     * field is required if
+     * [KeyManagementMode][google.cloud.kms.v1.EkmConnection.KeyManagementMode] is
+     * [CLOUD_KMS][google.cloud.kms.v1.EkmConnection.KeyManagementMode.CLOUD_KMS].
+     *
+     * Generated from protobuf field <code>string crypto_space_path = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $crypto_space_path = '';
 
     /**
      * Constructor.
@@ -79,6 +97,16 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Optional. Etag of the currently stored
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection].
+     *     @type int $key_management_mode
+     *           Optional. Describes who can perform control plane operations on the EKM. If
+     *           unset, this defaults to
+     *           [MANUAL][google.cloud.kms.v1.EkmConnection.KeyManagementMode.MANUAL].
+     *     @type string $crypto_space_path
+     *           Optional. Identifies the EKM Crypto Space that this
+     *           [EkmConnection][google.cloud.kms.v1.EkmConnection] maps to. Note: This
+     *           field is required if
+     *           [KeyManagementMode][google.cloud.kms.v1.EkmConnection.KeyManagementMode] is
+     *           [CLOUD_KMS][google.cloud.kms.v1.EkmConnection.KeyManagementMode.CLOUD_KMS].
      * }
      */
     public function __construct($data = NULL) {
@@ -214,6 +242,70 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Describes who can perform control plane operations on the EKM. If
+     * unset, this defaults to
+     * [MANUAL][google.cloud.kms.v1.EkmConnection.KeyManagementMode.MANUAL].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.EkmConnection.KeyManagementMode key_management_mode = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getKeyManagementMode()
+    {
+        return $this->key_management_mode;
+    }
+
+    /**
+     * Optional. Describes who can perform control plane operations on the EKM. If
+     * unset, this defaults to
+     * [MANUAL][google.cloud.kms.v1.EkmConnection.KeyManagementMode.MANUAL].
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.EkmConnection.KeyManagementMode key_management_mode = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setKeyManagementMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\EkmConnection\KeyManagementMode::class);
+        $this->key_management_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Identifies the EKM Crypto Space that this
+     * [EkmConnection][google.cloud.kms.v1.EkmConnection] maps to. Note: This
+     * field is required if
+     * [KeyManagementMode][google.cloud.kms.v1.EkmConnection.KeyManagementMode] is
+     * [CLOUD_KMS][google.cloud.kms.v1.EkmConnection.KeyManagementMode.CLOUD_KMS].
+     *
+     * Generated from protobuf field <code>string crypto_space_path = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCryptoSpacePath()
+    {
+        return $this->crypto_space_path;
+    }
+
+    /**
+     * Optional. Identifies the EKM Crypto Space that this
+     * [EkmConnection][google.cloud.kms.v1.EkmConnection] maps to. Note: This
+     * field is required if
+     * [KeyManagementMode][google.cloud.kms.v1.EkmConnection.KeyManagementMode] is
+     * [CLOUD_KMS][google.cloud.kms.v1.EkmConnection.KeyManagementMode.CLOUD_KMS].
+     *
+     * Generated from protobuf field <code>string crypto_space_path = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCryptoSpacePath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->crypto_space_path = $var;
 
         return $this;
     }

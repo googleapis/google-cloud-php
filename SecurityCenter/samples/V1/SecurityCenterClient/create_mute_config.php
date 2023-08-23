@@ -34,11 +34,11 @@ use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
  *                                 "organizations/[organization_id]", "folders/[folder_id]", or
  *                                 "projects/[project_id]". Please see
  *                                 {@see SecurityCenterClient::projectName()} for help formatting this field.
- * @param string $muteConfigFilter An expression that defines the filter to apply across create/update events
- *                                 of findings. While creating a filter string, be mindful of the
- *                                 scope in which the mute configuration is being created. E.g., If a filter
- *                                 contains project = X but is created under the project = Y scope, it might
- *                                 not match any findings.
+ * @param string $muteConfigFilter An expression that defines the filter to apply across
+ *                                 create/update events of findings. While creating a filter string, be
+ *                                 mindful of the scope in which the mute configuration is being created.
+ *                                 E.g., If a filter contains project = X but is created under the project = Y
+ *                                 scope, it might not match any findings.
  *
  *                                 The following field and operator combinations are supported:
  *
@@ -55,9 +55,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
  *                                 * indicator.ip_addresses: `=`, `:`
  *                                 * indicator.domains: `=`, `:`
  * @param string $muteConfigId     Unique identifier provided by the client within the parent scope.
- *                                 It must consist of lower case letters, numbers, and hyphen, with the first
- *                                 character a letter, the last a letter or a number, and a 63 character
- *                                 maximum.
+ *                                 It must consist of only lowercase letters, numbers, and hyphens, must start
+ *                                 with a letter, must end with either a letter or a number, and must be 63
+ *                                 characters or less.
  */
 function create_mute_config_sample(
     string $formattedParent,

@@ -25,7 +25,6 @@ namespace Google\Cloud\ServiceControl\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ServiceControl\V1\CheckResponse;
 use Google\Cloud\ServiceControl\V1\ReportResponse;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class ServiceControllerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ServiceControllerClient
-     */
+    /** @return ServiceControllerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class ServiceControllerClientTest extends GeneratedTest
         return new ServiceControllerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkTest()
     {
         $transport = $this->createTransport();
@@ -96,9 +87,7 @@ class ServiceControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -129,9 +118,7 @@ class ServiceControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reportTest()
     {
         $transport = $this->createTransport();
@@ -156,9 +143,7 @@ class ServiceControllerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reportExceptionTest()
     {
         $transport = $this->createTransport();

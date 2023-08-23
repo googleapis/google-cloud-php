@@ -70,6 +70,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $instance_group = null;
     /**
+     * The repair policy for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy instance_lifecycle_policy = 447961617;</code>
+     */
+    private $instance_lifecycle_policy = null;
+    /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
@@ -179,6 +185,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *     @type string $instance_group
      *           [Output Only] The URL of the Instance Group resource.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy $instance_lifecycle_policy
+     *           The repair policy for this managed instance group.
      *     @type string $instance_template
      *           The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *     @type string $kind
@@ -525,6 +533,42 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * The repair policy for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy instance_lifecycle_policy = 447961617;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy|null
+     */
+    public function getInstanceLifecyclePolicy()
+    {
+        return $this->instance_lifecycle_policy;
+    }
+
+    public function hasInstanceLifecyclePolicy()
+    {
+        return isset($this->instance_lifecycle_policy);
+    }
+
+    public function clearInstanceLifecyclePolicy()
+    {
+        unset($this->instance_lifecycle_policy);
+    }
+
+    /**
+     * The repair policy for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy instance_lifecycle_policy = 447961617;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy $var
+     * @return $this
+     */
+    public function setInstanceLifecyclePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy::class);
+        $this->instance_lifecycle_policy = $var;
 
         return $this;
     }

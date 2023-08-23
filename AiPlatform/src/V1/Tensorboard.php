@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Tensorboard is a physical database that stores users' training metrics.
- * A default Tensorboard is provided in each region of a GCP project.
+ * A default Tensorboard is provided in each region of a Google Cloud project.
  * If needed users can also create extra Tensorboards in their projects.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Tensorboard</code>
@@ -46,8 +46,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      */
     private $encryption_spec = null;
     /**
-     * Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     * can either be a bucket or directory. Does not end with a '/'.
+     * Output only. Consumer project Cloud Storage path prefix used to store blob
+     * data, which can either be a bucket or directory. Does not end with a '/'.
      *
      * Generated from protobuf field <code>string blob_storage_path_prefix = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -91,6 +91,16 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 9;</code>
      */
     private $etag = '';
+    /**
+     * Used to indicate if the TensorBoard instance is the default one.
+     * Each project & region can have at most one default TensorBoard instance.
+     * Creation of a default TensorBoard instance and updating an existing
+     * TensorBoard instance to be default will mark all other TensorBoard
+     * instances (if any) as non default.
+     *
+     * Generated from protobuf field <code>bool is_default = 12;</code>
+     */
+    private $is_default = false;
 
     /**
      * Constructor.
@@ -111,8 +121,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *           Tensorboard and all sub-resources of this Tensorboard will be secured by
      *           this key.
      *     @type string $blob_storage_path_prefix
-     *           Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     *           can either be a bucket or directory. Does not end with a '/'.
+     *           Output only. Consumer project Cloud Storage path prefix used to store blob
+     *           data, which can either be a bucket or directory. Does not end with a '/'.
      *     @type int $run_count
      *           Output only. The number of Runs stored in this Tensorboard.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -132,6 +142,12 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Used to perform a consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
+     *     @type bool $is_default
+     *           Used to indicate if the TensorBoard instance is the default one.
+     *           Each project & region can have at most one default TensorBoard instance.
+     *           Creation of a default TensorBoard instance and updating an existing
+     *           TensorBoard instance to be default will mark all other TensorBoard
+     *           instances (if any) as non default.
      * }
      */
     public function __construct($data = NULL) {
@@ -262,8 +278,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     * can either be a bucket or directory. Does not end with a '/'.
+     * Output only. Consumer project Cloud Storage path prefix used to store blob
+     * data, which can either be a bucket or directory. Does not end with a '/'.
      *
      * Generated from protobuf field <code>string blob_storage_path_prefix = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -274,8 +290,8 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Consumer project Cloud Storage path prefix used to store blob data, which
-     * can either be a bucket or directory. Does not end with a '/'.
+     * Output only. Consumer project Cloud Storage path prefix used to store blob
+     * data, which can either be a bucket or directory. Does not end with a '/'.
      *
      * Generated from protobuf field <code>string blob_storage_path_prefix = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -453,6 +469,40 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Used to indicate if the TensorBoard instance is the default one.
+     * Each project & region can have at most one default TensorBoard instance.
+     * Creation of a default TensorBoard instance and updating an existing
+     * TensorBoard instance to be default will mark all other TensorBoard
+     * instances (if any) as non default.
+     *
+     * Generated from protobuf field <code>bool is_default = 12;</code>
+     * @return bool
+     */
+    public function getIsDefault()
+    {
+        return $this->is_default;
+    }
+
+    /**
+     * Used to indicate if the TensorBoard instance is the default one.
+     * Each project & region can have at most one default TensorBoard instance.
+     * Creation of a default TensorBoard instance and updating an existing
+     * TensorBoard instance to be default will mark all other TensorBoard
+     * instances (if any) as non default.
+     *
+     * Generated from protobuf field <code>bool is_default = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsDefault($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_default = $var;
 
         return $this;
     }

@@ -85,8 +85,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
     /**
-     * Output only. If the Annotations belonging to the SavedQuery can be used for AutoML
-     * training.
+     * Output only. If the Annotations belonging to the SavedQuery can be used for
+     * AutoML training.
      *
      * Generated from protobuf field <code>bool support_automl_training = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -131,8 +131,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *           Used to perform a consistent read-modify-write update. If not set, a blind
      *           "overwrite" update happens.
      *     @type bool $support_automl_training
-     *           Output only. If the Annotations belonging to the SavedQuery can be used for AutoML
-     *           training.
+     *           Output only. If the Annotations belonging to the SavedQuery can be used for
+     *           AutoML training.
      * }
      */
     public function __construct($data = NULL) {
@@ -433,8 +433,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the Annotations belonging to the SavedQuery can be used for AutoML
-     * training.
+     * Output only. If the Annotations belonging to the SavedQuery can be used for
+     * AutoML training.
      *
      * Generated from protobuf field <code>bool support_automl_training = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -445,8 +445,8 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the Annotations belonging to the SavedQuery can be used for AutoML
-     * training.
+     * Output only. If the Annotations belonging to the SavedQuery can be used for
+     * AutoML training.
      *
      * Generated from protobuf field <code>bool support_automl_training = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].
+ * The request message for
+ * [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListIntentsRequest</code>
  */
@@ -58,6 +59,58 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The agent to list all intents from.
+     *                       Format: `projects/<Project ID>/agent` or `projects/<Project
+     *                       ID>/locations/<Location ID>/agent`.
+     *
+     *                       Alternatively, you can specify the environment to list intents for.
+     *                       Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+     *                       or `projects/<Project ID>/locations/<Location
+     *                       ID>/agent/environments/<Environment ID>`.
+     *                       Note: training phrases of the intents will not be returned for non-draft
+     *                       environment. Please see
+     *                       {@see IntentsClient::agentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListIntentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
+     * @param string $parent       Required. The agent to list all intents from.
+     *                             Format: `projects/<Project ID>/agent` or `projects/<Project
+     *                             ID>/locations/<Location ID>/agent`.
+     *
+     *                             Alternatively, you can specify the environment to list intents for.
+     *                             Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+     *                             or `projects/<Project ID>/locations/<Location
+     *                             ID>/agent/environments/<Environment ID>`.
+     *                             Note: training phrases of the intents will not be returned for non-draft
+     *                             environment. Please see
+     *                             {@see IntentsClient::agentName()} for help formatting this field.
+     * @param string $languageCode Optional. The language used to access language-specific data.
+     *                             If not specified, the agent's default language is used.
+     *                             For more information, see
+     *                             [Multilingual intent and entity
+     *                             data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListIntentsRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentLanguageCode(string $parent, string $languageCode): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLanguageCode($languageCode);
+    }
 
     /**
      * Constructor.

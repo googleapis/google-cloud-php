@@ -30,6 +30,20 @@ class GetUtilizationReportRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. The Utilization Report name. Please see
+     *                     {@see VmMigrationClient::utilizationReportName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VMMigration\V1\GetUtilizationReportRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

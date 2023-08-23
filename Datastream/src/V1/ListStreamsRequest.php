@@ -52,6 +52,20 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The parent that owns the collection of streams. Please see
+     *                       {@see DatastreamClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Datastream\V1\ListStreamsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -94,8 +94,10 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     private $cost = 0.0;
     /**
      * Load demands of this visit request. This is just like
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] field, except that it only applies to this
-     * [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest] instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * field, except that it only applies to this
+     * [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest]
+     * instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
      * The demands listed here are added to the demands listed in
      * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands].
      *
@@ -113,13 +115,16 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     private $visit_types;
     /**
      * Specifies a label for this `VisitRequest`. This label is reported in the
-     * response as `visit_label` in the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * response as `visit_label` in the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 11;</code>
      */
     private $label = '';
     /**
-     * Deprecated: Use [VisitRequest.load_demands][] instead.
+     * Deprecated: Use
+     * [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 9 [deprecated = true];</code>
      * @deprecated
@@ -176,8 +181,10 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           and must not be negative.
      *     @type array|\Google\Protobuf\Internal\MapField $load_demands
      *           Load demands of this visit request. This is just like
-     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] field, except that it only applies to this
-     *           [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest] instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
+     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     *           field, except that it only applies to this
+     *           [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest]
+     *           instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
      *           The demands listed here are added to the demands listed in
      *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $visit_types
@@ -187,9 +194,12 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           A type can only appear once.
      *     @type string $label
      *           Specifies a label for this `VisitRequest`. This label is reported in the
-     *           response as `visit_label` in the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     *           response as `visit_label` in the corresponding
+     *           [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
-     *           Deprecated: Use [VisitRequest.load_demands][] instead.
+     *           Deprecated: Use
+     *           [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -509,8 +519,10 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Load demands of this visit request. This is just like
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] field, except that it only applies to this
-     * [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest] instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * field, except that it only applies to this
+     * [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest]
+     * instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
      * The demands listed here are added to the demands listed in
      * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands].
      *
@@ -524,8 +536,10 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Load demands of this visit request. This is just like
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] field, except that it only applies to this
-     * [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest] instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * field, except that it only applies to this
+     * [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest]
+     * instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
      * The demands listed here are added to the demands listed in
      * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands].
      *
@@ -575,7 +589,8 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies a label for this `VisitRequest`. This label is reported in the
-     * response as `visit_label` in the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * response as `visit_label` in the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 11;</code>
      * @return string
@@ -587,7 +602,8 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies a label for this `VisitRequest`. This label is reported in the
-     * response as `visit_label` in the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
+     * response as `visit_label` in the corresponding
+     * [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
      *
      * Generated from protobuf field <code>string label = 11;</code>
      * @param string $var
@@ -602,7 +618,9 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [VisitRequest.load_demands][] instead.
+     * Deprecated: Use
+     * [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 9 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -615,7 +633,9 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [VisitRequest.load_demands][] instead.
+     * Deprecated: Use
+     * [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 9 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var

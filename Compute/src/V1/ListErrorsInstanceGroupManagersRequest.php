@@ -65,6 +65,23 @@ class ListErrorsInstanceGroupManagersRequest extends \Google\Protobuf\Internal\M
     private $zone = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $zone                 The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * @param string $instanceGroupManager The name of the managed instance group. It must be a string that meets the requirements in RFC1035, or an unsigned long integer: must match regexp pattern: (?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)|1-9{0,19}.
+     *
+     * @return \Google\Cloud\Compute\V1\ListErrorsInstanceGroupManagersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroupManager): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroupManager($instanceGroupManager);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

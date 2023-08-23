@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListOffersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the reseller account from which to list Offers.
-     * Parent uses the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account from which to list
+     * Offers. Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 500 Offers.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 500 Offers. The maximum value is
+     * 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,6 +54,15 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language_code = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
+    /**
+     * Optional. A boolean flag that determines if a response returns future
+     * offers 30 days from now. If the show_future_offers is true, the response
+     * will only contain offers that are scheduled to be available 30 days from
+     * now.
+     *
+     * Generated from protobuf field <code>bool show_future_offers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $show_future_offers = false;
 
     /**
      * Constructor.
@@ -62,12 +71,12 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the reseller account from which to list Offers.
-     *           Parent uses the format: accounts/{account_id}.
+     *           Required. The resource name of the reseller account from which to list
+     *           Offers. Parent uses the format: accounts/{account_id}.
      *     @type int $page_size
-     *           Optional. Requested page size. Server might return fewer results than requested.
-     *           If unspecified, returns at most 500 Offers.
-     *           The maximum value is 1000; the server will coerce values above 1000.
+     *           Optional. Requested page size. Server might return fewer results than
+     *           requested. If unspecified, returns at most 500 Offers. The maximum value is
+     *           1000; the server will coerce values above 1000.
      *     @type string $page_token
      *           Optional. A token for a page of results other than the first page.
      *     @type string $filter
@@ -80,6 +89,11 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The BCP-47 language code. For example, "en-US". The
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
+     *     @type bool $show_future_offers
+     *           Optional. A boolean flag that determines if a response returns future
+     *           offers 30 days from now. If the show_future_offers is true, the response
+     *           will only contain offers that are scheduled to be available 30 days from
+     *           now.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,8 +102,8 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account from which to list Offers.
-     * Parent uses the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account from which to list
+     * Offers. Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,8 +114,8 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account from which to list Offers.
-     * Parent uses the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account from which to list
+     * Offers. Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -116,9 +130,9 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 500 Offers.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 500 Offers. The maximum value is
+     * 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -129,9 +143,9 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, returns at most 500 Offers.
-     * The maximum value is 1000; the server will coerce values above 1000.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, returns at most 500 Offers. The maximum value is
+     * 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -231,6 +245,38 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A boolean flag that determines if a response returns future
+     * offers 30 days from now. If the show_future_offers is true, the response
+     * will only contain offers that are scheduled to be available 30 days from
+     * now.
+     *
+     * Generated from protobuf field <code>bool show_future_offers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getShowFutureOffers()
+    {
+        return $this->show_future_offers;
+    }
+
+    /**
+     * Optional. A boolean flag that determines if a response returns future
+     * offers 30 days from now. If the show_future_offers is true, the response
+     * will only contain offers that are scheduled to be available 30 days from
+     * now.
+     *
+     * Generated from protobuf field <code>bool show_future_offers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShowFutureOffers($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->show_future_offers = $var;
 
         return $this;
     }

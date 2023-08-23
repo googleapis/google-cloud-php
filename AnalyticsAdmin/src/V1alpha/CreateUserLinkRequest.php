@@ -28,8 +28,8 @@ class CreateUserLinkRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. If set, then email the new user notifying them that they've been granted
-     * permissions to the resource.
+     * Optional. If set, then email the new user notifying them that they've been
+     * granted permissions to the resource.
      *
      * Generated from protobuf field <code>bool notify_new_user = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,8 +50,8 @@ class CreateUserLinkRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Example format: accounts/1234
      *     @type bool $notify_new_user
-     *           Optional. If set, then email the new user notifying them that they've been granted
-     *           permissions to the resource.
+     *           Optional. If set, then email the new user notifying them that they've been
+     *           granted permissions to the resource.
      *     @type \Google\Analytics\Admin\V1alpha\UserLink $user_link
      *           Required. The user link to create.
      * }
@@ -88,8 +88,8 @@ class CreateUserLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, then email the new user notifying them that they've been granted
-     * permissions to the resource.
+     * Optional. If set, then email the new user notifying them that they've been
+     * granted permissions to the resource.
      *
      * Generated from protobuf field <code>bool notify_new_user = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -100,8 +100,8 @@ class CreateUserLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, then email the new user notifying them that they've been granted
-     * permissions to the resource.
+     * Optional. If set, then email the new user notifying them that they've been
+     * granted permissions to the resource.
      *
      * Generated from protobuf field <code>bool notify_new_user = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

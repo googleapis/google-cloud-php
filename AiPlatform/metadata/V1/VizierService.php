@@ -25,7 +25,7 @@ class VizierService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-™/
+“/
 /google/cloud/aiplatform/v1/vizier_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto&google/cloud/aiplatform/v1/study.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"H
 GetStudyRequest5
 name (	B\'àAúA!
@@ -130,8 +130,8 @@ ListTrials-.google.cloud.aiplatform.v1.ListTrialsRequest..google.cloud.aiplatf
 CheckTrialEarlyStoppingState?.google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateRequest.google.longrunning.Operation"²‚Óä“\\"W/v1/{trial_name=projects/*/locations/*/studies/*/trials/*}:checkTrialEarlyStoppingState:*ÊAM
 $CheckTrialEarlyStoppingStateResponse%CheckTrialEarlyStoppingStateMetatdata¢
 	StopTrial,.google.cloud.aiplatform.v1.StopTrialRequest!.google.cloud.aiplatform.v1.Trial"D‚Óä“>"9/v1/{name=projects/*/locations/*/studies/*/trials/*}:stop:*Ü
-ListOptimalTrials4.google.cloud.aiplatform.v1.ListOptimalTrialsRequest5.google.cloud.aiplatform.v1.ListOptimalTrialsResponse"Z‚Óä“K"F/v1/{parent=projects/*/locations/*/studies/*}/trials:listOptimalTrials:*ÚAparentMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÖ
-com.google.cloud.aiplatform.v1BVizierServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+ListOptimalTrials4.google.cloud.aiplatform.v1.ListOptimalTrialsRequest5.google.cloud.aiplatform.v1.ListOptimalTrialsResponse"Z‚Óä“K"F/v1/{parent=projects/*/locations/*/studies/*}/trials:listOptimalTrials:*ÚAparentMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
+com.google.cloud.aiplatform.v1BVizierServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
         static::$is_initialized = true;

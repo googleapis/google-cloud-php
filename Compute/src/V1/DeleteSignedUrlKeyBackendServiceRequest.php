@@ -41,6 +41,23 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
     private $request_id = null;
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param string $keyName        The name of the Signed URL Key to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $backendService, string $keyName): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setBackendService($backendService)
+            ->setKeyName($keyName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

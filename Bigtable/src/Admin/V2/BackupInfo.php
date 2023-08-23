@@ -41,6 +41,14 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string source_table = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $source_table = '';
+    /**
+     * Output only. Name of the backup from which this backup was copied. If a
+     * backup is not created by copying a backup, this field will be empty. Values
+     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *
+     * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_backup = '';
 
     /**
      * Constructor.
@@ -58,6 +66,10 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      *           backup will be no newer than this timestamp.
      *     @type string $source_table
      *           Output only. Name of the table the backup was created from.
+     *     @type string $source_backup
+     *           Output only. Name of the backup from which this backup was copied. If a
+     *           backup is not created by copying a backup, this field will be empty. Values
+     *           are of the form: projects/<project>/instances/<instance>/backups/<backup>.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +201,36 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_table = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Name of the backup from which this backup was copied. If a
+     * backup is not created by copying a backup, this field will be empty. Values
+     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *
+     * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSourceBackup()
+    {
+        return $this->source_backup;
+    }
+
+    /**
+     * Output only. Name of the backup from which this backup was copied. If a
+     * backup is not created by copying a backup, this field will be empty. Values
+     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *
+     * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceBackup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_backup = $var;
 
         return $this;
     }

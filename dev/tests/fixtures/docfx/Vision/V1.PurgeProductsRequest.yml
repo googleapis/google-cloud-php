@@ -1,0 +1,225 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    name: PurgeProductsRequest
+    friendlyApiName: 'Cloud Vision V1 Client'
+    id: PurgeProductsRequest
+    summary: |-
+      Request message for the `PurgeProducts` method.
+
+      Generated from protobuf message <code>google.cloud.vision.v1.PurgeProductsRequest</code>
+    type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::getProductSetPurgeConfig()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::hasProductSetPurgeConfig()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::setProductSetPurgeConfig()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::getDeleteOrphanProducts()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::hasDeleteOrphanProducts()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::setDeleteOrphanProducts()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::getForce()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::setForce()'
+      - '\Google\Cloud\Vision\V1\PurgeProductsRequest::getTarget()'
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ product_set_purge_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSetPurgeConfig">Google\Cloud\Vision\V1\ProductSetPurgeConfig</xref>'
+          description: 'Specify which ProductSet contains the Products to be deleted.'
+        -
+          id: '↳ delete_orphan_products'
+          var_type: bool
+          description: 'If delete_orphan_products is true, all Products that are not in any ProductSet will be deleted.'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Required. The project and location in which the Products should be deleted. Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+        -
+          id: '↳ force'
+          var_type: bool
+          description: 'The default value is false. Override this value to true to actually perform the purge.'
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getProductSetPurgeConfig()'
+    name: getProductSetPurgeConfig
+    id: getProductSetPurgeConfig
+    summary: 'Specify which ProductSet contains the Products to be deleted.'
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSetPurgeConfig">Google\Cloud\Vision\V1\ProductSetPurgeConfig</xref>|null'
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::hasProductSetPurgeConfig()'
+    name: hasProductSetPurgeConfig
+    id: hasProductSetPurgeConfig
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setProductSetPurgeConfig()'
+    name: setProductSetPurgeConfig
+    id: setProductSetPurgeConfig
+    summary: 'Specify which ProductSet contains the Products to be deleted.'
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSetPurgeConfig">Google\Cloud\Vision\V1\ProductSetPurgeConfig</xref>'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getDeleteOrphanProducts()'
+    name: getDeleteOrphanProducts
+    id: getDeleteOrphanProducts
+    summary: |-
+      If delete_orphan_products is true, all Products that are not in any
+      ProductSet will be deleted.
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: bool
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::hasDeleteOrphanProducts()'
+    name: hasDeleteOrphanProducts
+    id: hasDeleteOrphanProducts
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setDeleteOrphanProducts()'
+    name: setDeleteOrphanProducts
+    id: setDeleteOrphanProducts
+    summary: |-
+      If delete_orphan_products is true, all Products that are not in any
+      ProductSet will be deleted.
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: bool
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |-
+      Required. The project and location in which the Products should be deleted.
+
+      Format is `projects/PROJECT_ID/locations/LOC_ID`.
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |-
+      Required. The project and location in which the Products should be deleted.
+
+      Format is `projects/PROJECT_ID/locations/LOC_ID`.
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getForce()'
+    name: getForce
+    id: getForce
+    summary: |-
+      The default value is false. Override this value to true to actually perform
+      the purge.
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: bool
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setForce()'
+    name: setForce
+    id: setForce
+    summary: |-
+      The default value is false. Override this value to true to actually perform
+      the purge.
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: bool
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getTarget()'
+    name: getTarget
+    id: getTarget
+    parent: \Google\Cloud\Vision\V1\PurgeProductsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string

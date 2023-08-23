@@ -24,11 +24,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
     private $project_id = '';
     /**
      * Target is the service name used to group related deployments:
-     * * Service name for GAE Flex / Standard.
+     * * Service name for App Engine Flex / Standard.
      * * Cluster and container name for GKE.
-     * * User-specified string for direct GCE profiling (e.g. Java).
+     * * User-specified string for direct Compute Engine profiling (e.g. Java).
      * * Job name for Dataflow.
-     * Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
+     * Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string target = 2;</code>
      */
@@ -61,11 +61,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           Validation regex: `^[a-z][-a-z0-9:.]{4,61}[a-z0-9]$`.
      *     @type string $target
      *           Target is the service name used to group related deployments:
-     *           * Service name for GAE Flex / Standard.
+     *           * Service name for App Engine Flex / Standard.
      *           * Cluster and container name for GKE.
-     *           * User-specified string for direct GCE profiling (e.g. Java).
+     *           * User-specified string for direct Compute Engine profiling (e.g. Java).
      *           * Job name for Dataflow.
-     *           Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
+     *           Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels identify the deployment within the user universe and same target.
      *           Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
@@ -115,11 +115,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Target is the service name used to group related deployments:
-     * * Service name for GAE Flex / Standard.
+     * * Service name for App Engine Flex / Standard.
      * * Cluster and container name for GKE.
-     * * User-specified string for direct GCE profiling (e.g. Java).
+     * * User-specified string for direct Compute Engine profiling (e.g. Java).
      * * Job name for Dataflow.
-     * Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
+     * Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string target = 2;</code>
      * @return string
@@ -131,11 +131,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Target is the service name used to group related deployments:
-     * * Service name for GAE Flex / Standard.
+     * * Service name for App Engine Flex / Standard.
      * * Cluster and container name for GKE.
-     * * User-specified string for direct GCE profiling (e.g. Java).
+     * * User-specified string for direct Compute Engine profiling (e.g. Java).
      * * Job name for Dataflow.
-     * Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
+     * Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string target = 2;</code>
      * @param string $var

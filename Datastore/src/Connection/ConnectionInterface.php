@@ -20,6 +20,8 @@ namespace Google\Cloud\Datastore\Connection;
 /**
  * Represents a connection to
  * [Datastore](https://cloud.google.com/datastore/).
+ *
+ * @internal
  */
 interface ConnectionInterface
 {
@@ -52,4 +54,9 @@ interface ConnectionInterface
      * @param array $args
      */
     public function runQuery(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function runAggregationQuery(array $args);
 }

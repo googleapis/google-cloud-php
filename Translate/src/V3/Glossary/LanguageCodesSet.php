@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class LanguageCodesSet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BCP-47 language code(s) for terms defined in the glossary.
+     * The ISO-639 language code(s) for terms defined in the glossary.
      * All entries are unique. The list contains at least two entries.
      * Expected to be an exact match for GlossaryTerm.language_code.
      *
@@ -31,7 +31,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
-     *           The BCP-47 language code(s) for terms defined in the glossary.
+     *           The ISO-639 language code(s) for terms defined in the glossary.
      *           All entries are unique. The list contains at least two entries.
      *           Expected to be an exact match for GlossaryTerm.language_code.
      * }
@@ -42,7 +42,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code(s) for terms defined in the glossary.
+     * The ISO-639 language code(s) for terms defined in the glossary.
      * All entries are unique. The list contains at least two entries.
      * Expected to be an exact match for GlossaryTerm.language_code.
      *
@@ -55,7 +55,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code(s) for terms defined in the glossary.
+     * The ISO-639 language code(s) for terms defined in the glossary.
      * All entries are unique. The list contains at least two entries.
      * Expected to be an exact match for GlossaryTerm.language_code.
      *

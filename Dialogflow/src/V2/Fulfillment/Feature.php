@@ -65,6 +65,4 @@ class Feature extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Feature::class, \Google\Cloud\Dialogflow\V2\Fulfillment_Feature::class);
 

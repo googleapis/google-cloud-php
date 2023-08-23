@@ -48,7 +48,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Output only. A list of GCLB targets which use this Certificate Map.
+     * Output only. A list of GCLB targets that use this Certificate Map.
      * A Target Proxy is only present on this list if it's attached to a
      * Forwarding Rule.
      *
@@ -75,7 +75,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Set of labels associated with a Certificate Map.
      *     @type array<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget>|\Google\Protobuf\Internal\RepeatedField $gclb_targets
-     *           Output only. A list of GCLB targets which use this Certificate Map.
+     *           Output only. A list of GCLB targets that use this Certificate Map.
      *           A Target Proxy is only present on this list if it's attached to a
      *           Forwarding Rule.
      * }
@@ -240,7 +240,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of GCLB targets which use this Certificate Map.
+     * Output only. A list of GCLB targets that use this Certificate Map.
      * A Target Proxy is only present on this list if it's attached to a
      * Forwarding Rule.
      *
@@ -253,7 +253,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A list of GCLB targets which use this Certificate Map.
+     * Output only. A list of GCLB targets that use this Certificate Map.
      * A Target Proxy is only present on this list if it's attached to a
      * Forwarding Rule.
      *

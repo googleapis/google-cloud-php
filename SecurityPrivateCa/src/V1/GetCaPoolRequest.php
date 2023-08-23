@@ -9,18 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CertificateAuthorityService.GetCaPool][google.cloud.security.privateca.v1.CertificateAuthorityService.GetCaPool].
+ * Request message for
+ * [CertificateAuthorityService.GetCaPool][google.cloud.security.privateca.v1.CertificateAuthorityService.GetCaPool].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.GetCaPoolRequest</code>
  */
 class GetCaPoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
+     * Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the
+     *                     [CaPool][google.cloud.security.privateca.v1.CaPool] to get. Please see
+     *                     {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\GetCaPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -29,7 +46,8 @@ class GetCaPoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
+     *           Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +56,8 @@ class GetCaPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
+     * Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +68,8 @@ class GetCaPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
+     * Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

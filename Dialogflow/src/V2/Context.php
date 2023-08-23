@@ -33,7 +33,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
      * ID>/sessions/<Session ID>/contexts/<Context ID>`.
      * The `Context ID` is always converted to lowercase, may only contain
-     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     * characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long.
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment. If `User ID` is not specified, we assume default '-' user.
      * The following context names are reserved for internal use by Dialogflow.
@@ -59,16 +59,14 @@ class Context extends \Google\Protobuf\Internal\Message
      * Depending on your protocol or client library language, this is a
      * map, associative array, symbol table, dictionary, or JSON object
      * composed of a collection of (MapKey, MapValue) pairs:
-     * -   MapKey type: string
-     * -   MapKey value: parameter name
-     * -   MapValue type:
-     *     -   If parameter's entity type is a composite entity: map
-     *     -   Else: depending on parameter value type, could be one of string,
-     *         number, boolean, null, list or map
-     * -   MapValue value:
-     *     -   If parameter's entity type is a composite entity:
-     *         map from composite entity property names to property values
-     *     -   Else: parameter value
+     * * MapKey type: string
+     * * MapKey value: parameter name
+     * * MapValue type: If parameter's entity type is a composite entity then use
+     * map, otherwise, depending on the parameter value type, it could be one of
+     * string, number, boolean, null, list or map.
+     * * MapValue value: If parameter's entity type is a composite entity then use
+     * map from composite entity property names to property values, otherwise,
+     * use parameter value.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -86,7 +84,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *           or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
      *           ID>/sessions/<Session ID>/contexts/<Context ID>`.
      *           The `Context ID` is always converted to lowercase, may only contain
-     *           characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     *           characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long.
      *           If `Environment ID` is not specified, we assume default 'draft'
      *           environment. If `User ID` is not specified, we assume default '-' user.
      *           The following context names are reserved for internal use by Dialogflow.
@@ -104,16 +102,14 @@ class Context extends \Google\Protobuf\Internal\Message
      *           Depending on your protocol or client library language, this is a
      *           map, associative array, symbol table, dictionary, or JSON object
      *           composed of a collection of (MapKey, MapValue) pairs:
-     *           -   MapKey type: string
-     *           -   MapKey value: parameter name
-     *           -   MapValue type:
-     *               -   If parameter's entity type is a composite entity: map
-     *               -   Else: depending on parameter value type, could be one of string,
-     *                   number, boolean, null, list or map
-     *           -   MapValue value:
-     *               -   If parameter's entity type is a composite entity:
-     *                   map from composite entity property names to property values
-     *               -   Else: parameter value
+     *           * MapKey type: string
+     *           * MapKey value: parameter name
+     *           * MapValue type: If parameter's entity type is a composite entity then use
+     *           map, otherwise, depending on the parameter value type, it could be one of
+     *           string, number, boolean, null, list or map.
+     *           * MapValue value: If parameter's entity type is a composite entity then use
+     *           map from composite entity property names to property values, otherwise,
+     *           use parameter value.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,7 +123,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
      * ID>/sessions/<Session ID>/contexts/<Context ID>`.
      * The `Context ID` is always converted to lowercase, may only contain
-     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     * characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long.
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment. If `User ID` is not specified, we assume default '-' user.
      * The following context names are reserved for internal use by Dialogflow.
@@ -150,7 +146,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
      * ID>/sessions/<Session ID>/contexts/<Context ID>`.
      * The `Context ID` is always converted to lowercase, may only contain
-     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+     * characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long.
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment. If `User ID` is not specified, we assume default '-' user.
      * The following context names are reserved for internal use by Dialogflow.
@@ -208,16 +204,14 @@ class Context extends \Google\Protobuf\Internal\Message
      * Depending on your protocol or client library language, this is a
      * map, associative array, symbol table, dictionary, or JSON object
      * composed of a collection of (MapKey, MapValue) pairs:
-     * -   MapKey type: string
-     * -   MapKey value: parameter name
-     * -   MapValue type:
-     *     -   If parameter's entity type is a composite entity: map
-     *     -   Else: depending on parameter value type, could be one of string,
-     *         number, boolean, null, list or map
-     * -   MapValue value:
-     *     -   If parameter's entity type is a composite entity:
-     *         map from composite entity property names to property values
-     *     -   Else: parameter value
+     * * MapKey type: string
+     * * MapKey value: parameter name
+     * * MapValue type: If parameter's entity type is a composite entity then use
+     * map, otherwise, depending on the parameter value type, it could be one of
+     * string, number, boolean, null, list or map.
+     * * MapValue value: If parameter's entity type is a composite entity then use
+     * map from composite entity property names to property values, otherwise,
+     * use parameter value.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -242,16 +236,14 @@ class Context extends \Google\Protobuf\Internal\Message
      * Depending on your protocol or client library language, this is a
      * map, associative array, symbol table, dictionary, or JSON object
      * composed of a collection of (MapKey, MapValue) pairs:
-     * -   MapKey type: string
-     * -   MapKey value: parameter name
-     * -   MapValue type:
-     *     -   If parameter's entity type is a composite entity: map
-     *     -   Else: depending on parameter value type, could be one of string,
-     *         number, boolean, null, list or map
-     * -   MapValue value:
-     *     -   If parameter's entity type is a composite entity:
-     *         map from composite entity property names to property values
-     *     -   Else: parameter value
+     * * MapKey type: string
+     * * MapKey value: parameter name
+     * * MapValue type: If parameter's entity type is a composite entity then use
+     * map, otherwise, depending on the parameter value type, it could be one of
+     * string, number, boolean, null, list or map.
+     * * MapValue value: If parameter's entity type is a composite entity then use
+     * map from composite entity property names to property values, otherwise,
+     * use parameter value.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var

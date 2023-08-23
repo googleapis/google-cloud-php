@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SubjectConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Contains distinguished name fields such as the common name, location and
-     * organization.
+     * Required. Contains distinguished name fields such as the common name,
+     * location and organization.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Subject subject = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,8 +37,8 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Security\PrivateCA\V1\Subject $subject
-     *           Required. Contains distinguished name fields such as the common name, location and
-     *           organization.
+     *           Required. Contains distinguished name fields such as the common name,
+     *           location and organization.
      *     @type \Google\Cloud\Security\PrivateCA\V1\SubjectAltNames $subject_alt_name
      *           Optional. The subject alternative name fields.
      * }
@@ -49,8 +49,8 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Contains distinguished name fields such as the common name, location and
-     * organization.
+     * Required. Contains distinguished name fields such as the common name,
+     * location and organization.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Subject subject = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\Subject|null
@@ -71,8 +71,8 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Contains distinguished name fields such as the common name, location and
-     * organization.
+     * Required. Contains distinguished name fields such as the common name,
+     * location and organization.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Subject subject = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\Subject $var

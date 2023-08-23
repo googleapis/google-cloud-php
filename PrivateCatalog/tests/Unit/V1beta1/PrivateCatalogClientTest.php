@@ -25,7 +25,6 @@ namespace Google\Cloud\PrivateCatalog\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\PrivateCatalog\V1beta1\Catalog;
 use Google\Cloud\PrivateCatalog\V1beta1\PrivateCatalogClient;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class PrivateCatalogClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PrivateCatalogClient
-     */
+    /** @return PrivateCatalogClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         return new PrivateCatalogClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchCatalogsTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +99,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchCatalogsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +132,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchProductsTest()
     {
         $transport = $this->createTransport();
@@ -180,9 +167,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchProductsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -215,9 +200,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchVersionsTest()
     {
         $transport = $this->createTransport();
@@ -255,9 +238,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchVersionsExceptionTest()
     {
         $transport = $this->createTransport();

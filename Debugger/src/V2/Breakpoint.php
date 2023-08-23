@@ -170,7 +170,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *           Condition that triggers the breakpoint.
      *           The condition is a compound boolean expression composed using expressions
      *           in a programming language at the source location.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $expressions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $expressions
      *           List of read-only expressions to evaluate at the breakpoint location.
      *           The expressions are composed using expressions in the programming language
      *           at the source location. If the breakpoint action is `LOG`, the evaluated
@@ -206,10 +206,10 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *           Examples (final state):
      *           *   `Invalid line number` referring to location
      *           *   `Field f not found in class C` referring to condition
-     *     @type \Google\Cloud\Debugger\V2\StackFrame[]|\Google\Protobuf\Internal\RepeatedField $stack_frames
+     *     @type array<\Google\Cloud\Debugger\V2\StackFrame>|\Google\Protobuf\Internal\RepeatedField $stack_frames
      *           The stack at breakpoint time, where stack_frames[0] represents the most
      *           recently entered function.
-     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $evaluated_expressions
+     *     @type array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $evaluated_expressions
      *           Values of evaluated expressions at breakpoint time.
      *           The evaluated expressions appear in exactly the same order they
      *           are listed in the `expressions` field.
@@ -217,7 +217,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *           `members` field holds the result of the evaluated expression.
      *           If the expression cannot be evaluated, the `status` inside the `Variable`
      *           will indicate an error and contain the error text.
-     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $variable_table
+     *     @type array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $variable_table
      *           The `variable_table` exists to aid with computation, memory and network
      *           traffic optimization.  It enables storing a variable once and reference
      *           it from multiple variables, including variables stored in the
@@ -380,7 +380,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * expressions are included in log statements.
      *
      * Generated from protobuf field <code>repeated string expressions = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExpressions($var)
@@ -654,7 +654,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * recently entered function.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.StackFrame stack_frames = 7;</code>
-     * @param \Google\Cloud\Debugger\V2\StackFrame[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\StackFrame>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStackFrames($var)
@@ -692,7 +692,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * will indicate an error and contain the error text.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.Variable evaluated_expressions = 8;</code>
-     * @param \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvaluatedExpressions($var)
@@ -738,7 +738,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * and the referenced variable.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.Variable variable_table = 9;</code>
-     * @param \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVariableTable($var)

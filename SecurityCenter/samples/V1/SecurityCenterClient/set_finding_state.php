@@ -32,10 +32,12 @@ use Google\Protobuf\Timestamp;
 /**
  * Updates the state of a finding.
  *
- * @param string $formattedName The relative resource name of the finding. See:
- *                              https://cloud.google.com/apis/design/resource_names#relative_resource_name
- *                              Example:
- *                              "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}". Please see
+ * @param string $formattedName The [relative resource
+ *                              name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+ *                              of the finding. Example:
+ *                              "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+ *                              "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+ *                              "projects/{project_id}/sources/{source_id}/findings/{finding_id}". Please see
  *                              {@see SecurityCenterClient::findingName()} for help formatting this field.
  * @param int    $state         The desired State of the finding.
  */

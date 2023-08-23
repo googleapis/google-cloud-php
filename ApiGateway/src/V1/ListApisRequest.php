@@ -48,6 +48,21 @@ class ListApisRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. Parent resource of the API, of the form:
+     *                       `projects/&#42;/locations/global`
+     *                       Please see {@see ApiGatewayServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApiGateway\V1\ListApisRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

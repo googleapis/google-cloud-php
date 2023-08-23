@@ -23,7 +23,7 @@ class ControlService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Í
+‡
 ,google/cloud/retail/v2/control_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/control.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ù
 CreateControlRequest5
 parent (	B%‡A˙A
@@ -56,8 +56,8 @@ page_token (	B‡A
 UpdateControl,.google.cloud.retail.v2.UpdateControlRequest.google.cloud.retail.v2.Control"fÇ”‰ìJ2?/v2/{control.name=projects/*/locations/*/catalogs/*/controls/*}:control⁄Acontrol,update_mask†
 
 GetControl).google.cloud.retail.v2.GetControlRequest.google.cloud.retail.v2.Control"FÇ”‰ì97/v2/{name=projects/*/locations/*/catalogs/*/controls/*}⁄Aname≥
-ListControls+.google.cloud.retail.v2.ListControlsRequest,.google.cloud.retail.v2.ListControlsResponse"HÇ”‰ì97/v2/{parent=projects/*/locations/*/catalogs/*}/controls⁄AparentI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB»
-com.google.cloud.retail.v2BControlServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
+ListControls+.google.cloud.retail.v2.ListControlsRequest,.google.cloud.retail.v2.ListControlsResponse"HÇ”‰ì97/v2/{parent=projects/*/locations/*/catalogs/*}/controls⁄AparentI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBæ
+com.google.cloud.retail.v2BControlServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -19,15 +19,15 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 /**
- * API for setting [Access Levels]
- * [google.identity.accesscontextmanager.v1.AccessLevel] and [Service
- * Perimeters] [google.identity.accesscontextmanager.v1.ServicePerimeter]
- * for Google Cloud Projects. Each organization has one [AccessPolicy]
- * [google.identity.accesscontextmanager.v1.AccessPolicy] containing the
- * [Access Levels] [google.identity.accesscontextmanager.v1.AccessLevel]
- * and [Service Perimeters]
+ * API for setting [access levels]
+ * [google.identity.accesscontextmanager.v1.AccessLevel] and [service
+ * perimeters] [google.identity.accesscontextmanager.v1.ServicePerimeter]
+ * for Google Cloud projects. Each organization has one [access policy]
+ * [google.identity.accesscontextmanager.v1.AccessPolicy] that contains the
+ * [access levels] [google.identity.accesscontextmanager.v1.AccessLevel]
+ * and [service perimeters]
  * [google.identity.accesscontextmanager.v1.ServicePerimeter]. This
- * [AccessPolicy] [google.identity.accesscontextmanager.v1.AccessPolicy] is
+ * [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy] is
  * applicable to all resources in the organization.
  * AccessPolicies
  */
@@ -43,9 +43,9 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List all [AccessPolicies]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] under a
-     * container.
+     * Lists all [access policies]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] in an
+     * organization.
      * @param \Google\Identity\AccessContextManager\V1\ListAccessPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -60,8 +60,8 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get an [AccessPolicy]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] by name.
+     * Returns an [access policy]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
      * @param \Google\Identity\AccessContextManager\V1\GetAccessPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -76,10 +76,10 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Create an `AccessPolicy`. Fails if this organization already has a
-     * `AccessPolicy`. The longrunning Operation will have a successful status
-     * once the `AccessPolicy` has propagated to long-lasting storage.
-     * Syntactic and basic semantic errors will be returned in `metadata` as a
+     * Creates an access policy. This method fails if the organization already has
+     * an access policy. The long-running operation has a successful status
+     * after the access policy propagates to long-lasting storage.
+     * Syntactic and basic semantic errors are returned in `metadata` as a
      * BadRequest proto.
      * @param \Google\Identity\AccessContextManager\V1\AccessPolicy $argument input argument
      * @param array $metadata metadata
@@ -95,13 +95,12 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update an [AccessPolicy]
+     * Updates an [access policy]
      * [google.identity.accesscontextmanager.v1.AccessPolicy]. The
-     * longrunning Operation from this RPC will have a successful status once the
-     * changes to the [AccessPolicy]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] have propagated
-     * to long-lasting storage. Syntactic and basic semantic errors will be
-     * returned in `metadata` as a BadRequest proto.
+     * long-running operation from this RPC has a successful status after the
+     * changes to the [access policy]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] propagate
+     * to long-lasting storage.
      * @param \Google\Identity\AccessContextManager\V1\UpdateAccessPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -116,11 +115,11 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Delete an [AccessPolicy]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] by resource
-     * name. The longrunning Operation will have a successful status once the
-     * [AccessPolicy] [google.identity.accesscontextmanager.v1.AccessPolicy]
-     * has been removed from long-lasting storage.
+     * Deletes an [access policy]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] based on the
+     * resource name. The long-running operation has a successful status after the
+     * [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
+     * is removed from long-lasting storage.
      * @param \Google\Identity\AccessContextManager\V1\DeleteAccessPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -135,7 +134,7 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List all [Access Levels]
+     * Lists all [access levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] for an access
      * policy.
      * @param \Google\Identity\AccessContextManager\V1\ListAccessLevelsRequest $argument input argument
@@ -152,8 +151,8 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] by resource
+     * Gets an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
      * name.
      * @param \Google\Identity\AccessContextManager\V1\GetAccessLevelRequest $argument input argument
      * @param array $metadata metadata
@@ -169,13 +168,13 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Create an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel]. The longrunning
-     * operation from this RPC will have a successful status once the [Access
-     * Level] [google.identity.accesscontextmanager.v1.AccessLevel] has
-     * propagated to long-lasting storage. [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] containing
-     * errors will result in an error response for the first error encountered.
+     * Creates an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+     * operation from this RPC has a successful status after the [access
+     * level] [google.identity.accesscontextmanager.v1.AccessLevel]
+     * propagates to long-lasting storage. If [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] contain
+     * errors, an error response is returned for the first error encountered.
      * @param \Google\Identity\AccessContextManager\V1\CreateAccessLevelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -190,14 +189,14 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel]. The longrunning
-     * operation from this RPC will have a successful status once the changes to
-     * the [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] have propagated
-     * to long-lasting storage. [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] containing
-     * errors will result in an error response for the first error encountered.
+     * Updates an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+     * operation from this RPC has a successful status after the changes to
+     * the [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] propagate
+     * to long-lasting storage. If [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] contain
+     * errors, an error response is returned for the first error encountered.
      * @param \Google\Identity\AccessContextManager\V1\UpdateAccessLevelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -212,10 +211,10 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Delete an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] by resource
-     * name. The longrunning operation from this RPC will have a successful status
-     * once the [Access Level]
+     * Deletes an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
+     * name. The long-running operation from this RPC has a successful status
+     * after the [access level]
      * [google.identity.accesscontextmanager.v1.AccessLevel] has been removed
      * from long-lasting storage.
      * @param \Google\Identity\AccessContextManager\V1\DeleteAccessLevelRequest $argument input argument
@@ -232,22 +231,22 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Replace all existing [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] in an [Access
-     * Policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with
-     * the [Access Levels]
+     * Replaces all existing [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] in an [access
+     * policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with
+     * the [access levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] provided. This
-     * is done atomically. The longrunning operation from this RPC will have a
-     * successful status once all replacements have propagated to long-lasting
-     * storage. Replacements containing errors will result in an error response
-     * for the first error encountered.  Replacement will be cancelled on error,
-     * existing [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] will not be
-     * affected. Operation.response field will contain
-     * ReplaceAccessLevelsResponse. Removing [Access Levels]
+     * is done atomically. The long-running operation from this RPC has a
+     * successful status after all replacements propagate to long-lasting
+     * storage. If the replacement contains errors, an error response is returned
+     * for the first error encountered.  Upon error, the replacement is cancelled,
+     * and existing [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] are not
+     * affected. The Operation.response field contains
+     * ReplaceAccessLevelsResponse. Removing [access levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] contained in existing
-     * [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] will result in
+     * [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] result in an
      * error.
      * @param \Google\Identity\AccessContextManager\V1\ReplaceAccessLevelsRequest $argument input argument
      * @param array $metadata metadata
@@ -263,7 +262,7 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List all [Service Perimeters]
+     * Lists all [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
      * access policy.
      * @param \Google\Identity\AccessContextManager\V1\ListServicePerimetersRequest $argument input argument
@@ -280,9 +279,9 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get a [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] by resource
-     * name.
+     * Gets a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+     * resource name.
      * @param \Google\Identity\AccessContextManager\V1\GetServicePerimeterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -297,14 +296,14 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Create a [Service Perimeter]
+     * Creates a [service perimeter]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
-     * longrunning operation from this RPC will have a successful status once the
-     * [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] has
-     * propagated to long-lasting storage. [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] containing
-     * errors will result in an error response for the first error encountered.
+     * long-running operation from this RPC has a successful status after the
+     * [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter]
+     * propagates to long-lasting storage. If a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+     * errors, an error response is returned for the first error encountered.
      * @param \Google\Identity\AccessContextManager\V1\CreateServicePerimeterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -319,14 +318,14 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update a [Service Perimeter]
+     * Updates a [service perimeter]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
-     * longrunning operation from this RPC will have a successful status once the
-     * changes to the [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] have
-     * propagated to long-lasting storage. [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] containing
-     * errors will result in an error response for the first error encountered.
+     * long-running operation from this RPC has a successful status after the
+     * [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter]
+     * propagates to long-lasting storage. If a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+     * errors, an error response is returned for the first error encountered.
      * @param \Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -341,12 +340,12 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Delete a [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] by resource
-     * name. The longrunning operation from this RPC will have a successful status
-     * once the [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] has been
-     * removed from long-lasting storage.
+     * Deletes a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+     * resource name. The long-running operation from this RPC has a successful
+     * status after the [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] is removed from
+     * long-lasting storage.
      * @param \Google\Identity\AccessContextManager\V1\DeleteServicePerimeterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -361,18 +360,18 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Replace all existing [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] in an
-     * [Access Policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
-     * with the [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] provided.
-     * This is done atomically. The longrunning operation from this
-     * RPC will have a successful status once all replacements have propagated to
-     * long-lasting storage. Replacements containing errors will result in an
-     * error response for the first error encountered. Replacement will be
-     * cancelled on error, existing [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] will not be
-     * affected. Operation.response field will contain
+     * Replace all existing [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] in an [access
+     * policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with the
+     * [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] provided. This
+     * is done atomically. The long-running operation from this RPC has a
+     * successful status after all replacements propagate to long-lasting storage.
+     * Replacements containing errors result in an error response for the first
+     * error encountered. Upon an error, replacement are cancelled and existing
+     * [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] are not
+     * affected. The Operation.response field contains
      * ReplaceServicePerimetersResponse.
      * @param \Google\Identity\AccessContextManager\V1\ReplaceServicePerimetersRequest $argument input argument
      * @param array $metadata metadata
@@ -388,21 +387,21 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Commit the dry-run spec for all the [Service Perimeters]
+     * Commits the dry-run specification for all the [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] in an
-     * [Access Policy][google.identity.accesscontextmanager.v1.AccessPolicy].
-     * A commit operation on a Service Perimeter involves copying its `spec` field
-     * to that Service Perimeter's `status` field. Only [Service Perimeters]
+     * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     * A commit operation on a service perimeter involves copying its `spec` field
+     * to the `status` field of the service perimeter. Only [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] with
      * `use_explicit_dry_run_spec` field set to true are affected by a commit
-     * operation. The longrunning operation from this RPC will have a successful
-     * status once the dry-run specs for all the [Service Perimeters]
+     * operation. The long-running operation from this RPC has a successful
+     * status after the dry-run specifications for all the [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] have been
-     * committed. If a commit fails, it will cause the longrunning operation to
-     * return an error response and the entire commit operation will be cancelled.
-     * When successful, Operation.response field will contain
-     * CommitServicePerimetersResponse. The `dry_run` and the `spec` fields will
-     * be cleared after a successful commit operation.
+     * committed. If a commit fails, it causes the long-running operation to
+     * return an error response and the entire commit operation is cancelled.
+     * When successful, the Operation.response field contains
+     * CommitServicePerimetersResponse. The `dry_run` and the `spec` fields are
+     * cleared after a successful commit operation.
      * @param \Google\Identity\AccessContextManager\V1\CommitServicePerimetersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -455,7 +454,7 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]. If the
      * client specifies a [name]
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.name],
-     * the server will ignore it. Fails if a resource already exists with the same
+     * the server ignores it. Fails if a resource already exists with the same
      * [group_key]
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.group_key].
      * Completion of this long-running operation does not necessarily signify that
@@ -509,6 +508,62 @@ class AccessContextManagerGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteGcpUserAccessBinding',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Sets the IAM policy for the specified Access Context Manager
+     * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     * This method replaces the existing IAM policy on the access policy. The IAM
+     * policy controls the set of users who can perform specific operations on the
+     * Access Context Manager [access
+     * policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.identity.accesscontextmanager.v1.AccessContextManager/SetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets the IAM policy for the specified Access Context Manager
+     * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.identity.accesscontextmanager.v1.AccessContextManager/GetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns the IAM permissions that the caller has on the specified Access
+     * Context Manager resource. The resource can be an
+     * [AccessPolicy][google.identity.accesscontextmanager.v1.AccessPolicy],
+     * [AccessLevel][google.identity.accesscontextmanager.v1.AccessLevel], or
+     * [ServicePerimeter][google.identity.accesscontextmanager.v1.ServicePerimeter
+     * ]. This method does not support other resources.
+     * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.identity.accesscontextmanager.v1.AccessContextManager/TestIamPermissions',
+        $argument,
+        ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
         $metadata, $options);
     }
 

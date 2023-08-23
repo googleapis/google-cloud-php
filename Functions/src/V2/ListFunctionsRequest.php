@@ -16,18 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location from which the function should be listed,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`
-     * If you want to list functions in all locations, use "-" in place of a
-     * location. When listing functions in all locations, if one or more
-     * location(s) are unreachable, the response will contain functions from all
-     * reachable locations along with the names of any unreachable locations.
+     * Required. The project and location from which the function should be
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     * list functions in all locations, use "-" in place of a location. When
+     * listing functions in all locations, if one or more location(s) are
+     * unreachable, the response will contain functions from all reachable
+     * locations along with the names of any unreachable locations.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Maximum number of functions to return per call.
+     * Maximum number of functions to return per call. The largest allowed
+     * page_size is 1,000, if the page_size is omitted or specified as greater
+     * than 1,000 then it will be replaced as 1,000. The size of the list
+     * response can be less than specified when used with filters.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -58,20 +61,42 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The project and location from which the function should be
+     *                       listed, specified in the format `projects/&#42;/locations/*` If you want to
+     *                       list functions in all locations, use "-" in place of a location. When
+     *                       listing functions in all locations, if one or more location(s) are
+     *                       unreachable, the response will contain functions from all reachable
+     *                       locations along with the names of any unreachable locations. Please see
+     *                       {@see FunctionServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Functions\V2\ListFunctionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location from which the function should be listed,
-     *           specified in the format `projects/&#42;&#47;locations/&#42;`
-     *           If you want to list functions in all locations, use "-" in place of a
-     *           location. When listing functions in all locations, if one or more
-     *           location(s) are unreachable, the response will contain functions from all
-     *           reachable locations along with the names of any unreachable locations.
+     *           Required. The project and location from which the function should be
+     *           listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     *           list functions in all locations, use "-" in place of a location. When
+     *           listing functions in all locations, if one or more location(s) are
+     *           unreachable, the response will contain functions from all reachable
+     *           locations along with the names of any unreachable locations.
      *     @type int $page_size
-     *           Maximum number of functions to return per call.
+     *           Maximum number of functions to return per call. The largest allowed
+     *           page_size is 1,000, if the page_size is omitted or specified as greater
+     *           than 1,000 then it will be replaced as 1,000. The size of the list
+     *           response can be less than specified when used with filters.
      *     @type string $page_token
      *           The value returned by the last
      *           `ListFunctionsResponse`; indicates that
@@ -92,12 +117,12 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location from which the function should be listed,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`
-     * If you want to list functions in all locations, use "-" in place of a
-     * location. When listing functions in all locations, if one or more
-     * location(s) are unreachable, the response will contain functions from all
-     * reachable locations along with the names of any unreachable locations.
+     * Required. The project and location from which the function should be
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     * list functions in all locations, use "-" in place of a location. When
+     * listing functions in all locations, if one or more location(s) are
+     * unreachable, the response will contain functions from all reachable
+     * locations along with the names of any unreachable locations.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,12 +133,12 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location from which the function should be listed,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`
-     * If you want to list functions in all locations, use "-" in place of a
-     * location. When listing functions in all locations, if one or more
-     * location(s) are unreachable, the response will contain functions from all
-     * reachable locations along with the names of any unreachable locations.
+     * Required. The project and location from which the function should be
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     * list functions in all locations, use "-" in place of a location. When
+     * listing functions in all locations, if one or more location(s) are
+     * unreachable, the response will contain functions from all reachable
+     * locations along with the names of any unreachable locations.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -128,7 +153,10 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of functions to return per call.
+     * Maximum number of functions to return per call. The largest allowed
+     * page_size is 1,000, if the page_size is omitted or specified as greater
+     * than 1,000 then it will be replaced as 1,000. The size of the list
+     * response can be less than specified when used with filters.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -139,7 +167,10 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of functions to return per call.
+     * Maximum number of functions to return per call. The largest allowed
+     * page_size is 1,000, if the page_size is omitted or specified as greater
+     * than 1,000 then it will be replaced as 1,000. The size of the list
+     * response can be less than specified when used with filters.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

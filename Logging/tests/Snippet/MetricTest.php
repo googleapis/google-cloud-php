@@ -22,19 +22,22 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Metric;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class MetricTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const METRIC = 'my-metric';
     const PROJECT = 'my-awesome-project';
 
     private $connection;
     private $metric;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->metric = TestHelpers::stub(Metric::class, [

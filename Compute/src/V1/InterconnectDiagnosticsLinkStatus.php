@@ -37,6 +37,13 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      */
     private $lacp_status = null;
     /**
+     * The operational status of the link.
+     * Check the OperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string operational_status = 201070847;</code>
+     */
+    private $operational_status = null;
+    /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
@@ -62,6 +69,9 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      *     @type string $google_demarc
      *           The Demarc address assigned by Google and provided in the LoA.
      *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus $lacp_status
+     *     @type string $operational_status
+     *           The operational status of the link.
+     *           Check the OperationalStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower $receiving_optical_power
      *           An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level.
      *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower $transmitting_optical_power
@@ -199,6 +209,44 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus::class);
         $this->lacp_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The operational status of the link.
+     * Check the OperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string operational_status = 201070847;</code>
+     * @return string
+     */
+    public function getOperationalStatus()
+    {
+        return isset($this->operational_status) ? $this->operational_status : '';
+    }
+
+    public function hasOperationalStatus()
+    {
+        return isset($this->operational_status);
+    }
+
+    public function clearOperationalStatus()
+    {
+        unset($this->operational_status);
+    }
+
+    /**
+     * The operational status of the link.
+     * Check the OperationalStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string operational_status = 201070847;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOperationalStatus($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->operational_status = $var;
 
         return $this;
     }

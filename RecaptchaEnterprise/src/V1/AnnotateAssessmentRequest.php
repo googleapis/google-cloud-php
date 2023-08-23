@@ -23,21 +23,22 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The annotation that will be assigned to the Event. This field can be left
-     * empty to provide reasons that apply to an event without concluding whether
-     * the event is legitimate or fraudulent.
+     * Optional. The annotation that will be assigned to the Event. This field can
+     * be left empty to provide reasons that apply to an event without concluding
+     * whether the event is legitimate or fraudulent.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotation = 0;
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     * Optional. Optional reasons for the annotation that will be assigned to the
+     * Event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reasons;
     /**
-     * Optional. Optional unique stable hashed user identifier to apply to the assessment.
+     * Optional. Unique stable hashed user identifier to apply to the assessment.
      * This is an alternative to setting the hashed_account_id in
      * CreateAssessment, for example when the account identifier is not yet known
      * in the initial request. It is recommended that the identifier is hashed
@@ -46,6 +47,33 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes hashed_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $hashed_account_id = '';
+    /**
+     * Optional. If the assessment is part of a payment transaction, provide
+     * details on payment lifecycle events that occur in the transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent transaction_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $transaction_event = null;
+
+    /**
+     * @param string $name       Required. The resource name of the Assessment, in the format
+     *                           "projects/{project}/assessments/{assessment}". Please see
+     *                           {@see RecaptchaEnterpriseServiceClient::assessmentName()} for help formatting this field.
+     * @param int    $annotation Optional. The annotation that will be assigned to the Event. This field can
+     *                           be left empty to provide reasons that apply to an event without concluding
+     *                           whether the event is legitimate or fraudulent.
+     *                           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, int $annotation): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setAnnotation($annotation);
+    }
 
     /**
      * Constructor.
@@ -57,17 +85,21 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Assessment, in the format
      *           "projects/{project}/assessments/{assessment}".
      *     @type int $annotation
-     *           Optional. The annotation that will be assigned to the Event. This field can be left
-     *           empty to provide reasons that apply to an event without concluding whether
-     *           the event is legitimate or fraudulent.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $reasons
-     *           Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *           Optional. The annotation that will be assigned to the Event. This field can
+     *           be left empty to provide reasons that apply to an event without concluding
+     *           whether the event is legitimate or fraudulent.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *           Optional. Optional reasons for the annotation that will be assigned to the
+     *           Event.
      *     @type string $hashed_account_id
-     *           Optional. Optional unique stable hashed user identifier to apply to the assessment.
+     *           Optional. Unique stable hashed user identifier to apply to the assessment.
      *           This is an alternative to setting the hashed_account_id in
      *           CreateAssessment, for example when the account identifier is not yet known
      *           in the initial request. It is recommended that the identifier is hashed
      *           using hmac-sha256 with stable secret.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent $transaction_event
+     *           Optional. If the assessment is part of a payment transaction, provide
+     *           details on payment lifecycle events that occur in the transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,9 +136,9 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The annotation that will be assigned to the Event. This field can be left
-     * empty to provide reasons that apply to an event without concluding whether
-     * the event is legitimate or fraudulent.
+     * Optional. The annotation that will be assigned to the Event. This field can
+     * be left empty to provide reasons that apply to an event without concluding
+     * whether the event is legitimate or fraudulent.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -117,9 +149,9 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The annotation that will be assigned to the Event. This field can be left
-     * empty to provide reasons that apply to an event without concluding whether
-     * the event is legitimate or fraudulent.
+     * Optional. The annotation that will be assigned to the Event. This field can
+     * be left empty to provide reasons that apply to an event without concluding
+     * whether the event is legitimate or fraudulent.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -134,7 +166,8 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     * Optional. Optional reasons for the annotation that will be assigned to the
+     * Event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -145,10 +178,11 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     * Optional. Optional reasons for the annotation that will be assigned to the
+     * Event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReasons($var)
@@ -160,7 +194,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional unique stable hashed user identifier to apply to the assessment.
+     * Optional. Unique stable hashed user identifier to apply to the assessment.
      * This is an alternative to setting the hashed_account_id in
      * CreateAssessment, for example when the account identifier is not yet known
      * in the initial request. It is recommended that the identifier is hashed
@@ -175,7 +209,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional unique stable hashed user identifier to apply to the assessment.
+     * Optional. Unique stable hashed user identifier to apply to the assessment.
      * This is an alternative to setting the hashed_account_id in
      * CreateAssessment, for example when the account identifier is not yet known
      * in the initial request. It is recommended that the identifier is hashed
@@ -189,6 +223,44 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->hashed_account_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the assessment is part of a payment transaction, provide
+     * details on payment lifecycle events that occur in the transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent transaction_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent|null
+     */
+    public function getTransactionEvent()
+    {
+        return $this->transaction_event;
+    }
+
+    public function hasTransactionEvent()
+    {
+        return isset($this->transaction_event);
+    }
+
+    public function clearTransactionEvent()
+    {
+        unset($this->transaction_event);
+    }
+
+    /**
+     * Optional. If the assessment is part of a payment transaction, provide
+     * details on payment lifecycle events that occur in the transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent transaction_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent $var
+     * @return $this
+     */
+    public function setTransactionEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent::class);
+        $this->transaction_event = $var;
 
         return $this;
     }

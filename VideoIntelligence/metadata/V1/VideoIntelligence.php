@@ -23,7 +23,7 @@ class VideoIntelligence
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ØJ
+ÙJ
 :google/cloud/videointelligence/v1/video_intelligence.proto!google.cloud.videointelligence.v1google/api/client.protogoogle/api/field_behavior.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"þ
 AnnotateVideoRequest
 	input_uri (	
@@ -261,8 +261,8 @@ Likelihood
 VERY_LIKELY2À
 VideoIntelligenceServiceÍ
 AnnotateVideo7.google.cloud.videointelligence.v1.AnnotateVideoRequest.google.longrunning.Operation"d‚Óä“"/v1/videos:annotate:*ÚAinput_uri,featuresÊA.
-AnnotateVideoResponseAnnotateVideoProgressTÊA videointelligence.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB‹
-%com.google.cloud.videointelligence.v1BVideoIntelligenceServiceProtoPZRgoogle.golang.org/genproto/googleapis/cloud/videointelligence/v1;videointelligenceª!Google.Cloud.VideoIntelligence.V1Ê!Google\\Cloud\\VideoIntelligence\\V1ê$Google::Cloud::VideoIntelligence::V1bproto3'
+AnnotateVideoResponseAnnotateVideoProgressTÊA videointelligence.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŒ
+%com.google.cloud.videointelligence.v1BVideoIntelligenceServiceProtoPZScloud.google.com/go/videointelligence/apiv1/videointelligencepb;videointelligencepbª!Google.Cloud.VideoIntelligence.V1Ê!Google\\Cloud\\VideoIntelligence\\V1ê$Google::Cloud::VideoIntelligence::V1bproto3'
         , true);
 
         static::$is_initialized = true;

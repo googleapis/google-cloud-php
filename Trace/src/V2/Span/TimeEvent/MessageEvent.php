@@ -24,8 +24,7 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * An identifier for the MessageEvent's message that can be used to match
-     * SENT and RECEIVED MessageEvents. It is recommended to be unique within
-     * a Span.
+     * `SENT` and `RECEIVED` MessageEvents.
      *
      * Generated from protobuf field <code>int64 id = 2;</code>
      */
@@ -37,8 +36,9 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
      */
     private $uncompressed_size_bytes = 0;
     /**
-     * The number of compressed bytes sent or received. If missing assumed to
-     * be the same size as uncompressed.
+     * The number of compressed bytes sent or received. If missing, the
+     * compressed size is assumed to be the same size as the uncompressed
+     * size.
      *
      * Generated from protobuf field <code>int64 compressed_size_bytes = 4;</code>
      */
@@ -55,13 +55,13 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
      *           received.
      *     @type int|string $id
      *           An identifier for the MessageEvent's message that can be used to match
-     *           SENT and RECEIVED MessageEvents. It is recommended to be unique within
-     *           a Span.
+     *           `SENT` and `RECEIVED` MessageEvents.
      *     @type int|string $uncompressed_size_bytes
      *           The number of uncompressed bytes sent or received.
      *     @type int|string $compressed_size_bytes
-     *           The number of compressed bytes sent or received. If missing assumed to
-     *           be the same size as uncompressed.
+     *           The number of compressed bytes sent or received. If missing, the
+     *           compressed size is assumed to be the same size as the uncompressed
+     *           size.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,8 +99,7 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * An identifier for the MessageEvent's message that can be used to match
-     * SENT and RECEIVED MessageEvents. It is recommended to be unique within
-     * a Span.
+     * `SENT` and `RECEIVED` MessageEvents.
      *
      * Generated from protobuf field <code>int64 id = 2;</code>
      * @return int|string
@@ -112,8 +111,7 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * An identifier for the MessageEvent's message that can be used to match
-     * SENT and RECEIVED MessageEvents. It is recommended to be unique within
-     * a Span.
+     * `SENT` and `RECEIVED` MessageEvents.
      *
      * Generated from protobuf field <code>int64 id = 2;</code>
      * @param int|string $var
@@ -154,8 +152,9 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of compressed bytes sent or received. If missing assumed to
-     * be the same size as uncompressed.
+     * The number of compressed bytes sent or received. If missing, the
+     * compressed size is assumed to be the same size as the uncompressed
+     * size.
      *
      * Generated from protobuf field <code>int64 compressed_size_bytes = 4;</code>
      * @return int|string
@@ -166,8 +165,9 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of compressed bytes sent or received. If missing assumed to
-     * be the same size as uncompressed.
+     * The number of compressed bytes sent or received. If missing, the
+     * compressed size is assumed to be the same size as the uncompressed
+     * size.
      *
      * Generated from protobuf field <code>int64 compressed_size_bytes = 4;</code>
      * @param int|string $var

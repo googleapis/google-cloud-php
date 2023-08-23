@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location in which the function should be created, specified
-     * in the format `projects/&#42;&#47;locations/&#42;`
+     * Required. The project and location in which the function should be created,
+     * specified in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,8 +36,8 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $location
-     *           Required. The project and location in which the function should be created, specified
-     *           in the format `projects/&#42;&#47;locations/&#42;`
+     *           Required. The project and location in which the function should be created,
+     *           specified in the format `projects/&#42;&#47;locations/&#42;`
      *     @type \Google\Cloud\Functions\V1\CloudFunction $function
      *           Required. Function to be created.
      * }
@@ -48,8 +48,8 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location in which the function should be created, specified
-     * in the format `projects/&#42;&#47;locations/&#42;`
+     * Required. The project and location in which the function should be created,
+     * specified in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +60,8 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location in which the function should be created, specified
-     * in the format `projects/&#42;&#47;locations/&#42;`
+     * Required. The project and location in which the function should be created,
+     * specified in the format `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

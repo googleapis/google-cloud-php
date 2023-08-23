@@ -17,12 +17,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class FetchCertificateAuthorityCsrRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The resource name for this
+     *                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                     in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\FetchCertificateAuthorityCsrRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -31,8 +48,9 @@ class FetchCertificateAuthorityCsrRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           Required. The resource name for this
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +59,9 @@ class FetchCertificateAuthorityCsrRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,8 +72,9 @@ class FetchCertificateAuthorityCsrRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

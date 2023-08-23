@@ -9,16 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes an Elliptic Curve key that may be used in a [Certificate][google.cloud.security.privateca.v1.Certificate]
- * issued from a [CaPool][google.cloud.security.privateca.v1.CaPool].
+ * Describes an Elliptic Curve key that may be used in a
+ * [Certificate][google.cloud.security.privateca.v1.Certificate] issued
+ * from a [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType</code>
  */
 class EcKeyType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A signature algorithm that must be used. If this is omitted, any
-     * EC-based signature algorithm will be allowed.
+     * Optional. A signature algorithm that must be used. If this is
+     * omitted, any EC-based signature algorithm will be allowed.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm signature_algorithm = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -31,8 +32,8 @@ class EcKeyType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $signature_algorithm
-     *           Optional. A signature algorithm that must be used. If this is omitted, any
-     *           EC-based signature algorithm will be allowed.
+     *           Optional. A signature algorithm that must be used. If this is
+     *           omitted, any EC-based signature algorithm will be allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +42,8 @@ class EcKeyType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A signature algorithm that must be used. If this is omitted, any
-     * EC-based signature algorithm will be allowed.
+     * Optional. A signature algorithm that must be used. If this is
+     * omitted, any EC-based signature algorithm will be allowed.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm signature_algorithm = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -53,8 +54,8 @@ class EcKeyType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A signature algorithm that must be used. If this is omitted, any
-     * EC-based signature algorithm will be allowed.
+     * Optional. A signature algorithm that must be used. If this is
+     * omitted, any EC-based signature algorithm will be allowed.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm signature_algorithm = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SuspendInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *
+     * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
+     */
+    private $discard_local_ssd = null;
+    /**
      * Name of the instance resource to suspend.
      *
      * Generated from protobuf field <code>string instance = 18257045 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -41,11 +47,30 @@ class SuspendInstanceRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $zone     The name of the zone for this request.
+     * @param string $instance Name of the instance resource to suspend.
+     *
+     * @return \Google\Cloud\Compute\V1\SuspendInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $discard_local_ssd
+     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
      *     @type string $instance
      *           Name of the instance resource to suspend.
      *     @type string $project
@@ -59,6 +84,42 @@ class SuspendInstanceRequest extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *
+     * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
+     * @return bool
+     */
+    public function getDiscardLocalSsd()
+    {
+        return isset($this->discard_local_ssd) ? $this->discard_local_ssd : false;
+    }
+
+    public function hasDiscardLocalSsd()
+    {
+        return isset($this->discard_local_ssd);
+    }
+
+    public function clearDiscardLocalSsd()
+    {
+        unset($this->discard_local_ssd);
+    }
+
+    /**
+     * If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *
+     * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDiscardLocalSsd($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->discard_local_ssd = $var;
+
+        return $this;
     }
 
     /**

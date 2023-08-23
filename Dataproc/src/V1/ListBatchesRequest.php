@@ -36,6 +36,43 @@ class ListBatchesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+    /**
+     * Optional. A filter for the batches to return in the response.
+     * A filter is a logical expression constraining the values of various fields
+     * in each batch resource. Filters are case sensitive, and may contain
+     * multiple clauses combined with logical operators (AND/OR).
+     * Supported fields are `batch_id`, `batch_uuid`, `state`, and `create_time`.
+     * e.g. `state = RUNNING and create_time < "2023-01-01T00:00:00Z"`
+     * filters for batches in state RUNNING that were created before 2023-01-01
+     * See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed
+     * description of the filter syntax and a list of supported comparisons.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filter = '';
+    /**
+     * Optional. Field(s) on which to sort the list of batches.
+     * Currently the only supported sort orders are unspecified (empty) and
+     * `create_time desc` to sort by most recently created batches first.
+     * See https://google.aip.dev/132#ordering for more details.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $order_by = '';
+
+    /**
+     * @param string $parent Required. The parent, which owns this collection of batches. Please see
+     *                       {@see BatchControllerClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\ListBatchesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -52,6 +89,21 @@ class ListBatchesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. A page token received from a previous `ListBatches` call.
      *           Provide this token to retrieve the subsequent page.
+     *     @type string $filter
+     *           Optional. A filter for the batches to return in the response.
+     *           A filter is a logical expression constraining the values of various fields
+     *           in each batch resource. Filters are case sensitive, and may contain
+     *           multiple clauses combined with logical operators (AND/OR).
+     *           Supported fields are `batch_id`, `batch_uuid`, `state`, and `create_time`.
+     *           e.g. `state = RUNNING and create_time < "2023-01-01T00:00:00Z"`
+     *           filters for batches in state RUNNING that were created before 2023-01-01
+     *           See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed
+     *           description of the filter syntax and a list of supported comparisons.
+     *     @type string $order_by
+     *           Optional. Field(s) on which to sort the list of batches.
+     *           Currently the only supported sort orders are unspecified (empty) and
+     *           `create_time desc` to sort by most recently created batches first.
+     *           See https://google.aip.dev/132#ordering for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +191,80 @@ class ListBatchesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A filter for the batches to return in the response.
+     * A filter is a logical expression constraining the values of various fields
+     * in each batch resource. Filters are case sensitive, and may contain
+     * multiple clauses combined with logical operators (AND/OR).
+     * Supported fields are `batch_id`, `batch_uuid`, `state`, and `create_time`.
+     * e.g. `state = RUNNING and create_time < "2023-01-01T00:00:00Z"`
+     * filters for batches in state RUNNING that were created before 2023-01-01
+     * See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed
+     * description of the filter syntax and a list of supported comparisons.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. A filter for the batches to return in the response.
+     * A filter is a logical expression constraining the values of various fields
+     * in each batch resource. Filters are case sensitive, and may contain
+     * multiple clauses combined with logical operators (AND/OR).
+     * Supported fields are `batch_id`, `batch_uuid`, `state`, and `create_time`.
+     * e.g. `state = RUNNING and create_time < "2023-01-01T00:00:00Z"`
+     * filters for batches in state RUNNING that were created before 2023-01-01
+     * See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed
+     * description of the filter syntax and a list of supported comparisons.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Field(s) on which to sort the list of batches.
+     * Currently the only supported sort orders are unspecified (empty) and
+     * `create_time desc` to sort by most recently created batches first.
+     * See https://google.aip.dev/132#ordering for more details.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. Field(s) on which to sort the list of batches.
+     * Currently the only supported sort orders are unspecified (empty) and
+     * `create_time desc` to sort by most recently created batches first.
+     * See https://google.aip.dev/132#ordering for more details.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

@@ -20,12 +20,15 @@ namespace Google\Cloud\BigQuery\Tests\Unit\Exception;
 use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigquery
  */
 class JobExceptionTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testGetsJob()
     {
         $message = 'Job Failed.';

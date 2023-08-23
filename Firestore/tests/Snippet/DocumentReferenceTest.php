@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group firestore
@@ -37,13 +38,15 @@ use Prophecy\Argument;
 class DocumentReferenceTest extends SnippetTestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
+
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $connection;
     private $document;
     private $batch;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->document = TestHelpers::stub(DocumentReferenceStub::class, [

@@ -29,14 +29,37 @@ class CreateJobTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     private $job_template = null;
     /**
-     * Required. The ID to use for the job template, which will become the final component
-     * of the job template's resource name.
+     * Required. The ID to use for the job template, which will become the final
+     * component of the job template's resource name.
      * This value should be 4-63 characters, and valid characters must match the
      * regular expression `[a-zA-Z][a-zA-Z0-9_-]*`.
      *
      * Generated from protobuf field <code>string job_template_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job_template_id = '';
+
+    /**
+     * @param string                                        $parent        Required. The parent location to create this job template.
+     *                                                                     Format: `projects/{project}/locations/{location}`
+     *                                                                     Please see {@see TranscoderServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Video\Transcoder\V1\JobTemplate $jobTemplate   Required. Parameters for creating job template.
+     * @param string                                        $jobTemplateId Required. The ID to use for the job template, which will become the final
+     *                                                                     component of the job template's resource name.
+     *
+     *                                                                     This value should be 4-63 characters, and valid characters must match the
+     *                                                                     regular expression `[a-zA-Z][a-zA-Z0-9_-]*`.
+     *
+     * @return \Google\Cloud\Video\Transcoder\V1\CreateJobTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Video\Transcoder\V1\JobTemplate $jobTemplate, string $jobTemplateId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJobTemplate($jobTemplate)
+            ->setJobTemplateId($jobTemplateId);
+    }
 
     /**
      * Constructor.
@@ -50,8 +73,8 @@ class CreateJobTemplateRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Video\Transcoder\V1\JobTemplate $job_template
      *           Required. Parameters for creating job template.
      *     @type string $job_template_id
-     *           Required. The ID to use for the job template, which will become the final component
-     *           of the job template's resource name.
+     *           Required. The ID to use for the job template, which will become the final
+     *           component of the job template's resource name.
      *           This value should be 4-63 characters, and valid characters must match the
      *           regular expression `[a-zA-Z][a-zA-Z0-9_-]*`.
      * }
@@ -126,8 +149,8 @@ class CreateJobTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the job template, which will become the final component
-     * of the job template's resource name.
+     * Required. The ID to use for the job template, which will become the final
+     * component of the job template's resource name.
      * This value should be 4-63 characters, and valid characters must match the
      * regular expression `[a-zA-Z][a-zA-Z0-9_-]*`.
      *
@@ -140,8 +163,8 @@ class CreateJobTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the job template, which will become the final component
-     * of the job template's resource name.
+     * Required. The ID to use for the job template, which will become the final
+     * component of the job template's resource name.
      * This value should be 4-63 characters, and valid characters must match the
      * regular expression `[a-zA-Z][a-zA-Z0-9_-]*`.
      *

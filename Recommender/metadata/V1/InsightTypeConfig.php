@@ -20,7 +20,7 @@ class InsightTypeConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚
+ý
 5google/cloud/recommender/v1/insight_type_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ö
 InsightTypeConfig
 name (	`
@@ -35,8 +35,8 @@ class InsightTypeConfig
 value (	:8:ÔêAÐ
 ,recommender.googleapis.com/InsightTypeConfigJprojects/{project}/locations/{location}/insightTypes/{insight_type}/configTorganizations/{organization}/locations/{location}/insightTypes/{insight_type}/config"F
 InsightTypeGenerationConfig\'
-params (2.google.protobuf.StructB¨
-com.google.cloud.recommender.v1BInsightTypeConfigProtoPZFgoogle.golang.org/genproto/googleapis/cloud/recommender/v1;recommender¢CRECªGoogle.Cloud.Recommender.V1bproto3'
+params (2.google.protobuf.StructB£
+com.google.cloud.recommender.v1BInsightTypeConfigProtoPZAcloud.google.com/go/recommender/apiv1/recommenderpb;recommenderpb¢CRECªGoogle.Cloud.Recommender.V1bproto3'
         , true);
 
         static::$is_initialized = true;

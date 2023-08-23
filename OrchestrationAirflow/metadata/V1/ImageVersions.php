@@ -19,7 +19,7 @@ class ImageVersions
         \GPBMetadata\Google\Type\Date::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ä
+»
 Bgoogle/cloud/orchestration/airflow/service/v1/image_versions.proto-google.cloud.orchestration.airflow.service.v1google/api/client.protogoogle/type/date.proto"p
 ListImageVersionsRequest
 parent (	
@@ -39,8 +39,8 @@ is_default (!
 creation_disabled (
 upgrade_disabled (2É
 ImageVersionsê
-ListImageVersionsG.google.cloud.orchestration.airflow.service.v1.ListImageVersionsRequestH.google.cloud.orchestration.airflow.service.v1.ListImageVersionsResponse"B‚Óä“31/v1/{parent=projects/*/locations/*}/imageVersionsÚAparentKÊAcomposer.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB‹
-1com.google.cloud.orchestration.airflow.service.v1PZTgoogle.golang.org/genproto/googleapis/cloud/orchestration/airflow/service/v1;servicebproto3'
+ListImageVersionsG.google.cloud.orchestration.airflow.service.v1.ListImageVersionsRequestH.google.cloud.orchestration.airflow.service.v1.ListImageVersionsResponse"B‚Óä“31/v1/{parent=projects/*/locations/*}/imageVersionsÚAparentKÊAcomposer.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB‚
+1com.google.cloud.orchestration.airflow.service.v1PZKcloud.google.com/go/orchestration/airflow/service/apiv1/servicepb;servicepbbproto3'
         , true);
 
         static::$is_initialized = true;

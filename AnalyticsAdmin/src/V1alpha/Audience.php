@@ -35,37 +35,37 @@ class Audience extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. The duration a user should stay in an Audience. It cannot be set to more
-     * than 540 days.
+     * Required. Immutable. The duration a user should stay in an Audience. It
+     * cannot be set to more than 540 days.
      *
      * Generated from protobuf field <code>int32 membership_duration_days = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $membership_duration_days = 0;
     /**
-     * Output only. It is automatically set by GA to false if this is an NPA Audience and is
-     * excluded from ads personalization.
+     * Output only. It is automatically set by GA to false if this is an NPA
+     * Audience and is excluded from ads personalization.
      *
      * Generated from protobuf field <code>bool ads_personalization_enabled = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $ads_personalization_enabled = false;
     /**
-     * Optional. Specifies an event to log when a user joins the Audience. If not set, no
-     * event is logged when a user joins the Audience.
+     * Optional. Specifies an event to log when a user joins the Audience. If not
+     * set, no event is logged when a user joins the Audience.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceEventTrigger event_trigger = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $event_trigger = null;
     /**
-     * Immutable. Specifies how long an exclusion lasts for users that meet the exclusion
-     * filter. It is applied to all EXCLUDE filter clauses and is ignored when
-     * there is no EXCLUDE filter clause in the Audience.
+     * Immutable. Specifies how long an exclusion lasts for users that meet the
+     * exclusion filter. It is applied to all EXCLUDE filter clauses and is
+     * ignored when there is no EXCLUDE filter clause in the Audience.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Audience.AudienceExclusionDurationMode exclusion_duration_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $exclusion_duration_mode = 0;
     /**
-     * Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed
-     * together.
+     * Required. Immutable. Unordered list. Filter clauses that define the
+     * Audience. All clauses will be AND’ed together.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceFilterClause filter_clauses = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
      */
@@ -85,21 +85,21 @@ class Audience extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Required. The description of the Audience.
      *     @type int $membership_duration_days
-     *           Required. Immutable. The duration a user should stay in an Audience. It cannot be set to more
-     *           than 540 days.
+     *           Required. Immutable. The duration a user should stay in an Audience. It
+     *           cannot be set to more than 540 days.
      *     @type bool $ads_personalization_enabled
-     *           Output only. It is automatically set by GA to false if this is an NPA Audience and is
-     *           excluded from ads personalization.
+     *           Output only. It is automatically set by GA to false if this is an NPA
+     *           Audience and is excluded from ads personalization.
      *     @type \Google\Analytics\Admin\V1alpha\AudienceEventTrigger $event_trigger
-     *           Optional. Specifies an event to log when a user joins the Audience. If not set, no
-     *           event is logged when a user joins the Audience.
+     *           Optional. Specifies an event to log when a user joins the Audience. If not
+     *           set, no event is logged when a user joins the Audience.
      *     @type int $exclusion_duration_mode
-     *           Immutable. Specifies how long an exclusion lasts for users that meet the exclusion
-     *           filter. It is applied to all EXCLUDE filter clauses and is ignored when
-     *           there is no EXCLUDE filter clause in the Audience.
+     *           Immutable. Specifies how long an exclusion lasts for users that meet the
+     *           exclusion filter. It is applied to all EXCLUDE filter clauses and is
+     *           ignored when there is no EXCLUDE filter clause in the Audience.
      *     @type array<\Google\Analytics\Admin\V1alpha\AudienceFilterClause>|\Google\Protobuf\Internal\RepeatedField $filter_clauses
-     *           Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed
-     *           together.
+     *           Required. Immutable. Unordered list. Filter clauses that define the
+     *           Audience. All clauses will be AND’ed together.
      * }
      */
     public function __construct($data = NULL) {
@@ -188,8 +188,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The duration a user should stay in an Audience. It cannot be set to more
-     * than 540 days.
+     * Required. Immutable. The duration a user should stay in an Audience. It
+     * cannot be set to more than 540 days.
      *
      * Generated from protobuf field <code>int32 membership_duration_days = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -200,8 +200,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The duration a user should stay in an Audience. It cannot be set to more
-     * than 540 days.
+     * Required. Immutable. The duration a user should stay in an Audience. It
+     * cannot be set to more than 540 days.
      *
      * Generated from protobuf field <code>int32 membership_duration_days = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -216,8 +216,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. It is automatically set by GA to false if this is an NPA Audience and is
-     * excluded from ads personalization.
+     * Output only. It is automatically set by GA to false if this is an NPA
+     * Audience and is excluded from ads personalization.
      *
      * Generated from protobuf field <code>bool ads_personalization_enabled = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -228,8 +228,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. It is automatically set by GA to false if this is an NPA Audience and is
-     * excluded from ads personalization.
+     * Output only. It is automatically set by GA to false if this is an NPA
+     * Audience and is excluded from ads personalization.
      *
      * Generated from protobuf field <code>bool ads_personalization_enabled = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -244,8 +244,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies an event to log when a user joins the Audience. If not set, no
-     * event is logged when a user joins the Audience.
+     * Optional. Specifies an event to log when a user joins the Audience. If not
+     * set, no event is logged when a user joins the Audience.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceEventTrigger event_trigger = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Analytics\Admin\V1alpha\AudienceEventTrigger|null
@@ -266,8 +266,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies an event to log when a user joins the Audience. If not set, no
-     * event is logged when a user joins the Audience.
+     * Optional. Specifies an event to log when a user joins the Audience. If not
+     * set, no event is logged when a user joins the Audience.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceEventTrigger event_trigger = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Analytics\Admin\V1alpha\AudienceEventTrigger $var
@@ -282,9 +282,9 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Specifies how long an exclusion lasts for users that meet the exclusion
-     * filter. It is applied to all EXCLUDE filter clauses and is ignored when
-     * there is no EXCLUDE filter clause in the Audience.
+     * Immutable. Specifies how long an exclusion lasts for users that meet the
+     * exclusion filter. It is applied to all EXCLUDE filter clauses and is
+     * ignored when there is no EXCLUDE filter clause in the Audience.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Audience.AudienceExclusionDurationMode exclusion_duration_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -295,9 +295,9 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Specifies how long an exclusion lasts for users that meet the exclusion
-     * filter. It is applied to all EXCLUDE filter clauses and is ignored when
-     * there is no EXCLUDE filter clause in the Audience.
+     * Immutable. Specifies how long an exclusion lasts for users that meet the
+     * exclusion filter. It is applied to all EXCLUDE filter clauses and is
+     * ignored when there is no EXCLUDE filter clause in the Audience.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Audience.AudienceExclusionDurationMode exclusion_duration_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -312,8 +312,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed
-     * together.
+     * Required. Immutable. Unordered list. Filter clauses that define the
+     * Audience. All clauses will be AND’ed together.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceFilterClause filter_clauses = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -324,8 +324,8 @@ class Audience extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed
-     * together.
+     * Required. Immutable. Unordered list. Filter clauses that define the
+     * Audience. All clauses will be AND’ed together.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceFilterClause filter_clauses = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @param array<\Google\Analytics\Admin\V1alpha\AudienceFilterClause>|\Google\Protobuf\Internal\RepeatedField $var

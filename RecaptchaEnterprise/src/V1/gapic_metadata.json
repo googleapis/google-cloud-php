@@ -60,6 +60,11 @@
                                 "migrateKey"
                             ]
                         },
+                        "RetrieveLegacySecretKey": {
+                            "methods": [
+                                "retrieveLegacySecretKey"
+                            ]
+                        },
                         "SearchRelatedAccountGroupMemberships": {
                             "methods": [
                                 "searchRelatedAccountGroupMemberships"

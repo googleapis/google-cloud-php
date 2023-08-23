@@ -34,7 +34,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * A page token, received from a previous `ListFirebaseLinks` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListProperties` must
+     * When paginating, all other parameters provided to `ListFirebaseLinks` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
@@ -58,7 +58,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A page token, received from a previous `ListFirebaseLinks` call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListProperties` must
+     *           When paginating, all other parameters provided to `ListFirebaseLinks` must
      *           match the call that provided the page token.
      * }
      */
@@ -130,7 +130,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * A page token, received from a previous `ListFirebaseLinks` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListProperties` must
+     * When paginating, all other parameters provided to `ListFirebaseLinks` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
@@ -144,7 +144,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * A page token, received from a previous `ListFirebaseLinks` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListProperties` must
+     * When paginating, all other parameters provided to `ListFirebaseLinks` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>

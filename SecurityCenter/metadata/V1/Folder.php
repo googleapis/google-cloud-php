@@ -16,12 +16,12 @@ class Folder
         }
         $pool->internalAddGeneratedFile(
             '
-ˆ
+†
 +google/cloud/securitycenter/v1/folder.protogoogle.cloud.securitycenter.v1"G
 Folder
 resource_folder (	$
-resource_folder_display_name (	Bç
-"com.google.cloud.securitycenter.v1BFolderProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+resource_folder_display_name (	Bå
+"com.google.cloud.securitycenter.v1BFolderProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

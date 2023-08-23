@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\Query\AggregationQuery;
 
 /**
  * Common operations for datastore transactions.
@@ -155,6 +156,34 @@ trait TransactionTrait
     public function runQuery(QueryInterface $query, array $options = [])
     {
         return $this->operation->runQuery($query, $options + [
+            'transaction' => $this->transactionId
+        ]);
+    }
+
+    /**
+     * Run an Aggregation query and return aggregation results inside a Transaction.
+     *
+     * Example:
+     * ```
+     * $results = $transaction->runAggregationQuery($query);
+     *
+     * echo $results->get('total');
+     * ```
+     *
+     * @param AggregationQuery $query The AggregationQuery object.
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type string $databaseId ID of the database to which the entities belong.
+     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     * }
+     * @return AggregationQueryResult
+     */
+    public function runAggregationQuery(AggregationQuery $query, array $options = [])
+    {
+        return $this->operation->runAggregationQuery($query, $options + [
             'transaction' => $this->transactionId
         ]);
     }

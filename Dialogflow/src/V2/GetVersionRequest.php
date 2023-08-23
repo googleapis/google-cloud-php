@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Versions.GetVersion][google.cloud.dialogflow.v2.Versions.GetVersion].
+ * The request message for
+ * [Versions.GetVersion][google.cloud.dialogflow.v2.Versions.GetVersion].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetVersionRequest</code>
  */
@@ -25,6 +26,25 @@ class GetVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the version.
+     *                     Supported formats:
+     *
+     *                     - `projects/<Project ID>/agent/versions/<Version ID>`
+     *                     - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *                     ID>`
+     *                     Please see {@see VersionsClient::versionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetVersionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

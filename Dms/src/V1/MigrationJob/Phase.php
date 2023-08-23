@@ -80,6 +80,4 @@ class Phase
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Phase::class, \Google\Cloud\CloudDms\V1\MigrationJob_Phase::class);
 

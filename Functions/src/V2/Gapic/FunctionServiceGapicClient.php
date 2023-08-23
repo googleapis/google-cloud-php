@@ -27,10 +27,8 @@ namespace Google\Cloud\Functions\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -82,7 +80,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -99,7 +97,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -113,41 +111,52 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Functions\V2\Client\FunctionServiceClient} to use the new surface.
  */
 class FunctionServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.functions.v2.FunctionService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudfunctions.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $buildNameTemplate;
+
+    private static $channelNameTemplate;
+
+    private static $connectorNameTemplate;
+
+    private static $cryptoKeyNameTemplate;
+
     private static $functionNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $repositoryNameTemplate;
+
+    private static $serviceNameTemplate;
+
+    private static $topicNameTemplate;
+
+    private static $triggerNameTemplate;
+
+    private static $workerPoolNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -179,6 +188,50 @@ class FunctionServiceGapicClient
         ];
     }
 
+    private static function getBuildNameTemplate()
+    {
+        if (self::$buildNameTemplate == null) {
+            self::$buildNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/builds/{build}'
+            );
+        }
+
+        return self::$buildNameTemplate;
+    }
+
+    private static function getChannelNameTemplate()
+    {
+        if (self::$channelNameTemplate == null) {
+            self::$channelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/channels/{channel}'
+            );
+        }
+
+        return self::$channelNameTemplate;
+    }
+
+    private static function getConnectorNameTemplate()
+    {
+        if (self::$connectorNameTemplate == null) {
+            self::$connectorNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connectors/{connector}'
+            );
+        }
+
+        return self::$connectorNameTemplate;
+    }
+
+    private static function getCryptoKeyNameTemplate()
+    {
+        if (self::$cryptoKeyNameTemplate == null) {
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
+        }
+
+        return self::$cryptoKeyNameTemplate;
+    }
+
     private static function getFunctionNameTemplate()
     {
         if (self::$functionNameTemplate == null) {
@@ -201,16 +254,162 @@ class FunctionServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getRepositoryNameTemplate()
+    {
+        if (self::$repositoryNameTemplate == null) {
+            self::$repositoryNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/repositories/{repository}'
+            );
+        }
+
+        return self::$repositoryNameTemplate;
+    }
+
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}'
+            );
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
+    private static function getTopicNameTemplate()
+    {
+        if (self::$topicNameTemplate == null) {
+            self::$topicNameTemplate = new PathTemplate(
+                'projects/{project}/topics/{topic}'
+            );
+        }
+
+        return self::$topicNameTemplate;
+    }
+
+    private static function getTriggerNameTemplate()
+    {
+        if (self::$triggerNameTemplate == null) {
+            self::$triggerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/triggers/{trigger}'
+            );
+        }
+
+        return self::$triggerNameTemplate;
+    }
+
+    private static function getWorkerPoolNameTemplate()
+    {
+        if (self::$workerPoolNameTemplate == null) {
+            self::$workerPoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/workerPools/{worker_pool}'
+            );
+        }
+
+        return self::$workerPoolNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'build' => self::getBuildNameTemplate(),
+                'channel' => self::getChannelNameTemplate(),
+                'connector' => self::getConnectorNameTemplate(),
+                'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'function' => self::getFunctionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'repository' => self::getRepositoryNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
+                'trigger' => self::getTriggerNameTemplate(),
+                'workerPool' => self::getWorkerPoolNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a build
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $build
+     *
+     * @return string The formatted build resource.
+     */
+    public static function buildName($project, $location, $build)
+    {
+        return self::getBuildNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'build' => $build,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a channel
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $channel
+     *
+     * @return string The formatted channel resource.
+     */
+    public static function channelName($project, $location, $channel)
+    {
+        return self::getChannelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'channel' => $channel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a connector
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connector
+     *
+     * @return string The formatted connector resource.
+     */
+    public static function connectorName($project, $location, $connector)
+    {
+        return self::getConnectorNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connector' => $connector,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
+        return self::getCryptoKeyNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
     }
 
     /**
@@ -250,11 +449,113 @@ class FunctionServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a repository
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     *
+     * @return string The formatted repository resource.
+     */
+    public static function repositoryName($project, $location, $repository)
+    {
+        return self::getRepositoryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a trigger
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $trigger
+     *
+     * @return string The formatted trigger resource.
+     */
+    public static function triggerName($project, $location, $trigger)
+    {
+        return self::getTriggerNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'trigger' => $trigger,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a worker_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workerPool
+     *
+     * @return string The formatted worker_pool resource.
+     */
+    public static function workerPoolName($project, $location, $workerPool)
+    {
+        return self::getWorkerPoolNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'worker_pool' => $workerPool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - build: projects/{project}/locations/{location}/builds/{build}
+     * - channel: projects/{project}/locations/{location}/channels/{channel}
+     * - connector: projects/{project}/locations/{location}/connectors/{connector}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - function: projects/{project}/locations/{location}/functions/{function}
      * - location: projects/{project}/locations/{location}
+     * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - service: projects/{project}/locations/{location}/services/{service}
+     * - topic: projects/{project}/topics/{topic}
+     * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
+     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -336,9 +637,6 @@ class FunctionServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudfunctions.googleapis.com:443'.
@@ -368,7 +666,7 @@ class FunctionServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -409,7 +707,7 @@ class FunctionServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -426,7 +724,7 @@ class FunctionServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -436,8 +734,8 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The project and location in which the function should be created, specified
-     *                                 in the format `projects/&#42;/locations/*`
+     * @param string     $parent       Required. The project and location in which the function should be created,
+     *                                 specified in the format `projects/&#42;/locations/*`
      * @param PBFunction $function     Required. Function to be created.
      * @param array      $optionalArgs {
      *     Optional.
@@ -574,8 +872,8 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of function for which source code Google Cloud Storage signed
-     *                             URL should be generated.
+     * @param string $name         Required. The name of function for which source code Google Cloud Storage
+     *                             signed URL should be generated.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -645,11 +943,27 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location in which the Google Cloud Storage signed URL
-     *                             should be generated, specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The project and location in which the Google Cloud Storage signed
+     *                             URL should be generated, specified in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $kmsKeyName
+     *           [Preview] Resource name of a KMS crypto key (managed by the user) used to
+     *           encrypt/decrypt function source code objects in intermediate Cloud Storage
+     *           buckets. When you generate an upload url and upload your source code, it
+     *           gets copied to an intermediate Cloud Storage bucket. The source code is
+     *           then copied to a versioned directory in the sources bucket in the consumer
+     *           project during the function deployment.
+     *
+     *           It must match the pattern
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *
+     *           The Google Cloud Functions service account
+     *           (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     *           granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
+     *           (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
+     *           Key/KeyRing/Project/Organization (least access preferred).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -666,6 +980,10 @@ class FunctionServiceGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['kmsKeyName'])) {
+            $request->setKmsKeyName($optionalArgs['kmsKeyName']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -754,12 +1072,12 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the function should be listed,
-     *                             specified in the format `projects/&#42;/locations/*`
-     *                             If you want to list functions in all locations, use "-" in place of a
-     *                             location. When listing functions in all locations, if one or more
-     *                             location(s) are unreachable, the response will contain functions from all
-     *                             reachable locations along with the names of any unreachable locations.
+     * @param string $parent       Required. The project and location from which the function should be
+     *                             listed, specified in the format `projects/&#42;/locations/*` If you want to
+     *                             list functions in all locations, use "-" in place of a location. When
+     *                             listing functions in all locations, if one or more location(s) are
+     *                             unreachable, the response will contain functions from all reachable
+     *                             locations along with the names of any unreachable locations.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -839,8 +1157,8 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the runtimes should be listed,
-     *                             specified in the format `projects/&#42;/locations/*`
+     * @param string $parent       Required. The project and location from which the runtimes should be
+     *                             listed, specified in the format `projects/&#42;/locations/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -893,7 +1211,7 @@ class FunctionServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -910,7 +1228,7 @@ class FunctionServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

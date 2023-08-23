@@ -57,6 +57,4 @@ class ConfigView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfigView::class, \Google\Cloud\ApiGateway\V1\GetApiConfigRequest_ConfigView::class);
 

@@ -35,7 +35,7 @@ class AutoMlSmokeTest extends SystemTestCase
     private static $location = 'us-central1';
     private static $hasSetUp = false;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -88,7 +88,7 @@ class AutoMlSmokeTest extends SystemTestCase
 
     public function clientsProvider()
     {
-        self::set_up_before_class();
+        self::setUpBeforeClass();
         return self::$clients;
     }
 }

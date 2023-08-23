@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [IndexService.CreateIndex][google.cloud.aiplatform.v1.IndexService.CreateIndex].
+ * Request message for
+ * [IndexService.CreateIndex][google.cloud.aiplatform.v1.IndexService.CreateIndex].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateIndexRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $index = null;
+
+    /**
+     * @param string                            $parent Required. The resource name of the Location to create the Index in.
+     *                                                  Format: `projects/{project}/locations/{location}`
+     *                                                  Please see {@see IndexServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Index $index  Required. The Index to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Index $index): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIndex($index);
+    }
 
     /**
      * Constructor.

@@ -29,10 +29,19 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
      *           The identifier of the transaction in which to read. A
      *           transaction identifier is returned by a call to
      *           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+     *     @type \Google\Cloud\Datastore\V1\TransactionOptions $new_transaction
+     *           Options for beginning a new transaction for this request.
+     *           The new transaction identifier will be returned in the corresponding
+     *           response as either
+     *           [LookupResponse.transaction][google.datastore.v1.LookupResponse.transaction]
+     *           or
+     *           [RunQueryResponse.transaction][google.datastore.v1.RunQueryResponse.transaction].
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Reads entities as they were at the given time. This may not be older
-     *           than 270 seconds.  This value is only supported for Cloud Firestore in
-     *           Datastore mode.
+     *           Reads entities as they were at the given time. This value is only
+     *           supported for Cloud Firestore in Datastore mode.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,9 +116,52 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads entities as they were at the given time. This may not be older
-     * than 270 seconds.  This value is only supported for Cloud Firestore in
-     * Datastore mode.
+     * Options for beginning a new transaction for this request.
+     * The new transaction identifier will be returned in the corresponding
+     * response as either
+     * [LookupResponse.transaction][google.datastore.v1.LookupResponse.transaction]
+     * or
+     * [RunQueryResponse.transaction][google.datastore.v1.RunQueryResponse.transaction].
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions new_transaction = 3;</code>
+     * @return \Google\Cloud\Datastore\V1\TransactionOptions|null
+     */
+    public function getNewTransaction()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasNewTransaction()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Options for beginning a new transaction for this request.
+     * The new transaction identifier will be returned in the corresponding
+     * response as either
+     * [LookupResponse.transaction][google.datastore.v1.LookupResponse.transaction]
+     * or
+     * [RunQueryResponse.transaction][google.datastore.v1.RunQueryResponse.transaction].
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions new_transaction = 3;</code>
+     * @param \Google\Cloud\Datastore\V1\TransactionOptions $var
+     * @return $this
+     */
+    public function setNewTransaction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Reads entities as they were at the given time. This value is only
+     * supported for Cloud Firestore in Datastore mode.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -125,9 +177,11 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads entities as they were at the given time. This may not be older
-     * than 270 seconds.  This value is only supported for Cloud Firestore in
-     * Datastore mode.
+     * Reads entities as they were at the given time. This value is only
+     * supported for Cloud Firestore in Datastore mode.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var

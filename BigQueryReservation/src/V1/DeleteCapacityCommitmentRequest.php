@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.DeleteCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.DeleteCapacityCommitment].
+ * The request for
+ * [ReservationService.DeleteCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.DeleteCapacityCommitment].
  *
  * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.DeleteCapacityCommitmentRequest</code>
  */
@@ -30,6 +31,21 @@ class DeleteCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool force = 3;</code>
      */
     private $force = false;
+
+    /**
+     * @param string $name Required. Resource name of the capacity commitment to delete. E.g.,
+     *                     `projects/myproject/locations/US/capacityCommitments/123`
+     *                     Please see {@see ReservationServiceClient::capacityCommitmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

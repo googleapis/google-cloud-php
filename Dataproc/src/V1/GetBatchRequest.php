@@ -16,11 +16,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetBatchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the batch to retrieve.
+     * Required. The fully qualified name of the batch to retrieve
+     * in the format
+     * "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The fully qualified name of the batch to retrieve
+     *                     in the format
+     *                     "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     *                     Please see {@see BatchControllerClient::batchName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\GetBatchRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -29,7 +47,9 @@ class GetBatchRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the batch to retrieve.
+     *           Required. The fully qualified name of the batch to retrieve
+     *           in the format
+     *           "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +58,9 @@ class GetBatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the batch to retrieve.
+     * Required. The fully qualified name of the batch to retrieve
+     * in the format
+     * "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +71,9 @@ class GetBatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the batch to retrieve.
+     * Required. The fully qualified name of the batch to retrieve
+     * in the format
+     * "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

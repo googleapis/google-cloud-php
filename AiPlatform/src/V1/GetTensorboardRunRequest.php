@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [TensorboardService.GetTensorboardRun][google.cloud.aiplatform.v1.TensorboardService.GetTensorboardRun].
+ * Request message for
+ * [TensorboardService.GetTensorboardRun][google.cloud.aiplatform.v1.TensorboardService.GetTensorboardRun].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetTensorboardRunRequest</code>
  */
@@ -23,6 +24,22 @@ class GetTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the TensorboardRun resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                     Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetTensorboardRunRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

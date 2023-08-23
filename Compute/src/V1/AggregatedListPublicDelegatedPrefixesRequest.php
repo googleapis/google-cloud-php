@@ -59,6 +59,19 @@ class AggregatedListPublicDelegatedPrefixesRequest extends \Google\Protobuf\Inte
     private $return_partial_success = null;
 
     /**
+     * @param string $project Name of the project scoping this request.
+     *
+     * @return \Google\Cloud\Compute\V1\AggregatedListPublicDelegatedPrefixesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project): self
+    {
+        return (new self())
+            ->setProject($project);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

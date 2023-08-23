@@ -55,7 +55,7 @@ function start_environment_sample(): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var StartEnvironmentResponse $response */
+            /** @var StartEnvironmentResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

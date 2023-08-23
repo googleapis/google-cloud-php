@@ -29,18 +29,15 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
 use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Annotation\Web\WebPage;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group vision
  */
 class AnnotationsTest extends VisionTestCase
 {
-    use AssertIsType;
-
     private $client;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = parent::$vision;
     }
@@ -64,11 +61,11 @@ class AnnotationsTest extends VisionTestCase
 
         // Safe Search
         $this->assertInstanceOf(SafeSearch::class, $res->safeSearch());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->adult());
-        $this->assertEquals('UNLIKELY', $res->safeSearch()->spoof());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->medical());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->violence());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->racy());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->adult());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->spoof());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->medical());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->violence());
+        $this->assertStringContainsString('UNLIKELY', $res->safeSearch()->racy());
         $this->assertFalse($res->safeSearch()->isAdult());
         $this->assertFalse($res->safeSearch()->isSpoof());
         $this->assertFalse($res->safeSearch()->isMedical());

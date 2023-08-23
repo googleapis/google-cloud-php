@@ -78,9 +78,7 @@ class SigningHelper
      */
     public function sign(ConnectionInterface $connection, $expires, $resource, $generation, array $options)
     {
-        $version = isset($options['version'])
-            ? $options['version']
-            : self::DEFAULT_URL_SIGNING_VERSION;
+        $version = $options['version'] ?? self::DEFAULT_URL_SIGNING_VERSION;
 
         unset($options['version']);
 
@@ -790,9 +788,7 @@ class SigningHelper
      */
     private function getSigningCredentials(ConnectionInterface $connection, array $options)
     {
-        $keyFilePath = isset($options['keyFilePath'])
-            ? $options['keyFilePath']
-            : null;
+        $keyFilePath = $options['keyFilePath'] ?? null;
 
         if ($keyFilePath) {
             if (!file_exists($keyFilePath)) {
@@ -807,13 +803,9 @@ class SigningHelper
 
         $rw = $connection->requestWrapper();
 
-        $keyFile = isset($options['keyFile'])
-            ? $options['keyFile']
-            : null;
+        $keyFile = $options['keyFile'] ?? null;
         if ($keyFile) {
-            $scopes = isset($options['scopes'])
-                ? $options['scopes']
-                : $rw->scopes();
+            $scopes = $options['scopes'] ?? $rw->scopes();
 
             $credentials = CredentialsLoader::makeCredentials($scopes, $keyFile);
         } else {

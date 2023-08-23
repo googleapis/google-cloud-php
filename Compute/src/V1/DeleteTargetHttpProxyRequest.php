@@ -35,6 +35,21 @@ class DeleteTargetHttpProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_http_proxy = '';
 
     /**
+     * @param string $project         Project ID for this request.
+     * @param string $targetHttpProxy Name of the TargetHttpProxy resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteTargetHttpProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetHttpProxy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetHttpProxy($targetHttpProxy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

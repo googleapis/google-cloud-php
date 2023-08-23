@@ -18,15 +18,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class AzureNodePoolAutoscaling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Minimum number of nodes in the node pool. Must be greater than or equal to
-     * 1 and less than or equal to max_node_count.
+     * Required. Minimum number of nodes in the node pool. Must be greater than or
+     * equal to 1 and less than or equal to max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $min_node_count = 0;
     /**
-     * Required. Maximum number of nodes in the node pool. Must be greater than or equal to
-     * min_node_count and less than or equal to 50.
+     * Required. Maximum number of nodes in the node pool. Must be greater than or
+     * equal to min_node_count and less than or equal to 50.
      *
      * Generated from protobuf field <code>int32 max_node_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,11 +39,11 @@ class AzureNodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $min_node_count
-     *           Required. Minimum number of nodes in the node pool. Must be greater than or equal to
-     *           1 and less than or equal to max_node_count.
+     *           Required. Minimum number of nodes in the node pool. Must be greater than or
+     *           equal to 1 and less than or equal to max_node_count.
      *     @type int $max_node_count
-     *           Required. Maximum number of nodes in the node pool. Must be greater than or equal to
-     *           min_node_count and less than or equal to 50.
+     *           Required. Maximum number of nodes in the node pool. Must be greater than or
+     *           equal to min_node_count and less than or equal to 50.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,8 +52,8 @@ class AzureNodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Minimum number of nodes in the node pool. Must be greater than or equal to
-     * 1 and less than or equal to max_node_count.
+     * Required. Minimum number of nodes in the node pool. Must be greater than or
+     * equal to 1 and less than or equal to max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -64,8 +64,8 @@ class AzureNodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Minimum number of nodes in the node pool. Must be greater than or equal to
-     * 1 and less than or equal to max_node_count.
+     * Required. Minimum number of nodes in the node pool. Must be greater than or
+     * equal to 1 and less than or equal to max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -80,8 +80,8 @@ class AzureNodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maximum number of nodes in the node pool. Must be greater than or equal to
-     * min_node_count and less than or equal to 50.
+     * Required. Maximum number of nodes in the node pool. Must be greater than or
+     * equal to min_node_count and less than or equal to 50.
      *
      * Generated from protobuf field <code>int32 max_node_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -92,8 +92,8 @@ class AzureNodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maximum number of nodes in the node pool. Must be greater than or equal to
-     * min_node_count and less than or equal to 50.
+     * Required. Maximum number of nodes in the node pool. Must be greater than or
+     * equal to min_node_count and less than or equal to 50.
      *
      * Generated from protobuf field <code>int32 max_node_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

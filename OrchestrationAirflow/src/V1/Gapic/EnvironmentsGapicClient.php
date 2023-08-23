@@ -26,22 +26,32 @@ namespace Google\Cloud\Orchestration\Airflow\Service\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateEnvironmentRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseFailoverRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\GetEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateEnvironmentRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -59,7 +69,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -76,7 +86,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -85,37 +95,40 @@ use Google\Protobuf\FieldMask;
  *     $environmentsClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient} to use
+ * the new surface.
  */
 class EnvironmentsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.orchestration.airflow.service.v1.Environments';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'composer.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $environmentNameTemplate;
+
+    private static $pathTemplateMap;
 
     private $operationsClient;
 
@@ -142,6 +155,92 @@ class EnvironmentsGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getEnvironmentNameTemplate()
+    {
+        if (self::$environmentNameTemplate == null) {
+            self::$environmentNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/environments/{environment}'
+            );
+        }
+
+        return self::$environmentNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'environment' => self::getEnvironmentNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a environment
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     *
+     * @return string The formatted environment resource.
+     */
+    public static function environmentName($project, $location, $environment)
+    {
+        return self::getEnvironmentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - environment: projects/{project}/locations/{location}/environments/{environment}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -185,9 +284,6 @@ class EnvironmentsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'composer.googleapis.com:443'.
@@ -217,7 +313,7 @@ class EnvironmentsGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -254,7 +350,7 @@ class EnvironmentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -271,7 +367,7 @@ class EnvironmentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -320,6 +416,83 @@ class EnvironmentsGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'CreateEnvironment',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Triggers database failover (only for highly resilient environments).
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $operationResponse = $environmentsClient->databaseFailover();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $environmentsClient->databaseFailover();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $environmentsClient->resumeOperation($operationName, 'databaseFailover');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $environment
+     *           Target environment:
+     *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function databaseFailover(array $optionalArgs = [])
+    {
+        $request = new DatabaseFailoverRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+            $requestParamHeaders['environment'] = $optionalArgs['environment'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DatabaseFailover',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -398,6 +571,130 @@ class EnvironmentsGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Executes Airflow CLI command.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $response = $environmentsClient->executeAirflowCommand();
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $environment
+     *           The resource name of the environment in the form:
+     *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}".
+     *     @type string $command
+     *           Airflow command.
+     *     @type string $subcommand
+     *           Airflow subcommand.
+     *     @type string[] $parameters
+     *           Parameters for the Airflow command/subcommand as an array of arguments.
+     *           It may contain positional arguments like `["my-dag-id"]`, key-value
+     *           parameters like `["--foo=bar"]` or `["--foo","bar"]`,
+     *           or other flags like `["-f"]`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function executeAirflowCommand(array $optionalArgs = [])
+    {
+        $request = new ExecuteAirflowCommandRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+            $requestParamHeaders['environment'] = $optionalArgs['environment'];
+        }
+
+        if (isset($optionalArgs['command'])) {
+            $request->setCommand($optionalArgs['command']);
+        }
+
+        if (isset($optionalArgs['subcommand'])) {
+            $request->setSubcommand($optionalArgs['subcommand']);
+        }
+
+        if (isset($optionalArgs['parameters'])) {
+            $request->setParameters($optionalArgs['parameters']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ExecuteAirflowCommand',
+            ExecuteAirflowCommandResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Fetches database properties.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedEnvironment = $environmentsClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
+     *     $response = $environmentsClient->fetchDatabaseProperties($formattedEnvironment);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $environment  Required. The resource name of the environment, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function fetchDatabaseProperties(
+        $environment,
+        array $optionalArgs = []
+    ) {
+        $request = new FetchDatabasePropertiesRequest();
+        $requestParamHeaders = [];
+        $request->setEnvironment($environment);
+        $requestParamHeaders['environment'] = $environment;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'FetchDatabaseProperties',
+            FetchDatabasePropertiesResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -535,6 +832,369 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Loads a snapshot of a Cloud Composer environment.
+     *
+     * As a result of this operation, a snapshot of environment's specified in
+     * LoadSnapshotRequest is loaded into the environment.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $operationResponse = $environmentsClient->loadSnapshot();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $environmentsClient->loadSnapshot();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $environmentsClient->resumeOperation($operationName, 'loadSnapshot');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $environment
+     *           The resource name of the target environment in the form:
+     *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *     @type string $snapshotPath
+     *           A Cloud Storage path to a snapshot to load, e.g.:
+     *           "gs://my-bucket/snapshots/project_location_environment_timestamp".
+     *     @type bool $skipPypiPackagesInstallation
+     *           Whether or not to skip installing Pypi packages when loading the
+     *           environment's state.
+     *     @type bool $skipEnvironmentVariablesSetting
+     *           Whether or not to skip setting environment variables when loading the
+     *           environment's state.
+     *     @type bool $skipAirflowOverridesSetting
+     *           Whether or not to skip setting Airflow overrides when loading the
+     *           environment's state.
+     *     @type bool $skipGcsDataCopying
+     *           Whether or not to skip copying Cloud Storage data when loading the
+     *           environment's state.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function loadSnapshot(array $optionalArgs = [])
+    {
+        $request = new LoadSnapshotRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+            $requestParamHeaders['environment'] = $optionalArgs['environment'];
+        }
+
+        if (isset($optionalArgs['snapshotPath'])) {
+            $request->setSnapshotPath($optionalArgs['snapshotPath']);
+        }
+
+        if (isset($optionalArgs['skipPypiPackagesInstallation'])) {
+            $request->setSkipPypiPackagesInstallation(
+                $optionalArgs['skipPypiPackagesInstallation']
+            );
+        }
+
+        if (isset($optionalArgs['skipEnvironmentVariablesSetting'])) {
+            $request->setSkipEnvironmentVariablesSetting(
+                $optionalArgs['skipEnvironmentVariablesSetting']
+            );
+        }
+
+        if (isset($optionalArgs['skipAirflowOverridesSetting'])) {
+            $request->setSkipAirflowOverridesSetting(
+                $optionalArgs['skipAirflowOverridesSetting']
+            );
+        }
+
+        if (isset($optionalArgs['skipGcsDataCopying'])) {
+            $request->setSkipGcsDataCopying(
+                $optionalArgs['skipGcsDataCopying']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'LoadSnapshot',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Polls Airflow CLI command execution and fetches logs.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $response = $environmentsClient->pollAirflowCommand();
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $environment
+     *           The resource name of the environment in the form:
+     *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *     @type string $executionId
+     *           The unique ID of the command execution.
+     *     @type string $pod
+     *           The name of the pod where the command is executed.
+     *     @type string $podNamespace
+     *           The namespace of the pod where the command is executed.
+     *     @type int $nextLineNumber
+     *           Line number from which new logs should be fetched.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function pollAirflowCommand(array $optionalArgs = [])
+    {
+        $request = new PollAirflowCommandRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+            $requestParamHeaders['environment'] = $optionalArgs['environment'];
+        }
+
+        if (isset($optionalArgs['executionId'])) {
+            $request->setExecutionId($optionalArgs['executionId']);
+        }
+
+        if (isset($optionalArgs['pod'])) {
+            $request->setPod($optionalArgs['pod']);
+        }
+
+        if (isset($optionalArgs['podNamespace'])) {
+            $request->setPodNamespace($optionalArgs['podNamespace']);
+        }
+
+        if (isset($optionalArgs['nextLineNumber'])) {
+            $request->setNextLineNumber($optionalArgs['nextLineNumber']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'PollAirflowCommand',
+            PollAirflowCommandResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a snapshots of a Cloud Composer environment.
+     *
+     * As a result of this operation, snapshot of environment's state is stored
+     * in a location specified in the SaveSnapshotRequest.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $operationResponse = $environmentsClient->saveSnapshot();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $environmentsClient->saveSnapshot();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $environmentsClient->resumeOperation($operationName, 'saveSnapshot');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $environment
+     *           The resource name of the source environment in the form:
+     *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     *     @type string $snapshotLocation
+     *           Location in a Cloud Storage where the snapshot is going to be stored, e.g.:
+     *           "gs://my-bucket/snapshots".
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function saveSnapshot(array $optionalArgs = [])
+    {
+        $request = new SaveSnapshotRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+            $requestParamHeaders['environment'] = $optionalArgs['environment'];
+        }
+
+        if (isset($optionalArgs['snapshotLocation'])) {
+            $request->setSnapshotLocation($optionalArgs['snapshotLocation']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'SaveSnapshot',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Stops Airflow CLI command execution.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $response = $environmentsClient->stopAirflowCommand();
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $environment
+     *           The resource name of the environment in the form:
+     *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}".
+     *     @type string $executionId
+     *           The unique ID of the command execution.
+     *     @type string $pod
+     *           The name of the pod where the command is executed.
+     *     @type string $podNamespace
+     *           The namespace of the pod where the command is executed.
+     *     @type bool $force
+     *           If true, the execution is terminated forcefully (SIGKILL). If false, the
+     *           execution is stopped gracefully, giving it time for cleanup.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function stopAirflowCommand(array $optionalArgs = [])
+    {
+        $request = new StopAirflowCommandRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+            $requestParamHeaders['environment'] = $optionalArgs['environment'];
+        }
+
+        if (isset($optionalArgs['executionId'])) {
+            $request->setExecutionId($optionalArgs['executionId']);
+        }
+
+        if (isset($optionalArgs['pod'])) {
+            $request->setPod($optionalArgs['pod']);
+        }
+
+        if (isset($optionalArgs['podNamespace'])) {
+            $request->setPodNamespace($optionalArgs['podNamespace']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'StopAirflowCommand',
+            StopAirflowCommandResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Update an environment.
      *
      * Sample code:
@@ -545,7 +1205,7 @@ class EnvironmentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -562,7 +1222,7 @@ class EnvironmentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -668,13 +1328,10 @@ class EnvironmentsGapicClient
      *           * `config.nodeCount`
      *           * Horizontally scale the number of nodes in the environment. An integer
      *           greater than or equal to 3 must be provided in the `config.nodeCount`
-     *           field.
+     *           field. Supported for Cloud Composer environments in versions
+     *           composer-1.*.*-airflow-*.*.*.
      *           * `config.webServerNetworkAccessControl`
      *           * Replace the environment's current `WebServerNetworkAccessControl`.
-     *           * `config.databaseConfig`
-     *           * Replace the environment's current `DatabaseConfig`.
-     *           * `config.webServerConfig`
-     *           * Replace the environment's current `WebServerConfig`.
      *           * `config.softwareConfig.airflowConfigOverrides`
      *           * Replace all Apache Airflow config overrides. If a replacement config
      *           overrides map is not included in `environment`, all config overrides
@@ -692,9 +1349,22 @@ class EnvironmentsGapicClient
      *           * `config.softwareConfig.envVariables`
      *           * Replace all environment variables. If a replacement environment
      *           variable map is not included in `environment`, all custom environment
-     *           variables  are cleared.
-     *           It is an error to provide both this mask and a mask specifying one or
-     *           more individual environment variables.
+     *           variables are cleared.
+     *           * `config.softwareConfig.schedulerCount`
+     *           * Horizontally scale the number of schedulers in Airflow. A positive
+     *           integer not greater than the number of nodes must be provided in the
+     *           `config.softwareConfig.schedulerCount` field. Supported for Cloud
+     *           Composer environments in versions composer-1.*.*-airflow-2.*.*.
+     *           * `config.databaseConfig.machineType`
+     *           * Cloud SQL machine type used by Airflow database.
+     *           It has to be one of: db-n1-standard-2, db-n1-standard-4,
+     *           db-n1-standard-8 or db-n1-standard-16. Supported for Cloud Composer
+     *           environments in versions composer-1.*.*-airflow-*.*.*.
+     *           * `config.webServerConfig.machineType`
+     *           * Machine type on which Airflow web server is running.
+     *           It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4
+     *           or composer-n1-webserver-8. Supported for Cloud Composer environments
+     *           in versions composer-1.*.*-airflow-*.*.*.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

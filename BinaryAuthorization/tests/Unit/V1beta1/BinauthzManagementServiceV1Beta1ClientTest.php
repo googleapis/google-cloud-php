@@ -23,11 +23,9 @@
 namespace Google\Cloud\BinaryAuthorization\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule;
 use Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule\EnforcementMode;
 use Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule\EvaluationMode;
@@ -46,25 +44,19 @@ use stdClass;
  */
 class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return BinauthzManagementServiceV1Beta1Client
-     */
+    /** @return BinauthzManagementServiceV1Beta1Client */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +65,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         return new BinauthzManagementServiceV1Beta1Client($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAttestorTest()
     {
         $transport = $this->createTransport();
@@ -112,9 +102,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAttestorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -151,9 +139,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAttestorTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +163,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAttestorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -212,9 +196,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAttestorTest()
     {
         $transport = $this->createTransport();
@@ -243,9 +225,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAttestorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -278,9 +258,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyTest()
     {
         $transport = $this->createTransport();
@@ -309,9 +287,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -344,9 +320,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAttestorsTest()
     {
         $transport = $this->createTransport();
@@ -381,9 +355,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAttestorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -416,9 +388,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAttestorTest()
     {
         $transport = $this->createTransport();
@@ -449,9 +419,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAttestorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -486,9 +454,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePolicyTest()
     {
         $transport = $this->createTransport();
@@ -523,9 +489,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePolicyExceptionTest()
     {
         $transport = $this->createTransport();

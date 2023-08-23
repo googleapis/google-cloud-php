@@ -66,6 +66,4 @@ class HorizontalAlignment
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HorizontalAlignment::class, \Google\Cloud\Dialogflow\V2\Intent_Message_ColumnProperties_HorizontalAlignment::class);
 

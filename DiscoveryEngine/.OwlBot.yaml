@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/discoveryengine/(v1|v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/DiscoveryEngine/$1/$2
+api-name: DiscoveryEngine

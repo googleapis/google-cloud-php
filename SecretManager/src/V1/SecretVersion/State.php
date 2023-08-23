@@ -7,7 +7,9 @@ namespace Google\Cloud\SecretManager\V1\SecretVersion;
 use UnexpectedValueException;
 
 /**
- * The state of a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion], indicating if it can be accessed.
+ * The state of a
+ * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion], indicating if
+ * it can be accessed.
  *
  * Protobuf type <code>google.cloud.secretmanager.v1.SecretVersion.State</code>
  */
@@ -20,22 +22,26 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * The [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] may be accessed.
+     * The [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] may be
+     * accessed.
      *
      * Generated from protobuf enum <code>ENABLED = 1;</code>
      */
     const ENABLED = 1;
     /**
-     * The [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] may not be accessed, but the secret data
-     * is still available and can be placed back into the [ENABLED][google.cloud.secretmanager.v1.SecretVersion.State.ENABLED]
+     * The [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] may not
+     * be accessed, but the secret data is still available and can be placed
+     * back into the
+     * [ENABLED][google.cloud.secretmanager.v1.SecretVersion.State.ENABLED]
      * state.
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */
     const DISABLED = 2;
     /**
-     * The [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] is destroyed and the secret data is no longer
-     * stored. A version may not leave this state once entered.
+     * The [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] is
+     * destroyed and the secret data is no longer stored. A version may not
+     * leave this state once entered.
      *
      * Generated from protobuf enum <code>DESTROYED = 3;</code>
      */

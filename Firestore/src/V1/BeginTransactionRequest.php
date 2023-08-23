@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.BeginTransaction][google.firestore.v1.Firestore.BeginTransaction].
+ * The request for
+ * [Firestore.BeginTransaction][google.firestore.v1.Firestore.BeginTransaction].
  *
  * Generated from protobuf message <code>google.firestore.v1.BeginTransactionRequest</code>
  */
@@ -29,6 +30,20 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions options = 2;</code>
      */
     private $options = null;
+
+    /**
+     * @param string $database Required. The database name. In the format:
+     *                         `projects/{project_id}/databases/{database_id}`.
+     *
+     * @return \Google\Cloud\Firestore\V1\BeginTransactionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $database): self
+    {
+        return (new self())
+            ->setDatabase($database);
+    }
 
     /**
      * Constructor.

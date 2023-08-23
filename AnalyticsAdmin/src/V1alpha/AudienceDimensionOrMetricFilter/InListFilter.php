@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InListFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The list of possible string values to match against. Must be non-empty.
+     * Required. The list of possible string values to match against. Must be
+     * non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,7 +37,8 @@ class InListFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
-     *           Required. The list of possible string values to match against. Must be non-empty.
+     *           Required. The list of possible string values to match against. Must be
+     *           non-empty.
      *     @type bool $case_sensitive
      *           Optional. If true, the match is case-sensitive. If false, the match is
      *           case-insensitive.
@@ -48,7 +50,8 @@ class InListFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of possible string values to match against. Must be non-empty.
+     * Required. The list of possible string values to match against. Must be
+     * non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -59,7 +62,8 @@ class InListFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of possible string values to match against. Must be non-empty.
+     * Required. The list of possible string values to match against. Must be
+     * non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

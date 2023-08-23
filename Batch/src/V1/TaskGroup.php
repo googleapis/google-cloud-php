@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A TaskGroup contains one or multiple Tasks that share the same
- * Runnable but with different runtime parameters.
+ * A TaskGroup defines one or more Tasks that all share the same TaskSpec.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.TaskGroup</code>
  */
@@ -33,7 +32,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
     private $task_spec = null;
     /**
      * Number of Tasks in the TaskGroup.
-     * default is 1
+     * Default is 1.
      *
      * Generated from protobuf field <code>int64 task_count = 4;</code>
      */
@@ -41,10 +40,18 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
     /**
      * Max number of tasks that can run in parallel.
      * Default to min(task_count, 1000).
+     * Field parallelism must be 1 if the scheduling_policy is IN_ORDER.
      *
      * Generated from protobuf field <code>int64 parallelism = 5;</code>
      */
     private $parallelism = 0;
+    /**
+     * Scheduling policy for Tasks in the TaskGroup.
+     * The default value is AS_SOON_AS_POSSIBLE.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.TaskGroup.SchedulingPolicy scheduling_policy = 6;</code>
+     */
+    private $scheduling_policy = 0;
     /**
      * An array of environment variable mappings, which are passed to Tasks with
      * matching indices. If task_environments is used then task_count should
@@ -54,7 +61,6 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      * addition to any environment variables set in task_environments, specifying
      * the number of Tasks in the Task's parent TaskGroup, and the specific Task's
      * index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).
-     * task_environments supports up to 200 entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Environment task_environments = 9;</code>
      */
@@ -98,10 +104,14 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *           Required. Tasks in the group share the same task spec.
      *     @type int|string $task_count
      *           Number of Tasks in the TaskGroup.
-     *           default is 1
+     *           Default is 1.
      *     @type int|string $parallelism
      *           Max number of tasks that can run in parallel.
      *           Default to min(task_count, 1000).
+     *           Field parallelism must be 1 if the scheduling_policy is IN_ORDER.
+     *     @type int $scheduling_policy
+     *           Scheduling policy for Tasks in the TaskGroup.
+     *           The default value is AS_SOON_AS_POSSIBLE.
      *     @type array<\Google\Cloud\Batch\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $task_environments
      *           An array of environment variable mappings, which are passed to Tasks with
      *           matching indices. If task_environments is used then task_count should
@@ -111,7 +121,6 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *           addition to any environment variables set in task_environments, specifying
      *           the number of Tasks in the Task's parent TaskGroup, and the specific Task's
      *           index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).
-     *           task_environments supports up to 200 entries.
      *     @type int|string $task_count_per_node
      *           Max number of tasks that can be run on a VM at the same time.
      *           If not specified, the system will decide a value based on available
@@ -200,7 +209,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of Tasks in the TaskGroup.
-     * default is 1
+     * Default is 1.
      *
      * Generated from protobuf field <code>int64 task_count = 4;</code>
      * @return int|string
@@ -212,7 +221,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of Tasks in the TaskGroup.
-     * default is 1
+     * Default is 1.
      *
      * Generated from protobuf field <code>int64 task_count = 4;</code>
      * @param int|string $var
@@ -229,6 +238,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
     /**
      * Max number of tasks that can run in parallel.
      * Default to min(task_count, 1000).
+     * Field parallelism must be 1 if the scheduling_policy is IN_ORDER.
      *
      * Generated from protobuf field <code>int64 parallelism = 5;</code>
      * @return int|string
@@ -241,6 +251,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
     /**
      * Max number of tasks that can run in parallel.
      * Default to min(task_count, 1000).
+     * Field parallelism must be 1 if the scheduling_policy is IN_ORDER.
      *
      * Generated from protobuf field <code>int64 parallelism = 5;</code>
      * @param int|string $var
@@ -255,6 +266,34 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Scheduling policy for Tasks in the TaskGroup.
+     * The default value is AS_SOON_AS_POSSIBLE.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.TaskGroup.SchedulingPolicy scheduling_policy = 6;</code>
+     * @return int
+     */
+    public function getSchedulingPolicy()
+    {
+        return $this->scheduling_policy;
+    }
+
+    /**
+     * Scheduling policy for Tasks in the TaskGroup.
+     * The default value is AS_SOON_AS_POSSIBLE.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.TaskGroup.SchedulingPolicy scheduling_policy = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSchedulingPolicy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Batch\V1\TaskGroup\SchedulingPolicy::class);
+        $this->scheduling_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * An array of environment variable mappings, which are passed to Tasks with
      * matching indices. If task_environments is used then task_count should
      * not be specified in the request (and will be ignored). Task count will be
@@ -263,7 +302,6 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      * addition to any environment variables set in task_environments, specifying
      * the number of Tasks in the Task's parent TaskGroup, and the specific Task's
      * index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).
-     * task_environments supports up to 200 entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Environment task_environments = 9;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -282,7 +320,6 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      * addition to any environment variables set in task_environments, specifying
      * the number of Tasks in the Task's parent TaskGroup, and the specific Task's
      * index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).
-     * task_environments supports up to 200 entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Environment task_environments = 9;</code>
      * @param array<\Google\Cloud\Batch\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $var

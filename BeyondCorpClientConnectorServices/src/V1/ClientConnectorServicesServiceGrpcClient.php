@@ -19,12 +19,12 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1;
 
 /**
- * ## API Overview
+ * API Overview:
  *
  * The `beyondcorp.googleapis.com` service implements the Google Cloud
  * BeyondCorp API.
  *
- * ## Data Model
+ * Data Model:
  *
  * The ClientConnectorServicesService exposes the following resources:
  *

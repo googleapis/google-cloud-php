@@ -66,6 +66,4 @@ class IngressTrafficAllowed
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IngressTrafficAllowed::class, \Google\Cloud\AppEngine\V1\NetworkSettings_IngressTrafficAllowed::class);
 

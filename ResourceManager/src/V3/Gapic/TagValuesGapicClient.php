@@ -27,10 +27,8 @@ namespace Google\Cloud\ResourceManager\V3\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -45,6 +43,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V3\CreateTagValueRequest;
 use Google\Cloud\ResourceManager\V3\DeleteTagValueRequest;
+use Google\Cloud\ResourceManager\V3\GetNamespacedTagValueRequest;
 use Google\Cloud\ResourceManager\V3\GetTagValueRequest;
 use Google\Cloud\ResourceManager\V3\ListTagValuesRequest;
 use Google\Cloud\ResourceManager\V3\ListTagValuesResponse;
@@ -67,7 +66,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -84,7 +83,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -98,34 +97,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\ResourceManager\V3\Client\TagValuesClient} to use the new surface.
  */
 class TagValuesGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.resourcemanager.v3.TagValues';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudresourcemanager.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
@@ -267,9 +259,6 @@ class TagValuesGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudresourcemanager.googleapis.com:443'.
@@ -299,7 +288,7 @@ class TagValuesGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -328,7 +317,7 @@ class TagValuesGapicClient
     /**
      * Creates a TagValue as a child of the specified TagKey. If a another
      * request with the same parameters is sent while the original request is in
-     * process the second request will receive an error. A maximum of 300
+     * process the second request will receive an error. A maximum of 1000
      * TagValues can exist under a TagKey at any given time.
      *
      * Sample code:
@@ -340,7 +329,7 @@ class TagValuesGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -357,7 +346,7 @@ class TagValuesGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -367,14 +356,14 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param TagValue $tagValue     Required. The TagValue to be created. Only fields `short_name`, `description`,
-     *                               and `parent` are considered during the creation request.
+     * @param TagValue $tagValue     Required. The TagValue to be created. Only fields `short_name`,
+     *                               `description`, and `parent` are considered during the creation request.
      * @param array    $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set as true to perform the validations necessary for creating the resource,
-     *           but not actually perform the action.
+     *           Optional. Set as true to perform the validations necessary for creating the
+     *           resource, but not actually perform the action.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -409,7 +398,7 @@ class TagValuesGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -426,7 +415,7 @@ class TagValuesGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -436,16 +425,17 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name for TagValue to be deleted in the format tagValues/456.
+     * @param string $name         Required. Resource name for TagValue to be deleted in the format
+     *                             tagValues/456.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $validateOnly
-     *           Optional. Set as true to perform the validations necessary for deletion, but not
-     *           actually perform the action.
+     *           Optional. Set as true to perform the validations necessary for deletion,
+     *           but not actually perform the action.
      *     @type string $etag
-     *           Optional. The etag known to the client for the expected state of the TagValue. This
-     *           is to be used for optimistic concurrency.
+     *           Optional. The etag known to the client for the expected state of the
+     *           TagValue. This is to be used for optimistic concurrency.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -528,9 +518,53 @@ class TagValuesGapicClient
     }
 
     /**
-     * Retrieves TagValue. If the TagValue or namespaced name does not exist, or
-     * if the user does not have permission to view it, this method will return
-     * `PERMISSION_DENIED`.
+     * Retrieves a TagValue by its namespaced name.
+     * This method will return `PERMISSION_DENIED` if the value does not exist
+     * or the user does not have permission to view it.
+     *
+     * Sample code:
+     * ```
+     * $tagValuesClient = new TagValuesClient();
+     * try {
+     *     $formattedName = $tagValuesClient->tagValueName('[TAG_VALUE]');
+     *     $response = $tagValuesClient->getNamespacedTagValue($formattedName);
+     * } finally {
+     *     $tagValuesClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A namespaced tag value name in the following format:
+     *
+     *                             `{parentId}/{tagKeyShort}/{tagValueShort}`
+     *
+     *                             Examples:
+     *                             - `42/foo/abc` for a value with short name "abc" under the key with short
+     *                             name "foo" under the organization with ID 42
+     *                             - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with
+     *                             short name "bar" under the project with ID "r2-d2"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ResourceManager\V3\TagValue
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNamespacedTagValue($name, array $optionalArgs = [])
+    {
+        $request = new GetNamespacedTagValueRequest();
+        $request->setName($name);
+        return $this->startCall('GetNamespacedTagValue', TagValue::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieves a TagValue. This method will return `PERMISSION_DENIED` if the
+     * value does not exist or the user does not have permission to view it.
      *
      * Sample code:
      * ```
@@ -543,7 +577,8 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name for TagValue to be fetched in the format `tagValues/456`.
+     * @param string $name         Required. Resource name for TagValue to be fetched in the format
+     *                             `tagValues/456`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -594,8 +629,7 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name for TagKey, parent of the TagValues to be listed,
-     *                             in the format `tagKeys/123`.
+     * @param string $parent       Required.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -755,7 +789,7 @@ class TagValuesGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -772,7 +806,7 @@ class TagValuesGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -782,18 +816,18 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param TagValue $tagValue     Required. The new definition of the TagValue. Only fields `description` and `etag`
-     *                               fields can be updated by this request. If the `etag` field is nonempty, it
-     *                               must match the `etag` field of the existing ControlGroup. Otherwise,
-     *                               `FAILED_PRECONDITION` will be returned.
+     * @param TagValue $tagValue     Required. The new definition of the TagValue. Only fields `description` and
+     *                               `etag` fields can be updated by this request. If the `etag` field is
+     *                               nonempty, it must match the `etag` field of the existing ControlGroup.
+     *                               Otherwise, `ABORTED` will be returned.
      * @param array    $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. Fields to be updated.
      *     @type bool $validateOnly
-     *           Optional. True to perform validations necessary for updating the resource, but not
-     *           actually perform the action.
+     *           Optional. True to perform validations necessary for updating the resource,
+     *           but not actually perform the action.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

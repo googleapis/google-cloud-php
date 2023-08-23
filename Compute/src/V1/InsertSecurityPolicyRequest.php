@@ -41,6 +41,21 @@ class InsertSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\SecurityPolicy $securityPolicyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertSecurityPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\SecurityPolicy $securityPolicyResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setSecurityPolicyResource($securityPolicyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

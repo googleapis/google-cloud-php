@@ -25,16 +25,16 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\PsrLogger;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group logging
  */
 class PsrLoggerBatchTest extends TestCase
 {
-    use AssertStringContains;
+    use ProphecyTrait;
 
     const LOG_NAME = 'my-log';
 
@@ -44,7 +44,7 @@ class PsrLoggerBatchTest extends TestCase
     private static $logName;
     private static $entry;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->runner = $this->prophesize(BatchRunner::class);
         $this->logger = $this->prophesize(Logger::class);

@@ -47,6 +47,25 @@ class AddInstancesInstanceGroupRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string                                                     $project                                   Project ID for this request.
+     * @param string                                                     $zone                                      The name of the zone where the instance group is located.
+     * @param string                                                     $instanceGroup                             The name of the instance group where you are adding instances.
+     * @param \Google\Cloud\Compute\V1\InstanceGroupsAddInstancesRequest $instanceGroupsAddInstancesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddInstancesInstanceGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instanceGroup, \Google\Cloud\Compute\V1\InstanceGroupsAddInstancesRequest $instanceGroupsAddInstancesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstanceGroup($instanceGroup)
+            ->setInstanceGroupsAddInstancesRequestResource($instanceGroupsAddInstancesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

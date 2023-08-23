@@ -19,8 +19,7 @@ namespace Google\Cloud\Core\Tests\System\Batch;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -32,8 +31,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class BatchRunnerTest extends TestCase
 {
-    use AssertStringContains;
-
     private $runner;
 
     private static $daemon;
@@ -52,7 +49,7 @@ class BatchRunnerTest extends TestCase
         return rmdir($dir);
     }
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::$testDir = sprintf(
             '%s/google-cloud-system-test-%d',
@@ -93,7 +90,7 @@ class BatchRunnerTest extends TestCase
         }
     }
 
-    public static function tear_down_after_class()
+    public static function tearDownAfterClass(): void
     {
         @proc_terminate(self::$daemon);
         @proc_close(self::$daemon);
@@ -104,7 +101,7 @@ class BatchRunnerTest extends TestCase
         putenv('IS_BATCH_DAEMON_RUNNING');
     }
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->runner = new BatchRunner();
         $myJob = new MyJob(self::$commandFile, self::$targetFile);
@@ -136,22 +133,25 @@ class BatchRunnerTest extends TestCase
         // It should be still in the buffer.
         $this->assertEmpty($this->getResult());
         $this->runner->submitItem('batch-daemon-system-test', 'orange');
+        // This item should be picked by the call period.
+        sleep(1);
         $this->assertResultContains('APPLE');
         $this->assertResultContains('ORANGE');
 
-        // This item should be picked by the call period.
-        sleep(1);
         $this->runner->submitItem('batch-daemon-system-test', 'peach');
+        sleep(1);
         $this->assertResultContains('PEACH');
 
         // Failure simulation
         file_put_contents(self::$commandFile, 'fail');
 
         $this->runner->submitItem('batch-daemon-system-test', 'banana');
-        $this->runner->submitItem('batch-daemon-system-test', 'lemon');
+        $this->runner->submitItem('batch-daemon-system-test', 'lemon' . PHP_EOL);
+
+        sleep(1);
         $result = $this->getResult();
-        $this->assertNotContains('BANANA', $result);
-        $this->assertNotContains('LEMON', $result);
+        $this->assertStringNotContainsString('BANANA', $result);
+        $this->assertStringNotContainsString('LEMON' . PHP_EOL, $result);
 
         // Retry simulation
         unlink(self::$commandFile);
@@ -165,7 +165,9 @@ class BatchRunnerTest extends TestCase
             $retry = new Retry();
             $retry->retryAll();
         }
+        // sleep(1);
+        usleep(500000);
         $this->assertResultContains('BANANA');
-        $this->assertResultContains('LEMON');
+        $this->assertResultContains('LEMON' . PHP_EOL);
     }
 }

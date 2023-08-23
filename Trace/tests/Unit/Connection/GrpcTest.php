@@ -23,8 +23,9 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Trace\V2\Span;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group trace
@@ -32,12 +33,13 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
     use TimestampTrait;
 
     private $requestWrapper;
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

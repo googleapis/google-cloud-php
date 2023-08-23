@@ -35,6 +35,17 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $install_gpu_drivers = false;
+    /**
+     * Optional. The NVIDIA GPU driver version that should be installed for this
+     * type.
+     * You can define the specific driver version such as "470.103.01",
+     * following the driver version requirements in
+     * https://cloud.google.com/compute/docs/gpus/install-drivers-gpu#minimum-driver.
+     * Batch will install the specific accelerator driver if qualified.
+     *
+     * Generated from protobuf field <code>string driver_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $driver_version = '';
 
     /**
      * Constructor.
@@ -49,6 +60,13 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *           The number of accelerators of this type.
      *     @type bool $install_gpu_drivers
      *           Deprecated: please use instances[0].install_gpu_drivers instead.
+     *     @type string $driver_version
+     *           Optional. The NVIDIA GPU driver version that should be installed for this
+     *           type.
+     *           You can define the specific driver version such as "470.103.01",
+     *           following the driver version requirements in
+     *           https://cloud.google.com/compute/docs/gpus/install-drivers-gpu#minimum-driver.
+     *           Batch will install the specific accelerator driver if qualified.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,6 +154,42 @@ class Accelerator extends \Google\Protobuf\Internal\Message
         @trigger_error('install_gpu_drivers is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->install_gpu_drivers = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The NVIDIA GPU driver version that should be installed for this
+     * type.
+     * You can define the specific driver version such as "470.103.01",
+     * following the driver version requirements in
+     * https://cloud.google.com/compute/docs/gpus/install-drivers-gpu#minimum-driver.
+     * Batch will install the specific accelerator driver if qualified.
+     *
+     * Generated from protobuf field <code>string driver_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDriverVersion()
+    {
+        return $this->driver_version;
+    }
+
+    /**
+     * Optional. The NVIDIA GPU driver version that should be installed for this
+     * type.
+     * You can define the specific driver version such as "470.103.01",
+     * following the driver version requirements in
+     * https://cloud.google.com/compute/docs/gpus/install-drivers-gpu#minimum-driver.
+     * Batch will install the specific accelerator driver if qualified.
+     *
+     * Generated from protobuf field <code>string driver_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDriverVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->driver_version = $var;
 
         return $this;
     }

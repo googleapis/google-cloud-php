@@ -35,7 +35,7 @@ class ExtractJobConfigurationTest extends SnippetTestCase
 
     private $config;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->config = new ExtractJobConfiguration(
             self::PROJECT_ID,

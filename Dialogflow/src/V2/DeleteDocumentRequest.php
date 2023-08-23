@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [Documents.DeleteDocument][google.cloud.dialogflow.v2.Documents.DeleteDocument].
+ * Request message for
+ * [Documents.DeleteDocument][google.cloud.dialogflow.v2.Documents.DeleteDocument].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteDocumentRequest</code>
  */
@@ -23,6 +24,22 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the document to delete.
+     *                     Format: `projects/<Project ID>/locations/<Location
+     *                     ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`. Please see
+     *                     {@see DocumentsClient::documentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

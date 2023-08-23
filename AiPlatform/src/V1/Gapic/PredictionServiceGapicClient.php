@@ -26,8 +26,6 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
-use Google\Api\HttpBody;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
@@ -35,6 +33,7 @@ use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\ExplainRequest;
 use Google\Cloud\AIPlatform\V1\ExplainResponse;
@@ -42,6 +41,9 @@ use Google\Cloud\AIPlatform\V1\ExplanationSpecOverride;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamingPredictResponse;
+use Google\Cloud\AIPlatform\V1\Tensor;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -76,39 +78,37 @@ use Google\Protobuf\Value;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient} to use the new
+ * surface.
  */
 class PredictionServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.PredictionService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static $endpointNameTemplate;
+
+    private static $projectLocationEndpointNameTemplate;
+
+    private static $projectLocationPublisherModelNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -149,11 +149,35 @@ class PredictionServiceGapicClient
         return self::$endpointNameTemplate;
     }
 
+    private static function getProjectLocationEndpointNameTemplate()
+    {
+        if (self::$projectLocationEndpointNameTemplate == null) {
+            self::$projectLocationEndpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/endpoints/{endpoint}'
+            );
+        }
+
+        return self::$projectLocationEndpointNameTemplate;
+    }
+
+    private static function getProjectLocationPublisherModelNameTemplate()
+    {
+        if (self::$projectLocationPublisherModelNameTemplate == null) {
+            self::$projectLocationPublisherModelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'
+            );
+        }
+
+        return self::$projectLocationPublisherModelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'endpoint' => self::getEndpointNameTemplate(),
+                'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
+                'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
             ];
         }
 
@@ -180,10 +204,59 @@ class PredictionServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_endpoint resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $endpoint
+     *
+     * @return string The formatted project_location_endpoint resource.
+     */
+    public static function projectLocationEndpointName(
+        $project,
+        $location,
+        $endpoint
+    ) {
+        return self::getProjectLocationEndpointNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'endpoint' => $endpoint,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_publisher_model resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $publisher
+     * @param string $model
+     *
+     * @return string The formatted project_location_publisher_model resource.
+     */
+    public static function projectLocationPublisherModelName(
+        $project,
+        $location,
+        $publisher,
+        $model
+    ) {
+        return self::getProjectLocationPublisherModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'publisher' => $publisher,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
+     * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -230,9 +303,6 @@ class PredictionServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
@@ -262,7 +332,7 @@ class PredictionServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -290,14 +360,15 @@ class PredictionServiceGapicClient
     /**
      * Perform an online explanation.
      *
-     * If [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id] is specified,
-     * the corresponding DeployModel must have
+     * If
+     * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+     * is specified, the corresponding DeployModel must have
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
-     * populated. If [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+     * populated. If
+     * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
      * is not specified, all DeployedModels must have
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
-     * populated. Only deployed AutoML tabular Models have
-     * explanation_spec.
+     * populated.
      *
      * Sample code:
      * ```
@@ -328,21 +399,23 @@ class PredictionServiceGapicClient
      *
      *     @type Value $parameters
      *           The parameters that govern the prediction. The schema of the parameters may
-     *           be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *           be specified via Endpoint's DeployedModels' [Model's
+     *           ][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *     @type ExplanationSpecOverride $explanationSpecOverride
      *           If specified, overrides the
-     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec] of the DeployedModel.
-     *           Can be used for explaining prediction results with different
-     *           configurations, such as:
+     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+     *           of the DeployedModel. Can be used for explaining prediction results with
+     *           different configurations, such as:
      *           - Explaining top-5 predictions results as opposed to top-1;
      *           - Increasing path count or step count of the attribution methods to reduce
      *           approximate errors;
      *           - Using different baselines for explaining the prediction results.
      *     @type string $deployedModelId
      *           If specified, this ExplainRequest will be served by the chosen
-     *           DeployedModel, overriding [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
+     *           DeployedModel, overriding
+     *           [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -420,7 +493,8 @@ class PredictionServiceGapicClient
      *
      *     @type Value $parameters
      *           The parameters that govern the prediction. The schema of the parameters may
-     *           be specified via Endpoint's DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
+     *           be specified via Endpoint's DeployedModels' [Model's
+     *           ][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
      *     @type RetrySettings|array $retrySettings
@@ -463,11 +537,13 @@ class PredictionServiceGapicClient
      *
      * The response includes the following HTTP headers:
      *
-     * * `X-Vertex-AI-Endpoint-Id`: ID of the [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
+     * * `X-Vertex-AI-Endpoint-Id`: ID of the
+     * [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
      * prediction.
      *
-     * * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's [DeployedModel][google.cloud.aiplatform.v1.DeployedModel]
-     * that served this prediction.
+     * * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's
+     * [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] that served this
+     * prediction.
      *
      * Sample code:
      * ```
@@ -489,16 +565,18 @@ class PredictionServiceGapicClient
      *     @type HttpBody $httpBody
      *           The prediction input. Supports HTTP headers and arbitrary data payload.
      *
-     *           A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an upper limit on the number of instances it
-     *           supports per request. When this limit it is exceeded for an AutoML model,
-     *           the [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict] method returns an error.
-     *           When this limit is exceeded for a custom-trained model, the behavior varies
-     *           depending on the model.
+     *           A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
+     *           upper limit on the number of instances it supports per request. When this
+     *           limit it is exceeded for an AutoML model, the
+     *           [RawPredict][google.cloud.aiplatform.v1.PredictionService.RawPredict]
+     *           method returns an error. When this limit is exceeded for a custom-trained
+     *           model, the behavior varies depending on the model.
      *
      *           You can specify the schema for each instance in the
      *           [predict_schemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]
-     *           field when you create a [Model][google.cloud.aiplatform.v1.Model]. This schema applies when you deploy the
-     *           `Model` as a `DeployedModel` to an [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
+     *           field when you create a [Model][google.cloud.aiplatform.v1.Model]. This
+     *           schema applies when you deploy the `Model` as a `DeployedModel` to an
+     *           [Endpoint][google.cloud.aiplatform.v1.Endpoint] and use the `RawPredict`
      *           method.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -532,6 +610,72 @@ class PredictionServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Perform a server-side streaming online prediction request for Vertex
+     * LLM streaming.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $formattedEndpoint = $predictionServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     // Read all responses until the stream is complete
+     *     $stream = $predictionServiceClient->serverStreamingPredict($formattedEndpoint);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $endpoint     Required. The name of the Endpoint requested to serve the prediction.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Tensor[] $inputs
+     *           The prediction input.
+     *     @type Tensor $parameters
+     *           The parameters that govern the prediction.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function serverStreamingPredict($endpoint, array $optionalArgs = [])
+    {
+        $request = new StreamingPredictRequest();
+        $requestParamHeaders = [];
+        $request->setEndpoint($endpoint);
+        $requestParamHeaders['endpoint'] = $endpoint;
+        if (isset($optionalArgs['inputs'])) {
+            $request->setInputs($optionalArgs['inputs']);
+        }
+
+        if (isset($optionalArgs['parameters'])) {
+            $request->setParameters($optionalArgs['parameters']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ServerStreamingPredict',
+            StreamingPredictResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**

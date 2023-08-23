@@ -68,6 +68,43 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig network_performance_config = 11;</code>
      */
     private $network_performance_config = null;
+    /**
+     * [PRIVATE FIELD]
+     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     * of max_pods_per_node is rounded off to next power of 2 and we then double
+     * that to get the size of pod CIDR block per node.
+     * Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     * This config can disable the doubling of IPs (we still round off to next
+     * power of 2)
+     * Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     * overprovisioning is disabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
+     */
+    private $pod_cidr_overprovision_config = null;
+    /**
+     * We specify the additional node networks for this node pool using this list.
+     * Each node network corresponds to an additional interface
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalNodeNetworkConfig additional_node_network_configs = 14;</code>
+     */
+    private $additional_node_network_configs;
+    /**
+     * We specify the additional pod networks for this node pool using this list.
+     * Each pod network corresponds to an additional alias IP range for the node
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalPodNetworkConfig additional_pod_network_configs = 15;</code>
+     */
+    private $additional_pod_network_configs;
+    /**
+     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $pod_ipv4_range_utilization = 0.0;
 
     /**
      * Constructor.
@@ -108,6 +145,27 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
      *     @type \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig $network_performance_config
      *           Network bandwidth tier configuration.
+     *     @type \Google\Cloud\Container\V1\PodCIDROverprovisionConfig $pod_cidr_overprovision_config
+     *           [PRIVATE FIELD]
+     *           Pod CIDR size overprovisioning config for the nodepool.
+     *           Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     *           of max_pods_per_node is rounded off to next power of 2 and we then double
+     *           that to get the size of pod CIDR block per node.
+     *           Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     *           This config can disable the doubling of IPs (we still round off to next
+     *           power of 2)
+     *           Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     *           overprovisioning is disabled.
+     *     @type array<\Google\Cloud\Container\V1\AdditionalNodeNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $additional_node_network_configs
+     *           We specify the additional node networks for this node pool using this list.
+     *           Each node network corresponds to an additional interface
+     *     @type array<\Google\Cloud\Container\V1\AdditionalPodNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $additional_pod_network_configs
+     *           We specify the additional pod networks for this node pool using this list.
+     *           Each pod network corresponds to an additional alias IP range for the node
+     *     @type float $pod_ipv4_range_utilization
+     *           Output only. [Output only] The utilization of the IPv4 range for the pod.
+     *           The ratio is Usage/[Total number of IPs in the secondary range],
+     *           Usage=numNodes*numZones*podIPsPerNode.
      * }
      */
     public function __construct($data = NULL) {
@@ -307,6 +365,146 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig::class);
         $this->network_performance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * [PRIVATE FIELD]
+     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     * of max_pods_per_node is rounded off to next power of 2 and we then double
+     * that to get the size of pod CIDR block per node.
+     * Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     * This config can disable the doubling of IPs (we still round off to next
+     * power of 2)
+     * Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     * overprovisioning is disabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
+     * @return \Google\Cloud\Container\V1\PodCIDROverprovisionConfig|null
+     */
+    public function getPodCidrOverprovisionConfig()
+    {
+        return $this->pod_cidr_overprovision_config;
+    }
+
+    public function hasPodCidrOverprovisionConfig()
+    {
+        return isset($this->pod_cidr_overprovision_config);
+    }
+
+    public function clearPodCidrOverprovisionConfig()
+    {
+        unset($this->pod_cidr_overprovision_config);
+    }
+
+    /**
+     * [PRIVATE FIELD]
+     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size per node depends on max_pods_per_node. By default, the value
+     * of max_pods_per_node is rounded off to next power of 2 and we then double
+     * that to get the size of pod CIDR block per node.
+     * Example: max_pods_per_node of 30 would result in 64 IPs (/26).
+     * This config can disable the doubling of IPs (we still round off to next
+     * power of 2)
+     * Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
+     * overprovisioning is disabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
+     * @param \Google\Cloud\Container\V1\PodCIDROverprovisionConfig $var
+     * @return $this
+     */
+    public function setPodCidrOverprovisionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PodCIDROverprovisionConfig::class);
+        $this->pod_cidr_overprovision_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * We specify the additional node networks for this node pool using this list.
+     * Each node network corresponds to an additional interface
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalNodeNetworkConfig additional_node_network_configs = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdditionalNodeNetworkConfigs()
+    {
+        return $this->additional_node_network_configs;
+    }
+
+    /**
+     * We specify the additional node networks for this node pool using this list.
+     * Each node network corresponds to an additional interface
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalNodeNetworkConfig additional_node_network_configs = 14;</code>
+     * @param array<\Google\Cloud\Container\V1\AdditionalNodeNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdditionalNodeNetworkConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\AdditionalNodeNetworkConfig::class);
+        $this->additional_node_network_configs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * We specify the additional pod networks for this node pool using this list.
+     * Each pod network corresponds to an additional alias IP range for the node
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalPodNetworkConfig additional_pod_network_configs = 15;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdditionalPodNetworkConfigs()
+    {
+        return $this->additional_pod_network_configs;
+    }
+
+    /**
+     * We specify the additional pod networks for this node pool using this list.
+     * Each pod network corresponds to an additional alias IP range for the node
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalPodNetworkConfig additional_pod_network_configs = 15;</code>
+     * @param array<\Google\Cloud\Container\V1\AdditionalPodNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdditionalPodNetworkConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\AdditionalPodNetworkConfig::class);
+        $this->additional_pod_network_configs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getPodIpv4RangeUtilization()
+    {
+        return $this->pod_ipv4_range_utilization;
+    }
+
+    /**
+     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setPodIpv4RangeUtilization($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->pod_ipv4_range_utilization = $var;
 
         return $this;
     }

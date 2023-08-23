@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DatasetService.UpdateDataset][google.cloud.aiplatform.v1.DatasetService.UpdateDataset].
+ * Request message for
+ * [DatasetService.UpdateDataset][google.cloud.aiplatform.v1.DatasetService.UpdateDataset].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UpdateDatasetRequest</code>
  */
@@ -23,8 +24,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     private $dataset = null;
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     * Updatable fields:
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *   * `display_name`
      *   * `description`
      *   * `labels`
@@ -32,6 +33,27 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\AIPlatform\V1\Dataset $dataset    Required. The Dataset which replaces the resource on the server.
+     * @param \Google\Protobuf\FieldMask          $updateMask Required. The update mask applies to the resource.
+     *                                                        For the `FieldMask` definition, see
+     *                                                        [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
+     *
+     *                                                        * `display_name`
+     *                                                        * `description`
+     *                                                        * `labels`
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpdateDatasetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AIPlatform\V1\Dataset $dataset, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataset($dataset)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -43,8 +65,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Dataset which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask applies to the resource.
-     *           For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     *           Updatable fields:
+     *           For the `FieldMask` definition, see
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *             * `display_name`
      *             * `description`
      *             * `labels`
@@ -93,8 +115,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     * Updatable fields:
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *   * `display_name`
      *   * `description`
      *   * `labels`
@@ -119,8 +141,8 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The update mask applies to the resource.
-     * For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     * Updatable fields:
+     * For the `FieldMask` definition, see
+     * [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
      *   * `display_name`
      *   * `description`
      *   * `labels`

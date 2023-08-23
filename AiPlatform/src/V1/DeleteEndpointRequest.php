@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [EndpointService.DeleteEndpoint][google.cloud.aiplatform.v1.EndpointService.DeleteEndpoint].
+ * Request message for
+ * [EndpointService.DeleteEndpoint][google.cloud.aiplatform.v1.EndpointService.DeleteEndpoint].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteEndpointRequest</code>
  */
@@ -23,6 +24,22 @@ class DeleteEndpointRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the Endpoint resource to be deleted.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                     Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

@@ -27,7 +27,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Í]
+ïb
 &google/cloud/dataplex/v1/service.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/analyze.proto(google/cloud/dataplex/v1/resources.proto$google/cloud/dataplex/v1/tasks.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"≥
 CreateLakeRequest9
 parent (	B)‡A˙A#
@@ -170,7 +170,20 @@ page_token (	B‡A
 dataplex.googleapis.com/Task"B
 GetJobRequest1
 name (	B#‡A˙A
-dataplex.googleapis.com/Job"x
+dataplex.googleapis.com/Job"≤
+RunTaskRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/TaskI
+labels (24.google.cloud.dataplex.v1.RunTaskRequest.LabelsEntryB‡AE
+args (22.google.cloud.dataplex.v1.RunTaskRequest.ArgsEntryB‡A-
+LabelsEntry
+key (	
+value (	:8+
+	ArgsEntry
+key (	
+value (	:8"=
+RunTaskResponse*
+job (2.google.cloud.dataplex.v1.Job"x
 ListJobsRequest4
 parent (	B$‡A˙A
 dataplex.googleapis.com/Task
@@ -209,16 +222,17 @@ page_token (	B‡A
 next_page_token (	"R
 GetEnvironmentRequest9
 name (	B+‡A˙A%
-#dataplex.googleapis.com/Environment"É
+#dataplex.googleapis.com/Environment"ò
 ListSessionsRequest;
 parent (	B+‡A˙A%
 #dataplex.googleapis.com/Environment
 	page_size (B‡A
 
-page_token (	B‡A"d
+page_token (	B‡A
+filter (	B‡A"d
 ListSessionsResponse3
 sessions (2!.google.cloud.dataplex.v1.Session
-next_page_token (	2Ç1
+next_page_token (	2¨2
 DataplexService√
 
 CreateLake+.google.cloud.dataplex.v1.CreateLakeRequest.google.longrunning.Operation"iÇ”‰ì1")/v1/{parent=projects/*/locations/*}/lakes:lake⁄Aparent,lake,lake_id A
@@ -265,7 +279,8 @@ DeleteTask+.google.cloud.dataplex.v1.DeleteTaskRequest.google.longrunning.Ope
 google.protobuf.EmptyOperationMetadata®
 	ListTasks*.google.cloud.dataplex.v1.ListTasksRequest+.google.cloud.dataplex.v1.ListTasksResponse"BÇ”‰ì31/v1/{parent=projects/*/locations/*/lakes/*}/tasks⁄Aparentï
 GetTask(.google.cloud.dataplex.v1.GetTaskRequest.google.cloud.dataplex.v1.Task"@Ç”‰ì31/v1/{name=projects/*/locations/*/lakes/*/tasks/*}⁄Aname¨
-ListJobs).google.cloud.dataplex.v1.ListJobsRequest*.google.cloud.dataplex.v1.ListJobsResponse"IÇ”‰ì:8/v1/{parent=projects/*/locations/*/lakes/*/tasks/*}/jobs⁄Aparentô
+ListJobs).google.cloud.dataplex.v1.ListJobsRequest*.google.cloud.dataplex.v1.ListJobsResponse"IÇ”‰ì:8/v1/{parent=projects/*/locations/*/lakes/*/tasks/*}/jobs⁄Aparentß
+RunTask(.google.cloud.dataplex.v1.RunTaskRequest).google.cloud.dataplex.v1.RunTaskResponse"GÇ”‰ì:"5/v1/{name=projects/*/locations/*/lakes/*/tasks/*}:run:*⁄Anameô
 GetJob\'.google.cloud.dataplex.v1.GetJobRequest.google.cloud.dataplex.v1.Job"GÇ”‰ì:8/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}⁄Aname¢
 	CancelJob*.google.cloud.dataplex.v1.CancelJobRequest.google.protobuf.Empty"QÇ”‰ìD"?/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}:cancel:*⁄Aname˝
 CreateEnvironment2.google.cloud.dataplex.v1.CreateEnvironmentRequest.google.longrunning.Operation"îÇ”‰ìG"8/v1/{parent=projects/*/locations/*/lakes/*}/environments:environment⁄A!parent,environment,environment_id A 
@@ -276,8 +291,8 @@ DeleteTask+.google.cloud.dataplex.v1.DeleteTaskRequest.google.longrunning.Ope
 google.protobuf.EmptyOperationMetadataƒ
 ListEnvironments1.google.cloud.dataplex.v1.ListEnvironmentsRequest2.google.cloud.dataplex.v1.ListEnvironmentsResponse"IÇ”‰ì:8/v1/{parent=projects/*/locations/*/lakes/*}/environments⁄Aparent±
 GetEnvironment/.google.cloud.dataplex.v1.GetEnvironmentRequest%.google.cloud.dataplex.v1.Environment"GÇ”‰ì:8/v1/{name=projects/*/locations/*/lakes/*/environments/*}⁄Aname√
-ListSessions-.google.cloud.dataplex.v1.ListSessionsRequest..google.cloud.dataplex.v1.ListSessionsResponse"TÇ”‰ìEC/v1/{parent=projects/*/locations/*/lakes/*/environments/*}/sessions⁄AparentK Adataplex.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBp
-com.google.cloud.dataplex.v1BServiceProtoPZ@google.golang.org/genproto/googleapis/cloud/dataplex/v1;dataplexbproto3'
+ListSessions-.google.cloud.dataplex.v1.ListSessionsRequest..google.cloud.dataplex.v1.ListSessionsResponse"TÇ”‰ìEC/v1/{parent=projects/*/locations/*/lakes/*/environments/*}/sessions⁄AparentK Adataplex.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBh
+com.google.cloud.dataplex.v1BServiceProtoPZ8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbbproto3'
         , true);
 
         static::$is_initialized = true;

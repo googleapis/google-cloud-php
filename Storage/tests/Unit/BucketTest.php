@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Auth\SignBlobInterface;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -35,18 +36,19 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class BucketTest extends TestCase
 {
-    use ExpectException;
+    use ProphecyTrait;
 
     const TOPIC_NAME = 'my-topic';
     const BUCKET_NAME = 'my-bucket';
@@ -55,8 +57,9 @@ class BucketTest extends TestCase
 
     private $connection;
     private $resumableUploader;
+    private $multipartUploader;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);
@@ -132,7 +135,7 @@ class BucketTest extends TestCase
         $this->multipartUploader
             ->uploadAsync()
             ->willReturn(
-                Promise\promise_for([
+                Create::promiseFor([
                     'name' => $name,
                     'generation' => 'Bar'
                 ])
@@ -153,7 +156,7 @@ class BucketTest extends TestCase
 
     public function testUploadDataAsStringWithNoName()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $bucket = $this->getBucket();
 
@@ -173,7 +176,7 @@ class BucketTest extends TestCase
 
     public function testGetResumableUploaderWithStringWithNoName()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $bucket = $this->getBucket();
 
@@ -252,7 +255,7 @@ class BucketTest extends TestCase
 
     public function testComposeThrowsExceptionWithLessThanTwoSources()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $bucket = $this->getBucket();
 
@@ -261,7 +264,7 @@ class BucketTest extends TestCase
 
     public function testComposeThrowsExceptionWithUnknownContentType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $bucket = $this->getBucket();
 
@@ -477,7 +480,7 @@ class BucketTest extends TestCase
 
     public function testIsWritableServerException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\ServerException');
+        $this->expectException(ServerException::class);
 
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
         $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
@@ -500,7 +503,8 @@ class BucketTest extends TestCase
     public function testRequesterPays()
     {
         $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $bucket = $this->getBucket(['requesterProjectId' => 'foo']);
 
@@ -529,7 +533,7 @@ class BucketTest extends TestCase
 
     public function testCreatesNotificationThrowsExceptionWithInvalidTopicType()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('$topic may only be a string or instance of Google\Cloud\PubSub\Topic');
 
         $bucket = $this->getBucket();
@@ -538,7 +542,7 @@ class BucketTest extends TestCase
 
     public function testCreatesNotificationThrowsExceptionWithoutProjectId()
     {
-        $this->expectException('\Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $bucket = $this->getBucket([], true, null);
         $bucket->createNotification(self::TOPIC_NAME);
@@ -586,7 +590,7 @@ class BucketTest extends TestCase
 
     public function testLockRetentionPolicyThrowsExceptionWithoutMetageneration()
     {
-        $this->expectException('BadMethodCallException');
+        $this->expectException(\BadMethodCallException::class);
 
         $this->getBucket()->lockRetentionPolicy();
     }

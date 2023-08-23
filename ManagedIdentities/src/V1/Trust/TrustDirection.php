@@ -69,6 +69,4 @@ class TrustDirection
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TrustDirection::class, \Google\Cloud\ManagedIdentities\V1\Trust_TrustDirection::class);
 

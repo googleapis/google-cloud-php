@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.DeleteAssignment][google.cloud.bigquery.reservation.v1.ReservationService.DeleteAssignment].
+ * The request for
+ * [ReservationService.DeleteAssignment][google.cloud.bigquery.reservation.v1.ReservationService.DeleteAssignment].
  * Note: "bigquery.reservationAssignments.delete" permission is required on the
  * related assignee.
  *
@@ -24,6 +25,21 @@ class DeleteAssignmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. Name of the resource, e.g.
+     *                     `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     *                     Please see {@see ReservationServiceClient::assignmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

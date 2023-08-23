@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [resource
  * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
  * a resource outside the Google Cloud resource hierarchy (such as Google
- * Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy),
+ * Kubernetes Engine clusters and objects), or a policy (e.g. IAM policy),
  * or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship).
  * See [Supported asset
  * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
@@ -56,9 +56,9 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $resource = null;
     /**
-     * A representation of the Cloud IAM policy set on a Google Cloud resource.
-     * There can be a maximum of one Cloud IAM policy set on any given resource.
-     * In addition, Cloud IAM policies inherit their granted access scope from any
+     * A representation of the IAM policy set on a Google Cloud resource.
+     * There can be a maximum of one IAM policy set on any given resource.
+     * In addition, IAM policies inherit their granted access scope from any
      * policies set on parent resources in the resource hierarchy. Therefore, the
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
@@ -140,9 +140,9 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Asset\V1\Resource $resource
      *           A representation of the resource.
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy
-     *           A representation of the Cloud IAM policy set on a Google Cloud resource.
-     *           There can be a maximum of one Cloud IAM policy set on any given resource.
-     *           In addition, Cloud IAM policies inherit their granted access scope from any
+     *           A representation of the IAM policy set on a Google Cloud resource.
+     *           There can be a maximum of one IAM policy set on any given resource.
+     *           In addition, IAM policies inherit their granted access scope from any
      *           policies set on parent resources in the resource hierarchy. Therefore, the
      *           effectively policy is the union of both the policy set on this resource
      *           and each policy set on all of the resource's ancestry resource levels in
@@ -331,9 +331,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A representation of the Cloud IAM policy set on a Google Cloud resource.
-     * There can be a maximum of one Cloud IAM policy set on any given resource.
-     * In addition, Cloud IAM policies inherit their granted access scope from any
+     * A representation of the IAM policy set on a Google Cloud resource.
+     * There can be a maximum of one IAM policy set on any given resource.
+     * In addition, IAM policies inherit their granted access scope from any
      * policies set on parent resources in the resource hierarchy. Therefore, the
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
@@ -360,9 +360,9 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A representation of the Cloud IAM policy set on a Google Cloud resource.
-     * There can be a maximum of one Cloud IAM policy set on any given resource.
-     * In addition, Cloud IAM policies inherit their granted access scope from any
+     * A representation of the IAM policy set on a Google Cloud resource.
+     * There can be a maximum of one IAM policy set on any given resource.
+     * In addition, IAM policies inherit their granted access scope from any
      * policies set on parent resources in the resource hierarchy. Therefore, the
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in

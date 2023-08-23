@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateCustomClassRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource where this custom class will be created. Format:
+     * Required. The parent resource where this custom class will be created.
+     * Format:
      * `projects/{project}/locations/{location}/customClasses`
      * Speech-to-Text supports three locations: `global`, `us` (US North America),
      * and `eu` (Europe). If you are calling the `speech.googleapis.com`
@@ -50,7 +51,8 @@ class CreateCustomClassRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource where this custom class will be created. Format:
+     *           Required. The parent resource where this custom class will be created.
+     *           Format:
      *           `projects/{project}/locations/{location}/customClasses`
      *           Speech-to-Text supports three locations: `global`, `us` (US North America),
      *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
@@ -72,7 +74,8 @@ class CreateCustomClassRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource where this custom class will be created. Format:
+     * Required. The parent resource where this custom class will be created.
+     * Format:
      * `projects/{project}/locations/{location}/customClasses`
      * Speech-to-Text supports three locations: `global`, `us` (US North America),
      * and `eu` (Europe). If you are calling the `speech.googleapis.com`
@@ -89,7 +92,8 @@ class CreateCustomClassRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource where this custom class will be created. Format:
+     * Required. The parent resource where this custom class will be created.
+     * Format:
      * `projects/{project}/locations/{location}/customClasses`
      * Speech-to-Text supports three locations: `global`, `us` (US North America),
      * and `eu` (Europe). If you are calling the `speech.googleapis.com`

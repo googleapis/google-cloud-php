@@ -18,7 +18,7 @@ class Resource
         \GPBMetadata\Google\Cloud\Securitycenter\V1\Folder::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É
+Ç
 -google/cloud/securitycenter/v1/resource.protogoogle.cloud.securitycenter.v1+google/cloud/securitycenter/v1/folder.proto"Ö
 Resource
 name (	
@@ -28,8 +28,8 @@ class Resource
 project_display_name (	
 parent (	
 parent_display_name (	<
-folders (2&.google.cloud.securitycenter.v1.FolderBàABé
-"com.google.cloud.securitycenter.v1BResourceProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+folders (2&.google.cloud.securitycenter.v1.FolderBàABç
+"com.google.cloud.securitycenter.v1BResourceProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 
         static::$is_initialized = true;

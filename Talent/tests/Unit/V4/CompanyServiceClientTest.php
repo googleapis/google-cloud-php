@@ -23,11 +23,9 @@
 namespace Google\Cloud\Talent\Tests\Unit\V4;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Talent\V4\Company;
 use Google\Cloud\Talent\V4\CompanyServiceClient;
 use Google\Cloud\Talent\V4\ListCompaniesResponse;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class CompanyServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CompanyServiceClient
-     */
+    /** @return CompanyServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +61,7 @@ class CompanyServiceClientTest extends GeneratedTest
         return new CompanyServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCompanyTest()
     {
         $transport = $this->createTransport();
@@ -123,9 +113,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCompanyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -163,9 +151,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCompanyTest()
     {
         $transport = $this->createTransport();
@@ -189,9 +175,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCompanyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -224,9 +208,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCompanyTest()
     {
         $transport = $this->createTransport();
@@ -271,9 +253,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCompanyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -306,9 +286,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCompaniesTest()
     {
         $transport = $this->createTransport();
@@ -343,9 +321,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCompaniesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -378,9 +354,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCompanyTest()
     {
         $transport = $this->createTransport();
@@ -429,9 +403,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCompanyExceptionTest()
     {
         $transport = $this->createTransport();

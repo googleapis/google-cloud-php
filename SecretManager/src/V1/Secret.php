@@ -9,30 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [Secret][google.cloud.secretmanager.v1.Secret] is a logical secret whose value and versions can
- * be accessed.
- * A [Secret][google.cloud.secretmanager.v1.Secret] is made up of zero or more [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] that
- * represent the secret data.
+ * A [Secret][google.cloud.secretmanager.v1.Secret] is a logical secret whose
+ * value and versions can be accessed.
+ * A [Secret][google.cloud.secretmanager.v1.Secret] is made up of zero or more
+ * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] that represent
+ * the secret data.
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.Secret</code>
  */
 class Secret extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Output only. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] in the format
+     * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Required. Immutable. The replication policy of the secret data attached to the [Secret][google.cloud.secretmanager.v1.Secret].
+     * Required. Immutable. The replication policy of the secret data attached to
+     * the [Secret][google.cloud.secretmanager.v1.Secret].
      * The replication policy cannot be changed after the Secret has been created.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication replication = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $replication = null;
     /**
-     * Output only. The time at which the [Secret][google.cloud.secretmanager.v1.Secret] was created.
+     * Output only. The time at which the
+     * [Secret][google.cloud.secretmanager.v1.Secret] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -51,21 +56,23 @@ class Secret extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. A list of up to 10 Pub/Sub topics to which messages are published when
-     * control plane operations are called on the secret or its versions.
+     * Optional. A list of up to 10 Pub/Sub topics to which messages are published
+     * when control plane operations are called on the secret or its versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $topics;
     /**
-     * Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
+     * Optional. Etag of the currently stored
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
     /**
-     * Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
-     * rotation policy.
+     * Optional. Rotation policy attached to the
+     * [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is
+     * no rotation policy.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -84,6 +91,20 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, int64> version_aliases = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $version_aliases;
+    /**
+     * Optional. Custom metadata about the secret.
+     * Annotations are distinct from various forms of labels.
+     * Annotations exist to allow client tools to store their own state
+     * information without requiring a database.
+     * Annotation keys must be between 1 and 63 characters long, have a UTF-8
+     * encoding of maximum 128 bytes, begin and end with an alphanumeric character
+     * ([a-z0-9A-Z]), and may have dashes (-), underscores (_), dots (.), and
+     * alphanumerics in between these symbols.
+     * The total size of annotation keys and values must be less than 16KiB.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $annotations;
     protected $expiration;
 
     /**
@@ -93,12 +114,16 @@ class Secret extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] in the format `projects/&#42;&#47;secrets/&#42;`.
+     *           Output only. The resource name of the
+     *           [Secret][google.cloud.secretmanager.v1.Secret] in the format
+     *           `projects/&#42;&#47;secrets/&#42;`.
      *     @type \Google\Cloud\SecretManager\V1\Replication $replication
-     *           Required. Immutable. The replication policy of the secret data attached to the [Secret][google.cloud.secretmanager.v1.Secret].
+     *           Required. Immutable. The replication policy of the secret data attached to
+     *           the [Secret][google.cloud.secretmanager.v1.Secret].
      *           The replication policy cannot be changed after the Secret has been created.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which the [Secret][google.cloud.secretmanager.v1.Secret] was created.
+     *           Output only. The time at which the
+     *           [Secret][google.cloud.secretmanager.v1.Secret] was created.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels assigned to this Secret.
      *           Label keys must be between 1 and 63 characters long, have a UTF-8 encoding
@@ -109,18 +134,22 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`
      *           No more than 64 labels can be assigned to a given resource.
      *     @type array<\Google\Cloud\SecretManager\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $topics
-     *           Optional. A list of up to 10 Pub/Sub topics to which messages are published when
-     *           control plane operations are called on the secret or its versions.
+     *           Optional. A list of up to 10 Pub/Sub topics to which messages are published
+     *           when control plane operations are called on the secret or its versions.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Optional. Timestamp in UTC when the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire. This is
-     *           always provided on output, regardless of what was sent on input.
+     *           Optional. Timestamp in UTC when the
+     *           [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire.
+     *           This is always provided on output, regardless of what was sent on input.
      *     @type \Google\Protobuf\Duration $ttl
-     *           Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
+     *           Input only. The TTL for the
+     *           [Secret][google.cloud.secretmanager.v1.Secret].
      *     @type string $etag
-     *           Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
+     *           Optional. Etag of the currently stored
+     *           [Secret][google.cloud.secretmanager.v1.Secret].
      *     @type \Google\Cloud\SecretManager\V1\Rotation $rotation
-     *           Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
-     *           rotation policy.
+     *           Optional. Rotation policy attached to the
+     *           [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is
+     *           no rotation policy.
      *     @type array|\Google\Protobuf\Internal\MapField $version_aliases
      *           Optional. Mapping from version alias to version name.
      *           A version alias is a string with a maximum length of 63 characters and can
@@ -131,6 +160,16 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           Version-Alias pairs will be viewable via GetSecret and modifiable via
      *           UpdateSecret. At launch access by alias will only be supported on
      *           GetSecretVersion and AccessSecretVersion.
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           Optional. Custom metadata about the secret.
+     *           Annotations are distinct from various forms of labels.
+     *           Annotations exist to allow client tools to store their own state
+     *           information without requiring a database.
+     *           Annotation keys must be between 1 and 63 characters long, have a UTF-8
+     *           encoding of maximum 128 bytes, begin and end with an alphanumeric character
+     *           ([a-z0-9A-Z]), and may have dashes (-), underscores (_), dots (.), and
+     *           alphanumerics in between these symbols.
+     *           The total size of annotation keys and values must be less than 16KiB.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,7 +178,9 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Output only. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] in the format
+     * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -150,7 +191,9 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Output only. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] in the format
+     * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -165,7 +208,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The replication policy of the secret data attached to the [Secret][google.cloud.secretmanager.v1.Secret].
+     * Required. Immutable. The replication policy of the secret data attached to
+     * the [Secret][google.cloud.secretmanager.v1.Secret].
      * The replication policy cannot be changed after the Secret has been created.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication replication = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
@@ -187,7 +231,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The replication policy of the secret data attached to the [Secret][google.cloud.secretmanager.v1.Secret].
+     * Required. Immutable. The replication policy of the secret data attached to
+     * the [Secret][google.cloud.secretmanager.v1.Secret].
      * The replication policy cannot be changed after the Secret has been created.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication replication = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
@@ -203,7 +248,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the [Secret][google.cloud.secretmanager.v1.Secret] was created.
+     * Output only. The time at which the
+     * [Secret][google.cloud.secretmanager.v1.Secret] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -224,7 +270,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the [Secret][google.cloud.secretmanager.v1.Secret] was created.
+     * Output only. The time at which the
+     * [Secret][google.cloud.secretmanager.v1.Secret] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -279,8 +326,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of up to 10 Pub/Sub topics to which messages are published when
-     * control plane operations are called on the secret or its versions.
+     * Optional. A list of up to 10 Pub/Sub topics to which messages are published
+     * when control plane operations are called on the secret or its versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -291,8 +338,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of up to 10 Pub/Sub topics to which messages are published when
-     * control plane operations are called on the secret or its versions.
+     * Optional. A list of up to 10 Pub/Sub topics to which messages are published
+     * when control plane operations are called on the secret or its versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\SecretManager\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $var
@@ -307,8 +354,9 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timestamp in UTC when the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire. This is
-     * always provided on output, regardless of what was sent on input.
+     * Optional. Timestamp in UTC when the
+     * [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire.
+     * This is always provided on output, regardless of what was sent on input.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -324,8 +372,9 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timestamp in UTC when the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire. This is
-     * always provided on output, regardless of what was sent on input.
+     * Optional. Timestamp in UTC when the
+     * [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire.
+     * This is always provided on output, regardless of what was sent on input.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -340,7 +389,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
+     * Input only. The TTL for the
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 7 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Protobuf\Duration|null
@@ -356,7 +406,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
+     * Input only. The TTL for the
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 7 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Protobuf\Duration $var
@@ -371,7 +422,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
+     * Optional. Etag of the currently stored
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -382,7 +434,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
+     * Optional. Etag of the currently stored
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -397,8 +450,9 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
-     * rotation policy.
+     * Optional. Rotation policy attached to the
+     * [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is
+     * no rotation policy.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\SecretManager\V1\Rotation|null
@@ -419,8 +473,9 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
-     * rotation policy.
+     * Optional. Rotation policy attached to the
+     * [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is
+     * no rotation policy.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\SecretManager\V1\Rotation $var
@@ -472,6 +527,48 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT64);
         $this->version_aliases = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom metadata about the secret.
+     * Annotations are distinct from various forms of labels.
+     * Annotations exist to allow client tools to store their own state
+     * information without requiring a database.
+     * Annotation keys must be between 1 and 63 characters long, have a UTF-8
+     * encoding of maximum 128 bytes, begin and end with an alphanumeric character
+     * ([a-z0-9A-Z]), and may have dashes (-), underscores (_), dots (.), and
+     * alphanumerics in between these symbols.
+     * The total size of annotation keys and values must be less than 16KiB.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    /**
+     * Optional. Custom metadata about the secret.
+     * Annotations are distinct from various forms of labels.
+     * Annotations exist to allow client tools to store their own state
+     * information without requiring a database.
+     * Annotation keys must be between 1 and 63 characters long, have a UTF-8
+     * encoding of maximum 128 bytes, begin and end with an alphanumeric character
+     * ([a-z0-9A-Z]), and may have dashes (-), underscores (_), dots (.), and
+     * alphanumerics in between these symbols.
+     * The total size of annotation keys and values must be less than 16KiB.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }

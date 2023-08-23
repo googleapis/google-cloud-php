@@ -25,8 +25,11 @@ class QueryContent extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $iam_policy_analysis_query
      *           An IAM Policy Analysis query, which could be used in
-     *           the [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy] rpc or
-     *           the [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning] rpc.
+     *           the
+     *           [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]
+     *           RPC or the
+     *           [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]
+     *           RPC.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,8 +39,11 @@ class QueryContent extends \Google\Protobuf\Internal\Message
 
     /**
      * An IAM Policy Analysis query, which could be used in
-     * the [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy] rpc or
-     * the [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning] rpc.
+     * the
+     * [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]
+     * RPC or the
+     * [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]
+     * RPC.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery iam_policy_analysis_query = 1;</code>
      * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery|null
@@ -54,8 +60,11 @@ class QueryContent extends \Google\Protobuf\Internal\Message
 
     /**
      * An IAM Policy Analysis query, which could be used in
-     * the [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy] rpc or
-     * the [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning] rpc.
+     * the
+     * [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]
+     * RPC or the
+     * [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]
+     * RPC.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery iam_policy_analysis_query = 1;</code>
      * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $var

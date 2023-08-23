@@ -41,12 +41,20 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not the suggested document is efficient. For example,
      * if the document is poorly written, hard to understand, hard to use or
-     * too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
+     * too long to find useful information,
+     * [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
+     * is
      * [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency document_efficiency = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $document_efficiency = 0;
+    /**
+     * Optional. Feedback for conversation summarization.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback summarization_feedback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $summarization_feedback = null;
 
     /**
      * Constructor.
@@ -72,8 +80,12 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      *     @type int $document_efficiency
      *           Optional. Whether or not the suggested document is efficient. For example,
      *           if the document is poorly written, hard to understand, hard to use or
-     *           too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
+     *           too long to find useful information,
+     *           [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
+     *           is
      *           [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
+     *     @type \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\SummarizationFeedback $summarization_feedback
+     *           Optional. Feedback for conversation summarization.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,7 +170,9 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not the suggested document is efficient. For example,
      * if the document is poorly written, hard to understand, hard to use or
-     * too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
+     * too long to find useful information,
+     * [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
+     * is
      * [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency document_efficiency = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -172,7 +186,9 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not the suggested document is efficient. For example,
      * if the document is poorly written, hard to understand, hard to use or
-     * too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
+     * too long to find useful information,
+     * [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
+     * is
      * [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency document_efficiency = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -183,6 +199,42 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\DocumentEfficiency::class);
         $this->document_efficiency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Feedback for conversation summarization.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback summarization_feedback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\SummarizationFeedback|null
+     */
+    public function getSummarizationFeedback()
+    {
+        return $this->summarization_feedback;
+    }
+
+    public function hasSummarizationFeedback()
+    {
+        return isset($this->summarization_feedback);
+    }
+
+    public function clearSummarizationFeedback()
+    {
+        unset($this->summarization_feedback);
+    }
+
+    /**
+     * Optional. Feedback for conversation summarization.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback summarization_feedback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\SummarizationFeedback $var
+     * @return $this
+     */
+    public function setSummarizationFeedback($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\SummarizationFeedback::class);
+        $this->summarization_feedback = $var;
 
         return $this;
     }

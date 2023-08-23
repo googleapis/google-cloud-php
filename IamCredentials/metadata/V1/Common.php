@@ -20,7 +20,8 @@ class Common
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÿ	
+€
+
 &google/iam/credentials/v1/common.protogoogle.iam.credentials.v1google/api/resource.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"©
 GenerateAccessTokenRequest7
 name (	B)àAúA#
@@ -55,8 +56,8 @@ signed_jwt (	"’
 audience (	BàA
 include_email ("(
 GenerateIdTokenResponse
-token (	B«
-#com.google.cloud.iam.credentials.v1BIAMCredentialsCommonProtoPZDgoogle.golang.org/genproto/googleapis/iam/credentials/v1;credentialsøªGoogle.Cloud.Iam.Credentials.V1ÊGoogle\\Cloud\\Iam\\Credentials\\V1êAY
+token (	B¬
+#com.google.cloud.iam.credentials.v1BIAMCredentialsCommonProtoPZEcloud.google.com/go/iam/credentials/apiv1/credentialspb;credentialspbøªGoogle.Cloud.Iam.Credentials.V1ÊGoogle\\Cloud\\Iam\\Credentials\\V1êAY
 !iam.googleapis.com/ServiceAccount4projects/{project}/serviceAccounts/{service_account}bproto3'
         , true);
 

@@ -57,6 +57,22 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
+     * @param string $parent Required. The project, location and certificate map from which the
+     *                       certificate map entries should be listed, specified in the format
+     *                       `projects/&#42;/locations/&#42;/certificateMaps/*`. Please see
+     *                       {@see CertificateManagerClient::certificateMapName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\CertificateManager\V1\ListCertificateMapEntriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

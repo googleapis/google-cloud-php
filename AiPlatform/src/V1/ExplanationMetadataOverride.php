@@ -9,19 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The [ExplanationMetadata][google.cloud.aiplatform.v1.ExplanationMetadata] entries that can be overridden at
- * [online explanation][google.cloud.aiplatform.v1.PredictionService.Explain] time.
+ * The [ExplanationMetadata][google.cloud.aiplatform.v1.ExplanationMetadata]
+ * entries that can be overridden at [online
+ * explanation][google.cloud.aiplatform.v1.PredictionService.Explain] time.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ExplanationMetadataOverride</code>
  */
 class ExplanationMetadataOverride extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Overrides the [input metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the features.
-     * The key is the name of the feature to be overridden. The keys specified
-     * here must exist in the input metadata to be overridden. If a feature is
-     * not specified here, the corresponding feature's input metadata is not
-     * overridden.
+     * Required. Overrides the [input
+     * metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the
+     * features. The key is the name of the feature to be overridden. The keys
+     * specified here must exist in the input metadata to be overridden. If a
+     * feature is not specified here, the corresponding feature's input metadata
+     * is not overridden.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.ExplanationMetadataOverride.InputMetadataOverride> inputs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,11 +36,12 @@ class ExplanationMetadataOverride extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $inputs
-     *           Required. Overrides the [input metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the features.
-     *           The key is the name of the feature to be overridden. The keys specified
-     *           here must exist in the input metadata to be overridden. If a feature is
-     *           not specified here, the corresponding feature's input metadata is not
-     *           overridden.
+     *           Required. Overrides the [input
+     *           metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the
+     *           features. The key is the name of the feature to be overridden. The keys
+     *           specified here must exist in the input metadata to be overridden. If a
+     *           feature is not specified here, the corresponding feature's input metadata
+     *           is not overridden.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,11 +50,12 @@ class ExplanationMetadataOverride extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Overrides the [input metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the features.
-     * The key is the name of the feature to be overridden. The keys specified
-     * here must exist in the input metadata to be overridden. If a feature is
-     * not specified here, the corresponding feature's input metadata is not
-     * overridden.
+     * Required. Overrides the [input
+     * metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the
+     * features. The key is the name of the feature to be overridden. The keys
+     * specified here must exist in the input metadata to be overridden. If a
+     * feature is not specified here, the corresponding feature's input metadata
+     * is not overridden.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.ExplanationMetadataOverride.InputMetadataOverride> inputs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -62,11 +66,12 @@ class ExplanationMetadataOverride extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Overrides the [input metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the features.
-     * The key is the name of the feature to be overridden. The keys specified
-     * here must exist in the input metadata to be overridden. If a feature is
-     * not specified here, the corresponding feature's input metadata is not
-     * overridden.
+     * Required. Overrides the [input
+     * metadata][google.cloud.aiplatform.v1.ExplanationMetadata.inputs] of the
+     * features. The key is the name of the feature to be overridden. The keys
+     * specified here must exist in the input metadata to be overridden. If a
+     * feature is not specified here, the corresponding feature's input metadata
+     * is not overridden.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.ExplanationMetadataOverride.InputMetadataOverride> inputs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

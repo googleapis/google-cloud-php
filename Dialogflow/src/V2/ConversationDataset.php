@@ -57,7 +57,8 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
      */
     private $conversation_info = null;
     /**
-     * Output only. The number of conversations this conversation dataset contains.
+     * Output only. The number of conversations this conversation dataset
+     * contains.
      *
      * Generated from protobuf field <code>int64 conversation_count = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -84,7 +85,8 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\ConversationInfo $conversation_info
      *           Output only. Metadata set during conversation data import.
      *     @type int|string $conversation_count
-     *           Output only. The number of conversations this conversation dataset contains.
+     *           Output only. The number of conversations this conversation dataset
+     *           contains.
      * }
      */
     public function __construct($data = NULL) {
@@ -283,7 +285,8 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of conversations this conversation dataset contains.
+     * Output only. The number of conversations this conversation dataset
+     * contains.
      *
      * Generated from protobuf field <code>int64 conversation_count = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -294,7 +297,8 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of conversations this conversation dataset contains.
+     * Output only. The number of conversations this conversation dataset
+     * contains.
      *
      * Generated from protobuf field <code>int64 conversation_count = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var

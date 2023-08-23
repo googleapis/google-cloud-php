@@ -16,16 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project and location) where the Memberships will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * `projects/&#42;&#47;locations/-` list memberships in all the regions.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. When requesting a 'page' of resources, `page_size` specifies number of
-     * resources to return. If unspecified or set to 0, all resources will
-     * be returned.
+     * Optional. When requesting a 'page' of resources, `page_size` specifies
+     * number of resources to return. If unspecified or set to 0, all resources
+     * will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,8 +40,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. Lists Memberships that match the filter expression, following the syntax
-     * outlined in https://google.aip.dev/160.
+     * Optional. Lists Memberships that match the filter expression, following the
+     * syntax outlined in https://google.aip.dev/160.
      * Examples:
      *   - Name is `bar` in project `foo-proj` and location `global`:
      *       name = "projects/foo-proj/locations/global/membership/bar"
@@ -69,19 +70,20 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent (project and location) where the Memberships will be listed.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The parent (project and location) where the Memberships will be
+     *           listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           `projects/&#42;&#47;locations/-` list memberships in all the regions.
      *     @type int $page_size
-     *           Optional. When requesting a 'page' of resources, `page_size` specifies number of
-     *           resources to return. If unspecified or set to 0, all resources will
-     *           be returned.
+     *           Optional. When requesting a 'page' of resources, `page_size` specifies
+     *           number of resources to return. If unspecified or set to 0, all resources
+     *           will be returned.
      *     @type string $page_token
      *           Optional. Token returned by previous call to `ListMemberships` which
      *           specifies the position in the list from where to continue listing the
      *           resources.
      *     @type string $filter
-     *           Optional. Lists Memberships that match the filter expression, following the syntax
-     *           outlined in https://google.aip.dev/160.
+     *           Optional. Lists Memberships that match the filter expression, following the
+     *           syntax outlined in https://google.aip.dev/160.
      *           Examples:
      *             - Name is `bar` in project `foo-proj` and location `global`:
      *                 name = "projects/foo-proj/locations/global/membership/bar"
@@ -102,8 +104,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Memberships will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * `projects/&#42;&#47;locations/-` list memberships in all the regions.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -114,8 +117,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Memberships will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * `projects/&#42;&#47;locations/-` list memberships in all the regions.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -130,9 +134,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When requesting a 'page' of resources, `page_size` specifies number of
-     * resources to return. If unspecified or set to 0, all resources will
-     * be returned.
+     * Optional. When requesting a 'page' of resources, `page_size` specifies
+     * number of resources to return. If unspecified or set to 0, all resources
+     * will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -143,9 +147,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When requesting a 'page' of resources, `page_size` specifies number of
-     * resources to return. If unspecified or set to 0, all resources will
-     * be returned.
+     * Optional. When requesting a 'page' of resources, `page_size` specifies
+     * number of resources to return. If unspecified or set to 0, all resources
+     * will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -190,8 +194,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Lists Memberships that match the filter expression, following the syntax
-     * outlined in https://google.aip.dev/160.
+     * Optional. Lists Memberships that match the filter expression, following the
+     * syntax outlined in https://google.aip.dev/160.
      * Examples:
      *   - Name is `bar` in project `foo-proj` and location `global`:
      *       name = "projects/foo-proj/locations/global/membership/bar"
@@ -211,8 +215,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Lists Memberships that match the filter expression, following the syntax
-     * outlined in https://google.aip.dev/160.
+     * Optional. Lists Memberships that match the filter expression, following the
+     * syntax outlined in https://google.aip.dev/160.
      * Examples:
      *   - Name is `bar` in project `foo-proj` and location `global`:
      *       name = "projects/foo-proj/locations/global/membership/bar"

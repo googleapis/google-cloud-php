@@ -16,13 +16,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The fingerprint of the public key to update. Public keys are
+     *                     identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                     is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
+     *                     {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsLogin\V1\DeleteSshPublicKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -31,9 +47,9 @@ class DeleteSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The fingerprint of the public key to update. Public keys are identified by
-     *           their SHA-256 fingerprint. The fingerprint of the public key is in format
-     *           `users/{user}/sshPublicKeys/{fingerprint}`.
+     *           Required. The fingerprint of the public key to update. Public keys are
+     *           identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *           is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +58,9 @@ class DeleteSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -55,9 +71,9 @@ class DeleteSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fingerprint of the public key to update. Public keys are identified by
-     * their SHA-256 fingerprint. The fingerprint of the public key is in format
-     * `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are
+     * identified by their SHA-256 fingerprint. The fingerprint of the public key
+     * is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

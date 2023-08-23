@@ -8,7 +8,9 @@ use UnexpectedValueException;
 
 /**
  * Defines the baseline to do anomaly detection for feature values imported
- * by each [ImportFeatureValues][] operation.
+ * by each
+ * [ImportFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]
+ * operation.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.Baseline</code>
  */

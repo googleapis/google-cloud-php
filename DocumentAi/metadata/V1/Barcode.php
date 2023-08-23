@@ -16,13 +16,13 @@ class Barcode
         }
         $pool->internalAddGeneratedFile(
             '
-å
+ß
 (google/cloud/documentai/v1/barcode.protogoogle.cloud.documentai.v1"B
 Barcode
 format (	
 value_format (	
-	raw_value (	BÐ
-com.google.cloud.documentai.v1BBarcodeProtoPZDgoogle.golang.org/genproto/googleapis/cloud/documentai/v1;documentaiªGoogle.Cloud.DocumentAI.V1ÊGoogle\\Cloud\\DocumentAI\\V1êGoogle::Cloud::DocumentAI::V1bproto3'
+	raw_value (	BÊ
+com.google.cloud.documentai.v1BBarcodeProtoPZ>cloud.google.com/go/documentai/apiv1/documentaipb;documentaipbªGoogle.Cloud.DocumentAI.V1ÊGoogle\\Cloud\\DocumentAI\\V1êGoogle::Cloud::DocumentAI::V1bproto3'
         , true);
 
         static::$is_initialized = true;

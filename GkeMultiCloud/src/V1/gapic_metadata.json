@@ -5,6 +5,55 @@
     "protoPackage": "google.cloud.gkemulticloud.v1",
     "libraryPackage": "Google\\Cloud\\GkeMultiCloud\\V1",
     "services": {
+        "AttachedClusters": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AttachedClustersGapicClient",
+                    "rpcs": {
+                        "CreateAttachedCluster": {
+                            "methods": [
+                                "createAttachedCluster"
+                            ]
+                        },
+                        "DeleteAttachedCluster": {
+                            "methods": [
+                                "deleteAttachedCluster"
+                            ]
+                        },
+                        "GenerateAttachedClusterInstallManifest": {
+                            "methods": [
+                                "generateAttachedClusterInstallManifest"
+                            ]
+                        },
+                        "GetAttachedCluster": {
+                            "methods": [
+                                "getAttachedCluster"
+                            ]
+                        },
+                        "GetAttachedServerConfig": {
+                            "methods": [
+                                "getAttachedServerConfig"
+                            ]
+                        },
+                        "ImportAttachedCluster": {
+                            "methods": [
+                                "importAttachedCluster"
+                            ]
+                        },
+                        "ListAttachedClusters": {
+                            "methods": [
+                                "listAttachedClusters"
+                            ]
+                        },
+                        "UpdateAttachedCluster": {
+                            "methods": [
+                                "updateAttachedCluster"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "AwsClusters": {
             "clients": {
                 "grpc": {

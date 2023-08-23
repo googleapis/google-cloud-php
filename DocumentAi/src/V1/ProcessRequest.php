@@ -9,39 +9,74 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the process document method.
+ * Request message for the
+ * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ProcessRequest</code>
  */
 class ProcessRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     * `projects/{project}/locations/{location}/processors/{processor}`, or
+     * to use for processing. If a
+     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     * will use its [default
+     * version][google.cloud.documentai.v1.Processor.default_processor_version].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 3;</code>
      */
     private $skip_human_review = false;
     /**
-     * Specifies which fields to include in ProcessResponse's document.
-     * Only supports top level document and pages field so it must be in the form
-     * of `{document_field_name}` or `pages.{page_field_name}`.
+     * Specifies which fields to include in the
+     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * output. Only supports top-level document and pages field, so it must be in
+     * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      */
     private $field_mask = null;
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     */
+    private $process_options = null;
     protected $source;
+
+    /**
+     * @param string $name Required. The resource name of the
+     *                     [Processor][google.cloud.documentai.v1.Processor] or
+     *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
+     *                     to use for processing. If a
+     *                     [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     *                     will use its [default
+     *                     version][google.cloud.documentai.v1.Processor.default_processor_version].
+     *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                     or
+     *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ProcessRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -53,20 +88,29 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           An inline document proto.
      *     @type \Google\Cloud\DocumentAI\V1\RawDocument $raw_document
      *           A raw document content (bytes).
+     *     @type \Google\Cloud\DocumentAI\V1\GcsDocument $gcs_document
+     *           A raw document on Google Cloud Storage.
      *     @type string $name
-     *           Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     *           Required. The resource name of the
+     *           [Processor][google.cloud.documentai.v1.Processor] or
      *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *           to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     *           its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     *           `projects/{project}/locations/{location}/processors/{processor}`, or
+     *           to use for processing. If a
+     *           [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     *           will use its [default
+     *           version][google.cloud.documentai.v1.Processor.default_processor_version].
+     *           Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *           or
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type bool $skip_human_review
-     *           Whether Human Review feature should be skipped for this request. Default to
-     *           false.
+     *           Whether human review should be skipped for this request. Default to
+     *           `false`.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Specifies which fields to include in ProcessResponse's document.
-     *           Only supports top level document and pages field so it must be in the form
-     *           of `{document_field_name}` or `pages.{page_field_name}`.
+     *           Specifies which fields to include in the
+     *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     *           output. Only supports top-level document and pages field, so it must be in
+     *           the form of `{document_field_name}` or `pages.{page_field_name}`.
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions $process_options
+     *           Inference-time options for the process API
      * }
      */
     public function __construct($data = NULL) {
@@ -137,11 +181,46 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * A raw document on Google Cloud Storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.GcsDocument gcs_document = 8;</code>
+     * @return \Google\Cloud\DocumentAI\V1\GcsDocument|null
+     */
+    public function getGcsDocument()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasGcsDocument()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * A raw document on Google Cloud Storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.GcsDocument gcs_document = 8;</code>
+     * @param \Google\Cloud\DocumentAI\V1\GcsDocument $var
+     * @return $this
+     */
+    public function setGcsDocument($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\GcsDocument::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Required. The resource name of the
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     * `projects/{project}/locations/{location}/processors/{processor}`, or
+     * to use for processing. If a
+     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     * will use its [default
+     * version][google.cloud.documentai.v1.Processor.default_processor_version].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -153,11 +232,15 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the
+     * [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
-     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
-     * `projects/{project}/locations/{location}/processors/{processor}`, or
+     * to use for processing. If a
+     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     * will use its [default
+     * version][google.cloud.documentai.v1.Processor.default_processor_version].
+     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     * or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -173,8 +256,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 3;</code>
      * @return bool
@@ -185,8 +268,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Human Review feature should be skipped for this request. Default to
-     * false.
+     * Whether human review should be skipped for this request. Default to
+     * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 3;</code>
      * @param bool $var
@@ -201,9 +284,10 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which fields to include in ProcessResponse's document.
-     * Only supports top level document and pages field so it must be in the form
-     * of `{document_field_name}` or `pages.{page_field_name}`.
+     * Specifies which fields to include in the
+     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * output. Only supports top-level document and pages field, so it must be in
+     * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -224,9 +308,10 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which fields to include in ProcessResponse's document.
-     * Only supports top level document and pages field so it must be in the form
-     * of `{document_field_name}` or `pages.{page_field_name}`.
+     * Specifies which fields to include in the
+     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * output. Only supports top-level document and pages field, so it must be in
+     * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -236,6 +321,42 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->field_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     * @return \Google\Cloud\DocumentAI\V1\ProcessOptions|null
+     */
+    public function getProcessOptions()
+    {
+        return $this->process_options;
+    }
+
+    public function hasProcessOptions()
+    {
+        return isset($this->process_options);
+    }
+
+    public function clearProcessOptions()
+    {
+        unset($this->process_options);
+    }
+
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     * @param \Google\Cloud\DocumentAI\V1\ProcessOptions $var
+     * @return $this
+     */
+    public function setProcessOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions::class);
+        $this->process_options = $var;
 
         return $this;
     }

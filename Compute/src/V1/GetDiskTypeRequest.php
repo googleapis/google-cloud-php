@@ -35,6 +35,23 @@ class GetDiskTypeRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $zone     The name of the zone for this request.
+     * @param string $diskType Name of the disk type to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetDiskTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $diskType): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setDiskType($diskType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

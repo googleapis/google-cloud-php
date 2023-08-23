@@ -10,7 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes a subordinate CA's issuers. This is either a resource name to a
- * known issuing [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority], or a PEM issuer certificate chain.
+ * known issuing
+ * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
+ * or a PEM issuer certificate chain.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.SubordinateConfig</code>
  */
@@ -25,13 +27,17 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $certificate_authority
-     *           Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that was used to create a
-     *           subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field is used for information
-     *           and usability purposes only. The resource name is in the format
+     *           Required. This can refer to a
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           that was used to create a subordinate
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     *           This field is used for information and usability purposes only. The
+     *           resource name is in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *     @type \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig\SubordinateConfigChain $pem_issuer_chain
      *           Required. Contains the PEM certificate chain for the issuers of this
-     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority], but not pem certificate for this CA itself.
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
+     *           but not pem certificate for this CA itself.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,9 +46,12 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that was used to create a
-     * subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field is used for information
-     * and usability purposes only. The resource name is in the format
+     * Required. This can refer to a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * that was used to create a subordinate
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     * This field is used for information and usability purposes only. The
+     * resource name is in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string certificate_authority = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -59,9 +68,12 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that was used to create a
-     * subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field is used for information
-     * and usability purposes only. The resource name is in the format
+     * Required. This can refer to a
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * that was used to create a subordinate
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+     * This field is used for information and usability purposes only. The
+     * resource name is in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string certificate_authority = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -78,7 +90,8 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Contains the PEM certificate chain for the issuers of this
-     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority], but not pem certificate for this CA itself.
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
+     * but not pem certificate for this CA itself.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubordinateConfig.SubordinateConfigChain pem_issuer_chain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig\SubordinateConfigChain|null
@@ -95,7 +108,8 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Contains the PEM certificate chain for the issuers of this
-     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority], but not pem certificate for this CA itself.
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
+     * but not pem certificate for this CA itself.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubordinateConfig.SubordinateConfigChain pem_issuer_chain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig\SubordinateConfigChain $var

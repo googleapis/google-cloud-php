@@ -65,6 +65,8 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      *           Agent Assist Smart Compose suggestion data.
      *     @type \Google\Cloud\ContactCenterInsights\V1\DialogflowInteractionData $dialogflow_interaction
      *           Dialogflow interaction data.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData $conversation_summarization_suggestion
+     *           Conversation summarization suggestion data.
      *     @type string $annotation_id
      *           The unique identifier of the annotation.
      *           Format:
@@ -235,6 +237,37 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\DialogflowInteractionData::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Conversation summarization suggestion data.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData conversation_summarization_suggestion = 12;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData|null
+     */
+    public function getConversationSummarizationSuggestion()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasConversationSummarizationSuggestion()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Conversation summarization suggestion data.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData conversation_summarization_suggestion = 12;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData $var
+     * @return $this
+     */
+    public function setConversationSummarizationSuggestion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

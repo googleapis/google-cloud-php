@@ -59,6 +59,4 @@ class ConflictResult
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConflictResult::class, \Google\Cloud\Orchestration\Airflow\Service\V1\CheckUpgradeResponse_ConflictResult::class);
 

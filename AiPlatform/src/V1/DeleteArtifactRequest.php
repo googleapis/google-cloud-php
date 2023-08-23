@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.DeleteArtifact][google.cloud.aiplatform.v1.MetadataService.DeleteArtifact].
+ * Request message for
+ * [MetadataService.DeleteArtifact][google.cloud.aiplatform.v1.MetadataService.DeleteArtifact].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteArtifactRequest</code>
  */
@@ -31,6 +32,22 @@ class DeleteArtifactRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
+
+    /**
+     * @param string $name Required. The resource name of the Artifact to delete.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     *                     Please see {@see MetadataServiceClient::artifactName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DeleteArtifactRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

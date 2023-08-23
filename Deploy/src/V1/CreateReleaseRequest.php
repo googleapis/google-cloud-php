@@ -52,12 +52,32 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_id = '';
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
+
+    /**
+     * @param string                          $parent    Required. The parent collection in which the `Release` should be created.
+     *                                                   Format should be
+     *                                                   projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}. Please see
+     *                                                   {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+     * @param \Google\Cloud\Deploy\V1\Release $release   Required. The `Release` to create.
+     * @param string                          $releaseId Required. ID of the `Release`.
+     *
+     * @return \Google\Cloud\Deploy\V1\CreateReleaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Deploy\V1\Release $release, string $releaseId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRelease($release)
+            ->setReleaseId($releaseId);
+    }
 
     /**
      * Constructor.
@@ -86,8 +106,8 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $validate_only
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      * }
      */
     public function __construct($data = NULL) {
@@ -234,8 +254,8 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -246,8 +266,8 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

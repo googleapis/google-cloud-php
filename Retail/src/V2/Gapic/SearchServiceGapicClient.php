@@ -27,10 +27,8 @@ namespace Google\Cloud\Retail\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -41,7 +39,6 @@ use Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec;
 use Google\Cloud\Retail\V2\SearchRequest\FacetSpec;
 use Google\Cloud\Retail\V2\SearchRequest\PersonalizationSpec;
 use Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec;
-
 use Google\Cloud\Retail\V2\SearchRequest\SpellCorrectionSpec;
 use Google\Cloud\Retail\V2\SearchResponse;
 use Google\Cloud\Retail\V2\UserInfo;
@@ -50,7 +47,7 @@ use Google\Cloud\Retail\V2\UserInfo;
  * Service Description: Service for search.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please enable Retail Search on Cloud Console before using this feature.
+ * Enable Retail Search on Cloud Console before using this feature.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -82,34 +79,27 @@ use Google\Cloud\Retail\V2\UserInfo;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Retail\V2\Client\SearchServiceClient} to use the new surface.
  */
 class SearchServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.retail.v2.SearchService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'retail.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -237,9 +227,6 @@ class SearchServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'retail.googleapis.com:443'.
@@ -269,7 +256,7 @@ class SearchServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -298,7 +285,7 @@ class SearchServiceGapicClient
      * Performs a search.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please enable Retail Search on Cloud Console before using this feature.
+     * Enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -328,7 +315,7 @@ class SearchServiceGapicClient
      *                             `projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      *                             or the name of the legacy placement resource, such as
      *                             `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
-     *                             This field is used to identify the serving configuration name and the set
+     *                             This field is used to identify the serving config name and the set
      *                             of models that will be used to make the search.
      * @param string $visitorId    Required. A unique identifier for tracking visitors. For example, this
      *                             could be implemented with an HTTP cookie, which should be able to uniquely
@@ -406,7 +393,7 @@ class SearchServiceGapicClient
      *     @type FacetSpec[] $facetSpecs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *
-     *           A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
+     *           A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error
      *           is returned.
      *     @type DynamicFacetSpec $dynamicFacetSpec
      *           Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic
@@ -507,7 +494,7 @@ class SearchServiceGapicClient
      *           [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      *
      *           To represent full path of category, use '>' sign to separate different
-     *           hierarchies. If '>' is part of the category name, please replace it with
+     *           hierarchies. If '>' is part of the category name, replace it with
      *           other character(s).
      *
      *           Category pages include special pages such as sales or promotions. For
@@ -549,6 +536,13 @@ class SearchServiceGapicClient
      *     @type SpellCorrectionSpec $spellCorrectionSpec
      *           The spell correction specification that specifies the mode under
      *           which spell correction will take effect.
+     *     @type string $entity
+     *           The entity for customers that may run multiple different entities, domains,
+     *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     *           `google.com`, `youtube.com`, etc.
+     *           If this is set, it should be exactly matched with
+     *           [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get search
+     *           results boosted by entity.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -646,6 +640,10 @@ class SearchServiceGapicClient
             $request->setSpellCorrectionSpec(
                 $optionalArgs['spellCorrectionSpec']
             );
+        }
+
+        if (isset($optionalArgs['entity'])) {
+            $request->setEntity($optionalArgs['entity']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

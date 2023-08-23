@@ -17,7 +17,7 @@ class Common
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù
+ñ
 &google/cloud/gkebackup/v1/common.protogoogle.cloud.gkebackup.v1" 
 
 Namespaces
@@ -30,8 +30,8 @@ namespaces (	"1
 namespaced_names (2).google.cloud.gkebackup.v1.NamespacedName"W
 EncryptionKeyF
 gcp_kms_encryption_key (	B&˙A#
-!cloudkms.googleapis.com/CryptoKeyB…
-com.google.cloud.gkebackup.v1BCommonProtoPZBgoogle.golang.org/genproto/googleapis/cloud/gkebackup/v1;gkebackup™Google.Cloud.GkeBackup.V1 Google\\Cloud\\GkeBackup\\V1ÍGoogle::Cloud::GkeBackup::V1bproto3'
+!cloudkms.googleapis.com/CryptoKeyB¬
+com.google.cloud.gkebackup.v1BCommonProtoPZ;cloud.google.com/go/gkebackup/apiv1/gkebackuppb;gkebackuppb™Google.Cloud.GkeBackup.V1 Google\\Cloud\\GkeBackup\\V1ÍGoogle::Cloud::GkeBackup::V1bproto3'
         , true);
 
         static::$is_initialized = true;

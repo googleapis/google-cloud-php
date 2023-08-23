@@ -21,6 +21,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Describes a connection to the Cloud Spanner API
+ *
+ * @internal
  */
 interface ConnectionInterface
 {
@@ -147,6 +149,11 @@ interface ConnectionInterface
      * @param array $args
      */
     public function createDatabase(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function updateDatabase(array $args);
 
     /**
      * @param array $args

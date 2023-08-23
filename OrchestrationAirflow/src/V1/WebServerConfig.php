@@ -10,6 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The configuration settings for the Airflow web server App Engine instance.
+ * Supported for Cloud Composer environments in versions
+ * composer-1.*.*-airflow-*.*.*
  *
  * Generated from protobuf message <code>google.cloud.orchestration.airflow.service.v1.WebServerConfig</code>
  */

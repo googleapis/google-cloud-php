@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/custompath/(.*)/.*-php/(.*)
+      dest: /owl-bot-staging/CustomInput/$1/$2
+api-name: CustomInput

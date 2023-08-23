@@ -39,6 +39,29 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
     private $conversation_id = '';
 
     /**
+     * @param string                                              $parent         Required. The parent resource of the conversation. Please see
+     *                                                                            {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ContactCenterInsights\V1\Conversation $conversation   Required. The conversation resource to create.
+     * @param string                                              $conversationId A unique ID for the new conversation. This ID will become the final
+     *                                                                            component of the conversation's resource name. If no ID is specified, a
+     *                                                                            server-generated ID will be used.
+     *
+     *                                                                            This value should be 4-64 characters and must match the regular
+     *                                                                            expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\CreateConversationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ContactCenterInsights\V1\Conversation $conversation, string $conversationId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConversation($conversation)
+            ->setConversationId($conversationId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

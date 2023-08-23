@@ -70,11 +70,29 @@ class Topic extends \Google\Protobuf\Internal\Message
      * timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
      * that is up to `message_retention_duration` in the past. If this field is
      * not set, message retention is controlled by settings on individual
-     * subscriptions. Cannot be more than 7 days or less than 10 minutes.
+     * subscriptions. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     private $message_retention_duration = null;
+
+    /**
+     * @param string $name Required. The name of the topic. It must have the format
+     *                     `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+     *                     and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+     *                     underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+     *                     signs (`%`). It must be between 3 and 255 characters in length, and it
+     *                     must not start with `"goog"`.
+     *
+     * @return \Google\Cloud\PubSub\V1\Topic
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -113,7 +131,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
      *           that is up to `message_retention_duration` in the past. If this field is
      *           not set, message retention is controlled by settings on individual
-     *           subscriptions. Cannot be more than 7 days or less than 10 minutes.
+     *           subscriptions. Cannot be more than 31 days or less than 10 minutes.
      * }
      */
     public function __construct($data = NULL) {
@@ -327,7 +345,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
      * that is up to `message_retention_duration` in the past. If this field is
      * not set, message retention is controlled by settings on individual
-     * subscriptions. Cannot be more than 7 days or less than 10 minutes.
+     * subscriptions. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @return \Google\Protobuf\Duration|null
@@ -355,7 +373,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
      * that is up to `message_retention_duration` in the past. If this field is
      * not set, message retention is controlled by settings on individual
-     * subscriptions. Cannot be more than 7 days or less than 10 minutes.
+     * subscriptions. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @param \Google\Protobuf\Duration $var

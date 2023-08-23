@@ -41,12 +41,12 @@ class ListLakesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataplex\V1\Lake[]|\Google\Protobuf\Internal\RepeatedField $lakes
+     *     @type array<\Google\Cloud\Dataplex\V1\Lake>|\Google\Protobuf\Internal\RepeatedField $lakes
      *           Lakes under the given parent location.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
      *           Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListLakesResponse extends \Google\Protobuf\Internal\Message
      * Lakes under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Lake lakes = 1;</code>
-     * @param \Google\Cloud\Dataplex\V1\Lake[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Lake>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLakes($var)
@@ -124,7 +124,7 @@ class ListLakesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachableLocations($var)

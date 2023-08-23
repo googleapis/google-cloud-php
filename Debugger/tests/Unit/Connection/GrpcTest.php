@@ -24,8 +24,9 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Debuggee;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group debugger
@@ -33,11 +34,12 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 class GrpcTest extends TestCase
 {
     use GrpcTestTrait;
+    use ProphecyTrait;
 
     private $requestWrapper;
     private $successMessage;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 

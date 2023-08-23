@@ -25,7 +25,6 @@ namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Monitoring\V3\QueryServiceClient;
 use Google\Cloud\Monitoring\V3\QueryTimeSeriesResponse;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class QueryServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return QueryServiceClient
-     */
+    /** @return QueryServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class QueryServiceClientTest extends GeneratedTest
         return new QueryServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryTimeSeriesTest()
     {
         $transport = $this->createTransport();
@@ -107,9 +98,7 @@ class QueryServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();

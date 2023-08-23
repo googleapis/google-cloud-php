@@ -31,19 +31,41 @@ class ListAzureNodePoolsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
      * The `nextPageToken` value returned from a previous
-     * [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools] request, if any.
+     * [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The parent `AzureCluster` which owns this collection of
+     *                       [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
+     *
+     *                       `AzureCluster` names are formatted as
+     *                       `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                       for more details on Google Cloud resource names. Please see
+     *                       {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\ListAzureNodePoolsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -63,11 +85,12 @@ class ListAzureNodePoolsRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, a default value of 50 will be used by the service.
      *           Regardless of the pageSize value, the response can include a partial list
      *           and a caller should only rely on response's
-     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token] to determine if
-     *           there are more instances left to be queried.
+     *           [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token]
+     *           to determine if there are more instances left to be queried.
      *     @type string $page_token
      *           The `nextPageToken` value returned from a previous
-     *           [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools] request, if any.
+     *           [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools]
+     *           request, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,8 +139,8 @@ class ListAzureNodePoolsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -132,8 +155,8 @@ class ListAzureNodePoolsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the pageSize value, the response can include a partial list
      * and a caller should only rely on response's
-     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token] to determine if
-     * there are more instances left to be queried.
+     * [nextPageToken][google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse.next_page_token]
+     * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -149,7 +172,8 @@ class ListAzureNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools] request, if any.
+     * [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -161,7 +185,8 @@ class ListAzureNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `nextPageToken` value returned from a previous
-     * [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools] request, if any.
+     * [azureNodePools.list][google.cloud.gkemulticloud.v1.AzureClusters.ListAzureNodePools]
+     * request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

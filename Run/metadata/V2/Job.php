@@ -20,6 +20,7 @@ class Job
         \GPBMetadata\Google\Api\LaunchStage::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\Condition::initOnce();
+        \GPBMetadata\Google\Cloud\Run\V2\Execution::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\ExecutionTemplate::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\VendorSettings::initOnce();
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
@@ -28,8 +29,8 @@ class Job
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É 
-google/cloud/run/v2/job.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto,google/cloud/run/v2/execution_template.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"ö
+∑ 
+google/cloud/run/v2/job.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto#google/cloud/run/v2/execution.proto,google/cloud/run/v2/execution_template.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"ö
 CreateJobRequest.
 parent (	B‡A˙Arun.googleapis.com/Job*
 job (2.google.cloud.run.v2.JobB‡A
@@ -60,7 +61,7 @@ page_token (	
 name (	B‡A˙A
 run.googleapis.com/Job
 validate_only (
-etag (	"ä	
+etag (	"¶	
 Job
 name (	
 uid (	B‡A
@@ -86,7 +87,8 @@ generation (B‡A4
 conditions (2.google.cloud.run.v2.ConditionB‡A
 execution_count (B‡AN
 latest_created_execution (2\'.google.cloud.run.v2.ExecutionReferenceB‡A
-reconciling (B‡A
+reconciling (B‡A
+satisfies_pzs (B‡A
 etagc (	B‡A-
 LabelsEntry
 key (	
@@ -116,8 +118,8 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 	Execution	Executionå
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"AÇ”‰ì;9/v2/{resource=projects/*/locations/*/jobs/*}:getIamPolicyè
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"DÇ”‰ì>"9/v2/{resource=projects/*/locations/*/jobs/*}:setIamPolicy:*µ
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"JÇ”‰ìD"?/v2/{resource=projects/*/locations/*/jobs/*}:testIamPermissions:*F Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB]
-com.google.cloud.run.v2BJobProtoPZ6google.golang.org/genproto/googleapis/cloud/run/v2;runbproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"JÇ”‰ìD"?/v2/{resource=projects/*/locations/*/jobs/*}:testIamPermissions:*F Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBP
+com.google.cloud.run.v2BJobProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
         static::$is_initialized = true;

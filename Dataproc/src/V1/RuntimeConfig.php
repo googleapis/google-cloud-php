@@ -22,15 +22,15 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      */
     private $version = '';
     /**
-     * Optional. Optional custom container image for the job runtime environment. If
-     * not specified, a default container image will be used.
+     * Optional. Optional custom container image for the job runtime environment.
+     * If not specified, a default container image will be used.
      *
      * Generated from protobuf field <code>string container_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $container_image = '';
     /**
-     * Optional. A mapping of property names to values, which are used to configure workload
-     * execution.
+     * Optional. A mapping of property names to values, which are used to
+     * configure workload execution.
      *
      * Generated from protobuf field <code>map<string, string> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -45,11 +45,11 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *     @type string $version
      *           Optional. Version of the batch runtime.
      *     @type string $container_image
-     *           Optional. Optional custom container image for the job runtime environment. If
-     *           not specified, a default container image will be used.
+     *           Optional. Optional custom container image for the job runtime environment.
+     *           If not specified, a default container image will be used.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
-     *           Optional. A mapping of property names to values, which are used to configure workload
-     *           execution.
+     *           Optional. A mapping of property names to values, which are used to
+     *           configure workload execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +84,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional custom container image for the job runtime environment. If
-     * not specified, a default container image will be used.
+     * Optional. Optional custom container image for the job runtime environment.
+     * If not specified, a default container image will be used.
      *
      * Generated from protobuf field <code>string container_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -96,8 +96,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional custom container image for the job runtime environment. If
-     * not specified, a default container image will be used.
+     * Optional. Optional custom container image for the job runtime environment.
+     * If not specified, a default container image will be used.
      *
      * Generated from protobuf field <code>string container_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -112,8 +112,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A mapping of property names to values, which are used to configure workload
-     * execution.
+     * Optional. A mapping of property names to values, which are used to
+     * configure workload execution.
      *
      * Generated from protobuf field <code>map<string, string> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -124,8 +124,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A mapping of property names to values, which are used to configure workload
-     * execution.
+     * Optional. A mapping of property names to values, which are used to
+     * configure workload execution.
      *
      * Generated from protobuf field <code>map<string, string> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

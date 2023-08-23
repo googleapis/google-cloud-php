@@ -24,7 +24,7 @@ class CatalogService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ø$
+î$
 ,google/cloud/retail/v2/catalog_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/catalog.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"w
 ListCatalogsRequest9
 parent (	B)àAúA#
@@ -89,8 +89,8 @@ page_token (	"b
 UpdateAttributesConfig5.google.cloud.retail.v2.UpdateAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"Š‚Óä“d2O/v2/{attributes_config.name=projects/*/locations/*/catalogs/*/attributesConfig}:attributes_configÚAattributes_config,update_maskÞ
 AddCatalogAttribute2.google.cloud.retail.v2.AddCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"i‚Óä“c"^/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:addCatalogAttribute:*ç
 RemoveCatalogAttribute5.google.cloud.retail.v2.RemoveCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"l‚Óä“f"a/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:removeCatalogAttribute:*ê
-ReplaceCatalogAttribute6.google.cloud.retail.v2.ReplaceCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"m‚Óä“g"b/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:replaceCatalogAttribute:*IÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÈ
-com.google.cloud.retail.v2BCatalogServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
+ReplaceCatalogAttribute6.google.cloud.retail.v2.ReplaceCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"m‚Óä“g"b/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:replaceCatalogAttribute:*IÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¾
+com.google.cloud.retail.v2BCatalogServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 
         static::$is_initialized = true;

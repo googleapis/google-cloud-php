@@ -21,18 +21,21 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group trace
  */
 class TraceClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $client;
     private $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->client = TestHelpers::stub(TraceClient::class, [
             ['projectId' => 'project']

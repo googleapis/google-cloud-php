@@ -9,13 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Status of sessions created for this environment.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Environment.SessionStatus</code>
  */
 class SessionStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Queries over sessions to mark whether the environment is currently
-     * active or not
+     * Output only. Queries over sessions to mark whether the environment is
+     * currently active or not
      *
      * Generated from protobuf field <code>bool active = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -28,8 +30,8 @@ class SessionStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $active
-     *           Output only. Queries over sessions to mark whether the environment is currently
-     *           active or not
+     *           Output only. Queries over sessions to mark whether the environment is
+     *           currently active or not
      * }
      */
     public function __construct($data = NULL) {
@@ -38,8 +40,8 @@ class SessionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Queries over sessions to mark whether the environment is currently
-     * active or not
+     * Output only. Queries over sessions to mark whether the environment is
+     * currently active or not
      *
      * Generated from protobuf field <code>bool active = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -50,8 +52,8 @@ class SessionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Queries over sessions to mark whether the environment is currently
-     * active or not
+     * Output only. Queries over sessions to mark whether the environment is
+     * currently active or not
      *
      * Generated from protobuf field <code>bool active = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

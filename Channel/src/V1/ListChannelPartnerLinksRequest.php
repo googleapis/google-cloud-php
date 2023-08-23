@@ -9,24 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
+ * Request message for
+ * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ListChannelPartnerLinksRequest</code>
  */
 class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the reseller account for listing channel partner
-     * links.
-     * Parent uses the format: accounts/{account_id}
+     * Required. The resource name of the reseller account for listing channel
+     * partner links. Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, server will pick a default size (25).
-     * The maximum value is 200; the server will coerce values above 200.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, server will pick a default size (25). The
+     * maximum value is 200; the server will coerce values above 200.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -34,8 +34,10 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token for a page of results other than the first page.
      * Obtained using
-     * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
-     * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
+     * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,18 +56,19 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the reseller account for listing channel partner
-     *           links.
-     *           Parent uses the format: accounts/{account_id}
+     *           Required. The resource name of the reseller account for listing channel
+     *           partner links. Parent uses the format: accounts/{account_id}
      *     @type int $page_size
-     *           Optional. Requested page size. Server might return fewer results than requested.
-     *           If unspecified, server will pick a default size (25).
-     *           The maximum value is 200; the server will coerce values above 200.
+     *           Optional. Requested page size. Server might return fewer results than
+     *           requested. If unspecified, server will pick a default size (25). The
+     *           maximum value is 200; the server will coerce values above 200.
      *     @type string $page_token
      *           Optional. A token for a page of results other than the first page.
      *           Obtained using
-     *           [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
-     *           [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
+     *           [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token]
+     *           of the previous
+     *           [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
+     *           call.
      *     @type int $view
      *           Optional. The level of granularity the ChannelPartnerLink will display.
      * }
@@ -76,9 +79,8 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account for listing channel partner
-     * links.
-     * Parent uses the format: accounts/{account_id}
+     * Required. The resource name of the reseller account for listing channel
+     * partner links. Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -89,9 +91,8 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account for listing channel partner
-     * links.
-     * Parent uses the format: accounts/{account_id}
+     * Required. The resource name of the reseller account for listing channel
+     * partner links. Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -106,9 +107,9 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, server will pick a default size (25).
-     * The maximum value is 200; the server will coerce values above 200.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, server will pick a default size (25). The
+     * maximum value is 200; the server will coerce values above 200.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -119,9 +120,9 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, server will pick a default size (25).
-     * The maximum value is 200; the server will coerce values above 200.
+     * Optional. Requested page size. Server might return fewer results than
+     * requested. If unspecified, server will pick a default size (25). The
+     * maximum value is 200; the server will coerce values above 200.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -138,8 +139,10 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token for a page of results other than the first page.
      * Obtained using
-     * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
-     * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
+     * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -152,8 +155,10 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token for a page of results other than the first page.
      * Obtained using
-     * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
-     * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
+     * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token]
+     * of the previous
+     * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

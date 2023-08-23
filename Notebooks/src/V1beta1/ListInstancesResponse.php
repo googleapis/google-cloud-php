@@ -30,7 +30,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     private $next_page_token = '';
     /**
      * Locations that could not be reached. For example,
-     * ['us-west1-a', 'us-central1-b'].
+     * `['us-west1-a', 'us-central1-b']`.
      * A ListInstancesResponse will only contain either instances or unreachables,
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
@@ -50,7 +50,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *           next list call.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached. For example,
-     *           ['us-west1-a', 'us-central1-b'].
+     *           `['us-west1-a', 'us-central1-b']`.
      *           A ListInstancesResponse will only contain either instances or unreachables,
      * }
      */
@@ -115,7 +115,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Locations that could not be reached. For example,
-     * ['us-west1-a', 'us-central1-b'].
+     * `['us-west1-a', 'us-central1-b']`.
      * A ListInstancesResponse will only contain either instances or unreachables,
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
@@ -128,7 +128,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Locations that could not be reached. For example,
-     * ['us-west1-a', 'us-central1-b'].
+     * `['us-west1-a', 'us-central1-b']`.
      * A ListInstancesResponse will only contain either instances or unreachables,
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>

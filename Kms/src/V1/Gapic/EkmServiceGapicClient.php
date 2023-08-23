@@ -41,11 +41,16 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Kms\V1\CreateEkmConnectionRequest;
+use Google\Cloud\Kms\V1\EkmConfig;
 use Google\Cloud\Kms\V1\EkmConnection;
+use Google\Cloud\Kms\V1\GetEkmConfigRequest;
 use Google\Cloud\Kms\V1\GetEkmConnectionRequest;
 use Google\Cloud\Kms\V1\ListEkmConnectionsRequest;
 use Google\Cloud\Kms\V1\ListEkmConnectionsResponse;
+use Google\Cloud\Kms\V1\UpdateEkmConfigRequest;
 use Google\Cloud\Kms\V1\UpdateEkmConnectionRequest;
+use Google\Cloud\Kms\V1\VerifyConnectivityRequest;
+use Google\Cloud\Kms\V1\VerifyConnectivityResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -78,6 +83,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Kms\V1\Client\EkmServiceClient} to use the new surface.
  */
 class EkmServiceGapicClient
 {
@@ -101,9 +109,13 @@ class EkmServiceGapicClient
         'https://www.googleapis.com/auth/cloudkms',
     ];
 
+    private static $ekmConfigNameTemplate;
+
     private static $ekmConnectionNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $serviceNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -126,6 +138,15 @@ class EkmServiceGapicClient
         ];
     }
 
+    private static function getEkmConfigNameTemplate()
+    {
+        if (self::$ekmConfigNameTemplate == null) {
+            self::$ekmConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/ekmConfig');
+        }
+
+        return self::$ekmConfigNameTemplate;
+    }
+
     private static function getEkmConnectionNameTemplate()
     {
         if (self::$ekmConnectionNameTemplate == null) {
@@ -144,16 +165,44 @@ class EkmServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (self::$serviceNameTemplate == null) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'ekmConfig' => self::getEkmConfigNameTemplate(),
                 'ekmConnection' => self::getEkmConnectionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ekm_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted ekm_config resource.
+     */
+    public static function ekmConfigName($project, $location)
+    {
+        return self::getEkmConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -193,11 +242,34 @@ class EkmServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $namespace
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName($project, $location, $namespace, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'namespace' => $namespace,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - ekmConfig: projects/{project}/locations/{location}/ekmConfig
      * - ekmConnection: projects/{project}/locations/{location}/ekmConnections/{ekm_connection}
      * - location: projects/{project}/locations/{location}
+     * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -240,9 +312,6 @@ class EkmServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudkms.googleapis.com:443'.
@@ -272,7 +341,7 @@ class EkmServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -345,6 +414,47 @@ class EkmServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateEkmConnection', EkmConnection::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Returns the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+     * for a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $ekmServiceClient = new EkmServiceClient();
+     * try {
+     *     $formattedName = $ekmServiceClient->ekmConfigName('[PROJECT]', '[LOCATION]');
+     *     $response = $ekmServiceClient->getEkmConfig($formattedName);
+     * } finally {
+     *     $ekmServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The [name][google.cloud.kms.v1.EkmConfig.name] of the
+     *                             [EkmConfig][google.cloud.kms.v1.EkmConfig] to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\EkmConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEkmConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetEkmConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEkmConfig', EkmConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -477,6 +587,49 @@ class EkmServiceGapicClient
     }
 
     /**
+     * Updates the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
+     * for a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $ekmServiceClient = new EkmServiceClient();
+     * try {
+     *     $ekmConfig = new EkmConfig();
+     *     $updateMask = new FieldMask();
+     *     $response = $ekmServiceClient->updateEkmConfig($ekmConfig, $updateMask);
+     * } finally {
+     *     $ekmServiceClient->close();
+     * }
+     * ```
+     *
+     * @param EkmConfig $ekmConfig    Required. [EkmConfig][google.cloud.kms.v1.EkmConfig] with updated values.
+     * @param FieldMask $updateMask   Required. List of fields to be updated in this request.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\EkmConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateEkmConfig($ekmConfig, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateEkmConfigRequest();
+        $requestParamHeaders = [];
+        $request->setEkmConfig($ekmConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['ekm_config.name'] = $ekmConfig->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateEkmConfig', EkmConfig::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates an [EkmConnection][google.cloud.kms.v1.EkmConnection]'s metadata.
      *
      * Sample code:
@@ -517,6 +670,50 @@ class EkmServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateEkmConnection', EkmConnection::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Verifies that Cloud KMS can successfully connect to the external key
+     * manager specified by an [EkmConnection][google.cloud.kms.v1.EkmConnection].
+     * If there is an error connecting to the EKM, this method returns a
+     * FAILED_PRECONDITION status containing structured information as described
+     * at https://cloud.google.com/kms/docs/reference/ekm_errors.
+     *
+     * Sample code:
+     * ```
+     * $ekmServiceClient = new EkmServiceClient();
+     * try {
+     *     $formattedName = $ekmServiceClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
+     *     $response = $ekmServiceClient->verifyConnectivity($formattedName);
+     * } finally {
+     *     $ekmServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
+     *                             [EkmConnection][google.cloud.kms.v1.EkmConnection] to verify.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\VerifyConnectivityResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function verifyConnectivity($name, array $optionalArgs = [])
+    {
+        $request = new VerifyConnectivityRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('VerifyConnectivity', VerifyConnectivityResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

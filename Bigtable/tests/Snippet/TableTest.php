@@ -47,6 +47,7 @@ use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group bigtable
@@ -54,6 +55,8 @@ use Prophecy\Argument;
  */
 class TableTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
 
     private $bigtableClient;
@@ -62,7 +65,7 @@ class TableTest extends SnippetTestCase
     private $serverStream;
     private $entries = [];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
@@ -197,7 +200,9 @@ class TableTest extends SnippetTestCase
             ->setEndKeyOpen('lincoln');
         $rowSet = (new RowSet())
             ->setRowRanges([$rowRange]);
-        $this->bigtableClient->readRows(self::TABLE_NAME, ['rows' => $rowSet])
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($rowSet) {
+            return $argument['rows']->serializeToJsonString() === $rowSet->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn($this->serverStream->reveal());
 
@@ -228,7 +233,9 @@ class TableTest extends SnippetTestCase
             );
         $rowSet = (new RowSet())
             ->setRowKeys(['jefferson']);
-        $this->bigtableClient->readRows(self::TABLE_NAME, ['rows' => $rowSet])
+        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($rowSet) {
+            return $argument['rows']->serializeToJsonString() === $rowSet->serializeToJsonString();
+        }))
             ->shouldBeCalled()
             ->willReturn($this->serverStream->reveal());
         $snippet = $this->snippetFromMethod(Table::class, 'readRow');

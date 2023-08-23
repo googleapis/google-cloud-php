@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MutateRowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the table to which the mutation should be applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the mutation should be
+     * applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -37,13 +37,60 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $row_key = '';
     /**
-     * Required. Changes to be atomically applied to the specified row. Entries are applied
-     * in order, meaning that earlier mutations can be masked by later ones.
-     * Must contain at least one entry and at most 100000.
+     * Required. Changes to be atomically applied to the specified row. Entries
+     * are applied in order, meaning that earlier mutations can be masked by later
+     * ones. Must contain at least one entry and at most 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $mutations;
+
+    /**
+     * @param string                               $tableName Required. The unique name of the table to which the mutation should be
+     *                                                        applied. Values are of the form
+     *                                                        `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                                                        {@see BigtableClient::tableName()} for help formatting this field.
+     * @param string                               $rowKey    Required. The key of the row to which the mutation should be applied.
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $mutations Required. Changes to be atomically applied to the specified row. Entries
+     *                                                        are applied in order, meaning that earlier mutations can be masked by later
+     *                                                        ones. Must contain at least one entry and at most 100000.
+     *
+     * @return \Google\Cloud\Bigtable\V2\MutateRowRequest
+     *
+     * @experimental
+     */
+    public static function build(string $tableName, string $rowKey, array $mutations): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setRowKey($rowKey)
+            ->setMutations($mutations);
+    }
+
+    /**
+     * @param string                               $tableName    Required. The unique name of the table to which the mutation should be
+     *                                                           applied. Values are of the form
+     *                                                           `projects/<project>/instances/<instance>/tables/<table>`. Please see
+     *                                                           {@see BigtableClient::tableName()} for help formatting this field.
+     * @param string                               $rowKey       Required. The key of the row to which the mutation should be applied.
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries
+     *                                                           are applied in order, meaning that earlier mutations can be masked by later
+     *                                                           ones. Must contain at least one entry and at most 100000.
+     * @param string                               $appProfileId This value specifies routing for replication. If not specified, the
+     *                                                           "default" application profile will be used.
+     *
+     * @return \Google\Cloud\Bigtable\V2\MutateRowRequest
+     *
+     * @experimental
+     */
+    public static function buildFromTableNameRowKeyMutationsAppProfileId(string $tableName, string $rowKey, array $mutations, string $appProfileId): self
+    {
+        return (new self())
+            ->setTableName($tableName)
+            ->setRowKey($rowKey)
+            ->setMutations($mutations)
+            ->setAppProfileId($appProfileId);
+    }
 
     /**
      * Constructor.
@@ -52,8 +99,8 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           Required. The unique name of the table to which the mutation should be applied.
-     *           Values are of the form
+     *           Required. The unique name of the table to which the mutation should be
+     *           applied. Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
@@ -61,9 +108,9 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      *     @type string $row_key
      *           Required. The key of the row to which the mutation should be applied.
      *     @type array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
-     *           Required. Changes to be atomically applied to the specified row. Entries are applied
-     *           in order, meaning that earlier mutations can be masked by later ones.
-     *           Must contain at least one entry and at most 100000.
+     *           Required. Changes to be atomically applied to the specified row. Entries
+     *           are applied in order, meaning that earlier mutations can be masked by later
+     *           ones. Must contain at least one entry and at most 100000.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,8 +119,8 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the mutation should be applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the mutation should be
+     * applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -85,8 +132,8 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the mutation should be applied.
-     * Values are of the form
+     * Required. The unique name of the table to which the mutation should be
+     * applied. Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -156,9 +203,9 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Changes to be atomically applied to the specified row. Entries are applied
-     * in order, meaning that earlier mutations can be masked by later ones.
-     * Must contain at least one entry and at most 100000.
+     * Required. Changes to be atomically applied to the specified row. Entries
+     * are applied in order, meaning that earlier mutations can be masked by later
+     * ones. Must contain at least one entry and at most 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -169,9 +216,9 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Changes to be atomically applied to the specified row. Entries are applied
-     * in order, meaning that earlier mutations can be masked by later ones.
-     * Must contain at least one entry and at most 100000.
+     * Required. Changes to be atomically applied to the specified row. Entries
+     * are applied in order, meaning that earlier mutations can be masked by later
+     * ones. Must contain at least one entry and at most 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $var

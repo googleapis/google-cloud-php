@@ -26,16 +26,19 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group vision
  */
 class WebTest extends SnippetTestCase
 {
+    use ProphecyTrait;
+
     private $info;
     private $web;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->info = [
             'webEntities' => [

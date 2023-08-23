@@ -28,7 +28,6 @@ namespace Google\Cloud\Sql\V1beta4\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -37,8 +36,10 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\OperationsListResponse;
+use Google\Cloud\Sql\V1beta4\SqlOperationsCancelRequest;
 use Google\Cloud\Sql\V1beta4\SqlOperationsGetRequest;
 use Google\Cloud\Sql\V1beta4\SqlOperationsListRequest;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description:
@@ -49,7 +50,7 @@ use Google\Cloud\Sql\V1beta4\SqlOperationsListRequest;
  * ```
  * $sqlOperationsServiceClient = new SqlOperationsServiceClient();
  * try {
- *     $response = $sqlOperationsServiceClient->get();
+ *     $sqlOperationsServiceClient->cancel();
  * } finally {
  *     $sqlOperationsServiceClient->close();
  * }
@@ -61,29 +62,19 @@ class SqlOperationsServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.sql.v1beta4.SqlOperationsService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'sqladmin.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/sqlservice.admin',
@@ -123,9 +114,6 @@ class SqlOperationsServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'sqladmin.googleapis.com:443'.
@@ -155,7 +143,7 @@ class SqlOperationsServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -180,6 +168,64 @@ class SqlOperationsServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Cancels an instance operation that has been performed on an instance.
+     *
+     * Sample code:
+     * ```
+     * $sqlOperationsServiceClient = new SqlOperationsServiceClient();
+     * try {
+     *     $sqlOperationsServiceClient->cancel();
+     * } finally {
+     *     $sqlOperationsServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $operation
+     *           Instance operation ID.
+     *     @type string $project
+     *           Project ID of the project that contains the instance.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function cancel(array $optionalArgs = [])
+    {
+        $request = new SqlOperationsCancelRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['operation'])) {
+            $request->setOperation($optionalArgs['operation']);
+            $requestParamHeaders['operation'] = $optionalArgs['operation'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Cancel',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

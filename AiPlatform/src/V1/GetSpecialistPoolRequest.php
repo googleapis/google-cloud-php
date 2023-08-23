@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SpecialistPoolService.GetSpecialistPool][google.cloud.aiplatform.v1.SpecialistPoolService.GetSpecialistPool].
+ * Request message for
+ * [SpecialistPoolService.GetSpecialistPool][google.cloud.aiplatform.v1.SpecialistPoolService.GetSpecialistPool].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetSpecialistPoolRequest</code>
  */
@@ -23,6 +24,22 @@ class GetSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the SpecialistPool resource.
+     *                     The form is
+     *                     `projects/{project}/locations/{location}/specialistPools/{specialist_pool}`. Please see
+     *                     {@see SpecialistPoolServiceClient::specialistPoolName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetSpecialistPoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

@@ -58,7 +58,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      * converting to the desired sample rate (which might result in worse audio
      * quality), unless the specified sample rate is not supported for the
      * encoding chosen, in which case it will fail the request and return
-     * [google.rpc.Code.INVALID_ARGUMENT][].
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -108,7 +108,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *           converting to the desired sample rate (which might result in worse audio
      *           quality), unless the specified sample rate is not supported for the
      *           encoding chosen, in which case it will fail the request and return
-     *           [google.rpc.Code.INVALID_ARGUMENT][].
+     *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $effects_profile_id
      *           Optional. Input only. An identifier which selects 'audio effects' profiles
      *           that are applied on (post synthesized) text to speech. Effects are applied
@@ -258,7 +258,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      * converting to the desired sample rate (which might result in worse audio
      * quality), unless the specified sample rate is not supported for the
      * encoding chosen, in which case it will fail the request and return
-     * [google.rpc.Code.INVALID_ARGUMENT][].
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -275,7 +275,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      * converting to the desired sample rate (which might result in worse audio
      * quality), unless the specified sample rate is not supported for the
      * encoding chosen, in which case it will fail the request and return
-     * [google.rpc.Code.INVALID_ARGUMENT][].
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

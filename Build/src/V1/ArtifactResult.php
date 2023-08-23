@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ArtifactResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the
+     * The path of an artifact in a Cloud Storage bucket, with the
      * generation number. For example,
      * `gs://mybucket/path/to/output.jar#generation`.
      *
@@ -38,10 +38,10 @@ class ArtifactResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $location
-     *           The path of an artifact in a Google Cloud Storage bucket, with the
+     *           The path of an artifact in a Cloud Storage bucket, with the
      *           generation number. For example,
      *           `gs://mybucket/path/to/output.jar#generation`.
-     *     @type \Google\Cloud\Build\V1\FileHashes[]|\Google\Protobuf\Internal\RepeatedField $file_hash
+     *     @type array<\Google\Cloud\Build\V1\FileHashes>|\Google\Protobuf\Internal\RepeatedField $file_hash
      *           The file hash of the artifact.
      * }
      */
@@ -51,7 +51,7 @@ class ArtifactResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the
+     * The path of an artifact in a Cloud Storage bucket, with the
      * generation number. For example,
      * `gs://mybucket/path/to/output.jar#generation`.
      *
@@ -64,7 +64,7 @@ class ArtifactResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the
+     * The path of an artifact in a Cloud Storage bucket, with the
      * generation number. For example,
      * `gs://mybucket/path/to/output.jar#generation`.
      *
@@ -95,7 +95,7 @@ class ArtifactResult extends \Google\Protobuf\Internal\Message
      * The file hash of the artifact.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v1.FileHashes file_hash = 2;</code>
-     * @param \Google\Cloud\Build\V1\FileHashes[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Build\V1\FileHashes>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileHash($var)

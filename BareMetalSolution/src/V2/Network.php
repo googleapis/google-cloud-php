@@ -93,6 +93,30 @@ class Network extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkAddressReservation reservations = 13;</code>
      */
     private $reservations;
+    /**
+     * Output only. Pod name.
+     *
+     * Generated from protobuf field <code>string pod = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $pod = '';
+    /**
+     * Input only. List of mount points to attach the network to.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkMountPoint mount_points = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    private $mount_points;
+    /**
+     * Whether network uses standard frames or jumbo ones.
+     *
+     * Generated from protobuf field <code>bool jumbo_frames_enabled = 16;</code>
+     */
+    private $jumbo_frames_enabled = false;
+    /**
+     * Output only. Gateway ip address.
+     *
+     * Generated from protobuf field <code>string gateway_ip = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $gateway_ip = '';
 
     /**
      * Constructor.
@@ -130,6 +154,14 @@ class Network extends \Google\Protobuf\Internal\Message
      *           List of IP address reservations in this network.
      *           When updating this field, an error will be generated if a reservation
      *           conflicts with an IP address already allocated to a physical server.
+     *     @type string $pod
+     *           Output only. Pod name.
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkMountPoint>|\Google\Protobuf\Internal\RepeatedField $mount_points
+     *           Input only. List of mount points to attach the network to.
+     *     @type bool $jumbo_frames_enabled
+     *           Whether network uses standard frames or jumbo ones.
+     *     @type string $gateway_ip
+     *           Output only. Gateway ip address.
      * }
      */
     public function __construct($data = NULL) {
@@ -467,6 +499,110 @@ class Network extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation::class);
         $this->reservations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Pod name.
+     *
+     * Generated from protobuf field <code>string pod = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPod()
+    {
+        return $this->pod;
+    }
+
+    /**
+     * Output only. Pod name.
+     *
+     * Generated from protobuf field <code>string pod = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPod($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pod = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. List of mount points to attach the network to.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkMountPoint mount_points = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMountPoints()
+    {
+        return $this->mount_points;
+    }
+
+    /**
+     * Input only. List of mount points to attach the network to.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkMountPoint mount_points = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkMountPoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMountPoints($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BareMetalSolution\V2\NetworkMountPoint::class);
+        $this->mount_points = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Whether network uses standard frames or jumbo ones.
+     *
+     * Generated from protobuf field <code>bool jumbo_frames_enabled = 16;</code>
+     * @return bool
+     */
+    public function getJumboFramesEnabled()
+    {
+        return $this->jumbo_frames_enabled;
+    }
+
+    /**
+     * Whether network uses standard frames or jumbo ones.
+     *
+     * Generated from protobuf field <code>bool jumbo_frames_enabled = 16;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setJumboFramesEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->jumbo_frames_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Gateway ip address.
+     *
+     * Generated from protobuf field <code>string gateway_ip = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getGatewayIp()
+    {
+        return $this->gateway_ip;
+    }
+
+    /**
+     * Output only. Gateway ip address.
+     *
+     * Generated from protobuf field <code>string gateway_ip = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGatewayIp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->gateway_ip = $var;
 
         return $this;
     }

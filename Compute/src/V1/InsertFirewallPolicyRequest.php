@@ -35,6 +35,21 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                  $parentId               Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
+     * @param \Google\Cloud\Compute\V1\FirewallPolicy $firewallPolicyResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertFirewallPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parentId, \Google\Cloud\Compute\V1\FirewallPolicy $firewallPolicyResource): self
+    {
+        return (new self())
+            ->setParentId($parentId)
+            ->setFirewallPolicyResource($firewallPolicyResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

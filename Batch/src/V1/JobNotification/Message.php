@@ -10,8 +10,12 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Message details.
- * Describe the attribute that a message should have.
- * Without specified message attributes, no message will be sent by default.
+ * Describe the conditions under which messages will be sent.
+ * If no attribute is defined, no message will be sent by default.
+ * One message should specify either the job or the task level attributes,
+ * but not both. For example,
+ * job level: JOB_STATE_CHANGED and/or a specified new_job_state;
+ * task level: TASK_STATE_CHANGED and/or a specified new_task_state.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.JobNotification.Message</code>
  */

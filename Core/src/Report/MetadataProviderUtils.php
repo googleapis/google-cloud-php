@@ -36,6 +36,9 @@ class MetadataProviderUtils
             }
             return new GAEFlexMetadataProvider($server);
         }
+        if (!empty(getenv('K_CONFIGURATION'))) {
+            return new CloudRunMetadataProvider(getenv());
+        }
         return new EmptyMetadataProvider();
     }
 }

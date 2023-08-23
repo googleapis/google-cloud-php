@@ -21,7 +21,7 @@ class FailureCause
     const FAILURE_CAUSE_UNSPECIFIED = 0;
     /**
      * Cloud Build is not available, either because it is not enabled or because
-     * Google Cloud Deploy has insufficient permissions. See [Required
+     * Cloud Deploy has insufficient permissions. See [Required
      * permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).
      *
      * Generated from protobuf enum <code>CLOUD_BUILD_UNAVAILABLE = 1;</code>
@@ -40,12 +40,28 @@ class FailureCause
      * Generated from protobuf enum <code>DEADLINE_EXCEEDED = 3;</code>
      */
     const DEADLINE_EXCEEDED = 3;
+    /**
+     * There were missing resources in the runtime environment required for a
+     * canary deployment. Check the Cloud Build logs for more information.
+     *
+     * Generated from protobuf enum <code>MISSING_RESOURCES_FOR_CANARY = 4;</code>
+     */
+    const MISSING_RESOURCES_FOR_CANARY = 4;
+    /**
+     * Cloud Build failed to fulfill Cloud Deploy's request. See failure_message
+     * for additional details.
+     *
+     * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 5;</code>
+     */
+    const CLOUD_BUILD_REQUEST_FAILED = 5;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
         self::CLOUD_BUILD_UNAVAILABLE => 'CLOUD_BUILD_UNAVAILABLE',
         self::EXECUTION_FAILED => 'EXECUTION_FAILED',
         self::DEADLINE_EXCEEDED => 'DEADLINE_EXCEEDED',
+        self::MISSING_RESOURCES_FOR_CANARY => 'MISSING_RESOURCES_FOR_CANARY',
+        self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
     ];
 
     public static function name($value)

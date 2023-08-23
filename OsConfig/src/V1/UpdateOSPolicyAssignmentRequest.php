@@ -30,6 +30,22 @@ class UpdateOSPolicyAssignmentRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignment $osPolicyAssignment Required. The updated OS policy assignment.
+     * @param \Google\Protobuf\FieldMask                   $updateMask         Optional. Field mask that controls which fields of the assignment should be
+     *                                                                         updated.
+     *
+     * @return \Google\Cloud\OsConfig\V1\UpdateOSPolicyAssignmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\OsConfig\V1\OSPolicyAssignment $osPolicyAssignment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setOsPolicyAssignment($osPolicyAssignment)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

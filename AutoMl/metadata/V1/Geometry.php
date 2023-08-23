@@ -16,14 +16,14 @@ class Geometry
         }
         $pool->internalAddGeneratedFile(
             '
-õ
+ë
 %google/cloud/automl/v1/geometry.protogoogle.cloud.automl.v1"(
 NormalizedVertex	
 x (	
 y ("U
 BoundingPolyE
-normalized_vertices (2(.google.cloud.automl.v1.NormalizedVertexBª
-com.google.cloud.automl.v1PZ<google.golang.org/genproto/googleapis/cloud/automl/v1;automlªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
+normalized_vertices (2(.google.cloud.automl.v1.NormalizedVertexB 
+com.google.cloud.automl.v1PZ2cloud.google.com/go/automl/apiv1/automlpb;automlpbªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
         , true);
 
         static::$is_initialized = true;

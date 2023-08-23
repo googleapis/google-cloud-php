@@ -23,9 +23,9 @@ use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
-use Grpc\UnaryCall;
-use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\RejectionException;
+use GuzzleHttp\Promise\Utils;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -104,12 +104,30 @@ use Psr\Cache\CacheItemPoolInterface;
  *     ]
  * ]);
  * ```
+ *
+ * Database role configured on the pool will be applied to each session created by the pool.
+ * ```
+ * use Google\Cloud\Spanner\SpannerClient;
+ * use Google\Cloud\Spanner\Session\CacheSessionPool;
+ * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+ *
+ * $spanner = new SpannerClient();
+ * $cache = new FilesystemAdapter();
+ * $sessionPool = new CacheSessionPool($cache, [
+ *     'databaseRole' => 'Reader'
+ * ]);
+ *
+ * $database = $spanner->connect('my-instance', 'my-database', [
+ *     'sessionPool' => $sessionPool
+ * ]);
+ * ```
  */
 class CacheSessionPool implements SessionPoolInterface
 {
     use SysvTrait;
 
     const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    const DURATION_SESSION_LIFETIME = 28*24*3600; // 28 days
     const DURATION_TWENTY_MINUTES = 1200;
     const DURATION_ONE_MINUTE = 60;
     const WINDOW_SIZE = 600;
@@ -191,6 +209,7 @@ class CacheSessionPool implements SessionPoolInterface
      *           labels can be associated with a given session. See
      *           https://goo.gl/xmQnxf for more information on and examples of
      *           labels.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @throws \InvalidArgumentException
      */
@@ -252,8 +271,9 @@ class CacheSessionPool implements SessionPoolInterface
         });
 
         // Create a session if needed.
+        $exception = null;
         if ($toCreate) {
-            $createdSessions = $this->createSessions(count($toCreate))[0];
+            list($createdSessions, $exception) = $this->createSessions(count($toCreate));
             $hasCreatedSessions = count($createdSessions) > 0;
 
             $session = $this->config['lock']->synchronize(function () use (
@@ -296,13 +316,20 @@ class CacheSessionPool implements SessionPoolInterface
         // If we don't have a session, let's wait for one or throw an exception.
         if (!$session) {
             if (!$this->config['shouldWaitForSession']) {
-                throw new \RuntimeException('No sessions available.');
+                if ($exception) {
+                    throw $exception instanceof \RuntimeException
+                        ? $exception
+                        : new \RuntimeException($exception->getMessage(), $exception->getCode(), $exception);
+                } else {
+                    throw new \RuntimeException('No sessions available.');
+                }
             }
 
-            $session = $this->waitForNextAvailableSession();
+            $session = $this->waitForNextAvailableSession($exception);
         }
 
         if ($this->deleteQueue) {
+            // Note: This might not delete all sessions.
             $this->deleteSessions($this->deleteQueue);
             $this->deleteQueue = [];
         }
@@ -324,11 +351,15 @@ class CacheSessionPool implements SessionPoolInterface
             $name = $session->name();
 
             if (isset($data['inUse'][$name])) {
+                // set creation time to an expired time if no value is found
+                $creationTime = $data['inUse'][$name]['creation']
+                    ?? $this->time() - self::DURATION_SESSION_LIFETIME;
                 unset($data['inUse'][$name]);
                 array_push($data['queue'], [
                     'name' => $name,
                     'expiration' => $session->expiration()
-                        ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                        ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS,
+                    'creation' => $creationTime,
                 ]);
                 $this->save($item->set($data));
             }
@@ -471,6 +502,8 @@ class CacheSessionPool implements SessionPoolInterface
      * exceed the maximum number of sessions available per node, please be sure
      * to check the return value of this method to be certain all sessions have
      * been deleted.
+     * @return bool Returns false if some delete operations failed to delete.
+     *        True if $waitForPromises flag is false or all delete are successful.
      */
     public function clear()
     {
@@ -483,7 +516,7 @@ class CacheSessionPool implements SessionPoolInterface
             return $sessions;
         });
 
-        $this->deleteSessions($sessions);
+        return $this->deleteSessions($sessions, true);
     }
 
     /**
@@ -645,7 +678,7 @@ class CacheSessionPool implements SessionPoolInterface
      * Creates sessions up to the count provided.
      *
      * @param int $count
-     * @return [ array[] $sessions, \Exception $ex = null ]
+     * @return array{0: array[], 1: \Exception|null }
      */
     private function createSessions($count)
     {
@@ -660,7 +693,8 @@ class CacheSessionPool implements SessionPoolInterface
                 $res = $this->database->connection()->batchCreateSessions([
                     'database' => $this->database->name(),
                     'sessionTemplate' => [
-                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
+                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
+                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : ''
                     ],
                     'sessionCount' => $count - $created
                 ]);
@@ -671,7 +705,8 @@ class CacheSessionPool implements SessionPoolInterface
             foreach ($res['session'] as $result) {
                 $sessions[] = [
                     'name' => $result['name'],
-                    'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                    'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS,
+                    'creation' => $this->time(),
                 ];
 
                 $created++;
@@ -690,11 +725,19 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function isSessionValid(array $session)
     {
-        $halfHourBeforeExpiration = $session['expiration'] - (SessionPoolInterface::SESSION_EXPIRATION_SECONDS / 2);
+        $halfHourBeforeExpiration = $session['expiration'] - 1800;
 
+        // sessions more than 28 days old are auto deleted by server
+        if (self::DURATION_SESSION_LIFETIME + $session['creation'] <
+            $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS) {
+            return false;
+        }
+        // session expires in more than half hour
         if ($this->time() < $halfHourBeforeExpiration) {
             return true;
-        } elseif ($halfHourBeforeExpiration < $this->time() && $this->time() < $session['expiration']) {
+        }
+        // session expires in less than a half hour, but is not expired
+        if ($this->time() < $session['expiration']) {
             return $this->database
                 ->session($session['name'])
                 ->exists();
@@ -727,15 +770,16 @@ class CacheSessionPool implements SessionPoolInterface
     /**
      * Blocks until a session becomes available.
      *
+     * @param \RuntimeException $exception
      * @return array
      * @throws \RuntimeException
      */
-    private function waitForNextAvailableSession()
+    private function waitForNextAvailableSession($exception = null)
     {
         $elapsedCycles = 0;
 
         while (true) {
-            $session = $this->config['lock']->synchronize(function () use ($elapsedCycles) {
+            $session = $this->config['lock']->synchronize(function () use ($elapsedCycles, $exception) {
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
                 $data = $item->get();
                 $session = $this->getSession($data);
@@ -748,9 +792,17 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($this->config['maxCyclesToWaitForSession'] <= $elapsedCycles) {
                     $this->save($item->set($data));
 
-                    throw new \RuntimeException(
-                        'A session did not become available in the allotted number of attempts.'
-                    );
+                    if ($exception) {
+                        throw new \RuntimeException(
+                            $exception->getMessage(),
+                            $exception->getCode(),
+                            $exception
+                        );
+                    } else {
+                        throw new \RuntimeException(
+                            'A session did not become available in the allotted number of attempts.'
+                        );
+                    }
                 }
             });
 
@@ -806,17 +858,20 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Delete the provided sessions.
+     * Attempt to delete the provided sessions.
+     * If $waitForPromises is set to false, then the caller doesn't wait for sessions
+     * to get deleted completely. So a side effect may be that sessions might not get
+     * deleted when gRPC calls go out of scope.
      *
      * @param array $sessions
+     * @param bool $waitForPromises Whether to explicitly wait on gRPC calls
+     *        to delete sessions. **Defaults to ** `false`.
+     * @return bool Returns false if some delete operations failed to delete.
+     *        True if $waitForPromises flag is false or all delete are successful.
      */
-    private function deleteSessions(array $sessions)
+    private function deleteSessions(array $sessions, $waitForPromises = false)
     {
-        // gRPC calls appear to cancel when the corresponding UnaryCall object
-        // goes out of scope. Keeping the calls in scope allows time for the
-        // calls to complete at the expense of a small memory footprint.
         $this->deleteCalls = [];
-
         foreach ($sessions as $session) {
             $this->deleteCalls[] = $this->database->connection()
                 ->deleteSessionAsync([
@@ -824,6 +879,20 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name()
                 ]);
         }
+
+        if ($waitForPromises && !empty($this->deleteCalls)) {
+            // try clearing sessions otherwise it could lead to leaking of sessions
+            try {
+                $results = Utils::all($this->deleteCalls)->wait();
+                // successful session deletes should resolve to empty protobuf objects
+                // return true when $results has single unique object with empty string value
+                return count(array_unique($results, SORT_REGULAR)) === 1 &&
+                    empty(reset($results)->serializeToString());
+            } catch (RejectionException $ex) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -885,6 +954,14 @@ class CacheSessionPool implements SessionPoolInterface
             }
 
             $sessions = $cachedData['queue'];
+            foreach ($sessions as $id => $session) {
+                if (self::DURATION_SESSION_LIFETIME + $session['creation'] <
+                    $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS) {
+                    // sessions more than 28 days old are auto deleted by server
+                    $this->deleteQueue += $session;
+                    unset($sessions[$id]);
+                }
+            }
             // Sort sessions by expiration time, "oldest" first.
             // acquire() method picks sessions from the beginning of the queue,
             // so make sure that "oldest" ones will be picked first.
@@ -894,7 +971,7 @@ class CacheSessionPool implements SessionPoolInterface
 
             $now = $this->time();
             $soonToExpireThreshold = $now + 600;
-            $prevMaintainTime = isset($cachedData['maintainTime']) ? $cachedData['maintainTime'] : null;
+            $prevMaintainTime = $cachedData['maintainTime'] ?? null;
 
             $len = count($sessions);
             // Find sessions that already expired.
@@ -941,6 +1018,7 @@ class CacheSessionPool implements SessionPoolInterface
                     $sessions[] = [
                         'name' => $item['name'],
                         'expiration' => $session->expiration(),
+                        'creation' => $item['creation'],
                     ];
                     $freshSessionsCount++;
                 } else {
@@ -972,6 +1050,7 @@ class CacheSessionPool implements SessionPoolInterface
                             $sessions[] = [
                                 'name' => $item['name'],
                                 'expiration' => $session->expiration(),
+                                'creation' => $item['creation'],
                             ];
                         }
                     }

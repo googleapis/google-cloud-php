@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-access-approval/v/stable)](https://packagist.org/packages/google/cloud-access-approval) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-access-approval.svg)](https://packagist.org/packages/google/cloud-access-approval)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-access-approval/latest/accessapproval/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-access-approval/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -37,9 +37,8 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly
-stable and we're working towards a release candidate. We will address issues
-and requests with a higher priority.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

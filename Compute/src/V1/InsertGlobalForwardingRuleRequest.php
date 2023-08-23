@@ -35,6 +35,21 @@ class InsertGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Messag
     private $request_id = null;
 
     /**
+     * @param string                                  $project                Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\ForwardingRule $forwardingRuleResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertGlobalForwardingRuleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\ForwardingRule $forwardingRuleResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setForwardingRuleResource($forwardingRuleResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

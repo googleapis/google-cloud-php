@@ -35,7 +35,7 @@ class LoadJobConfigurationTest extends SnippetTestCase
 
     private $config;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->config = new LoadJobConfiguration(
             self::PROJECT_ID,

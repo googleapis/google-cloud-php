@@ -41,6 +41,21 @@ class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The project and cloud region path. For example,
+     *                       `projects/example-project/locations/us-central1`. Please see
+     *                       {@see DeviceManagerClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Iot\V1\ListDeviceRegistriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

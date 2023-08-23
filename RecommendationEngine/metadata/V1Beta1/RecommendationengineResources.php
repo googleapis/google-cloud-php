@@ -17,9 +17,9 @@ class RecommendationengineResources
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Æ	
-Ngoogle/cloud/recommendationengine/v1beta1/recommendationengine_resources.proto)google.cloud.recommendationengine.v1beta1B®
--com.google.cloud.recommendationengine.v1beta1PZ]google.golang.org/genproto/googleapis/cloud/recommendationengine/v1beta1;recommendationengine¢RECAI™)Google.Cloud.RecommendationEngine.V1Beta1 )Google\\Cloud\\RecommendationEngine\\V1beta1Í,Google::Cloud::RecommendationEngine::V1beta1ÍAi
+≤	
+Ngoogle/cloud/recommendationengine/v1beta1/recommendationengine_resources.proto)google.cloud.recommendationengine.v1beta1B¨
+-com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAI™)Google.Cloud.RecommendationEngine.V1Beta1 )Google\\Cloud\\RecommendationEngine\\V1beta1Í,Google::Cloud::RecommendationEngine::V1beta1ÍAi
 +recommendationengine.googleapis.com/Catalog:projects/{project}/locations/{location}/catalogs/{catalog}ÍAí
 3recommendationengine.googleapis.com/CatalogItemPath[projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path}ÍAÜ
 .recommendationengine.googleapis.com/EventStoreTprojects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}ÍAŸ

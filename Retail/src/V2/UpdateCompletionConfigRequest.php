@@ -44,6 +44,38 @@ class UpdateCompletionConfigRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Retail\V2\CompletionConfig $completionConfig Required. The [CompletionConfig][google.cloud.retail.v2.CompletionConfig]
+     *                                                                   to update.
+     *
+     *                                                                   If the caller does not have permission to update the
+     *                                                                   [CompletionConfig][google.cloud.retail.v2.CompletionConfig], then a
+     *                                                                   PERMISSION_DENIED error is returned.
+     *
+     *                                                                   If the [CompletionConfig][google.cloud.retail.v2.CompletionConfig] to
+     *                                                                   update does not exist, a NOT_FOUND error is returned.
+     * @param \Google\Protobuf\FieldMask               $updateMask       Indicates which fields in the provided
+     *                                                                   [CompletionConfig][google.cloud.retail.v2.CompletionConfig] to update. The
+     *                                                                   following are the only supported fields:
+     *
+     *                                                                   * [CompletionConfig.matching_order][google.cloud.retail.v2.CompletionConfig.matching_order]
+     *                                                                   * [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions]
+     *                                                                   * [CompletionConfig.min_prefix_length][google.cloud.retail.v2.CompletionConfig.min_prefix_length]
+     *                                                                   * [CompletionConfig.auto_learning][google.cloud.retail.v2.CompletionConfig.auto_learning]
+     *
+     *                                                                   If not set, all supported fields are updated.
+     *
+     * @return \Google\Cloud\Retail\V2\UpdateCompletionConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Retail\V2\CompletionConfig $completionConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCompletionConfig($completionConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

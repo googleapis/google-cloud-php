@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -25,7 +28,6 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
 use Google\Rpc\Code;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -33,16 +35,15 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  */
 class WriteTest extends SpannerTestCase
 {
-    use ExpectException;
     use TimeTrait;
 
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
         self::skipEmulatorTests();
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::TABLE_NAME . ' (
@@ -374,7 +375,7 @@ class WriteTest extends SpannerTestCase
 
     public function testWriteToNonExistentTableFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
 
@@ -383,7 +384,7 @@ class WriteTest extends SpannerTestCase
 
     public function testWriteToNonExistentColumnFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+        $this->expectException(NotFoundException::class);
 
         $db = self::$database;
 
@@ -392,7 +393,7 @@ class WriteTest extends SpannerTestCase
 
     public function testWriteIncorrectTypeToColumn()
     {
-        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+        $this->expectException(FailedPreconditionException::class);
 
         $db = self::$database;
 
@@ -927,7 +928,7 @@ class WriteTest extends SpannerTestCase
      */
     public function testExecuteUpdateBatchNoStatementsThrowsException()
     {
-        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+        $this->expectException(BadRequestException::class);
 
         $db = self::$database;
         $res = $db->runTransaction(function ($t) {

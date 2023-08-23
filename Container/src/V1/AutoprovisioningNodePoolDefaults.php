@@ -49,8 +49,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
-     * https://cloud.google.com/requested-min-cpu-platform label selector on the
-     * pod.
+     * `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
@@ -92,11 +91,19 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     private $boot_disk_kms_key = '';
     /**
-     * The image type to use for NAP created node.
+     * The image type to use for NAP created node. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 10;</code>
      */
     private $image_type = '';
+    /**
+     * Enable or disable Kubelet read only port.
+     *
+     * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 13;</code>
+     */
+    private $insecure_kubelet_readonly_port_enabled = null;
 
     /**
      * Constructor.
@@ -121,8 +128,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           information, read [how to specify min CPU
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      *           This field is deprecated, min_cpu_platform should be specified using
-     *           https://cloud.google.com/requested-min-cpu-platform label selector on the
-     *           pod.
+     *           `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      *           To unset the min cpu platform field pass "automatic"
      *           as field value.
      *     @type int $disk_size_gb
@@ -143,7 +149,11 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           see:
      *           https://cloud.google.com/compute/docs/disks/customer-managed-encryption
      *     @type string $image_type
-     *           The image type to use for NAP created node.
+     *           The image type to use for NAP created node. Please see
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     *           available image types.
+     *     @type bool $insecure_kubelet_readonly_port_enabled
+     *           Enable or disable Kubelet read only port.
      * }
      */
     public function __construct($data = NULL) {
@@ -284,8 +294,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
-     * https://cloud.google.com/requested-min-cpu-platform label selector on the
-     * pod.
+     * `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
@@ -308,8 +317,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
-     * https://cloud.google.com/requested-min-cpu-platform label selector on the
-     * pod.
+     * `cloud.google.com/requested-min-cpu-platform` label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
@@ -460,7 +468,9 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The image type to use for NAP created node.
+     * The image type to use for NAP created node. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 10;</code>
      * @return string
@@ -471,7 +481,9 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The image type to use for NAP created node.
+     * The image type to use for NAP created node. Please see
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     * available image types.
      *
      * Generated from protobuf field <code>string image_type = 10;</code>
      * @param string $var
@@ -481,6 +493,42 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->image_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable Kubelet read only port.
+     *
+     * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 13;</code>
+     * @return bool
+     */
+    public function getInsecureKubeletReadonlyPortEnabled()
+    {
+        return isset($this->insecure_kubelet_readonly_port_enabled) ? $this->insecure_kubelet_readonly_port_enabled : false;
+    }
+
+    public function hasInsecureKubeletReadonlyPortEnabled()
+    {
+        return isset($this->insecure_kubelet_readonly_port_enabled);
+    }
+
+    public function clearInsecureKubeletReadonlyPortEnabled()
+    {
+        unset($this->insecure_kubelet_readonly_port_enabled);
+    }
+
+    /**
+     * Enable or disable Kubelet read only port.
+     *
+     * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInsecureKubeletReadonlyPortEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->insecure_kubelet_readonly_port_enabled = $var;
 
         return $this;
     }

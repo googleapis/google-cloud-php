@@ -33,7 +33,7 @@ class FlushTest extends StreamWrapperTestCase
     private $binFileUrl;
     private $tailBinFileUrl;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->fileUrl = self::generateUrl(self::$fileName);
         $this->tailFileUrl = $this->fileUrl . StreamWrapper::TAIL_NAME_SUFFIX;
@@ -42,7 +42,7 @@ class FlushTest extends StreamWrapperTestCase
         unlink($this->fileUrl);
     }
 
-    public function tear_down()
+    public function tearDown(): void
     {
         unlink($this->fileUrl);
         unlink($this->tailFileUrl);

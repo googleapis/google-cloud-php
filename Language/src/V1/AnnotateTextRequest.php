@@ -36,6 +36,39 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
     private $encoding_type = 0;
 
     /**
+     * @param \Google\Cloud\Language\V1\Document                     $document     Required. Input document.
+     * @param \Google\Cloud\Language\V1\AnnotateTextRequest\Features $features     Required. The enabled features.
+     * @param int                                                    $encodingType The encoding type used by the API to calculate offsets.
+     *                                                                             For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
+     *
+     * @return \Google\Cloud\Language\V1\AnnotateTextRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Language\V1\Document $document, \Google\Cloud\Language\V1\AnnotateTextRequest\Features $features, int $encodingType): self
+    {
+        return (new self())
+            ->setDocument($document)
+            ->setFeatures($features)
+            ->setEncodingType($encodingType);
+    }
+
+    /**
+     * @param \Google\Cloud\Language\V1\Document                     $document Required. Input document.
+     * @param \Google\Cloud\Language\V1\AnnotateTextRequest\Features $features Required. The enabled features.
+     *
+     * @return \Google\Cloud\Language\V1\AnnotateTextRequest
+     *
+     * @experimental
+     */
+    public static function buildFromDocumentFeatures(\Google\Cloud\Language\V1\Document $document, \Google\Cloud\Language\V1\AnnotateTextRequest\Features $features): self
+    {
+        return (new self())
+            ->setDocument($document)
+            ->setFeatures($features);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

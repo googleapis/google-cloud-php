@@ -25,7 +25,6 @@ namespace Google\Cloud\ErrorReporting\Tests\Unit\V1beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorEvent;
@@ -43,25 +42,19 @@ use stdClass;
  */
 class ErrorStatsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ErrorStatsServiceClient
-     */
+    /** @return ErrorStatsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +63,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         return new ErrorStatsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEventsTest()
     {
         $transport = $this->createTransport();
@@ -97,9 +88,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEventsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -132,9 +121,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEventsTest()
     {
         $transport = $this->createTransport();
@@ -172,9 +159,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEventsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -208,9 +193,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGroupStatsTest()
     {
         $transport = $this->createTransport();
@@ -245,9 +228,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGroupStatsExceptionTest()
     {
         $transport = $this->createTransport();

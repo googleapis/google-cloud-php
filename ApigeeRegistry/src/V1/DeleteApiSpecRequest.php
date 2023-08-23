@@ -31,6 +31,21 @@ class DeleteApiSpecRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. The name of the spec to delete.
+     *                     Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
+     *                     Please see {@see RegistryClient::apiSpecName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ApigeeRegistry\V1\DeleteApiSpecRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -17,19 +17,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -47,13 +48,38 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      */
     private $ignore_active_certificates = false;
     /**
-     * Optional. If this flag is set, the Certificate Authority will be deleted as soon as
-     * possible without a 30-day grace period where undeletion would have been
-     * allowed. If you proceed, there will be no way to recover this CA.
+     * Optional. If this flag is set, the Certificate Authority will be deleted as
+     * soon as possible without a 30-day grace period where undeletion would have
+     * been allowed. If you proceed, there will be no way to recover this CA.
      *
      * Generated from protobuf field <code>bool skip_grace_period = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $skip_grace_period = false;
+    /**
+     * Optional. This field allows this ca to be deleted even if it's being
+     * depended on by another resource. However, doing so may result in unintended
+     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * no longer be able to issue certificates.
+     *
+     * Generated from protobuf field <code>bool ignore_dependent_resources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ignore_dependent_resources = false;
+
+    /**
+     * @param string $name Required. The resource name for this
+     *                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                     in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
+     *                     {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\DeleteCertificateAuthorityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -62,15 +88,16 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           Required. The resource name for this
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *     @type string $request_id
-     *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     *           retry your request, the server will know to ignore the request if it has
-     *           already been completed. The server will guarantee that for at least 60
-     *           minutes since the first request.
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           Optional. An ID to identify requests. Specify a unique request ID so that
+     *           if you must retry your request, the server will know to ignore the request
+     *           if it has already been completed. The server will guarantee that for at
+     *           least 60 minutes since the first request.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -80,9 +107,14 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *           Optional. This field allows the CA to be deleted even if the CA has
      *           active certs. Active certs include both unrevoked and unexpired certs.
      *     @type bool $skip_grace_period
-     *           Optional. If this flag is set, the Certificate Authority will be deleted as soon as
-     *           possible without a 30-day grace period where undeletion would have been
-     *           allowed. If you proceed, there will be no way to recover this CA.
+     *           Optional. If this flag is set, the Certificate Authority will be deleted as
+     *           soon as possible without a 30-day grace period where undeletion would have
+     *           been allowed. If you proceed, there will be no way to recover this CA.
+     *     @type bool $ignore_dependent_resources
+     *           Optional. This field allows this ca to be deleted even if it's being
+     *           depended on by another resource. However, doing so may result in unintended
+     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           no longer be able to issue certificates.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,8 +123,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -103,8 +136,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * Required. The resource name for this
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -119,12 +153,12 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -140,12 +174,12 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. An ID to identify requests. Specify a unique request ID so that if you must
-     * retry your request, the server will know to ignore the request if it has
-     * already been completed. The server will guarantee that for at least 60
-     * minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * Optional. An ID to identify requests. Specify a unique request ID so that
+     * if you must retry your request, the server will know to ignore the request
+     * if it has already been completed. The server will guarantee that for at
+     * least 60 minutes since the first request.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -193,9 +227,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. If this flag is set, the Certificate Authority will be deleted as soon as
-     * possible without a 30-day grace period where undeletion would have been
-     * allowed. If you proceed, there will be no way to recover this CA.
+     * Optional. If this flag is set, the Certificate Authority will be deleted as
+     * soon as possible without a 30-day grace period where undeletion would have
+     * been allowed. If you proceed, there will be no way to recover this CA.
      *
      * Generated from protobuf field <code>bool skip_grace_period = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -206,9 +240,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. If this flag is set, the Certificate Authority will be deleted as soon as
-     * possible without a 30-day grace period where undeletion would have been
-     * allowed. If you proceed, there will be no way to recover this CA.
+     * Optional. If this flag is set, the Certificate Authority will be deleted as
+     * soon as possible without a 30-day grace period where undeletion would have
+     * been allowed. If you proceed, there will be no way to recover this CA.
      *
      * Generated from protobuf field <code>bool skip_grace_period = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -218,6 +252,38 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkBool($var);
         $this->skip_grace_period = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field allows this ca to be deleted even if it's being
+     * depended on by another resource. However, doing so may result in unintended
+     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * no longer be able to issue certificates.
+     *
+     * Generated from protobuf field <code>bool ignore_dependent_resources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreDependentResources()
+    {
+        return $this->ignore_dependent_resources;
+    }
+
+    /**
+     * Optional. This field allows this ca to be deleted even if it's being
+     * depended on by another resource. However, doing so may result in unintended
+     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * no longer be able to issue certificates.
+     *
+     * Generated from protobuf field <code>bool ignore_dependent_resources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreDependentResources($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_dependent_resources = $var;
 
         return $this;
     }

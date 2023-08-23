@@ -18,28 +18,28 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
 {
     /**
      * Supported language code, generally consisting of its ISO 639-1
-     * identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes
+     * identifier, for example, 'en', 'ja'. In certain cases, ISO-639 codes
      * including language and region identifiers are returned (for example,
-     * 'zh-TW' and 'zh-CN')
+     * 'zh-TW' and 'zh-CN').
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
     private $language_code = '';
     /**
-     * Human readable name of the language localized in the display language
+     * Human-readable name of the language localized in the display language
      * specified in the request.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
     /**
-     * Can be used as source language.
+     * Can be used as a source language.
      *
      * Generated from protobuf field <code>bool support_source = 3;</code>
      */
     private $support_source = false;
     /**
-     * Can be used as target language.
+     * Can be used as a target language.
      *
      * Generated from protobuf field <code>bool support_target = 4;</code>
      */
@@ -53,16 +53,16 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
      *
      *     @type string $language_code
      *           Supported language code, generally consisting of its ISO 639-1
-     *           identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes
+     *           identifier, for example, 'en', 'ja'. In certain cases, ISO-639 codes
      *           including language and region identifiers are returned (for example,
-     *           'zh-TW' and 'zh-CN')
+     *           'zh-TW' and 'zh-CN').
      *     @type string $display_name
-     *           Human readable name of the language localized in the display language
+     *           Human-readable name of the language localized in the display language
      *           specified in the request.
      *     @type bool $support_source
-     *           Can be used as source language.
+     *           Can be used as a source language.
      *     @type bool $support_target
-     *           Can be used as target language.
+     *           Can be used as a target language.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +72,9 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
 
     /**
      * Supported language code, generally consisting of its ISO 639-1
-     * identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes
+     * identifier, for example, 'en', 'ja'. In certain cases, ISO-639 codes
      * including language and region identifiers are returned (for example,
-     * 'zh-TW' and 'zh-CN')
+     * 'zh-TW' and 'zh-CN').
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      * @return string
@@ -86,9 +86,9 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
 
     /**
      * Supported language code, generally consisting of its ISO 639-1
-     * identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes
+     * identifier, for example, 'en', 'ja'. In certain cases, ISO-639 codes
      * including language and region identifiers are returned (for example,
-     * 'zh-TW' and 'zh-CN')
+     * 'zh-TW' and 'zh-CN').
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      * @param string $var
@@ -103,7 +103,7 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human readable name of the language localized in the display language
+     * Human-readable name of the language localized in the display language
      * specified in the request.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -115,7 +115,7 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human readable name of the language localized in the display language
+     * Human-readable name of the language localized in the display language
      * specified in the request.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -131,7 +131,7 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can be used as source language.
+     * Can be used as a source language.
      *
      * Generated from protobuf field <code>bool support_source = 3;</code>
      * @return bool
@@ -142,7 +142,7 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can be used as source language.
+     * Can be used as a source language.
      *
      * Generated from protobuf field <code>bool support_source = 3;</code>
      * @param bool $var
@@ -157,7 +157,7 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can be used as target language.
+     * Can be used as a target language.
      *
      * Generated from protobuf field <code>bool support_target = 4;</code>
      * @return bool
@@ -168,7 +168,7 @@ class SupportedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can be used as target language.
+     * Can be used as a target language.
      *
      * Generated from protobuf field <code>bool support_target = 4;</code>
      * @param bool $var

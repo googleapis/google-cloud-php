@@ -41,6 +41,23 @@ class DeleteRegionSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
     private $security_policy = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionSecurityPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $securityPolicy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSecurityPolicy($securityPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -28,8 +28,8 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
      */
     private $error_details;
     /**
-     * Required. How many errors there are in total for the resource. Truncation can be
-     * indicated by having an `error_count` that is higher than the size of
+     * Required. How many errors there are in total for the resource. Truncation
+     * can be indicated by having an `error_count` that is higher than the size of
      * `error_details`.
      *
      * Generated from protobuf field <code>int32 error_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -47,8 +47,8 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\BigQuery\Migration\V2\ErrorDetail>|\Google\Protobuf\Internal\RepeatedField $error_details
      *           Required. The error details for the resource.
      *     @type int $error_count
-     *           Required. How many errors there are in total for the resource. Truncation can be
-     *           indicated by having an `error_count` that is higher than the size of
+     *           Required. How many errors there are in total for the resource. Truncation
+     *           can be indicated by having an `error_count` that is higher than the size of
      *           `error_details`.
      * }
      */
@@ -120,8 +120,8 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. How many errors there are in total for the resource. Truncation can be
-     * indicated by having an `error_count` that is higher than the size of
+     * Required. How many errors there are in total for the resource. Truncation
+     * can be indicated by having an `error_count` that is higher than the size of
      * `error_details`.
      *
      * Generated from protobuf field <code>int32 error_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -133,8 +133,8 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. How many errors there are in total for the resource. Truncation can be
-     * indicated by having an `error_count` that is higher than the size of
+     * Required. How many errors there are in total for the resource. Truncation
+     * can be indicated by having an `error_count` that is higher than the size of
      * `error_details`.
      *
      * Generated from protobuf field <code>int32 error_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>

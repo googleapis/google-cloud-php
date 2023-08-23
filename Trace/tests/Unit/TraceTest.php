@@ -20,20 +20,20 @@ namespace Google\Cloud\Trace\Tests\Unit;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\Span;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group trace
  */
 class TraceTest extends TestCase
 {
-    use AssertionRenames;
+    use ProphecyTrait;
 
     /** @var ConnectionInterface|ObjectProphecy */
     public $connection;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

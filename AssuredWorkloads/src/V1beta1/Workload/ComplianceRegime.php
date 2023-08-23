@@ -79,6 +79,12 @@ class ComplianceRegime
      * Generated from protobuf enum <code>ITAR = 10;</code>
      */
     const ITAR = 10;
+    /**
+     * Assured Workloads for Australia Regions and Support controls
+     *
+     * Generated from protobuf enum <code>AU_REGIONS_AND_US_SUPPORT = 11;</code>
+     */
+    const AU_REGIONS_AND_US_SUPPORT = 11;
 
     private static $valueToName = [
         self::COMPLIANCE_REGIME_UNSPECIFIED => 'COMPLIANCE_REGIME_UNSPECIFIED',
@@ -92,6 +98,7 @@ class ComplianceRegime
         self::EU_REGIONS_AND_SUPPORT => 'EU_REGIONS_AND_SUPPORT',
         self::CA_REGIONS_AND_SUPPORT => 'CA_REGIONS_AND_SUPPORT',
         self::ITAR => 'ITAR',
+        self::AU_REGIONS_AND_US_SUPPORT => 'AU_REGIONS_AND_US_SUPPORT',
     ];
 
     public static function name($value)

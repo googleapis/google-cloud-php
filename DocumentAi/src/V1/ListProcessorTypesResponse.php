@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for list processor types.
+ * Response message for the
+ * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ListProcessorTypesResponse</code>
  */

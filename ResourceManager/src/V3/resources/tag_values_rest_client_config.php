@@ -31,6 +31,13 @@ return [
                     ],
                 ],
             ],
+            'GetNamespacedTagValue' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/tagValues/namespaced',
+                'queryParams' => [
+                    'name',
+                ],
+            ],
             'GetTagValue' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=tagValues/*}',
@@ -101,4 +108,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

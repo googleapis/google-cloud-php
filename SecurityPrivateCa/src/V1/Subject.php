@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Subject][google.cloud.security.privateca.v1.Subject] describes parts of a distinguished name that, in turn,
- * describes the subject of the certificate.
+ * [Subject][google.cloud.security.privateca.v1.Subject] describes parts of a
+ * distinguished name that, in turn, describes the subject of the certificate.
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.Subject</code>
  */

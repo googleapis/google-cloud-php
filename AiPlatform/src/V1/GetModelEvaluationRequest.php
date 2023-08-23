@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [ModelService.GetModelEvaluation][google.cloud.aiplatform.v1.ModelService.GetModelEvaluation].
+ * Request message for
+ * [ModelService.GetModelEvaluation][google.cloud.aiplatform.v1.ModelService.GetModelEvaluation].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetModelEvaluationRequest</code>
  */
@@ -23,6 +24,22 @@ class GetModelEvaluationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the ModelEvaluation resource.
+     *                     Format:
+     *                     `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     *                     Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

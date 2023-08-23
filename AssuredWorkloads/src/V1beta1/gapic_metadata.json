@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "AssuredWorkloadsServiceGapicClient",
                     "rpcs": {
+                        "AnalyzeWorkloadMove": {
+                            "methods": [
+                                "analyzeWorkloadMove"
+                            ]
+                        },
                         "CreateWorkload": {
                             "methods": [
                                 "createWorkload"
@@ -28,6 +33,11 @@
                         "ListWorkloads": {
                             "methods": [
                                 "listWorkloads"
+                            ]
+                        },
+                        "RestrictAllowedResources": {
+                            "methods": [
+                                "restrictAllowedResources"
                             ]
                         },
                         "UpdateWorkload": {

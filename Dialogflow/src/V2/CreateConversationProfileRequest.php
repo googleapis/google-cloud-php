@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [ConversationProfiles.CreateConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.CreateConversationProfile].
+ * The request message for
+ * [ConversationProfiles.CreateConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.CreateConversationProfile].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateConversationProfileRequest</code>
  */
@@ -28,6 +29,23 @@ class CreateConversationProfileRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationProfile conversation_profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $conversation_profile = null;
+
+    /**
+     * @param string                                          $parent              Required. The project to create a conversation profile for.
+     *                                                                             Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                                             {@see ConversationProfilesClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\ConversationProfile $conversationProfile Required. The conversation profile to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateConversationProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\ConversationProfile $conversationProfile): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setConversationProfile($conversationProfile);
+    }
 
     /**
      * Constructor.

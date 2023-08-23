@@ -183,23 +183,15 @@ trait BatchTrait
         $this->setSerializableClientOptions($options);
         $this->batchMethod = $options['batchMethod'];
         $this->identifier = $options['identifier'];
-        $this->debugOutputResource = isset($options['debugOutputResource'])
-            ? $options['debugOutputResource']
-            : fopen('php://stderr', 'w');
-        $this->debugOutput = isset($options['debugOutput'])
-            ? $options['debugOutput']
-            : false;
-        $batchOptions = isset($options['batchOptions'])
-            ? $options['batchOptions']
-            : [];
+        $this->debugOutputResource = $options['debugOutputResource'] ?? fopen('php://stderr', 'w');
+        $this->debugOutput = $options['debugOutput'] ?? false;
+        $batchOptions = $options['batchOptions'] ?? [];
         $this->batchOptions = $batchOptions + [
             'batchSize' => 1000,
             'callPeriod' => 2.0,
             'numWorkers' => 2
         ];
-        $this->batchRunner = isset($options['batchRunner'])
-            ? $options['batchRunner']
-            : new BatchRunner();
+        $this->batchRunner = $options['batchRunner'] ?? new BatchRunner();
         $this->batchRunner->registerJob(
             $this->identifier,
             [$this, 'send'],

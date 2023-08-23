@@ -40,11 +40,29 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $status_detail = '';
     /**
-     * Output only. Human-readable status of any error that occurred during the operation.
+     * Output only. Human-readable status of any error that occurred during the
+     * operation.
      *
      * Generated from protobuf field <code>string error_detail = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error_detail = '';
+    /**
+     * Output only. The verb associated with the API method which triggered this
+     * operation. Possible values are "create", "delete", "update" and "import".
+     *
+     * Generated from protobuf field <code>string verb = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $verb = '';
+    /**
+     * Output only. Identifies whether it has been requested cancellation
+     * for the operation. Operations that have successfully been cancelled
+     * have [Operation.error][] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`.
+     *
+     * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $requested_cancellation = false;
 
     /**
      * Constructor.
@@ -61,7 +79,17 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $status_detail
      *           Output only. Human-readable status of the operation, if any.
      *     @type string $error_detail
-     *           Output only. Human-readable status of any error that occurred during the operation.
+     *           Output only. Human-readable status of any error that occurred during the
+     *           operation.
+     *     @type string $verb
+     *           Output only. The verb associated with the API method which triggered this
+     *           operation. Possible values are "create", "delete", "update" and "import".
+     *     @type bool $requested_cancellation
+     *           Output only. Identifies whether it has been requested cancellation
+     *           for the operation. Operations that have successfully been cancelled
+     *           have [Operation.error][] value with a
+     *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     *           `Code.CANCELLED`.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,7 +222,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human-readable status of any error that occurred during the operation.
+     * Output only. Human-readable status of any error that occurred during the
+     * operation.
      *
      * Generated from protobuf field <code>string error_detail = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -205,7 +234,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human-readable status of any error that occurred during the operation.
+     * Output only. Human-readable status of any error that occurred during the
+     * operation.
      *
      * Generated from protobuf field <code>string error_detail = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -215,6 +245,68 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->error_detail = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The verb associated with the API method which triggered this
+     * operation. Possible values are "create", "delete", "update" and "import".
+     *
+     * Generated from protobuf field <code>string verb = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getVerb()
+    {
+        return $this->verb;
+    }
+
+    /**
+     * Output only. The verb associated with the API method which triggered this
+     * operation. Possible values are "create", "delete", "update" and "import".
+     *
+     * Generated from protobuf field <code>string verb = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVerb($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->verb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Identifies whether it has been requested cancellation
+     * for the operation. Operations that have successfully been cancelled
+     * have [Operation.error][] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`.
+     *
+     * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getRequestedCancellation()
+    {
+        return $this->requested_cancellation;
+    }
+
+    /**
+     * Output only. Identifies whether it has been requested cancellation
+     * for the operation. Operations that have successfully been cancelled
+     * have [Operation.error][] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
+     * `Code.CANCELLED`.
+     *
+     * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRequestedCancellation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->requested_cancellation = $var;
 
         return $this;
     }

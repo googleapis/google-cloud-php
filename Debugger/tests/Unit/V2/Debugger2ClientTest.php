@@ -23,11 +23,9 @@
 namespace Google\Cloud\Debugger\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Debugger2Client;
 use Google\Cloud\Debugger\V2\GetBreakpointResponse;
@@ -45,25 +43,19 @@ use stdClass;
  */
 class Debugger2ClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return Debugger2Client
-     */
+    /** @return Debugger2Client */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +64,7 @@ class Debugger2ClientTest extends GeneratedTest
         return new Debugger2Client($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBreakpointTest()
     {
         $transport = $this->createTransport();
@@ -104,9 +94,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBreakpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +129,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBreakpointTest()
     {
         $transport = $this->createTransport();
@@ -174,9 +160,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBreakpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +195,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBreakpointsTest()
     {
         $transport = $this->createTransport();
@@ -243,9 +225,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBreakpointsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -279,9 +259,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDebuggeesTest()
     {
         $transport = $this->createTransport();
@@ -309,9 +287,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDebuggeesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -345,9 +321,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setBreakpointTest()
     {
         $transport = $this->createTransport();
@@ -378,9 +352,7 @@ class Debugger2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setBreakpointExceptionTest()
     {
         $transport = $this->createTransport();

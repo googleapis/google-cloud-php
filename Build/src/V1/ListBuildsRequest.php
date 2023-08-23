@@ -17,7 +17,7 @@ class ListBuildsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The parent of the collection of `Builds`.
-     * Format: `projects/{project}/locations/location`
+     * Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 9 [(.google.api.resource_reference) = {</code>
      */
@@ -60,7 +60,7 @@ class ListBuildsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           The parent of the collection of `Builds`.
-     *           Format: `projects/{project}/locations/location`
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $project_id
      *           Required. ID of the project.
      *     @type int $page_size
@@ -83,7 +83,7 @@ class ListBuildsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent of the collection of `Builds`.
-     * Format: `projects/{project}/locations/location`
+     * Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 9 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +95,7 @@ class ListBuildsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent of the collection of `Builds`.
-     * Format: `projects/{project}/locations/location`
+     * Format: `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 9 [(.google.api.resource_reference) = {</code>
      * @param string $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [EndpointService.CreateEndpoint][google.cloud.aiplatform.v1.EndpointService.CreateEndpoint].
+ * Request message for
+ * [EndpointService.CreateEndpoint][google.cloud.aiplatform.v1.EndpointService.CreateEndpoint].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CreateEndpointRequest</code>
  */
@@ -32,14 +33,67 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      * Immutable. The ID to use for endpoint, which will become the final
      * component of the endpoint resource name.
      * If not provided, Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
-     * When using HTTP/JSON, this field is populated based on a query string
-     * argument, such as `?endpoint_id=12345`. This is the fallback for fields
-     * that are not included in either the URI or the body.
+     * If the first character is a letter, this value may be up to 63 characters,
+     * and valid characters are `[a-z0-9-]`. The last character must be a letter
+     * or number.
+     * If the first character is a number, this value may be up to 9 characters,
+     * and valid characters are `[0-9]` with no leading zeros.
+     * When using HTTP/JSON, this field is populated
+     * based on a query string argument, such as `?endpoint_id=12345`. This is the
+     * fallback for fields that are not included in either the URI or the body.
      *
      * Generated from protobuf field <code>string endpoint_id = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $endpoint_id = '';
+
+    /**
+     * @param string                               $parent   Required. The resource name of the Location to create the Endpoint in.
+     *                                                       Format: `projects/{project}/locations/{location}`
+     *                                                       Please see {@see EndpointServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Endpoint $endpoint Required. The Endpoint to create.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AIPlatform\V1\Endpoint $endpoint): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEndpoint($endpoint);
+    }
+
+    /**
+     * @param string                               $parent     Required. The resource name of the Location to create the Endpoint in.
+     *                                                         Format: `projects/{project}/locations/{location}`
+     *                                                         Please see {@see EndpointServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Endpoint $endpoint   Required. The Endpoint to create.
+     * @param string                               $endpointId Immutable. The ID to use for endpoint, which will become the final
+     *                                                         component of the endpoint resource name.
+     *                                                         If not provided, Vertex AI will generate a value for this ID.
+     *
+     *                                                         If the first character is a letter, this value may be up to 63 characters,
+     *                                                         and valid characters are `[a-z0-9-]`. The last character must be a letter
+     *                                                         or number.
+     *
+     *                                                         If the first character is a number, this value may be up to 9 characters,
+     *                                                         and valid characters are `[0-9]` with no leading zeros.
+     *
+     *                                                         When using HTTP/JSON, this field is populated
+     *                                                         based on a query string argument, such as `?endpoint_id=12345`. This is the
+     *                                                         fallback for fields that are not included in either the URI or the body.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateEndpointRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentEndpointEndpointId(string $parent, \Google\Cloud\AIPlatform\V1\Endpoint $endpoint, string $endpointId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEndpoint($endpoint)
+            ->setEndpointId($endpointId);
+    }
 
     /**
      * Constructor.
@@ -56,10 +110,14 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      *           Immutable. The ID to use for endpoint, which will become the final
      *           component of the endpoint resource name.
      *           If not provided, Vertex AI will generate a value for this ID.
-     *           This value should be 1-10 characters, and valid characters are /[0-9]/.
-     *           When using HTTP/JSON, this field is populated based on a query string
-     *           argument, such as `?endpoint_id=12345`. This is the fallback for fields
-     *           that are not included in either the URI or the body.
+     *           If the first character is a letter, this value may be up to 63 characters,
+     *           and valid characters are `[a-z0-9-]`. The last character must be a letter
+     *           or number.
+     *           If the first character is a number, this value may be up to 9 characters,
+     *           and valid characters are `[0-9]` with no leading zeros.
+     *           When using HTTP/JSON, this field is populated
+     *           based on a query string argument, such as `?endpoint_id=12345`. This is the
+     *           fallback for fields that are not included in either the URI or the body.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,10 +193,14 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      * Immutable. The ID to use for endpoint, which will become the final
      * component of the endpoint resource name.
      * If not provided, Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
-     * When using HTTP/JSON, this field is populated based on a query string
-     * argument, such as `?endpoint_id=12345`. This is the fallback for fields
-     * that are not included in either the URI or the body.
+     * If the first character is a letter, this value may be up to 63 characters,
+     * and valid characters are `[a-z0-9-]`. The last character must be a letter
+     * or number.
+     * If the first character is a number, this value may be up to 9 characters,
+     * and valid characters are `[0-9]` with no leading zeros.
+     * When using HTTP/JSON, this field is populated
+     * based on a query string argument, such as `?endpoint_id=12345`. This is the
+     * fallback for fields that are not included in either the URI or the body.
      *
      * Generated from protobuf field <code>string endpoint_id = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -152,10 +214,14 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      * Immutable. The ID to use for endpoint, which will become the final
      * component of the endpoint resource name.
      * If not provided, Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
-     * When using HTTP/JSON, this field is populated based on a query string
-     * argument, such as `?endpoint_id=12345`. This is the fallback for fields
-     * that are not included in either the URI or the body.
+     * If the first character is a letter, this value may be up to 63 characters,
+     * and valid characters are `[a-z0-9-]`. The last character must be a letter
+     * or number.
+     * If the first character is a number, this value may be up to 9 characters,
+     * and valid characters are `[0-9]` with no leading zeros.
+     * When using HTTP/JSON, this field is populated
+     * based on a query string argument, such as `?endpoint_id=12345`. This is the
+     * fallback for fields that are not included in either the URI or the body.
      *
      * Generated from protobuf field <code>string endpoint_id = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

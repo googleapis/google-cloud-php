@@ -27,10 +27,8 @@ namespace Google\Cloud\Eventarc\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -96,7 +94,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -113,7 +111,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -127,34 +125,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Eventarc\V1\Client\EventarcClient} to use the new surface.
  */
 class EventarcGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.eventarc.v1.Eventarc';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'eventarc.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -162,6 +153,8 @@ class EventarcGapicClient
     private static $channelNameTemplate;
 
     private static $channelConnectionNameTemplate;
+
+    private static $cloudFunctionNameTemplate;
 
     private static $cryptoKeyNameTemplate;
 
@@ -174,6 +167,8 @@ class EventarcGapicClient
     private static $serviceAccountNameTemplate;
 
     private static $triggerNameTemplate;
+
+    private static $workflowNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -224,6 +219,17 @@ class EventarcGapicClient
         }
 
         return self::$channelConnectionNameTemplate;
+    }
+
+    private static function getCloudFunctionNameTemplate()
+    {
+        if (self::$cloudFunctionNameTemplate == null) {
+            self::$cloudFunctionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/functions/{function}'
+            );
+        }
+
+        return self::$cloudFunctionNameTemplate;
     }
 
     private static function getCryptoKeyNameTemplate()
@@ -292,18 +298,31 @@ class EventarcGapicClient
         return self::$triggerNameTemplate;
     }
 
+    private static function getWorkflowNameTemplate()
+    {
+        if (self::$workflowNameTemplate == null) {
+            self::$workflowNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/workflows/{workflow}'
+            );
+        }
+
+        return self::$workflowNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'channel' => self::getChannelNameTemplate(),
                 'channelConnection' => self::getChannelConnectionNameTemplate(),
+                'cloudFunction' => self::getCloudFunctionNameTemplate(),
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'googleChannelConfig' => self::getGoogleChannelConfigNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'provider' => self::getProviderNameTemplate(),
                 'serviceAccount' => self::getServiceAccountNameTemplate(),
                 'trigger' => self::getTriggerNameTemplate(),
+                'workflow' => self::getWorkflowNameTemplate(),
             ];
         }
 
@@ -348,6 +367,25 @@ class EventarcGapicClient
             'project' => $project,
             'location' => $location,
             'channel_connection' => $channelConnection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cloud_function resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $function
+     *
+     * @return string The formatted cloud_function resource.
+     */
+    public static function cloudFunctionName($project, $location, $function)
+    {
+        return self::getCloudFunctionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'function' => $function,
         ]);
     }
 
@@ -466,17 +504,38 @@ class EventarcGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a workflow
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workflow
+     *
+     * @return string The formatted workflow resource.
+     */
+    public static function workflowName($project, $location, $workflow)
+    {
+        return self::getWorkflowNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'workflow' => $workflow,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - channel: projects/{project}/locations/{location}/channels/{channel}
      * - channelConnection: projects/{project}/locations/{location}/channelConnections/{channel_connection}
+     * - cloudFunction: projects/{project}/locations/{location}/functions/{function}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - googleChannelConfig: projects/{project}/locations/{location}/googleChannelConfig
      * - location: projects/{project}/locations/{location}
      * - provider: projects/{project}/locations/{location}/providers/{provider}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
+     * - workflow: projects/{project}/locations/{location}/workflows/{workflow}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -558,9 +617,6 @@ class EventarcGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'eventarc.googleapis.com:443'.
@@ -590,7 +646,7 @@ class EventarcGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -631,7 +687,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -648,7 +704,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -718,7 +774,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -735,7 +791,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -802,7 +858,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -819,7 +875,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -888,7 +944,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -905,7 +961,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -967,7 +1023,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -984,7 +1040,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1041,7 +1097,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1058,7 +1114,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1723,7 +1779,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1740,7 +1796,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1870,7 +1926,7 @@ class EventarcGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1887,7 +1943,7 @@ class EventarcGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

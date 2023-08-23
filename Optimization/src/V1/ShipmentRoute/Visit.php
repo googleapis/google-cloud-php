@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Visit extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     * Index of the `shipments` field in the source
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *
      * Generated from protobuf field <code>int32 shipment_index = 1;</code>
      */
@@ -90,10 +91,12 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     private $visit_label = '';
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     * Vehicle loads upon arrival at the visit location, for each
-     * type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     * `end_load_intervals` or `demands`.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead. Vehicle loads upon arrival at the visit location, for each type
+     * specified in
+     * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     * `start_load_intervals`, `end_load_intervals` or `demands`.
      * Exception: we omit loads for quantity types unconstrained by intervals
      * and that don't have any non-zero demand on the route.
      *
@@ -102,14 +105,18 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     private $arrival_loads;
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.Transition.delay_duration][google.cloud.optimization.v1.ShipmentRoute.Transition.delay_duration]
+     * instead. Delay occurring before the visit starts.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.Delay delay_before_start = 10 [deprecated = true];</code>
      * @deprecated
      */
     protected $delay_before_start = null;
     /**
-     * Deprecated: Use [Visit.load_demands][] instead.
+     * Deprecated: Use
+     * [Visit.load_demands][google.cloud.optimization.v1.ShipmentRoute.Visit.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 5 [deprecated = true];</code>
      * @deprecated
@@ -123,7 +130,8 @@ class Visit extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $shipment_index
-     *           Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     *           Index of the `shipments` field in the source
+     *           [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *     @type bool $is_pickup
      *           If true the visit corresponds to a pickup of a `Shipment`. Otherwise, it
      *           corresponds to a delivery.
@@ -164,16 +172,22 @@ class Visit extends \Google\Protobuf\Internal\Message
      *           [VisitRequest.label][google.cloud.optimization.v1.Shipment.VisitRequest.label],
      *           if specified in the `VisitRequest`.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $arrival_loads
-     *           Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     *           Vehicle loads upon arrival at the visit location, for each
-     *           type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     *           `end_load_intervals` or `demands`.
+     *           Deprecated: Use
+     *           [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     *           instead. Vehicle loads upon arrival at the visit location, for each type
+     *           specified in
+     *           [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     *           `start_load_intervals`, `end_load_intervals` or `demands`.
      *           Exception: we omit loads for quantity types unconstrained by intervals
      *           and that don't have any non-zero demand on the route.
      *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\Delay $delay_before_start
-     *           Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
+     *           Deprecated: Use
+     *           [ShipmentRoute.Transition.delay_duration][google.cloud.optimization.v1.ShipmentRoute.Transition.delay_duration]
+     *           instead. Delay occurring before the visit starts.
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
-     *           Deprecated: Use [Visit.load_demands][] instead.
+     *           Deprecated: Use
+     *           [Visit.load_demands][google.cloud.optimization.v1.ShipmentRoute.Visit.load_demands]
+     *           instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -182,7 +196,8 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     * Index of the `shipments` field in the source
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *
      * Generated from protobuf field <code>int32 shipment_index = 1;</code>
      * @return int
@@ -193,7 +208,8 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     * Index of the `shipments` field in the source
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *
      * Generated from protobuf field <code>int32 shipment_index = 1;</code>
      * @param int $var
@@ -460,10 +476,12 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     * Vehicle loads upon arrival at the visit location, for each
-     * type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     * `end_load_intervals` or `demands`.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead. Vehicle loads upon arrival at the visit location, for each type
+     * specified in
+     * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     * `start_load_intervals`, `end_load_intervals` or `demands`.
      * Exception: we omit loads for quantity types unconstrained by intervals
      * and that don't have any non-zero demand on the route.
      *
@@ -478,10 +496,12 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
-     * Vehicle loads upon arrival at the visit location, for each
-     * type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     * `end_load_intervals` or `demands`.
+     * Deprecated: Use
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
+     * instead. Vehicle loads upon arrival at the visit location, for each type
+     * specified in
+     * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     * `start_load_intervals`, `end_load_intervals` or `demands`.
      * Exception: we omit loads for quantity types unconstrained by intervals
      * and that don't have any non-zero demand on the route.
      *
@@ -500,7 +520,9 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.Transition.delay_duration][google.cloud.optimization.v1.ShipmentRoute.Transition.delay_duration]
+     * instead. Delay occurring before the visit starts.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.Delay delay_before_start = 10 [deprecated = true];</code>
      * @return \Google\Cloud\Optimization\V1\ShipmentRoute\Delay|null
@@ -525,7 +547,9 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
+     * Deprecated: Use
+     * [ShipmentRoute.Transition.delay_duration][google.cloud.optimization.v1.ShipmentRoute.Transition.delay_duration]
+     * instead. Delay occurring before the visit starts.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.Delay delay_before_start = 10 [deprecated = true];</code>
      * @param \Google\Cloud\Optimization\V1\ShipmentRoute\Delay $var
@@ -542,7 +566,9 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Visit.load_demands][] instead.
+     * Deprecated: Use
+     * [Visit.load_demands][google.cloud.optimization.v1.ShipmentRoute.Visit.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 5 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -555,7 +581,9 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: Use [Visit.load_demands][] instead.
+     * Deprecated: Use
+     * [Visit.load_demands][google.cloud.optimization.v1.ShipmentRoute.Visit.load_demands]
+     * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 5 [deprecated = true];</code>
      * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var

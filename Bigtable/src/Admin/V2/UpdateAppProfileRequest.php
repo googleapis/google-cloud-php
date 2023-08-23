@@ -36,6 +36,22 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
     private $ignore_warnings = false;
 
     /**
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile $appProfile Required. The app profile which will (partially) replace the current value.
+     * @param \Google\Protobuf\FieldMask                 $updateMask Required. The subset of app profile fields which should be replaced.
+     *                                                               If unset, all fields will be replaced.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Bigtable\Admin\V2\AppProfile $appProfile, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAppProfile($appProfile)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

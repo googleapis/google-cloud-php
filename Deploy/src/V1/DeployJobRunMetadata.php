@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeployJobRunMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `DeployJobRun`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -30,7 +31,8 @@ class DeployJobRunMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Deploy\V1\CloudRunMetadata $cloud_run
-     *           Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.
+     *           Output only. The name of the Cloud Run Service that is associated with a
+     *           `DeployJobRun`.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +41,8 @@ class DeployJobRunMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `DeployJobRun`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Deploy\V1\CloudRunMetadata|null
@@ -60,7 +63,8 @@ class DeployJobRunMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.
+     * Output only. The name of the Cloud Run Service that is associated with a
+     * `DeployJobRun`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\CloudRunMetadata $var

@@ -200,6 +200,11 @@
                                 "provisionAccountTicket"
                             ]
                         },
+                        "RunAccessReport": {
+                            "methods": [
+                                "runAccessReport"
+                            ]
+                        },
                         "SearchChangeHistoryEvents": {
                             "methods": [
                                 "searchChangeHistoryEvents"

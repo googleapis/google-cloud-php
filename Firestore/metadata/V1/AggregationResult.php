@@ -17,14 +17,14 @@ class AggregationResult
         \GPBMetadata\Google\Firestore\V1\Document::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Þ
+Ý
 ,google/firestore/v1/aggregation_result.protogoogle.firestore.v1"¾
 AggregationResultU
 aggregate_fields (2;.google.firestore.v1.AggregationResult.AggregateFieldsEntryR
 AggregateFieldsEntry
 key (	)
-value (2.google.firestore.v1.Value:8BÏ
-com.google.firestore.v1BAggregationResultProtoPZ<google.golang.org/genproto/googleapis/firestore/v1;firestore¢GCFSªGoogle.Cloud.Firestore.V1ÊGoogle\\Cloud\\Firestore\\V1êGoogle::Cloud::Firestore::V1bproto3'
+value (2.google.firestore.v1.Value:8BÎ
+com.google.firestore.v1BAggregationResultProtoPZ;cloud.google.com/go/firestore/apiv1/firestorepb;firestorepb¢GCFSªGoogle.Cloud.Firestore.V1ÊGoogle\\Cloud\\Firestore\\V1êGoogle::Cloud::Firestore::V1bproto3'
         , true);
 
         static::$is_initialized = true;

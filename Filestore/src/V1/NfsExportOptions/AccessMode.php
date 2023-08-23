@@ -59,6 +59,4 @@ class AccessMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AccessMode::class, \Google\Cloud\Filestore\V1\NfsExportOptions_AccessMode::class);
 

@@ -23,16 +23,19 @@
 namespace Google\Cloud\Asset\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningResponse;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
-
 use Google\Cloud\Asset\V1\AnalyzeMoveResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer;
 use Google\Cloud\Asset\V1\Asset;
 use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
@@ -69,25 +72,19 @@ use stdClass;
  */
 class AssetServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AssetServiceClient
-     */
+    /** @return AssetServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -96,9 +93,7 @@ class AssetServiceClientTest extends GeneratedTest
         return new AssetServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -127,9 +122,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -164,14 +157,12 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeIamPolicyLongrunningTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -233,14 +224,12 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeIamPolicyLongrunningExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -293,9 +282,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeMoveTest()
     {
         $transport = $this->createTransport();
@@ -323,9 +310,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeMoveExceptionTest()
     {
         $transport = $this->createTransport();
@@ -359,9 +344,223 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
+    public function analyzeOrgPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $orgPolicyResultsElement = new OrgPolicyResult();
+        $orgPolicyResults = [
+            $orgPolicyResultsElement,
+        ];
+        $expectedResponse = new AnalyzeOrgPoliciesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setOrgPolicyResults($orgPolicyResults);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $response = $gapicClient->analyzeOrgPolicies($scope, $constraint);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getOrgPolicyResults()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        try {
+            $gapicClient->analyzeOrgPolicies($scope, $constraint);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedAssetsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $governedAssetsElement = new GovernedAsset();
+        $governedAssets = [
+            $governedAssetsElement,
+        ];
+        $expectedResponse = new AnalyzeOrgPolicyGovernedAssetsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGovernedAssets($governedAssets);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $response = $gapicClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGovernedAssets()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedAssets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedAssetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        try {
+            $gapicClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedContainersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $governedContainersElement = new GovernedContainer();
+        $governedContainers = [
+            $governedContainersElement,
+        ];
+        $expectedResponse = new AnalyzeOrgPolicyGovernedContainersResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGovernedContainers($governedContainers);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $response = $gapicClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGovernedContainers()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedContainers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function analyzeOrgPolicyGovernedContainersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        try {
+            $gapicClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function batchGetAssetsHistoryTest()
     {
         $transport = $this->createTransport();
@@ -392,9 +591,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchGetAssetsHistoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -429,9 +626,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchGetEffectiveIamPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -459,9 +654,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchGetEffectiveIamPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -495,9 +688,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFeedTest()
     {
         $transport = $this->createTransport();
@@ -534,9 +725,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFeedExceptionTest()
     {
         $transport = $this->createTransport();
@@ -575,9 +764,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSavedQueryTest()
     {
         $transport = $this->createTransport();
@@ -616,9 +803,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSavedQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -653,9 +838,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFeedTest()
     {
         $transport = $this->createTransport();
@@ -679,9 +862,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFeedExceptionTest()
     {
         $transport = $this->createTransport();
@@ -714,9 +895,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSavedQueryTest()
     {
         $transport = $this->createTransport();
@@ -740,9 +919,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSavedQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -775,14 +952,12 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportAssetsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -842,14 +1017,12 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportAssetsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -900,9 +1073,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFeedTest()
     {
         $transport = $this->createTransport();
@@ -929,9 +1100,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFeedExceptionTest()
     {
         $transport = $this->createTransport();
@@ -964,9 +1133,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSavedQueryTest()
     {
         $transport = $this->createTransport();
@@ -999,9 +1166,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSavedQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1034,9 +1199,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssetsTest()
     {
         $transport = $this->createTransport();
@@ -1071,9 +1234,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1106,9 +1267,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFeedsTest()
     {
         $transport = $this->createTransport();
@@ -1133,9 +1292,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFeedsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1168,9 +1325,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSavedQueriesTest()
     {
         $transport = $this->createTransport();
@@ -1205,9 +1360,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSavedQueriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1240,9 +1393,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryAssetsTest()
     {
         $transport = $this->createTransport();
@@ -1271,9 +1422,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryAssetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1306,9 +1455,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAllIamPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -1343,9 +1490,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAllIamPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1378,9 +1523,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAllResourcesTest()
     {
         $transport = $this->createTransport();
@@ -1415,9 +1558,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchAllResourcesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1450,9 +1591,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFeedTest()
     {
         $transport = $this->createTransport();
@@ -1486,9 +1625,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFeedExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1526,9 +1663,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSavedQueryTest()
     {
         $transport = $this->createTransport();
@@ -1564,9 +1699,7 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSavedQueryExceptionTest()
     {
         $transport = $this->createTransport();

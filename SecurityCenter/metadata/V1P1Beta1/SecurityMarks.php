@@ -17,7 +17,7 @@ class SecurityMarks
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ê
+È
 :google/cloud/securitycenter/v1p1beta1/security_marks.proto%google.cloud.securitycenter.v1p1beta1"Ü
 SecurityMarks
 name (	N
@@ -27,8 +27,8 @@ class SecurityMarks
 MarksEntry
 key (	
 value (	:8:¦êA¢
-+securitycenter.googleapis.com/SecurityMarks9organizations/{organization}/assets/{asset}/securityMarksNorganizations/{organization}/sources/{source}/findings/{finding}/securityMarks-folders/{folder}/assets/{asset}/securityMarks/projects/{project}/assets/{asset}/securityMarksBfolders/{folder}/sources/{source}/findings/{finding}/securityMarksDprojects/{project}/sources/{source}/findings/{finding}/securityMarksBý
-)com.google.cloud.securitycenter.v1p1beta1PZSgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1p1beta1;securitycenterª%Google.Cloud.SecurityCenter.V1P1Beta1Ê%Google\\Cloud\\SecurityCenter\\V1p1beta1ê(Google::Cloud::SecurityCenter::V1p1beta1bproto3'
++securitycenter.googleapis.com/SecurityMarks9organizations/{organization}/assets/{asset}/securityMarksNorganizations/{organization}/sources/{source}/findings/{finding}/securityMarks-folders/{folder}/assets/{asset}/securityMarks/projects/{project}/assets/{asset}/securityMarksBfolders/{folder}/sources/{source}/findings/{finding}/securityMarksDprojects/{project}/sources/{source}/findings/{finding}/securityMarksBû
+)com.google.cloud.securitycenter.v1p1beta1PZQcloud.google.com/go/securitycenter/apiv1p1beta1/securitycenterpb;securitycenterpbª%Google.Cloud.SecurityCenter.V1P1Beta1Ê%Google\\Cloud\\SecurityCenter\\V1p1beta1ê(Google::Cloud::SecurityCenter::V1p1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

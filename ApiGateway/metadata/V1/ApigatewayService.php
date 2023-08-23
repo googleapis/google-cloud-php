@@ -20,7 +20,7 @@ class ApigatewayService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì
+æ
 3google/cloud/apigateway/v1/apigateway_service.protogoogle.cloud.apigateway.v1google/api/client.proto+google/cloud/apigateway/v1/apigateway.proto#google/longrunning/operations.proto2à
 ApiGatewayService°
 ListGateways/.google.cloud.apigateway.v1.ListGatewaysRequest0.google.cloud.apigateway.v1.ListGatewaysResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/gatewaysÚAparent
@@ -49,8 +49,8 @@ api_configÚAparent,api_config,api_config_idÊA
 api_configÚAapi_config,update_maskÊA
 	ApiConfigOperationMetadataÔ
 DeleteApiConfig2.google.cloud.apigateway.v1.DeleteApiConfigRequest.google.longrunning.Operation"n‚Óä“4*2/v1/{name=projects/*/locations/*/apis/*/configs/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataMÊAapigateway.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÂ
-com.google.cloud.apigateway.v1PZDgoogle.golang.org/genproto/googleapis/cloud/apigateway/v1;apigatewayªGoogle.Cloud.ApiGateway.V1ÊGoogle\\Cloud\\ApiGateway\\V1êGoogle::Cloud::ApiGateway::V1bproto3'
+google.protobuf.EmptyOperationMetadataMÊAapigateway.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
+com.google.cloud.apigateway.v1PZ>cloud.google.com/go/apigateway/apiv1/apigatewaypb;apigatewaypbªGoogle.Cloud.ApiGateway.V1ÊGoogle\\Cloud\\ApiGateway\\V1êGoogle::Cloud::ApiGateway::V1bproto3'
         , true);
 
         static::$is_initialized = true;

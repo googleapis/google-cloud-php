@@ -24,10 +24,9 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
@@ -36,8 +35,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class SigningHelperTest extends TestCase
 {
-    use AssertStringContains;
-    use ExpectException;
+    use ProphecyTrait;
 
     const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
     const BUCKET = 'test-bucket';
@@ -46,7 +44,7 @@ class SigningHelperTest extends TestCase
 
     private $helper;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->helper = TestHelpers::stub(SigningHelperStub::class);
     }
@@ -417,7 +415,7 @@ class SigningHelperTest extends TestCase
 
     public function testV4SignInvalidExpiration()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $expires = (new \DateTime)->modify('+20 days');
         $this->helper->v4Sign(
@@ -476,7 +474,7 @@ class SigningHelperTest extends TestCase
      */
     public function testInvalidExpiration($method)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->helper->$method(
             $this->mockConnection($this->createCredentialsMock()->reveal()),
@@ -545,7 +543,7 @@ class SigningHelperTest extends TestCase
      */
     public function testNormalizeOptionsInvalidTimestamps($timestamp)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->helper->proxyPrivateMethodCall('normalizeOptions', [
             ['timestamp' => $timestamp]
@@ -603,7 +601,7 @@ class SigningHelperTest extends TestCase
      */
     public function testV2InvalidHeaders($header)
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->helper->v2Sign(
             $this->mockConnection($this->prophesize(SignBlobInterface::class)->reveal()),
@@ -751,7 +749,7 @@ class SigningHelperTest extends TestCase
 
     public function testGetSigningCredentialsInvalidKeyfilePath()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $conn = $this->mockConnection();
 

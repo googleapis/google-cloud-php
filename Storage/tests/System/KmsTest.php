@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Testing\System\KeyManager;
 use Google\Cloud\Storage\StorageObject;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
@@ -27,8 +26,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  */
 class KmsTest extends StorageTestCase
 {
-    use AssertStringContains;
-
     const DATA = 'data';
     const KEY_RING_ID = 'kms-kr';
     const CRYPTO_KEY_ID_1 = 'key1';
@@ -37,9 +34,9 @@ class KmsTest extends StorageTestCase
     private static $keyName1;
     private static $keyName2;
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        parent::setUpBeforeClass();
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $encryption = new KeyManager(

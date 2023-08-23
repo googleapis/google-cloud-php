@@ -55,12 +55,31 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
      */
     private $allow_missing = false;
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validate_only = false;
+
+    /**
+     * @param \Google\Cloud\Deploy\V1\Target $target     Required. The `Target` to update.
+     * @param \Google\Protobuf\FieldMask     $updateMask Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                   Target resource by the update.
+     *                                                   The fields specified in the update_mask are relative to the resource, not
+     *                                                   the full request. A field will be overwritten if it is in the mask. If the
+     *                                                   user does not provide a mask then all fields will be overwritten.
+     *
+     * @return \Google\Cloud\Deploy\V1\UpdateTargetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Deploy\V1\Target $target, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTarget($target)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -92,8 +111,8 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set to true, updating a `Target` that does not exist will
      *           result in the creation of a new `Target`.
      *     @type bool $validate_only
-     *           Optional. If set to true, the request is validated and the user is provided with
-     *           an expected result, but no actual change is made.
+     *           Optional. If set to true, the request is validated and the user is provided
+     *           with an expected result, but no actual change is made.
      * }
      */
     public function __construct($data = NULL) {
@@ -256,8 +275,8 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -268,8 +287,8 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the request is validated and the user is provided with
-     * an expected result, but no actual change is made.
+     * Optional. If set to true, the request is validated and the user is provided
+     * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

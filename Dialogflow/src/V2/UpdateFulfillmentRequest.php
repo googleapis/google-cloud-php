@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Fulfillments.UpdateFulfillment][google.cloud.dialogflow.v2.Fulfillments.UpdateFulfillment].
+ * The request message for
+ * [Fulfillments.UpdateFulfillment][google.cloud.dialogflow.v2.Fulfillments.UpdateFulfillment].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateFulfillmentRequest</code>
  */
@@ -28,6 +29,22 @@ class UpdateFulfillmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Dialogflow\V2\Fulfillment $fulfillment Required. The fulfillment to update.
+     * @param \Google\Protobuf\FieldMask              $updateMask  Required. The mask to control which fields get updated. If the mask is not
+     *                                                             present, all fields will be updated.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\UpdateFulfillmentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Fulfillment $fulfillment, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setFulfillment($fulfillment)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

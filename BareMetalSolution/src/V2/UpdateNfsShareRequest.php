@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message requesting to updating a NFS share.
+ * Message requesting to updating an NFS share.
  *
  * Generated from protobuf message <code>google.cloud.baremetalsolution.v2.UpdateNfsShareRequest</code>
  */
@@ -27,10 +27,32 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      * The list of fields to update.
      * The only currently supported fields are:
      *   `labels`
+     *   `allowed_clients`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\BareMetalSolution\V2\NfsShare $nfsShare   Required. The NFS share to update.
+     *
+     *                                                                The `name` field is used to identify the NFS share to update.
+     *                                                                Format: projects/{project}/locations/{location}/nfsShares/{nfs_share}
+     * @param \Google\Protobuf\FieldMask                  $updateMask The list of fields to update.
+     *                                                                The only currently supported fields are:
+     *                                                                `labels`
+     *                                                                `allowed_clients`
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\BareMetalSolution\V2\NfsShare $nfsShare, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setNfsShare($nfsShare)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -46,6 +68,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      *           The list of fields to update.
      *           The only currently supported fields are:
      *             `labels`
+     *             `allowed_clients`
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +120,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      * The list of fields to update.
      * The only currently supported fields are:
      *   `labels`
+     *   `allowed_clients`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -120,6 +144,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      * The list of fields to update.
      * The only currently supported fields are:
      *   `labels`
+     *   `allowed_clients`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

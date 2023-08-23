@@ -117,7 +117,7 @@ class BuiltImage extends \Google\Protobuf\Internal\Message
      */
     public function getPushTiming()
     {
-        return isset($this->push_timing) ? $this->push_timing : null;
+        return $this->push_timing;
     }
 
     public function hasPushTiming()

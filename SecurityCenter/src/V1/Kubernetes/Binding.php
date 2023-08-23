@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Binding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Namespace for binding.
+     * Namespace for the binding.
      *
      * Generated from protobuf field <code>string ns = 1;</code>
      */
     private $ns = '';
     /**
-     * Name for binding.
+     * Name for the binding.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
@@ -34,8 +34,8 @@ class Binding extends \Google\Protobuf\Internal\Message
      */
     private $role = null;
     /**
-     * Represents the subjects(s) bound to the role. Not always available
-     * for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always
+     * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
      */
@@ -48,14 +48,14 @@ class Binding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ns
-     *           Namespace for binding.
+     *           Namespace for the binding.
      *     @type string $name
-     *           Name for binding.
+     *           Name for the binding.
      *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Role $role
      *           The Role or ClusterRole referenced by the binding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $subjects
-     *           Represents the subjects(s) bound to the role. Not always available
-     *           for PATCH requests.
+     *           Represents one or more subjects that are bound to the role. Not always
+     *           available for PATCH requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +64,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Namespace for binding.
+     * Namespace for the binding.
      *
      * Generated from protobuf field <code>string ns = 1;</code>
      * @return string
@@ -75,7 +75,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Namespace for binding.
+     * Namespace for the binding.
      *
      * Generated from protobuf field <code>string ns = 1;</code>
      * @param string $var
@@ -90,7 +90,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for binding.
+     * Name for the binding.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      * @return string
@@ -101,7 +101,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for binding.
+     * Name for the binding.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      * @param string $var
@@ -152,8 +152,8 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the subjects(s) bound to the role. Not always available
-     * for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always
+     * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -164,8 +164,8 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the subjects(s) bound to the role. Not always available
-     * for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always
+     * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
      * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $var

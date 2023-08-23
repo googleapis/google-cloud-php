@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AnswerRecords.ListAnswerRecords][google.cloud.dialogflow.v2.AnswerRecords.ListAnswerRecords].
+ * Request message for
+ * [AnswerRecords.ListAnswerRecords][google.cloud.dialogflow.v2.AnswerRecords.ListAnswerRecords].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListAnswerRecordsRequest</code>
  */
@@ -50,6 +51,22 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The project to list all answer records for in reverse
+     *                       chronological order. Format: `projects/<Project ID>/locations/<Location
+     *                       ID>`. Please see
+     *                       {@see AnswerRecordsClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListAnswerRecordsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

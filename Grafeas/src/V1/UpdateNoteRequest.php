@@ -36,6 +36,25 @@ class UpdateNoteRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                     $name       The name of the note in the form of
+     *                                               `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. Please see
+     *                                               {@see GrafeasClient::noteName()} for help formatting this field.
+     * @param \Grafeas\V1\Note           $note       The updated note.
+     * @param \Google\Protobuf\FieldMask $updateMask The fields to update.
+     *
+     * @return \Grafeas\V1\UpdateNoteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Grafeas\V1\Note $note, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setNote($note)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

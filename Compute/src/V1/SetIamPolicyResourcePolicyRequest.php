@@ -41,6 +41,25 @@ class SetIamPolicyResourcePolicyRequest extends \Google\Protobuf\Internal\Messag
     private $resource = '';
 
     /**
+     * @param string                                          $project                        Project ID for this request.
+     * @param string                                          $region                         The name of the region for this request.
+     * @param string                                          $resource                       Name or id of the resource for this request.
+     * @param \Google\Cloud\Compute\V1\RegionSetPolicyRequest $regionSetPolicyRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetIamPolicyResourcePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $resource, \Google\Cloud\Compute\V1\RegionSetPolicyRequest $regionSetPolicyRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

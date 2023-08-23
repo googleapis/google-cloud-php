@@ -27,11 +27,9 @@ namespace Google\Cloud\Dialogflow\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -45,9 +43,9 @@ use Google\Cloud\Dialogflow\V2\ExportDocumentRequest;
 use Google\Cloud\Dialogflow\V2\GcsDestination;
 use Google\Cloud\Dialogflow\V2\GcsSources;
 use Google\Cloud\Dialogflow\V2\GetDocumentRequest;
+use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
 use Google\Cloud\Dialogflow\V2\ImportDocumentsRequest;
 use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
-use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
 use Google\Cloud\Dialogflow\V2\KnowledgeOperationMetadata;
 use Google\Cloud\Dialogflow\V2\ListDocumentsRequest;
 use Google\Cloud\Dialogflow\V2\ListDocumentsResponse;
@@ -61,7 +59,8 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Service for managing knowledge [Documents][google.cloud.dialogflow.v2.Document].
+ * Service Description: Service for managing knowledge
+ * [Documents][google.cloud.dialogflow.v2.Document].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -75,7 +74,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -92,7 +91,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -106,34 +105,27 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\DocumentsClient} to use the new surface.
  */
 class DocumentsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dialogflow.v2.Documents';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
@@ -437,9 +429,6 @@ class DocumentsGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dialogflow.googleapis.com:443'.
@@ -469,7 +458,7 @@ class DocumentsGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -502,7 +491,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Sample code:
@@ -515,7 +505,7 @@ class DocumentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -532,7 +522,7 @@ class DocumentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -578,7 +568,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
@@ -651,7 +642,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Sample code:
@@ -663,7 +655,7 @@ class DocumentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -680,7 +672,7 @@ class DocumentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -787,8 +779,10 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
-     * - `response`: [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`:
+     * [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
      *
      * Sample code:
      * ```
@@ -800,7 +794,7 @@ class DocumentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -817,7 +811,7 @@ class DocumentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -835,7 +829,7 @@ class DocumentsGapicClient
      *     Optional.
      *
      *     @type GcsSources $gcsSource
-     *           The Google Cloud Storage location for the documents.
+     *           Optional. The Google Cloud Storage location for the documents.
      *           The path can include a wildcard.
      *
      *           These URIs may have the forms
@@ -980,7 +974,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
@@ -995,7 +990,7 @@ class DocumentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1012,7 +1007,7 @@ class DocumentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1029,8 +1024,8 @@ class DocumentsGapicClient
      *     Optional.
      *
      *     @type string $contentUri
-     *           Optional. The path of gcs source file for reloading document content. For now,
-     *           only gcs uri is supported.
+     *           Optional. The path of gcs source file for reloading document content. For
+     *           now, only gcs uri is supported.
      *
      *           For documents stored in Google Cloud Storage, these URIs must have
      *           the form `gs://<bucket-name>/<object-name>`.
@@ -1038,8 +1033,8 @@ class DocumentsGapicClient
      *           Optional. Whether to import custom metadata from Google Cloud Storage.
      *           Only valid when the document source is Google Cloud Storage URI.
      *     @type bool $smartMessagingPartialUpdate
-     *           Optional. When enabled, the reload request is to apply partial update to the smart
-     *           messaging allowlist.
+     *           Optional. When enabled, the reload request is to apply partial update to
+     *           the smart messaging allowlist.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1080,7 +1075,8 @@ class DocumentsGapicClient
      * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
      * The returned `Operation` type has the following method-specific fields:
      *
-     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `metadata`:
+     * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
      * Sample code:
@@ -1092,7 +1088,7 @@ class DocumentsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1109,7 +1105,7 @@ class DocumentsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

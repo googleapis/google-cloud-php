@@ -18,8 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ExponentialBackoff;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -28,7 +28,7 @@ class ExponentialBackoffTest extends TestCase
 {
     private $delayFunction;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->delayFunction = function () {
             return;
@@ -159,5 +159,34 @@ class ExponentialBackoffTest extends TestCase
             [5, 32000000, 33000000],
             [10, 60000000, 60000000]
         ];
+    }
+
+    /**
+     * Tests whether `retryListener()` callback is
+     * properly invoked when exception occurs in the request being made.
+     */
+    public function testRetryListener()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Intentionally failing request');
+        $args = ['foo' => 'bar'];
+        $retryListener = function (
+            $ex,
+            $retryAttempt,
+            $arguments
+        ) {
+            self::assertEquals(0, $retryAttempt);
+            self::assertEquals('bar', $arguments[0]['foo']);
+        };
+
+        // Setting $retries to 0 so that retry doesn't happens after first
+        // failure.
+        $backoff = new ExponentialBackoff(0, null, $retryListener);
+        $backoff->execute(
+            function () {
+                throw new \Exception('Intentionally failing request');
+            },
+            [$args]
+        );
     }
 }

@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-dataproc-metastore/v/stable)](https://packagist.org/packages/google/cloud-dataproc-metastore) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-dataproc-metastore.svg)](https://packagist.org/packages/google/cloud-dataproc-metastore)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-dataproc-metastore/latest/dataprocmetastore/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-dataproc-metastore/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

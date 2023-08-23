@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel].
+ * Request message for
+ * [EndpointService.UndeployModel][google.cloud.aiplatform.v1.EndpointService.UndeployModel].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.UndeployModelRequest</code>
  */
@@ -31,16 +32,42 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
     private $deployed_model_id = '';
     /**
      * If this field is provided, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it. If
-     * last DeployedModel is being undeployed from the Endpoint, the
-     * [Endpoint.traffic_split] will always end up empty when this call returns.
-     * A DeployedModel will be successfully undeployed only if it doesn't have
-     * any traffic assigned to it when this method executes, or if this field
-     * unassigns any traffic to it.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     * overwritten with it. If last DeployedModel is being undeployed from the
+     * Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     * call returns. A DeployedModel will be successfully undeployed only if it
+     * doesn't have any traffic assigned to it when this method executes, or if
+     * this field unassigns any traffic to it.
      *
      * Generated from protobuf field <code>map<string, int32> traffic_split = 3;</code>
      */
     private $traffic_split;
+
+    /**
+     * @param string $endpoint        Required. The name of the Endpoint resource from which to undeploy a Model.
+     *                                Format:
+     *                                `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
+     * @param string $deployedModelId Required. The ID of the DeployedModel to be undeployed from the Endpoint.
+     * @param array  $trafficSplit    If this field is provided, then the Endpoint's
+     *                                [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *                                overwritten with it. If last DeployedModel is being undeployed from the
+     *                                Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     *                                call returns. A DeployedModel will be successfully undeployed only if it
+     *                                doesn't have any traffic assigned to it when this method executes, or if
+     *                                this field unassigns any traffic to it.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UndeployModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $endpoint, string $deployedModelId, array $trafficSplit): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setDeployedModelId($deployedModelId)
+            ->setTrafficSplit($trafficSplit);
+    }
 
     /**
      * Constructor.
@@ -56,12 +83,12 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID of the DeployedModel to be undeployed from the Endpoint.
      *     @type array|\Google\Protobuf\Internal\MapField $traffic_split
      *           If this field is provided, then the Endpoint's
-     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it. If
-     *           last DeployedModel is being undeployed from the Endpoint, the
-     *           [Endpoint.traffic_split] will always end up empty when this call returns.
-     *           A DeployedModel will be successfully undeployed only if it doesn't have
-     *           any traffic assigned to it when this method executes, or if this field
-     *           unassigns any traffic to it.
+     *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     *           overwritten with it. If last DeployedModel is being undeployed from the
+     *           Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     *           call returns. A DeployedModel will be successfully undeployed only if it
+     *           doesn't have any traffic assigned to it when this method executes, or if
+     *           this field unassigns any traffic to it.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,12 +154,12 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If this field is provided, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it. If
-     * last DeployedModel is being undeployed from the Endpoint, the
-     * [Endpoint.traffic_split] will always end up empty when this call returns.
-     * A DeployedModel will be successfully undeployed only if it doesn't have
-     * any traffic assigned to it when this method executes, or if this field
-     * unassigns any traffic to it.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     * overwritten with it. If last DeployedModel is being undeployed from the
+     * Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     * call returns. A DeployedModel will be successfully undeployed only if it
+     * doesn't have any traffic assigned to it when this method executes, or if
+     * this field unassigns any traffic to it.
      *
      * Generated from protobuf field <code>map<string, int32> traffic_split = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -144,12 +171,12 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If this field is provided, then the Endpoint's
-     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be overwritten with it. If
-     * last DeployedModel is being undeployed from the Endpoint, the
-     * [Endpoint.traffic_split] will always end up empty when this call returns.
-     * A DeployedModel will be successfully undeployed only if it doesn't have
-     * any traffic assigned to it when this method executes, or if this field
-     * unassigns any traffic to it.
+     * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
+     * overwritten with it. If last DeployedModel is being undeployed from the
+     * Endpoint, the [Endpoint.traffic_split] will always end up empty when this
+     * call returns. A DeployedModel will be successfully undeployed only if it
+     * doesn't have any traffic assigned to it when this method executes, or if
+     * this field unassigns any traffic to it.
      *
      * Generated from protobuf field <code>map<string, int32> traffic_split = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

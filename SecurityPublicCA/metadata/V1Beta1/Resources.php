@@ -18,14 +18,14 @@ class Resources
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˆ
+Ó
 6google/cloud/security/publicca/v1beta1/resources.proto&google.cloud.security.publicca.v1beta1google/api/resource.proto"›
 ExternalAccountKey
 name (	B‡A
 key_id (	B‡A
 b64_mac_key (B‡A:ÑÍAÄ
-*publicca.googleapis.com/ExternalAccountKeyRprojects/{project}/locations/{location}/externalAccountKeys/{external_account_key}Bê
-*com.google.cloud.security.publicca.v1beta1BResourcesProtoPZNgoogle.golang.org/genproto/googleapis/cloud/security/publicca/v1beta1;publicca¯™&Google.Cloud.Security.PublicCA.V1Beta1 &Google\\Cloud\\Security\\PublicCA\\V1beta1Í*Google::Cloud::Security::PublicCA::V1beta1bproto3'
+*publicca.googleapis.com/ExternalAccountKeyRprojects/{project}/locations/{location}/externalAccountKeys/{external_account_key}Bà
+*com.google.cloud.security.publicca.v1beta1BResourcesProtoPZFcloud.google.com/go/security/publicca/apiv1beta1/publiccapb;publiccapb¯™&Google.Cloud.Security.PublicCA.V1Beta1 &Google\\Cloud\\Security\\PublicCA\\V1beta1Í*Google::Cloud::Security::PublicCA::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

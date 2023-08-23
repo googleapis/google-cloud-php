@@ -80,6 +80,12 @@ class Code
      */
     const LARGE_DEPLOYMENT_WARNING = 481440678;
     /**
+     * Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter.
+     *
+     * Generated from protobuf enum <code>LIST_OVERHEAD_QUOTA_EXCEED = 47618117;</code>
+     */
+    const LIST_OVERHEAD_QUOTA_EXCEED = 47618117;
+    /**
      * A resource depends on a missing type
      *
      * Generated from protobuf enum <code>MISSING_TYPE_DEPENDENCY = 344505463;</code>
@@ -194,6 +200,7 @@ class Code
         self::INJECTED_KERNELS_DEPRECATED => 'INJECTED_KERNELS_DEPRECATED',
         self::INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB => 'INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB',
         self::LARGE_DEPLOYMENT_WARNING => 'LARGE_DEPLOYMENT_WARNING',
+        self::LIST_OVERHEAD_QUOTA_EXCEED => 'LIST_OVERHEAD_QUOTA_EXCEED',
         self::MISSING_TYPE_DEPENDENCY => 'MISSING_TYPE_DEPENDENCY',
         self::NEXT_HOP_ADDRESS_NOT_ASSIGNED => 'NEXT_HOP_ADDRESS_NOT_ASSIGNED',
         self::NEXT_HOP_CANNOT_IP_FORWARD => 'NEXT_HOP_CANNOT_IP_FORWARD',

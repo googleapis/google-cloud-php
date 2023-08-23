@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
+ * The request message for
+ * [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ExportAgentRequest</code>
  */
@@ -23,10 +24,10 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
-     * URI to export the agent to.
-     * The format of this URI must be `gs://<bucket-name>/<object-name>`.
-     * If left unspecified, the serialized agent is returned inline.
+     * Required. The [Google Cloud
+     * Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     * to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+     * left unspecified, the serialized agent is returned inline.
      * Dialogflow performs a write operation for the Cloud Storage object
      * on the caller's behalf, so your request authentication must
      * have write permissions for the object. For more information, see
@@ -38,6 +39,21 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
     private $agent_uri = '';
 
     /**
+     * @param string $parent Required. The project that the agent to export is associated with.
+     *                       Format: `projects/<Project ID>`. Please see
+     *                       {@see AgentsClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ExportAgentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -47,10 +63,10 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project that the agent to export is associated with.
      *           Format: `projects/<Project ID>`.
      *     @type string $agent_uri
-     *           Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
-     *           URI to export the agent to.
-     *           The format of this URI must be `gs://<bucket-name>/<object-name>`.
-     *           If left unspecified, the serialized agent is returned inline.
+     *           Required. The [Google Cloud
+     *           Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     *           to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+     *           left unspecified, the serialized agent is returned inline.
      *           Dialogflow performs a write operation for the Cloud Storage object
      *           on the caller's behalf, so your request authentication must
      *           have write permissions for the object. For more information, see
@@ -92,10 +108,10 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
-     * URI to export the agent to.
-     * The format of this URI must be `gs://<bucket-name>/<object-name>`.
-     * If left unspecified, the serialized agent is returned inline.
+     * Required. The [Google Cloud
+     * Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     * to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+     * left unspecified, the serialized agent is returned inline.
      * Dialogflow performs a write operation for the Cloud Storage object
      * on the caller's behalf, so your request authentication must
      * have write permissions for the object. For more information, see
@@ -111,10 +127,10 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
-     * URI to export the agent to.
-     * The format of this URI must be `gs://<bucket-name>/<object-name>`.
-     * If left unspecified, the serialized agent is returned inline.
+     * Required. The [Google Cloud
+     * Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     * to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+     * left unspecified, the serialized agent is returned inline.
      * Dialogflow performs a write operation for the Cloud Storage object
      * on the caller's behalf, so your request authentication must
      * have write permissions for the object. For more information, see

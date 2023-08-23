@@ -26,10 +26,9 @@ namespace Google\Cloud\Profiler\V2\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -60,39 +59,43 @@ use Google\Protobuf\FieldMask;
  *     $profilerServiceClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Profiler\V2\Client\ProfilerServiceClient} to use the new surface.
  */
 class ProfilerServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.devtools.cloudprofiler.v2.ProfilerService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudprofiler.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/monitoring',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
+
+    private static $profileNameTemplate;
+
+    private static $projectNameTemplate;
+
+    private static $pathTemplateMap;
 
     private static function getClientDefaults()
     {
@@ -113,15 +116,116 @@ class ProfilerServiceGapicClient
         ];
     }
 
+    private static function getProfileNameTemplate()
+    {
+        if (self::$profileNameTemplate == null) {
+            self::$profileNameTemplate = new PathTemplate('projects/{project}/profiles/{profile}');
+        }
+
+        return self::$profileNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'profile' => self::getProfileNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a profile
+     * resource.
+     *
+     * @param string $project
+     * @param string $profile
+     *
+     * @return string The formatted profile resource.
+     */
+    public static function profileName($project, $profile)
+    {
+        return self::getProfileNameTemplate()->render([
+            'project' => $project,
+            'profile' => $profile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - profile: projects/{project}/profiles/{profile}
+     * - project: projects/{project}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+    }
+
     /**
      * Constructor.
      *
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudprofiler.googleapis.com:443'.
@@ -151,7 +255,7 @@ class ProfilerServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -241,6 +345,7 @@ class ProfilerServiceGapicClient
      * binary-serialized proto in the trailing metadata item named
      * "google.rpc.retryinfo-bin".
      *
+     *
      * Sample code:
      * ```
      * $profilerServiceClient = new ProfilerServiceClient();
@@ -313,7 +418,7 @@ class ProfilerServiceGapicClient
      *     Optional.
      *
      *     @type Profile $profile
-     *           Profile to update
+     *           Profile to update.
      *     @type FieldMask $updateMask
      *           Field mask used to specify the fields to be overwritten. Currently only
      *           profile_bytes and labels fields are supported by UpdateProfile, so only

@@ -23,11 +23,9 @@
 namespace Google\Cloud\Iot\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Iot\V1\BindDeviceToGatewayResponse;
@@ -37,8 +35,8 @@ use Google\Cloud\Iot\V1\DeviceManagerClient;
 use Google\Cloud\Iot\V1\DeviceRegistry;
 use Google\Cloud\Iot\V1\ListDeviceConfigVersionsResponse;
 use Google\Cloud\Iot\V1\ListDeviceRegistriesResponse;
-use Google\Cloud\Iot\V1\ListDevicesResponse;
 use Google\Cloud\Iot\V1\ListDeviceStatesResponse;
+use Google\Cloud\Iot\V1\ListDevicesResponse;
 use Google\Cloud\Iot\V1\SendCommandToDeviceResponse;
 use Google\Cloud\Iot\V1\UnbindDeviceFromGatewayResponse;
 use Google\Protobuf\FieldMask;
@@ -53,25 +51,19 @@ use stdClass;
  */
 class DeviceManagerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DeviceManagerClient
-     */
+    /** @return DeviceManagerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -80,9 +72,7 @@ class DeviceManagerClientTest extends GeneratedTest
         return new DeviceManagerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bindDeviceToGatewayTest()
     {
         $transport = $this->createTransport();
@@ -113,9 +103,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bindDeviceToGatewayExceptionTest()
     {
         $transport = $this->createTransport();
@@ -150,9 +138,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeviceTest()
     {
         $transport = $this->createTransport();
@@ -188,9 +174,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeviceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -224,9 +208,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeviceRegistryTest()
     {
         $transport = $this->createTransport();
@@ -258,9 +240,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -294,9 +274,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeviceTest()
     {
         $transport = $this->createTransport();
@@ -320,9 +298,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeviceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -355,9 +331,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeviceRegistryTest()
     {
         $transport = $this->createTransport();
@@ -381,9 +355,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -416,9 +388,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeviceTest()
     {
         $transport = $this->createTransport();
@@ -451,9 +421,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeviceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -486,9 +454,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeviceRegistryTest()
     {
         $transport = $this->createTransport();
@@ -517,9 +483,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -552,9 +516,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -583,9 +545,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -618,9 +578,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeviceConfigVersionsTest()
     {
         $transport = $this->createTransport();
@@ -645,9 +603,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeviceConfigVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -680,9 +636,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeviceRegistriesTest()
     {
         $transport = $this->createTransport();
@@ -717,9 +671,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeviceRegistriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -752,9 +704,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeviceStatesTest()
     {
         $transport = $this->createTransport();
@@ -779,9 +729,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeviceStatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -814,9 +762,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDevicesTest()
     {
         $transport = $this->createTransport();
@@ -851,9 +797,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDevicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -886,9 +830,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyCloudToDeviceConfigTest()
     {
         $transport = $this->createTransport();
@@ -920,9 +862,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyCloudToDeviceConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -956,9 +896,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendCommandToDeviceTest()
     {
         $transport = $this->createTransport();
@@ -986,9 +924,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendCommandToDeviceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1022,9 +958,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1056,9 +990,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1092,9 +1024,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1122,9 +1052,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1158,9 +1086,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unbindDeviceFromGatewayTest()
     {
         $transport = $this->createTransport();
@@ -1191,9 +1117,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unbindDeviceFromGatewayExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1228,9 +1152,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDeviceTest()
     {
         $transport = $this->createTransport();
@@ -1266,9 +1188,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDeviceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1302,9 +1222,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDeviceRegistryTest()
     {
         $transport = $this->createTransport();
@@ -1336,9 +1254,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();

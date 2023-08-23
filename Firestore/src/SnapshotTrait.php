@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 
@@ -33,6 +33,7 @@ trait SnapshotTrait
     use ArrayTrait;
     use PathTrait;
     use TimeTrait;
+    use TimestampTrait;
 
     /**
      * Execute a service request to retrieve a document snapshot.
@@ -100,21 +101,13 @@ trait SnapshotTrait
      * @param string $name The document name.
      * @param array $options Configuration options.
      * @return array
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
      * @throws NotFoundException If the document does not exist.
      */
     private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
     {
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
-
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
+        $options = $this->formatReadTimeOption($options);
 
         $snapshot = $connection->batchGetDocuments([
             'database' => $this->databaseFromName($name),
@@ -221,7 +214,7 @@ trait SnapshotTrait
      * @param string $database The database id.
      * @param string $name The document name, in absolute form, or relative to the database.
      * @return DocumentReference
-     * @throws InvalidArgumentException if an invalid path is provided.
+     * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getDocumentReference(
         ConnectionInterface $connection,
@@ -261,7 +254,7 @@ trait SnapshotTrait
      * @param string $database The database id.
      * @param string $name The collection name, in absolute form, or relative to the database.
      * @return CollectionReference
-     * @throws InvalidArgumentException if an invalid path is provided.
+     * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getCollectionReference(
         ConnectionInterface $connection,
@@ -297,7 +290,7 @@ trait SnapshotTrait
                 continue;
             }
 
-            list ($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
+            list($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
 
             $data[$timestampField] = new Timestamp($dt, $nanos);
         }

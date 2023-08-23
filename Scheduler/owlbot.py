@@ -33,31 +33,6 @@ _tracked_paths.add(src)
 php.owlbot_main(src=src, dest=dest)
 
 
-
-# document and utilize apiEndpoint instead of serviceAddress
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"'serviceAddress' =>",
-    r"'apiEndpoint' =>")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"@type string \$serviceAddress\n\s+\*\s+The address",
-    r"""@type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
-     *           The address""")
-s.replace(
-    "**/Gapic/*GapicClient.php",
-    r"\$transportConfig, and any \$serviceAddress",
-    r"$transportConfig, and any `$apiEndpoint`")
-
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
-
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
@@ -67,9 +42,10 @@ s.replace(
 # Fix missing formatting method
 s.replace(
     'src/V1/Gapic/CloudSchedulerGapicClient.php',
-    r"private static \$jobNameTemplate;\n\s{4}private static \$locationNameTemplate;",
+    r"private static \$jobNameTemplate;\n\n\s{4}private static \$locationNameTemplate;",
     """private static $jobNameTemplate;
     private static $locationNameTemplate;
+
     private static $projectNameTemplate;"""
 )
 s.replace(
@@ -124,12 +100,6 @@ s.replace(
     r"""Generated from protobuf field \1
      */
     private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/V*/**/*.php",
-    r"final class",
-    r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(

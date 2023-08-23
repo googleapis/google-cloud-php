@@ -41,7 +41,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = null;
     /**
-     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * Optional. Timeout for graceful YARN decommissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
@@ -111,8 +111,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * receives two
      * [UpdateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest)s
      * with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     * backend is returned.
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -121,6 +121,78 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+
+    /**
+     * @param string                            $projectId   Required. The ID of the Google Cloud Platform project the
+     *                                                       cluster belongs to.
+     * @param string                            $region      Required. The Dataproc region in which to handle the request.
+     * @param string                            $clusterName Required. The cluster name.
+     * @param \Google\Cloud\Dataproc\V1\Cluster $cluster     Required. The changes to the cluster.
+     * @param \Google\Protobuf\FieldMask        $updateMask  Required. Specifies the path, relative to `Cluster`, of
+     *                                                       the field to update. For example, to change the number of workers
+     *                                                       in a cluster to 5, the `update_mask` parameter would be
+     *                                                       specified as `config.worker_config.num_instances`,
+     *                                                       and the `PATCH` request body would specify the new value, as follows:
+     *
+     *                                                       {
+     *                                                       "config":{
+     *                                                       "workerConfig":{
+     *                                                       "numInstances":"5"
+     *                                                       }
+     *                                                       }
+     *                                                       }
+     *                                                       Similarly, to change the number of preemptible workers in a cluster to 5,
+     *                                                       the `update_mask` parameter would be
+     *                                                       `config.secondary_worker_config.num_instances`, and the `PATCH` request
+     *                                                       body would be set as follows:
+     *
+     *                                                       {
+     *                                                       "config":{
+     *                                                       "secondaryWorkerConfig":{
+     *                                                       "numInstances":"5"
+     *                                                       }
+     *                                                       }
+     *                                                       }
+     *                                                       <strong>Note:</strong> Currently, only the following fields can be updated:
+     *
+     *                                                       <table>
+     *                                                       <tbody>
+     *                                                       <tr>
+     *                                                       <td><strong>Mask</strong></td>
+     *                                                       <td><strong>Purpose</strong></td>
+     *                                                       </tr>
+     *                                                       <tr>
+     *                                                       <td><strong><em>labels</em></strong></td>
+     *                                                       <td>Update labels</td>
+     *                                                       </tr>
+     *                                                       <tr>
+     *                                                       <td><strong><em>config.worker_config.num_instances</em></strong></td>
+     *                                                       <td>Resize primary worker group</td>
+     *                                                       </tr>
+     *                                                       <tr>
+     *                                                       <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
+     *                                                       <td>Resize secondary worker group</td>
+     *                                                       </tr>
+     *                                                       <tr>
+     *                                                       <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
+     *                                                       change autoscaling policies</td>
+     *                                                       </tr>
+     *                                                       </tbody>
+     *                                                       </table>
+     *
+     * @return \Google\Cloud\Dataproc\V1\UpdateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region, string $clusterName, \Google\Cloud\Dataproc\V1\Cluster $cluster, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setClusterName($clusterName)
+            ->setCluster($cluster)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -138,7 +210,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\Cluster $cluster
      *           Required. The changes to the cluster.
      *     @type \Google\Protobuf\Duration $graceful_decommission_timeout
-     *           Optional. Timeout for graceful YARN decomissioning. Graceful
+     *           Optional. Timeout for graceful YARN decommissioning. Graceful
      *           decommissioning allows removing nodes from the cluster without
      *           interrupting jobs in progress. Timeout specifies how long to wait for jobs
      *           in progress to finish before forcefully removing nodes (and potentially
@@ -200,8 +272,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *           receives two
      *           [UpdateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest)s
      *           with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     *           backend is returned.
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created
+     *           and stored in the backend is returned.
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -330,7 +402,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * Optional. Timeout for graceful YARN decommissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
@@ -358,7 +430,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * Optional. Timeout for graceful YARN decommissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
      * interrupting jobs in progress. Timeout specifies how long to wait for jobs
      * in progress to finish before forcefully removing nodes (and potentially
@@ -514,8 +586,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * receives two
      * [UpdateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest)s
      * with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     * backend is returned.
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -534,8 +606,8 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * receives two
      * [UpdateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest)s
      * with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     * backend is returned.
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),

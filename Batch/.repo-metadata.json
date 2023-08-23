@@ -1,8 +1,10 @@
 {
+    "language": "php",
     "distribution_name": "google/cloud-batch",
-    "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-batch/latest",
+    "release_level": "preview",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-batch/latest",
     "library_type": "GAPIC_AUTO",
     "product_documentation": "https://cloud.google.com/batch/docs",
-    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues"
+    "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
+    "api_shortname": "batch"
 }

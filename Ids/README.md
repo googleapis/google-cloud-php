@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-ids/v/stable)](https://packagist.org/packages/google/cloud-ids) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-ids.svg)](https://packagist.org/packages/google/cloud-ids)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-ids/latest/ids/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-ids/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

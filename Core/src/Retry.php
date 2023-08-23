@@ -25,6 +25,8 @@ namespace Google\Cloud\Core;
  */
 class Retry
 {
+    const RETRY_HEADER_KEY = 'x-goog-api-client';
+
     /**
      * @var int
      */

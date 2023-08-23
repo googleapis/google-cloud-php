@@ -95,14 +95,20 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $job_uuid = '';
     /**
-     * Output only. Indicates whether the job is completed. If the value is `false`,
-     * the job is still in progress. If `true`, the job is completed, and
+     * Output only. Indicates whether the job is completed. If the value is
+     * `false`, the job is still in progress. If `true`, the job is completed, and
      * `status.state` field will indicate if it was successful, failed,
      * or cancelled.
      *
      * Generated from protobuf field <code>bool done = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $done = false;
+    /**
+     * Optional. Driver scheduling configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DriverSchedulingConfig driver_scheduling_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $driver_scheduling_config = null;
     protected $type_job;
 
     /**
@@ -135,6 +141,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Optional. Job is a SparkSql job.
      *     @type \Google\Cloud\Dataproc\V1\PrestoJob $presto_job
      *           Optional. Job is a Presto job.
+     *     @type \Google\Cloud\Dataproc\V1\TrinoJob $trino_job
+     *           Optional. Job is a Trino job.
      *     @type \Google\Cloud\Dataproc\V1\JobStatus $status
      *           Output only. The job status. Additional application-specific
      *           status information may be contained in the <code>type_job</code>
@@ -167,10 +175,12 @@ class Job extends \Google\Protobuf\Internal\Message
      *           over time. This is in contrast to a user-settable reference.job_id that
      *           may be reused over time.
      *     @type bool $done
-     *           Output only. Indicates whether the job is completed. If the value is `false`,
-     *           the job is still in progress. If `true`, the job is completed, and
+     *           Output only. Indicates whether the job is completed. If the value is
+     *           `false`, the job is still in progress. If `true`, the job is completed, and
      *           `status.state` field will indicate if it was successful, failed,
      *           or cancelled.
+     *     @type \Google\Cloud\Dataproc\V1\DriverSchedulingConfig $driver_scheduling_config
+     *           Optional. Driver scheduling configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -507,6 +517,37 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Job is a Trino job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.TrinoJob trino_job = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\TrinoJob|null
+     */
+    public function getTrinoJob()
+    {
+        return $this->readOneof(28);
+    }
+
+    public function hasTrinoJob()
+    {
+        return $this->hasOneof(28);
+    }
+
+    /**
+     * Optional. Job is a Trino job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.TrinoJob trino_job = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\TrinoJob $var
+     * @return $this
+     */
+    public function setTrinoJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\TrinoJob::class);
+        $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. The job status. Additional application-specific
      * status information may be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
@@ -765,8 +806,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the job is completed. If the value is `false`,
-     * the job is still in progress. If `true`, the job is completed, and
+     * Output only. Indicates whether the job is completed. If the value is
+     * `false`, the job is still in progress. If `true`, the job is completed, and
      * `status.state` field will indicate if it was successful, failed,
      * or cancelled.
      *
@@ -779,8 +820,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the job is completed. If the value is `false`,
-     * the job is still in progress. If `true`, the job is completed, and
+     * Output only. Indicates whether the job is completed. If the value is
+     * `false`, the job is still in progress. If `true`, the job is completed, and
      * `status.state` field will indicate if it was successful, failed,
      * or cancelled.
      *
@@ -792,6 +833,42 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->done = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Driver scheduling configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DriverSchedulingConfig driver_scheduling_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\DriverSchedulingConfig|null
+     */
+    public function getDriverSchedulingConfig()
+    {
+        return $this->driver_scheduling_config;
+    }
+
+    public function hasDriverSchedulingConfig()
+    {
+        return isset($this->driver_scheduling_config);
+    }
+
+    public function clearDriverSchedulingConfig()
+    {
+        unset($this->driver_scheduling_config);
+    }
+
+    /**
+     * Optional. Driver scheduling configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DriverSchedulingConfig driver_scheduling_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\DriverSchedulingConfig $var
+     * @return $this
+     */
+    public function setDriverSchedulingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\DriverSchedulingConfig::class);
+        $this->driver_scheduling_config = $var;
 
         return $this;
     }

@@ -23,8 +23,8 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
      */
     private $scope = 0;
     /**
-     * Optional. If true, the event satisfying this step must be the very next event
-     * after the event satisfying the last step. If unset or false, this
+     * Optional. If true, the event satisfying this step must be the very next
+     * event after the event satisfying the last step. If unset or false, this
      * step indirectly follows the prior step; for example, there may be
      * events between the prior step and this step. It is ignored for the
      * first step.
@@ -33,17 +33,17 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
      */
     private $immediately_follows = false;
     /**
-     * Optional. When set, this step must be satisfied within the constraint_duration of
-     * the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not
-     * set, there is no duration requirement (the duration is effectively
-     * unlimited). It is ignored for the first step.
+     * Optional. When set, this step must be satisfied within the
+     * constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
+     * constraint_duration). If not set, there is no duration requirement (the
+     * duration is effectively unlimited). It is ignored for the first step.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration constraint_duration = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $constraint_duration = null;
     /**
-     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters in
-     * each step.
+     * Required. Immutable. A logical expression of Audience dimension, metric,
+     * or event filters in each step.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -58,19 +58,19 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
      *     @type int $scope
      *           Required. Immutable. Specifies the scope for this step.
      *     @type bool $immediately_follows
-     *           Optional. If true, the event satisfying this step must be the very next event
-     *           after the event satisfying the last step. If unset or false, this
+     *           Optional. If true, the event satisfying this step must be the very next
+     *           event after the event satisfying the last step. If unset or false, this
      *           step indirectly follows the prior step; for example, there may be
      *           events between the prior step and this step. It is ignored for the
      *           first step.
      *     @type \Google\Protobuf\Duration $constraint_duration
-     *           Optional. When set, this step must be satisfied within the constraint_duration of
-     *           the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not
-     *           set, there is no duration requirement (the duration is effectively
-     *           unlimited). It is ignored for the first step.
+     *           Optional. When set, this step must be satisfied within the
+     *           constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
+     *           constraint_duration). If not set, there is no duration requirement (the
+     *           duration is effectively unlimited). It is ignored for the first step.
      *     @type \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $filter_expression
-     *           Required. Immutable. A logical expression of Audience dimension, metric, or event filters in
-     *           each step.
+     *           Required. Immutable. A logical expression of Audience dimension, metric,
+     *           or event filters in each step.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,8 +105,8 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, the event satisfying this step must be the very next event
-     * after the event satisfying the last step. If unset or false, this
+     * Optional. If true, the event satisfying this step must be the very next
+     * event after the event satisfying the last step. If unset or false, this
      * step indirectly follows the prior step; for example, there may be
      * events between the prior step and this step. It is ignored for the
      * first step.
@@ -120,8 +120,8 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, the event satisfying this step must be the very next event
-     * after the event satisfying the last step. If unset or false, this
+     * Optional. If true, the event satisfying this step must be the very next
+     * event after the event satisfying the last step. If unset or false, this
      * step indirectly follows the prior step; for example, there may be
      * events between the prior step and this step. It is ignored for the
      * first step.
@@ -139,10 +139,10 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When set, this step must be satisfied within the constraint_duration of
-     * the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not
-     * set, there is no duration requirement (the duration is effectively
-     * unlimited). It is ignored for the first step.
+     * Optional. When set, this step must be satisfied within the
+     * constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
+     * constraint_duration). If not set, there is no duration requirement (the
+     * duration is effectively unlimited). It is ignored for the first step.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration constraint_duration = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -163,10 +163,10 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When set, this step must be satisfied within the constraint_duration of
-     * the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not
-     * set, there is no duration requirement (the duration is effectively
-     * unlimited). It is ignored for the first step.
+     * Optional. When set, this step must be satisfied within the
+     * constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
+     * constraint_duration). If not set, there is no duration requirement (the
+     * duration is effectively unlimited). It is ignored for the first step.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration constraint_duration = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -181,8 +181,8 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters in
-     * each step.
+     * Required. Immutable. A logical expression of Audience dimension, metric,
+     * or event filters in each step.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Analytics\Admin\V1alpha\AudienceFilterExpression|null
@@ -203,8 +203,8 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters in
-     * each step.
+     * Required. Immutable. A logical expression of Audience dimension, metric,
+     * or event filters in each step.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Analytics\Admin\V1alpha\AudienceFilterExpression $var

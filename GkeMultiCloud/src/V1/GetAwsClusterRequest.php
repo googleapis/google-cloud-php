@@ -16,15 +16,39 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     * Required. The name of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     * describe.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. The name of the
+     *                     [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     *                     describe.
+     *
+     *                     `AwsCluster` names are formatted as
+     *                     `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *                     for more details on Google Cloud Platform resource names. Please see
+     *                     {@see AwsClustersClient::awsClusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GetAwsClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -33,11 +57,13 @@ class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     *           Required. The name of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     *           describe.
      *           `AwsCluster` names are formatted as
      *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *           for more details on GCP resource names.
+     *           for more details on Google Cloud Platform resource names.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,11 +72,13 @@ class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     * Required. The name of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     * describe.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -61,11 +89,13 @@ class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to describe.
+     * Required. The name of the
+     * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     * describe.
      * `AwsCluster` names are formatted as
      * `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      * See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     * for more details on GCP resource names.
+     * for more details on Google Cloud Platform resource names.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

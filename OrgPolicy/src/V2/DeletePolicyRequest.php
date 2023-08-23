@@ -25,6 +25,21 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the policy to delete.
+     *                     See `Policy` for naming rules. Please see
+     *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\DeletePolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

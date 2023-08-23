@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DataprocMetastore.UpdateMetadataImport][google.cloud.metastore.v1.DataprocMetastore.UpdateMetadataImport].
+ * Request message for
+ * [DataprocMetastore.UpdateMetadataImport][google.cloud.metastore.v1.DataprocMetastore.UpdateMetadataImport].
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1.UpdateMetadataImportRequest</code>
  */
@@ -34,10 +35,10 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      */
     private $metadata_import = null;
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -48,6 +49,28 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+
+    /**
+     * @param \Google\Cloud\Metastore\V1\MetadataImport $metadataImport Required. The metadata import to update. The server only merges fields
+     *                                                                  in the import if they are specified in `update_mask`.
+     *
+     *                                                                  The metadata import's `name` field is used to identify the metastore
+     *                                                                  import to be updated.
+     * @param \Google\Protobuf\FieldMask                $updateMask     Required. A field mask used to specify the fields to be overwritten in the
+     *                                                                  metadata import resource by the update.
+     *                                                                  Fields specified in the `update_mask` are relative to the resource (not
+     *                                                                  to the full request). A field is overwritten if it is in the mask.
+     *
+     * @return \Google\Cloud\Metastore\V1\UpdateMetadataImportRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Metastore\V1\MetadataImport $metadataImport, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMetadataImport($metadataImport)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -66,10 +89,10 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *           The metadata import's `name` field is used to identify the metastore
      *           import to be updated.
      *     @type string $request_id
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
      *           the creation of duplicate commitments.
@@ -168,10 +191,10 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -188,10 +211,10 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.

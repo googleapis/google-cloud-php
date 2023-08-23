@@ -23,11 +23,9 @@
 namespace Google\Cloud\DataCatalog\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\DataCatalog\V1\ListPolicyTagsResponse;
 use Google\Cloud\DataCatalog\V1\ListTaxonomiesResponse;
 use Google\Cloud\DataCatalog\V1\PolicyTag;
@@ -46,25 +44,19 @@ use stdClass;
  */
 class PolicyTagManagerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PolicyTagManagerClient
-     */
+    /** @return PolicyTagManagerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +65,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         return new PolicyTagManagerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPolicyTagTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,9 +131,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTaxonomyTest()
     {
         $transport = $this->createTransport();
@@ -178,9 +164,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +197,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePolicyTagTest()
     {
         $transport = $this->createTransport();
@@ -239,9 +221,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -274,9 +254,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTaxonomyTest()
     {
         $transport = $this->createTransport();
@@ -300,9 +278,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +311,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -366,9 +340,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -401,9 +373,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyTagTest()
     {
         $transport = $this->createTransport();
@@ -436,9 +406,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -471,9 +439,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaxonomyTest()
     {
         $transport = $this->createTransport();
@@ -506,9 +472,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -541,9 +505,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPolicyTagsTest()
     {
         $transport = $this->createTransport();
@@ -578,9 +540,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPolicyTagsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -613,9 +573,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTaxonomiesTest()
     {
         $transport = $this->createTransport();
@@ -650,9 +608,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTaxonomiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -685,9 +641,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -719,9 +673,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -755,9 +707,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -785,9 +735,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -821,9 +769,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePolicyTagTest()
     {
         $transport = $this->createTransport();
@@ -852,9 +798,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
@@ -885,9 +829,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTaxonomyTest()
     {
         $transport = $this->createTransport();
@@ -916,9 +858,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();

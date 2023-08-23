@@ -16,11 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExternalSystem extends \Google\Protobuf\Internal\Message
 {
     /**
-     * External System Name e.g. jira, demisto, etc.
-     *  e.g.:
-     *  `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
-     * `folders/1234/sources/5678/findings/123456/externalSystems/jira`
-     * `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example:
+     * "organizations/1234/sources/5678/findings/123456/externalSystems/jira",
+     * "folders/1234/sources/5678/findings/123456/externalSystems/jira",
+     * "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -59,11 +58,10 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           External System Name e.g. jira, demisto, etc.
-     *            e.g.:
-     *            `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
-     *           `folders/1234/sources/5678/findings/123456/externalSystems/jira`
-     *           `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     *           Full resource name of the external system, for example:
+     *           "organizations/1234/sources/5678/findings/123456/externalSystems/jira",
+     *           "folders/1234/sources/5678/findings/123456/externalSystems/jira",
+     *           "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $assignees
      *           References primary/secondary etc assignees in the external system.
      *     @type string $external_uid
@@ -82,11 +80,10 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * External System Name e.g. jira, demisto, etc.
-     *  e.g.:
-     *  `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
-     * `folders/1234/sources/5678/findings/123456/externalSystems/jira`
-     * `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example:
+     * "organizations/1234/sources/5678/findings/123456/externalSystems/jira",
+     * "folders/1234/sources/5678/findings/123456/externalSystems/jira",
+     * "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -97,11 +94,10 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * External System Name e.g. jira, demisto, etc.
-     *  e.g.:
-     *  `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
-     * `folders/1234/sources/5678/findings/123456/externalSystems/jira`
-     * `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example:
+     * "organizations/1234/sources/5678/findings/123456/externalSystems/jira",
+     * "folders/1234/sources/5678/findings/123456/externalSystems/jira",
+     * "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [GetTensorFlowVersion][google.cloud.tpu.v1.Tpu.GetTensorFlowVersion].
+ * Request for
+ * [GetTensorFlowVersion][google.cloud.tpu.v1.Tpu.GetTensorFlowVersion].
  *
  * Generated from protobuf message <code>google.cloud.tpu.v1.GetTensorFlowVersionRequest</code>
  */

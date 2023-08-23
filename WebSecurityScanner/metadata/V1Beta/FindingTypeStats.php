@@ -16,12 +16,12 @@ class FindingTypeStats
         }
         $pool->internalAddGeneratedFile(
             '
-“
+‘
 ?google/cloud/websecurityscanner/v1beta/finding_type_stats.proto&google.cloud.websecurityscanner.v1beta"?
 FindingTypeStats
 finding_type (	
-finding_count (Bù
-*com.google.cloud.websecurityscanner.v1betaBFindingTypeStatsProtoPZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscanner™&Google.Cloud.WebSecurityScanner.V1Beta &Google\\Cloud\\WebSecurityScanner\\V1betaÍ)Google::Cloud::WebSecurityScanner::V1betabproto3'
+finding_count (Bü
+*com.google.cloud.websecurityscanner.v1betaBFindingTypeStatsProtoPZZcloud.google.com/go/websecurityscanner/apiv1beta/websecurityscannerpb;websecurityscannerpb™&Google.Cloud.WebSecurityScanner.V1Beta &Google\\Cloud\\WebSecurityScanner\\V1betaÍ)Google::Cloud::WebSecurityScanner::V1betabproto3'
         , true);
 
         static::$is_initialized = true;

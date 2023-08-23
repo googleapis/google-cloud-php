@@ -7,25 +7,30 @@ namespace Google\Cloud\Security\PrivateCA\V1;
 use UnexpectedValueException;
 
 /**
- * A [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] indicates whether a [Certificate][google.cloud.security.privateca.v1.Certificate] has been revoked,
- * and the reason for revocation. These correspond to standard revocation
- * reasons from RFC 5280. Note that the enum labels and values in this
- * definition are not the same ASN.1 values defined in RFC 5280. These values
- * will be translated to the correct ASN.1 values when a CRL is created.
+ * A [RevocationReason][google.cloud.security.privateca.v1.RevocationReason]
+ * indicates whether a
+ * [Certificate][google.cloud.security.privateca.v1.Certificate] has been
+ * revoked, and the reason for revocation. These correspond to standard
+ * revocation reasons from RFC 5280. Note that the enum labels and values in
+ * this definition are not the same ASN.1 values defined in RFC 5280. These
+ * values will be translated to the correct ASN.1 values when a CRL is created.
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.RevocationReason</code>
  */
 class RevocationReason
 {
     /**
-     * Default unspecified value. This value does indicate that a [Certificate][google.cloud.security.privateca.v1.Certificate]
-     * has been revoked, but that a reason has not been recorded.
+     * Default unspecified value. This value does indicate that a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] has been
+     * revoked, but that a reason has not been recorded.
      *
      * Generated from protobuf enum <code>REVOCATION_REASON_UNSPECIFIED = 0;</code>
      */
     const REVOCATION_REASON_UNSPECIFIED = 0;
     /**
-     * Key material for this [Certificate][google.cloud.security.privateca.v1.Certificate] may have leaked.
+     * Key material for this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] may have
+     * leaked.
      *
      * Generated from protobuf enum <code>KEY_COMPROMISE = 1;</code>
      */
@@ -38,41 +43,45 @@ class RevocationReason
      */
     const CERTIFICATE_AUTHORITY_COMPROMISE = 2;
     /**
-     * The subject or other attributes in this [Certificate][google.cloud.security.privateca.v1.Certificate] have changed.
+     * The subject or other attributes in this
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] have changed.
      *
      * Generated from protobuf enum <code>AFFILIATION_CHANGED = 3;</code>
      */
     const AFFILIATION_CHANGED = 3;
     /**
-     * This [Certificate][google.cloud.security.privateca.v1.Certificate] has been superseded.
+     * This [Certificate][google.cloud.security.privateca.v1.Certificate] has been
+     * superseded.
      *
      * Generated from protobuf enum <code>SUPERSEDED = 4;</code>
      */
     const SUPERSEDED = 4;
     /**
-     * This [Certificate][google.cloud.security.privateca.v1.Certificate] or entities in the issuing path have ceased to
-     * operate.
+     * This [Certificate][google.cloud.security.privateca.v1.Certificate] or
+     * entities in the issuing path have ceased to operate.
      *
      * Generated from protobuf enum <code>CESSATION_OF_OPERATION = 5;</code>
      */
     const CESSATION_OF_OPERATION = 5;
     /**
-     * This [Certificate][google.cloud.security.privateca.v1.Certificate] should not be considered valid, it is expected that it
-     * may become valid in the future.
+     * This [Certificate][google.cloud.security.privateca.v1.Certificate] should
+     * not be considered valid, it is expected that it may become valid in the
+     * future.
      *
      * Generated from protobuf enum <code>CERTIFICATE_HOLD = 6;</code>
      */
     const CERTIFICATE_HOLD = 6;
     /**
-     * This [Certificate][google.cloud.security.privateca.v1.Certificate] no longer has permission to assert the listed
-     * attributes.
+     * This [Certificate][google.cloud.security.privateca.v1.Certificate] no
+     * longer has permission to assert the listed attributes.
      *
      * Generated from protobuf enum <code>PRIVILEGE_WITHDRAWN = 7;</code>
      */
     const PRIVILEGE_WITHDRAWN = 7;
     /**
-     * The authority which determines appropriate attributes for a [Certificate][google.cloud.security.privateca.v1.Certificate]
-     * may have been compromised.
+     * The authority which determines appropriate attributes for a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] may have been
+     * compromised.
      *
      * Generated from protobuf enum <code>ATTRIBUTE_AUTHORITY_COMPROMISE = 8;</code>
      */

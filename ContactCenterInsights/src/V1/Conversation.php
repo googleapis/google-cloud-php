@@ -74,7 +74,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     private $transcript = null;
     /**
-     * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
+     * Immutable. The conversation medium, if unspecified will default to
+     * PHONE_CALL.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.Medium medium = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -98,15 +99,21 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     private $latest_analysis = null;
     /**
-     * Output only. The annotations that were generated during the customer and agent
-     * interaction.
+     * Output only. Latest summary of the conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData latest_summary = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $latest_summary = null;
+    /**
+     * Output only. The annotations that were generated during the customer and
+     * agent interaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.RuntimeAnnotation runtime_annotations = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $runtime_annotations;
     /**
-     * Output only. All the matched Dialogflow intents in the call. The key corresponds to a
-     * Dialogflow intent, format:
+     * Output only. All the matched Dialogflow intents in the call. The key
+     * corresponds to a Dialogflow intent, format:
      * projects/{project}/agent/{agent}/intents/{intent}
      *
      * Generated from protobuf field <code>map<string, .google.cloud.contactcenterinsights.v1.DialogflowIntent> dialogflow_intents = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -158,19 +165,22 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript $transcript
      *           Output only. The conversation transcript.
      *     @type int $medium
-     *           Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
+     *           Immutable. The conversation medium, if unspecified will default to
+     *           PHONE_CALL.
      *     @type \Google\Protobuf\Duration $duration
      *           Output only. The duration of the conversation.
      *     @type int $turn_count
      *           Output only. The number of turns in the conversation.
      *     @type \Google\Cloud\ContactCenterInsights\V1\Analysis $latest_analysis
      *           Output only. The conversation's latest analysis, if one exists.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData $latest_summary
+     *           Output only. Latest summary of the conversation.
      *     @type array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $runtime_annotations
-     *           Output only. The annotations that were generated during the customer and agent
-     *           interaction.
+     *           Output only. The annotations that were generated during the customer and
+     *           agent interaction.
      *     @type array|\Google\Protobuf\Internal\MapField $dialogflow_intents
-     *           Output only. All the matched Dialogflow intents in the call. The key corresponds to a
-     *           Dialogflow intent, format:
+     *           Output only. All the matched Dialogflow intents in the call. The key
+     *           corresponds to a Dialogflow intent, format:
      *           projects/{project}/agent/{agent}/intents/{intent}
      *     @type string $obfuscated_user_id
      *           Obfuscated user ID which the customer sent to us.
@@ -571,7 +581,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
+     * Immutable. The conversation medium, if unspecified will default to
+     * PHONE_CALL.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.Medium medium = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -582,7 +593,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
+     * Immutable. The conversation medium, if unspecified will default to
+     * PHONE_CALL.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.Medium medium = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -695,8 +707,44 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The annotations that were generated during the customer and agent
-     * interaction.
+     * Output only. Latest summary of the conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData latest_summary = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData|null
+     */
+    public function getLatestSummary()
+    {
+        return $this->latest_summary;
+    }
+
+    public function hasLatestSummary()
+    {
+        return isset($this->latest_summary);
+    }
+
+    public function clearLatestSummary()
+    {
+        unset($this->latest_summary);
+    }
+
+    /**
+     * Output only. Latest summary of the conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationSummarizationSuggestionData latest_summary = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData $var
+     * @return $this
+     */
+    public function setLatestSummary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData::class);
+        $this->latest_summary = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The annotations that were generated during the customer and
+     * agent interaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.RuntimeAnnotation runtime_annotations = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -707,8 +755,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The annotations that were generated during the customer and agent
-     * interaction.
+     * Output only. The annotations that were generated during the customer and
+     * agent interaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.RuntimeAnnotation runtime_annotations = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
@@ -723,8 +771,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. All the matched Dialogflow intents in the call. The key corresponds to a
-     * Dialogflow intent, format:
+     * Output only. All the matched Dialogflow intents in the call. The key
+     * corresponds to a Dialogflow intent, format:
      * projects/{project}/agent/{agent}/intents/{intent}
      *
      * Generated from protobuf field <code>map<string, .google.cloud.contactcenterinsights.v1.DialogflowIntent> dialogflow_intents = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -736,8 +784,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. All the matched Dialogflow intents in the call. The key corresponds to a
-     * Dialogflow intent, format:
+     * Output only. All the matched Dialogflow intents in the call. The key
+     * corresponds to a Dialogflow intent, format:
      * projects/{project}/agent/{agent}/intents/{intent}
      *
      * Generated from protobuf field <code>map<string, .google.cloud.contactcenterinsights.v1.DialogflowIntent> dialogflow_intents = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

@@ -19,19 +19,20 @@ namespace Google\Cloud\Storage\Tests\Unit\Connection;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
-use Google\CRC32\CRC32;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -40,6 +41,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class RestTest extends TestCase
 {
+    use ProphecyTrait;
+
     private $requestWrapper;
     private $successBody;
     private static $downloadOptions = [
@@ -51,7 +54,7 @@ class RestTest extends TestCase
         'userProject' => 'myProject'
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
@@ -214,7 +217,7 @@ class RestTest extends TestCase
         )->will(
             function ($args) use (&$actualRequest, $response) {
                 $actualRequest = $args[0];
-                return Promise\promise_for($response);
+                return Create::promiseFor($response);
             }
         );
 
@@ -291,9 +294,8 @@ class RestTest extends TestCase
         $tempFile->write(str_repeat('0', 5000001));
         $logoFile = Utils::streamFor(fopen(__DIR__ . '/../data/logo.svg', 'r'));
 
-        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
-        $crc32c->update((string) $logoFile);
-        $crcHash = base64_encode($crc32c->hash(true));
+        $crc32c = hash('crc32c', (string) $logoFile, true);
+        $crcHash = base64_encode($crc32c);
 
         return [
             [
@@ -407,7 +409,7 @@ class RestTest extends TestCase
      */
     public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
     {
-        $rest = new RestCrc32cStub;
+        $rest = new RestCrc32cStub();
         $rest->extensionLoaded = $extensionLoaded;
         $rest->supportsBuiltin = $supportsBuiltin;
 
@@ -463,6 +465,58 @@ class RestTest extends TestCase
                 true,
                 false
             ]
+        ];
+    }
+
+    /**
+     * This tests whether the $arguments passed to the callbacks for header
+     * updation is properly done when those callbacks are invoked in the
+     * ExponentialBackoff::execute() method.
+     *
+     * @dataProvider provideRetryHeaders
+     */
+    public function testRetryHeaders(int $maxAttempts)
+    {
+        $attempt = 0;
+        $response = new Response(200, [], $this->successBody);
+        $actualRequest = null;
+
+        $httpHandler = function ($request, $options) use (&$attempt, &$actualRequest, $response, $maxAttempts) {
+            if (++$attempt < $maxAttempts) {
+                throw new \Exception('Retrying');
+            }
+            $actualRequest = $request;
+            return $response;
+        };
+
+        $rest = new Rest([
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
+
+        // Call any method to test the retry
+        $rest->listBuckets();
+
+        $this->assertNotNull($actualRequest);
+        $this->assertNotNull($agentHeader = $actualRequest->getHeaderLine(Retry::RETRY_HEADER_KEY));
+
+        $agentHeaderParts = explode(' ', $agentHeader);
+        $this->assertStringStartsWith('gccl-invocation-id/', $agentHeaderParts[2]);
+        $this->assertEquals('gccl-attempt-count/' . $maxAttempts, $agentHeaderParts[3]);
+    }
+
+    public function provideRetryHeaders()
+    {
+        return [
+            [1],
+            [2],
+            [3],
         ];
     }
 

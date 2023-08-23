@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Firestore query for running an aggregation over a [StructuredQuery][google.firestore.v1.StructuredQuery].
+ * Firestore query for running an aggregation over a
+ * [StructuredQuery][google.firestore.v1.StructuredQuery].
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredAggregationQuery</code>
  */
 class StructuredAggregationQuery extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Series of aggregations to apply over the results of the `structured_query`.
+     * Optional. Series of aggregations to apply over the results of the
+     * `structured_query`.
      * Requires:
      * * A minimum of one and maximum of five aggregations per query.
      *
@@ -34,7 +36,8 @@ class StructuredAggregationQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery $structured_query
      *           Nested structured query.
      *     @type array<\Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
-     *           Optional. Series of aggregations to apply over the results of the `structured_query`.
+     *           Optional. Series of aggregations to apply over the results of the
+     *           `structured_query`.
      *           Requires:
      *           * A minimum of one and maximum of five aggregations per query.
      * }
@@ -76,7 +79,8 @@ class StructuredAggregationQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Series of aggregations to apply over the results of the `structured_query`.
+     * Optional. Series of aggregations to apply over the results of the
+     * `structured_query`.
      * Requires:
      * * A minimum of one and maximum of five aggregations per query.
      *
@@ -89,7 +93,8 @@ class StructuredAggregationQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Series of aggregations to apply over the results of the `structured_query`.
+     * Optional. Series of aggregations to apply over the results of the
+     * `structured_query`.
      * Requires:
      * * A minimum of one and maximum of five aggregations per query.
      *

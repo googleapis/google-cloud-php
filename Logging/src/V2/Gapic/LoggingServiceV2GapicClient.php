@@ -26,16 +26,14 @@ namespace Google\Cloud\Logging\V2\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
-use Google\Api\MonitoredResource;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
-
 use Google\ApiCore\ValidationException;
+use Google\Api\MonitoredResource;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Logging\V2\DeleteLogRequest;
 use Google\Cloud\Logging\V2\ListLogEntriesRequest;
@@ -71,34 +69,27 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Logging\V2\Client\LoggingServiceV2Client} to use the new surface.
  */
 class LoggingServiceV2GapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.logging.v2.LoggingServiceV2';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'logging.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
@@ -446,9 +437,6 @@ class LoggingServiceV2GapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'logging.googleapis.com:443'.
@@ -478,7 +466,7 @@ class LoggingServiceV2GapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -602,17 +590,16 @@ class LoggingServiceV2GapicClient
      *                                * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *
      *                                Projects listed in the `project_ids` field are added to this list.
+     *                                A maximum of 100 resources may be specified in a single request.
      * @param array    $optionalArgs  {
      *     Optional.
      *
      *     @type string $filter
-     *           Optional. A filter that chooses which log entries to return.  See [Advanced
-     *           Logs Queries](https://cloud.google.com/logging/docs/view/advanced-queries).
-     *           Only log entries that match the filter are returned.  An empty filter
-     *           matches all log entries in the resources listed in `resource_names`.
+     *           Optional. Only log entries that match the filter are returned.  An empty
+     *           filter matches all log entries in the resources listed in `resource_names`.
      *           Referencing a parent resource that is not listed in `resource_names` will
-     *           cause the filter to return no results. The maximum length of the filter is
-     *           20000 characters.
+     *           cause the filter to return no results. The maximum length of a filter is
+     *           20,000 characters.
      *     @type string $orderBy
      *           Optional. How the results should be sorted.  Presently, the only permitted
      *           values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
@@ -689,7 +676,7 @@ class LoggingServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name that owns the logs:
+     * @param string $parent       Required. The resource name to list logs for:
      *
      *                             *  `projects/[PROJECT_ID]`
      *                             *  `organizations/[ORGANIZATION_ID]`
@@ -698,17 +685,8 @@ class LoggingServiceV2GapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
      *     @type string[] $resourceNames
-     *           Optional. The resource name that owns the logs:
+     *           Optional. List of resource names to list logs for:
      *
      *           * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
@@ -721,6 +699,17 @@ class LoggingServiceV2GapicClient
      *           *  `organizations/[ORGANIZATION_ID]`
      *           *  `billingAccounts/[BILLING_ACCOUNT_ID]`
      *           *  `folders/[FOLDER_ID]`
+     *
+     *           The resource name in the `parent` field is added to this list.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -737,16 +726,16 @@ class LoggingServiceV2GapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['resourceNames'])) {
+            $request->setResourceNames($optionalArgs['resourceNames']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['resourceNames'])) {
-            $request->setResourceNames($optionalArgs['resourceNames']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -957,11 +946,13 @@ class LoggingServiceV2GapicClient
      *           as a label in this parameter, then the log entry's label is not changed.
      *           See [LogEntry][google.logging.v2.LogEntry].
      *     @type bool $partialSuccess
-     *           Optional. Whether valid entries should be written even if some other
-     *           entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
-     *           entry is not written, then the response status is the error associated
-     *           with one of the failed entries and the response includes error details
-     *           keyed by the entries' zero-based index in the `entries.write` method.
+     *           Optional. Whether a batch's valid entries should be written even if some
+     *           other entry failed due to a permanent error such as INVALID_ARGUMENT or
+     *           PERMISSION_DENIED. If any entry failed, then the response status is the
+     *           response status of one of the failed entries. The response will include
+     *           error details in `WriteLogEntriesPartialErrors.log_entry_errors` keyed by
+     *           the entries' zero-based index in the `entries`. Failed requests for which
+     *           no entries are written will not include per-entry errors.
      *     @type bool $dryRun
      *           Optional. If true, the request should expect normal response, but the
      *           entries won't be persisted nor exported. Useful for checking whether the

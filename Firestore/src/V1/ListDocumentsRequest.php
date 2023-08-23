@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.ListDocuments][google.firestore.v1.Firestore.ListDocuments].
+ * The request for
+ * [Firestore.ListDocuments][google.firestore.v1.Firestore.ListDocuments].
  *
  * Generated from protobuf message <code>google.firestore.v1.ListDocumentsRequest</code>
  */
@@ -27,45 +28,56 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
-     * or `messages`.
+     * Optional. The collection ID, relative to `parent`, to list.
+     * For example: `chatrooms` or `messages`.
+     * This is optional, and when not provided, Firestore will list documents
+     * from all collections under the provided `parent`.
      *
-     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $collection_id = '';
     /**
-     * The maximum number of documents to return.
+     * Optional. The maximum number of documents to return in a single response.
+     * Firestore may return fewer than this value.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * The `next_page_token` value returned from a previous List request, if any.
+     * Optional. A page token, received from a previous `ListDocuments` response.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters (with the exception of `page_size`) must match the values set
+     * in the request that generated the page token.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * The order to sort results by. For example: `priority desc, name`.
+     * Optional. The optional ordering of the documents to return.
+     * For example: `priority desc, __name__ desc`.
+     * This mirrors the [`ORDER BY`][google.firestore.v1.StructuredQuery.order_by]
+     * used in Firestore queries but in a string representation. When absent,
+     * documents are ordered based on `__name__ ASC`.
      *
-     * Generated from protobuf field <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order_by = '';
     /**
-     * The fields to return. If not set, returns all fields.
+     * Optional. The fields to return. If not set, returns all fields.
      * If a document has a field that is not present in this mask, that field
      * will not be returned in the response.
      *
-     * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 7;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $mask = null;
     /**
-     * If the list should show missing documents. A missing document is a
-     * document that does not exist but has sub-documents. These documents will
-     * be returned with a key but will not have fields, [Document.create_time][google.firestore.v1.Document.create_time],
-     * or [Document.update_time][google.firestore.v1.Document.update_time] set.
-     * Requests with `show_missing` may not specify `where` or
-     * `order_by`.
+     * If the list should show missing documents.
+     * A document is missing if it does not exist, but there are sub-documents
+     * nested underneath it. When true, such missing documents will be returned
+     * with a key but will not have fields,
+     * [`create_time`][google.firestore.v1.Document.create_time], or
+     * [`update_time`][google.firestore.v1.Document.update_time] set.
+     * Requests with `show_missing` may not specify `where` or `order_by`.
      *
      * Generated from protobuf field <code>bool show_missing = 12;</code>
      */
@@ -86,30 +98,43 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/my-project/databases/my-database/documents` or
      *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     @type string $collection_id
-     *           Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
-     *           or `messages`.
+     *           Optional. The collection ID, relative to `parent`, to list.
+     *           For example: `chatrooms` or `messages`.
+     *           This is optional, and when not provided, Firestore will list documents
+     *           from all collections under the provided `parent`.
      *     @type int $page_size
-     *           The maximum number of documents to return.
+     *           Optional. The maximum number of documents to return in a single response.
+     *           Firestore may return fewer than this value.
      *     @type string $page_token
-     *           The `next_page_token` value returned from a previous List request, if any.
+     *           Optional. A page token, received from a previous `ListDocuments` response.
+     *           Provide this to retrieve the subsequent page. When paginating, all other
+     *           parameters (with the exception of `page_size`) must match the values set
+     *           in the request that generated the page token.
      *     @type string $order_by
-     *           The order to sort results by. For example: `priority desc, name`.
+     *           Optional. The optional ordering of the documents to return.
+     *           For example: `priority desc, __name__ desc`.
+     *           This mirrors the [`ORDER BY`][google.firestore.v1.StructuredQuery.order_by]
+     *           used in Firestore queries but in a string representation. When absent,
+     *           documents are ordered based on `__name__ ASC`.
      *     @type \Google\Cloud\Firestore\V1\DocumentMask $mask
-     *           The fields to return. If not set, returns all fields.
+     *           Optional. The fields to return. If not set, returns all fields.
      *           If a document has a field that is not present in this mask, that field
      *           will not be returned in the response.
      *     @type string $transaction
-     *           Reads documents in a transaction.
+     *           Perform the read as part of an already active transaction.
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
+     *           Perform the read at the provided time.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      *     @type bool $show_missing
-     *           If the list should show missing documents. A missing document is a
-     *           document that does not exist but has sub-documents. These documents will
-     *           be returned with a key but will not have fields, [Document.create_time][google.firestore.v1.Document.create_time],
-     *           or [Document.update_time][google.firestore.v1.Document.update_time] set.
-     *           Requests with `show_missing` may not specify `where` or
-     *           `order_by`.
+     *           If the list should show missing documents.
+     *           A document is missing if it does not exist, but there are sub-documents
+     *           nested underneath it. When true, such missing documents will be returned
+     *           with a key but will not have fields,
+     *           [`create_time`][google.firestore.v1.Document.create_time], or
+     *           [`update_time`][google.firestore.v1.Document.update_time] set.
+     *           Requests with `show_missing` may not specify `where` or `order_by`.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,10 +179,12 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
-     * or `messages`.
+     * Optional. The collection ID, relative to `parent`, to list.
+     * For example: `chatrooms` or `messages`.
+     * This is optional, and when not provided, Firestore will list documents
+     * from all collections under the provided `parent`.
      *
-     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCollectionId()
@@ -166,10 +193,12 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms`
-     * or `messages`.
+     * Optional. The collection ID, relative to `parent`, to list.
+     * For example: `chatrooms` or `messages`.
+     * This is optional, and when not provided, Firestore will list documents
+     * from all collections under the provided `parent`.
      *
-     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string collection_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -182,9 +211,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of documents to return.
+     * Optional. The maximum number of documents to return in a single response.
+     * Firestore may return fewer than this value.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -193,9 +223,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of documents to return.
+     * Optional. The maximum number of documents to return in a single response.
+     * Firestore may return fewer than this value.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -208,9 +239,12 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `next_page_token` value returned from a previous List request, if any.
+     * Optional. A page token, received from a previous `ListDocuments` response.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters (with the exception of `page_size`) must match the values set
+     * in the request that generated the page token.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -219,9 +253,12 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `next_page_token` value returned from a previous List request, if any.
+     * Optional. A page token, received from a previous `ListDocuments` response.
+     * Provide this to retrieve the subsequent page. When paginating, all other
+     * parameters (with the exception of `page_size`) must match the values set
+     * in the request that generated the page token.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -234,9 +271,13 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order to sort results by. For example: `priority desc, name`.
+     * Optional. The optional ordering of the documents to return.
+     * For example: `priority desc, __name__ desc`.
+     * This mirrors the [`ORDER BY`][google.firestore.v1.StructuredQuery.order_by]
+     * used in Firestore queries but in a string representation. When absent,
+     * documents are ordered based on `__name__ ASC`.
      *
-     * Generated from protobuf field <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -245,9 +286,13 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order to sort results by. For example: `priority desc, name`.
+     * Optional. The optional ordering of the documents to return.
+     * For example: `priority desc, __name__ desc`.
+     * This mirrors the [`ORDER BY`][google.firestore.v1.StructuredQuery.order_by]
+     * used in Firestore queries but in a string representation. When absent,
+     * documents are ordered based on `__name__ ASC`.
      *
-     * Generated from protobuf field <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -260,11 +305,11 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to return. If not set, returns all fields.
+     * Optional. The fields to return. If not set, returns all fields.
      * If a document has a field that is not present in this mask, that field
      * will not be returned in the response.
      *
-     * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 7;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Firestore\V1\DocumentMask|null
      */
     public function getMask()
@@ -283,11 +328,11 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to return. If not set, returns all fields.
+     * Optional. The fields to return. If not set, returns all fields.
      * If a document has a field that is not present in this mask, that field
      * will not be returned in the response.
      *
-     * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 7;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Firestore\V1\DocumentMask $var
      * @return $this
      */
@@ -300,7 +345,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads documents in a transaction.
+     * Perform the read as part of an already active transaction.
      *
      * Generated from protobuf field <code>bytes transaction = 8;</code>
      * @return string
@@ -316,7 +361,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads documents in a transaction.
+     * Perform the read as part of an already active transaction.
      *
      * Generated from protobuf field <code>bytes transaction = 8;</code>
      * @param string $var
@@ -331,8 +376,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads documents as they were at the given time.
-     * This may not be older than 270 seconds.
+     * Perform the read at the provided time.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 10;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -348,8 +395,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads documents as they were at the given time.
-     * This may not be older than 270 seconds.
+     * Perform the read at the provided time.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -364,12 +413,13 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the list should show missing documents. A missing document is a
-     * document that does not exist but has sub-documents. These documents will
-     * be returned with a key but will not have fields, [Document.create_time][google.firestore.v1.Document.create_time],
-     * or [Document.update_time][google.firestore.v1.Document.update_time] set.
-     * Requests with `show_missing` may not specify `where` or
-     * `order_by`.
+     * If the list should show missing documents.
+     * A document is missing if it does not exist, but there are sub-documents
+     * nested underneath it. When true, such missing documents will be returned
+     * with a key but will not have fields,
+     * [`create_time`][google.firestore.v1.Document.create_time], or
+     * [`update_time`][google.firestore.v1.Document.update_time] set.
+     * Requests with `show_missing` may not specify `where` or `order_by`.
      *
      * Generated from protobuf field <code>bool show_missing = 12;</code>
      * @return bool
@@ -380,12 +430,13 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the list should show missing documents. A missing document is a
-     * document that does not exist but has sub-documents. These documents will
-     * be returned with a key but will not have fields, [Document.create_time][google.firestore.v1.Document.create_time],
-     * or [Document.update_time][google.firestore.v1.Document.update_time] set.
-     * Requests with `show_missing` may not specify `where` or
-     * `order_by`.
+     * If the list should show missing documents.
+     * A document is missing if it does not exist, but there are sub-documents
+     * nested underneath it. When true, such missing documents will be returned
+     * with a key but will not have fields,
+     * [`create_time`][google.firestore.v1.Document.create_time], or
+     * [`update_time`][google.firestore.v1.Document.update_time] set.
+     * Requests with `show_missing` may not specify `where` or `order_by`.
      *
      * Generated from protobuf field <code>bool show_missing = 12;</code>
      * @param bool $var

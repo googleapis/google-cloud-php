@@ -20,9 +20,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class DecayCurveAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * True if [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration] is used as the x-axis of each
-     * Trials Decay Curve. Otherwise, [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count] will be used
-     * as the x-axis.
+     * True if
+     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]
+     * is used as the x-axis of each Trials Decay Curve. Otherwise,
+     * [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count]
+     * will be used as the x-axis.
      *
      * Generated from protobuf field <code>bool use_elapsed_duration = 1;</code>
      */
@@ -35,9 +37,11 @@ class DecayCurveAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $use_elapsed_duration
-     *           True if [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration] is used as the x-axis of each
-     *           Trials Decay Curve. Otherwise, [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count] will be used
-     *           as the x-axis.
+     *           True if
+     *           [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]
+     *           is used as the x-axis of each Trials Decay Curve. Otherwise,
+     *           [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count]
+     *           will be used as the x-axis.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +50,11 @@ class DecayCurveAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration] is used as the x-axis of each
-     * Trials Decay Curve. Otherwise, [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count] will be used
-     * as the x-axis.
+     * True if
+     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]
+     * is used as the x-axis of each Trials Decay Curve. Otherwise,
+     * [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count]
+     * will be used as the x-axis.
      *
      * Generated from protobuf field <code>bool use_elapsed_duration = 1;</code>
      * @return bool
@@ -59,9 +65,11 @@ class DecayCurveAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration] is used as the x-axis of each
-     * Trials Decay Curve. Otherwise, [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count] will be used
-     * as the x-axis.
+     * True if
+     * [Measurement.elapsed_duration][google.cloud.aiplatform.v1.Measurement.elapsed_duration]
+     * is used as the x-axis of each Trials Decay Curve. Otherwise,
+     * [Measurement.step_count][google.cloud.aiplatform.v1.Measurement.step_count]
+     * will be used as the x-axis.
      *
      * Generated from protobuf field <code>bool use_elapsed_duration = 1;</code>
      * @param bool $var

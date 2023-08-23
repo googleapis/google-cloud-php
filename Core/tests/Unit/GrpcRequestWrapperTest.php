@@ -28,6 +28,8 @@ use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Rpc\BadRequest;
@@ -35,18 +37,19 @@ use Google\Rpc\BadRequest\FieldViolation;
 use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
 use Google\Rpc\Status;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group core
  */
 class GrpcRequestWrapperTest extends TestCase
 {
-    use ExpectException;
     use GrpcTestTrait;
+    use ProphecyTrait;
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
     }
@@ -109,9 +112,37 @@ class GrpcRequestWrapperTest extends TestCase
         ];
     }
 
+    public function testRetryFunction()
+    {
+        $requestWrapper = new GrpcRequestWrapper();
+        $timesCalled = 0;
+        $requestWrapper->send(
+            function () use (&$timesCalled) {
+                if (2 === ++$timesCalled) {
+                    // succeed on second try
+                    return;
+                }
+                throw new ApiException(
+                    'Retryable exception',
+                    \Google\Rpc\Code::NOT_FOUND,
+                    \Google\ApiCore\ApiStatus::NOT_FOUND
+                );
+            },
+            [[]],
+            [
+                'retries' => 1,
+                'grpcRetryFunction' => function (\Exception $ex) {
+                    return $ex->getMessage() === 'Retryable exception';
+                }
+            ]
+        );
+
+        $this->assertEquals(2, $timesCalled);
+    }
+
     public function testThrowsExceptionWhenRequestFails()
     {
-        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+        $this->expectException(GoogleException::class);
 
         $requestWrapper = new GrpcRequestWrapper();
 
@@ -166,7 +197,7 @@ class GrpcRequestWrapperTest extends TestCase
 
     public function testThrowsExceptionWithInvalidCredentialsFetcher()
     {
-        $this->expectException('InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
 
         $credentialsFetcher = new \stdClass();
 
@@ -292,7 +323,7 @@ class GrpcRequestWrapperTest extends TestCase
             }, [[]], ['retries' => 0]);
 
             $this->assertFalse(true, 'Exception not thrown!');
-        } catch (\Exception $ex) {
+        } catch (ServiceException $ex) {
             $this->assertEquals(
                 json_decode($metadata->serializeToJsonString(), true),
                 $ex->getMetadata()[0]

@@ -16,32 +16,32 @@ use Google\Protobuf\Internal\GPBUtil;
 class SslConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The ssl config type according to 'client_key', 'client_certificate' and
-     * 'ca_certificate'.
+     * Output only. The ssl config type according to 'client_key',
+     * 'client_certificate' and 'ca_certificate'.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig.SslType type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $type = 0;
     /**
-     * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with
-     * the Client Certificate. If this field is used then the 'client_certificate'
-     * field is mandatory.
+     * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key
+     * associated with the Client Certificate. If this field is used then the
+     * 'client_certificate' field is mandatory.
      *
      * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $client_key = '';
     /**
-     * Input only. The x509 PEM-encoded certificate that will be used by the replica to
-     * authenticate against the source database server.If this field is used then
-     * the 'client_key' field is mandatory.
+     * Input only. The x509 PEM-encoded certificate that will be used by the
+     * replica to authenticate against the source database server.If this field is
+     * used then the 'client_key' field is mandatory.
      *
      * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $client_certificate = '';
     /**
-     * Required. Input only. The x509 PEM-encoded certificate of the CA that signed the source database
-     * server's certificate. The replica will use this certificate to verify
-     * it's connecting to the right host.
+     * Required. Input only. The x509 PEM-encoded certificate of the CA that
+     * signed the source database server's certificate. The replica will use this
+     * certificate to verify it's connecting to the right host.
      *
      * Generated from protobuf field <code>string ca_certificate = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,20 +54,20 @@ class SslConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $type
-     *           Output only. The ssl config type according to 'client_key', 'client_certificate' and
-     *           'ca_certificate'.
+     *           Output only. The ssl config type according to 'client_key',
+     *           'client_certificate' and 'ca_certificate'.
      *     @type string $client_key
-     *           Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with
-     *           the Client Certificate. If this field is used then the 'client_certificate'
-     *           field is mandatory.
+     *           Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key
+     *           associated with the Client Certificate. If this field is used then the
+     *           'client_certificate' field is mandatory.
      *     @type string $client_certificate
-     *           Input only. The x509 PEM-encoded certificate that will be used by the replica to
-     *           authenticate against the source database server.If this field is used then
-     *           the 'client_key' field is mandatory.
+     *           Input only. The x509 PEM-encoded certificate that will be used by the
+     *           replica to authenticate against the source database server.If this field is
+     *           used then the 'client_key' field is mandatory.
      *     @type string $ca_certificate
-     *           Required. Input only. The x509 PEM-encoded certificate of the CA that signed the source database
-     *           server's certificate. The replica will use this certificate to verify
-     *           it's connecting to the right host.
+     *           Required. Input only. The x509 PEM-encoded certificate of the CA that
+     *           signed the source database server's certificate. The replica will use this
+     *           certificate to verify it's connecting to the right host.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,8 +76,8 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ssl config type according to 'client_key', 'client_certificate' and
-     * 'ca_certificate'.
+     * Output only. The ssl config type according to 'client_key',
+     * 'client_certificate' and 'ca_certificate'.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig.SslType type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -88,8 +88,8 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ssl config type according to 'client_key', 'client_certificate' and
-     * 'ca_certificate'.
+     * Output only. The ssl config type according to 'client_key',
+     * 'client_certificate' and 'ca_certificate'.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig.SslType type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -104,9 +104,9 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with
-     * the Client Certificate. If this field is used then the 'client_certificate'
-     * field is mandatory.
+     * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key
+     * associated with the Client Certificate. If this field is used then the
+     * 'client_certificate' field is mandatory.
      *
      * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -117,9 +117,9 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with
-     * the Client Certificate. If this field is used then the 'client_certificate'
-     * field is mandatory.
+     * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key
+     * associated with the Client Certificate. If this field is used then the
+     * 'client_certificate' field is mandatory.
      *
      * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
@@ -134,9 +134,9 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The x509 PEM-encoded certificate that will be used by the replica to
-     * authenticate against the source database server.If this field is used then
-     * the 'client_key' field is mandatory.
+     * Input only. The x509 PEM-encoded certificate that will be used by the
+     * replica to authenticate against the source database server.If this field is
+     * used then the 'client_key' field is mandatory.
      *
      * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -147,9 +147,9 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The x509 PEM-encoded certificate that will be used by the replica to
-     * authenticate against the source database server.If this field is used then
-     * the 'client_key' field is mandatory.
+     * Input only. The x509 PEM-encoded certificate that will be used by the
+     * replica to authenticate against the source database server.If this field is
+     * used then the 'client_key' field is mandatory.
      *
      * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
@@ -164,9 +164,9 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. The x509 PEM-encoded certificate of the CA that signed the source database
-     * server's certificate. The replica will use this certificate to verify
-     * it's connecting to the right host.
+     * Required. Input only. The x509 PEM-encoded certificate of the CA that
+     * signed the source database server's certificate. The replica will use this
+     * certificate to verify it's connecting to the right host.
      *
      * Generated from protobuf field <code>string ca_certificate = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -177,9 +177,9 @@ class SslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. The x509 PEM-encoded certificate of the CA that signed the source database
-     * server's certificate. The replica will use this certificate to verify
-     * it's connecting to the right host.
+     * Required. Input only. The x509 PEM-encoded certificate of the CA that
+     * signed the source database server's certificate. The replica will use this
+     * certificate to verify it's connecting to the right host.
      *
      * Generated from protobuf field <code>string ca_certificate = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

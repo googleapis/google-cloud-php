@@ -27,10 +27,8 @@ namespace Google\Cloud\Functions\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -56,6 +54,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -85,29 +85,19 @@ class CloudFunctionsServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.functions.v1.CloudFunctionsService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudfunctions.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -379,9 +369,6 @@ class CloudFunctionsServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudfunctions.googleapis.com:443'.
@@ -411,7 +398,7 @@ class CloudFunctionsServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -493,7 +480,7 @@ class CloudFunctionsServiceGapicClient
 
     /**
      * Creates a new function. If a function with the given name already exists in
-     * the specified project, the long running operation will return
+     * the specified project, the long running operation returns an
      * `ALREADY_EXISTS` error.
      *
      * Sample code:
@@ -506,7 +493,7 @@ class CloudFunctionsServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -523,7 +510,7 @@ class CloudFunctionsServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -533,8 +520,8 @@ class CloudFunctionsServiceGapicClient
      * }
      * ```
      *
-     * @param string        $location     Required. The project and location in which the function should be created, specified
-     *                                    in the format `projects/&#42;/locations/*`
+     * @param string        $location     Required. The project and location in which the function should be created,
+     *                                    specified in the format `projects/&#42;/locations/*`
      * @param CloudFunction $function     Required. Function to be created.
      * @param array         $optionalArgs {
      *     Optional.
@@ -575,7 +562,7 @@ class CloudFunctionsServiceGapicClient
 
     /**
      * Deletes a function with the given name from the specified project. If the
-     * given function is used by some trigger, the trigger will be updated to
+     * given function is used by some trigger, the trigger is updated to
      * remove this function.
      *
      * Sample code:
@@ -648,9 +635,9 @@ class CloudFunctionsServiceGapicClient
 
     /**
      * Returns a signed URL for downloading deployed function source code.
-     * The URL is only valid for a limited period and should be used within
+     * The URL is only valid for a limited period and must be used within
      * minutes after generation.
-     * For more information about the signed URL usage see:
+     * For more information about the signed URL usage, see:
      * https://cloud.google.com/storage/docs/access-control/signed-urls
      *
      * Sample code:
@@ -727,12 +714,12 @@ class CloudFunctionsServiceGapicClient
      * attached, the identity from the credentials would be used, but that
      * identity does not have permissions to upload files to the URL.
      *
-     * When making a HTTP PUT request, these two headers need to be specified:
+     * When making an HTTP PUT request, these two headers must be specified:
      *
      * * `content-type: application/zip`
      * * `x-goog-content-length-range: 0,104857600`
      *
-     * And this header SHOULD NOT be specified:
+     * And this header must NOT be specified:
      *
      * * `Authorization: Bearer YOUR_TOKEN`
      *
@@ -1067,7 +1054,7 @@ class CloudFunctionsServiceGapicClient
     /**
      * Tests the specified permissions against the IAM access control policy
      * for a function.
-     * If the function does not exist, this will return an empty set of
+     * If the function does not exist, this returns an empty set of
      * permissions, not a NOT_FOUND error.
      *
      * Sample code:
@@ -1137,7 +1124,7 @@ class CloudFunctionsServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1154,7 +1141,7 @@ class CloudFunctionsServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1202,5 +1189,92 @@ class CloudFunctionsServiceGapicClient
             $request,
             $this->getOperationsClient()
         )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $cloudFunctionsServiceClient = new CloudFunctionsServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudFunctionsServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudFunctionsServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudFunctionsServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }

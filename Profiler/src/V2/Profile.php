@@ -18,7 +18,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -50,15 +50,15 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Input only. Profile bytes, as a gzip compressed serialized proto, the
      * format is https://github.com/google/pprof/blob/master/proto/profile.proto.
      *
-     * Generated from protobuf field <code>bytes profile_bytes = 5;</code>
+     * Generated from protobuf field <code>bytes profile_bytes = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $profile_bytes = '';
     /**
      * Input only. Labels associated to this specific profile. These labels will
-     * get merged with the deployment labels for the final data set.  See
+     * get merged with the deployment labels for the final data set. See
      * documentation on deployment labels for validation rules and limits.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $labels;
 
@@ -88,7 +88,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           format is https://github.com/google/pprof/blob/master/proto/profile.proto.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Input only. Labels associated to this specific profile. These labels will
-     *           get merged with the deployment labels for the final data set.  See
+     *           get merged with the deployment labels for the final data set. See
      *           documentation on deployment labels for validation rules and limits.
      * }
      */
@@ -100,7 +100,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -111,7 +111,7 @@ class Profile extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -239,7 +239,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Input only. Profile bytes, as a gzip compressed serialized proto, the
      * format is https://github.com/google/pprof/blob/master/proto/profile.proto.
      *
-     * Generated from protobuf field <code>bytes profile_bytes = 5;</code>
+     * Generated from protobuf field <code>bytes profile_bytes = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getProfileBytes()
@@ -251,7 +251,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Input only. Profile bytes, as a gzip compressed serialized proto, the
      * format is https://github.com/google/pprof/blob/master/proto/profile.proto.
      *
-     * Generated from protobuf field <code>bytes profile_bytes = 5;</code>
+     * Generated from protobuf field <code>bytes profile_bytes = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -265,10 +265,10 @@ class Profile extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. Labels associated to this specific profile. These labels will
-     * get merged with the deployment labels for the final data set.  See
+     * get merged with the deployment labels for the final data set. See
      * documentation on deployment labels for validation rules and limits.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -278,10 +278,10 @@ class Profile extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. Labels associated to this specific profile. These labels will
-     * get merged with the deployment labels for the final data set.  See
+     * get merged with the deployment labels for the final data set. See
      * documentation on deployment labels for validation rules and limits.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

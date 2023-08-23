@@ -25,10 +25,9 @@ namespace Google\Cloud\Retail\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Retail\V2\PredictionServiceClient;
 use Google\Cloud\Retail\V2\PredictResponse;
+use Google\Cloud\Retail\V2\PredictionServiceClient;
 use Google\Cloud\Retail\V2\UserEvent;
 use Google\Rpc\Code;
 use stdClass;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class PredictionServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PredictionServiceClient
-     */
+    /** @return PredictionServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class PredictionServiceClientTest extends GeneratedTest
         return new PredictionServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function predictTest()
     {
         $transport = $this->createTransport();
@@ -105,9 +96,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function predictExceptionTest()
     {
         $transport = $this->createTransport();

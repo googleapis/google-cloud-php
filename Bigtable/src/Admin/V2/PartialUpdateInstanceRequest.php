@@ -30,6 +30,22 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Bigtable\Admin\V2\Instance $instance   Required. The Instance which will (partially) replace the current value.
+     * @param \Google\Protobuf\FieldMask               $updateMask Required. The subset of Instance fields which should be replaced.
+     *                                                             Must be explicitly set.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Bigtable\Admin\V2\Instance $instance, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setInstance($instance)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

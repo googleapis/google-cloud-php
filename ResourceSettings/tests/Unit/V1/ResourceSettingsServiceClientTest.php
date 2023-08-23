@@ -25,7 +25,6 @@ namespace Google\Cloud\ResourceSettings\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ResourceSettings\V1\ListSettingsResponse;
 use Google\Cloud\ResourceSettings\V1\ResourceSettingsServiceClient;
@@ -40,25 +39,19 @@ use stdClass;
  */
 class ResourceSettingsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ResourceSettingsServiceClient
-     */
+    /** @return ResourceSettingsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         return new ResourceSettingsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSettingTest()
     {
         $transport = $this->createTransport();
@@ -98,9 +89,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSettingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -133,9 +122,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSettingsTest()
     {
         $transport = $this->createTransport();
@@ -170,9 +157,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -205,9 +190,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSettingTest()
     {
         $transport = $this->createTransport();
@@ -236,9 +219,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSettingExceptionTest()
     {
         $transport = $this->createTransport();

@@ -22,13 +22,30 @@ class UpdateDataStreamRequest extends \Google\Protobuf\Internal\Message
      */
     private $data_stream = null;
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Omitted fields will not be
+     * updated. To replace the entire entity, use one path with the string "*" to
+     * match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Analytics\Admin\V1beta\DataStream $dataStream The DataStream to update
+     * @param \Google\Protobuf\FieldMask                $updateMask Required. The list of fields to be updated. Omitted fields will not be
+     *                                                              updated. To replace the entire entity, use one path with the string "*" to
+     *                                                              match all fields.
+     *
+     * @return \Google\Analytics\Admin\V1beta\UpdateDataStreamRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1beta\DataStream $dataStream, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataStream($dataStream)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -39,9 +56,9 @@ class UpdateDataStreamRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Analytics\Admin\V1beta\DataStream $data_stream
      *           The DataStream to update
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The list of fields to be updated. Omitted fields will not be updated.
-     *           To replace the entire entity, use one path with the string "*" to match
-     *           all fields.
+     *           Required. The list of fields to be updated. Omitted fields will not be
+     *           updated. To replace the entire entity, use one path with the string "*" to
+     *           match all fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,9 +103,9 @@ class UpdateDataStreamRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Omitted fields will not be
+     * updated. To replace the entire entity, use one path with the string "*" to
+     * match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -109,9 +126,9 @@ class UpdateDataStreamRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to be updated. Omitted fields will not be updated.
-     * To replace the entire entity, use one path with the string "*" to match
-     * all fields.
+     * Required. The list of fields to be updated. Omitted fields will not be
+     * updated. To replace the entire entity, use one path with the string "*" to
+     * match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

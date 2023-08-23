@@ -1,0 +1,42 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.kms.inventory.v1",
+    "libraryPackage": "Google\\Cloud\\Kms\\Inventory\\V1",
+    "services": {
+        "KeyDashboardService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "KeyDashboardServiceGapicClient",
+                    "rpcs": {
+                        "ListCryptoKeys": {
+                            "methods": [
+                                "listCryptoKeys"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "KeyTrackingService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "KeyTrackingServiceGapicClient",
+                    "rpcs": {
+                        "GetProtectedResourcesSummary": {
+                            "methods": [
+                                "getProtectedResourcesSummary"
+                            ]
+                        },
+                        "SearchProtectedResources": {
+                            "methods": [
+                                "searchProtectedResources"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

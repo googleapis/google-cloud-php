@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
+ * The request message for
+ * [Agents.SearchAgents][google.cloud.dialogflow.v2.Agents.SearchAgents].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SearchAgentsRequest</code>
  */
@@ -35,6 +36,21 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+
+    /**
+     * @param string $parent Required. The project to list agents from.
+     *                       Format: `projects/<Project ID or '-'>`. Please see
+     *                       {@see AgentsClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SearchAgentsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

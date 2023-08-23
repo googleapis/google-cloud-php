@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-speech/v/stable)](https://packagist.org/packages/google/cloud-speech) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-speech.svg)](https://packagist.org/packages/google/cloud-speech)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-speech/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-speech/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -12,6 +12,10 @@ that project.
 
 Enables easy integration of Google speech recognition technologies into developer applications. Send audio and receive a
 text transcription from the Speech-to-Text API service.
+
+### Experimental Notice for V2 Surface
+
+Please note the V2 API surface is currently considered experimental and as a result it is subject to change.
 
 ### Installation
 

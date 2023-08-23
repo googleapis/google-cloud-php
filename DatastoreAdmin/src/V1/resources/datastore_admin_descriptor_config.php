@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
             ],
             'DeleteIndex' => [
                 'longRunning' => [
@@ -21,6 +30,21 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'index_id',
+                        'fieldAccessors' => [
+                            'getIndexId',
+                        ],
+                    ],
                 ],
             ],
             'ExportEntities' => [
@@ -32,6 +56,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
             ],
             'ImportEntities' => [
                 'longRunning' => [
@@ -42,6 +75,33 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIndex' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Datastore\Admin\V1\Index',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'index_id',
+                        'fieldAccessors' => [
+                            'getIndexId',
+                        ],
+                    ],
+                ],
             ],
             'ListIndexes' => [
                 'pageStreaming' => [
@@ -51,6 +111,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getIndexes',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Datastore\Admin\V1\ListIndexesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getProjectId',
+                        ],
+                    ],
                 ],
             ],
         ],

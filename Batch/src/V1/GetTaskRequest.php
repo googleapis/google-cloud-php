@@ -23,6 +23,20 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Task name. Please see
+     *                     {@see BatchServiceClient::taskName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Batch\V1\GetTaskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

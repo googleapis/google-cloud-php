@@ -25,11 +25,10 @@ namespace Google\Cloud\Eventarc\Publishing\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
-use Google\Cloud\Eventarc\Publishing\V1\PublisherClient;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse;
+use Google\Cloud\Eventarc\Publishing\V1\PublisherClient;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -40,25 +39,19 @@ use stdClass;
  */
 class PublisherClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PublisherClient
-     */
+    /** @return PublisherClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -67,9 +60,7 @@ class PublisherClientTest extends GeneratedTest
         return new PublisherClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishChannelConnectionEventsTest()
     {
         $transport = $this->createTransport();
@@ -90,9 +81,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishChannelConnectionEventsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -123,9 +112,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishEventsTest()
     {
         $transport = $this->createTransport();
@@ -146,9 +133,7 @@ class PublisherClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishEventsExceptionTest()
     {
         $transport = $this->createTransport();

@@ -31,6 +31,21 @@ class GetEntityRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. The resource name of the entity:
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}.`
+     *                     Please see {@see MetadataServiceClient::entityName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataplex\V1\GetEntityRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

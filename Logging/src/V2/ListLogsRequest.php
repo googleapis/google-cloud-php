@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListLogsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name that owns the logs:
+     * Required. The resource name to list logs for:
      * *  `projects/[PROJECT_ID]`
      * *  `organizations/[ORGANIZATION_ID]`
      * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
@@ -25,6 +25,22 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * Optional. List of resource names to list logs for:
+     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     * To support legacy queries, it could also be:
+     * *  `projects/[PROJECT_ID]`
+     * *  `organizations/[ORGANIZATION_ID]`
+     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     * *  `folders/[FOLDER_ID]`
+     * The resource name in the `parent` field is added to this list.
+     *
+     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $resource_names;
     /**
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
@@ -42,21 +58,25 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+
     /**
-     * Optional. The resource name that owns the logs:
-     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     * To support legacy queries, it could also be:
-     * *  `projects/[PROJECT_ID]`
-     * *  `organizations/[ORGANIZATION_ID]`
-     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
-     * *  `folders/[FOLDER_ID]`
+     * @param string $parent Required. The resource name to list logs for:
      *
-     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     *                       *  `projects/[PROJECT_ID]`
+     *                       *  `organizations/[ORGANIZATION_ID]`
+     *                       *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     *                       *  `folders/[FOLDER_ID]`
+     *                       Please see {@see LoggingServiceV2Client::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\ListLogsRequest
+     *
+     * @experimental
      */
-    private $resource_names;
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -65,22 +85,13 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name that owns the logs:
+     *           Required. The resource name to list logs for:
      *           *  `projects/[PROJECT_ID]`
      *           *  `organizations/[ORGANIZATION_ID]`
      *           *  `billingAccounts/[BILLING_ACCOUNT_ID]`
      *           *  `folders/[FOLDER_ID]`
-     *     @type int $page_size
-     *           Optional. The maximum number of results to return from this request.
-     *           Non-positive values are ignored.  The presence of `nextPageToken` in the
-     *           response indicates that more results might be available.
-     *     @type string $page_token
-     *           Optional. If present, then retrieve the next batch of results from the
-     *           preceding call to this method.  `pageToken` must be the value of
-     *           `nextPageToken` from the previous response.  The values of other method
-     *           parameters should be identical to those in the previous call.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
-     *           Optional. The resource name that owns the logs:
+     *           Optional. List of resource names to list logs for:
      *            * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *            * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *            * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
@@ -90,6 +101,16 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      *           *  `organizations/[ORGANIZATION_ID]`
      *           *  `billingAccounts/[BILLING_ACCOUNT_ID]`
      *           *  `folders/[FOLDER_ID]`
+     *           The resource name in the `parent` field is added to this list.
+     *     @type int $page_size
+     *           Optional. The maximum number of results to return from this request.
+     *           Non-positive values are ignored.  The presence of `nextPageToken` in the
+     *           response indicates that more results might be available.
+     *     @type string $page_token
+     *           Optional. If present, then retrieve the next batch of results from the
+     *           preceding call to this method.  `pageToken` must be the value of
+     *           `nextPageToken` from the previous response.  The values of other method
+     *           parameters should be identical to those in the previous call.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,7 +119,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name that owns the logs:
+     * Required. The resource name to list logs for:
      * *  `projects/[PROJECT_ID]`
      * *  `organizations/[ORGANIZATION_ID]`
      * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
@@ -113,7 +134,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name that owns the logs:
+     * Required. The resource name to list logs for:
      * *  `projects/[PROJECT_ID]`
      * *  `organizations/[ORGANIZATION_ID]`
      * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
@@ -127,6 +148,52 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of resource names to list logs for:
+     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     * To support legacy queries, it could also be:
+     * *  `projects/[PROJECT_ID]`
+     * *  `organizations/[ORGANIZATION_ID]`
+     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     * *  `folders/[FOLDER_ID]`
+     * The resource name in the `parent` field is added to this list.
+     *
+     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResourceNames()
+    {
+        return $this->resource_names;
+    }
+
+    /**
+     * Optional. List of resource names to list logs for:
+     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     * To support legacy queries, it could also be:
+     * *  `projects/[PROJECT_ID]`
+     * *  `organizations/[ORGANIZATION_ID]`
+     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     * *  `folders/[FOLDER_ID]`
+     * The resource name in the `parent` field is added to this list.
+     *
+     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResourceNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_names = $arr;
 
         return $this;
     }
@@ -189,50 +256,6 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The resource name that owns the logs:
-     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     * To support legacy queries, it could also be:
-     * *  `projects/[PROJECT_ID]`
-     * *  `organizations/[ORGANIZATION_ID]`
-     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
-     * *  `folders/[FOLDER_ID]`
-     *
-     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getResourceNames()
-    {
-        return $this->resource_names;
-    }
-
-    /**
-     * Optional. The resource name that owns the logs:
-     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     * To support legacy queries, it could also be:
-     * *  `projects/[PROJECT_ID]`
-     * *  `organizations/[ORGANIZATION_ID]`
-     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
-     * *  `folders/[FOLDER_ID]`
-     *
-     * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setResourceNames($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->resource_names = $arr;
 
         return $this;
     }

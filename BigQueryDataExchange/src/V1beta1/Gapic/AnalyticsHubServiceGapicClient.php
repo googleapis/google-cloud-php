@@ -29,7 +29,6 @@ namespace Google\Cloud\BigQuery\DataExchange\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -47,11 +46,11 @@ use Google\Cloud\BigQuery\DataExchange\V1beta1\GetDataExchangeRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\GetListingRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListDataExchangesRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListDataExchangesResponse;
-use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListListingsRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListListingsResponse;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListOrgDataExchangesRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\ListOrgDataExchangesResponse;
+use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingRequest;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingResponse;
 use Google\Cloud\BigQuery\DataExchange\V1beta1\UpdateDataExchangeRequest;
@@ -97,41 +96,37 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\BigQuery\DataExchange\V1beta1\Client\AnalyticsHubServiceClient} to
+ * use the new surface.
+ *
  * @experimental
  */
 class AnalyticsHubServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.bigquery.dataexchange.v1beta1.AnalyticsHubService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticshub.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigquery',
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static $dataExchangeNameTemplate;
+
+    private static $datasetNameTemplate;
 
     private static $listingNameTemplate;
 
@@ -178,6 +173,17 @@ class AnalyticsHubServiceGapicClient
         return self::$dataExchangeNameTemplate;
     }
 
+    private static function getDatasetNameTemplate()
+    {
+        if (self::$datasetNameTemplate == null) {
+            self::$datasetNameTemplate = new PathTemplate(
+                'projects/{project}/datasets/{dataset}'
+            );
+        }
+
+        return self::$datasetNameTemplate;
+    }
+
     private static function getListingNameTemplate()
     {
         if (self::$listingNameTemplate == null) {
@@ -205,6 +211,7 @@ class AnalyticsHubServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'dataExchange' => self::getDataExchangeNameTemplate(),
+                'dataset' => self::getDatasetNameTemplate(),
                 'listing' => self::getListingNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
@@ -231,6 +238,25 @@ class AnalyticsHubServiceGapicClient
             'project' => $project,
             'location' => $location,
             'data_exchange' => $dataExchange,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a dataset
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     *
+     * @return string The formatted dataset resource.
+     *
+     * @experimental
+     */
+    public static function datasetName($project, $dataset)
+    {
+        return self::getDatasetNameTemplate()->render([
+            'project' => $project,
+            'dataset' => $dataset,
         ]);
     }
 
@@ -285,6 +311,7 @@ class AnalyticsHubServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - dataExchange: projects/{project}/locations/{location}/dataExchanges/{data_exchange}
+     * - dataset: projects/{project}/datasets/{dataset}
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
      *
@@ -335,9 +362,6 @@ class AnalyticsHubServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'analyticshub.googleapis.com:443'.
@@ -367,7 +391,7 @@ class AnalyticsHubServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For

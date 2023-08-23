@@ -28,6 +28,13 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string instance_group_manager_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $instance_group_manager_name = '';
+    /**
+     * Output only. The partial URI to the instance group manager for this group.
+     * E.g. projects/my-project/regions/us-central1/instanceGroupManagers/my-igm.
+     *
+     * Generated from protobuf field <code>string instance_group_manager_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $instance_group_manager_uri = '';
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      *           Instance Group.
      *     @type string $instance_group_manager_name
      *           Output only. The name of the Instance Group Manager for this group.
+     *     @type string $instance_group_manager_uri
+     *           Output only. The partial URI to the instance group manager for this group.
+     *           E.g. projects/my-project/regions/us-central1/instanceGroupManagers/my-igm.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,34 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance_group_manager_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The partial URI to the instance group manager for this group.
+     * E.g. projects/my-project/regions/us-central1/instanceGroupManagers/my-igm.
+     *
+     * Generated from protobuf field <code>string instance_group_manager_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInstanceGroupManagerUri()
+    {
+        return $this->instance_group_manager_uri;
+    }
+
+    /**
+     * Output only. The partial URI to the instance group manager for this group.
+     * E.g. projects/my-project/regions/us-central1/instanceGroupManagers/my-igm.
+     *
+     * Generated from protobuf field <code>string instance_group_manager_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInstanceGroupManagerUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->instance_group_manager_uri = $var;
 
         return $this;
     }

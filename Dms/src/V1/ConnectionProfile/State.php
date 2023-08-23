@@ -94,6 +94,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\CloudDms\V1\ConnectionProfile_State::class);
 

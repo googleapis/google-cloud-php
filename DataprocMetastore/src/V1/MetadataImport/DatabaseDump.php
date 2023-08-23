@@ -31,7 +31,15 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      */
     private $gcs_uri = '';
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * The name of the source database.
+     *
+     * Generated from protobuf field <code>string source_database = 3 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $source_database = '';
+    /**
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,8 +56,11 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      *     @type string $gcs_uri
      *           A Cloud Storage object or folder URI that specifies the source from which
      *           to import metadata. It must begin with `gs://`.
+     *     @type string $source_database
+     *           The name of the source database.
      *     @type int $type
-     *           Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     *           Optional. The type of the database dump. If unspecified, defaults to
+     *           `MYSQL`.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +127,38 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * The name of the source database.
+     *
+     * Generated from protobuf field <code>string source_database = 3 [deprecated = true];</code>
+     * @return string
+     * @deprecated
+     */
+    public function getSourceDatabase()
+    {
+        @trigger_error('source_database is deprecated.', E_USER_DEPRECATED);
+        return $this->source_database;
+    }
+
+    /**
+     * The name of the source database.
+     *
+     * Generated from protobuf field <code>string source_database = 3 [deprecated = true];</code>
+     * @param string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setSourceDatabase($var)
+    {
+        @trigger_error('source_database is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkString($var, True);
+        $this->source_database = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -127,7 +169,8 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     * Optional. The type of the database dump. If unspecified, defaults to
+     * `MYSQL`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

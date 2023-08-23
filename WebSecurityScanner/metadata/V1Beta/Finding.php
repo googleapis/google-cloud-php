@@ -18,7 +18,7 @@ class Finding
         \GPBMetadata\Google\Cloud\Websecurityscanner\V1Beta\FindingAddon::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å	
+ç	
 4google/cloud/websecurityscanner/v1beta/finding.proto&google.cloud.websecurityscanner.v1beta:google/cloud/websecurityscanner/v1beta/finding_addon.proto"©
 Finding
 name (	
@@ -39,8 +39,8 @@ fuzzed_url (	
 vulnerable_headers (29.google.cloud.websecurityscanner.v1beta.VulnerableHeaders[
 vulnerable_parameters (2<.google.cloud.websecurityscanner.v1beta.VulnerableParameters8
 xss (2+.google.cloud.websecurityscanner.v1beta.Xss:„êA€
-)websecurityscanner.googleapis.com/FindingSprojects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}/findings/{finding}B”
-*com.google.cloud.websecurityscanner.v1betaBFindingProtoPZXgoogle.golang.org/genproto/googleapis/cloud/websecurityscanner/v1beta;websecurityscannerª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
+)websecurityscanner.googleapis.com/FindingSprojects/{project}/scanConfigs/{scan_config}/scanRuns/{scan_run}/findings/{finding}B–
+*com.google.cloud.websecurityscanner.v1betaBFindingProtoPZZcloud.google.com/go/websecurityscanner/apiv1beta/websecurityscannerpb;websecurityscannerpbª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
         , true);
 
         static::$is_initialized = true;

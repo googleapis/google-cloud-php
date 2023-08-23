@@ -14,7 +14,6 @@ class Customers
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Channel\V1\Common::initOnce();
@@ -22,8 +21,8 @@ class Customers
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸
-\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/field_behavior.protogoogle/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"Ñ
+«
+\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"î
 Customer
 name (	BàA
 org_display_name (	BàA;
@@ -37,7 +36,8 @@ class Customers
 language_code
  (	BàAL
 cloud_identity_info (2*.google.cloud.channel.v1.CloudIdentityInfoBàA
-channel_partner_id (	:RêAO
+channel_partner_id (	
+correlation_id (	BàA:RêAO
 $cloudchannel.googleapis.com/Customer\'accounts/{account}/customers/{customer}"
 ContactInfo
 
@@ -46,8 +46,8 @@ first_name (	
 display_name (	BàA
 email (	
 title (	BàA
-phone (	Bo
-com.google.cloud.channel.v1BCustomersProtoPZ>google.golang.org/genproto/googleapis/cloud/channel/v1;channelbproto3'
+phone (	Bf
+com.google.cloud.channel.v1BCustomersProtoPZ5cloud.google.com/go/channel/apiv1/channelpb;channelpbbproto3'
         , true);
 
         static::$is_initialized = true;

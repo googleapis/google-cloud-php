@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for a live session.
+ * Metadata for a live session. The session expires 5 minutes after the client
+ * stops fetching the session's playlists.
  *
  * Generated from protobuf message <code>google.cloud.video.stitcher.v1.LiveSession</code>
  */
@@ -29,28 +30,6 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      */
     private $play_uri = '';
     /**
-     * The URI of the live session's source stream.
-     *
-     * Generated from protobuf field <code>string source_uri = 3;</code>
-     */
-    private $source_uri = '';
-    /**
-     * The default ad tag to use when no ad tag ids are specified in an ad break's
-     * SCTE-35 message.
-     * default_ad_tag_id is necessary when `adTagMap` has more than one key. Its
-     * value must be present in the `adTagMap`.
-     *
-     * Generated from protobuf field <code>string default_ad_tag_id = 4;</code>
-     */
-    private $default_ad_tag_id = '';
-    /**
-     * Key value pairs for ad tags. Ads parsed from ad tags must be MP4 videos
-     * each with at least one audio track.
-     *
-     * Generated from protobuf field <code>map<string, .google.cloud.video.stitcher.v1.AdTag> ad_tag_map = 5;</code>
-     */
-    private $ad_tag_map;
-    /**
      * Key value pairs for ad tag macro replacement. If the
      * specified ad tag URI has macros, this field provides the mapping
      * to the value that will replace the macro in the ad tag URI.
@@ -65,42 +44,25 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      */
     private $ad_tag_macros;
     /**
-     * Whether client side ad tracking is enabled. If enabled, the client player
-     * is expected to trigger playback and activity events itself. Otherwise,
-     * server side ad tracking is enabled and the Video Stitcher API will trigger
-     * playback events on behalf of the client player.
-     *
-     * Generated from protobuf field <code>bool client_ad_tracking = 7;</code>
-     */
-    private $client_ad_tracking = false;
-    /**
-     * The default slate to use when no slates are specified in an ad break's
-     * SCTE-35 message. When specified, this value must match the ID for a slate
-     * that has already been created via the
-     * [CreateSlate](projects.locations.slates/create) method.
-     *
-     * Generated from protobuf field <code>string default_slate_id = 8;</code>
-     */
-    private $default_slate_id = '';
-    /**
-     * Defines the stitcher behavior in case an ad does not align exactly with
-     * the ad break boundaries. If not specified, the default is `COMPLETE_AD`.
-     *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession.StitchingPolicy stitching_policy = 9;</code>
-     */
-    private $stitching_policy = 0;
-    /**
      * Additional options that affect the output of the manifest.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 10;</code>
      */
     private $manifest_options = null;
     /**
-     * Output only. The generated ID of the LiveSession's source stream.
+     * This field should be set with appropriate values if GAM is being used for
+     * ads.
      *
-     * Generated from protobuf field <code>string stream_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession.GamSettings gam_settings = 15;</code>
      */
-    private $stream_id = '';
+    private $gam_settings = null;
+    /**
+     * Required. The resource name of the live config for this session, in the
+     * form of `projects/{project}/locations/{location}/liveConfigs/{id}`.
+     *
+     * Generated from protobuf field <code>string live_config = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     */
+    private $live_config = '';
 
     /**
      * Constructor.
@@ -113,16 +75,6 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/liveSessions/{id}`.
      *     @type string $play_uri
      *           Output only. The URI to play the live session's ad-stitched stream.
-     *     @type string $source_uri
-     *           The URI of the live session's source stream.
-     *     @type string $default_ad_tag_id
-     *           The default ad tag to use when no ad tag ids are specified in an ad break's
-     *           SCTE-35 message.
-     *           default_ad_tag_id is necessary when `adTagMap` has more than one key. Its
-     *           value must be present in the `adTagMap`.
-     *     @type array|\Google\Protobuf\Internal\MapField $ad_tag_map
-     *           Key value pairs for ad tags. Ads parsed from ad tags must be MP4 videos
-     *           each with at least one audio track.
      *     @type array|\Google\Protobuf\Internal\MapField $ad_tag_macros
      *           Key value pairs for ad tag macro replacement. If the
      *           specified ad tag URI has macros, this field provides the mapping
@@ -133,23 +85,14 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      *             Ad tag macros: `{"geoId": "123"}`
      *             Fully qualified ad tag:
      *             `"https://doubleclick.google.com/ad/1?geo_id=123"`
-     *     @type bool $client_ad_tracking
-     *           Whether client side ad tracking is enabled. If enabled, the client player
-     *           is expected to trigger playback and activity events itself. Otherwise,
-     *           server side ad tracking is enabled and the Video Stitcher API will trigger
-     *           playback events on behalf of the client player.
-     *     @type string $default_slate_id
-     *           The default slate to use when no slates are specified in an ad break's
-     *           SCTE-35 message. When specified, this value must match the ID for a slate
-     *           that has already been created via the
-     *           [CreateSlate](projects.locations.slates/create) method.
-     *     @type int $stitching_policy
-     *           Defines the stitcher behavior in case an ad does not align exactly with
-     *           the ad break boundaries. If not specified, the default is `COMPLETE_AD`.
      *     @type \Google\Cloud\Video\Stitcher\V1\ManifestOptions $manifest_options
      *           Additional options that affect the output of the manifest.
-     *     @type string $stream_id
-     *           Output only. The generated ID of the LiveSession's source stream.
+     *     @type \Google\Cloud\Video\Stitcher\V1\LiveSession\GamSettings $gam_settings
+     *           This field should be set with appropriate values if GAM is being used for
+     *           ads.
+     *     @type string $live_config
+     *           Required. The resource name of the live config for this session, in the
+     *           form of `projects/{project}/locations/{location}/liveConfigs/{id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -212,92 +155,6 @@ class LiveSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the live session's source stream.
-     *
-     * Generated from protobuf field <code>string source_uri = 3;</code>
-     * @return string
-     */
-    public function getSourceUri()
-    {
-        return $this->source_uri;
-    }
-
-    /**
-     * The URI of the live session's source stream.
-     *
-     * Generated from protobuf field <code>string source_uri = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setSourceUri($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->source_uri = $var;
-
-        return $this;
-    }
-
-    /**
-     * The default ad tag to use when no ad tag ids are specified in an ad break's
-     * SCTE-35 message.
-     * default_ad_tag_id is necessary when `adTagMap` has more than one key. Its
-     * value must be present in the `adTagMap`.
-     *
-     * Generated from protobuf field <code>string default_ad_tag_id = 4;</code>
-     * @return string
-     */
-    public function getDefaultAdTagId()
-    {
-        return $this->default_ad_tag_id;
-    }
-
-    /**
-     * The default ad tag to use when no ad tag ids are specified in an ad break's
-     * SCTE-35 message.
-     * default_ad_tag_id is necessary when `adTagMap` has more than one key. Its
-     * value must be present in the `adTagMap`.
-     *
-     * Generated from protobuf field <code>string default_ad_tag_id = 4;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDefaultAdTagId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->default_ad_tag_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Key value pairs for ad tags. Ads parsed from ad tags must be MP4 videos
-     * each with at least one audio track.
-     *
-     * Generated from protobuf field <code>map<string, .google.cloud.video.stitcher.v1.AdTag> ad_tag_map = 5;</code>
-     * @return \Google\Protobuf\Internal\MapField
-     */
-    public function getAdTagMap()
-    {
-        return $this->ad_tag_map;
-    }
-
-    /**
-     * Key value pairs for ad tags. Ads parsed from ad tags must be MP4 videos
-     * each with at least one audio track.
-     *
-     * Generated from protobuf field <code>map<string, .google.cloud.video.stitcher.v1.AdTag> ad_tag_map = 5;</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
-     * @return $this
-     */
-    public function setAdTagMap($var)
-    {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\Stitcher\V1\AdTag::class);
-        $this->ad_tag_map = $arr;
-
-        return $this;
-    }
-
-    /**
      * Key value pairs for ad tag macro replacement. If the
      * specified ad tag URI has macros, this field provides the mapping
      * to the value that will replace the macro in the ad tag URI.
@@ -340,98 +197,6 @@ class LiveSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether client side ad tracking is enabled. If enabled, the client player
-     * is expected to trigger playback and activity events itself. Otherwise,
-     * server side ad tracking is enabled and the Video Stitcher API will trigger
-     * playback events on behalf of the client player.
-     *
-     * Generated from protobuf field <code>bool client_ad_tracking = 7;</code>
-     * @return bool
-     */
-    public function getClientAdTracking()
-    {
-        return $this->client_ad_tracking;
-    }
-
-    /**
-     * Whether client side ad tracking is enabled. If enabled, the client player
-     * is expected to trigger playback and activity events itself. Otherwise,
-     * server side ad tracking is enabled and the Video Stitcher API will trigger
-     * playback events on behalf of the client player.
-     *
-     * Generated from protobuf field <code>bool client_ad_tracking = 7;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setClientAdTracking($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->client_ad_tracking = $var;
-
-        return $this;
-    }
-
-    /**
-     * The default slate to use when no slates are specified in an ad break's
-     * SCTE-35 message. When specified, this value must match the ID for a slate
-     * that has already been created via the
-     * [CreateSlate](projects.locations.slates/create) method.
-     *
-     * Generated from protobuf field <code>string default_slate_id = 8;</code>
-     * @return string
-     */
-    public function getDefaultSlateId()
-    {
-        return $this->default_slate_id;
-    }
-
-    /**
-     * The default slate to use when no slates are specified in an ad break's
-     * SCTE-35 message. When specified, this value must match the ID for a slate
-     * that has already been created via the
-     * [CreateSlate](projects.locations.slates/create) method.
-     *
-     * Generated from protobuf field <code>string default_slate_id = 8;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDefaultSlateId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->default_slate_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Defines the stitcher behavior in case an ad does not align exactly with
-     * the ad break boundaries. If not specified, the default is `COMPLETE_AD`.
-     *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession.StitchingPolicy stitching_policy = 9;</code>
-     * @return int
-     */
-    public function getStitchingPolicy()
-    {
-        return $this->stitching_policy;
-    }
-
-    /**
-     * Defines the stitcher behavior in case an ad does not align exactly with
-     * the ad break boundaries. If not specified, the default is `COMPLETE_AD`.
-     *
-     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession.StitchingPolicy stitching_policy = 9;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setStitchingPolicy($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Video\Stitcher\V1\LiveSession\StitchingPolicy::class);
-        $this->stitching_policy = $var;
-
-        return $this;
-    }
-
-    /**
      * Additional options that affect the output of the manifest.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 10;</code>
@@ -468,27 +233,67 @@ class LiveSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generated ID of the LiveSession's source stream.
+     * This field should be set with appropriate values if GAM is being used for
+     * ads.
      *
-     * Generated from protobuf field <code>string stream_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return string
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession.GamSettings gam_settings = 15;</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\LiveSession\GamSettings|null
      */
-    public function getStreamId()
+    public function getGamSettings()
     {
-        return $this->stream_id;
+        return $this->gam_settings;
+    }
+
+    public function hasGamSettings()
+    {
+        return isset($this->gam_settings);
+    }
+
+    public function clearGamSettings()
+    {
+        unset($this->gam_settings);
     }
 
     /**
-     * Output only. The generated ID of the LiveSession's source stream.
+     * This field should be set with appropriate values if GAM is being used for
+     * ads.
      *
-     * Generated from protobuf field <code>string stream_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession.GamSettings gam_settings = 15;</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\LiveSession\GamSettings $var
+     * @return $this
+     */
+    public function setGamSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\LiveSession\GamSettings::class);
+        $this->gam_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The resource name of the live config for this session, in the
+     * form of `projects/{project}/locations/{location}/liveConfigs/{id}`.
+     *
+     * Generated from protobuf field <code>string live_config = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getLiveConfig()
+    {
+        return $this->live_config;
+    }
+
+    /**
+     * Required. The resource name of the live config for this session, in the
+     * form of `projects/{project}/locations/{location}/liveConfigs/{id}`.
+     *
+     * Generated from protobuf field <code>string live_config = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setStreamId($var)
+    public function setLiveConfig($var)
     {
         GPBUtil::checkString($var, True);
-        $this->stream_id = $var;
+        $this->live_config = $var;
 
         return $this;
     }

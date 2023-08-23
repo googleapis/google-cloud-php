@@ -17,8 +17,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The backup's project and location, in the format
-     * `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     * backup locations map to GCP regions, for example **us-west1**.
+     * `projects/{project_number}/locations/{location}`. In Filestore,
+     * backup locations map to Google Cloud regions, for example **us-west1**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -42,6 +42,32 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     private $backup_id = '';
 
     /**
+     * @param string                            $parent   Required. The backup's project and location, in the format
+     *                                                    `projects/{project_number}/locations/{location}`. In Filestore,
+     *                                                    backup locations map to Google Cloud regions, for example **us-west1**. Please see
+     *                                                    {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Filestore\V1\Backup $backup   Required. A [backup resource][google.cloud.filestore.v1.Backup]
+     * @param string                            $backupId Required. The ID to use for the backup.
+     *                                                    The ID must be unique within the specified project and location.
+     *
+     *                                                    This value must start with a lowercase letter followed by up to 62
+     *                                                    lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *                                                    Values that do not match this pattern will trigger an INVALID_ARGUMENT
+     *                                                    error.
+     *
+     * @return \Google\Cloud\Filestore\V1\CreateBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Filestore\V1\Backup $backup, string $backupId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBackup($backup)
+            ->setBackupId($backupId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -49,8 +75,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The backup's project and location, in the format
-     *           `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     *           backup locations map to GCP regions, for example **us-west1**.
+     *           `projects/{project_number}/locations/{location}`. In Filestore,
+     *           backup locations map to Google Cloud regions, for example **us-west1**.
      *     @type \Google\Cloud\Filestore\V1\Backup $backup
      *           Required. A [backup resource][google.cloud.filestore.v1.Backup]
      *     @type string $backup_id
@@ -69,8 +95,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The backup's project and location, in the format
-     * `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     * backup locations map to GCP regions, for example **us-west1**.
+     * `projects/{project_number}/locations/{location}`. In Filestore,
+     * backup locations map to Google Cloud regions, for example **us-west1**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -82,8 +108,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The backup's project and location, in the format
-     * `projects/{project_number}/locations/{location}`. In Cloud Filestore,
-     * backup locations map to GCP regions, for example **us-west1**.
+     * `projects/{project_number}/locations/{location}`. In Filestore,
+     * backup locations map to Google Cloud regions, for example **us-west1**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -37,17 +37,17 @@ use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group storage
  */
 class BucketTest extends SnippetTestCase
 {
-    use AssertStringContains;
     use KeyPairGenerateTrait;
+    use ProphecyTrait;
 
     const BUCKET = 'my-bucket';
     const PROJECT_ID = 'my-project';
@@ -73,7 +73,7 @@ class BucketTest extends SnippetTestCase
         ]
     ];
 
-    public function set_up()
+    public function setUp(): void
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()
@@ -246,7 +246,7 @@ class BucketTest extends SnippetTestCase
         $uploader = $this->prophesize(MultipartUploader::class);
         $uploader->uploadAsync()
             ->shouldBeCalled()
-            ->willReturn(Promise\promise_for([
+            ->willReturn(Create::promiseFor([
                 'name' => 'Foo',
                 'generation' => 'Bar'
             ]));
@@ -276,7 +276,7 @@ class BucketTest extends SnippetTestCase
         $uploader = $this->prophesize(MultipartUploader::class);
         $uploader->uploadAsync()
             ->shouldBeCalledTimes(3)
-            ->willReturn(Promise\promise_for([
+            ->willReturn(Create::promiseFor([
                 'name' => 'Foo',
                 'generation' => 'Bar'
             ]));

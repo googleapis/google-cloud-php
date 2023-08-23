@@ -30,8 +30,8 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\DocumentDelete $document_delete
      *           A [Document][google.firestore.v1.Document] has been deleted.
      *     @type \Google\Cloud\Firestore\V1\DocumentRemove $document_remove
-     *           A [Document][google.firestore.v1.Document] has been removed from a target (because it is no longer
-     *           relevant to that target).
+     *           A [Document][google.firestore.v1.Document] has been removed from a target
+     *           (because it is no longer relevant to that target).
      *     @type \Google\Cloud\Firestore\V1\ExistenceFilter $filter
      *           A filter to apply to the set of documents previously returned for the
      *           given target.
@@ -138,8 +138,8 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Document][google.firestore.v1.Document] has been removed from a target (because it is no longer
-     * relevant to that target).
+     * A [Document][google.firestore.v1.Document] has been removed from a target
+     * (because it is no longer relevant to that target).
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentRemove document_remove = 6;</code>
      * @return \Google\Cloud\Firestore\V1\DocumentRemove|null
@@ -155,8 +155,8 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Document][google.firestore.v1.Document] has been removed from a target (because it is no longer
-     * relevant to that target).
+     * A [Document][google.firestore.v1.Document] has been removed from a target
+     * (because it is no longer relevant to that target).
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentRemove document_remove = 6;</code>
      * @param \Google\Cloud\Firestore\V1\DocumentRemove $var
