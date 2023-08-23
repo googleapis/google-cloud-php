@@ -17,21 +17,21 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\ApiCore\Traits\ArrayTrait;
-use Google\ApiCore\Veneer\Exception\NotFoundException;
+
 use Google\Cloud\Core\V2\Iam;
-use Google\ApiCore\Veneer\Iterator\ItemIterator;
-use Google\ApiCore\Veneer\Iterator\PageIterator;
 use Google\Cloud\PubSub\V1\Encoding;
 use InvalidArgumentException;
-use Google\ApiCore\Traits\RequestCallerTrait;
 use Google\ApiCore\Serializer;
-use Google\ApiCore\Veneer\RequestHandler;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Protobuf\FieldMask;
 use Google\Cloud\PubSub\V1\Topic as TopicProto;
 use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Core\RequestHandler;
 
 /**
  * A named resource to which messages are sent by publishers.
@@ -53,7 +53,6 @@ class Topic
 {
     use ArrayTrait;
     use ResourceNameTrait;
-    use RequestCallerTrait;
 
     const DEFAULT_COMPRESSION_BYTES_THRESHOLD = 240;
 

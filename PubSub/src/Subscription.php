@@ -17,16 +17,15 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\ApiCore\Traits\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
-use Google\ApiCore\Veneer\Exception\NotFoundException;
-use Google\ApiCore\Veneer\Exception\BadRequestException;
-use Google\ApiCore\Veneer\ExponentialBackoff;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\Core\Timestamp;
-use Google\ApiCore\Traits\TimeTrait;
-use Google\ApiCore\Veneer\RequestHandler;
-use Google\ApiCore\Traits\ValidateTrait;
+use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
@@ -34,6 +33,7 @@ use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription as SubscriptionProto;
+use Google\Core\RequestHandler;
 use Google\Protobuf\Duration as ProtobufDuration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
@@ -1511,7 +1511,7 @@ class Subscription
                 $seconds = (int) $d[0];
                 $nanos = $this->convertFractionToNanoSeconds($d[1]);
             }
-        } elseif ($v instanceof CoreDuration) {
+        } elseif ($v instanceof Duration) {
             $d = $v->get();
             $seconds = $d['seconds'];
             $nanos = $d['nanos'];

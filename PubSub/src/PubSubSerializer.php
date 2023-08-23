@@ -18,8 +18,8 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
-use Google\ApiCore\Traits\TimeTrait;
 use Google\Cloud\Core\Duration as CoreDuration;
+use Google\Cloud\Core\TimeTrait;
 
 class PubSubSerializer extends Serializer
 {

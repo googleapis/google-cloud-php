@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Core\RequestHandler;
 
 /**
  * Represents a Pub/Sub Snapshot

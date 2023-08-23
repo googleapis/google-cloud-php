@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\ApiCore\Veneer\Exception\NotFoundException;
-use Google\ApiCore\Veneer\RequestHandler;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SchemaView;
+use Google\Core\RequestHandler;
 
 /**
  * Represents a Pub/Sub Schema resource.

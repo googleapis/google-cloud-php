@@ -269,4 +269,64 @@ trait ClientTrait
     {
         return extension_loaded('grpc');
     }
+
+    /**
+     * Helper function that initializes the default config for handlwritten clients.
+     * 
+     * @param array $config The client config passed on by the user.
+     * @param array $customAttrs The key/val pairs containing default values
+     * common for the handwritten clients.
+     * 
+     * @return array The default config combined with the options passed on by the user
+     * and auth related config.
+     */
+    private function getDefaultClientConfig(array $config, array $customAttrs)
+    {
+        $defaultScope = $customAttrs['defaultScope'] ?? [];
+        $emulatorHost = $customAttrs['emulatorHost'] ?? '';
+        
+        $config += [
+            'scopes' => [$defaultScope],
+            'projectIdRequired' => true,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
+        ];
+
+        if (isset($customAttrs['libVersion']))
+        {
+            $config['libVersion'] = $customAttrs['libVersion'];
+        }
+
+        $config = $this->configureAuthentication($config);
+
+        return $config;
+    }
+
+    /**
+     * Helper function that prepares the GAPIC classes list to be passed in to the
+     * RequestHandler before it's instantiation.
+     * For example, for PubSub if the user has passed 'gapicPublisherClient' in the $config
+     * it will be used as a GAPIC class while sending the requests via the RequestHandler.
+     * 
+     * Otherwise the default publisher GAPIC client will be used.
+     * 
+     * @param array $config The client config.
+     * @param array $classConfigMap A key/value pair where key is the GAPIC class
+     *  and the value is the config key name.
+     */
+    private function getGapicsFromConfig(array $config, array $classConfigMap) {
+        $gapics = [];
+
+        foreach ($classConfigMap as $configKey => $cls) {
+            // If the config contains a GAPIC object we use the key as the GAPIC class
+            // and the value as the initialized obj.
+            // If the config doesn't contain the GAPIC config key, we pass true
+            // which implies that the RequestHandler will instantiate the GAPIC on
+            // it's own.
+            $gapicObj = $this->pluck($configKey, $config, false);
+            $gapics[$cls] = $gapicObj ?? true;
+        }
+
+        return $gapics;
+    }
 }
