@@ -192,7 +192,7 @@ class BatchPublisherTest extends TestCase
         $client = TestHelpers::stub(PubSubClient::class, [
             ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
         ], [
-            'encode', 'connection'
+            'encode', 'requestHandler'
         ]);
         $client->___setProperty('encode', false);
 
@@ -204,34 +204,23 @@ class BatchPublisherTest extends TestCase
             ]
         ], ['client', 'topics']);
 
-        $connection = $this->prophesize(ConnectionInterface::class);
+        $requestHandler = $this->prophesize(RequestHandler::class);
 
         $messages = [[
             'data' => 'foo'
         ]];
 
-        $connection->publishMessage(Argument::that(
-            function ($args) use (
-                $processedEnableCompression,
-                $processedCompressionBytesThreshold
-            ) {
-                $result = is_array($args) &&
-                    array_key_exists('messages', $args) &&
-                    array_key_exists('topic', $args) &&
-                    array_key_exists('compressionOptions', $args);
+        $requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('publish'), 2],
+                [Argument::withEntry('compressionOptions', [
+                    'enableCompression' => $processedEnableCompression,
+                    'compressionBytesThreshold' => $processedCompressionBytesThreshold
+                ]), 4]
+            ])
+        )->shouldBeCalled(1)->willReturn([]);
 
-                if ($result &&
-                    ($args['compressionOptions']['enableCompression'] === $processedEnableCompression) &&
-                    ($args['compressionOptions']['compressionBytesThreshold'] === $processedCompressionBytesThreshold)
-                ) {
-                    return true;
-                }
-
-                return false;
-            }
-        ))->shouldBeCalled(1)->willReturn([]);
-
-        $client->___setProperty('connection', $connection->reveal());
+        $client->___setProperty('requestHandler', $requestHandler->reveal());
         $publisher->___setProperty('client', $client);
         $publisher->publishDeferred($messages);
     }

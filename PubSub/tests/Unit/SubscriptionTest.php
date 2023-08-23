@@ -1147,17 +1147,26 @@ class SubscriptionTest extends TestCase
             'bucket' => 'pubsub-test-bucket',
             'maxDuration' => '3.1s'
         ];
-        $this->connection->createSubscription(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('cloudStorageConfig', $bucketString)
-        ))->willReturn([
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('createSubscription'), 2],
+                [Argument::allOf(
+                    Argument::withEntry('foo', 'bar'),
+                    Argument::withEntry('cloudStorageConfig', $bucketString)
+                ), 4]
+            ])
+        )->willReturn([
             'name' => self::SUBSCRIPTION,
             'topic' => self::TOPIC
         ])->shouldBeCalledTimes(1);
 
-        $this->connection->getSubscription()->shouldNotBeCalled();
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2]
+            ])
+        )->shouldNotBeCalled();
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $sub = $this->subscription->create([
             'foo' => 'bar',
@@ -1174,23 +1183,29 @@ class SubscriptionTest extends TestCase
             'bucket' => 'pubsub-test-bucket',
             'maxDuration' => new Duration(3, 1e+9)
         ];
-        $bucketString = [
-            'name' => 'projects/project-id/subscriptions/subscription-name',
-            'cloudStorageConfig' => [
-                'bucket' => 'pubsub-test-bucket',
-                'maxDuration' => '3.1s'
-                ]
-            ];
-        $this->connection->updateSubscription(
-            Argument::containing($bucketString)
+
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('updateSubscription'), 2],
+                [Argument::that(function($args) {
+                    $sub = $args[0];
+                    return $sub instanceof V1Subscription &&
+                        !is_null($sub->getCloudStorageConfig()) &&
+                        $sub->getCloudStorageConfig()->getMaxDuration()->serializeToJsonString() === '"3.100s"';
+                }), 3]
+            ])
         )->willReturn([
             'name' => self::SUBSCRIPTION,
             'topic' => self::TOPIC
         ])->shouldBeCalledTimes(1);
 
-        $this->connection->getSubscription()->shouldNotBeCalled();
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('getSubscription'), 2]
+            ])
+        )->shouldNotBeCalled();
 
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $sub = $this->subscription->update([
             'cloudStorageConfig' => $bucket

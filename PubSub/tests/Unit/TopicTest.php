@@ -422,38 +422,27 @@ class TopicTest extends TestCase
         $topic = TestHelpers::stub(
             Topic::class,
             [
-                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
                 'project-name',
                 'topic-name',
                 true,
                 $info
             ],
-            ['connection']
+            ['requestHandler']
         );
         $messages = [['data' => 'hello world']];
 
-        $this->connection->publishMessage(Argument::that(
-            function ($args) use (
-                $processedEnableCompression,
-                $processedCompressionBytesThreshold
-            ) {
-                $result = is_array($args) &&
-                    array_key_exists('messages', $args) &&
-                    array_key_exists('topic', $args) &&
-                    array_key_exists('compressionOptions', $args);
+        $this->requestHandler->sendReq(
+            ...$this->matchesNthArgument([
+                [Argument::exact('publish'), 2],
+                [Argument::withEntry('compressionOptions', [
+                    'enableCompression' => $processedEnableCompression,
+                    'compressionBytesThreshold' => $processedCompressionBytesThreshold
+                ]), 4]
+            ])   
+        )->shouldBeCalled(1)->willReturn([]);
 
-                if ($result &&
-                    ($args['compressionOptions']['enableCompression'] === $processedEnableCompression) &&
-                    ($args['compressionOptions']['compressionBytesThreshold'] === $processedCompressionBytesThreshold)
-                ) {
-                    return true;
-                }
-
-                return false;
-            }
-        ))->shouldBeCalled(1)->willReturn([]);
-
-        $topic->___setProperty('connection', $this->connection->reveal());
+        $topic->___setProperty('requestHandler', $this->requestHandler->reveal());
         $topic->publishBatch($messages);
     }
 
