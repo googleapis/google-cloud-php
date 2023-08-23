@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/policytroubleshooter/iam/(v3)/.*-php/(.*)
+      dest: /owl-bot-staging/PolicyTroubleshooterIam/$1/$2
+api-name: PolicyTroubleshooterIam
