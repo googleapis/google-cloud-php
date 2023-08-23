@@ -58,16 +58,12 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image
-     *           Name of an image used as the data source.
+     *           URL for a VM image to use as the data source for this disk.
      *           For example, the following are all valid URLs:
      *           * Specify the image by its family name:
-     *           <pre><code>projects/<var
-     *           class="apiparam">project</var>/global/images/family/<var
-     *           class="apiparam">image_family</var></code></pre>
+     *           projects/{project}/global/images/family/{image_family}
      *           * Specify the image version:
-     *           <pre>projects/<var
-     *           class="apiparam">project</var>/global/images/<var
-     *           class="apiparam">image_version</var></code></pre>
+     *           projects/{project}/global/images/{image_version}
      *           You can also use Batch customized image in short names.
      *           The following image values are supported for a boot disk:
      *           * `batch-debian`: use Batch Debian images.
@@ -104,16 +100,12 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of an image used as the data source.
+     * URL for a VM image to use as the data source for this disk.
      * For example, the following are all valid URLs:
      * * Specify the image by its family name:
-     * <pre><code>projects/<var
-     * class="apiparam">project</var>/global/images/family/<var
-     * class="apiparam">image_family</var></code></pre>
+     * projects/{project}/global/images/family/{image_family}
      * * Specify the image version:
-     * <pre>projects/<var
-     * class="apiparam">project</var>/global/images/<var
-     * class="apiparam">image_version</var></code></pre>
+     * projects/{project}/global/images/{image_version}
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
      * * `batch-debian`: use Batch Debian images.
@@ -135,16 +127,12 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of an image used as the data source.
+     * URL for a VM image to use as the data source for this disk.
      * For example, the following are all valid URLs:
      * * Specify the image by its family name:
-     * <pre><code>projects/<var
-     * class="apiparam">project</var>/global/images/family/<var
-     * class="apiparam">image_family</var></code></pre>
+     * projects/{project}/global/images/family/{image_family}
      * * Specify the image version:
-     * <pre>projects/<var
-     * class="apiparam">project</var>/global/images/<var
-     * class="apiparam">image_version</var></code></pre>
+     * projects/{project}/global/images/{image_version}
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
      * * `batch-debian`: use Batch Debian images.
