@@ -165,6 +165,24 @@ return [
                     ],
                 ],
             ],
+            'GetLatestRecoveryTime' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\SqlInstancesGetLatestRecoveryTimeResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'Import' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Sql\V1\Operation',
