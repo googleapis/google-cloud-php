@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\PubSub\V1\SubscriberClient;
-use Google\Core\RequestHandler;
+use Google\Cloud\Core\RequestHandler;
 
 /**
  * Represents a Pub/Sub Snapshot

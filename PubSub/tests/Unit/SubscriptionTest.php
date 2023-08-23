@@ -17,10 +17,9 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\Veneer\Exception\NotFoundException;
-use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Duration;
-use Google\ApiCore\Veneer\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
@@ -30,6 +29,7 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\Subscription as V1Subscription;
+use Google\Cloud\Core\RequestHandler;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;

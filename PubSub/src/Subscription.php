@@ -33,7 +33,7 @@ use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\RetryPolicy;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription as SubscriptionProto;
-use Google\Core\RequestHandler;
+use Google\Cloud\Core\RequestHandler;
 use Google\Protobuf\Duration as ProtobufDuration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;

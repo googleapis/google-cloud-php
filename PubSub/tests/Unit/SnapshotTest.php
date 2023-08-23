@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\Core\RequestHandler;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;

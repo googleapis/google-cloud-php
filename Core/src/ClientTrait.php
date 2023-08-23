@@ -27,6 +27,7 @@ use Google\Cloud\Core\Exception\GoogleException;
  */
 trait ClientTrait
 {
+    use ArrayTrait;
     use JsonTrait;
 
     /**

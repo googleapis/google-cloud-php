@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\Veneer\Iterator\ItemIterator;
-use Google\ApiCore\Veneer\RequestHandler;
+
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
@@ -38,6 +38,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\PubSub\V1\Schema\Type;
+use Google\Cloud\Core\RequestHandler;
 
 /**
  * @group pubsub

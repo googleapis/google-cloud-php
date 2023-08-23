@@ -17,9 +17,8 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\Veneer\Exception\NotFoundException;
-use Google\ApiCore\Veneer\Iterator\ItemIterator;
-use Google\ApiCore\Veneer\RequestHandler;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\PubSub\BatchPublisher;
@@ -27,6 +26,7 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\Topic as V1Topic;
+use Google\Cloud\Core\RequestHandler;
 use Google\Protobuf\FieldMask;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

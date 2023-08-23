@@ -17,12 +17,11 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\Veneer\Exception\NotFoundException;
-use Google\ApiCore\Veneer\RequestHandler;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\V1\SchemaView;
+use Google\Cloud\Core\RequestHandler;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;

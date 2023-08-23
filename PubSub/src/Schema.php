@@ -20,7 +20,7 @@ namespace Google\Cloud\PubSub;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SchemaView;
-use Google\Core\RequestHandler;
+use Google\Cloud\Core\RequestHandler;
 
 /**
  * Represents a Pub/Sub Schema resource.

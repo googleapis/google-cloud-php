@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\V2;
 
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Google\Cloud\Iam\V1\Policy;
-use Google\ApiCore\Veneer\RequestHandler;
+use Google\Cloud\Core\RequestHandler;
 
 /**
  * IAM Manager

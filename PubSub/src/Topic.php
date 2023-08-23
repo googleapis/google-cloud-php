@@ -31,7 +31,7 @@ use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Protobuf\FieldMask;
 use Google\Cloud\PubSub\V1\Topic as TopicProto;
 use Google\Cloud\PubSub\V1\PubsubMessage;
-use Google\Core\RequestHandler;
+use Google\Cloud\Core\RequestHandler;
 
 /**
  * A named resource to which messages are sent by publishers.

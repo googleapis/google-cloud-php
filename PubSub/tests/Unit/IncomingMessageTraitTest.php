@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\Veneer\RequestHandler;
+
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
+use Google\Cloud\Core\RequestHandler;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 

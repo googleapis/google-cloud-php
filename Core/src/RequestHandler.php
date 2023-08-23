@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Core;
+namespace Google\Cloud\Core;
 
 use Google\ApiCore\Serializer;
 

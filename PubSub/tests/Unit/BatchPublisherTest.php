@@ -17,13 +17,13 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\Veneer\RequestHandler;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\Core\RequestHandler;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
