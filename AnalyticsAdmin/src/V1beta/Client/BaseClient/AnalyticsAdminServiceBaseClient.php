@@ -81,6 +81,7 @@ use Google\Analytics\Admin\V1beta\RunAccessReportRequest;
 use Google\Analytics\Admin\V1beta\RunAccessReportResponse;
 use Google\Analytics\Admin\V1beta\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1beta\UpdateAccountRequest;
+use Google\Analytics\Admin\V1beta\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1beta\UpdateCustomDimensionRequest;
 use Google\Analytics\Admin\V1beta\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\UpdateDataRetentionSettingsRequest;
@@ -157,6 +158,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCustomMetricAsync(UpdateCustomMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDataRetentionSettingsAsync(UpdateDataRetentionSettingsRequest $request, array $optionalArgs = [])
@@ -1702,6 +1704,34 @@ abstract class AnalyticsAdminServiceBaseClient
     public function updateAccount(UpdateAccountRequest $request, array $callOptions = []): Account
     {
         return $this->startApiCall('UpdateAccount', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a conversion event with the specified attributes.
+     *
+     * The async variant is {@see self::updateConversionEventAsync()} .
+     *
+     * @example samples/V1beta/AnalyticsAdminServiceClient/update_conversion_event.php
+     *
+     * @param UpdateConversionEventRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ConversionEvent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateConversionEvent(UpdateConversionEventRequest $request, array $callOptions = []): ConversionEvent
+    {
+        return $this->startApiCall('UpdateConversionEvent', $request, $callOptions)->wait();
     }
 
     /**
