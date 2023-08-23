@@ -34,7 +34,9 @@ class BackupTests extends BigtableTestCase
     private static $copyBackupId;
     private static $expireTime;
 
-    public const DESTINATION_LOCATION_ID = 'us-central1-b';
+    const DESTINATION_LOCATION_ID = 'us-central1-b';
+    const SECONDS_IN_A_DAY = 86400;
+
 
     public static function setUpBeforeClass(): void
     {
@@ -46,7 +48,9 @@ class BackupTests extends BigtableTestCase
         self::$backupId = uniqid('backup');
         self::$copyBackupId = 'copy' . self::$backupId;
         self::$expireTime = new Timestamp();
-        self::$expireTime->setSeconds(time() + 86400);
+        self::$expireTime->setSeconds(
+            time() + self::SECONDS_IN_A_DAY * 20
+        );
         self::$backupName = self::$tableAdminClient->backupName(
             self::$projectId,
             self::$instanceId,
@@ -135,6 +139,9 @@ class BackupTests extends BigtableTestCase
             self::$instanceId,
             self::$destinationClusterId
         );
+
+        self::$expireTime->setSeconds(time() + self::SECONDS_IN_A_DAY * 10);
+
         $operationResponse = self::$tableAdminClient->copyBackup(
             $parent,
             self::$copyBackupId,
