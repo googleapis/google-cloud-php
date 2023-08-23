@@ -38,7 +38,7 @@ class BackupTests extends BigtableTestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::set_up_before_class();
+        parent::setUpBeforeClass();
         self::$destinationClusterId = uniqid(self::CLUSTER_ID_PREFIX);
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
@@ -87,7 +87,7 @@ class BackupTests extends BigtableTestCase
             }
         }
 
-        self::tear_down_after_class();
+        parent::tearDownAfterClass();
     }
 
     public function testCreateBackup(): void
