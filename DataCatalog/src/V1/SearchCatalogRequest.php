@@ -78,7 +78,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * Optional. If set, uses searchAll permission granted on organizations from
+     * Optional. If set, use searchAll permission granted on organizations from
      * `include_org_ids` and projects from `include_project_ids` instead of the
      * fine grained per resource permissions when filtering the search results.
      * The only allowed `order_by` criteria for admin_search mode is `default`.
@@ -166,7 +166,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *           `default`.
      *           If this parameter is omitted, it defaults to the descending `relevance`.
      *     @type bool $admin_search
-     *           Optional. If set, uses searchAll permission granted on organizations from
+     *           Optional. If set, use searchAll permission granted on organizations from
      *           `include_org_ids` and projects from `include_project_ids` instead of the
      *           fine grained per resource permissions when filtering the search results.
      *           The only allowed `order_by` criteria for admin_search mode is `default`.
@@ -381,7 +381,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, uses searchAll permission granted on organizations from
+     * Optional. If set, use searchAll permission granted on organizations from
      * `include_org_ids` and projects from `include_project_ids` instead of the
      * fine grained per resource permissions when filtering the search results.
      * The only allowed `order_by` criteria for admin_search mode is `default`.
@@ -396,7 +396,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, uses searchAll permission granted on organizations from
+     * Optional. If set, use searchAll permission granted on organizations from
      * `include_org_ids` and projects from `include_project_ids` instead of the
      * fine grained per resource permissions when filtering the search results.
      * The only allowed `order_by` criteria for admin_search mode is `default`.
