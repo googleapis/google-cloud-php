@@ -35,6 +35,8 @@ class GitHub
     const GITHUB_RELEASE_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/%s';
     const GITHUB_RELEASE_GET_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
     const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
+    private const GITHUB_TEAMS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/teams';
+    private const GITHUB_TEAMS_ADD_ENDPOINT = 'https://api.github.com/orgs/%s/teams/%s/repos/%s';
 
     /**
      * @var array[]
@@ -44,7 +46,7 @@ class GitHub
     public function __construct(
         private RunShell $shell,
         private Client $client,
-        private string $token,
+        public string $token,
         private ?OutputInterface $output = null
     ) {
         $this->shell = $shell;
@@ -61,13 +63,7 @@ class GitHub
      */
     public function getDefaultBranch($target)
     {
-        try {
-            $res = $this->getRepo($target);
-            return json_decode((string) $res->getBody(), true)['default_branch'];
-        } catch (\Exception $e) {
-            $this->logException($e);
-            return null;
-        }
+        return $this->getRepoDetails($target)['default_branch'] ?? null;
     }
 
     /**
@@ -79,13 +75,9 @@ class GitHub
      */
     public function isTargetEmpty($target)
     {
-        try {
-            $res = $this->getRepo($target);
-            return json_decode((string) $res->getBody(), true)['size'] === 0;
-        } catch (\Exception $e) {
-            $this->logException($e);
-            return null;
-        }
+        $res = $this->getRepoDetails($target);
+
+        return is_null($res) ? null : $res['size'] === 0;
     }
 
     /**
@@ -108,6 +100,9 @@ class GitHub
 
             return ($res->getStatusCode() === 200);
         } catch (\Exception $e) {
+            if ($e->getCode() === 404) {
+                return false;
+            }
             $this->logException($e);
             return null;
         }
@@ -251,41 +246,93 @@ class GitHub
     }
 
     /**
-     * Make sure the target is formatted properly.
+     * Get repository details from the GitHub API.
      *
      * @param string $target The GitHub organization and repository ID separated
      *        by a forward slash, i.e. `organization/repository'.
-     * @return string
+     *
+     * @return array|null
      */
-    private function cleanTarget($target)
+    public function getRepoDetails($target)
     {
-        return str_replace('.git', '', $target);
+        try {
+            if (isset($this->targetInfoCache[$target])) {
+                $res = $this->targetInfoCache[$target];
+            } else {
+                $res = $this->client->get(sprintf(
+                    self::GITHUB_REPO_ENDPOINT,
+                    $this->cleanTarget($target)
+                ), [
+                    'auth' => [null, $this->token]
+                ]);
+
+                $this->targetInfoCache[$target] = $res;
+            }
+
+            return json_decode((string) $res->getBody(), true);
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return null;
+        }
     }
 
-    /**
-     * Get and cache the repository object from the API
-     *
-     * @param string $target The GitHub organization and repository ID separated
-     *        by a forward slash, i.e. `organization/repository'.
-     * @return Response
-     * @throws GuzzleException
-     */
-    private function getRepo($target)
+    public function getTeams(string $repoName)
     {
-        if (isset($this->targetInfoCache[$target])) {
-            $res = $this->targetInfoCache[$target];
-        } else {
+        try {
+            // get team fields
             $res = $this->client->get(sprintf(
-                self::GITHUB_REPO_ENDPOINT,
-                $this->cleanTarget($target)
+                self::GITHUB_TEAMS_ENDPOINT,
+                $this->cleanTarget($repoName)
             ), [
                 'auth' => [null, $this->token]
             ]);
 
-            $this->targetInfoCache[$target] = $res;
+            return json_decode((string) $res->getBody(), true);
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return null;
         }
+    }
 
-        return $res;
+    public function updateRepoDetails(string $repoName, array $settings): bool
+    {
+        try {
+            $res = $this->client->patch(sprintf(
+                self::GITHUB_REPO_ENDPOINT,
+                $repoName
+            ), [
+                'auth' => [null, $this->token],
+                'body' => json_encode($settings),
+            ]);
+
+            return $res->getStatusCode() === 200;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
+    }
+
+    public function updateTeamPermission(
+        string $orgName,
+        string $teamName,
+        string $repoName,
+        string $permission
+    ): bool {
+        try {
+            $res = $this->client->put(sprintf(
+                self::GITHUB_TEAMS_ADD_ENDPOINT,
+                $orgName,
+                $teamName,
+                $repoName,
+            ), [
+                'auth' => [null, $this->token],
+                'body' => json_encode(['permission' => $permission]),
+            ]);
+            return $res->getStatusCode() == 204;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
     }
 
     /**
@@ -320,6 +367,18 @@ class GitHub
             $this->logException($e);
             return false;
         }
+    }
+
+    /**
+     * Make sure the target is formatted properly.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @return string
+     */
+    private function cleanTarget($target)
+    {
+        return str_replace('.git', '', $target);
     }
 
     /**
