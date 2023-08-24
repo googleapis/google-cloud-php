@@ -51,7 +51,7 @@ class RequestHandler
         // TODO: We should be able to swap out the use of
         // GrpcRequestWrapper with either something in gax, or
         // have the functionality in this file itself.
-        $this->setRequestWrapper(new RequestWrapper($config));
+        $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $grpcConfig = $this->getGaxConfig(
             $this->pluck('libVersion', $config),
             isset($config['authHttpHandler'])

@@ -21,7 +21,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\WhitelistTrait;
 use Google\Protobuf\NullValue;
@@ -37,7 +37,7 @@ trait RequestCallerTrait
     use WhitelistTrait;
 
     /**
-     * @var RequestWrapper Wrapper used to handle sending requests to the
+     * @var GrpcRequestWrapper Wrapper used to handle sending requests to the
      * gRPC/REST API.
      */
     private $requestWrapper;
@@ -45,9 +45,9 @@ trait RequestCallerTrait
     /**
      * Sets the request wrapper.
      *
-     * @param RequestWrapper $requestWrapper
+     * @param GrpcRequestWrapper $requestWrapper
      */
-    public function setRequestWrapper(RequestWrapper $requestWrapper)
+    public function setRequestWrapper(GrpcRequestWrapper $requestWrapper)
     {
         $this->requestWrapper = $requestWrapper;
     }
@@ -55,7 +55,7 @@ trait RequestCallerTrait
     /**
      * Get the RequestWrapper.
      *
-     * @return RequestWrapper|null
+     * @return GrpcRequestWrapper|null
      */
     public function requestWrapper()
     {
