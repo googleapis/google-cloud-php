@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Timestamp;
@@ -104,6 +105,12 @@ class PubSubClient
     private $requestHandler;
 
     /**
+     * The serializer injected in the RequestHandler.
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
      * @var bool
      */
     private $encode;
@@ -154,6 +161,7 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
+        $this->initSerializer();
         $config = $this->getDefaultClientConfig($config, [
             'emulatorHost' => getenv('PUBSUB_EMULATOR_HOST'),
             'defaultScope' => self::FULL_CONTROL_SCOPE,
@@ -560,7 +568,7 @@ class PubSubClient
     public function createSchema($schemaId, $type, $definition, array $options = [])
     {
         $type = is_string($type) ? Type::value($type) : $type;
-        $parent = SchemaServiceClient::class::projectName($this->projectId);
+        $parent = SchemaServiceClient::projectName($this->projectId);
         $schema = new SchemaProto([
             'type' => $type,
             'definition' => $definition,
@@ -620,7 +628,7 @@ class PubSubClient
         return new ItemIterator(
             new PageIterator(
                 function (array $schema) {
-                    $parts = SchemaServiceClient::class::parseName($schema['name'], 'schema');
+                    $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
                 function($options) use($projectId){
@@ -674,7 +682,7 @@ class PubSubClient
      */
     public function validateSchema(array $schema, array $options = [])
     {
-        $parent = SchemaServiceClient::class::projectName($this->projectId);
+        $parent = SchemaServiceClient::projectName($this->projectId);
 
         return $this->requestHandler->sendReq(
             SchemaServiceClient::class,
@@ -724,7 +732,7 @@ class PubSubClient
      */
     public function validateMessage($schema, $message, $encoding, array $options = [])
     {
-        $parent = SchemaServiceClient::class::projectName($this->projectId);
+        $parent = SchemaServiceClient::projectName($this->projectId);
 
         if (is_string($schema)) {
             $options['name'] = $schema;
@@ -856,6 +864,27 @@ class PubSubClient
             $info,
             $this->clientConfig
         );
+    }
+
+    private function initSerializer()
+    {
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'google.protobuf.Int32Value' => function ($v) {
+                return $this->flattenValue($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampForApi($v);
+            },
+            'google.protobuf.Int32Value' => function ($v) {
+                return [
+                    'value' => $v
+                ];
+            }
+        ]);
     }
 
     /**
