@@ -273,11 +273,11 @@ trait ClientTrait
 
     /**
      * Helper function that initializes the default config for handlwritten clients.
-     * 
+     *
      * @param array $config The client config passed on by the user.
      * @param array $customAttrs The key/val pairs containing default values
      * common for the handwritten clients.
-     * 
+     *
      * @return array The default config combined with the options passed on by the user
      * and auth related config.
      */
@@ -293,8 +293,7 @@ trait ClientTrait
             'emulatorHost' => $emulatorHost
         ];
 
-        if (isset($customAttrs['libVersion']))
-        {
+        if (isset($customAttrs['libVersion'])) {
             $config['libVersion'] = $customAttrs['libVersion'];
         }
 
@@ -308,14 +307,15 @@ trait ClientTrait
      * RequestHandler before it's instantiation.
      * For example, for PubSub if the user has passed 'gapicPublisherClient' in the $config
      * it will be used as a GAPIC class while sending the requests via the RequestHandler.
-     * 
+     *
      * Otherwise the default publisher GAPIC client will be used.
-     * 
+     *
      * @param array $config The client config.
      * @param array $classConfigMap A key/value pair where key is the GAPIC class
      *  and the value is the config key name.
      */
-    private function getGapicsFromConfig(array $config, array $classConfigMap) {
+    private function getGapicsFromConfig(array $config, array $classConfigMap)
+    {
         $gapics = [];
 
         foreach ($classConfigMap as $configKey => $cls) {

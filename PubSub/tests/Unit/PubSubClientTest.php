@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -64,7 +63,7 @@ class PubSubClientTest extends TestCase
                 'projectId' => self::PROJECT,
                 'transport' => 'rest'
             ]
-        ],['requestHandler']);
+        ], ['requestHandler']);
     }
 
     public function testCreateTopic()
@@ -165,7 +164,7 @@ class PubSubClientTest extends TestCase
             Argument::any(),
             Argument::exact('listTopics'),
             Argument::any(),
-            Argument::that(function($options) {
+            Argument::that(function ($options) {
                 if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                     return false;
                 }
@@ -294,7 +293,7 @@ class PubSubClientTest extends TestCase
             Argument::any(),
             Argument::exact('listSubscriptions'),
             Argument::any(),
-            Argument::that(function($options) {
+            Argument::that(function ($options) {
                 if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                     return false;
                 }
@@ -398,7 +397,7 @@ class PubSubClientTest extends TestCase
             Argument::any(),
             Argument::exact('listSnapshots'),
             Argument::any(),
-            Argument::that(function($options) {
+            Argument::that(function ($options) {
                 if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                     return false;
                 }
@@ -538,7 +537,8 @@ class PubSubClientTest extends TestCase
             $requestArgs + [
                 'message' => $message,
                 'encoding' => $encoding
-            ])->shouldBeCalled()->willReturn('foo');
+            ]
+        )->shouldBeCalled()->willReturn('foo');
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $res = $this->client->validateMessage($schema, $message, $encoding);

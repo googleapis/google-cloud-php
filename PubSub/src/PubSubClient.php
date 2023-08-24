@@ -94,8 +94,8 @@ class PubSubClient
 
     const GAPIC_KEYS = [
         'gapicPublisherClient' => PublisherClient::class,
-        'gapicSubscriberClient' => SubscriberClient::class, 
-        'gapicSchemaClient' => SchemaServiceClient::class 
+        'gapicSubscriberClient' => SubscriberClient::class,
+        'gapicSchemaClient' => SchemaServiceClient::class
     ];
 
     /**
@@ -291,7 +291,7 @@ class PubSubClient
                 function (array $topic) {
                     return $this->topicFactory($topic['name'], $topic);
                 },
-                function($options) use ($projectId) {
+                function ($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
                         PublisherClient::class,
                         'listTopics',
@@ -402,7 +402,7 @@ class PubSubClient
                         $subscription
                     );
                 },
-                function($options) use ($projectId) {
+                function ($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
                         SubscriberClient::class,
                         'listSubscriptions',
@@ -505,7 +505,7 @@ class PubSubClient
                         $snapshot
                     );
                 },
-                function($options) use ($projectId) {
+                function ($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
                         SubscriberClient::class,
                         'listSnapshots',
@@ -631,7 +631,7 @@ class PubSubClient
                     $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
                     return $this->schema($parts['schema'], $schema);
                 },
-                function($options) use($projectId){
+                function ($options) use ($projectId) {
                     return $this->requestHandler->sendReq(
                         SchemaServiceClient::class,
                         'listSchemas',

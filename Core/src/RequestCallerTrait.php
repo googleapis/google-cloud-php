@@ -101,8 +101,8 @@ trait RequestCallerTrait
     private function getGaxConfig(
         $version,
         callable $authHttpHandler = null,
-        string $transport = 'grpc')
-    {
+        string $transport = 'grpc'
+    ) {
         $config = [
             'libName' => 'gccl',
             'libVersion' => $version,

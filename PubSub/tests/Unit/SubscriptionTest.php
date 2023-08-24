@@ -149,7 +149,7 @@ class SubscriptionTest extends TestCase
             ...$this->matchesNthArgument([
                 [Argument::exact('updateSubscription'), 2],
                 [
-                    Argument::that(function($args) use($prop, $val) {
+                    Argument::that(function ($args) use ($prop, $val) {
                         $sub = $args[0];
                         $mask = $args[1];
 
@@ -203,7 +203,7 @@ class SubscriptionTest extends TestCase
             ]
         ];
 
-        $res = $this->subscription->update($args,[
+        $res = $this->subscription->update($args, [
             'updateMask' => ['messageRetentionDuration','retryPolicy']
         ]);
         $this->assertArrayHasKey('name', $res);
@@ -878,7 +878,11 @@ class SubscriptionTest extends TestCase
         )->willThrow($ex);
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch(
+            $this->messages,
+            $seconds,
+            ['returnFailures' => true]
+        );
 
         // Check if the modifyAckDeadlineBatch method returned an array of failedMsgs
         $this->assertIsArray($failedMsgs);
@@ -947,7 +951,11 @@ class SubscriptionTest extends TestCase
         });
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch(
+            $this->messages,
+            $seconds,
+            ['returnFailures' => true]
+        );
 
         // eventually both msgs failed, so they should be present in our response
         $this->assertEquals(count($failedMsgs), count($this->ackIds));
@@ -984,7 +992,11 @@ class SubscriptionTest extends TestCase
         });
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch(
+            $this->messages,
+            $seconds,
+            ['returnFailures' => true]
+        );
 
         // eventually both msgs were acked, so our $failedMsgs should be empty
         $this->assertEquals(count($failedMsgs), 0);
@@ -1006,7 +1018,11 @@ class SubscriptionTest extends TestCase
         )->shouldBeCalledTimes(1)->willReturn();
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch(
+            $this->messages,
+            $seconds,
+            ['returnFailures' => true]
+        );
 
         // Both msgs were acked, so our $failedMsgs should be empty
         $this->assertEquals(count($failedMsgs), 0);
@@ -1040,7 +1056,11 @@ class SubscriptionTest extends TestCase
         )->shouldBeCalledTimes(1)->willThrow($ex);
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['returnFailures' => true]);
+        $failedMsgs = $this->subscription->modifyAckDeadlineBatch(
+            $this->messages,
+            $seconds,
+            ['returnFailures' => true]
+        );
 
         // Both msgs were acked, so our $failedMsgs should be empty
         $this->assertIsNotArray($failedMsgs);
@@ -1062,7 +1082,7 @@ class SubscriptionTest extends TestCase
         $this->requestHandler->sendReq(
             ...$this->matchesNthArgument([
                 [Argument::exact('modifyPushConfig'), 2],
-                [Argument::that(function($args) {
+                [Argument::that(function ($args) {
                     return $args[1] instanceof PushConfig && $args[1]->getPushEndpoint() === "test";
                 }), 3],
                 [Argument::withEntry('foo', 'bar'), 4]
@@ -1082,11 +1102,11 @@ class SubscriptionTest extends TestCase
         $this->requestHandler->sendReq(
             ...$this->matchesNthArgument([
                 [Argument::exact('seek'), 2],
-                [Argument::that(function($args) {
+                [Argument::that(function ($args) {
                     return isset($args['time']) && $args['time'] instanceof ProtobufTimestamp;
                 }), 4],
                 [Argument::exact(true), 5]
-            ],5)
+            ], 5)
         )->shouldBeCalled()->willReturn('foo');
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -1105,11 +1125,11 @@ class SubscriptionTest extends TestCase
         $this->requestHandler->sendReq(
             ...$this->matchesNthArgument([
                 [Argument::exact('seek'), 2],
-                [Argument::that(function($args) {
+                [Argument::that(function ($args) {
                     return isset($args['snapshot']) && $args['snapshot'] === "foo";
                 }), 4],
                 [Argument::exact(true), 5]
-            ],5)
+            ], 5)
         )->shouldBeCalled()->willReturn('foo');
 
         $this->subscription->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -1187,7 +1207,7 @@ class SubscriptionTest extends TestCase
         $this->requestHandler->sendReq(
             ...$this->matchesNthArgument([
                 [Argument::exact('updateSubscription'), 2],
-                [Argument::that(function($args) {
+                [Argument::that(function ($args) {
                     $sub = $args[0];
                     return $sub instanceof V1Subscription &&
                         !is_null($sub->getCloudStorageConfig()) &&

@@ -76,19 +76,19 @@ class RequestHandler
         
         // Initialize the Gapic classes and store them in memory
         $this->gapics = [];
-        foreach($gapicClasses as $cls => $obj) {
+        foreach ($gapicClasses as $cls => $obj) {
             $this->gapics[$cls] = is_object($obj) ? $obj : new $cls($this->clientConfig);
         }
     }
 
     /**
      * Helper function that forwards the request to a gapic client obj.
-     * 
+     *
      * @param $gapicClassOrObj The request will be forwarded to this GAPIC.
      * @param $method This method needs to be called on the gapic obj.
      * @param $requiredArgs The positional arguments to be passed on the $method
      * @param $args The optional args.
-     * 
+     *
      * If a GAPIC class is provided as the first argument,
      * then the GAPIC object already stored in memory is used.
      * If a GAPIC object is supplied,then we use the object as is.
@@ -99,7 +99,8 @@ class RequestHandler
         string $method,
         array $requiredArgs,
         array $optionalArgs,
-        bool $whitelisted = false) {
+        bool $whitelisted = false
+    ) {
 
         $allArgs = $requiredArgs;
 
@@ -117,7 +118,7 @@ class RequestHandler
 
     /**
      * Returns the current serializer instance.
-     * 
+     *
      * @return Serializer
      */
     public function getSerializer()
@@ -131,9 +132,9 @@ class RequestHandler
      * Alternatively, if a GAPIC object is supplied, then that object is returned
      * as is.
      */
-    private function getGapicObj($gapicClassOrObj) {
-        if (is_object($gapicClassOrObj))
-        {
+    private function getGapicObj($gapicClassOrObj)
+    {
+        if (is_object($gapicClassOrObj)) {
             return $gapicClassOrObj;
         }
 

@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\PubSub;
 
-
 use Google\Cloud\Core\V2\Iam;
 use Google\Cloud\PubSub\V1\Encoding;
 use InvalidArgumentException;
@@ -722,7 +721,7 @@ class Topic
                 function ($subscription) {
                     return $this->subscriptionFactory($subscription);
                 },
-                function($options) {
+                function ($options) {
                     return $this->requestHandler->sendReq(
                         PublisherClient::class,
                         'listTopicSubscriptions',
@@ -759,7 +758,7 @@ class Topic
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, PublisherClient::class , $this->name);
+            $this->iam = new Iam($this->requestHandler, PublisherClient::class, $this->name);
         }
 
         return $this->iam;

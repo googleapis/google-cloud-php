@@ -29,14 +29,14 @@ trait ArgumentHelperTrait
     /**
      * Helper that incorporates some Argument wildcards at specific positions.
      * Any positions not specified in the $tokensArr will be filled by Argument::any().
-     * 
+     *
      * ```
      * $this->matchesNthArgument([
      *          [Argument::exact('foo'), 2],
      *          [Argument::withKey('bar'), 3]
      * ])
      * ```
-     * 
+     *
      * The above will result in the following:
      * ```
      * [
@@ -46,7 +46,7 @@ trait ArgumentHelperTrait
      *   Argument::any(),
      * ]
      * ```
-     * 
+     *
      * The number of tokens is decided by the $totalTokens parameter.
      *
      * @param  array $tokensArr The array containing the wildcard tokens
@@ -60,7 +60,7 @@ trait ArgumentHelperTrait
             $args[$i] = Argument::any();
         }
 
-        foreach($tokensArr as $row) {
+        foreach ($tokensArr as $row) {
             $token = $row[0];
             $index = $row[1] - 1;
             $args[$index] = $token;

@@ -443,7 +443,8 @@ class Subscription
             SubscriberClient::class,
             'createSubscription',
             [$this->name,$this->topicName],
-            $options);
+            $options
+        );
 
         return $this->info;
     }
@@ -1322,7 +1323,7 @@ class Subscription
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam($this->requestHandler, SubscriberClient::class , $this->name);
+            $this->iam = new Iam($this->requestHandler, SubscriberClient::class, $this->name);
         }
 
         return $this->iam;
@@ -1525,11 +1526,12 @@ class Subscription
 
     /**
      * Helper function that sends an ack request for the given msgs.
-     * 
+     *
      * @param array $messages List of messages to ack.
      * @param array $options
      */
-    private function sendAckRequest(array $messages, array $options) {
+    private function sendAckRequest(array $messages, array $options)
+    {
         $ackIds = $this->getMessageAckIds($messages);
 
         $this->requestHandler->sendReq(
@@ -1542,12 +1544,13 @@ class Subscription
 
     /**
      * Helper function that sends a modack request for the given msgs.
-     * 
+     *
      * @param array $messages List of messages to ack.
      * @param int $seconds The new deadline in seconds.
      * @param array $options
      */
-    private function sendModAckRequest(array $messages, $seconds, array $options) {
+    private function sendModAckRequest(array $messages, $seconds, array $options)
+    {
         $ackIds = $this->getMessageAckIds($messages);
 
         $this->requestHandler->sendReq(

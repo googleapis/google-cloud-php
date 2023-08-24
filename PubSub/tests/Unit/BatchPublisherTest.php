@@ -155,10 +155,11 @@ class BatchPublisherTest extends TestCase
      * Helper function to return Argument tokens to match the ordering key.
      * @return array
      */
-    private function getPublishTokensWithOrderingKey ($key, $msgs) {
+    private function getPublishTokensWithOrderingKey($key, $msgs)
+    {
         return $this->matchesNthArgument([
             [Argument::exact('publish'), 2],
-            [Argument::that(function($args) use($key, $msgs) {
+            [Argument::that(function ($args) use ($key, $msgs) {
                 return $this->withOrderingKey($key, $msgs);
             }), 3]
         ]);
@@ -168,7 +169,8 @@ class BatchPublisherTest extends TestCase
      * Helper function to filter out msgs with a specific ordering
      * key.
      */
-    private function withOrderingKey ($key, $messages) {
+    private function withOrderingKey($key, $messages)
+    {
         $messages = array_filter($messages, function ($message) use ($key) {
             if ($key === '') {
                 return !isset($message['orderingKey']);

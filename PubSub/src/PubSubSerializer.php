@@ -37,15 +37,17 @@ class PubSubSerializer extends Serializer
         );
     }
 
-    public static function getInstance() {
-        if(is_null(self::$obj)){
+    public static function getInstance()
+    {
+        if (is_null(self::$obj)) {
             self::$obj = new self();
         }
 
         return self::$obj;
     }
 
-    private function initFieldtransformers() {
+    private function initFieldtransformers()
+    {
         return [
             'publish_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
@@ -56,15 +58,18 @@ class PubSubSerializer extends Serializer
         ];
     }
 
-    private function initMessageTypeTransformers() {
+    private function initMessageTypeTransformers()
+    {
         return [];
     }
 
-    private function initDecodeFieldTransformers() {
+    private function initDecodeFieldTransformers()
+    {
         return [];
     }
 
-    private function initDecodeMessageTypeTransformers() {
+    private function initDecodeMessageTypeTransformers()
+    {
         return [
             'google.protobuf.Duration' => function ($v) {
                 return $this->transformDuration($v);

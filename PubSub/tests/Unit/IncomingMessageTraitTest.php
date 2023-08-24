@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\IncomingMessageTrait;

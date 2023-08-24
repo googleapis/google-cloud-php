@@ -239,11 +239,13 @@ class Snapshot
     public function subscription()
     {
         return $this->info['subscription']
-            ? new Subscription($this->requestHandler,
+            ? new Subscription(
+                $this->requestHandler,
                 $this->projectId,
                 $this->info['subscription'],
                 null,
-                $this->encode)
+                $this->encode
+            )
             : null;
     }
 

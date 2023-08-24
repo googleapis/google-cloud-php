@@ -54,7 +54,7 @@ class TopicTest extends TestCase
             'project-name',
             'topic-name',
             true
-        ],['requestHandler', 'enableCompression', 'compressionBytesThreshold']);
+        ], ['requestHandler', 'enableCompression', 'compressionBytesThreshold']);
     }
 
     public function testName()
@@ -93,7 +93,7 @@ class TopicTest extends TestCase
         $this->requestHandler->sendReq(
             ...$this->matchesNthArgument([
                 [Argument::exact('updateTopic'), 2],
-                [Argument::that(function($args) {
+                [Argument::that(function ($args) {
                     return $args[0] instanceof V1Topic && $args[1] instanceof FieldMask;
                 }), 3]
             ])
@@ -205,7 +205,9 @@ class TopicTest extends TestCase
                 [Argument::that(function ($args) use ($message) {
                     $message['data'] = base64_encode($message['data']);
 
-                    return $args[0] === self::TOPIC && $args[1][0] instanceof PubsubMessage && $args[1][0]->getData() === $message['data'];
+                    return $args[0] === self::TOPIC &&
+                        $args[1][0] instanceof PubsubMessage &&
+                        $args[1][0]->getData() === $message['data'];
                 }), 3],
                 [Argument::withEntry('foo', 'bar'), 4]
             ])
@@ -246,7 +248,7 @@ class TopicTest extends TestCase
                     Argument::that(function ($args) use ($messages) {
                         $validArg = $args[0] === self::TOPIC;
         
-                        foreach($messages as $key => $msg) {
+                        foreach ($messages as $key => $msg) {
                             $validArg = $validArg && (base64_encode($msg['data']) == $args[1][$key]->getData());
                             $validArg = $validArg && $args[1][$key] instanceof PubsubMessage;
                         }
@@ -364,7 +366,7 @@ class TopicTest extends TestCase
         $this->requestHandler->sendReq(
             ...$this->matchesNthArgument([
                 [Argument::exact('listTopicSubscriptions'), 2],
-                [Argument::that(function($options) {
+                [Argument::that(function ($options) {
                     if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
                         return false;
                     }
@@ -439,7 +441,7 @@ class TopicTest extends TestCase
                     'enableCompression' => $processedEnableCompression,
                     'compressionBytesThreshold' => $processedCompressionBytesThreshold
                 ]), 4]
-            ])   
+            ])
         )->shouldBeCalled(1)->willReturn([]);
 
         $topic->___setProperty('requestHandler', $this->requestHandler->reveal());
