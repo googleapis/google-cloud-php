@@ -60,6 +60,4 @@ class NicType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NicType::class, \Google\Cloud\Notebooks\V1\Instance_NicType::class);
 

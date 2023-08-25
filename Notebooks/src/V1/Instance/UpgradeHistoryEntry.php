@@ -386,6 +386,4 @@ class UpgradeHistoryEntry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UpgradeHistoryEntry::class, \Google\Cloud\Notebooks\V1\Instance_UpgradeHistoryEntry::class);
 

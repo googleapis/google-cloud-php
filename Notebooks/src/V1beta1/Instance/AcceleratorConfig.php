@@ -102,6 +102,4 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AcceleratorConfig::class, \Google\Cloud\Notebooks\V1beta1\Instance_AcceleratorConfig::class);
 

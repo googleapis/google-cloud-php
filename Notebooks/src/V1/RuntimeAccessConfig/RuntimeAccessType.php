@@ -63,6 +63,4 @@ class RuntimeAccessType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RuntimeAccessType::class, \Google\Cloud\Notebooks\V1\RuntimeAccessConfig_RuntimeAccessType::class);
 

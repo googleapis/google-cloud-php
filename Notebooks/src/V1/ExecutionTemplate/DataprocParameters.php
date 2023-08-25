@@ -69,6 +69,4 @@ class DataprocParameters extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataprocParameters::class, \Google\Cloud\Notebooks\V1\ExecutionTemplate_DataprocParameters::class);
 

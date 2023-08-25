@@ -9,22 +9,16 @@
             "GPBMetadata\\Google\\Cloud\\Notebooks\\": "metadata"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Google\\Cloud\\Notebooks\\Tests\\": "tests"
-        }
-    },
     "extra": {
         "component": {
             "id": "cloud-notebooks",
             "path": "Notebooks",
-            "entry": null,
-            "target": "googleapis/google-cloud-php-notebooks.git"
+            "target": "googleapis/google-cloud-php-notebooks"
         }
     },
     "require": {
         "php": ">=7.4",
-        "google/gax": "^1.19.1"
+        "google/gax": "^1.22.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"

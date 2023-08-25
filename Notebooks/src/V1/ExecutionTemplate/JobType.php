@@ -61,6 +61,4 @@ class JobType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(JobType::class, \Google\Cloud\Notebooks\V1\ExecutionTemplate_JobType::class);
 
