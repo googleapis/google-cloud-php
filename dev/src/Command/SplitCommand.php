@@ -29,6 +29,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -327,23 +328,54 @@ class SplitCommand extends Command
         }
 
         // This is the first release!
-        if ($tagName === 'v0.1.0' && $packagist) {
-            $output->writeln('<comment>[info]</comment> Creating Packagist package.');
+        if ($tagName === 'v0.1.0') {
+            // Submit the new package to Packagist and add a webhook to update it
+            if ($packagist) {
+                $output->writeln('<comment>[info]</comment> Creating Packagist package.');
 
-            $res = $packagist->submitPackage('https://github.com/' . $repoName);
+                $res = $packagist->submitPackage('https://github.com/' . $repoName);
 
-            if ($res) {
-                $output->writeln(sprintf('<comment>%s</comment>: Packagist package created.', $componentId));
+                if ($res) {
+                    $output->writeln(sprintf('<comment>%s</comment>: Packagist package created.', $componentId));
+                } else {
+                    $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist package.', $componentId));
+
+                    return false;
+                }
+
+                if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $packagist->getApiToken())) {
+                    $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook package created.', $componentId));
+                } else {
+                    $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $componentId));
+
+                    return false;
+                }
+            }
+
+            // Ensure issues/projects/wiki/pages/discussion are disabled
+            $ret = $github->updateRepoDetails($repoName, [
+                'has_issues' => false,
+                'has_projects' => false,
+                'has_wiki' => false,
+                'has_pages' => false,
+                'has_discussions' => false,
+            ]);
+
+            if ($ret) {
+                $output->writeln(sprintf('<comment>%s</comment>: Disabled repo issues/projects/etc for first release.', $componentId));
             } else {
-                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist package.', $componentId));
+                $output->writeln(sprintf('<error>%s</error>: Unable to update repo details.', $componentId));
 
                 return false;
             }
 
-            if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $packagist->getApiToken())) {
-                $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook package created.', $componentId));
+            // Ensure "yoshi-php" is an admin
+            $ret = $github->updateTeamPermission('googleapis', 'yoshi-php', $repoName, 'admin');
+
+            if ($ret) {
+                $output->writeln(sprintf('<comment>%s</comment>: Added "yoshi-php" as admin.', $componentId));
             } else {
-                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $componentId));
+                $output->writeln(sprintf('<error>%s</error>: Unable to add "yoshi-php" as admin.', $componentId));
 
                 return false;
             }

@@ -25,6 +25,10 @@ class DataMaskingPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type int $predefined_expression
      *           A predefined masking expression.
+     *     @type string $routine
+     *           The name of the BigQuery routine that contains the custom masking
+     *           routine, in the format of
+     *           `projects/{project_number}/datasets/{dataset_id}/routines/{routine_id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +63,41 @@ class DataMaskingPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataPolicies\V1\DataMaskingPolicy\PredefinedExpression::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * The name of the BigQuery routine that contains the custom masking
+     * routine, in the format of
+     * `projects/{project_number}/datasets/{dataset_id}/routines/{routine_id}`.
+     *
+     * Generated from protobuf field <code>string routine = 3;</code>
+     * @return string
+     */
+    public function getRoutine()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasRoutine()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * The name of the BigQuery routine that contains the custom masking
+     * routine, in the format of
+     * `projects/{project_number}/datasets/{dataset_id}/routines/{routine_id}`.
+     *
+     * Generated from protobuf field <code>string routine = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRoutine($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(3, $var);
 
         return $this;
     }
