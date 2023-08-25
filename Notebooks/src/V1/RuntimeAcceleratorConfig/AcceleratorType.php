@@ -122,4 +122,6 @@ class AcceleratorType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(AcceleratorType::class, \Google\Cloud\Notebooks\V1\RuntimeAcceleratorConfig_AcceleratorType::class);
 

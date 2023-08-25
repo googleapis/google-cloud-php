@@ -97,4 +97,6 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(GuestOsFeature::class, \Google\Cloud\Notebooks\V1\Instance_Disk_GuestOsFeature::class);
 

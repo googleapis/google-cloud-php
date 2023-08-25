@@ -125,25 +125,16 @@ abstract class ManagedNotebookServiceBaseClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ .
-                '/../../resources/managed_notebook_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../../resources/managed_notebook_service_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ .
-                '/../../resources/managed_notebook_service_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../../resources/managed_notebook_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../../resources/managed_notebook_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../../resources/managed_notebook_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../../resources/managed_notebook_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../../resources/managed_notebook_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -172,14 +163,8 @@ abstract class ManagedNotebookServiceBaseClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -193,10 +178,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @return string The formatted location resource.
      */
-    public static function locationName(
-        string $project,
-        string $location
-    ): string {
+    public static function locationName(string $project, string $location): string
+    {
         return self::getPathTemplate('location')->render([
             'project' => $project,
             'location' => $location,
@@ -213,11 +196,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @return string The formatted runtime resource.
      */
-    public static function runtimeName(
-        string $project,
-        string $location,
-        string $runtime
-    ): string {
+    public static function runtimeName(string $project, string $location, string $runtime): string
+    {
         return self::getPathTemplate('runtime')->render([
             'project' => $project,
             'location' => $location,
@@ -245,10 +225,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(
-        string $formattedName,
-        string $template = null
-    ): array {
+    public static function parseName(string $formattedName, string $template = null): array
+    {
         return self::parseFormattedName($formattedName, $template);
     }
 
@@ -317,10 +295,7 @@ abstract class ManagedNotebookServiceBaseClient
     public function __call($method, $args)
     {
         if (substr($method, -5) !== 'Async') {
-            trigger_error(
-                'Call to undefined method ' . __CLASS__ . "::$method()",
-                E_USER_ERROR
-            );
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
         }
 
         array_unshift($args, substr($method, 0, -5));
@@ -348,15 +323,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createRuntime(
-        CreateRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'CreateRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function createRuntime(CreateRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -380,15 +349,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteRuntime(
-        DeleteRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'DeleteRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function deleteRuntime(DeleteRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -412,15 +375,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function diagnoseRuntime(
-        DiagnoseRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'DiagnoseRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function diagnoseRuntime(DiagnoseRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DiagnoseRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -445,15 +402,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRuntime(
-        GetRuntimeRequest $request,
-        array $callOptions = []
-    ): Runtime {
-        return $this->startApiCall(
-            'GetRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function getRuntime(GetRuntimeRequest $request, array $callOptions = []): Runtime
+    {
+        return $this->startApiCall('GetRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -477,10 +428,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRuntimes(
-        ListRuntimesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listRuntimes(ListRuntimesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListRuntimes', $request, $callOptions);
     }
 
@@ -506,15 +455,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function refreshRuntimeTokenInternal(
-        RefreshRuntimeTokenInternalRequest $request,
-        array $callOptions = []
-    ): RefreshRuntimeTokenInternalResponse {
-        return $this->startApiCall(
-            'RefreshRuntimeTokenInternal',
-            $request,
-            $callOptions
-        )->wait();
+    public function refreshRuntimeTokenInternal(RefreshRuntimeTokenInternalRequest $request, array $callOptions = []): RefreshRuntimeTokenInternalResponse
+    {
+        return $this->startApiCall('RefreshRuntimeTokenInternal', $request, $callOptions)->wait();
     }
 
     /**
@@ -538,15 +481,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reportRuntimeEvent(
-        ReportRuntimeEventRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'ReportRuntimeEvent',
-            $request,
-            $callOptions
-        )->wait();
+    public function reportRuntimeEvent(ReportRuntimeEventRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ReportRuntimeEvent', $request, $callOptions)->wait();
     }
 
     /**
@@ -570,15 +507,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resetRuntime(
-        ResetRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'ResetRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function resetRuntime(ResetRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ResetRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -606,15 +537,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startRuntime(
-        StartRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'StartRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function startRuntime(StartRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -642,15 +567,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopRuntime(
-        StopRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'StopRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function stopRuntime(StopRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StopRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -674,15 +593,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function switchRuntime(
-        SwitchRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'SwitchRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function switchRuntime(SwitchRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SwitchRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -706,15 +619,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateRuntime(
-        UpdateRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'UpdateRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function updateRuntime(UpdateRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -738,15 +645,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function upgradeRuntime(
-        UpgradeRuntimeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'UpgradeRuntime',
-            $request,
-            $callOptions
-        )->wait();
+    public function upgradeRuntime(UpgradeRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpgradeRuntime', $request, $callOptions)->wait();
     }
 
     /**
@@ -770,15 +671,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getLocation(
-        GetLocationRequest $request,
-        array $callOptions = []
-    ): Location {
-        return $this->startApiCall(
-            'GetLocation',
-            $request,
-            $callOptions
-        )->wait();
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
     }
 
     /**
@@ -802,10 +697,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listLocations(
-        ListLocationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 
@@ -831,15 +724,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIamPolicy(
-        GetIamPolicyRequest $request,
-        array $callOptions = []
-    ): Policy {
-        return $this->startApiCall(
-            'GetIamPolicy',
-            $request,
-            $callOptions
-        )->wait();
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -867,15 +754,9 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setIamPolicy(
-        SetIamPolicyRequest $request,
-        array $callOptions = []
-    ): Policy {
-        return $this->startApiCall(
-            'SetIamPolicy',
-            $request,
-            $callOptions
-        )->wait();
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -905,14 +786,8 @@ abstract class ManagedNotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
-        return $this->startApiCall(
-            'TestIamPermissions',
-            $request,
-            $callOptions
-        )->wait();
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

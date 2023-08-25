@@ -172,24 +172,16 @@ abstract class NotebookServiceBaseClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ .
-                '/../../resources/notebook_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../../resources/notebook_service_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../../resources/notebook_service_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../../resources/notebook_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../../resources/notebook_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../../resources/notebook_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../../resources/notebook_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../../resources/notebook_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -218,14 +210,8 @@ abstract class NotebookServiceBaseClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -239,10 +225,8 @@ abstract class NotebookServiceBaseClient
      *
      * @return string The formatted environment resource.
      */
-    public static function environmentName(
-        string $project,
-        string $environment
-    ): string {
+    public static function environmentName(string $project, string $environment): string
+    {
         return self::getPathTemplate('environment')->render([
             'project' => $project,
             'environment' => $environment,
@@ -259,11 +243,8 @@ abstract class NotebookServiceBaseClient
      *
      * @return string The formatted execution resource.
      */
-    public static function executionName(
-        string $project,
-        string $location,
-        string $execution
-    ): string {
+    public static function executionName(string $project, string $location, string $execution): string
+    {
         return self::getPathTemplate('execution')->render([
             'project' => $project,
             'location' => $location,
@@ -280,10 +261,8 @@ abstract class NotebookServiceBaseClient
      *
      * @return string The formatted instance resource.
      */
-    public static function instanceName(
-        string $project,
-        string $instance
-    ): string {
+    public static function instanceName(string $project, string $instance): string
+    {
         return self::getPathTemplate('instance')->render([
             'project' => $project,
             'instance' => $instance,
@@ -300,11 +279,8 @@ abstract class NotebookServiceBaseClient
      *
      * @return string The formatted schedule resource.
      */
-    public static function scheduleName(
-        string $project,
-        string $location,
-        string $schedule
-    ): string {
+    public static function scheduleName(string $project, string $location, string $schedule): string
+    {
         return self::getPathTemplate('schedule')->render([
             'project' => $project,
             'location' => $location,
@@ -322,11 +298,8 @@ abstract class NotebookServiceBaseClient
      *
      * @return string The formatted tensorboard resource.
      */
-    public static function tensorboardName(
-        string $project,
-        string $location,
-        string $tensorboard
-    ): string {
+    public static function tensorboardName(string $project, string $location, string $tensorboard): string
+    {
         return self::getPathTemplate('tensorboard')->render([
             'project' => $project,
             'location' => $location,
@@ -357,10 +330,8 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(
-        string $formattedName,
-        string $template = null
-    ): array {
+    public static function parseName(string $formattedName, string $template = null): array
+    {
         return self::parseFormattedName($formattedName, $template);
     }
 
@@ -429,10 +400,7 @@ abstract class NotebookServiceBaseClient
     public function __call($method, $args)
     {
         if (substr($method, -5) !== 'Async') {
-            trigger_error(
-                'Call to undefined method ' . __CLASS__ . "::$method()",
-                E_USER_ERROR
-            );
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
         }
 
         array_unshift($args, substr($method, 0, -5));
@@ -460,15 +428,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createEnvironment(
-        CreateEnvironmentRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'CreateEnvironment',
-            $request,
-            $callOptions
-        )->wait();
+    public function createEnvironment(CreateEnvironmentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateEnvironment', $request, $callOptions)->wait();
     }
 
     /**
@@ -492,15 +454,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createExecution(
-        CreateExecutionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'CreateExecution',
-            $request,
-            $callOptions
-        )->wait();
+    public function createExecution(CreateExecutionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateExecution', $request, $callOptions)->wait();
     }
 
     /**
@@ -524,15 +480,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInstance(
-        CreateInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'CreateInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function createInstance(CreateInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -556,15 +506,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSchedule(
-        CreateScheduleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'CreateSchedule',
-            $request,
-            $callOptions
-        )->wait();
+    public function createSchedule(CreateScheduleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateSchedule', $request, $callOptions)->wait();
     }
 
     /**
@@ -588,15 +532,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteEnvironment(
-        DeleteEnvironmentRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'DeleteEnvironment',
-            $request,
-            $callOptions
-        )->wait();
+    public function deleteEnvironment(DeleteEnvironmentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteEnvironment', $request, $callOptions)->wait();
     }
 
     /**
@@ -620,15 +558,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteExecution(
-        DeleteExecutionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'DeleteExecution',
-            $request,
-            $callOptions
-        )->wait();
+    public function deleteExecution(DeleteExecutionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteExecution', $request, $callOptions)->wait();
     }
 
     /**
@@ -652,15 +584,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteInstance(
-        DeleteInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'DeleteInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function deleteInstance(DeleteInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -684,15 +610,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSchedule(
-        DeleteScheduleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'DeleteSchedule',
-            $request,
-            $callOptions
-        )->wait();
+    public function deleteSchedule(DeleteScheduleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteSchedule', $request, $callOptions)->wait();
     }
 
     /**
@@ -716,15 +636,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function diagnoseInstance(
-        DiagnoseInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'DiagnoseInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function diagnoseInstance(DiagnoseInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DiagnoseInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -748,15 +662,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEnvironment(
-        GetEnvironmentRequest $request,
-        array $callOptions = []
-    ): Environment {
-        return $this->startApiCall(
-            'GetEnvironment',
-            $request,
-            $callOptions
-        )->wait();
+    public function getEnvironment(GetEnvironmentRequest $request, array $callOptions = []): Environment
+    {
+        return $this->startApiCall('GetEnvironment', $request, $callOptions)->wait();
     }
 
     /**
@@ -780,15 +688,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getExecution(
-        GetExecutionRequest $request,
-        array $callOptions = []
-    ): Execution {
-        return $this->startApiCall(
-            'GetExecution',
-            $request,
-            $callOptions
-        )->wait();
+    public function getExecution(GetExecutionRequest $request, array $callOptions = []): Execution
+    {
+        return $this->startApiCall('GetExecution', $request, $callOptions)->wait();
     }
 
     /**
@@ -812,15 +714,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getInstance(
-        GetInstanceRequest $request,
-        array $callOptions = []
-    ): Instance {
-        return $this->startApiCall(
-            'GetInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function getInstance(GetInstanceRequest $request, array $callOptions = []): Instance
+    {
+        return $this->startApiCall('GetInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -844,15 +740,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getInstanceHealth(
-        GetInstanceHealthRequest $request,
-        array $callOptions = []
-    ): GetInstanceHealthResponse {
-        return $this->startApiCall(
-            'GetInstanceHealth',
-            $request,
-            $callOptions
-        )->wait();
+    public function getInstanceHealth(GetInstanceHealthRequest $request, array $callOptions = []): GetInstanceHealthResponse
+    {
+        return $this->startApiCall('GetInstanceHealth', $request, $callOptions)->wait();
     }
 
     /**
@@ -876,15 +766,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSchedule(
-        GetScheduleRequest $request,
-        array $callOptions = []
-    ): Schedule {
-        return $this->startApiCall(
-            'GetSchedule',
-            $request,
-            $callOptions
-        )->wait();
+    public function getSchedule(GetScheduleRequest $request, array $callOptions = []): Schedule
+    {
+        return $this->startApiCall('GetSchedule', $request, $callOptions)->wait();
     }
 
     /**
@@ -908,15 +792,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function isInstanceUpgradeable(
-        IsInstanceUpgradeableRequest $request,
-        array $callOptions = []
-    ): IsInstanceUpgradeableResponse {
-        return $this->startApiCall(
-            'IsInstanceUpgradeable',
-            $request,
-            $callOptions
-        )->wait();
+    public function isInstanceUpgradeable(IsInstanceUpgradeableRequest $request, array $callOptions = []): IsInstanceUpgradeableResponse
+    {
+        return $this->startApiCall('IsInstanceUpgradeable', $request, $callOptions)->wait();
     }
 
     /**
@@ -940,10 +818,8 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEnvironments(
-        ListEnvironmentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listEnvironments(ListEnvironmentsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListEnvironments', $request, $callOptions);
     }
 
@@ -968,10 +844,8 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listExecutions(
-        ListExecutionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listExecutions(ListExecutionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListExecutions', $request, $callOptions);
     }
 
@@ -996,10 +870,8 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInstances(
-        ListInstancesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listInstances(ListInstancesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListInstances', $request, $callOptions);
     }
 
@@ -1024,10 +896,8 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSchedules(
-        ListSchedulesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listSchedules(ListSchedulesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListSchedules', $request, $callOptions);
     }
 
@@ -1055,15 +925,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function registerInstance(
-        RegisterInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'RegisterInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function registerInstance(RegisterInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RegisterInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -1090,15 +954,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reportInstanceInfo(
-        ReportInstanceInfoRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'ReportInstanceInfo',
-            $request,
-            $callOptions
-        )->wait();
+    public function reportInstanceInfo(ReportInstanceInfoRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ReportInstanceInfo', $request, $callOptions)->wait();
     }
 
     /**
@@ -1122,15 +980,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resetInstance(
-        ResetInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'ResetInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function resetInstance(ResetInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ResetInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -1154,15 +1006,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rollbackInstance(
-        RollbackInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'RollbackInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function rollbackInstance(RollbackInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RollbackInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -1186,15 +1032,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceAccelerator(
-        SetInstanceAcceleratorRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'SetInstanceAccelerator',
-            $request,
-            $callOptions
-        )->wait();
+    public function setInstanceAccelerator(SetInstanceAcceleratorRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetInstanceAccelerator', $request, $callOptions)->wait();
     }
 
     /**
@@ -1218,15 +1058,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceLabels(
-        SetInstanceLabelsRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'SetInstanceLabels',
-            $request,
-            $callOptions
-        )->wait();
+    public function setInstanceLabels(SetInstanceLabelsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetInstanceLabels', $request, $callOptions)->wait();
     }
 
     /**
@@ -1250,15 +1084,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceMachineType(
-        SetInstanceMachineTypeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'SetInstanceMachineType',
-            $request,
-            $callOptions
-        )->wait();
+    public function setInstanceMachineType(SetInstanceMachineTypeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetInstanceMachineType', $request, $callOptions)->wait();
     }
 
     /**
@@ -1282,15 +1110,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startInstance(
-        StartInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'StartInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function startInstance(StartInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -1314,15 +1136,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopInstance(
-        StopInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'StopInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function stopInstance(StopInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StopInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -1346,15 +1162,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function triggerSchedule(
-        TriggerScheduleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'TriggerSchedule',
-            $request,
-            $callOptions
-        )->wait();
+    public function triggerSchedule(TriggerScheduleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('TriggerSchedule', $request, $callOptions)->wait();
     }
 
     /**
@@ -1378,15 +1188,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInstanceConfig(
-        UpdateInstanceConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'UpdateInstanceConfig',
-            $request,
-            $callOptions
-        )->wait();
+    public function updateInstanceConfig(UpdateInstanceConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateInstanceConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -1410,15 +1214,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInstanceMetadataItems(
-        UpdateInstanceMetadataItemsRequest $request,
-        array $callOptions = []
-    ): UpdateInstanceMetadataItemsResponse {
-        return $this->startApiCall(
-            'UpdateInstanceMetadataItems',
-            $request,
-            $callOptions
-        )->wait();
+    public function updateInstanceMetadataItems(UpdateInstanceMetadataItemsRequest $request, array $callOptions = []): UpdateInstanceMetadataItemsResponse
+    {
+        return $this->startApiCall('UpdateInstanceMetadataItems', $request, $callOptions)->wait();
     }
 
     /**
@@ -1442,15 +1240,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateShieldedInstanceConfig(
-        UpdateShieldedInstanceConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'UpdateShieldedInstanceConfig',
-            $request,
-            $callOptions
-        )->wait();
+    public function updateShieldedInstanceConfig(UpdateShieldedInstanceConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateShieldedInstanceConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -1474,15 +1266,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function upgradeInstance(
-        UpgradeInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'UpgradeInstance',
-            $request,
-            $callOptions
-        )->wait();
+    public function upgradeInstance(UpgradeInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpgradeInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -1507,15 +1293,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function upgradeInstanceInternal(
-        UpgradeInstanceInternalRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall(
-            'UpgradeInstanceInternal',
-            $request,
-            $callOptions
-        )->wait();
+    public function upgradeInstanceInternal(UpgradeInstanceInternalRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpgradeInstanceInternal', $request, $callOptions)->wait();
     }
 
     /**
@@ -1539,15 +1319,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getLocation(
-        GetLocationRequest $request,
-        array $callOptions = []
-    ): Location {
-        return $this->startApiCall(
-            'GetLocation',
-            $request,
-            $callOptions
-        )->wait();
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
     }
 
     /**
@@ -1571,10 +1345,8 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listLocations(
-        ListLocationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 
@@ -1600,15 +1372,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIamPolicy(
-        GetIamPolicyRequest $request,
-        array $callOptions = []
-    ): Policy {
-        return $this->startApiCall(
-            'GetIamPolicy',
-            $request,
-            $callOptions
-        )->wait();
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -1636,15 +1402,9 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setIamPolicy(
-        SetIamPolicyRequest $request,
-        array $callOptions = []
-    ): Policy {
-        return $this->startApiCall(
-            'SetIamPolicy',
-            $request,
-            $callOptions
-        )->wait();
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -1674,14 +1434,8 @@ abstract class NotebookServiceBaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
-        return $this->startApiCall(
-            'TestIamPermissions',
-            $request,
-            $callOptions
-        )->wait();
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
