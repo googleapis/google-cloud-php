@@ -1,5 +1,196 @@
 # Changelog
 
+## 0.217.0
+
+<details><summary>google/cloud-batch 0.11.1</summary>
+
+
+
+### Documentation
+
+* Clarify Batch API proto doc about pubsub notifications ([53b88a6](https://github.com/googleapis/google-cloud-php/commit/53b88a61bcfb9b791958048d51f3a8a72f82c495))
+* Expand compute resource API docs to match with VM's machine type field ([53b88a6](https://github.com/googleapis/google-cloud-php/commit/53b88a61bcfb9b791958048d51f3a8a72f82c495))
+* Revert HTML formats in comments ([#6577](https://github.com/googleapis/google-cloud-php/issues/6577)) ([53b88a6](https://github.com/googleapis/google-cloud-php/commit/53b88a61bcfb9b791958048d51f3a8a72f82c495))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.26.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 0.4.0</summary>
+
+
+
+### Features
+
+* Support using custom UDF in the data policy ([#6590](https://github.com/googleapis/google-cloud-php/issues/6590)) ([8b3e078](https://github.com/googleapis/google-cloud-php/commit/8b3e078df29b56db3ead82af961e657dc73e7702))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.28.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing 1.7.2</summary>
+
+
+
+### Documentation
+
+* Update comments ([#6584](https://github.com/googleapis/google-cloud-php/issues/6584)) ([c85bb6e](https://github.com/googleapis/google-cloud-php/commit/c85bb6e2abd29c440523e5428288d8ec99713a77))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 1.3.0</summary>
+
+
+
+### Features
+
+* Supported project-level-budgets in Public Budget API V1 ([#6582](https://github.com/googleapis/google-cloud-php/issues/6582)) ([7c5c9a4](https://github.com/googleapis/google-cloud-php/commit/7c5c9a4ede85051454639e0101ed70a3b814c381))
+
+</details>
+
+<details><summary>google/cloud-config 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce Config ([#6583](https://github.com/googleapis/google-cloud-php/issues/6583)) ([f69337a](https://github.com/googleapis/google-cloud-php/commit/f69337a5c1a5f2dfb2c955ac15e3cea7f8a32054))
+
+</details>
+
+<details><summary>google/cloud-container 1.21.0</summary>
+
+
+
+### Features
+
+* Add support for NodeConfig Update ([#6594](https://github.com/googleapis/google-cloud-php/issues/6594)) ([54206b4](https://github.com/googleapis/google-cloud-php/commit/54206b4432bab249db03456bc474172226a9b688))
+* Publicize tpu topology in v1 API ([54206b4](https://github.com/googleapis/google-cloud-php/commit/54206b4432bab249db03456bc474172226a9b688))
+
+</details>
+
+<details><summary>google/cloud-core 1.52.3</summary>
+
+
+
+### Bug Fixes
+
+* Bump guzzlehttp/guzzle version ([#6571](https://github.com/googleapis/google-cloud-php/issues/6571)) ([7b93667](https://github.com/googleapis/google-cloud-php/commit/7b93667766d018a88930885cfade5d8da2abb54c))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.7.1</summary>
+
+
+
+### Documentation
+
+* Fix typo ([#6586](https://github.com/googleapis/google-cloud-php/issues/6586)) ([e406f3d](https://github.com/googleapis/google-cloud-php/commit/e406f3d5d6e19250f08782d6d1bfcea8045b9a52))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.9.0</summary>
+
+
+
+### Features
+
+* Support min_num_instances for primary worker and InstanceFlexibilityPolicy for secondary worker ([#6580](https://github.com/googleapis/google-cloud-php/issues/6580)) ([317cbe9](https://github.com/googleapis/google-cloud-php/commit/317cbe9ae612edcb663c44aa7ec009e4cdfdcf84))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.24.1</summary>
+
+
+
+### Documentation
+
+* Update property requirement specifications ([#6569](https://github.com/googleapis/google-cloud-php/issues/6569)) ([5de8f12](https://github.com/googleapis/google-cloud-php/commit/5de8f12c2150519db9e40468c150ac741bbe32b5))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.6.0</summary>
+
+
+
+### Features
+
+* **Notebooks:** Introduce Notebooks V2 ([#6591](https://github.com/googleapis/google-cloud-php/issues/6591)) ([1baf89b](https://github.com/googleapis/google-cloud-php/commit/1baf89bc5787a7394541c983454e20e7757f8537))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.3.4</summary>
+
+
+
+### Documentation
+
+* Minor formatting fix ([#6589](https://github.com/googleapis/google-cloud-php/issues/6589)) ([bf6d80a](https://github.com/googleapis/google-cloud-php/commit/bf6d80a09ea7f130eb736f77858cd119eb383e95))
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce PolicyTroubleshooterIam ([#6581](https://github.com/googleapis/google-cloud-php/issues/6581)) ([4c97c27](https://github.com/googleapis/google-cloud-php/commit/4c97c2788dc36aa0d21b540b7a6a9796fb144dc8))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.46.1</summary>
+
+
+
+### Bug Fixes
+
+* Make retry policy back off more aggressively for RPCs that retry RESOURCE_EXHAUSTD ([#6570](https://github.com/googleapis/google-cloud-php/issues/6570)) ([04993c3](https://github.com/googleapis/google-cloud-php/commit/04993c3c24856977ad066e9064fafa945e365db6))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.63.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.5.0</summary>
+
+
+
+### Features
+
+* Added Private Service Connect configuration ([aaa9556](https://github.com/googleapis/google-cloud-php/commit/aaa9556d68d84fd8434077b63ea570282aea4a59))
+* Added Private Service Connect configuration ([aaa9556](https://github.com/googleapis/google-cloud-php/commit/aaa9556d68d84fd8434077b63ea570282aea4a59))
+* Added RPC GetLatestRecoveryTime ([#6585](https://github.com/googleapis/google-cloud-php/issues/6585)) ([aaa9556](https://github.com/googleapis/google-cloud-php/commit/aaa9556d68d84fd8434077b63ea570282aea4a59))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.7.1</summary>
+
+
+
+### Bug Fixes
+
+* Use correct child_type annotation ([#6578](https://github.com/googleapis/google-cloud-php/issues/6578)) ([a6a62dd](https://github.com/googleapis/google-cloud-php/commit/a6a62ddcb65a7ad55666d05105aa9287c701d5d0))
+
+</details>
+
+<details><summary>google/cloud-vision 1.7.3</summary>
+
+
+
+</details>
+
 ## 0.216.0
 
 <details><summary>google/cloud-ai-platform 0.24.0</summary>
