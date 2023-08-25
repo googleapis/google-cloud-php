@@ -25,6 +25,7 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
@@ -87,6 +88,7 @@ class PubSubClient
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
+    use TimeTrait;
 
     const VERSION = '1.46.0';
 
@@ -103,12 +105,6 @@ class PubSubClient
      * serializing responses into relevant classes.
      */
     private $requestHandler;
-
-    /**
-     * The serializer injected in the RequestHandler.
-     * @var Serializer
-     */
-    private $serializer;
 
     /**
      * @var bool
@@ -161,7 +157,6 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
-        $this->initSerializer();
         $config = $this->getDefaultClientConfig($config, [
             'emulatorHost' => getenv('PUBSUB_EMULATOR_HOST'),
             'defaultScope' => self::FULL_CONTROL_SCOPE,
@@ -175,7 +170,7 @@ class PubSubClient
         $gapics = $this->getGapicsFromConfig($config, self::GAPIC_KEYS);
         
         $this->requestHandler = new RequestHandler(
-            PubSubSerializer::getInstance(),
+            $this->getSerializer(),
             $gapics,
             $config
         );
@@ -815,6 +810,27 @@ class PubSubClient
     }
 
     /**
+     * Returns the current serializer instance.
+     *
+     * @return Serializer
+     */
+    public function getSerializer()
+    {
+        return new Serializer([
+            'publish_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'expiration_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [], [
+            'google.protobuf.Duration' => function ($v) {
+                return $this->transformDuration($v);
+            }
+        ]);
+    }
+
+    /**
      * Create an instance of a topic
      *
      * @codingStandardsIgnoreStart
@@ -864,27 +880,6 @@ class PubSubClient
             $info,
             $this->clientConfig
         );
-    }
-
-    private function initSerializer()
-    {
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'google.protobuf.Int32Value' => function ($v) {
-                return $this->flattenValue($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampForApi($v);
-            },
-            'google.protobuf.Int32Value' => function ($v) {
-                return [
-                    'value' => $v
-                ];
-            }
-        ]);
     }
 
     /**

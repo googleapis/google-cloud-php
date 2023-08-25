@@ -127,6 +127,16 @@ class RequestHandler
     }
 
     /**
+     * Setter for the serializer.
+     *
+     * @return void
+     */
+    public function setSerializer(Serializer $serializer)
+    {
+        $this->serializer = $serializer;
+    }
+
+    /**
      * Helper function that returns a GAPIC object stored in memory
      * using the GAPIC class as key.
      * Alternatively, if a GAPIC object is supplied, then that object is returned

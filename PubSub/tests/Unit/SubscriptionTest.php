@@ -30,6 +30,8 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\Subscription as V1Subscription;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
@@ -65,6 +67,10 @@ class SubscriptionTest extends TestCase
             'topic-name',
             true
         ], ['requestHandler', 'info']);
+
+        $client = new PubSubClient();
+        $this->requestHandler->getSerializer()->willReturn($client->getSerializer());
+
         // make sure the ExponentialBackOff retries don't delay for our test.
         Subscription::setMaxEodRetryTime(0);
 

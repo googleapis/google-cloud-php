@@ -97,6 +97,7 @@ class BatchPublisherTest extends TestCase
         ], ['client', 'topics']);
 
         $requestHandler = $this->prophesize(RequestHandler::class);
+        $requestHandler->getSerializer()->willReturn($client->getSerializer());
 
         $messages = [
             [
@@ -221,6 +222,8 @@ class BatchPublisherTest extends TestCase
                 ]), 4]
             ])
         )->shouldBeCalled(1)->willReturn([]);
+
+        $requestHandler->getSerializer()->willReturn($client->getSerializer());
 
         $client->___setProperty('requestHandler', $requestHandler->reveal());
         $publisher->___setProperty('client', $client);

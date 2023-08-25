@@ -27,6 +27,7 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\Topic as V1Topic;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Protobuf\FieldMask;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -55,6 +56,8 @@ class TopicTest extends TestCase
             'topic-name',
             true
         ], ['requestHandler', 'enableCompression', 'compressionBytesThreshold']);
+        $client = new PubSubClient();
+        $this->requestHandler->getSerializer()->willReturn($client->getSerializer());
     }
 
     public function testName()

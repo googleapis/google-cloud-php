@@ -56,14 +56,13 @@ class PubSubClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->requestHandler = $this->prophesize(RequestHandler::class);
-
         $this->client = TestHelpers::stub(PubSubClient::class, [
             [
                 'projectId' => self::PROJECT,
                 'transport' => 'rest'
             ]
         ], ['requestHandler']);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
     public function testCreateTopic()

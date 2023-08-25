@@ -49,6 +49,53 @@ trait TimeTrait
     }
 
     /**
+     * Format a gRPC timestamp to match the format returned by the REST API.
+     *
+     * @param array $timestamp
+     * @return string
+     */
+    private function formatTimestampFromApi(array $timestamp)
+    {
+        $timestamp += [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
+
+        $dt = $this->createDateTimeFromSeconds($timestamp['seconds']);
+
+        return $this->formatTimeAsString($dt, $timestamp['nanos']);
+    }
+
+    /**
+     * Helper function to transform a duration string to a
+     * seconds/nanoseconds pair.
+     *
+     * @return array
+     */
+    private function transformDuration($v)
+    {
+        if (is_string($v)) {
+            $d = explode('.', trim($v, 's'));
+            if (count($d) < 2) {
+                $seconds = $d[0];
+                $nanos = 0;
+            } else {
+                $seconds = (int) $d[0];
+                $nanos = $this->convertFractionToNanoSeconds($d[1]);
+            }
+        } elseif ($v instanceof Duration) {
+            $d = $v->get();
+            $seconds = $d['seconds'];
+            $nanos = $d['nanos'];
+        }
+
+        return [
+            'seconds' => $seconds,
+            'nanos' => $nanos
+        ];
+    }
+
+    /**
      * Create a DateTimeImmutable instance from a UNIX timestamp (i.e. seconds since epoch).
      *
      * @param int $seconds The unix timestamp.

@@ -556,7 +556,7 @@ class Topic
     {
         foreach ($messages as &$message) {
             $message = $this->formatMessage($message);
-            $message = (PubSubSerializer::getInstance())->decodeMessage(new PubsubMessage(), $message);
+            $message = $this->requestHandler->getSerializer()->decodeMessage(new PubsubMessage(), $message);
         }
 
         return $this->requestHandler->sendReq(

@@ -102,8 +102,6 @@ class Subscription
      */
     private $requestHandler;
 
-    private $serializer;
-
     /**
      * @var string
      */
@@ -185,7 +183,6 @@ class Subscription
         array $info = []
     ) {
         $this->requestHandler = $requestHandler;
-        $this->serializer = PubSubSerializer::getInstance();
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
@@ -413,7 +410,7 @@ class Subscription
 
         // convert optional args to protos
         if (isset($options['expirationPolicy'])) {
-            $options['expirationPolicy'] = $this->serializer->decodeMessage(
+            $options['expirationPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
                 new ExpirationPolicy,
                 $options['expirationPolicy']
             );
@@ -426,14 +423,14 @@ class Subscription
         }
 
         if (isset($options['retryPolicy'])) {
-            $options['retryPolicy'] = $this->serializer->decodeMessage(
+            $options['retryPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
                 new RetryPolicy,
                 $options['retryPolicy']
             );
         }
 
         if (isset($options['deadLetterPolicy'])) {
-            $options['deadLetterPolicy'] = $this->serializer->decodeMessage(
+            $options['deadLetterPolicy'] = $this->requestHandler->getSerializer()->decodeMessage(
                 new DeadLetterPolicy,
                 $options['deadLetterPolicy']
             );
@@ -644,7 +641,7 @@ class Subscription
 
         $maskPaths = [];
         foreach ($updateMaskPaths as $path) {
-            $maskPaths[] = $this->serializer::toSnakeCase($path);
+            $maskPaths[] = $this->requestHandler->getSerializer()::toSnakeCase($path);
         }
 
         $fieldMask = new FieldMask([
@@ -654,7 +651,7 @@ class Subscription
         $subscription = $this->formatSubscriptionDurations($subscription);
         $subscription = $this->formatDeadLetterPolicyForApi($subscription);
 
-        $subscriptionProto = $this->serializer->decodeMessage(
+        $subscriptionProto = $this->requestHandler->getSerializer()->decodeMessage(
             new SubscriptionProto,
             [
                 'name' => $this->name
@@ -1202,7 +1199,7 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $pushConfig = $this->serializer->decodeMessage(
+        $pushConfig = $this->requestHandler->getSerializer()->decodeMessage(
             new PushConfig(),
             $pushConfig
         );
@@ -1236,7 +1233,10 @@ class Subscription
      */
     public function seekToTime(Timestamp $timestamp, array $options = [])
     {
-        $options['time'] = $this->serializer->decodeMessage(new ProtobufTimestamp(), $timestamp->formatForApi());
+        $options['time'] = $this->requestHandler->getSerializer()->decodeMessage(
+            new ProtobufTimestamp(),
+            $timestamp->formatForApi()
+        );
 
         return $this->requestHandler->sendReq(
             SubscriberClient::class,
