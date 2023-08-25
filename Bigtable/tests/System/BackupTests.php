@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2022 Google Inc.
+ * Copyright 2023 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ use Google\Protobuf\Timestamp;
  */
 class BackupTests extends BigtableTestCase
 {
-    public const DESTINATION_LOCATION_ID = 'us-central1-b';
-    public const SECONDS_IN_A_DAY = 86400;
+    private const DESTINATION_LOCATION_ID = 'us-central1-b';
+    private const SECONDS_IN_A_DAY = 86400;
 
     /**
      * @var string Backup id of the backup created for the table.
@@ -47,8 +47,7 @@ class BackupTests extends BigtableTestCase
     private static $backupName;
 
     /**
-     * @var string Copy Backup id of the copy backup of the backup
-     *      defined by self::$backupId.
+     * @var string Copy Backup id of the copy backup.
      */
     private static $copyBackupId;
 
@@ -152,9 +151,6 @@ class BackupTests extends BigtableTestCase
             self::assertStringContainsString(self::$backupName, $copyBackup->getSourceBackup());
         } catch (Exception $th) {
             $ex = $th->getMessage();
-        }
-
-        if ($ex != null) {
             $this->fail($ex);
         }
     }
@@ -231,6 +227,7 @@ class BackupTests extends BigtableTestCase
                 $instanceClient->getInstance($instanceName);
                 $instanceClient->deleteInstance($instanceName);
             } catch (Exception $th) {
+                printf($th->getMessage() . PHP_EOL);
             }
         }
 
@@ -315,6 +312,7 @@ class BackupTests extends BigtableTestCase
             $client->getBackup($backupName);
             $client->deleteBackup($backupName);
         } catch (ApiException $th) {
+            printf($th->getMessage() . PHP_EOL);
         }
     }
 }
