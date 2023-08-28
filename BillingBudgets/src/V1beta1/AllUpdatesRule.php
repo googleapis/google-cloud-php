@@ -65,6 +65,17 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_default_iam_recipients = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $disable_default_iam_recipients = false;
+    /**
+     * Optional. When set to true, and when the budget has a single project
+     * configured, notifications will be sent to project level recipients of that
+     * project. This field will be ignored if the budget has multiple or no
+     * project configured.
+     * Currently, project level recipients are the users with `Owner` role on a
+     * cloud project.
+     *
+     * Generated from protobuf field <code>bool enable_project_level_recipients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_project_level_recipients = false;
 
     /**
      * Constructor.
@@ -105,6 +116,13 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
      *           threshold is exceeded. Default notifications are sent to those with Billing
      *           Account Administrator and Billing Account User IAM roles for the target
      *           account.
+     *     @type bool $enable_project_level_recipients
+     *           Optional. When set to true, and when the budget has a single project
+     *           configured, notifications will be sent to project level recipients of that
+     *           project. This field will be ignored if the budget has multiple or no
+     *           project configured.
+     *           Currently, project level recipients are the users with `Owner` role on a
+     *           cloud project.
      * }
      */
     public function __construct($data = NULL) {
@@ -262,6 +280,42 @@ class AllUpdatesRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_default_iam_recipients = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When set to true, and when the budget has a single project
+     * configured, notifications will be sent to project level recipients of that
+     * project. This field will be ignored if the budget has multiple or no
+     * project configured.
+     * Currently, project level recipients are the users with `Owner` role on a
+     * cloud project.
+     *
+     * Generated from protobuf field <code>bool enable_project_level_recipients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableProjectLevelRecipients()
+    {
+        return $this->enable_project_level_recipients;
+    }
+
+    /**
+     * Optional. When set to true, and when the budget has a single project
+     * configured, notifications will be sent to project level recipients of that
+     * project. This field will be ignored if the budget has multiple or no
+     * project configured.
+     * Currently, project level recipients are the users with `Owner` role on a
+     * cloud project.
+     *
+     * Generated from protobuf field <code>bool enable_project_level_recipients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableProjectLevelRecipients($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_project_level_recipients = $var;
 
         return $this;
     }

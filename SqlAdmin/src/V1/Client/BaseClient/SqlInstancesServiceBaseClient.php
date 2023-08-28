@@ -44,6 +44,8 @@ use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigRequest;
 use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigResponse;
+use Google\Cloud\Sql\V1\SqlInstancesGetLatestRecoveryTimeRequest;
+use Google\Cloud\Sql\V1\SqlInstancesGetLatestRecoveryTimeResponse;
 use Google\Cloud\Sql\V1\SqlInstancesGetRequest;
 use Google\Cloud\Sql\V1\SqlInstancesImportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesInsertRequest;
@@ -90,6 +92,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDiskShrinkConfigAsync(SqlInstancesGetDiskShrinkConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getLatestRecoveryTimeAsync(SqlInstancesGetLatestRecoveryTimeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importAsync(SqlInstancesImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(SqlInstancesInsertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(SqlInstancesListRequest $request, array $optionalArgs = [])
@@ -472,6 +475,32 @@ abstract class SqlInstancesServiceBaseClient
     public function getDiskShrinkConfig(SqlInstancesGetDiskShrinkConfigRequest $request, array $callOptions = []): SqlInstancesGetDiskShrinkConfigResponse
     {
         return $this->startApiCall('GetDiskShrinkConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get Latest Recovery Time for a given instance.
+     *
+     * The async variant is {@see self::getLatestRecoveryTimeAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/get_latest_recovery_time.php
+     *
+     * @param SqlInstancesGetLatestRecoveryTimeRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SqlInstancesGetLatestRecoveryTimeResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLatestRecoveryTime(SqlInstancesGetLatestRecoveryTimeRequest $request, array $callOptions = []): SqlInstancesGetLatestRecoveryTimeResponse
+    {
+        return $this->startApiCall('GetLatestRecoveryTime', $request, $callOptions)->wait();
     }
 
     /**

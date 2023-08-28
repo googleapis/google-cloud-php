@@ -58,6 +58,8 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesGetDiskShrinkConfigResponse;
+use Google\Cloud\Sql\V1beta4\SqlInstancesGetLatestRecoveryTimeRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesGetLatestRecoveryTimeResponse;
 use Google\Cloud\Sql\V1beta4\SqlInstancesGetRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesImportRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesInsertRequest;
@@ -791,6 +793,66 @@ class SqlInstancesServiceGapicClient
         return $this->startCall(
             'GetDiskShrinkConfig',
             SqlInstancesGetDiskShrinkConfigResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get Latest Recovery Time for a given instance.
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $response = $sqlInstancesServiceClient->getLatestRecoveryTime();
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $instance
+     *           Cloud SQL instance ID. This does not include the project ID.
+     *     @type string $project
+     *           Project ID of the project that contains the instance.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\SqlInstancesGetLatestRecoveryTimeResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLatestRecoveryTime(array $optionalArgs = [])
+    {
+        $request = new SqlInstancesGetLatestRecoveryTimeRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLatestRecoveryTime',
+            SqlInstancesGetLatestRecoveryTimeResponse::class,
             $optionalArgs,
             $request
         )->wait();

@@ -856,7 +856,7 @@ class VideoStitcherServiceGapicClient
      * ```
      * $videoStitcherServiceClient = new VideoStitcherServiceClient();
      * try {
-     *     $formattedParent = $videoStitcherServiceClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+     *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $liveSession = new LiveSession();
      *     $response = $videoStitcherServiceClient->createLiveSession($formattedParent, $liveSession);
      * } finally {
