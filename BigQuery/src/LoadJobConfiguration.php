@@ -665,7 +665,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * ```
      * $loadJobConfig->connectionProperties([
      *     'key' => 'session_id',
-     *     'value' =>'sessionId'
+     *     'value' => 'sessionId'
      * ]);
      * ```
      *

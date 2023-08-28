@@ -529,6 +529,19 @@ class BigQueryClientTest extends TestCase
                 $expected + ['data' => 'abc'],
                 'insertJobUpload',
                 $uploader->reveal()
+            ],
+            [
+                $expected + ['configuration' => [
+                    'load' => [
+                        'createSession' => true,
+                        'connectionProperties' => [
+                            'key' => 'session_id',
+                            'value' => 'sessionId'
+                        ]
+                    ]
+                ]],
+                'insertJob',
+                $this->jobResponse
             ]
         ];
     }
