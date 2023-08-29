@@ -46,12 +46,29 @@ class SummarySkippedReason
      * Generated from protobuf enum <code>OUT_OF_DOMAIN_QUERY_IGNORED = 3;</code>
      */
     const OUT_OF_DOMAIN_QUERY_IGNORED = 3;
+    /**
+     * The potential policy violation case.
+     * Google skips the summary if there is a potential policy violation
+     * detected. This includes content that may be violent or toxic.
+     *
+     * Generated from protobuf enum <code>POTENTIAL_POLICY_VIOLATION = 4;</code>
+     */
+    const POTENTIAL_POLICY_VIOLATION = 4;
+    /**
+     * The LLM addon not enabled case.
+     * Google skips the summary if the LLM addon is not enabled.
+     *
+     * Generated from protobuf enum <code>LLM_ADDON_NOT_ENABLED = 5;</code>
+     */
+    const LLM_ADDON_NOT_ENABLED = 5;
 
     private static $valueToName = [
         self::SUMMARY_SKIPPED_REASON_UNSPECIFIED => 'SUMMARY_SKIPPED_REASON_UNSPECIFIED',
         self::ADVERSARIAL_QUERY_IGNORED => 'ADVERSARIAL_QUERY_IGNORED',
         self::NON_SUMMARY_SEEKING_QUERY_IGNORED => 'NON_SUMMARY_SEEKING_QUERY_IGNORED',
         self::OUT_OF_DOMAIN_QUERY_IGNORED => 'OUT_OF_DOMAIN_QUERY_IGNORED',
+        self::POTENTIAL_POLICY_VIOLATION => 'POTENTIAL_POLICY_VIOLATION',
+        self::LLM_ADDON_NOT_ENABLED => 'LLM_ADDON_NOT_ENABLED',
     ];
 
     public static function name($value)

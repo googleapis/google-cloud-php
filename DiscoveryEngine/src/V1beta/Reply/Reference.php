@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Defines reference in reply.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1beta.Reply.Reference</code>
  */
 class Reference extends \Google\Protobuf\Internal\Message
