@@ -203,6 +203,16 @@ return [
                     'resourcesGetMethod' => 'getProperties',
                 ],
             ],
+            'ListSKAdNetworkConversionValueSchemas' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSkadnetworkConversionValueSchemas',
+                ],
+            ],
             'ListSearchAds360Links' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
