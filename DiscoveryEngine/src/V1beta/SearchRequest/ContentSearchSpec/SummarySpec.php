@@ -72,6 +72,13 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ignore_non_summary_seeking_query = 4;</code>
      */
     protected $ignore_non_summary_seeking_query = false;
+    /**
+     * Language code for Summary. Use language tags defined by
+     * [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     *
+     * Generated from protobuf field <code>string language_code = 6;</code>
+     */
+    protected $language_code = '';
 
     /**
      * Constructor.
@@ -119,6 +126,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           navigational queries. If this field is set to `true`, we skip
      *           generating summaries for non-summary seeking queries and return
      *           fallback messages instead.
+     *     @type string $language_code
+     *           Language code for Summary. Use language tags defined by
+     *           [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
      * }
      */
     public function __construct($data = NULL) {
@@ -290,6 +300,34 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_non_summary_seeking_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Language code for Summary. Use language tags defined by
+     * [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     *
+     * Generated from protobuf field <code>string language_code = 6;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Language code for Summary. Use language tags defined by
+     * [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     *
+     * Generated from protobuf field <code>string language_code = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
 
         return $this;
     }
