@@ -37,9 +37,10 @@ use Google\Cloud\DiscoveryEngine\V1\ListDocumentsRequest;
  *                                Use `default_branch` as the branch ID, to list documents under the default
  *                                branch.
  *
- *                                If the caller does not have permission to list [Documents][]s under this
- *                                branch, regardless of whether or not this branch exists, a
- *                                `PERMISSION_DENIED` error is returned. Please see
+ *                                If the caller does not have permission to list
+ *                                [Document][google.cloud.discoveryengine.v1.Document]s under this branch,
+ *                                regardless of whether or not this branch exists, a `PERMISSION_DENIED`
+ *                                error is returned. Please see
  *                                {@see DocumentServiceClient::branchName()} for help formatting this field.
  */
 function list_documents_sample(string $formattedParent): void

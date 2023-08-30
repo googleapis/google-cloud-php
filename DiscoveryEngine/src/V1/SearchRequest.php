@@ -42,9 +42,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query = '';
     /**
+     * Raw image query.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ImageQuery image_query = 19;</code>
+     */
+    protected $image_query = null;
+    /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
      * return. If unspecified, defaults to a reasonable value. The maximum allowed
-     * value is 100. Values above 100 will be coerced to 100.
+     * value is 100. Values above 100 are coerced to 100.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -75,13 +81,47 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $offset = 0;
     /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the documents being filtered. Filter
+     * expression is case-sensitive.
+     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *
+     * Generated from protobuf field <code>string filter = 7;</code>
+     */
+    protected $filter = '';
+    /**
+     * The order in which documents are returned. Documents can be ordered by
+     * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
+     * Leave it unset if ordered by relevance. `order_by` expression is
+     * case-sensitive.
+     * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     *
+     * Generated from protobuf field <code>string order_by = 8;</code>
+     */
+    protected $order_by = '';
+    /**
      * Information about the end user.
-     * Highly recommended for analytics. The user_agent string in UserInfo will
-     * be used to deduce device_type for analytics.
+     * Highly recommended for analytics.
+     * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
+     * is used to deduce `device_type` for analytics.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo user_info = 21;</code>
      */
     protected $user_info = null;
+    /**
+     * Facet specifications for faceted search. If empty, no facets are returned.
+     * A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
+     * error is returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.FacetSpec facet_specs = 9;</code>
+     */
+    private $facet_specs;
+    /**
+     * Boost specification to boost certain documents.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 10;</code>
+     */
+    protected $boost_spec = null;
     /**
      * Additional search parameters.
      * For public website search only, supported values are:
@@ -96,14 +136,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     private $params;
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion occurs.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.QueryExpansionSpec query_expansion_spec = 13;</code>
      */
     protected $query_expansion_spec = null;
     /**
      * The spell correction specification that specifies the mode under
-     * which spell correction will take effect.
+     * which spell correction takes effect.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec spell_correction_spec = 14;</code>
      */
@@ -125,15 +165,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $user_pseudo_id = '';
     /**
-     * The content search spec that configs the desired behavior of content
-     * search.
+     * A specification for configuring the behavior of content search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec content_search_spec = 24;</code>
      */
     protected $content_search_spec = null;
     /**
      * Whether to turn on safe search. This is only supported for
-     * [ContentConfig.PUBLIC_WEBSITE][].
+     * website search.
      *
      * Generated from protobuf field <code>bool safe_search = 20;</code>
      */
@@ -177,10 +216,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           documents under the default branch.
      *     @type string $query
      *           Raw search query.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ImageQuery $image_query
+     *           Raw image query.
      *     @type int $page_size
      *           Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
      *           return. If unspecified, defaults to a reasonable value. The maximum allowed
-     *           value is 100. Values above 100 will be coerced to 100.
+     *           value is 100. Values above 100 are coerced to 100.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *     @type string $page_token
      *           A page token received from a previous
@@ -198,10 +239,28 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token] is
      *           unset.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *     @type string $filter
+     *           The filter syntax consists of an expression language for constructing a
+     *           predicate from one or more fields of the documents being filtered. Filter
+     *           expression is case-sensitive.
+     *           If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *     @type string $order_by
+     *           The order in which documents are returned. Documents can be ordered by
+     *           a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
+     *           Leave it unset if ordered by relevance. `order_by` expression is
+     *           case-sensitive.
+     *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1\UserInfo $user_info
      *           Information about the end user.
-     *           Highly recommended for analytics. The user_agent string in UserInfo will
-     *           be used to deduce device_type for analytics.
+     *           Highly recommended for analytics.
+     *           [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
+     *           is used to deduce `device_type` for analytics.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
+     *           Facet specifications for faceted search. If empty, no facets are returned.
+     *           A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
+     *           error is returned.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $boost_spec
+     *           Boost specification to boost certain documents.
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional search parameters.
      *           For public website search only, supported values are:
@@ -212,10 +271,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *             which enables image searching.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\QueryExpansionSpec $query_expansion_spec
      *           The query expansion specification that specifies the conditions under which
-     *           query expansion will occur.
+     *           query expansion occurs.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SpellCorrectionSpec $spell_correction_spec
      *           The spell correction specification that specifies the mode under
-     *           which spell correction will take effect.
+     *           which spell correction takes effect.
      *     @type string $user_pseudo_id
      *           A unique identifier for tracking visitors. For example, this could be
      *           implemented with an HTTP cookie, which should be able to uniquely identify
@@ -229,11 +288,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an  `INVALID_ARGUMENT`  error is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec $content_search_spec
-     *           The content search spec that configs the desired behavior of content
-     *           search.
+     *           A specification for configuring the behavior of content search.
      *     @type bool $safe_search
      *           Whether to turn on safe search. This is only supported for
-     *           [ContentConfig.PUBLIC_WEBSITE][].
+     *           website search.
      *     @type array|\Google\Protobuf\Internal\MapField $user_labels
      *           The user labels applied to a resource must meet the following requirements:
      *           * Each resource can have multiple labels, up to a maximum of 64.
@@ -348,9 +406,45 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Raw image query.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ImageQuery image_query = 19;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ImageQuery|null
+     */
+    public function getImageQuery()
+    {
+        return $this->image_query;
+    }
+
+    public function hasImageQuery()
+    {
+        return isset($this->image_query);
+    }
+
+    public function clearImageQuery()
+    {
+        unset($this->image_query);
+    }
+
+    /**
+     * Raw image query.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ImageQuery image_query = 19;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ImageQuery $var
+     * @return $this
+     */
+    public function setImageQuery($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ImageQuery::class);
+        $this->image_query = $var;
+
+        return $this;
+    }
+
+    /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
      * return. If unspecified, defaults to a reasonable value. The maximum allowed
-     * value is 100. Values above 100 will be coerced to 100.
+     * value is 100. Values above 100 are coerced to 100.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -364,7 +458,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
      * return. If unspecified, defaults to a reasonable value. The maximum allowed
-     * value is 100. Values above 100 will be coerced to 100.
+     * value is 100. Values above 100 are coerced to 100.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -456,9 +550,76 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the documents being filtered. Filter
+     * expression is case-sensitive.
+     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *
+     * Generated from protobuf field <code>string filter = 7;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the documents being filtered. Filter
+     * expression is case-sensitive.
+     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *
+     * Generated from protobuf field <code>string filter = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The order in which documents are returned. Documents can be ordered by
+     * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
+     * Leave it unset if ordered by relevance. `order_by` expression is
+     * case-sensitive.
+     * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     *
+     * Generated from protobuf field <code>string order_by = 8;</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * The order in which documents are returned. Documents can be ordered by
+     * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
+     * Leave it unset if ordered by relevance. `order_by` expression is
+     * case-sensitive.
+     * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     *
+     * Generated from protobuf field <code>string order_by = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
      * Information about the end user.
-     * Highly recommended for analytics. The user_agent string in UserInfo will
-     * be used to deduce device_type for analytics.
+     * Highly recommended for analytics.
+     * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
+     * is used to deduce `device_type` for analytics.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo user_info = 21;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\UserInfo|null
@@ -480,8 +641,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Information about the end user.
-     * Highly recommended for analytics. The user_agent string in UserInfo will
-     * be used to deduce device_type for analytics.
+     * Highly recommended for analytics.
+     * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
+     * is used to deduce `device_type` for analytics.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo user_info = 21;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\UserInfo $var
@@ -491,6 +653,72 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\UserInfo::class);
         $this->user_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Facet specifications for faceted search. If empty, no facets are returned.
+     * A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
+     * error is returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.FacetSpec facet_specs = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFacetSpecs()
+    {
+        return $this->facet_specs;
+    }
+
+    /**
+     * Facet specifications for faceted search. If empty, no facets are returned.
+     * A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
+     * error is returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.FacetSpec facet_specs = 9;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFacetSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec::class);
+        $this->facet_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Boost specification to boost certain documents.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 10;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec|null
+     */
+    public function getBoostSpec()
+    {
+        return $this->boost_spec;
+    }
+
+    public function hasBoostSpec()
+    {
+        return isset($this->boost_spec);
+    }
+
+    public function clearBoostSpec()
+    {
+        unset($this->boost_spec);
+    }
+
+    /**
+     * Boost specification to boost certain documents.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 10;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $var
+     * @return $this
+     */
+    public function setBoostSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec::class);
+        $this->boost_spec = $var;
 
         return $this;
     }
@@ -535,7 +763,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion occurs.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.QueryExpansionSpec query_expansion_spec = 13;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\QueryExpansionSpec|null
@@ -557,7 +785,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion occurs.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.QueryExpansionSpec query_expansion_spec = 13;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\QueryExpansionSpec $var
@@ -573,7 +801,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The spell correction specification that specifies the mode under
-     * which spell correction will take effect.
+     * which spell correction takes effect.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec spell_correction_spec = 14;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SpellCorrectionSpec|null
@@ -595,7 +823,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The spell correction specification that specifies the mode under
-     * which spell correction will take effect.
+     * which spell correction takes effect.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec spell_correction_spec = 14;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SpellCorrectionSpec $var
@@ -656,8 +884,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The content search spec that configs the desired behavior of content
-     * search.
+     * A specification for configuring the behavior of content search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec content_search_spec = 24;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec|null
@@ -678,8 +905,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The content search spec that configs the desired behavior of content
-     * search.
+     * A specification for configuring the behavior of content search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec content_search_spec = 24;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec $var
@@ -695,7 +921,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether to turn on safe search. This is only supported for
-     * [ContentConfig.PUBLIC_WEBSITE][].
+     * website search.
      *
      * Generated from protobuf field <code>bool safe_search = 20;</code>
      * @return bool
@@ -707,7 +933,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether to turn on safe search. This is only supported for
-     * [ContentConfig.PUBLIC_WEBSITE][].
+     * website search.
      *
      * Generated from protobuf field <code>bool safe_search = 20;</code>
      * @param bool $var

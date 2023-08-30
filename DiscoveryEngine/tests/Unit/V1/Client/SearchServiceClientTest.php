@@ -72,6 +72,7 @@ class SearchServiceClientTest extends GeneratedTest
         // Mock response
         $totalSize = 705419236;
         $attributionToken = 'attributionToken-729411015';
+        $redirectUri = 'redirectUri951230089';
         $nextPageToken = '';
         $correctedQuery = 'correctedQuery107869074';
         $resultsElement = new SearchResult();
@@ -81,6 +82,7 @@ class SearchServiceClientTest extends GeneratedTest
         $expectedResponse = new SearchResponse();
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setAttributionToken($attributionToken);
+        $expectedResponse->setRedirectUri($redirectUri);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCorrectedQuery($correctedQuery);
         $expectedResponse->setResults($results);
@@ -150,6 +152,7 @@ class SearchServiceClientTest extends GeneratedTest
         // Mock response
         $totalSize = 705419236;
         $attributionToken = 'attributionToken-729411015';
+        $redirectUri = 'redirectUri951230089';
         $nextPageToken = '';
         $correctedQuery = 'correctedQuery107869074';
         $resultsElement = new SearchResult();
@@ -159,6 +162,7 @@ class SearchServiceClientTest extends GeneratedTest
         $expectedResponse = new SearchResponse();
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setAttributionToken($attributionToken);
+        $expectedResponse->setRedirectUri($redirectUri);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCorrectedQuery($correctedQuery);
         $expectedResponse->setResults($results);
