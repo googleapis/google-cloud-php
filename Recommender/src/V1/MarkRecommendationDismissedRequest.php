@@ -9,32 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to the `GetInsight` method.
+ * Request for the `MarkRecommendationDismissed` Method.
  *
- * Generated from protobuf message <code>google.cloud.recommender.v1.GetInsightRequest</code>
+ * Generated from protobuf message <code>google.cloud.recommender.v1.MarkRecommendationDismissedRequest</code>
  */
-class GetInsightRequest extends \Google\Protobuf\Internal\Message
+class MarkRecommendationDismissedRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the insight.
+     * Name of the recommendation.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
-
+    private $name = '';
     /**
-     * @param string $name Required. Name of the insight. Please see
-     *                     {@see RecommenderClient::insightName()} for help formatting this field.
+     * Fingerprint of the Recommendation. Provides optimistic locking.
      *
-     * @return \Google\Cloud\Recommender\V1\GetInsightRequest
-     *
-     * @experimental
+     * Generated from protobuf field <code>string etag = 2;</code>
      */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
+    private $etag = '';
 
     /**
      * Constructor.
@@ -43,7 +35,9 @@ class GetInsightRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the insight.
+     *           Name of the recommendation.
+     *     @type string $etag
+     *           Fingerprint of the Recommendation. Provides optimistic locking.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +46,7 @@ class GetInsightRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the insight.
+     * Name of the recommendation.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +57,7 @@ class GetInsightRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the insight.
+     * Name of the recommendation.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -73,6 +67,32 @@ class GetInsightRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fingerprint of the Recommendation. Provides optimistic locking.
+     *
+     * Generated from protobuf field <code>string etag = 2;</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Fingerprint of the Recommendation. Provides optimistic locking.
+     *
+     * Generated from protobuf field <code>string etag = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }
