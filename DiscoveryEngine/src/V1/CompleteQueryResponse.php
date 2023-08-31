@@ -24,6 +24,14 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion query_suggestions = 1;</code>
      */
     private $query_suggestions;
+    /**
+     * True if the returned suggestions are all tail suggestions.
+     * For tail matching to be triggered, include_tail_suggestions in the request
+     * must be true and there must be no suggestions that match the full query.
+     *
+     * Generated from protobuf field <code>bool tail_match_triggered = 2;</code>
+     */
+    protected $tail_match_triggered = false;
 
     /**
      * Constructor.
@@ -34,6 +42,10 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse\QuerySuggestion>|\Google\Protobuf\Internal\RepeatedField $query_suggestions
      *           Results of the matched query suggestions. The result list is ordered and
      *           the first result is a top suggestion.
+     *     @type bool $tail_match_triggered
+     *           True if the returned suggestions are all tail suggestions.
+     *           For tail matching to be triggered, include_tail_suggestions in the request
+     *           must be true and there must be no suggestions that match the full query.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,6 +77,36 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse\QuerySuggestion::class);
         $this->query_suggestions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * True if the returned suggestions are all tail suggestions.
+     * For tail matching to be triggered, include_tail_suggestions in the request
+     * must be true and there must be no suggestions that match the full query.
+     *
+     * Generated from protobuf field <code>bool tail_match_triggered = 2;</code>
+     * @return bool
+     */
+    public function getTailMatchTriggered()
+    {
+        return $this->tail_match_triggered;
+    }
+
+    /**
+     * True if the returned suggestions are all tail suggestions.
+     * For tail matching to be triggered, include_tail_suggestions in the request
+     * must be true and there must be no suggestions that match the full query.
+     *
+     * Generated from protobuf field <code>bool tail_match_triggered = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setTailMatchTriggered($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->tail_match_triggered = $var;
 
         return $this;
     }

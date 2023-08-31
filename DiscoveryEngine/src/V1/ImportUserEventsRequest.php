@@ -38,11 +38,11 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest\InlineSource $inline_source
-     *           Required. The Inline source for the input content for UserEvents.
+     *           The Inline source for the input content for UserEvents.
      *     @type \Google\Cloud\DiscoveryEngine\V1\GcsSource $gcs_source
-     *           Required. Cloud Storage location for the input content.
+     *           Cloud Storage location for the input content.
      *     @type \Google\Cloud\DiscoveryEngine\V1\BigQuerySource $bigquery_source
-     *           Required. BigQuery input source.
+     *           BigQuery input source.
      *     @type string $parent
      *           Required. Parent DataStore resource name, of the form
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
@@ -57,9 +57,9 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Inline source for the input content for UserEvents.
+     * The Inline source for the input content for UserEvents.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ImportUserEventsRequest.InlineSource inline_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ImportUserEventsRequest.InlineSource inline_source = 2;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest\InlineSource|null
      */
     public function getInlineSource()
@@ -73,9 +73,9 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Inline source for the input content for UserEvents.
+     * The Inline source for the input content for UserEvents.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ImportUserEventsRequest.InlineSource inline_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ImportUserEventsRequest.InlineSource inline_source = 2;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest\InlineSource $var
      * @return $this
      */
@@ -88,9 +88,9 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Cloud Storage location for the input content.
+     * Cloud Storage location for the input content.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GcsSource gcs_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GcsSource gcs_source = 3;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\GcsSource|null
      */
     public function getGcsSource()
@@ -104,9 +104,9 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Cloud Storage location for the input content.
+     * Cloud Storage location for the input content.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GcsSource gcs_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GcsSource gcs_source = 3;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\GcsSource $var
      * @return $this
      */
@@ -119,9 +119,9 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. BigQuery input source.
+     * BigQuery input source.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BigQuerySource bigquery_source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BigQuerySource bigquery_source = 4;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\BigQuerySource|null
      */
     public function getBigquerySource()
@@ -135,9 +135,9 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. BigQuery input source.
+     * BigQuery input source.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BigQuerySource bigquery_source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BigQuerySource bigquery_source = 4;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\BigQuerySource $var
      * @return $this
      */

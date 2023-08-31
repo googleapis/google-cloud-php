@@ -17,8 +17,11 @@ class Content extends \Google\Protobuf\Internal\Message
 {
     /**
      * The MIME type of the content. Supported types:
-     * * `application/pdf` (PDF)
+     * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     * * `text/plain` (TXT)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
@@ -46,8 +49,11 @@ class Content extends \Google\Protobuf\Internal\Message
      *           is 100 MB.
      *     @type string $mime_type
      *           The MIME type of the content. Supported types:
-     *           * `application/pdf` (PDF)
+     *           * `application/pdf` (PDF, only native PDFs are supported for now)
      *           * `text/html` (HTML)
+     *           * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     *           * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     *           * `text/plain` (TXT)
      *           See https://www.iana.org/assignments/media-types/media-types.xhtml.
      * }
      */
@@ -136,8 +142,11 @@ class Content extends \Google\Protobuf\Internal\Message
 
     /**
      * The MIME type of the content. Supported types:
-     * * `application/pdf` (PDF)
+     * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     * * `text/plain` (TXT)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
@@ -150,8 +159,11 @@ class Content extends \Google\Protobuf\Internal\Message
 
     /**
      * The MIME type of the content. Supported types:
-     * * `application/pdf` (PDF)
+     * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     * * `text/plain` (TXT)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
