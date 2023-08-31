@@ -639,7 +639,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
     }
 
     /**
-     * Sets whether to create a new session with random id.
+     * Decide whether to create a new session with a random id.
      * The created session id is returned as part of the SessionInfo
      * within the query statistics.
      *
