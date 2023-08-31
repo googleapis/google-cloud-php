@@ -47,6 +47,9 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *           The [Document][google.cloud.discoveryengine.v1beta.Document] resource
      *           full name, of the form:
      *           `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
+     *     @type string $uri
+     *           The [Document][google.cloud.discoveryengine.v1beta.Document] URI - only
+     *           allowed for website data stores.
      *     @type int $quantity
      *           Quantity of the Document associated with the user event. Defaults to 1.
      *           For example, this field will be 2 if two quantities of the same Document
@@ -126,6 +129,39 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The [Document][google.cloud.discoveryengine.v1beta.Document] URI - only
+     * allowed for website data stores.
+     *
+     * Generated from protobuf field <code>string uri = 6;</code>
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasUri()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * The [Document][google.cloud.discoveryengine.v1beta.Document] URI - only
+     * allowed for website data stores.
+     *
+     * Generated from protobuf field <code>string uri = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

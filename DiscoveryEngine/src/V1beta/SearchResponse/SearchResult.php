@@ -29,6 +29,12 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.Document document = 2;</code>
      */
     protected $document = null;
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1beta.DoubleList> model_scores = 4;</code>
+     */
+    private $model_scores;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\Document $document
      *           The document data snippet in the search response. Only fields that are
      *           marked as retrievable are populated.
+     *     @type array|\Google\Protobuf\Internal\MapField $model_scores
+     *           Google provided available scores.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +119,32 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\Document::class);
         $this->document = $var;
+
+        return $this;
+    }
+
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1beta.DoubleList> model_scores = 4;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getModelScores()
+    {
+        return $this->model_scores;
+    }
+
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1beta.DoubleList> model_scores = 4;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setModelScores($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\DoubleList::class);
+        $this->model_scores = $arr;
 
         return $this;
     }

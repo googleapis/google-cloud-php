@@ -56,6 +56,32 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool safe_search = 6;</code>
      */
     protected $safe_search = false;
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 7;</code>
+     */
+    private $user_labels;
+    /**
+     * A specification for configuring the summary returned in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec summary_spec = 8;</code>
+     */
+    protected $summary_spec = null;
 
     /**
      * @param string                                         $name  Required. The resource name of the Conversation to get. Format:
@@ -103,6 +129,24 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      *           session.
      *     @type bool $safe_search
      *           Whether to turn on safe search.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *           The user labels applied to a resource must meet the following requirements:
+     *           * Each resource can have multiple labels, up to a maximum of 64.
+     *           * Each label must be a key-value pair.
+     *           * Keys have a minimum length of 1 character and a maximum length of 63
+     *             characters and cannot be empty. Values can be empty and have a maximum
+     *             length of 63 characters.
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *             underscores, and dashes. All characters must use UTF-8 encoding, and
+     *             international characters are allowed.
+     *           * The key portion of a label must be unique. However, you can use the same
+     *             key with multiple resources.
+     *           * Keys must start with a lowercase letter or international character.
+     *           See [Google Cloud
+     *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     *           for more details.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec $summary_spec
+     *           A specification for configuring the summary returned in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,6 +318,96 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->safe_search = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 7;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabels()
+    {
+        return $this->user_labels;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 7;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A specification for configuring the summary returned in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec summary_spec = 8;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec|null
+     */
+    public function getSummarySpec()
+    {
+        return $this->summary_spec;
+    }
+
+    public function hasSummarySpec()
+    {
+        return isset($this->summary_spec);
+    }
+
+    public function clearSummarySpec()
+    {
+        unset($this->summary_spec);
+    }
+
+    /**
+     * A specification for configuring the summary returned in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec summary_spec = 8;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec $var
+     * @return $this
+     */
+    public function setSummarySpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec::class);
+        $this->summary_spec = $var;
 
         return $this;
     }

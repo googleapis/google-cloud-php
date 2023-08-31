@@ -9,20 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The specification that configs the desired behavior of the UCS content
- * search.
+ * A specification for configuring the behavior of content search.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec</code>
  */
 class ContentSearchSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If there is no snippet spec provided, there will be no snippet in the
-     * search result.
+     * If `snippetSpec` is not specified, snippets are not included in the
+     * search response.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SnippetSpec snippet_spec = 1;</code>
      */
     protected $snippet_spec = null;
+    /**
+     * If `summarySpec` is not specified, summaries are not included in the
+     * search response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec summary_spec = 2;</code>
+     */
+    protected $summary_spec = null;
 
     /**
      * Constructor.
@@ -31,8 +37,11 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SnippetSpec $snippet_spec
-     *           If there is no snippet spec provided, there will be no snippet in the
-     *           search result.
+     *           If `snippetSpec` is not specified, snippets are not included in the
+     *           search response.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec $summary_spec
+     *           If `summarySpec` is not specified, summaries are not included in the
+     *           search response.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +50,8 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If there is no snippet spec provided, there will be no snippet in the
-     * search result.
+     * If `snippetSpec` is not specified, snippets are not included in the
+     * search response.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SnippetSpec snippet_spec = 1;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SnippetSpec|null
@@ -63,8 +72,8 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If there is no snippet spec provided, there will be no snippet in the
-     * search result.
+     * If `snippetSpec` is not specified, snippets are not included in the
+     * search response.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SnippetSpec snippet_spec = 1;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SnippetSpec $var
@@ -74,6 +83,44 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SnippetSpec::class);
         $this->snippet_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * If `summarySpec` is not specified, summaries are not included in the
+     * search response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec summary_spec = 2;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec|null
+     */
+    public function getSummarySpec()
+    {
+        return $this->summary_spec;
+    }
+
+    public function hasSummarySpec()
+    {
+        return isset($this->summary_spec);
+    }
+
+    public function clearSummarySpec()
+    {
+        unset($this->summary_spec);
+    }
+
+    /**
+     * If `summarySpec` is not specified, summaries are not included in the
+     * search response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec summary_spec = 2;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec $var
+     * @return $this
+     */
+    public function setSummarySpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec::class);
+        $this->summary_spec = $var;
 
         return $this;
     }

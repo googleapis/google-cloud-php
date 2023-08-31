@@ -21,23 +21,25 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      * for definition.
      * The value must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * At least one of
      * [search_query][google.cloud.discoveryengine.v1.SearchInfo.search_query] or
      * [PageInfo.page_category][google.cloud.discoveryengine.v1.PageInfo.page_category]
      * is required for `search` events. Other event types should not set this
-     * field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string search_query = 1;</code>
      */
     protected $search_query = '';
     /**
      * The order in which products are returned, if applicable.
-     * See [SearchRequest.order_by][] for definition and syntax.
+     * See
+     * [SearchRequest.order_by][google.cloud.discoveryengine.v1.SearchRequest.order_by]
+     * for definition and syntax.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * This can only be set for `search` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string order_by = 2;</code>
      */
@@ -48,9 +50,9 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * See
      * [SearchRequest.offset][google.cloud.discoveryengine.v1.SearchRequest.offset]
      * for definition.
-     * If this field is negative, an INVALID_ARGUMENT is returned.
+     * If this field is negative, an `INVALID_ARGUMENT` is returned.
      * This can only be set for `search` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>optional int32 offset = 3;</code>
      */
@@ -68,28 +70,30 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      *           for definition.
      *           The value must be a UTF-8 encoded string with a length limit of 5,000
-     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *           At least one of
      *           [search_query][google.cloud.discoveryengine.v1.SearchInfo.search_query] or
      *           [PageInfo.page_category][google.cloud.discoveryengine.v1.PageInfo.page_category]
      *           is required for `search` events. Other event types should not set this
-     *           field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     @type string $order_by
      *           The order in which products are returned, if applicable.
-     *           See [SearchRequest.order_by][] for definition and syntax.
+     *           See
+     *           [SearchRequest.order_by][google.cloud.discoveryengine.v1.SearchRequest.order_by]
+     *           for definition and syntax.
      *           The value must be a UTF-8 encoded string with a length limit of 1,000
-     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *           This can only be set for `search` events. Other event types should not set
-     *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     @type int $offset
      *           An integer that specifies the current offset for pagination (the 0-indexed
      *           starting location, amongst the products deemed by the API as relevant).
      *           See
      *           [SearchRequest.offset][google.cloud.discoveryengine.v1.SearchRequest.offset]
      *           for definition.
-     *           If this field is negative, an INVALID_ARGUMENT is returned.
+     *           If this field is negative, an `INVALID_ARGUMENT` is returned.
      *           This can only be set for `search` events. Other event types should not set
-     *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,12 +107,12 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      * for definition.
      * The value must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * At least one of
      * [search_query][google.cloud.discoveryengine.v1.SearchInfo.search_query] or
      * [PageInfo.page_category][google.cloud.discoveryengine.v1.PageInfo.page_category]
      * is required for `search` events. Other event types should not set this
-     * field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string search_query = 1;</code>
      * @return string
@@ -124,12 +128,12 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      * for definition.
      * The value must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * At least one of
      * [search_query][google.cloud.discoveryengine.v1.SearchInfo.search_query] or
      * [PageInfo.page_category][google.cloud.discoveryengine.v1.PageInfo.page_category]
      * is required for `search` events. Other event types should not set this
-     * field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string search_query = 1;</code>
      * @param string $var
@@ -145,11 +149,13 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The order in which products are returned, if applicable.
-     * See [SearchRequest.order_by][] for definition and syntax.
+     * See
+     * [SearchRequest.order_by][google.cloud.discoveryengine.v1.SearchRequest.order_by]
+     * for definition and syntax.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * This can only be set for `search` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string order_by = 2;</code>
      * @return string
@@ -161,11 +167,13 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The order in which products are returned, if applicable.
-     * See [SearchRequest.order_by][] for definition and syntax.
+     * See
+     * [SearchRequest.order_by][google.cloud.discoveryengine.v1.SearchRequest.order_by]
+     * for definition and syntax.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * This can only be set for `search` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string order_by = 2;</code>
      * @param string $var
@@ -185,9 +193,9 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * See
      * [SearchRequest.offset][google.cloud.discoveryengine.v1.SearchRequest.offset]
      * for definition.
-     * If this field is negative, an INVALID_ARGUMENT is returned.
+     * If this field is negative, an `INVALID_ARGUMENT` is returned.
      * This can only be set for `search` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>optional int32 offset = 3;</code>
      * @return int
@@ -213,9 +221,9 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * See
      * [SearchRequest.offset][google.cloud.discoveryengine.v1.SearchRequest.offset]
      * for definition.
-     * If this field is negative, an INVALID_ARGUMENT is returned.
+     * If this field is negative, an `INVALID_ARGUMENT` is returned.
      * This can only be set for `search` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>optional int32 offset = 3;</code>
      * @param int $var
