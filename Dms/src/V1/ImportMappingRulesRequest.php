@@ -24,22 +24,22 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The format of the rules content file.
+     * Required. The format of the rules content file.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat rules_format = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat rules_format = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $rules_format = 0;
     /**
-     * One or more rules files.
+     * Required. One or more rules files.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $rules_files;
     /**
-     * Should the conversion workspace be committed automatically after the
-     * import operation.
+     * Required. Should the conversion workspace be committed automatically after
+     * the import operation.
      *
-     * Generated from protobuf field <code>bool auto_commit = 6;</code>
+     * Generated from protobuf field <code>bool auto_commit = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $auto_commit = false;
 
@@ -54,12 +54,12 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
      *           in the form of:
      *           projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
      *     @type int $rules_format
-     *           The format of the rules content file.
+     *           Required. The format of the rules content file.
      *     @type array<\Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile>|\Google\Protobuf\Internal\RepeatedField $rules_files
-     *           One or more rules files.
+     *           Required. One or more rules files.
      *     @type bool $auto_commit
-     *           Should the conversion workspace be committed automatically after the
-     *           import operation.
+     *           Required. Should the conversion workspace be committed automatically after
+     *           the import operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,9 +98,9 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The format of the rules content file.
+     * Required. The format of the rules content file.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat rules_format = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat rules_format = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getRulesFormat()
@@ -109,9 +109,9 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The format of the rules content file.
+     * Required. The format of the rules content file.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat rules_format = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat rules_format = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -124,9 +124,9 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more rules files.
+     * Required. One or more rules files.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRulesFiles()
@@ -135,9 +135,9 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more rules files.
+     * Required. One or more rules files.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -150,10 +150,10 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Should the conversion workspace be committed automatically after the
-     * import operation.
+     * Required. Should the conversion workspace be committed automatically after
+     * the import operation.
      *
-     * Generated from protobuf field <code>bool auto_commit = 6;</code>
+     * Generated from protobuf field <code>bool auto_commit = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
      */
     public function getAutoCommit()
@@ -162,10 +162,10 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Should the conversion workspace be committed automatically after the
-     * import operation.
+     * Required. Should the conversion workspace be committed automatically after
+     * the import operation.
      *
-     * Generated from protobuf field <code>bool auto_commit = 6;</code>
+     * Generated from protobuf field <code>bool auto_commit = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var
      * @return $this
      */

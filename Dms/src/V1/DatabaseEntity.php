@@ -52,6 +52,20 @@ class DatabaseEntity extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityMapping mappings = 5;</code>
      */
     private $mappings;
+    /**
+     * Details about the entity DDL script. Multiple DDL scripts are provided for
+     * child entities such as a table entity will have one DDL for the table with
+     * additional DDLs for each index, constraint and such.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityDdl entity_ddl = 6;</code>
+     */
+    private $entity_ddl;
+    /**
+     * Details about the various issues found for the entity.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityIssue issues = 7;</code>
+     */
+    private $issues;
     protected $entity_body;
 
     /**
@@ -75,6 +89,14 @@ class DatabaseEntity extends \Google\Protobuf\Internal\Message
      *           For draft tree entities, this holds the source entities which were
      *           converted to form the draft entity.
      *           Destination entities will have no mapping details.
+     *     @type array<\Google\Cloud\CloudDms\V1\EntityDdl>|\Google\Protobuf\Internal\RepeatedField $entity_ddl
+     *           Details about the entity DDL script. Multiple DDL scripts are provided for
+     *           child entities such as a table entity will have one DDL for the table with
+     *           additional DDLs for each index, constraint and such.
+     *     @type array<\Google\Cloud\CloudDms\V1\EntityIssue>|\Google\Protobuf\Internal\RepeatedField $issues
+     *           Details about the various issues found for the entity.
+     *     @type \Google\Cloud\CloudDms\V1\DatabaseInstanceEntity $database
+     *           Database.
      *     @type \Google\Cloud\CloudDms\V1\SchemaEntity $schema
      *           Schema.
      *     @type \Google\Cloud\CloudDms\V1\TableEntity $table
@@ -91,6 +113,10 @@ class DatabaseEntity extends \Google\Protobuf\Internal\Message
      *           Synonym.
      *     @type \Google\Cloud\CloudDms\V1\PackageEntity $database_package
      *           Package.
+     *     @type \Google\Cloud\CloudDms\V1\UDTEntity $udt
+     *           UDT.
+     *     @type \Google\Cloud\CloudDms\V1\MaterializedViewEntity $materialized_view
+     *           Materialized view.
      * }
      */
     public function __construct($data = NULL) {
@@ -234,6 +260,93 @@ class DatabaseEntity extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CloudDms\V1\EntityMapping::class);
         $this->mappings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Details about the entity DDL script. Multiple DDL scripts are provided for
+     * child entities such as a table entity will have one DDL for the table with
+     * additional DDLs for each index, constraint and such.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityDdl entity_ddl = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEntityDdl()
+    {
+        return $this->entity_ddl;
+    }
+
+    /**
+     * Details about the entity DDL script. Multiple DDL scripts are provided for
+     * child entities such as a table entity will have one DDL for the table with
+     * additional DDLs for each index, constraint and such.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityDdl entity_ddl = 6;</code>
+     * @param array<\Google\Cloud\CloudDms\V1\EntityDdl>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEntityDdl($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CloudDms\V1\EntityDdl::class);
+        $this->entity_ddl = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Details about the various issues found for the entity.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityIssue issues = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIssues()
+    {
+        return $this->issues;
+    }
+
+    /**
+     * Details about the various issues found for the entity.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityIssue issues = 7;</code>
+     * @param array<\Google\Cloud\CloudDms\V1\EntityIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIssues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CloudDms\V1\EntityIssue::class);
+        $this->issues = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Database.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseInstanceEntity database = 101;</code>
+     * @return \Google\Cloud\CloudDms\V1\DatabaseInstanceEntity|null
+     */
+    public function getDatabase()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasDatabase()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Database.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseInstanceEntity database = 101;</code>
+     * @param \Google\Cloud\CloudDms\V1\DatabaseInstanceEntity $var
+     * @return $this
+     */
+    public function setDatabase($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\DatabaseInstanceEntity::class);
+        $this->writeOneof(101, $var);
 
         return $this;
     }
@@ -482,6 +595,68 @@ class DatabaseEntity extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\PackageEntity::class);
         $this->writeOneof(109, $var);
+
+        return $this;
+    }
+
+    /**
+     * UDT.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.UDTEntity udt = 110;</code>
+     * @return \Google\Cloud\CloudDms\V1\UDTEntity|null
+     */
+    public function getUdt()
+    {
+        return $this->readOneof(110);
+    }
+
+    public function hasUdt()
+    {
+        return $this->hasOneof(110);
+    }
+
+    /**
+     * UDT.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.UDTEntity udt = 110;</code>
+     * @param \Google\Cloud\CloudDms\V1\UDTEntity $var
+     * @return $this
+     */
+    public function setUdt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\UDTEntity::class);
+        $this->writeOneof(110, $var);
+
+        return $this;
+    }
+
+    /**
+     * Materialized view.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MaterializedViewEntity materialized_view = 111;</code>
+     * @return \Google\Cloud\CloudDms\V1\MaterializedViewEntity|null
+     */
+    public function getMaterializedView()
+    {
+        return $this->readOneof(111);
+    }
+
+    public function hasMaterializedView()
+    {
+        return $this->hasOneof(111);
+    }
+
+    /**
+     * Materialized view.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MaterializedViewEntity materialized_view = 111;</code>
+     * @param \Google\Cloud\CloudDms\V1\MaterializedViewEntity $var
+     * @return $this
+     */
+    public function setMaterializedView($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\MaterializedViewEntity::class);
+        $this->writeOneof(111, $var);
 
         return $this;
     }
