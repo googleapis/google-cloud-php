@@ -171,6 +171,41 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $content_search_spec = null;
     /**
+     * Uses the provided embedding to do additional semantic document retrieval.
+     * The retrieval is based on the dot product of
+     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     * embedding that is provided in
+     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
+     */
+    protected $embedding_spec = null;
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides [ServingConfig.ranking_expression][].
+     * The ranking expression is a single function or multiple functions that are
+     * joint by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   `dotProduct`: embedding function between embedding_field_path and query
+     *   embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     */
+    protected $ranking_expression = '';
+    /**
      * Whether to turn on safe search. This is only supported for
      * website search.
      *
@@ -289,6 +324,33 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           characters. Otherwise, an  `INVALID_ARGUMENT`  error is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec $content_search_spec
      *           A specification for configuring the behavior of content search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec $embedding_spec
+     *           Uses the provided embedding to do additional semantic document retrieval.
+     *           The retrieval is based on the dot product of
+     *           [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     *           embedding that is provided in
+     *           [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     *           If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     *           provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *     @type string $ranking_expression
+     *           The ranking expression controls the customized ranking on retrieval
+     *           documents. This overrides [ServingConfig.ranking_expression][].
+     *           The ranking expression is a single function or multiple functions that are
+     *           joint by "+".
+     *             * ranking_expression = function, { " + ", function };
+     *           Supported functions:
+     *             * double * relevance_score
+     *             * double * dotProduct(embedding_field_path)
+     *           Function variables:
+     *             `relevance_score`: pre-defined keywords, used for measure relevance
+     *             between query and document.
+     *             `embedding_field_path`: the document embedding field
+     *             used with query embedding vector.
+     *             `dotProduct`: embedding function between embedding_field_path and query
+     *             embedding vector.
+     *            Example ranking expression:
+     *              If document has an embedding field doc_embedding, the ranking expression
+     *              could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
      *     @type bool $safe_search
      *           Whether to turn on safe search. This is only supported for
      *           website search.
@@ -915,6 +977,114 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec::class);
         $this->content_search_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Uses the provided embedding to do additional semantic document retrieval.
+     * The retrieval is based on the dot product of
+     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     * embedding that is provided in
+     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec|null
+     */
+    public function getEmbeddingSpec()
+    {
+        return $this->embedding_spec;
+    }
+
+    public function hasEmbeddingSpec()
+    {
+        return isset($this->embedding_spec);
+    }
+
+    public function clearEmbeddingSpec()
+    {
+        unset($this->embedding_spec);
+    }
+
+    /**
+     * Uses the provided embedding to do additional semantic document retrieval.
+     * The retrieval is based on the dot product of
+     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     * embedding that is provided in
+     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec $var
+     * @return $this
+     */
+    public function setEmbeddingSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec::class);
+        $this->embedding_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides [ServingConfig.ranking_expression][].
+     * The ranking expression is a single function or multiple functions that are
+     * joint by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   `dotProduct`: embedding function between embedding_field_path and query
+     *   embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     * @return string
+     */
+    public function getRankingExpression()
+    {
+        return $this->ranking_expression;
+    }
+
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides [ServingConfig.ranking_expression][].
+     * The ranking expression is a single function or multiple functions that are
+     * joint by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   `dotProduct`: embedding function between embedding_field_path and query
+     *   embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRankingExpression($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ranking_expression = $var;
 
         return $this;
     }

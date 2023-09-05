@@ -27,9 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\DiscoveryEngine\V1\Client\UserEventServiceClient;
 use Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest;
-use Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest\InlineSource;
 use Google\Cloud\DiscoveryEngine\V1\ImportUserEventsResponse;
-use Google\Cloud\DiscoveryEngine\V1\UserEvent;
 use Google\Rpc\Status;
 
 /**
@@ -41,63 +39,17 @@ use Google\Rpc\Status;
  * possible for a subset of the items to be successfully inserted.
  * Operation.metadata is of type ImportMetadata.
  *
- * @param string $inlineSourceUserEventsEventType    User event type. Allowed values are:
- *
- *                                                   Generic values:
- *
- *                                                   * `search`: Search for Documents.
- *                                                   * `view-item`: Detailed page view of a Document.
- *                                                   * `view-item-list`: View of a panel or ordered list of Documents.
- *                                                   * `view-home-page`: View of the home page.
- *                                                   * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
- *
- *                                                   Retail-related values:
- *
- *                                                   * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
- *                                                   * `purchase`: Purchase an item(s)
- *
- *                                                   Media-related values:
- *
- *                                                   * `media-play`: Start/resume watching a video, playing a song, etc.
- *                                                   * `media-complete`: Finished or stopped midway through a video, song, etc.
- * @param string $inlineSourceUserEventsUserPseudoId A unique identifier for tracking visitors.
- *
- *                                                   For example, this could be implemented with an HTTP cookie, which should be
- *                                                   able to uniquely identify a visitor on a single device. This unique
- *                                                   identifier should not change if the visitor log in/out of the website.
- *
- *                                                   Do not set the field to the same fixed ID for different users. This mixes
- *                                                   the event history of those users together, which results in degraded model
- *                                                   quality.
- *
- *                                                   The field must be a UTF-8 encoded string with a length limit of 128
- *                                                   characters. Otherwise, an INVALID_ARGUMENT error is returned.
- *
- *                                                   The field should not contain PII or user-data. We recommend to use Google
- *                                                   Analytics [Client
- *                                                   ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
- *                                                   for this field.
- * @param string $formattedParent                    Parent DataStore resource name, of the form
- *                                                   `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
- *                                                   Please see {@see UserEventServiceClient::dataStoreName()} for help formatting this field.
+ * @param string $formattedParent Parent DataStore resource name, of the form
+ *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
+ *                                Please see {@see UserEventServiceClient::dataStoreName()} for help formatting this field.
  */
-function import_user_events_sample(
-    string $inlineSourceUserEventsEventType,
-    string $inlineSourceUserEventsUserPseudoId,
-    string $formattedParent
-): void {
+function import_user_events_sample(string $formattedParent): void
+{
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
     // Prepare the request message.
-    $userEvent = (new UserEvent())
-        ->setEventType($inlineSourceUserEventsEventType)
-        ->setUserPseudoId($inlineSourceUserEventsUserPseudoId);
-    $inlineSourceUserEvents = [$userEvent,];
-    $inlineSource = (new InlineSource())
-        ->setUserEvents($inlineSourceUserEvents);
     $request = (new ImportUserEventsRequest())
-        ->setInlineSource($inlineSource)
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
@@ -131,14 +83,8 @@ function import_user_events_sample(
  */
 function callSample(): void
 {
-    $inlineSourceUserEventsEventType = '[EVENT_TYPE]';
-    $inlineSourceUserEventsUserPseudoId = '[USER_PSEUDO_ID]';
     $formattedParent = UserEventServiceClient::dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
 
-    import_user_events_sample(
-        $inlineSourceUserEventsEventType,
-        $inlineSourceUserEventsUserPseudoId,
-        $formattedParent
-    );
+    import_user_events_sample($formattedParent);
 }
 // [END discoveryengine_v1_generated_UserEventService_ImportUserEvents_sync]

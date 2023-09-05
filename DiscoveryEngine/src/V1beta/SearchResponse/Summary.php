@@ -28,6 +28,13 @@ class Summary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SummarySkippedReason summary_skipped_reasons = 2;</code>
      */
     private $summary_skipped_reasons;
+    /**
+     * A collection of Safety Attribute categories and their associated
+     * confidence scores.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SafetyAttributes safety_attributes = 3;</code>
+     */
+    protected $safety_attributes = null;
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class Summary extends \Google\Protobuf\Internal\Message
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $summary_skipped_reasons
      *           Additional summary-skipped reasons. This provides the reason for ignored
      *           cases. If nothing is skipped, this field is not set.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SafetyAttributes $safety_attributes
+     *           A collection of Safety Attribute categories and their associated
+     *           confidence scores.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,44 @@ class Summary extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SummarySkippedReason::class);
         $this->summary_skipped_reasons = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A collection of Safety Attribute categories and their associated
+     * confidence scores.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SafetyAttributes safety_attributes = 3;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SafetyAttributes|null
+     */
+    public function getSafetyAttributes()
+    {
+        return $this->safety_attributes;
+    }
+
+    public function hasSafetyAttributes()
+    {
+        return isset($this->safety_attributes);
+    }
+
+    public function clearSafetyAttributes()
+    {
+        unset($this->safety_attributes);
+    }
+
+    /**
+     * A collection of Safety Attribute categories and their associated
+     * confidence scores.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SafetyAttributes safety_attributes = 3;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SafetyAttributes $var
+     * @return $this
+     */
+    public function setSafetyAttributes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SafetyAttributes::class);
+        $this->safety_attributes = $var;
 
         return $this;
     }

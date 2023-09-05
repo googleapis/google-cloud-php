@@ -43,7 +43,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * the event history of those users together, which results in degraded model
      * quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * The field should not contain PII or user-data. We recommend to use Google
      * Analytics [Client
      * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
@@ -106,19 +106,16 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [RecommendationService.Recommend][]. This field enables accurate
      * attribution of recommendation model performance.
      * The value must be one of:
-     * * [PredictResponse.attribution_token][] for events that are the result of
+     * * [RecommendResponse.attribution_token][] for events that are the result of
      * [RecommendationService.Recommend][].
      * * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
-     * * [CompleteQueryResponse.attribution_token][] for events that are the
-     * result of
-     * [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery].
      * This token enables us to accurately attribute page view or conversion
      * completion back to the event and the particular predict response containing
      * this clicked/purchased product. If user clicks on product K in the
-     * recommendation results, pass [PredictResponse.attribution_token][] as a URL
-     * parameter to product K's page. When recording events on product K's page,
-     * log the [PredictResponse.attribution_token][] to this field.
+     * recommendation results, pass [RecommendResponse.attribution_token][] as a
+     * URL parameter to product K's page. When recording events on product K's
+     * page, log the [RecommendResponse.attribution_token][] to this field.
      *
      * Generated from protobuf field <code>string attribution_token = 8;</code>
      */
@@ -128,20 +125,22 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * predicate from one or more fields of the documents being filtered.
      * One example is for `search` events, the associated
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
-     * a filter expression in [SearchRequest.filter][] conforming to
-     * https://google.aip.dev/160#filtering.
+     * a filter expression in
+     * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
+     * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
      * [RecommendationService.RecommendRequest][], this field may be populated
      * directly from [RecommendationService.RecommendRequest.filter][] conforming
      * to https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string filter = 9;</code>
      */
     protected $filter = '';
     /**
-     * List of Documents associated with this user event.
+     * List of [Document][google.cloud.discoveryengine.v1.Document]s associated
+     * with this user event.
      * This field is optional except for the following event types:
      * * `view-item`
      * * `add-to-cart`
@@ -166,14 +165,16 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     protected $panel = null;
     /**
-     * Search API details related to the event.
+     * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+     * details related to the event.
      * This field should be set for `search` event.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchInfo search_info = 12;</code>
      */
     protected $search_info = null;
     /**
-     * CompleteQuery API details related to the event.
+     * [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
+     * details related to the event.
      * This field should be set for `search` event when autocomplete function is
      * enabled and the user clicks a suggestion for search.
      *
@@ -220,7 +221,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *   256 characters.
      * * For number attributes, at most 400 values are allowed.
      * For product recommendations, an example of extra user information is
-     * ` traffic_channel`, which is how a user arrives at the site. Users can
+     * `traffic_channel`, which is how a user arrives at the site. Users can
      * arrive
      * at the site by coming to the site directly, coming through Google
      * search, or in other ways.
@@ -264,7 +265,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           the event history of those users together, which results in degraded model
      *           quality.
      *           The field must be a UTF-8 encoded string with a length limit of 128
-     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *           The field should not contain PII or user-data. We recommend to use Google
      *           Analytics [Client
      *           ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
@@ -303,34 +304,33 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           [RecommendationService.Recommend][]. This field enables accurate
      *           attribution of recommendation model performance.
      *           The value must be one of:
-     *           * [PredictResponse.attribution_token][] for events that are the result of
+     *           * [RecommendResponse.attribution_token][] for events that are the result of
      *           [RecommendationService.Recommend][].
      *           * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      *           [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
-     *           * [CompleteQueryResponse.attribution_token][] for events that are the
-     *           result of
-     *           [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery].
      *           This token enables us to accurately attribute page view or conversion
      *           completion back to the event and the particular predict response containing
      *           this clicked/purchased product. If user clicks on product K in the
-     *           recommendation results, pass [PredictResponse.attribution_token][] as a URL
-     *           parameter to product K's page. When recording events on product K's page,
-     *           log the [PredictResponse.attribution_token][] to this field.
+     *           recommendation results, pass [RecommendResponse.attribution_token][] as a
+     *           URL parameter to product K's page. When recording events on product K's
+     *           page, log the [RecommendResponse.attribution_token][] to this field.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered.
      *           One example is for `search` events, the associated
      *           [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
-     *           a filter expression in [SearchRequest.filter][] conforming to
-     *           https://google.aip.dev/160#filtering.
+     *           a filter expression in
+     *           [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
+     *           conforming to https://google.aip.dev/160#filtering.
      *           Similarly, for `view-item-list` events that are generated from a
      *           [RecommendationService.RecommendRequest][], this field may be populated
      *           directly from [RecommendationService.RecommendRequest.filter][] conforming
      *           to https://google.aip.dev/160#filtering.
      *           The value must be a UTF-8 encoded string with a length limit of 1,000
-     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $documents
-     *           List of Documents associated with this user event.
+     *           List of [Document][google.cloud.discoveryengine.v1.Document]s associated
+     *           with this user event.
      *           This field is optional except for the following event types:
      *           * `view-item`
      *           * `add-to-cart`
@@ -347,10 +347,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\PanelInfo $panel
      *           Panel metadata associated with this user event.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchInfo $search_info
-     *           Search API details related to the event.
+     *           [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+     *           details related to the event.
      *           This field should be set for `search` event.
      *     @type \Google\Cloud\DiscoveryEngine\V1\CompletionInfo $completion_info
-     *           CompleteQuery API details related to the event.
+     *           [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
+     *           details related to the event.
      *           This field should be set for `search` event when autocomplete function is
      *           enabled and the user clicks a suggestion for search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\TransactionInfo $transaction_info
@@ -381,7 +383,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *             256 characters.
      *           * For number attributes, at most 400 values are allowed.
      *           For product recommendations, an example of extra user information is
-     *           ` traffic_channel`, which is how a user arrives at the site. Users can
+     *           `traffic_channel`, which is how a user arrives at the site. Users can
      *           arrive
      *           at the site by coming to the site directly, coming through Google
      *           search, or in other ways.
@@ -453,7 +455,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * the event history of those users together, which results in degraded model
      * quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * The field should not contain PII or user-data. We recommend to use Google
      * Analytics [Client
      * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
@@ -476,7 +478,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * the event history of those users together, which results in degraded model
      * quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * The field should not contain PII or user-data. We recommend to use Google
      * Analytics [Client
      * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
@@ -696,19 +698,16 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [RecommendationService.Recommend][]. This field enables accurate
      * attribution of recommendation model performance.
      * The value must be one of:
-     * * [PredictResponse.attribution_token][] for events that are the result of
+     * * [RecommendResponse.attribution_token][] for events that are the result of
      * [RecommendationService.Recommend][].
      * * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
-     * * [CompleteQueryResponse.attribution_token][] for events that are the
-     * result of
-     * [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery].
      * This token enables us to accurately attribute page view or conversion
      * completion back to the event and the particular predict response containing
      * this clicked/purchased product. If user clicks on product K in the
-     * recommendation results, pass [PredictResponse.attribution_token][] as a URL
-     * parameter to product K's page. When recording events on product K's page,
-     * log the [PredictResponse.attribution_token][] to this field.
+     * recommendation results, pass [RecommendResponse.attribution_token][] as a
+     * URL parameter to product K's page. When recording events on product K's
+     * page, log the [RecommendResponse.attribution_token][] to this field.
      *
      * Generated from protobuf field <code>string attribution_token = 8;</code>
      * @return string
@@ -724,19 +723,16 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [RecommendationService.Recommend][]. This field enables accurate
      * attribution of recommendation model performance.
      * The value must be one of:
-     * * [PredictResponse.attribution_token][] for events that are the result of
+     * * [RecommendResponse.attribution_token][] for events that are the result of
      * [RecommendationService.Recommend][].
      * * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
-     * * [CompleteQueryResponse.attribution_token][] for events that are the
-     * result of
-     * [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery].
      * This token enables us to accurately attribute page view or conversion
      * completion back to the event and the particular predict response containing
      * this clicked/purchased product. If user clicks on product K in the
-     * recommendation results, pass [PredictResponse.attribution_token][] as a URL
-     * parameter to product K's page. When recording events on product K's page,
-     * log the [PredictResponse.attribution_token][] to this field.
+     * recommendation results, pass [RecommendResponse.attribution_token][] as a
+     * URL parameter to product K's page. When recording events on product K's
+     * page, log the [RecommendResponse.attribution_token][] to this field.
      *
      * Generated from protobuf field <code>string attribution_token = 8;</code>
      * @param string $var
@@ -755,14 +751,15 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * predicate from one or more fields of the documents being filtered.
      * One example is for `search` events, the associated
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
-     * a filter expression in [SearchRequest.filter][] conforming to
-     * https://google.aip.dev/160#filtering.
+     * a filter expression in
+     * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
+     * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
      * [RecommendationService.RecommendRequest][], this field may be populated
      * directly from [RecommendationService.RecommendRequest.filter][] conforming
      * to https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string filter = 9;</code>
      * @return string
@@ -777,14 +774,15 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * predicate from one or more fields of the documents being filtered.
      * One example is for `search` events, the associated
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
-     * a filter expression in [SearchRequest.filter][] conforming to
-     * https://google.aip.dev/160#filtering.
+     * a filter expression in
+     * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
+     * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
      * [RecommendationService.RecommendRequest][], this field may be populated
      * directly from [RecommendationService.RecommendRequest.filter][] conforming
      * to https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string filter = 9;</code>
      * @param string $var
@@ -799,7 +797,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Documents associated with this user event.
+     * List of [Document][google.cloud.discoveryengine.v1.Document]s associated
+     * with this user event.
      * This field is optional except for the following event types:
      * * `view-item`
      * * `add-to-cart`
@@ -823,7 +822,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Documents associated with this user event.
+     * List of [Document][google.cloud.discoveryengine.v1.Document]s associated
+     * with this user event.
      * This field is optional except for the following event types:
      * * `view-item`
      * * `add-to-cart`
@@ -887,7 +887,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Search API details related to the event.
+     * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+     * details related to the event.
      * This field should be set for `search` event.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchInfo search_info = 12;</code>
@@ -909,7 +910,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Search API details related to the event.
+     * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+     * details related to the event.
      * This field should be set for `search` event.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchInfo search_info = 12;</code>
@@ -925,7 +927,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CompleteQuery API details related to the event.
+     * [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
+     * details related to the event.
      * This field should be set for `search` event when autocomplete function is
      * enabled and the user clicks a suggestion for search.
      *
@@ -948,7 +951,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CompleteQuery API details related to the event.
+     * [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
+     * details related to the event.
      * This field should be set for `search` event when autocomplete function is
      * enabled and the user clicks a suggestion for search.
      *
@@ -1077,7 +1081,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *   256 characters.
      * * For number attributes, at most 400 values are allowed.
      * For product recommendations, an example of extra user information is
-     * ` traffic_channel`, which is how a user arrives at the site. Users can
+     * `traffic_channel`, which is how a user arrives at the site. Users can
      * arrive
      * at the site by coming to the site directly, coming through Google
      * search, or in other ways.
@@ -1109,7 +1113,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *   256 characters.
      * * For number attributes, at most 400 values are allowed.
      * For product recommendations, an example of extra user information is
-     * ` traffic_channel`, which is how a user arrives at the site. Users can
+     * `traffic_channel`, which is how a user arrives at the site. Users can
      * arrive
      * at the site by coming to the site directly, coming through Google
      * search, or in other ways.

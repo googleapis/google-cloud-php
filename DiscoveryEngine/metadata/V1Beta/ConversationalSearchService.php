@@ -24,8 +24,8 @@ class ConversationalSearchService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Þ 
-Ggoogle/cloud/discoveryengine/v1beta/conversational_search_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/discoveryengine/v1beta/conversation.proto8google/cloud/discoveryengine/v1beta/search_service.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Í
+û"
+Ggoogle/cloud/discoveryengine/v1beta/conversational_search_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/discoveryengine/v1beta/conversation.proto8google/cloud/discoveryengine/v1beta/search_service.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ï
 ConverseConversationRequestA
 name (	B3àAúA-
 +discoveryengine.googleapis.com/ConversationB
@@ -33,10 +33,16 @@ Ggoogle/cloud/discoveryengine/v1beta/conversational_search_service.proto#google
 serving_config (	B1úA.
 ,discoveryengine.googleapis.com/ServingConfigG
 conversation (21.google.cloud.discoveryengine.v1beta.Conversation
-safe_search ("ü
+safe_search (e
+user_labels (2P.google.cloud.discoveryengine.v1beta.ConverseConversationRequest.UserLabelsEntryf
+summary_spec (2P.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec1
+UserLabelsEntry
+key (	
+value (	:8"—
 ConverseConversationResponse9
 reply (2*.google.cloud.discoveryengine.v1beta.ReplyG
-conversation (21.google.cloud.discoveryengine.v1beta.ConversationX
+conversation (21.google.cloud.discoveryengine.v1beta.Conversation
+related_questions (	X
 search_results (2@.google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult"«
 CreateConversationRequest@
 parent (	B0àAúA*

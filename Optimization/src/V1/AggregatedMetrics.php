@@ -60,11 +60,9 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     /**
      * The total duration should be equal to the sum of all durations above.
      * For routes, it also corresponds to:
-     * ```
      * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
-     * -
+     * `-`
      * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
-     * ```
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      */
@@ -131,11 +129,9 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $total_duration
      *           The total duration should be equal to the sum of all durations above.
      *           For routes, it also corresponds to:
-     *           ```
      *           [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
-     *           -
+     *           `-`
      *           [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
-     *           ```
      *     @type float $travel_distance_meters
      *           Total travel distance for a route or a solution.
      *     @type array|\Google\Protobuf\Internal\MapField $max_loads
@@ -375,11 +371,9 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     /**
      * The total duration should be equal to the sum of all durations above.
      * For routes, it also corresponds to:
-     * ```
      * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
-     * -
+     * `-`
      * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
-     * ```
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      * @return \Google\Protobuf\Duration|null
@@ -402,11 +396,9 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     /**
      * The total duration should be equal to the sum of all durations above.
      * For routes, it also corresponds to:
-     * ```
      * [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]
-     * -
+     * `-`
      * [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]
-     * ```
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      * @param \Google\Protobuf\Duration $var
