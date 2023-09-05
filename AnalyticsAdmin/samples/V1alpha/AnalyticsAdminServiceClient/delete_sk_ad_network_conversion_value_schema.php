@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,37 +22,27 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateMeasurementProtocolSecret_sync]
-use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1beta\MeasurementProtocolSecret;
-use Google\Analytics\Admin\V1beta\UpdateMeasurementProtocolSecretRequest;
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteSKAdNetworkConversionValueSchema_sync]
+use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * Updates a measurement protocol secret.
+ * Deletes target SKAdNetworkConversionValueSchema.
  *
- * @param string $measurementProtocolSecretDisplayName Human-readable display name for this secret.
+ * @param string $formattedName The name of the SKAdNetworkConversionValueSchema to delete.
+ *                              Format:
+ *                              properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
+ *                              Please see {@see AnalyticsAdminServiceClient::sKAdNetworkConversionValueSchemaName()} for help formatting this field.
  */
-function update_measurement_protocol_secret_sample(
-    string $measurementProtocolSecretDisplayName
-): void {
+function delete_sk_ad_network_conversion_value_schema_sample(string $formattedName): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare the request message.
-    $measurementProtocolSecret = (new MeasurementProtocolSecret())
-        ->setDisplayName($measurementProtocolSecretDisplayName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateMeasurementProtocolSecretRequest())
-        ->setMeasurementProtocolSecret($measurementProtocolSecret)
-        ->setUpdateMask($updateMask);
-
     // Call the API and handle any network failures.
     try {
-        /** @var MeasurementProtocolSecret $response */
-        $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        $analyticsAdminServiceClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+        printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -69,8 +59,12 @@ function update_measurement_protocol_secret_sample(
  */
 function callSample(): void
 {
-    $measurementProtocolSecretDisplayName = '[DISPLAY_NAME]';
+    $formattedName = AnalyticsAdminServiceClient::sKAdNetworkConversionValueSchemaName(
+        '[PROPERTY]',
+        '[DATA_STREAM]',
+        '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]'
+    );
 
-    update_measurement_protocol_secret_sample($measurementProtocolSecretDisplayName);
+    delete_sk_ad_network_conversion_value_schema_sample($formattedName);
 }
-// [END analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateMeasurementProtocolSecret_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteSKAdNetworkConversionValueSchema_sync]

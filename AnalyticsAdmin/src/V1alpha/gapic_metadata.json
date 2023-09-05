@@ -170,6 +170,11 @@
                                 "createProperty"
                             ]
                         },
+                        "CreateSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "createSKAdNetworkConversionValueSchema"
+                            ]
+                        },
                         "CreateSearchAds360Link": {
                             "methods": [
                                 "createSearchAds360Link"
@@ -253,6 +258,11 @@
                         "DeleteProperty": {
                             "methods": [
                                 "deleteProperty"
+                            ]
+                        },
+                        "DeleteSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "deleteSKAdNetworkConversionValueSchema"
                             ]
                         },
                         "DeleteSearchAds360Link": {
@@ -385,6 +395,11 @@
                                 "getProperty"
                             ]
                         },
+                        "GetSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "getSKAdNetworkConversionValueSchema"
+                            ]
+                        },
                         "GetSearchAds360Link": {
                             "methods": [
                                 "getSearchAds360Link"
@@ -493,6 +508,11 @@
                         "ListProperties": {
                             "methods": [
                                 "listProperties"
+                            ]
+                        },
+                        "ListSKAdNetworkConversionValueSchemas": {
+                            "methods": [
+                                "listSKAdNetworkConversionValueSchemas"
                             ]
                         },
                         "ListSearchAds360Links": {
@@ -613,6 +633,11 @@
                         "UpdateProperty": {
                             "methods": [
                                 "updateProperty"
+                            ]
+                        },
+                        "UpdateSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "updateSKAdNetworkConversionValueSchema"
                             ]
                         },
                         "UpdateSearchAds360Link": {
