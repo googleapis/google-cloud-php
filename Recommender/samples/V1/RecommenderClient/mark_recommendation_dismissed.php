@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,37 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START recommender_v1_generated_Recommender_GetRecommenderConfig_sync]
+// [START recommender_v1_generated_Recommender_MarkRecommendationDismissed_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Recommender\V1\Recommendation;
 use Google\Cloud\Recommender\V1\RecommenderClient;
-use Google\Cloud\Recommender\V1\RecommenderConfig;
 
 /**
- * Gets the requested Recommender Config. There is only one instance of the
- * config for each Recommender.
+ * Mark the Recommendation State as Dismissed. Users can use this method to
+ * indicate to the Recommender API that an ACTIVE recommendation has to
+ * be marked back as DISMISSED.
  *
- * @param string $formattedName Name of the Recommendation Config to get.
+ * MarkRecommendationDismissed can be applied to recommendations in ACTIVE
+ * state.
  *
- *                              Acceptable formats:
+ * Requires the recommender.*.update IAM permission for the specified
+ * recommender.
  *
- *                              * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *
- *                              * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *
- *                              * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *
- *                              * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *                              Please see {@see RecommenderClient::recommenderConfigName()} for help formatting this field.
+ * @param string $formattedName Name of the recommendation. Please see
+ *                              {@see RecommenderClient::recommendationName()} for help formatting this field.
  */
-function get_recommender_config_sample(string $formattedName): void
+function mark_recommendation_dismissed_sample(string $formattedName): void
 {
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
     // Call the API and handle any network failures.
     try {
-        /** @var RecommenderConfig $response */
-        $response = $recommenderClient->getRecommenderConfig($formattedName);
+        /** @var Recommendation $response */
+        $response = $recommenderClient->markRecommendationDismissed($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -70,12 +67,13 @@ function get_recommender_config_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = RecommenderClient::recommenderConfigName(
+    $formattedName = RecommenderClient::recommendationName(
         '[PROJECT]',
         '[LOCATION]',
-        '[RECOMMENDER]'
+        '[RECOMMENDER]',
+        '[RECOMMENDATION]'
     );
 
-    get_recommender_config_sample($formattedName);
+    mark_recommendation_dismissed_sample($formattedName);
 }
-// [END recommender_v1_generated_Recommender_GetRecommenderConfig_sync]
+// [END recommender_v1_generated_Recommender_MarkRecommendationDismissed_sync]
