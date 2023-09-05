@@ -105,11 +105,17 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      */
     private $single_utterance_end_time_offset = null;
     /**
-     * No speech timeout settings observed at runtime.
+     * No speech timeout settings for the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration no_speech_timeout = 15;</code>
      */
     private $no_speech_timeout = null;
+    /**
+     * Speech endpointing timeout settings for the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration endpointing_timeout = 19;</code>
+     */
+    private $endpointing_timeout = null;
     /**
      * Whether the streaming terminates with an injected text query.
      *
@@ -170,7 +176,9 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      *           Time offset of the end-of-single-utterance signal relative to the
      *           beginning of the stream.
      *     @type \Google\Protobuf\Duration $no_speech_timeout
-     *           No speech timeout settings observed at runtime.
+     *           No speech timeout settings for the stream.
+     *     @type \Google\Protobuf\Duration $endpointing_timeout
+     *           Speech endpointing timeout settings for the stream.
      *     @type bool $is_input_text
      *           Whether the streaming terminates with an injected text query.
      *     @type \Google\Protobuf\Duration $client_half_close_time_offset
@@ -569,7 +577,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * No speech timeout settings observed at runtime.
+     * No speech timeout settings for the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration no_speech_timeout = 15;</code>
      * @return \Google\Protobuf\Duration|null
@@ -590,7 +598,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * No speech timeout settings observed at runtime.
+     * No speech timeout settings for the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration no_speech_timeout = 15;</code>
      * @param \Google\Protobuf\Duration $var
@@ -600,6 +608,42 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->no_speech_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Speech endpointing timeout settings for the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration endpointing_timeout = 19;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getEndpointingTimeout()
+    {
+        return $this->endpointing_timeout;
+    }
+
+    public function hasEndpointingTimeout()
+    {
+        return isset($this->endpointing_timeout);
+    }
+
+    public function clearEndpointingTimeout()
+    {
+        unset($this->endpointing_timeout);
+    }
+
+    /**
+     * Speech endpointing timeout settings for the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration endpointing_timeout = 19;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setEndpointingTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->endpointing_timeout = $var;
 
         return $this;
     }
