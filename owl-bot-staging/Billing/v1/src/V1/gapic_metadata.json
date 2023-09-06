@@ -1,0 +1,87 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.billing.v1",
+    "libraryPackage": "Google\\Cloud\\Billing\\V1",
+    "services": {
+        "CloudBilling": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudBillingGapicClient",
+                    "rpcs": {
+                        "CreateBillingAccount": {
+                            "methods": [
+                                "createBillingAccount"
+                            ]
+                        },
+                        "GetBillingAccount": {
+                            "methods": [
+                                "getBillingAccount"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetProjectBillingInfo": {
+                            "methods": [
+                                "getProjectBillingInfo"
+                            ]
+                        },
+                        "ListBillingAccounts": {
+                            "methods": [
+                                "listBillingAccounts"
+                            ]
+                        },
+                        "ListProjectBillingInfo": {
+                            "methods": [
+                                "listProjectBillingInfo"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateBillingAccount": {
+                            "methods": [
+                                "updateBillingAccount"
+                            ]
+                        },
+                        "UpdateProjectBillingInfo": {
+                            "methods": [
+                                "updateProjectBillingInfo"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CloudCatalog": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudCatalogGapicClient",
+                    "rpcs": {
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "ListSkus": {
+                            "methods": [
+                                "listSkus"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
