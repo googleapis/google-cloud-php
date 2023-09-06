@@ -278,7 +278,7 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setBillingEnabled($billingEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->projectBillingInfoName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $response = $gapicClient->getProjectBillingInfo($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -310,7 +310,7 @@ class CloudBillingClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->projectBillingInfoName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         try {
             $gapicClient->getProjectBillingInfo($formattedName);
             // If the $gapicClient method call did not throw, fail the test
