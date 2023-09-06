@@ -47,18 +47,6 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      */
     private $solving_mode = 0;
     /**
-     * Truncates the number of validation errors returned. These errors are
-     * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
-     * error detail (https://cloud.google.com/apis/design/errors#error_details),
-     * unless solving_mode=VALIDATE_ONLY: see the
-     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
-     * field.
-     * This defaults to 100 and is capped at 10,000.
-     *
-     * Generated from protobuf field <code>optional int32 max_validation_errors = 5;</code>
-     */
-    private $max_validation_errors = null;
-    /**
      * Search mode used to solve the request.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.OptimizeToursRequest.SearchMode search_mode = 6;</code>
@@ -241,6 +229,18 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      */
     private $geodesic_meters_per_second = null;
     /**
+     * Truncates the number of validation errors returned. These errors are
+     * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
+     * error detail (https://cloud.google.com/apis/design/errors#error_details),
+     * unless solving_mode=VALIDATE_ONLY: see the
+     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
+     * field.
+     * This defaults to 100 and is capped at 10,000.
+     *
+     * Generated from protobuf field <code>optional int32 max_validation_errors = 5;</code>
+     */
+    private $max_validation_errors = null;
+    /**
      * Label that may be used to identify this request, reported back in the
      * [OptimizeToursResponse.request_label][google.cloud.optimization.v1.OptimizeToursResponse.request_label].
      *
@@ -280,14 +280,6 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           Shipment model to solve.
      *     @type int $solving_mode
      *           By default, the solving mode is `DEFAULT_SOLVE` (0).
-     *     @type int $max_validation_errors
-     *           Truncates the number of validation errors returned. These errors are
-     *           typically attached to an INVALID_ARGUMENT error payload as a BadRequest
-     *           error detail (https://cloud.google.com/apis/design/errors#error_details),
-     *           unless solving_mode=VALIDATE_ONLY: see the
-     *           [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
-     *           field.
-     *           This defaults to 100 and is capped at 10,000.
      *     @type int $search_mode
      *           Search mode used to solve the request.
      *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $injected_first_solution_routes
@@ -426,6 +418,14 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           When `use_geodesic_distances` is true, this field must be set and defines
      *           the speed applied to compute travel times. Its value must be at least 1.0
      *           meters/seconds.
+     *     @type int $max_validation_errors
+     *           Truncates the number of validation errors returned. These errors are
+     *           typically attached to an INVALID_ARGUMENT error payload as a BadRequest
+     *           error detail (https://cloud.google.com/apis/design/errors#error_details),
+     *           unless solving_mode=VALIDATE_ONLY: see the
+     *           [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
+     *           field.
+     *           This defaults to 100 and is capped at 10,000.
      *     @type string $label
      *           Label that may be used to identify this request, reported back in the
      *           [OptimizeToursResponse.request_label][google.cloud.optimization.v1.OptimizeToursResponse.request_label].
@@ -575,54 +575,6 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Optimization\V1\OptimizeToursRequest\SolvingMode::class);
         $this->solving_mode = $var;
-
-        return $this;
-    }
-
-    /**
-     * Truncates the number of validation errors returned. These errors are
-     * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
-     * error detail (https://cloud.google.com/apis/design/errors#error_details),
-     * unless solving_mode=VALIDATE_ONLY: see the
-     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
-     * field.
-     * This defaults to 100 and is capped at 10,000.
-     *
-     * Generated from protobuf field <code>optional int32 max_validation_errors = 5;</code>
-     * @return int
-     */
-    public function getMaxValidationErrors()
-    {
-        return isset($this->max_validation_errors) ? $this->max_validation_errors : 0;
-    }
-
-    public function hasMaxValidationErrors()
-    {
-        return isset($this->max_validation_errors);
-    }
-
-    public function clearMaxValidationErrors()
-    {
-        unset($this->max_validation_errors);
-    }
-
-    /**
-     * Truncates the number of validation errors returned. These errors are
-     * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
-     * error detail (https://cloud.google.com/apis/design/errors#error_details),
-     * unless solving_mode=VALIDATE_ONLY: see the
-     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
-     * field.
-     * This defaults to 100 and is capped at 10,000.
-     *
-     * Generated from protobuf field <code>optional int32 max_validation_errors = 5;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setMaxValidationErrors($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->max_validation_errors = $var;
 
         return $this;
     }
@@ -1161,6 +1113,54 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->geodesic_meters_per_second = $var;
+
+        return $this;
+    }
+
+    /**
+     * Truncates the number of validation errors returned. These errors are
+     * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
+     * error detail (https://cloud.google.com/apis/design/errors#error_details),
+     * unless solving_mode=VALIDATE_ONLY: see the
+     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
+     * field.
+     * This defaults to 100 and is capped at 10,000.
+     *
+     * Generated from protobuf field <code>optional int32 max_validation_errors = 5;</code>
+     * @return int
+     */
+    public function getMaxValidationErrors()
+    {
+        return isset($this->max_validation_errors) ? $this->max_validation_errors : 0;
+    }
+
+    public function hasMaxValidationErrors()
+    {
+        return isset($this->max_validation_errors);
+    }
+
+    public function clearMaxValidationErrors()
+    {
+        unset($this->max_validation_errors);
+    }
+
+    /**
+     * Truncates the number of validation errors returned. These errors are
+     * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
+     * error detail (https://cloud.google.com/apis/design/errors#error_details),
+     * unless solving_mode=VALIDATE_ONLY: see the
+     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
+     * field.
+     * This defaults to 100 and is capped at 10,000.
+     *
+     * Generated from protobuf field <code>optional int32 max_validation_errors = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxValidationErrors($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_validation_errors = $var;
 
         return $this;
     }
