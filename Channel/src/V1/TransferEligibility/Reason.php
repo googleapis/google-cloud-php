@@ -37,12 +37,20 @@ class Reason
      * Generated from protobuf enum <code>SKU_SUSPENDED = 3;</code>
      */
     const SKU_SUSPENDED = 3;
+    /**
+     * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
+     *
+     * Generated from protobuf enum <code>CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU = 4;</code>
+     */
+    const CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU = 4;
 
     private static $valueToName = [
         self::REASON_UNSPECIFIED => 'REASON_UNSPECIFIED',
         self::PENDING_TOS_ACCEPTANCE => 'PENDING_TOS_ACCEPTANCE',
         self::SKU_NOT_ELIGIBLE => 'SKU_NOT_ELIGIBLE',
         self::SKU_SUSPENDED => 'SKU_SUSPENDED',
+        self::CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU => 'CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU',
     ];
 
     public static function name($value)

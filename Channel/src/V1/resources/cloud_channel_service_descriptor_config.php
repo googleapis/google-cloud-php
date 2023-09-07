@@ -704,6 +704,18 @@ return [
                     ],
                 ],
             ],
+            'QueryEligibleBillingAccounts' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'customer',
+                        'fieldAccessors' => [
+                            'getCustomer',
+                        ],
+                    ],
+                ],
+            ],
             'RegisterSubscriber' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Channel\V1\RegisterSubscriberResponse',

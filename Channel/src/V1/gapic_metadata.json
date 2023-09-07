@@ -224,6 +224,11 @@
                                 "provisionCloudIdentity"
                             ]
                         },
+                        "QueryEligibleBillingAccounts": {
+                            "methods": [
+                                "queryEligibleBillingAccounts"
+                            ]
+                        },
                         "RegisterSubscriber": {
                             "methods": [
                                 "registerSubscriber"

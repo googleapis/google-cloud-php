@@ -20,7 +20,7 @@ class BillingAccountPurchaseInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.BillingAccount billing_account = 1;</code>
      */
-    protected $billing_account = null;
+    private $billing_account = null;
 
     /**
      * Constructor.
