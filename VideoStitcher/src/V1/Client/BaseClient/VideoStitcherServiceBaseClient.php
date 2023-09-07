@@ -85,7 +85,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Video\Stitcher\V1\VideoStitcherServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -472,6 +474,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::createCdnKeyAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/create_cdn_key.php
+     *
      * @param CreateCdnKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -497,6 +501,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::createLiveConfigAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/create_live_config.php
+     *
      * @param CreateLiveConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -521,6 +527,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::createLiveSessionAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/create_live_session.php
+     *
      * @param CreateLiveSessionRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -544,6 +552,8 @@ abstract class VideoStitcherServiceBaseClient
      * Creates a slate.
      *
      * The async variant is {@see self::createSlateAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/create_slate.php
      *
      * @param CreateSlateRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -570,6 +580,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::createVodSessionAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/create_vod_session.php
+     *
      * @param CreateVodSessionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -593,6 +605,8 @@ abstract class VideoStitcherServiceBaseClient
      * Deletes the specified CDN key.
      *
      * The async variant is {@see self::deleteCdnKeyAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/delete_cdn_key.php
      *
      * @param DeleteCdnKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -618,6 +632,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::deleteLiveConfigAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/delete_live_config.php
+     *
      * @param DeleteLiveConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -641,6 +657,8 @@ abstract class VideoStitcherServiceBaseClient
      * Deletes the specified slate.
      *
      * The async variant is {@see self::deleteSlateAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/delete_slate.php
      *
      * @param DeleteSlateRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -666,6 +684,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::getCdnKeyAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/get_cdn_key.php
+     *
      * @param GetCdnKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -689,6 +709,8 @@ abstract class VideoStitcherServiceBaseClient
      * Returns the specified ad tag detail for the specified live session.
      *
      * The async variant is {@see self::getLiveAdTagDetailAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/get_live_ad_tag_detail.php
      *
      * @param GetLiveAdTagDetailRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -715,6 +737,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::getLiveConfigAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/get_live_config.php
+     *
      * @param GetLiveConfigRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -738,6 +762,8 @@ abstract class VideoStitcherServiceBaseClient
      * Returns the details for the specified live session.
      *
      * The async variant is {@see self::getLiveSessionAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/get_live_session.php
      *
      * @param GetLiveSessionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -763,6 +789,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::getSlateAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/get_slate.php
+     *
      * @param GetSlateRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -786,6 +814,8 @@ abstract class VideoStitcherServiceBaseClient
      * Returns the specified ad tag detail for the specified VOD session.
      *
      * The async variant is {@see self::getVodAdTagDetailAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/get_vod_ad_tag_detail.php
      *
      * @param GetVodAdTagDetailRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -812,6 +842,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::getVodSessionAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/get_vod_session.php
+     *
      * @param GetVodSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -835,6 +867,8 @@ abstract class VideoStitcherServiceBaseClient
      * Returns the specified stitching information for the specified VOD session.
      *
      * The async variant is {@see self::getVodStitchDetailAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/get_vod_stitch_detail.php
      *
      * @param GetVodStitchDetailRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -860,6 +894,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::listCdnKeysAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/list_cdn_keys.php
+     *
      * @param ListCdnKeysRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -883,6 +919,8 @@ abstract class VideoStitcherServiceBaseClient
      * Return the list of ad tag details for the specified live session.
      *
      * The async variant is {@see self::listLiveAdTagDetailsAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/list_live_ad_tag_details.php
      *
      * @param ListLiveAdTagDetailsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -909,6 +947,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::listLiveConfigsAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/list_live_configs.php
+     *
      * @param ListLiveConfigsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -933,6 +973,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::listSlatesAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/list_slates.php
+     *
      * @param ListSlatesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -956,6 +998,8 @@ abstract class VideoStitcherServiceBaseClient
      * Return the list of ad tag details for the specified VOD session.
      *
      * The async variant is {@see self::listVodAdTagDetailsAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/list_vod_ad_tag_details.php
      *
      * @param ListVodAdTagDetailsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -982,6 +1026,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::listVodStitchDetailsAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/list_vod_stitch_details.php
+     *
      * @param ListVodStitchDetailsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -1007,6 +1053,8 @@ abstract class VideoStitcherServiceBaseClient
      *
      * The async variant is {@see self::updateCdnKeyAsync()} .
      *
+     * @example samples/V1/VideoStitcherServiceClient/update_cdn_key.php
+     *
      * @param UpdateCdnKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1030,6 +1078,8 @@ abstract class VideoStitcherServiceBaseClient
      * Updates the specified slate.
      *
      * The async variant is {@see self::updateSlateAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/update_slate.php
      *
      * @param UpdateSlateRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

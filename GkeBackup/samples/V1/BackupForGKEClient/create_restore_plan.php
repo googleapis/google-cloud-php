@@ -35,19 +35,19 @@ use Google\Rpc\Status;
  * Creates a new RestorePlan in a given location.
  *
  * @param string $formattedParent                The location within which to create the RestorePlan.
- *                                               Format: projects/&#42;/locations/*
+ *                                               Format: `projects/&#42;/locations/*`
  *                                               Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
- * @param string $formattedRestorePlanBackupPlan Immutable. A reference to the [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may be used as the
- *                                               source for Restores created via this RestorePlan.
- *                                               Format: projects/&#42;/locations/&#42;/backupPlans/*. Please see
+ * @param string $formattedRestorePlanBackupPlan Immutable. A reference to the
+ *                                               [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
+ *                                               be used as the source for Restores created via this RestorePlan. Format:
+ *                                               `projects/&#42;/locations/&#42;/backupPlans/*`. Please see
  *                                               {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
- * @param string $formattedRestorePlanCluster    Immutable. The target cluster into which Restores created via this RestorePlan
- *                                               will restore data. NOTE: the cluster's region must be the same as the
- *                                               RestorePlan.
- *                                               Valid formats:
+ * @param string $formattedRestorePlanCluster    Immutable. The target cluster into which Restores created via
+ *                                               this RestorePlan will restore data. NOTE: the cluster's region must be the
+ *                                               same as the RestorePlan. Valid formats:
  *
- *                                               - projects/&#42;/locations/&#42;/clusters/*
- *                                               - projects/&#42;/zones/&#42;/clusters/*
+ *                                               - `projects/&#42;/locations/&#42;/clusters/*`
+ *                                               - `projects/&#42;/zones/&#42;/clusters/*`
  *                                               Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
  * @param string $restorePlanId                  The client-provided short name for the RestorePlan resource.
  *                                               This name must:

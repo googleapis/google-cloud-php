@@ -41,6 +41,25 @@ class ListLinksRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. The parent resource whose links are to be listed:
+     *
+     *                       "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
+     *                       "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *                       "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *                       "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
+     *                       Please see {@see ConfigServiceV2Client::logBucketName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\ListLinksRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

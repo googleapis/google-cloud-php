@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField].
+ * The request for
+ * [FirestoreAdmin.UpdateField][google.firestore.admin.v1.FirestoreAdmin.UpdateField].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.UpdateFieldRequest</code>
  */
@@ -28,6 +29,19 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Firestore\Admin\V1\Field $field Required. The field to be updated.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Firestore\Admin\V1\Field $field): self
+    {
+        return (new self())
+            ->setField($field);
+    }
 
     /**
      * Constructor.

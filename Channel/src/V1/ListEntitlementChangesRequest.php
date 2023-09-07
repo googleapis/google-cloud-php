@@ -54,6 +54,25 @@ class ListEntitlementChangesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the entitlement for which to list
+     *                       entitlement changes. The `-` wildcard may be used to match entitlements
+     *                       across a customer. Formats:
+     *
+     *                       * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+     *                       * accounts/{account_id}/customers/{customer_id}/entitlements/-
+     *                       Please see {@see CloudChannelServiceClient::entitlementName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Channel\V1\ListEntitlementChangesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

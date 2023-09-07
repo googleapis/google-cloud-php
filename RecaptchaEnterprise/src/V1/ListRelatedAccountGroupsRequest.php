@@ -42,6 +42,21 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The name of the project to list related account groups from, in
+     *                       the format "projects/{project}". Please see
+     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -34,7 +34,7 @@ use Google\Rpc\Status;
  * Creates a Backup for the given BackupPlan.
  *
  * @param string $formattedParent The BackupPlan within which to create the Backup.
- *                                Format: projects/&#42;/locations/&#42;/backupPlans/*
+ *                                Format: `projects/&#42;/locations/&#42;/backupPlans/*`
  *                                Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
  */
 function create_backup_sample(string $formattedParent): void

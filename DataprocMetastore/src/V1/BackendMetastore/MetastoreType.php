@@ -20,6 +20,12 @@ class MetastoreType
      */
     const METASTORE_TYPE_UNSPECIFIED = 0;
     /**
+     * The backend metastore is BigQuery.
+     *
+     * Generated from protobuf enum <code>BIGQUERY = 2;</code>
+     */
+    const BIGQUERY = 2;
+    /**
      * The backend metastore is Dataproc Metastore.
      *
      * Generated from protobuf enum <code>DATAPROC_METASTORE = 3;</code>
@@ -28,6 +34,7 @@ class MetastoreType
 
     private static $valueToName = [
         self::METASTORE_TYPE_UNSPECIFIED => 'METASTORE_TYPE_UNSPECIFIED',
+        self::BIGQUERY => 'BIGQUERY',
         self::DATAPROC_METASTORE => 'DATAPROC_METASTORE',
     ];
 

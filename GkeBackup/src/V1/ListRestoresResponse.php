@@ -22,10 +22,10 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
      */
     private $restores;
     /**
-     * A token which may be sent as [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token]
-     * in a subsequent `ListRestores` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * A token which may be sent as
+     * [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token] in a
+     * subsequent `ListRestores` call to retrieve the next page of results. If
+     * this field is omitted or empty, then there are no more results to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -46,10 +46,10 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\GkeBackup\V1\Restore>|\Google\Protobuf\Internal\RepeatedField $restores
      *           The list of Restores matching the given criteria.
      *     @type string $next_page_token
-     *           A token which may be sent as [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token]
-     *           in a subsequent `ListRestores` call to retrieve the next page of results.
-     *           If this field is omitted or empty, then there are no more results to
-     *           return.
+     *           A token which may be sent as
+     *           [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token] in a
+     *           subsequent `ListRestores` call to retrieve the next page of results. If
+     *           this field is omitted or empty, then there are no more results to return.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
@@ -86,10 +86,10 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token which may be sent as [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token]
-     * in a subsequent `ListRestores` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * A token which may be sent as
+     * [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token] in a
+     * subsequent `ListRestores` call to retrieve the next page of results. If
+     * this field is omitted or empty, then there are no more results to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -100,10 +100,10 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token which may be sent as [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token]
-     * in a subsequent `ListRestores` call to retrieve the next page of results.
-     * If this field is omitted or empty, then there are no more results to
-     * return.
+     * A token which may be sent as
+     * [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token] in a
+     * subsequent `ListRestores` call to retrieve the next page of results. If
+     * this field is omitted or empty, then there are no more results to return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

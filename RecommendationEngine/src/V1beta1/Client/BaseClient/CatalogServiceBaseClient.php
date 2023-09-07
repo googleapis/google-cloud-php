@@ -297,6 +297,8 @@ abstract class CatalogServiceBaseClient
      *
      * The async variant is {@see self::createCatalogItemAsync()} .
      *
+     * @example samples/V1beta1/CatalogServiceClient/create_catalog_item.php
+     *
      * @param CreateCatalogItemRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -323,6 +325,8 @@ abstract class CatalogServiceBaseClient
      *
      * The async variant is {@see self::deleteCatalogItemAsync()} .
      *
+     * @example samples/V1beta1/CatalogServiceClient/delete_catalog_item.php
+     *
      * @param DeleteCatalogItemRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -346,6 +350,8 @@ abstract class CatalogServiceBaseClient
      * Gets a specific catalog item.
      *
      * The async variant is {@see self::getCatalogItemAsync()} .
+     *
+     * @example samples/V1beta1/CatalogServiceClient/get_catalog_item.php
      *
      * @param GetCatalogItemRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -378,6 +384,8 @@ abstract class CatalogServiceBaseClient
      *
      * The async variant is {@see self::importCatalogItemsAsync()} .
      *
+     * @example samples/V1beta1/CatalogServiceClient/import_catalog_items.php
+     *
      * @param ImportCatalogItemsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -403,6 +411,8 @@ abstract class CatalogServiceBaseClient
      * Gets a list of catalog items.
      *
      * The async variant is {@see self::listCatalogItemsAsync()} .
+     *
+     * @example samples/V1beta1/CatalogServiceClient/list_catalog_items.php
      *
      * @param ListCatalogItemsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -430,6 +440,8 @@ abstract class CatalogServiceBaseClient
      * items will be created.
      *
      * The async variant is {@see self::updateCatalogItemAsync()} .
+     *
+     * @example samples/V1beta1/CatalogServiceClient/update_catalog_item.php
      *
      * @param UpdateCatalogItemRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

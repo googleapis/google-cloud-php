@@ -33,7 +33,7 @@ use Google\Cloud\GkeBackup\V1\VolumeRestore;
  * Lists the VolumeRestores for a given Restore.
  *
  * @param string $formattedParent The Restore that contains the VolumeRestores to list.
- *                                Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+ *                                Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
  *                                Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
  */
 function list_volume_restores_sample(string $formattedParent): void

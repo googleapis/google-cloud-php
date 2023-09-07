@@ -296,6 +296,8 @@ abstract class CaseServiceBaseClient
      *
      * The async variant is {@see self::closeCaseAsync()} .
      *
+     * @example samples/V2/CaseServiceClient/close_case.php
+     *
      * @param CloseCaseRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -321,6 +323,8 @@ abstract class CaseServiceBaseClient
      * `description`, `classification`, and `priority`.
      *
      * The async variant is {@see self::createCaseAsync()} .
+     *
+     * @example samples/V2/CaseServiceClient/create_case.php
      *
      * @param CreateCaseRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -352,6 +356,8 @@ abstract class CaseServiceBaseClient
      *
      * The async variant is {@see self::escalateCaseAsync()} .
      *
+     * @example samples/V2/CaseServiceClient/escalate_case.php
+     *
      * @param EscalateCaseRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -375,6 +381,8 @@ abstract class CaseServiceBaseClient
      * Retrieve the specified case.
      *
      * The async variant is {@see self::getCaseAsync()} .
+     *
+     * @example samples/V2/CaseServiceClient/get_case.php
      *
      * @param GetCaseRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -405,6 +413,8 @@ abstract class CaseServiceBaseClient
      *
      * The async variant is {@see self::listCasesAsync()} .
      *
+     * @example samples/V2/CaseServiceClient/list_cases.php
+     *
      * @param ListCasesRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -432,6 +442,8 @@ abstract class CaseServiceBaseClient
      *
      * The async variant is {@see self::searchCaseClassificationsAsync()} .
      *
+     * @example samples/V2/CaseServiceClient/search_case_classifications.php
+     *
      * @param SearchCaseClassificationsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -456,6 +468,8 @@ abstract class CaseServiceBaseClient
      *
      * The async variant is {@see self::searchCasesAsync()} .
      *
+     * @example samples/V2/CaseServiceClient/search_cases.php
+     *
      * @param SearchCasesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -479,6 +493,8 @@ abstract class CaseServiceBaseClient
      * Update the specified case. Only a subset of fields can be updated.
      *
      * The async variant is {@see self::updateCaseAsync()} .
+     *
+     * @example samples/V2/CaseServiceClient/update_case.php
      *
      * @param UpdateCaseRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

@@ -80,6 +80,10 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           Cloud Resource properties.
      *     @type \Google\Cloud\BigQuery\Connection\V1\SparkProperties $spark
      *           Spark properties.
+     *     @type \Google\Cloud\BigQuery\Connection\V1\SalesforceDataCloudProperties $salesforce_data_cloud
+     *           Optional. Salesforce DataCloud properties. This field is intended for
+     *           use only by Salesforce partner projects. This field contains properties
+     *           for your Salesforce DataCloud connection.
      *     @type int|string $creation_time
      *           Output only. The creation timestamp of the connection.
      *     @type int|string $last_modified_time
@@ -355,6 +359,41 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\SparkProperties::class);
         $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Salesforce DataCloud properties. This field is intended for
+     * use only by Salesforce partner projects. This field contains properties
+     * for your Salesforce DataCloud connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.SalesforceDataCloudProperties salesforce_data_cloud = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Connection\V1\SalesforceDataCloudProperties|null
+     */
+    public function getSalesforceDataCloud()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasSalesforceDataCloud()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Optional. Salesforce DataCloud properties. This field is intended for
+     * use only by Salesforce partner projects. This field contains properties
+     * for your Salesforce DataCloud connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.SalesforceDataCloudProperties salesforce_data_cloud = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Connection\V1\SalesforceDataCloudProperties $var
+     * @return $this
+     */
+    public function setSalesforceDataCloud($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\SalesforceDataCloudProperties::class);
+        $this->writeOneof(24, $var);
 
         return $this;
     }

@@ -33,10 +33,12 @@ use Google\Rpc\Status;
 /**
  * Update a Restore.
  *
- * @param string $formattedRestoreBackup Immutable. A reference to the [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which this Restore
- *                                       will restore. Note that this Backup must be a sub-resource of the
- *                                       RestorePlan's [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan].
- *                                       Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*. Please see
+ * @param string $formattedRestoreBackup Immutable. A reference to the
+ *                                       [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
+ *                                       this Restore will restore. Note that this Backup must be a sub-resource of
+ *                                       the RestorePlan's
+ *                                       [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
+ *                                       `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`. Please see
  *                                       {@see BackupForGKEClient::backupName()} for help formatting this field.
  */
 function update_restore_sample(string $formattedRestoreBackup): void

@@ -56,6 +56,17 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     protected $attribution_token = '';
     /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     */
+    protected $redirect_uri = '';
+    /**
      * A token that can be sent as
      * [SearchRequest.page_token][google.cloud.discoveryengine.v1beta.SearchRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
@@ -87,6 +98,12 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string applied_controls = 10;</code>
      */
     private $applied_controls;
+    /**
+     * Query expansion information for the returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
+     */
+    protected $query_expansion_info = null;
 
     /**
      * Constructor.
@@ -112,6 +129,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           [UserEvent][google.cloud.discoveryengine.v1beta.UserEvent] logs resulting
      *           from this search, which enables accurate attribution of search model
      *           performance.
+     *     @type string $redirect_uri
+     *           The URI of a customer-defined redirect page. If redirect action is
+     *           triggered, no search is performed, and only
+     *           [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     *           and
+     *           [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     *           are set in the response.
      *     @type string $next_page_token
      *           A token that can be sent as
      *           [SearchRequest.page_token][google.cloud.discoveryengine.v1beta.SearchRequest.page_token]
@@ -128,6 +152,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           is set.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_controls
      *           Controls applied as part of the Control service.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\QueryExpansionInfo $query_expansion_info
+     *           Query expansion information for the returned results.
      * }
      */
     public function __construct($data = NULL) {
@@ -292,6 +318,42 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     * @return string
+     */
+    public function getRedirectUri()
+    {
+        return $this->redirect_uri;
+    }
+
+    /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1beta.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1beta.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedirectUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redirect_uri = $var;
+
+        return $this;
+    }
+
+    /**
      * A token that can be sent as
      * [SearchRequest.page_token][google.cloud.discoveryengine.v1beta.SearchRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
@@ -417,6 +479,42 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->applied_controls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Query expansion information for the returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\QueryExpansionInfo|null
+     */
+    public function getQueryExpansionInfo()
+    {
+        return $this->query_expansion_info;
+    }
+
+    public function hasQueryExpansionInfo()
+    {
+        return isset($this->query_expansion_info);
+    }
+
+    public function clearQueryExpansionInfo()
+    {
+        unset($this->query_expansion_info);
+    }
+
+    /**
+     * Query expansion information for the returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\QueryExpansionInfo $var
+     * @return $this
+     */
+    public function setQueryExpansionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\QueryExpansionInfo::class);
+        $this->query_expansion_info = $var;
 
         return $this;
     }

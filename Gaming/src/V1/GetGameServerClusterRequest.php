@@ -35,6 +35,21 @@ class GetGameServerClusterRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
+     * @param string $name Required. The name of the game server cluster to retrieve, in the following form:
+     *                     `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`. Please see
+     *                     {@see GameServerClustersServiceClient::gameServerClusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Gaming\V1\GetGameServerClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

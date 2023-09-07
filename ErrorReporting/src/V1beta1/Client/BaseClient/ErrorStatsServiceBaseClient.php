@@ -225,6 +225,8 @@ abstract class ErrorStatsServiceBaseClient
      *
      * The async variant is {@see self::deleteEventsAsync()} .
      *
+     * @example samples/V1beta1/ErrorStatsServiceClient/delete_events.php
+     *
      * @param DeleteEventsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -251,6 +253,8 @@ abstract class ErrorStatsServiceBaseClient
      *
      * The async variant is {@see self::listEventsAsync()} .
      *
+     * @example samples/V1beta1/ErrorStatsServiceClient/list_events.php
+     *
      * @param ListEventsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -276,6 +280,8 @@ abstract class ErrorStatsServiceBaseClient
      * Lists the specified groups.
      *
      * The async variant is {@see self::listGroupStatsAsync()} .
+     *
+     * @example samples/V1beta1/ErrorStatsServiceClient/list_group_stats.php
      *
      * @param ListGroupStatsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

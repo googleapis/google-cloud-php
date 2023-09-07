@@ -163,6 +163,7 @@ class AddComponentCommand extends Command
         // Write repo metadata JSON
         $output->writeln('<info<Repo Metadata</info> Writing .repo-metadata.json');
         $repoMetadata = [
+            'language' => 'php',
             'distribution_name' => $new->composerPackage,
             'release_level' => 'preview',
             'client_documentation' => $documentationUrl,

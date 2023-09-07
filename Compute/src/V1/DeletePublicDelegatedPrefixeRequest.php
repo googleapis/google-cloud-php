@@ -41,6 +41,23 @@ class DeletePublicDelegatedPrefixeRequest extends \Google\Protobuf\Internal\Mess
     private $request_id = null;
 
     /**
+     * @param string $project               Project ID for this request.
+     * @param string $region                Name of the region of this request.
+     * @param string $publicDelegatedPrefix Name of the PublicDelegatedPrefix resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeletePublicDelegatedPrefixeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $publicDelegatedPrefix): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setPublicDelegatedPrefix($publicDelegatedPrefix);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

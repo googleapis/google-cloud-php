@@ -33,7 +33,7 @@ use Google\Cloud\GkeBackup\V1\ListBackupPlansRequest;
  * Lists BackupPlans in a given location.
  *
  * @param string $formattedParent The location that contains the BackupPlans to list.
- *                                Format: projects/&#42;/locations/*
+ *                                Format: `projects/&#42;/locations/*`
  *                                Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
  */
 function list_backup_plans_sample(string $formattedParent): void

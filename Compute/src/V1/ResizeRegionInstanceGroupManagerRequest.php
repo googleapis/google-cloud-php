@@ -47,6 +47,25 @@ class ResizeRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\
     private $size = 0;
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param string $instanceGroupManager Name of the managed instance group.
+     * @param int    $size                 Number of instances that should exist in this instance group manager.
+     *
+     * @return \Google\Cloud\Compute\V1\ResizeRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager, int $size): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setSize($size);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

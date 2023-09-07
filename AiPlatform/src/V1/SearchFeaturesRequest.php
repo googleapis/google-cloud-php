@@ -171,6 +171,7 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      *                         * `featurestore_id`: Supports = comparisons.
      *
      *                         Examples:
+     *
      *                         * `description = "foo bar"` --> Any Feature with description exactly equal
      *                         to `foo bar`
      *                         * `value_type = DOUBLE` --> Features whose type is DOUBLE.

@@ -87,6 +87,21 @@ return [
                     'private_cloud_id',
                 ],
             ],
+            'CreatePrivateConnection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/privateConnections',
+                'body' => 'private_connection',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'private_connection_id',
+                ],
+            ],
             'CreateVmwareEngineNetwork' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/vmwareEngineNetworks',
@@ -127,6 +142,17 @@ return [
             'DeletePrivateCloud' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/privateClouds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePrivateConnection' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/privateConnections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -201,6 +227,28 @@ return [
                     ],
                 ],
             ],
+            'GetPrivateConnection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/privateConnections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSubnet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/privateClouds/*/subnets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetVmwareEngineNetwork' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/vmwareEngineNetworks/*}',
@@ -259,6 +307,28 @@ return [
             'ListPrivateClouds' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/privateClouds',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPrivateConnectionPeeringRoutes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/privateConnections/*}/peeringRoutes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPrivateConnections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/privateConnections',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -387,6 +457,38 @@ return [
                     'private_cloud.name' => [
                         'getters' => [
                             'getPrivateCloud',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdatePrivateConnection' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{private_connection.name=projects/*/locations/*/privateConnections/*}',
+                'body' => 'private_connection',
+                'placeholders' => [
+                    'private_connection.name' => [
+                        'getters' => [
+                            'getPrivateConnection',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSubnet' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{subnet.name=projects/*/locations/*/privateClouds/*/subnets/*}',
+                'body' => 'subnet',
+                'placeholders' => [
+                    'subnet.name' => [
+                        'getters' => [
+                            'getSubnet',
                             'getName',
                         ],
                     ],

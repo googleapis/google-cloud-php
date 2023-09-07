@@ -30,7 +30,8 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     * See [Document.language][google.cloud.language.v1beta2.Document.language]
+     * field for more details.
      *
      * Generated from protobuf field <code>string language = 3;</code>
      */
@@ -49,7 +50,8 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      *     @type string $language
      *           The language of the text, which will be the same as the language specified
      *           in the request or, if not specified, the automatically-detected language.
-     *           See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     *           See [Document.language][google.cloud.language.v1beta2.Document.language]
+     *           field for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,7 +114,8 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     * See [Document.language][google.cloud.language.v1beta2.Document.language]
+     * field for more details.
      *
      * Generated from protobuf field <code>string language = 3;</code>
      * @return string
@@ -125,7 +128,8 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
+     * See [Document.language][google.cloud.language.v1beta2.Document.language]
+     * field for more details.
      *
      * Generated from protobuf field <code>string language = 3;</code>
      * @param string $var

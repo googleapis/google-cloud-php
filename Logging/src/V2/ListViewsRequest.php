@@ -41,6 +41,21 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. The bucket whose views are to be listed:
+     *
+     *                       "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     * @return \Google\Cloud\Logging\V2\ListViewsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

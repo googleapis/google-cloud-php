@@ -30,6 +30,19 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\SecurityCenter\V1\Source $source Required. The source resource to update.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\UpdateSourceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\SecurityCenter\V1\Source $source): self
+    {
+        return (new self())
+            ->setSource($source);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

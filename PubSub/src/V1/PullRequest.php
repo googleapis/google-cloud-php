@@ -45,6 +45,52 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     private $max_messages = 0;
 
     /**
+     * @param string $subscription      Required. The subscription from which messages should be pulled.
+     *                                  Format is `projects/{project}/subscriptions/{sub}`. Please see
+     *                                  {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     * @param bool   $returnImmediately Optional. If this field set to true, the system will respond immediately
+     *                                  even if it there are no messages available to return in the `Pull`
+     *                                  response. Otherwise, the system may wait (for a bounded amount of time)
+     *                                  until at least one message is available, rather than returning no messages.
+     *                                  Warning: setting this field to `true` is discouraged because it adversely
+     *                                  impacts the performance of `Pull` operations. We recommend that users do
+     *                                  not set this field.
+     * @param int    $maxMessages       Required. The maximum number of messages to return for this request. Must
+     *                                  be a positive integer. The Pub/Sub system may return fewer than the number
+     *                                  specified.
+     *
+     * @return \Google\Cloud\PubSub\V1\PullRequest
+     *
+     * @experimental
+     */
+    public static function build(string $subscription, bool $returnImmediately, int $maxMessages): self
+    {
+        return (new self())
+            ->setSubscription($subscription)
+            ->setReturnImmediately($returnImmediately)
+            ->setMaxMessages($maxMessages);
+    }
+
+    /**
+     * @param string $subscription Required. The subscription from which messages should be pulled.
+     *                             Format is `projects/{project}/subscriptions/{sub}`. Please see
+     *                             {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     * @param int    $maxMessages  Required. The maximum number of messages to return for this request. Must
+     *                             be a positive integer. The Pub/Sub system may return fewer than the number
+     *                             specified.
+     *
+     * @return \Google\Cloud\PubSub\V1\PullRequest
+     *
+     * @experimental
+     */
+    public static function buildFromSubscriptionMaxMessages(string $subscription, int $maxMessages): self
+    {
+        return (new self())
+            ->setSubscription($subscription)
+            ->setMaxMessages($maxMessages);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -51,8 +51,9 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
-     * ModelEvaluationSlices. The dimensions can be used as the filter of the
+     * All possible
+     * [dimensions][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]
+     * of ModelEvaluationSlices. The dimensions can be used as the filter of the
      * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
      * request, in the form of `slice.dimension = <dimension>`.
      *
@@ -133,8 +134,9 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this ModelEvaluation was created.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $slice_dimensions
-     *           All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
-     *           ModelEvaluationSlices. The dimensions can be used as the filter of the
+     *           All possible
+     *           [dimensions][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]
+     *           of ModelEvaluationSlices. The dimensions can be used as the filter of the
      *           [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
      *           request, in the form of `slice.dimension = <dimension>`.
      *     @type string $data_item_schema_uri
@@ -335,8 +337,9 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
-     * ModelEvaluationSlices. The dimensions can be used as the filter of the
+     * All possible
+     * [dimensions][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]
+     * of ModelEvaluationSlices. The dimensions can be used as the filter of the
      * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
      * request, in the form of `slice.dimension = <dimension>`.
      *
@@ -349,8 +352,9 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
-     * ModelEvaluationSlices. The dimensions can be used as the filter of the
+     * All possible
+     * [dimensions][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]
+     * of ModelEvaluationSlices. The dimensions can be used as the filter of the
      * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices]
      * request, in the form of `slice.dimension = <dimension>`.
      *

@@ -47,6 +47,20 @@ class ListPhraseMatchersRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The parent resource of the phrase matcher. Please see
+     *                       {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

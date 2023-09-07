@@ -33,7 +33,7 @@ use Google\Cloud\GkeBackup\V1\VolumeBackup;
  * Lists the VolumeBackups for a given Backup.
  *
  * @param string $formattedParent The Backup that contains the VolumeBackups to list.
- *                                Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+ *                                Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
  *                                Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
  */
 function list_volume_backups_sample(string $formattedParent): void

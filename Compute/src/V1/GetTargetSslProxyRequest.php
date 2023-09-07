@@ -29,6 +29,21 @@ class GetTargetSslProxyRequest extends \Google\Protobuf\Internal\Message
     private $target_ssl_proxy = '';
 
     /**
+     * @param string $project        Project ID for this request.
+     * @param string $targetSslProxy Name of the TargetSslProxy resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetTargetSslProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetSslProxy): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetSslProxy($targetSslProxy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

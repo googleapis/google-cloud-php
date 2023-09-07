@@ -59,7 +59,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\DataFusion\V1\DataFusionClient} for the stable implementation
  *
  * @experimental
  *
@@ -305,6 +306,8 @@ abstract class DataFusionBaseClient
      *
      * The async variant is {@see self::createInstanceAsync()} .
      *
+     * @example samples/V1/DataFusionClient/create_instance.php
+     *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -329,6 +332,8 @@ abstract class DataFusionBaseClient
      *
      * The async variant is {@see self::deleteInstanceAsync()} .
      *
+     * @example samples/V1/DataFusionClient/delete_instance.php
+     *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -352,6 +357,8 @@ abstract class DataFusionBaseClient
      * Gets details of a single Data Fusion instance.
      *
      * The async variant is {@see self::getInstanceAsync()} .
+     *
+     * @example samples/V1/DataFusionClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -378,6 +385,8 @@ abstract class DataFusionBaseClient
      *
      * The async variant is {@see self::listAvailableVersionsAsync()} .
      *
+     * @example samples/V1/DataFusionClient/list_available_versions.php
+     *
      * @param ListAvailableVersionsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -401,6 +410,8 @@ abstract class DataFusionBaseClient
      * Lists Data Fusion instances in the specified project and location.
      *
      * The async variant is {@see self::listInstancesAsync()} .
+     *
+     * @example samples/V1/DataFusionClient/list_instances.php
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -427,6 +438,8 @@ abstract class DataFusionBaseClient
      *
      * The async variant is {@see self::restartInstanceAsync()} .
      *
+     * @example samples/V1/DataFusionClient/restart_instance.php
+     *
      * @param RestartInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -450,6 +463,8 @@ abstract class DataFusionBaseClient
      * Updates a single Data Fusion instance.
      *
      * The async variant is {@see self::updateInstanceAsync()} .
+     *
+     * @example samples/V1/DataFusionClient/update_instance.php
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

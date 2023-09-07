@@ -442,12 +442,14 @@ abstract class UserEventServiceBaseClient
 
     /**
      * Writes a single user event from the browser. This uses a GET request to
-     * due to browser restriction of POST-ing to a 3rd party domain.
+     * due to browser restriction of POST-ing to a third-party domain.
      *
      * This method is used only by the Discovery Engine API JavaScript pixel and
      * Google Tag Manager. Users should not call this method directly.
      *
      * The async variant is {@see self::collectUserEventAsync()} .
+     *
+     * @example samples/V1beta/UserEventServiceClient/collect_user_event.php
      *
      * @param CollectUserEventRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -487,6 +489,8 @@ abstract class UserEventServiceBaseClient
      *
      * The async variant is {@see self::importUserEventsAsync()} .
      *
+     * @example samples/V1beta/UserEventServiceClient/import_user_events.php
+     *
      * @param ImportUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -518,6 +522,8 @@ abstract class UserEventServiceBaseClient
      * Writes a single user event.
      *
      * The async variant is {@see self::writeUserEventAsync()} .
+     *
+     * @example samples/V1beta/UserEventServiceClient/write_user_event.php
      *
      * @param WriteUserEventRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

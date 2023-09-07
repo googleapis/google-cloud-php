@@ -37,6 +37,13 @@ class ContinuousBackupInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek schedule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $schedule;
+    /**
+     * Output only. The earliest restorable time that can be restored to. Output
+     * only field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_restorable_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $earliest_restorable_time = null;
 
     /**
      * Constructor.
@@ -53,6 +60,9 @@ class ContinuousBackupInfo extends \Google\Protobuf\Internal\Message
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $schedule
      *           Output only. Days of the week on which a continuous backup is taken. Output
      *           only field. Ignored if passed into the request.
+     *     @type \Google\Protobuf\Timestamp $earliest_restorable_time
+     *           Output only. The earliest restorable time that can be restored to. Output
+     *           only field.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,6 +170,44 @@ class ContinuousBackupInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Type\DayOfWeek::class);
         $this->schedule = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The earliest restorable time that can be restored to. Output
+     * only field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_restorable_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getEarliestRestorableTime()
+    {
+        return $this->earliest_restorable_time;
+    }
+
+    public function hasEarliestRestorableTime()
+    {
+        return isset($this->earliest_restorable_time);
+    }
+
+    public function clearEarliestRestorableTime()
+    {
+        unset($this->earliest_restorable_time);
+    }
+
+    /**
+     * Output only. The earliest restorable time that can be restored to. Output
+     * only field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_restorable_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setEarliestRestorableTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->earliest_restorable_time = $var;
 
         return $this;
     }

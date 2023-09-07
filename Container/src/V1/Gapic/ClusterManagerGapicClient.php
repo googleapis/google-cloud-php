@@ -35,6 +35,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
+use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
@@ -119,6 +121,9 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Container\V1\Client\ClusterManagerClient} to use the new surface.
  */
 class ClusterManagerGapicClient
 {
@@ -368,6 +373,50 @@ class ClusterManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CancelOperation', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Checks the cluster compatibility with Autopilot mode, and returns a list of
+     * compatibility issues.
+     *
+     * Sample code:
+     * ```
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
+     * try {
+     *     $response = $clusterManagerClient->checkAutopilotCompatibility();
+     * } finally {
+     *     $clusterManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The name (project, location, cluster) of the cluster to retrieve.
+     *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function checkAutopilotCompatibility(array $optionalArgs = [])
+    {
+        $request = new CheckAutopilotCompatibilityRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CheckAutopilotCompatibility', CheckAutopilotCompatibilityResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2756,6 +2805,21 @@ class ClusterManagerGapicClient
      *           Google Compute Engine resources.
      *     @type WindowsNodeConfig $windowsNodeConfig
      *           Parameters that can be configured on Windows nodes.
+     *     @type string $machineType
+     *           Optional. The desired [Google Compute Engine machine
+     *           type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
+     *           node pool. Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified machine type.
+     *     @type string $diskType
+     *           Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
+     *           'pd-balanced') for nodes in the node pool.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk type.
+     *     @type int $diskSizeGb
+     *           Optional. The desired disk size for nodes in the node pool specified in GB.
+     *           The smallest allowed disk size is 10GB.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk size.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2863,6 +2927,18 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['windowsNodeConfig'])) {
             $request->setWindowsNodeConfig($optionalArgs['windowsNodeConfig']);
+        }
+
+        if (isset($optionalArgs['machineType'])) {
+            $request->setMachineType($optionalArgs['machineType']);
+        }
+
+        if (isset($optionalArgs['diskType'])) {
+            $request->setDiskType($optionalArgs['diskType']);
+        }
+
+        if (isset($optionalArgs['diskSizeGb'])) {
+            $request->setDiskSizeGb($optionalArgs['diskSizeGb']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

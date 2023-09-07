@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "CloudTasksGapicClient",
                     "rpcs": {
+                        "BufferTask": {
+                            "methods": [
+                                "bufferTask"
+                            ]
+                        },
                         "CreateQueue": {
                             "methods": [
                                 "createQueue"
@@ -88,6 +93,16 @@
                         "UpdateQueue": {
                             "methods": [
                                 "updateQueue"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }

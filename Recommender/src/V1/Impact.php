@@ -35,6 +35,10 @@ class Impact extends \Google\Protobuf\Internal\Message
      *           Use with CategoryType.COST
      *     @type \Google\Cloud\Recommender\V1\SecurityProjection $security_projection
      *           Use with CategoryType.SECURITY
+     *     @type \Google\Cloud\Recommender\V1\SustainabilityProjection $sustainability_projection
+     *           Use with CategoryType.SUSTAINABILITY
+     *     @type \Google\Cloud\Recommender\V1\ReliabilityProjection $reliability_projection
+     *           Use with CategoryType.RELAIBILITY
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +130,68 @@ class Impact extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\SecurityProjection::class);
         $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use with CategoryType.SUSTAINABILITY
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.SustainabilityProjection sustainability_projection = 102;</code>
+     * @return \Google\Cloud\Recommender\V1\SustainabilityProjection|null
+     */
+    public function getSustainabilityProjection()
+    {
+        return $this->readOneof(102);
+    }
+
+    public function hasSustainabilityProjection()
+    {
+        return $this->hasOneof(102);
+    }
+
+    /**
+     * Use with CategoryType.SUSTAINABILITY
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.SustainabilityProjection sustainability_projection = 102;</code>
+     * @param \Google\Cloud\Recommender\V1\SustainabilityProjection $var
+     * @return $this
+     */
+    public function setSustainabilityProjection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\SustainabilityProjection::class);
+        $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use with CategoryType.RELAIBILITY
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.ReliabilityProjection reliability_projection = 103;</code>
+     * @return \Google\Cloud\Recommender\V1\ReliabilityProjection|null
+     */
+    public function getReliabilityProjection()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasReliabilityProjection()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * Use with CategoryType.RELAIBILITY
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.ReliabilityProjection reliability_projection = 103;</code>
+     * @param \Google\Cloud\Recommender\V1\ReliabilityProjection $var
+     * @return $this
+     */
+    public function setReliabilityProjection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\ReliabilityProjection::class);
+        $this->writeOneof(103, $var);
 
         return $this;
     }

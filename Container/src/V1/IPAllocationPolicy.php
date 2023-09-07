@@ -203,6 +203,14 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $additional_pod_ranges_config = null;
+    /**
+     * Output only. [Output only] The utilization of the cluster default IPv4
+     * range for the pod. The ratio is Usage/[Total number of IPs in the secondary
+     * range], Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $default_pod_ipv4_range_utilization = 0.0;
 
     /**
      * Constructor.
@@ -319,6 +327,10 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           cluster. These pod ranges can be used by new node pools to allocate pod IPs
      *           automatically. Once the range is removed it will not show up in
      *           IPAllocationPolicy.
+     *     @type float $default_pod_ipv4_range_utilization
+     *           Output only. [Output only] The utilization of the cluster default IPv4
+     *           range for the pod. The ratio is Usage/[Total number of IPs in the secondary
+     *           range], Usage=numNodes*numZones*podIPsPerNode.
      * }
      */
     public function __construct($data = NULL) {
@@ -990,6 +1002,36 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AdditionalPodRangesConfig::class);
         $this->additional_pod_ranges_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] The utilization of the cluster default IPv4
+     * range for the pod. The ratio is Usage/[Total number of IPs in the secondary
+     * range], Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getDefaultPodIpv4RangeUtilization()
+    {
+        return $this->default_pod_ipv4_range_utilization;
+    }
+
+    /**
+     * Output only. [Output only] The utilization of the cluster default IPv4
+     * range for the pod. The ratio is Usage/[Total number of IPs in the secondary
+     * range], Usage=numNodes*numZones*podIPsPerNode.
+     *
+     * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setDefaultPodIpv4RangeUtilization($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->default_pod_ipv4_range_utilization = $var;
 
         return $this;
     }

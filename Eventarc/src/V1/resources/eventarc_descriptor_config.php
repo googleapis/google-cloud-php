@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'CreateChannelConnection' => [
                 'longRunning' => [
@@ -21,6 +30,15 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'CreateTrigger' => [
@@ -32,6 +50,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'DeleteChannel' => [
                 'longRunning' => [
@@ -41,6 +68,15 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'DeleteChannelConnection' => [
@@ -52,6 +88,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'DeleteTrigger' => [
                 'longRunning' => [
@@ -61,6 +106,15 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateChannel' => [
@@ -72,6 +126,16 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'channel.name',
+                        'fieldAccessors' => [
+                            'getChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateTrigger' => [
                 'longRunning' => [
@@ -81,6 +145,76 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'trigger.name',
+                        'fieldAccessors' => [
+                            'getTrigger',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetChannel' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\Channel',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetChannelConnection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ChannelConnection',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoogleChannelConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\GoogleChannelConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetProvider' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\Provider',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTrigger' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\Trigger',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'ListChannelConnections' => [
@@ -92,6 +226,16 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getChannelConnections',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListChannelConnectionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListChannels' => [
                 'pageStreaming' => [
@@ -101,6 +245,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getChannels',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListChannelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'ListProviders' => [
@@ -112,6 +266,16 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getProviders',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListProvidersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListTriggers' => [
                 'pageStreaming' => [
@@ -122,8 +286,41 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getTriggers',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListTriggersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoogleChannelConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\GoogleChannelConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'google_channel_config.name',
+                        'fieldAccessors' => [
+                            'getGoogleChannelConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'ListLocations' => [
@@ -135,16 +332,68 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getLocations',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
+            ],
+            'templateMap' => [
+                'channel' => 'projects/{project}/locations/{location}/channels/{channel}',
+                'channelConnection' => 'projects/{project}/locations/{location}/channelConnections/{channel_connection}',
+                'cloudFunction' => 'projects/{project}/locations/{location}/functions/{function}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
+                'googleChannelConfig' => 'projects/{project}/locations/{location}/googleChannelConfig',
+                'location' => 'projects/{project}/locations/{location}',
+                'provider' => 'projects/{project}/locations/{location}/providers/{provider}',
+                'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
+                'trigger' => 'projects/{project}/locations/{location}/triggers/{trigger}',
+                'workflow' => 'projects/{project}/locations/{location}/workflows/{workflow}',
             ],
         ],
     ],

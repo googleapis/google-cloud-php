@@ -48,6 +48,55 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                                        $name             Required. The name of the tag template field. Please see
+     *                                                                        {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField Required. The template to update.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setTagTemplateField($tagTemplateField);
+    }
+
+    /**
+     * @param string                                        $name             Required. The name of the tag template field. Please see
+     *                                                                        {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
+     * @param \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField Required. The template to update.
+     * @param \Google\Protobuf\FieldMask                    $updateMask       Optional. Names of fields whose values to overwrite on an individual field
+     *                                                                        of a tag template. The following fields are modifiable:
+     *
+     *                                                                        * `display_name`
+     *                                                                        * `type.enum_type`
+     *                                                                        * `is_required`
+     *
+     *                                                                        If this parameter is absent or empty, all modifiable fields
+     *                                                                        are overwritten. If such fields are non-required and omitted in the request
+     *                                                                        body, their values are emptied with one exception: when updating an enum
+     *                                                                        type, the provided values are merged with the existing values. Therefore,
+     *                                                                        enum values can only be added, existing enum values cannot be deleted or
+     *                                                                        renamed.
+     *
+     *                                                                        Additionally, updating a template field from optional to required is
+     *                                                                        *not* allowed.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameTagTemplateFieldUpdateMask(string $name, \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setTagTemplateField($tagTemplateField)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

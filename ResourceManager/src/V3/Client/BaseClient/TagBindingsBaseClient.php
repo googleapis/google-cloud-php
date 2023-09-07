@@ -55,7 +55,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ResourceManager\V3\TagBindingsClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -255,6 +257,8 @@ abstract class TagBindingsBaseClient
      *
      * The async variant is {@see self::createTagBindingAsync()} .
      *
+     * @example samples/V3/TagBindingsClient/create_tag_binding.php
+     *
      * @param CreateTagBindingRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -278,6 +282,8 @@ abstract class TagBindingsBaseClient
      * Deletes a TagBinding.
      *
      * The async variant is {@see self::deleteTagBindingAsync()} .
+     *
+     * @example samples/V3/TagBindingsClient/delete_tag_binding.php
      *
      * @param DeleteTagBindingRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -303,6 +309,8 @@ abstract class TagBindingsBaseClient
      * specified in `parent`.
      *
      * The async variant is {@see self::listEffectiveTagsAsync()} .
+     *
+     * @example samples/V3/TagBindingsClient/list_effective_tags.php
      *
      * @param ListEffectiveTagsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -331,6 +339,8 @@ abstract class TagBindingsBaseClient
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * The async variant is {@see self::listTagBindingsAsync()} .
+     *
+     * @example samples/V3/TagBindingsClient/list_tag_bindings.php
      *
      * @param ListTagBindingsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

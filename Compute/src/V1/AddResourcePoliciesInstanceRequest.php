@@ -47,6 +47,25 @@ class AddResourcePoliciesInstanceRequest extends \Google\Protobuf\Internal\Messa
     private $zone = '';
 
     /**
+     * @param string                                                       $project                                     Project ID for this request.
+     * @param string                                                       $zone                                        The name of the zone for this request.
+     * @param string                                                       $instance                                    The instance name for this request.
+     * @param \Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest $instancesAddResourcePoliciesRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\AddResourcePoliciesInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance, \Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest $instancesAddResourcePoliciesRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance)
+            ->setInstancesAddResourcePoliciesRequestResource($instancesAddResourcePoliciesRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

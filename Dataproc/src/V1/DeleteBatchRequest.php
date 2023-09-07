@@ -25,6 +25,22 @@ class DeleteBatchRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The fully qualified name of the batch to retrieve
+     *                     in the format
+     *                     "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     *                     Please see {@see BatchControllerClient::batchName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\DeleteBatchRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -32,7 +32,7 @@ class CreateLiveSessionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                      $parent      Required. The project and location in which the live session should be
      *                                                                 created, in the form of `projects/{project_number}/locations/{location}`. Please see
-     *                                                                 {@see VideoStitcherServiceClient::liveSessionName()} for help formatting this field.
+     *                                                                 {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Video\Stitcher\V1\LiveSession $liveSession Required. Parameters for creating a live session.
      *
      * @return \Google\Cloud\Video\Stitcher\V1\CreateLiveSessionRequest

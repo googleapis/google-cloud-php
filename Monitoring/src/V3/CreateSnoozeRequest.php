@@ -34,6 +34,27 @@ class CreateSnoozeRequest extends \Google\Protobuf\Internal\Message
     private $snooze = null;
 
     /**
+     * @param string                             $parent Required. The
+     *                                                   [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                                                   a `Snooze` should be created. The format is:
+     *
+     *                                                   projects/[PROJECT_ID_OR_NUMBER]
+     *                                                   Please see {@see SnoozeServiceClient::workspaceName()} for help formatting this field.
+     * @param \Google\Cloud\Monitoring\V3\Snooze $snooze Required. The `Snooze` to create. Omit the `name` field, as it will be
+     *                                                   filled in by the API.
+     *
+     * @return \Google\Cloud\Monitoring\V3\CreateSnoozeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Monitoring\V3\Snooze $snooze): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSnooze($snooze);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

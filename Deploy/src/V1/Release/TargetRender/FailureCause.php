@@ -21,7 +21,7 @@ class FailureCause
     const FAILURE_CAUSE_UNSPECIFIED = 0;
     /**
      * Cloud Build is not available, either because it is not enabled or
-     * because Google Cloud Deploy has insufficient permissions. See [required
+     * because Cloud Deploy has insufficient permissions. See [required
      * permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).
      *
      * Generated from protobuf enum <code>CLOUD_BUILD_UNAVAILABLE = 1;</code>
@@ -35,18 +35,27 @@ class FailureCause
      */
     const EXECUTION_FAILED = 2;
     /**
-     * Cloud Build failed to fulfill Google Cloud Deploy's request. See
+     * Cloud Build failed to fulfill Cloud Deploy's request. See
      * failure_message for additional details.
      *
      * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 3;</code>
      */
     const CLOUD_BUILD_REQUEST_FAILED = 3;
+    /**
+     * The render operation did not complete successfully because the custom
+     * action required for predeploy or postdeploy was not found in the
+     * skaffold configuration. See failure_message for additional details.
+     *
+     * Generated from protobuf enum <code>CUSTOM_ACTION_NOT_FOUND = 5;</code>
+     */
+    const CUSTOM_ACTION_NOT_FOUND = 5;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
         self::CLOUD_BUILD_UNAVAILABLE => 'CLOUD_BUILD_UNAVAILABLE',
         self::EXECUTION_FAILED => 'EXECUTION_FAILED',
         self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
+        self::CUSTOM_ACTION_NOT_FOUND => 'CUSTOM_ACTION_NOT_FOUND',
     ];
 
     public static function name($value)

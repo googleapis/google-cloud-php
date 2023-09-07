@@ -47,6 +47,29 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
 
     /**
+     * @param string $parent Required. The parent resource whose buckets are to be listed:
+     *
+     *                       "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *                       "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *                       "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *                       "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *
+     *                       Note: The locations portion of the resource must be specified, but
+     *                       supplying the character `-` in place of [LOCATION_ID] will return all
+     *                       buckets. Please see
+     *                       {@see ConfigServiceV2Client::organizationLocationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\ListBucketsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

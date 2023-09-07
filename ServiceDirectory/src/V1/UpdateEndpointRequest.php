@@ -30,6 +30,21 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\ServiceDirectory\V1\Endpoint $endpoint   Required. The updated endpoint.
+     * @param \Google\Protobuf\FieldMask                 $updateMask Required. List of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\ServiceDirectory\V1\UpdateEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\ServiceDirectory\V1\Endpoint $endpoint, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setEndpoint($endpoint)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

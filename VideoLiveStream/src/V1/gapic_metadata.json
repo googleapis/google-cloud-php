@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "LivestreamServiceGapicClient",
                     "rpcs": {
+                        "CreateAsset": {
+                            "methods": [
+                                "createAsset"
+                            ]
+                        },
                         "CreateChannel": {
                             "methods": [
                                 "createChannel"
@@ -23,6 +28,11 @@
                         "CreateInput": {
                             "methods": [
                                 "createInput"
+                            ]
+                        },
+                        "DeleteAsset": {
+                            "methods": [
+                                "deleteAsset"
                             ]
                         },
                         "DeleteChannel": {
@@ -40,6 +50,11 @@
                                 "deleteInput"
                             ]
                         },
+                        "GetAsset": {
+                            "methods": [
+                                "getAsset"
+                            ]
+                        },
                         "GetChannel": {
                             "methods": [
                                 "getChannel"
@@ -53,6 +68,16 @@
                         "GetInput": {
                             "methods": [
                                 "getInput"
+                            ]
+                        },
+                        "GetPool": {
+                            "methods": [
+                                "getPool"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
                             ]
                         },
                         "ListChannels": {
@@ -88,6 +113,11 @@
                         "UpdateInput": {
                             "methods": [
                                 "updateInput"
+                            ]
+                        },
+                        "UpdatePool": {
+                            "methods": [
+                                "updatePool"
                             ]
                         },
                         "GetLocation": {

@@ -41,6 +41,23 @@ class GetIamPolicyNetworkAttachmentRequest extends \Google\Protobuf\Internal\Mes
     private $resource = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $region   The name of the region for this request.
+     * @param string $resource Name or id of the resource for this request.
+     *
+     * @return \Google\Cloud\Compute\V1\GetIamPolicyNetworkAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $resource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

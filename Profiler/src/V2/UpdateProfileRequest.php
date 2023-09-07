@@ -32,6 +32,24 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Profiler\V2\Profile $profile    Profile to update.
+     * @param \Google\Protobuf\FieldMask        $updateMask Field mask used to specify the fields to be overwritten. Currently only
+     *                                                      profile_bytes and labels fields are supported by UpdateProfile, so only
+     *                                                      those fields can be specified in the mask. When no mask is provided, all
+     *                                                      fields are overwritten.
+     *
+     * @return \Google\Cloud\Profiler\V2\UpdateProfileRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Profiler\V2\Profile $profile, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setProfile($profile)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

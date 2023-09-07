@@ -52,6 +52,23 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The
+     *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *                       Uptime check configurations are listed. The format is:
+     *
+     *                       projects/[PROJECT_ID_OR_NUMBER]
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

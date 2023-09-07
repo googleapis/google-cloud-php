@@ -25,6 +25,21 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the entity type to delete.
+     *                     Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. Please see
+     *                     {@see EntityTypesClient::entityTypeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -85,7 +85,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\GSuiteAddOns\V1\GSuiteAddOnsClient} for the stable implementation
  *
  * @experimental
  *
@@ -309,6 +310,8 @@ abstract class GSuiteAddOnsBaseClient
      *
      * The async variant is {@see self::createDeploymentAsync()} .
      *
+     * @example samples/V1/GSuiteAddOnsClient/create_deployment.php
+     *
      * @param CreateDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -333,6 +336,8 @@ abstract class GSuiteAddOnsBaseClient
      *
      * The async variant is {@see self::deleteDeploymentAsync()} .
      *
+     * @example samples/V1/GSuiteAddOnsClient/delete_deployment.php
+     *
      * @param DeleteDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -354,6 +359,8 @@ abstract class GSuiteAddOnsBaseClient
      * Gets the authorization information for deployments in a given project.
      *
      * The async variant is {@see self::getAuthorizationAsync()} .
+     *
+     * @example samples/V1/GSuiteAddOnsClient/get_authorization.php
      *
      * @param GetAuthorizationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -379,6 +386,8 @@ abstract class GSuiteAddOnsBaseClient
      *
      * The async variant is {@see self::getDeploymentAsync()} .
      *
+     * @example samples/V1/GSuiteAddOnsClient/get_deployment.php
+     *
      * @param GetDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -402,6 +411,8 @@ abstract class GSuiteAddOnsBaseClient
      * Fetches the install status of a developer mode deployment.
      *
      * The async variant is {@see self::getInstallStatusAsync()} .
+     *
+     * @example samples/V1/GSuiteAddOnsClient/get_install_status.php
      *
      * @param GetInstallStatusRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -429,6 +440,8 @@ abstract class GSuiteAddOnsBaseClient
      *
      * The async variant is {@see self::installDeploymentAsync()} .
      *
+     * @example samples/V1/GSuiteAddOnsClient/install_deployment.php
+     *
      * @param InstallDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -450,6 +463,8 @@ abstract class GSuiteAddOnsBaseClient
      * Lists all deployments in a particular project.
      *
      * The async variant is {@see self::listDeploymentsAsync()} .
+     *
+     * @example samples/V1/GSuiteAddOnsClient/list_deployments.php
      *
      * @param ListDeploymentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -474,6 +489,8 @@ abstract class GSuiteAddOnsBaseClient
      * Creates or replaces a deployment with the specified name.
      *
      * The async variant is {@see self::replaceDeploymentAsync()} .
+     *
+     * @example samples/V1/GSuiteAddOnsClient/replace_deployment.php
      *
      * @param ReplaceDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -500,6 +517,8 @@ abstract class GSuiteAddOnsBaseClient
      * https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
      *
      * The async variant is {@see self::uninstallDeploymentAsync()} .
+     *
+     * @example samples/V1/GSuiteAddOnsClient/uninstall_deployment.php
      *
      * @param UninstallDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

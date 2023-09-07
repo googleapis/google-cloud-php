@@ -40,8 +40,7 @@ use Google\Protobuf\Value;
  * [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
  * is not specified, all DeployedModels must have
  * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
- * populated. Only deployed AutoML tabular Models have
- * explanation_spec.
+ * populated.
  *
  * @param string $formattedEndpoint The name of the Endpoint requested to serve the explanation.
  *                                  Format:

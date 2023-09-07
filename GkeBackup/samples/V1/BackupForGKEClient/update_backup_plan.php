@@ -33,12 +33,11 @@ use Google\Rpc\Status;
 /**
  * Update a BackupPlan.
  *
- * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created via
- *                                           this BackupPlan.
- *                                           Valid formats:
+ * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created
+ *                                           via this BackupPlan. Valid formats:
  *
- *                                           - projects/&#42;/locations/&#42;/clusters/*
- *                                           - projects/&#42;/zones/&#42;/clusters/*
+ *                                           - `projects/&#42;/locations/&#42;/clusters/*`
+ *                                           - `projects/&#42;/zones/&#42;/clusters/*`
  *                                           Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
  */
 function update_backup_plan_sample(string $formattedBackupPlanCluster): void

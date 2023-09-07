@@ -84,6 +84,21 @@ return [
                     ],
                 ],
             ],
+            'CreateUser' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*/clusters/*}/users',
+                'body' => 'user',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'user_id',
+                ],
+            ],
             'DeleteBackup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=projects/*/locations/*/backups/*}',
@@ -109,6 +124,17 @@ return [
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=projects/*/locations/*/clusters/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUser' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=projects/*/locations/*/clusters/*/users/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -185,6 +211,29 @@ return [
                     ],
                 ],
             ],
+            'GetUser' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=projects/*/locations/*/clusters/*/users/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'InjectFault' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=projects/*/locations/*/clusters/*/instances/*}:injectFault',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*}/backups',
@@ -221,6 +270,17 @@ return [
             'ListSupportedDatabaseFlags' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*}/supportedDatabaseFlags',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUsers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=projects/*/locations/*/clusters/*}/users',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -299,6 +359,19 @@ return [
                     'instance.name' => [
                         'getters' => [
                             'getInstance',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateUser' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{user.name=projects/*/locations/*/clusters/*/users/*}',
+                'body' => 'user',
+                'placeholders' => [
+                    'user.name' => [
+                        'getters' => [
+                            'getUser',
                             'getName',
                         ],
                     ],

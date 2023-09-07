@@ -48,7 +48,7 @@ use Google\Rpc\Status;
  * in `ConnectivityTest` for for more details.
  *
  * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
  */
 function update_connectivity_test_sample(string $resourceName): void
 {

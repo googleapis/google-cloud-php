@@ -21,7 +21,7 @@ class KeyTrackingService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œ
+©
 8google/cloud/kms/inventory/v1/key_tracking_service.protogoogle.cloud.kms.inventory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"r
 #GetProtectedResourcesSummaryRequestK
 name (	B=àAúA7
@@ -42,7 +42,7 @@ class KeyTrackingService
 LocationsEntry
 key (	
 value (:8:ÁêA½
-5kmsinventory.googleapis.com/ProtectedResourcesSummarymprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary”projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/protectedResourcesSummary"°
+5kmsinventory.googleapis.com/ProtectedResourcesSummarymprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary”projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/protectedResourcesSummary"Í
 SearchProtectedResourcesRequestG
 scope (	B8àAúA2
 0cloudresourcemanager.googleapis.com/Organization
@@ -51,7 +51,8 @@ crypto_key (	B	àAúA
 *
 	page_size (
 
-page_token (	"Š
+page_token (	
+resource_types (	BàA"Š
  SearchProtectedResourcesResponseM
 protected_resources (20.google.cloud.kms.inventory.v1.ProtectedResource
 next_page_token (	"ù

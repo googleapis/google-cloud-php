@@ -39,6 +39,22 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
     private $keys;
 
     /**
+     * @param string                           $projectId Required. The ID of the project against which to make the request.
+     * @param \Google\Cloud\Datastore\V1\Key[] $keys      Required. A list of keys with complete key paths whose numeric IDs should
+     *                                                    not be auto-allocated.
+     *
+     * @return \Google\Cloud\Datastore\V1\ReserveIdsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, array $keys): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

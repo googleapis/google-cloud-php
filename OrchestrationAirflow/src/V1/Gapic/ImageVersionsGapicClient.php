@@ -61,6 +61,10 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\ListImageVersionsResponse;
  *     $imageVersionsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Orchestration\Airflow\Service\V1\Client\ImageVersionsClient} to
+ * use the new surface.
  */
 class ImageVersionsGapicClient
 {

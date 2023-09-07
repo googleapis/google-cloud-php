@@ -17,6 +17,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class RecognitionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. Which model to use for recognition requests. Select the model
+     * best suited to your domain to get best results.
+     * Guidance for choosing which model to use can be found in the [Transcription
+     * Models
+     * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     * and the models supported in each region can be found in the [Table Of
+     * Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     *
+     * Generated from protobuf field <code>string model = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model = '';
+    /**
+     * Optional. The language of the supplied audio as a
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     * Language tags are normalized to BCP-47 before they are used eg "en-us"
+     * becomes "en-US".
+     * Supported languages for each model are listed in the [Table of Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     * If additional languages are provided, recognition result will contain
+     * recognition in the most likely language detected. The recognition result
+     * will include the language tag of the language detected in the audio.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $language_codes;
+    /**
      * Speech recognition features to enable.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionFeatures features = 2;</code>
@@ -43,6 +70,25 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Speech\V2\ExplicitDecodingConfig $explicit_decoding_config
      *           Explicitly specified decoding parameters.
      *           Required if using headerless PCM audio (linear16, mulaw, alaw).
+     *     @type string $model
+     *           Optional. Which model to use for recognition requests. Select the model
+     *           best suited to your domain to get best results.
+     *           Guidance for choosing which model to use can be found in the [Transcription
+     *           Models
+     *           Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     *           and the models supported in each region can be found in the [Table Of
+     *           Supported
+     *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *           Optional. The language of the supplied audio as a
+     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     *           Language tags are normalized to BCP-47 before they are used eg "en-us"
+     *           becomes "en-US".
+     *           Supported languages for each model are listed in the [Table of Supported
+     *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     *           If additional languages are provided, recognition result will contain
+     *           recognition in the most likely language detected. The recognition result
+     *           will include the language tag of the language detected in the audio.
      *     @type \Google\Cloud\Speech\V2\RecognitionFeatures $features
      *           Speech recognition features to enable.
      *     @type \Google\Cloud\Speech\V2\SpeechAdaptation $adaptation
@@ -117,6 +163,88 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\ExplicitDecodingConfig::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Which model to use for recognition requests. Select the model
+     * best suited to your domain to get best results.
+     * Guidance for choosing which model to use can be found in the [Transcription
+     * Models
+     * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     * and the models supported in each region can be found in the [Table Of
+     * Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     *
+     * Generated from protobuf field <code>string model = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Optional. Which model to use for recognition requests. Select the model
+     * best suited to your domain to get best results.
+     * Guidance for choosing which model to use can be found in the [Transcription
+     * Models
+     * Documentation](https://cloud.google.com/speech-to-text/v2/docs/transcription-model)
+     * and the models supported in each region can be found in the [Table Of
+     * Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     *
+     * Generated from protobuf field <code>string model = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The language of the supplied audio as a
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     * Language tags are normalized to BCP-47 before they are used eg "en-us"
+     * becomes "en-US".
+     * Supported languages for each model are listed in the [Table of Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     * If additional languages are provided, recognition result will contain
+     * recognition in the most likely language detected. The recognition result
+     * will include the language tag of the language detected in the audio.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLanguageCodes()
+    {
+        return $this->language_codes;
+    }
+
+    /**
+     * Optional. The language of the supplied audio as a
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     * Language tags are normalized to BCP-47 before they are used eg "en-us"
+     * becomes "en-US".
+     * Supported languages for each model are listed in the [Table of Supported
+     * Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
+     * If additional languages are provided, recognition result will contain
+     * recognition in the most likely language detected. The recognition result
+     * will include the language tag of the language detected in the audio.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLanguageCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->language_codes = $arr;
 
         return $this;
     }

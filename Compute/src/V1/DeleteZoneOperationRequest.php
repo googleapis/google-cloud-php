@@ -35,6 +35,23 @@ class DeleteZoneOperationRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project   Project ID for this request.
+     * @param string $zone      Name of the zone for this request.
+     * @param string $operation Name of the Operations resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteZoneOperationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $operation): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setOperation($operation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

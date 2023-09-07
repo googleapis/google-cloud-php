@@ -36,6 +36,8 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Metastore\V1\AlterMetadataResourceLocationRequest;
+use Google\Cloud\Metastore\V1\AlterMetadataResourceLocationResponse;
 use Google\Cloud\Metastore\V1\Backup;
 use Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient;
 use Google\Cloud\Metastore\V1\CreateBackupRequest;
@@ -55,6 +57,10 @@ use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\ListServicesResponse;
 use Google\Cloud\Metastore\V1\MetadataExport;
 use Google\Cloud\Metastore\V1\MetadataImport;
+use Google\Cloud\Metastore\V1\MoveTableToDatabaseRequest;
+use Google\Cloud\Metastore\V1\MoveTableToDatabaseResponse;
+use Google\Cloud\Metastore\V1\QueryMetadataRequest;
+use Google\Cloud\Metastore\V1\QueryMetadataResponse;
 use Google\Cloud\Metastore\V1\Restore;
 use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
@@ -94,6 +100,139 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DataprocMetastoreClient($options);
+    }
+
+    /** @test */
+    public function alterMetadataResourceLocationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/alterMetadataResourceLocationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new AlterMetadataResourceLocationResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/alterMetadataResourceLocationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $resourceName = 'resourceName979421212';
+        $locationUri = 'locationUri-57953822';
+        $request = (new AlterMetadataResourceLocationRequest())
+            ->setService($formattedService)
+            ->setResourceName($resourceName)
+            ->setLocationUri($locationUri);
+        $response = $gapicClient->alterMetadataResourceLocation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/AlterMetadataResourceLocation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getResourceName();
+        $this->assertProtobufEquals($resourceName, $actualValue);
+        $actualValue = $actualApiRequestObject->getLocationUri();
+        $this->assertProtobufEquals($locationUri, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/alterMetadataResourceLocationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function alterMetadataResourceLocationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/alterMetadataResourceLocationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $resourceName = 'resourceName979421212';
+        $locationUri = 'locationUri-57953822';
+        $request = (new AlterMetadataResourceLocationRequest())
+            ->setService($formattedService)
+            ->setResourceName($resourceName)
+            ->setLocationUri($locationUri);
+        $response = $gapicClient->alterMetadataResourceLocation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/alterMetadataResourceLocationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1307,6 +1446,274 @@ class DataprocMetastoreClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function moveTableToDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/moveTableToDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new MoveTableToDatabaseResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/moveTableToDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $tableName = 'tableName-1504630692';
+        $dbName = 'dbName1452819884';
+        $destinationDbName = 'destinationDbName-1322761605';
+        $request = (new MoveTableToDatabaseRequest())
+            ->setService($formattedService)
+            ->setTableName($tableName)
+            ->setDbName($dbName)
+            ->setDestinationDbName($destinationDbName);
+        $response = $gapicClient->moveTableToDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/MoveTableToDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getTableName();
+        $this->assertProtobufEquals($tableName, $actualValue);
+        $actualValue = $actualApiRequestObject->getDbName();
+        $this->assertProtobufEquals($dbName, $actualValue);
+        $actualValue = $actualApiRequestObject->getDestinationDbName();
+        $this->assertProtobufEquals($destinationDbName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/moveTableToDatabaseTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function moveTableToDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/moveTableToDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $tableName = 'tableName-1504630692';
+        $dbName = 'dbName1452819884';
+        $destinationDbName = 'destinationDbName-1322761605';
+        $request = (new MoveTableToDatabaseRequest())
+            ->setService($formattedService)
+            ->setTableName($tableName)
+            ->setDbName($dbName)
+            ->setDestinationDbName($destinationDbName);
+        $response = $gapicClient->moveTableToDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/moveTableToDatabaseTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function queryMetadataTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/queryMetadataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $resultManifestUri = 'resultManifestUri-1050940354';
+        $expectedResponse = new QueryMetadataResponse();
+        $expectedResponse->setResultManifestUri($resultManifestUri);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/queryMetadataTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $query = 'query107944136';
+        $request = (new QueryMetadataRequest())
+            ->setService($formattedService)
+            ->setQuery($query);
+        $response = $gapicClient->queryMetadata($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/QueryMetadata', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/queryMetadataTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function queryMetadataExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/queryMetadataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $query = 'query107944136';
+        $request = (new QueryMetadataRequest())
+            ->setService($formattedService)
+            ->setQuery($query);
+        $response = $gapicClient->queryMetadata($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/queryMetadataTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function restoreServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2040,7 +2447,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createBackupAsyncTest()
+    public function alterMetadataResourceLocationAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -2057,30 +2464,26 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createBackupTest');
+        $incompleteOperation->setName('operations/alterMetadataResourceLocationTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $description = 'description-1724546052';
-        $expectedResponse = new Backup();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDescription($description);
+        $expectedResponse = new AlterMetadataResourceLocationResponse();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createBackupTest');
+        $completeOperation->setName('operations/alterMetadataResourceLocationTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $backupId = 'backupId1355353272';
-        $backup = new Backup();
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackupId($backupId)
-            ->setBackup($backup);
-        $response = $gapicClient->createBackupAsync($request)->wait();
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $resourceName = 'resourceName979421212';
+        $locationUri = 'locationUri-57953822';
+        $request = (new AlterMetadataResourceLocationRequest())
+            ->setService($formattedService)
+            ->setResourceName($resourceName)
+            ->setLocationUri($locationUri);
+        $response = $gapicClient->alterMetadataResourceLocationAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2089,15 +2492,15 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupId();
-        $this->assertProtobufEquals($backupId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
+        $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/AlterMetadataResourceLocation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getResourceName();
+        $this->assertProtobufEquals($resourceName, $actualValue);
+        $actualValue = $actualApiRequestObject->getLocationUri();
+        $this->assertProtobufEquals($locationUri, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createBackupTest');
+        $expectedOperationsRequestObject->setName('operations/alterMetadataResourceLocationTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

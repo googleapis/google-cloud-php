@@ -373,6 +373,28 @@ return [
                     ],
                 ],
             ],
+            'ListSkuGroupBillableSkus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*/skuGroups/*}/billableSkus',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSkuGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*}/skuGroups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSkus' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=products/*}/skus',

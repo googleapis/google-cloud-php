@@ -35,6 +35,27 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
     private $context = null;
 
     /**
+     * @param string                              $parent  Required. The session to create a context for.
+     *                                                     Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                                                     `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                                                     ID>/sessions/<Session ID>`.
+     *                                                     If `Environment ID` is not specified, we assume default 'draft'
+     *                                                     environment. If `User ID` is not specified, we assume default '-' user. Please see
+     *                                                     {@see ContextsClient::sessionName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Context $context Required. The context to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateContextRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Context $context): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setContext($context);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

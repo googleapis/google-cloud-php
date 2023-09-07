@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Build\V2\BatchCreateRepositoriesResponse;
 use Google\Cloud\Build\V2\Connection;
+use Google\Cloud\Build\V2\FetchGitRefsResponse;
 use Google\Cloud\Build\V2\FetchLinkableRepositoriesResponse;
 use Google\Cloud\Build\V2\FetchReadTokenResponse;
 use Google\Cloud\Build\V2\FetchReadWriteTokenResponse;
@@ -351,10 +352,12 @@ class RepositoryManagerClientTest extends GeneratedTest
         $name = 'name3373707';
         $remoteUri = 'remoteUri1041652211';
         $etag = 'etag3123477';
+        $webhookId = 'webhookId311874531';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setRemoteUri($remoteUri);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setWebhookId($webhookId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -697,6 +700,64 @@ class RepositoryManagerClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function fetchGitRefsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new FetchGitRefsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+        $response = $gapicClient->fetchGitRefs($formattedRepository);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/FetchGitRefs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getRepository();
+        $this->assertProtobufEquals($formattedRepository, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRefsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+        try {
+            $gapicClient->fetchGitRefs($formattedRepository);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function fetchLinkableRepositoriesTest()
     {
         $transport = $this->createTransport();
@@ -962,10 +1023,12 @@ class RepositoryManagerClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $remoteUri = 'remoteUri1041652211';
         $etag = 'etag3123477';
+        $webhookId = 'webhookId311874531';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
         $expectedResponse->setRemoteUri($remoteUri);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setWebhookId($webhookId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');

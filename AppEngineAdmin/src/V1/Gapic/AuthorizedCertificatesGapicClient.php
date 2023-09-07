@@ -57,6 +57,10 @@ use Google\Protobuf\GPBEmpty;
  *     $authorizedCertificatesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\AuthorizedCertificatesClient} to use the new
+ * surface.
  */
 class AuthorizedCertificatesGapicClient
 {

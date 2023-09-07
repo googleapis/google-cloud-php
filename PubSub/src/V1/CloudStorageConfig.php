@@ -33,7 +33,8 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     private $filename_prefix = '';
     /**
      * User-provided suffix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     * not end in "/".
      *
      * Generated from protobuf field <code>string filename_suffix = 3;</code>
      */
@@ -79,7 +80,8 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *           requirements](https://cloud.google.com/storage/docs/objects#naming).
      *     @type string $filename_suffix
      *           User-provided suffix for Cloud Storage filename. See the [object naming
-     *           requirements](https://cloud.google.com/storage/docs/objects#naming).
+     *           requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     *           not end in "/".
      *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig\TextConfig $text_config
      *           If set, message data will be written to Cloud Storage in text format.
      *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig\AvroConfig $avro_config
@@ -164,7 +166,8 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * User-provided suffix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     * not end in "/".
      *
      * Generated from protobuf field <code>string filename_suffix = 3;</code>
      * @return string
@@ -176,7 +179,8 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * User-provided suffix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * requirements](https://cloud.google.com/storage/docs/objects#naming). Must
+     * not end in "/".
      *
      * Generated from protobuf field <code>string filename_suffix = 3;</code>
      * @param string $var

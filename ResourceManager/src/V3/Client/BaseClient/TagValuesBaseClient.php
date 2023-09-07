@@ -61,7 +61,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ResourceManager\V3\TagValuesClient} for the stable implementation
  *
  * @experimental
  *
@@ -269,6 +270,8 @@ abstract class TagValuesBaseClient
      *
      * The async variant is {@see self::createTagValueAsync()} .
      *
+     * @example samples/V3/TagValuesClient/create_tag_value.php
+     *
      * @param CreateTagValueRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -293,6 +296,8 @@ abstract class TagValuesBaseClient
      * deleted.
      *
      * The async variant is {@see self::deleteTagValueAsync()} .
+     *
+     * @example samples/V3/TagValuesClient/delete_tag_value.php
      *
      * @param DeleteTagValueRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -323,6 +328,8 @@ abstract class TagValuesBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V3/TagValuesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -349,6 +356,8 @@ abstract class TagValuesBaseClient
      *
      * The async variant is {@see self::getNamespacedTagValueAsync()} .
      *
+     * @example samples/V3/TagValuesClient/get_namespaced_tag_value.php
+     *
      * @param GetNamespacedTagValueRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -374,6 +383,8 @@ abstract class TagValuesBaseClient
      *
      * The async variant is {@see self::getTagValueAsync()} .
      *
+     * @example samples/V3/TagValuesClient/get_tag_value.php
+     *
      * @param GetTagValueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -397,6 +408,8 @@ abstract class TagValuesBaseClient
      * Lists all TagValues for a specific TagKey.
      *
      * The async variant is {@see self::listTagValuesAsync()} .
+     *
+     * @example samples/V3/TagValuesClient/list_tag_values.php
      *
      * @param ListTagValuesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -426,6 +439,8 @@ abstract class TagValuesBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V3/TagValuesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -454,6 +469,8 @@ abstract class TagValuesBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V3/TagValuesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -477,6 +494,8 @@ abstract class TagValuesBaseClient
      * Updates the attributes of the TagValue resource.
      *
      * The async variant is {@see self::updateTagValueAsync()} .
+     *
+     * @example samples/V3/TagValuesClient/update_tag_value.php
      *
      * @param UpdateTagValueRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

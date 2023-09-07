@@ -25,6 +25,21 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The job name. For example:
+     *                     `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see
+     *                     {@see CloudSchedulerClient::jobName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Scheduler\V1\DeleteJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

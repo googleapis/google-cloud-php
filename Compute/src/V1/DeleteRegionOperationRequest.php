@@ -35,6 +35,23 @@ class DeleteRegionOperationRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project   Project ID for this request.
+     * @param string $region    Name of the region for this request.
+     * @param string $operation Name of the Operations resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteRegionOperationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $operation): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setOperation($operation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

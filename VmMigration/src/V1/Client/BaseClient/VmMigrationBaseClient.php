@@ -108,7 +108,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\VMMigration\V1\VmMigrationClient} for the stable implementation
  *
  * @experimental
  *
@@ -551,6 +552,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::addGroupMigrationAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/add_group_migration.php
+     *
      * @param AddGroupMigrationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -574,6 +577,8 @@ abstract class VmMigrationBaseClient
      * Initiates the cancellation of a running clone job.
      *
      * The async variant is {@see self::cancelCloneJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/cancel_clone_job.php
      *
      * @param CancelCloneJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -599,6 +604,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::cancelCutoverJobAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/cancel_cutover_job.php
+     *
      * @param CancelCutoverJobRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -622,6 +629,8 @@ abstract class VmMigrationBaseClient
      * Initiates a Clone of a specific migrating VM.
      *
      * The async variant is {@see self::createCloneJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/create_clone_job.php
      *
      * @param CreateCloneJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -649,6 +658,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::createCutoverJobAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/create_cutover_job.php
+     *
      * @param CreateCutoverJobRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -672,6 +683,8 @@ abstract class VmMigrationBaseClient
      * Creates a new DatacenterConnector in a given Source.
      *
      * The async variant is {@see self::createDatacenterConnectorAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/create_datacenter_connector.php
      *
      * @param CreateDatacenterConnectorRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -697,6 +710,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::createGroupAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/create_group.php
+     *
      * @param CreateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -721,6 +736,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::createMigratingVmAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/create_migrating_vm.php
+     *
      * @param CreateMigratingVmRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -744,6 +761,8 @@ abstract class VmMigrationBaseClient
      * Creates a new Source in a given project and location.
      *
      * The async variant is {@see self::createSourceAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/create_source.php
      *
      * @param CreateSourceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -772,6 +791,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::createTargetProjectAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/create_target_project.php
+     *
      * @param CreateTargetProjectRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -795,6 +816,8 @@ abstract class VmMigrationBaseClient
      * Creates a new UtilizationReport.
      *
      * The async variant is {@see self::createUtilizationReportAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/create_utilization_report.php
      *
      * @param CreateUtilizationReportRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -820,6 +843,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::deleteDatacenterConnectorAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/delete_datacenter_connector.php
+     *
      * @param DeleteDatacenterConnectorRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -843,6 +868,8 @@ abstract class VmMigrationBaseClient
      * Deletes a single Group.
      *
      * The async variant is {@see self::deleteGroupAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/delete_group.php
      *
      * @param DeleteGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -868,6 +895,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::deleteMigratingVmAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/delete_migrating_vm.php
+     *
      * @param DeleteMigratingVmRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -891,6 +920,8 @@ abstract class VmMigrationBaseClient
      * Deletes a single Source.
      *
      * The async variant is {@see self::deleteSourceAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/delete_source.php
      *
      * @param DeleteSourceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -919,6 +950,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::deleteTargetProjectAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/delete_target_project.php
+     *
      * @param DeleteTargetProjectRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -942,6 +975,8 @@ abstract class VmMigrationBaseClient
      * Deletes a single Utilization Report.
      *
      * The async variant is {@see self::deleteUtilizationReportAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/delete_utilization_report.php
      *
      * @param DeleteUtilizationReportRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -971,6 +1006,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::fetchInventoryAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/fetch_inventory.php
+     *
      * @param FetchInventoryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -996,6 +1033,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::finalizeMigrationAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/finalize_migration.php
+     *
      * @param FinalizeMigrationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1019,6 +1058,8 @@ abstract class VmMigrationBaseClient
      * Gets details of a single CloneJob.
      *
      * The async variant is {@see self::getCloneJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_clone_job.php
      *
      * @param GetCloneJobRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1044,6 +1085,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::getCutoverJobAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/get_cutover_job.php
+     *
      * @param GetCutoverJobRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1067,6 +1110,8 @@ abstract class VmMigrationBaseClient
      * Gets details of a single DatacenterConnector.
      *
      * The async variant is {@see self::getDatacenterConnectorAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_datacenter_connector.php
      *
      * @param GetDatacenterConnectorRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1092,6 +1137,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::getGroupAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/get_group.php
+     *
      * @param GetGroupRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -1115,6 +1162,8 @@ abstract class VmMigrationBaseClient
      * Gets details of a single MigratingVm.
      *
      * The async variant is {@see self::getMigratingVmAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_migrating_vm.php
      *
      * @param GetMigratingVmRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1140,6 +1189,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::getReplicationCycleAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/get_replication_cycle.php
+     *
      * @param GetReplicationCycleRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1163,6 +1214,8 @@ abstract class VmMigrationBaseClient
      * Gets details of a single Source.
      *
      * The async variant is {@see self::getSourceAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_source.php
      *
      * @param GetSourceRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1191,6 +1244,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::getTargetProjectAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/get_target_project.php
+     *
      * @param GetTargetProjectRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1214,6 +1269,8 @@ abstract class VmMigrationBaseClient
      * Gets a single Utilization Report.
      *
      * The async variant is {@see self::getUtilizationReportAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_utilization_report.php
      *
      * @param GetUtilizationReportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1239,6 +1296,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::listCloneJobsAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/list_clone_jobs.php
+     *
      * @param ListCloneJobsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1262,6 +1321,8 @@ abstract class VmMigrationBaseClient
      * Lists CutoverJobs of a given migrating VM.
      *
      * The async variant is {@see self::listCutoverJobsAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_cutover_jobs.php
      *
      * @param ListCutoverJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1287,6 +1348,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::listDatacenterConnectorsAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/list_datacenter_connectors.php
+     *
      * @param ListDatacenterConnectorsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -1310,6 +1373,8 @@ abstract class VmMigrationBaseClient
      * Lists Groups in a given project and location.
      *
      * The async variant is {@see self::listGroupsAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_groups.php
      *
      * @param ListGroupsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1335,6 +1400,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::listMigratingVmsAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/list_migrating_vms.php
+     *
      * @param ListMigratingVmsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1359,6 +1426,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::listReplicationCyclesAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/list_replication_cycles.php
+     *
      * @param ListReplicationCyclesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1382,6 +1451,8 @@ abstract class VmMigrationBaseClient
      * Lists Sources in a given project and location.
      *
      * The async variant is {@see self::listSourcesAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_sources.php
      *
      * @param ListSourcesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1410,6 +1481,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::listTargetProjectsAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/list_target_projects.php
+     *
      * @param ListTargetProjectsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1433,6 +1506,8 @@ abstract class VmMigrationBaseClient
      * Lists Utilization Reports of the given Source.
      *
      * The async variant is {@see self::listUtilizationReportsAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_utilization_reports.php
      *
      * @param ListUtilizationReportsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1460,6 +1535,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::pauseMigrationAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/pause_migration.php
+     *
      * @param PauseMigrationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1483,6 +1560,8 @@ abstract class VmMigrationBaseClient
      * Removes a MigratingVm from a Group.
      *
      * The async variant is {@see self::removeGroupMigrationAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/remove_group_migration.php
      *
      * @param RemoveGroupMigrationRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1511,6 +1590,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::resumeMigrationAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/resume_migration.php
+     *
      * @param ResumeMigrationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1536,6 +1617,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::startMigrationAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/start_migration.php
+     *
      * @param StartMigrationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1559,6 +1642,8 @@ abstract class VmMigrationBaseClient
      * Updates the parameters of a single Group.
      *
      * The async variant is {@see self::updateGroupAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/update_group.php
      *
      * @param UpdateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1584,6 +1669,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::updateMigratingVmAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/update_migrating_vm.php
+     *
      * @param UpdateMigratingVmRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1607,6 +1694,8 @@ abstract class VmMigrationBaseClient
      * Updates the parameters of a single Source.
      *
      * The async variant is {@see self::updateSourceAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/update_source.php
      *
      * @param UpdateSourceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1635,6 +1724,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::updateTargetProjectAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/update_target_project.php
+     *
      * @param UpdateTargetProjectRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1660,6 +1751,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::upgradeApplianceAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/upgrade_appliance.php
+     *
      * @param UpgradeApplianceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1684,6 +1777,8 @@ abstract class VmMigrationBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/VmMigrationClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1707,6 +1802,8 @@ abstract class VmMigrationBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -31,6 +31,24 @@ class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name  Required. The name of the tag template to delete. Please see
+     *                      {@see DataCatalogClient::tagTemplateName()} for help formatting this field.
+     * @param bool   $force Required. If true, deletes all tags that use this template.
+     *
+     *                      Currently, `true` is the only supported value.
+     *
+     * @return \Google\Cloud\DataCatalog\V1\DeleteTagTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, bool $force): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setForce($force);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

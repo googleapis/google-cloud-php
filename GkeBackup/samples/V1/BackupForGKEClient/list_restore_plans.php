@@ -33,7 +33,7 @@ use Google\Cloud\GkeBackup\V1\RestorePlan;
  * Lists RestorePlans in a given location.
  *
  * @param string $formattedParent The location that contains the RestorePlans to list.
- *                                Format: projects/&#42;/locations/*
+ *                                Format: `projects/&#42;/locations/*`
  *                                Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
  */
 function list_restore_plans_sample(string $formattedParent): void

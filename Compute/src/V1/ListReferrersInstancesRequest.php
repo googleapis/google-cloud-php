@@ -65,6 +65,23 @@ class ListReferrersInstancesRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project  Project ID for this request.
+     * @param string $zone     The name of the zone for this request.
+     * @param string $instance Name of the target instance scoping this request, or '-' if the request should span over all instances in the container.
+     *
+     * @return \Google\Cloud\Compute\V1\ListReferrersInstancesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $instance): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setInstance($instance);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

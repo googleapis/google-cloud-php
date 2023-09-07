@@ -41,6 +41,23 @@ class InsertTargetVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     private $target_vpn_gateway_resource = null;
 
     /**
+     * @param string                                    $project                  Project ID for this request.
+     * @param string                                    $region                   Name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\TargetVpnGateway $targetVpnGatewayResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertTargetVpnGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\TargetVpnGateway $targetVpnGatewayResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetVpnGatewayResource($targetVpnGatewayResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

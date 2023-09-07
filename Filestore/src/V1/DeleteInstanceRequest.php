@@ -31,6 +31,21 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string $name Required. The instance resource name, in the format
+     *                     `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     *                     Please see {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Filestore\V1\DeleteInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -27,6 +27,21 @@ class DeleteAssignmentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Name of the resource, e.g.
+     *                     `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     *                     Please see {@see ReservationServiceClient::assignmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

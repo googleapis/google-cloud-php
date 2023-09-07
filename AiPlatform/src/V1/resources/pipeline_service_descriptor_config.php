@@ -227,10 +227,13 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'artifact' => 'projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}',
                 'context' => 'projects/{project}/locations/{location}/metadataStores/{metadata_store}/contexts/{context}',
                 'customJob' => 'projects/{project}/locations/{location}/customJobs/{custom_job}',
                 'endpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
+                'execution' => 'projects/{project}/locations/{location}/metadataStores/{metadata_store}/executions/{execution}',
                 'location' => 'projects/{project}/locations/{location}',
+                'metadataStore' => 'projects/{project}/locations/{location}/metadataStores/{metadata_store}',
                 'model' => 'projects/{project}/locations/{location}/models/{model}',
                 'network' => 'projects/{project}/global/networks/{network}',
                 'pipelineJob' => 'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}',

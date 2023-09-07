@@ -40,6 +40,34 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
     private $alert_policy = null;
 
     /**
+     * @param string                                  $name        Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     *                                                             which to create the alerting policy. The format is:
+     *
+     *                                                             projects/[PROJECT_ID_OR_NUMBER]
+     *
+     *                                                             Note that this field names the parent container in which the alerting
+     *                                                             policy will be written, not the name of the created policy. |name| must be
+     *                                                             a host project of a Metrics Scope, otherwise INVALID_ARGUMENT error will
+     *                                                             return. The alerting policy that is returned will have a name that contains
+     *                                                             a normalized representation of this name as a prefix but adds a suffix of
+     *                                                             the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
+     *                                                             container.
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy $alertPolicy Required. The requested alerting policy. You should omit the `name` field in this
+     *                                                             policy. The name will be returned in the new policy, including
+     *                                                             a new `[ALERT_POLICY_ID]` value.
+     *
+     * @return \Google\Cloud\Monitoring\V3\CreateAlertPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, \Google\Cloud\Monitoring\V3\AlertPolicy $alertPolicy): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setAlertPolicy($alertPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

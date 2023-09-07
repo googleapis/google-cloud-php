@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
@@ -127,6 +128,51 @@ class AdminTest extends SpannerTestCase
         $op->pollUntilComplete();
 
         $this->assertEquals($db->ddl()[0], $stmt);
+    }
+
+    public function testDatabaseDropProtection()
+    {
+        $this->skipEmulatorTests();
+        $instance = self::$instance;
+
+        $dbName = uniqid(self::TESTING_PREFIX);
+        $op = $instance->createDatabase($dbName);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $db = $op->pollUntilComplete();
+        $this->assertInstanceOf(Database::class, $db);
+
+        $info = $db->reload();
+        $this->assertFalse($info['enableDropProtection']);
+
+        $op = $db->updateDatabase(['enableDropProtection' => true]);
+        $op->pollUntilComplete();
+        $info = $db->reload();
+        $this->assertTrue($info['enableDropProtection']);
+
+        // delete database should throw
+        $isDropThrows = false;
+        try {
+            $db->drop();
+        } catch (FailedPreconditionException $ex) {
+            $isDropThrows = true;
+            $this->assertStringContainsStringIgnoringCase(
+                'enable_drop_protection',
+                $ex->getMessage()
+            );
+        }
+        $this->assertTrue($isDropThrows);
+        $this->assertTrue($db->exists());
+
+        // disable drop databases config
+        $op = $db->updateDatabase(['enableDropProtection' => false]);
+        $op->pollUntilComplete();
+        $info = $db->reload();
+        $this->assertFalse($info['enableDropProtection']);
+
+        // drop should succeed
+        $db->drop();
+        $this->assertFalse($db->exists());
     }
 
     public function testCreateCustomerManagedInstanceConfiguration()

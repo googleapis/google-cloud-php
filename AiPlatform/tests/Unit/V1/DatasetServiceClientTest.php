@@ -108,6 +108,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
+        $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
         $expectedResponse = new Dataset();
@@ -115,6 +116,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
+        $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $anyResponse = new Any();
@@ -346,6 +348,123 @@ class DatasetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteSavedQueryTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteSavedQueryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteSavedQueryTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
+        $response = $gapicClient->deleteSavedQuery($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/DeleteSavedQuery', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteSavedQueryTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteSavedQueryExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteSavedQueryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
+        $response = $gapicClient->deleteSavedQuery($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteSavedQueryTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function exportDataTest()
     {
         $operationsTransport = $this->createTransport();
@@ -543,6 +662,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
+        $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
         $expectedResponse = new Dataset();
@@ -550,6 +670,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
+        $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
@@ -1074,6 +1195,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
+        $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
         $expectedResponse = new Dataset();
@@ -1081,6 +1203,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
+        $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);

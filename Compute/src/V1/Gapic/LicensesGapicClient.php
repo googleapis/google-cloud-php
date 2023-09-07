@@ -88,6 +88,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $licensesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\LicensesClient} to use the new surface.
  */
 class LicensesGapicClient
 {

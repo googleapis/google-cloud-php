@@ -53,6 +53,70 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     protected $transaction_selector;
 
     /**
+     * @param string                                $projectId   Required. The ID of the project against which to make the request.
+     * @param int                                   $mode        The type of commit to perform. Defaults to `TRANSACTIONAL`.
+     *                                                           For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\CommitRequest\Mode}
+     * @param string                                $transaction The identifier of the transaction associated with the commit. A
+     *                                                           transaction identifier is returned by a call to
+     *                                                           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+     * @param \Google\Cloud\Datastore\V1\Mutation[] $mutations   The mutations to perform.
+     *
+     *                                                           When mode is `TRANSACTIONAL`, mutations affecting a single entity are
+     *                                                           applied in order. The following sequences of mutations affecting a single
+     *                                                           entity are not permitted in a single `Commit` request:
+     *
+     *                                                           - `insert` followed by `insert`
+     *                                                           - `update` followed by `insert`
+     *                                                           - `upsert` followed by `insert`
+     *                                                           - `delete` followed by `update`
+     *
+     *                                                           When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
+     *                                                           entity.
+     *
+     * @return \Google\Cloud\Datastore\V1\CommitRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, int $mode, string $transaction, array $mutations): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setMode($mode)
+            ->setTransaction($transaction)
+            ->setMutations($mutations);
+    }
+
+    /**
+     * @param string                                $projectId Required. The ID of the project against which to make the request.
+     * @param int                                   $mode      The type of commit to perform. Defaults to `TRANSACTIONAL`.
+     *                                                         For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\CommitRequest\Mode}
+     * @param \Google\Cloud\Datastore\V1\Mutation[] $mutations The mutations to perform.
+     *
+     *                                                         When mode is `TRANSACTIONAL`, mutations affecting a single entity are
+     *                                                         applied in order. The following sequences of mutations affecting a single
+     *                                                         entity are not permitted in a single `Commit` request:
+     *
+     *                                                         - `insert` followed by `insert`
+     *                                                         - `update` followed by `insert`
+     *                                                         - `upsert` followed by `insert`
+     *                                                         - `delete` followed by `update`
+     *
+     *                                                         When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
+     *                                                         entity.
+     *
+     * @return \Google\Cloud\Datastore\V1\CommitRequest
+     *
+     * @experimental
+     */
+    public static function buildFromProjectIdModeMutations(string $projectId, int $mode, array $mutations): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setMode($mode)
+            ->setMutations($mutations);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

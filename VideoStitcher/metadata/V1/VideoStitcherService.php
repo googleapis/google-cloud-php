@@ -123,8 +123,7 @@ page_token (	
 name (	B*àAúA$
 "videostitcher.googleapis.com/Slate"¤
 CreateLiveSessionRequest@
-parent (	B0àAúA*
-(videostitcher.googleapis.com/LiveSessionF
+parent (	B0àAúA*(videostitcher.googleapis.com/LiveSessionF
 live_session (2+.google.cloud.video.stitcher.v1.LiveSessionBàA"W
 GetLiveSessionRequest>
 name (	B0àAúA*

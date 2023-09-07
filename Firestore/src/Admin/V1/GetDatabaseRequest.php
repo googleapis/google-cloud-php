@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.GetDatabase][google.firestore.admin.v1.FirestoreAdmin.GetDatabase].
+ * The request for
+ * [FirestoreAdmin.GetDatabase][google.firestore.admin.v1.FirestoreAdmin.GetDatabase].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.GetDatabaseRequest</code>
  */
@@ -22,6 +23,21 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+
+    /**
+     * @param string $name Required. A name of the form
+     *                     `projects/{project_id}/databases/{database_id}`
+     *                     Please see {@see FirestoreAdminClient::databaseName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

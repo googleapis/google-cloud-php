@@ -50,7 +50,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Kms\Inventory\V1\KeyTrackingServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -288,6 +290,8 @@ abstract class KeyTrackingServiceBaseClient
      *
      * The async variant is {@see self::getProtectedResourcesSummaryAsync()} .
      *
+     * @example samples/V1/KeyTrackingServiceClient/get_protected_resources_summary.php
+     *
      * @param GetProtectedResourcesSummaryRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -312,6 +316,8 @@ abstract class KeyTrackingServiceBaseClient
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
      *
      * The async variant is {@see self::searchProtectedResourcesAsync()} .
+     *
+     * @example samples/V1/KeyTrackingServiceClient/search_protected_resources.php
      *
      * @param SearchProtectedResourcesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

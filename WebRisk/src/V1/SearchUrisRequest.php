@@ -30,6 +30,23 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
     private $threat_types;
 
     /**
+     * @param string $uri         Required. The URI to be checked for matches.
+     * @param int[]  $threatTypes Required. The ThreatLists to search in. Multiple ThreatLists may be
+     *                            specified.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1\ThreatType}
+     *
+     * @return \Google\Cloud\WebRisk\V1\SearchUrisRequest
+     *
+     * @experimental
+     */
+    public static function build(string $uri, array $threatTypes): self
+    {
+        return (new self())
+            ->setUri($uri)
+            ->setThreatTypes($threatTypes);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

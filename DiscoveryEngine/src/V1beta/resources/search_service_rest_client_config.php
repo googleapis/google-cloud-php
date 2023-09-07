@@ -38,6 +38,22 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/targetSites/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/operations/*}',
                     ],
                     [
@@ -79,7 +95,23 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/targetSites}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*}/operations',
                     ],
                     [
                         'method' => 'get',

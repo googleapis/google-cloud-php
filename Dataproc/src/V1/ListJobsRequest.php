@@ -73,6 +73,53 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
+     *                          belongs to.
+     * @param string $region    Required. The Dataproc region in which to handle the request.
+     *
+     * @return \Google\Cloud\Dataproc\V1\ListJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $region): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region);
+    }
+
+    /**
+     * @param string $projectId Required. The ID of the Google Cloud Platform project that the job
+     *                          belongs to.
+     * @param string $region    Required. The Dataproc region in which to handle the request.
+     * @param string $filter    Optional. A filter constraining the jobs to list. Filters are
+     *                          case-sensitive and have the following syntax:
+     *
+     *                          [field = value] AND [field [= value]] ...
+     *
+     *                          where **field** is `status.state` or `labels.[KEY]`, and `[KEY]` is a label
+     *                          key. **value** can be `*` to match all values.
+     *                          `status.state` can be either `ACTIVE` or `NON_ACTIVE`.
+     *                          Only the logical `AND` operator is supported; space-separated items are
+     *                          treated as having an implicit `AND` operator.
+     *
+     *                          Example filter:
+     *
+     *                          status.state = ACTIVE AND labels.env = staging AND labels.starred = *
+     *
+     * @return \Google\Cloud\Dataproc\V1\ListJobsRequest
+     *
+     * @experimental
+     */
+    public static function buildFromProjectIdRegionFilter(string $projectId, string $region, string $filter): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setRegion($region)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

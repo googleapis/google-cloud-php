@@ -32,6 +32,20 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
     private $current_document = null;
 
     /**
+     * @param string $name Required. The resource name of the Document to delete. In the format:
+     *                     `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *
+     * @return \Google\Cloud\Firestore\V1\DeleteDocumentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

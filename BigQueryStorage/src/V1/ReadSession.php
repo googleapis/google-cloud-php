@@ -77,6 +77,16 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     private $estimated_total_bytes_scanned = 0;
     /**
+     * Output only. A pre-projected estimate of the total physical size of files
+     * (in bytes) that this session will scan when all streams are consumed. This
+     * estimate is independent of the selected columns and can be based on
+     * incomplete or stale metadata from the table.  This field is only set for
+     * BigLake tables.
+     *
+     * Generated from protobuf field <code>int64 estimated_total_physical_file_size = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $estimated_total_physical_file_size = 0;
+    /**
      * Output only. An estimate on the number of rows present in this session's
      * streams. This estimate is based on metadata from the table which might be
      * incomplete or stale.
@@ -135,6 +145,12 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *           Output only. An estimate on the number of bytes this session will scan when
      *           all streams are completely consumed. This estimate is based on
      *           metadata from the table which might be incomplete or stale.
+     *     @type int|string $estimated_total_physical_file_size
+     *           Output only. A pre-projected estimate of the total physical size of files
+     *           (in bytes) that this session will scan when all streams are consumed. This
+     *           estimate is independent of the selected columns and can be based on
+     *           incomplete or stale metadata from the table.  This field is only set for
+     *           BigLake tables.
      *     @type int|string $estimated_row_count
      *           Output only. An estimate on the number of rows present in this session's
      *           streams. This estimate is based on metadata from the table which might be
@@ -474,6 +490,40 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->estimated_total_bytes_scanned = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A pre-projected estimate of the total physical size of files
+     * (in bytes) that this session will scan when all streams are consumed. This
+     * estimate is independent of the selected columns and can be based on
+     * incomplete or stale metadata from the table.  This field is only set for
+     * BigLake tables.
+     *
+     * Generated from protobuf field <code>int64 estimated_total_physical_file_size = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getEstimatedTotalPhysicalFileSize()
+    {
+        return $this->estimated_total_physical_file_size;
+    }
+
+    /**
+     * Output only. A pre-projected estimate of the total physical size of files
+     * (in bytes) that this session will scan when all streams are consumed. This
+     * estimate is independent of the selected columns and can be based on
+     * incomplete or stale metadata from the table.  This field is only set for
+     * BigLake tables.
+     *
+     * Generated from protobuf field <code>int64 estimated_total_physical_file_size = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setEstimatedTotalPhysicalFileSize($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->estimated_total_physical_file_size = $var;
 
         return $this;
     }

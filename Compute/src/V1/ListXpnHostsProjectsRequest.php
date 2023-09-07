@@ -59,6 +59,21 @@ class ListXpnHostsProjectsRequest extends \Google\Protobuf\Internal\Message
     private $return_partial_success = null;
 
     /**
+     * @param string                                               $project                             Project ID for this request.
+     * @param \Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest $projectsListXpnHostsRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\ListXpnHostsProjectsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, \Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest $projectsListXpnHostsRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setProjectsListXpnHostsRequestResource($projectsListXpnHostsRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

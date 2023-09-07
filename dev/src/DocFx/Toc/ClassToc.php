@@ -33,7 +33,7 @@ class ClassToc
     {
         return array_filter([
             'uid' => $this->classNode->getFullname(),
-            'name' => $this->classNode->getName(),
+            'name' => $this->classNode->getTocName(),
             'status' => $this->classNode->getStatus(),
         ]);
     }

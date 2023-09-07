@@ -25,17 +25,46 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
     private $table = null;
     /**
      * Required. The list of fields to update.
-     * A mask specifying which fields (e.g. `deletion_protection`) in the `table`
+     * A mask specifying which fields (e.g. `change_stream_config`) in the `table`
      * field should be updated. This mask is relative to the `table` field, not to
      * the request message. The wildcard (*) path is currently not supported.
-     * Currently UpdateTable is only supported for the following field:
-     *  * `deletion_protection`
+     * Currently UpdateTable is only supported for the following fields:
+     * * `change_stream_config`
+     * * `change_stream_config.retention_period`
+     * * `deletion_protection`
      * If `column_families` is set in `update_mask`, it will return an
      * UNIMPLEMENTED error.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\Bigtable\Admin\V2\Table $table      Required. The table to update.
+     *                                                          The table's `name` field is used to identify the table to update.
+     * @param \Google\Protobuf\FieldMask            $updateMask Required. The list of fields to update.
+     *                                                          A mask specifying which fields (e.g. `change_stream_config`) in the `table`
+     *                                                          field should be updated. This mask is relative to the `table` field, not to
+     *                                                          the request message. The wildcard (*) path is currently not supported.
+     *                                                          Currently UpdateTable is only supported for the following fields:
+     *
+     *                                                          * `change_stream_config`
+     *                                                          * `change_stream_config.retention_period`
+     *                                                          * `deletion_protection`
+     *
+     *                                                          If `column_families` is set in `update_mask`, it will return an
+     *                                                          UNIMPLEMENTED error.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Bigtable\Admin\V2\Table $table, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTable($table)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -48,11 +77,13 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *           The table's `name` field is used to identify the table to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The list of fields to update.
-     *           A mask specifying which fields (e.g. `deletion_protection`) in the `table`
+     *           A mask specifying which fields (e.g. `change_stream_config`) in the `table`
      *           field should be updated. This mask is relative to the `table` field, not to
      *           the request message. The wildcard (*) path is currently not supported.
-     *           Currently UpdateTable is only supported for the following field:
-     *            * `deletion_protection`
+     *           Currently UpdateTable is only supported for the following fields:
+     *           * `change_stream_config`
+     *           * `change_stream_config.retention_period`
+     *           * `deletion_protection`
      *           If `column_families` is set in `update_mask`, it will return an
      *           UNIMPLEMENTED error.
      * }
@@ -102,11 +133,13 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The list of fields to update.
-     * A mask specifying which fields (e.g. `deletion_protection`) in the `table`
+     * A mask specifying which fields (e.g. `change_stream_config`) in the `table`
      * field should be updated. This mask is relative to the `table` field, not to
      * the request message. The wildcard (*) path is currently not supported.
-     * Currently UpdateTable is only supported for the following field:
-     *  * `deletion_protection`
+     * Currently UpdateTable is only supported for the following fields:
+     * * `change_stream_config`
+     * * `change_stream_config.retention_period`
+     * * `deletion_protection`
      * If `column_families` is set in `update_mask`, it will return an
      * UNIMPLEMENTED error.
      *
@@ -130,11 +163,13 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The list of fields to update.
-     * A mask specifying which fields (e.g. `deletion_protection`) in the `table`
+     * A mask specifying which fields (e.g. `change_stream_config`) in the `table`
      * field should be updated. This mask is relative to the `table` field, not to
      * the request message. The wildcard (*) path is currently not supported.
-     * Currently UpdateTable is only supported for the following field:
-     *  * `deletion_protection`
+     * Currently UpdateTable is only supported for the following fields:
+     * * `change_stream_config`
+     * * `change_stream_config.retention_period`
+     * * `deletion_protection`
      * If `column_families` is set in `update_mask`, it will return an
      * UNIMPLEMENTED error.
      *

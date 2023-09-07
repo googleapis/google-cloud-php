@@ -43,7 +43,7 @@ function update_secret_sample(): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare the request message.
+    // Prepare any non-scalar elements to be passed along with the request.
     $secretReplication = new Replication();
     $secret = (new Secret())
         ->setReplication($secretReplication);

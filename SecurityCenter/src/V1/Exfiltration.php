@@ -9,10 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Exfiltration represents a data exfiltration attempt of one or more
- * sources to one or more targets. Sources represent the source
- * of data that is exfiltrated, and Targets represents the destination the
- * data was copied to.
+ * Exfiltration represents a data exfiltration attempt from one or more sources
+ * to one or more targets. The `sources` attribute lists the sources of the
+ * exfiltrated data. The `targets` attribute lists the destinations the data was
+ * copied to.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Exfiltration</code>
  */

@@ -52,6 +52,26 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
     private $page_token = '';
 
     /**
+     * @param string $project         Required. The name of the project to search related account group
+     *                                memberships from. Specify the project name in the following format:
+     *                                "projects/{project}". Please see
+     *                                {@see RecaptchaEnterpriseServiceClient::relatedAccountGroupName()} for help formatting this field.
+     * @param string $hashedAccountId Optional. The unique stable hashed user identifier we should search
+     *                                connections to. The identifier should correspond to a `hashed_account_id`
+     *                                provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $hashedAccountId): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setHashedAccountId($hashedAccountId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

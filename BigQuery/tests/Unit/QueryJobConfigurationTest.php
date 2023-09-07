@@ -21,6 +21,8 @@ use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use InvalidArgumentException;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -205,5 +207,126 @@ class QueryJobConfigurationTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    /**
+     * @dataProvider setParamTypesDataProvider
+     */
+    public function testSetParamTypes(array $values, array $types, array $expectedQuery)
+    {
+        $this->expectedConfig['configuration']['query'] = $expectedQuery
+        + $this->expectedConfig['configuration']['query'];
+
+        $this->config
+            ->parameters($values)
+            ->setParamTypes($types);
+
+        $this->assertEquals($this->expectedConfig, $this->config->toArray());
+    }
+
+    public function setParamTypesDataProvider()
+    {
+        return [
+            [
+                // test for empty array as a named param
+                ['test' => []],
+                ['test' => 'STRING'],
+                [
+                    'parameterMode' => 'named',
+                    'queryParameters' => [
+                        [
+                            'name' => 'test',
+                            'parameterType' => [
+                                'type' => 'ARRAY',
+                                'arrayType' => [
+                                    'type' => 'STRING'
+                                ]
+                            ],
+                            'parameterValue' => [
+                                'arrayValues' => []
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            [
+                // test for empty positional array
+                [[]],
+                ['INT64'],
+                [
+                    'parameterMode' => 'positional',
+                    'queryParameters' => [
+                        [
+                            'parameterType' => [
+                                'type' => 'ARRAY',
+                                'arrayType' => [
+                                    'type' => 'INT64'
+                                ]
+                            ],
+                            'parameterValue' => [
+                                'arrayValues' => []
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            [
+                // test for when the types are explicitly converted
+                // here we expect the values specified by the user, even though we can guess the type
+                ['param2'],
+                ['INT64'],
+                [
+                    'parameterMode' => 'positional',
+                    'queryParameters' => [
+                        [
+                            'parameterType' => [
+                                'type' => 'INT64'
+                            ],
+                            'parameterValue' => [
+                                'value' => 'param2'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * Test for setparamTypes call before parameters call
+     */
+    public function testSetParamTypesThrowsLogicException()
+    {
+        $this->expectException(LogicException::class);
+        $this->config
+            ->setParamTypes(['STRING'])
+            ->parameters(['test']);
+    }
+
+    public function testExtraParamInSetParamTypesThrowsException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->config
+            ->parameters(['test'])
+            ->setParamTypes(['STRING', 'INT64']);
+    }
+
+    public function testIncorrectNameInSetParamTypesThrowsException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->config
+            ->parameters(['key1' => 'test'])
+            ->setParamTypes(['key2' => 'INT64']);
+    }
+
+    public function testIncorrectIndexInSetParamTypesThrowsException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->config
+            ->parameters(['test'])
+            ->setParamTypes([1 => 'INT64']);
     }
 }

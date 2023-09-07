@@ -178,6 +178,8 @@ abstract class SnapshotsV1Beta3BaseClient
      *
      * The async variant is {@see self::deleteSnapshotAsync()} .
      *
+     * @example samples/V1beta3/SnapshotsV1Beta3Client/delete_snapshot.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -204,6 +206,8 @@ abstract class SnapshotsV1Beta3BaseClient
      *
      * The async variant is {@see self::getSnapshotAsync()} .
      *
+     * @example samples/V1beta3/SnapshotsV1Beta3Client/get_snapshot.php
+     *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -229,6 +233,8 @@ abstract class SnapshotsV1Beta3BaseClient
      * Lists snapshots.
      *
      * The async variant is {@see self::listSnapshotsAsync()} .
+     *
+     * @example samples/V1beta3/SnapshotsV1Beta3Client/list_snapshots.php
      *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

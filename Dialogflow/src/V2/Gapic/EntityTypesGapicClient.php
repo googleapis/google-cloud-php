@@ -104,6 +104,9 @@ use Google\Protobuf\Struct;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\EntityTypesClient} to use the new surface.
  */
 class EntityTypesGapicClient
 {
@@ -851,7 +854,7 @@ class EntityTypesGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -868,7 +871,7 @@ class EntityTypesGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

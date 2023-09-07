@@ -21,7 +21,22 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "DatabaseFailover": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "DeleteEnvironment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ExecuteAirflowCommand": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "FetchDatabaseProperties": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
@@ -41,7 +56,17 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "PollAirflowCommand": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "SaveSnapshot": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "StopAirflowCommand": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

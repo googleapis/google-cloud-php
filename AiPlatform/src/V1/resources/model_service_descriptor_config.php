@@ -79,6 +79,25 @@ return [
                     ],
                 ],
             ],
+            'UpdateExplanationDataset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'model',
+                        'fieldAccessors' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'UploadModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AIPlatform\V1\UploadModelResponse',
@@ -354,6 +373,7 @@ return [
                 'model' => 'projects/{project}/locations/{location}/models/{model}',
                 'modelEvaluation' => 'projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}',
                 'modelEvaluationSlice' => 'projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}',
+                'pipelineJob' => 'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
                 'trainingPipeline' => 'projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}',

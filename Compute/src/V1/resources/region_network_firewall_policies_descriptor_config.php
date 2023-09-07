@@ -18,6 +18,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
             ],
             'AddRule' => [
                 'longRunning' => [
@@ -33,6 +55,28 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
                 ],
             ],
             'CloneRules' => [
@@ -50,6 +94,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
             ],
             'Delete' => [
                 'longRunning' => [
@@ -65,6 +131,28 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
                 ],
             ],
             'Insert' => [
@@ -82,6 +170,22 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
             ],
             'Patch' => [
                 'longRunning' => [
@@ -97,6 +201,28 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
                 ],
             ],
             'PatchRule' => [
@@ -114,6 +240,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
             ],
             'RemoveAssociation' => [
                 'longRunning' => [
@@ -129,6 +277,28 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
                 ],
             ],
             'RemoveRule' => [
@@ -146,6 +316,142 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\FirewallPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAssociation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\FirewallPolicyAssociation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEffectiveFirewalls' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\FirewallPolicyRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
             ],
             'List' => [
                 'pageStreaming' => [
@@ -155,6 +461,70 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\FirewallPolicyList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\TestPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
                 ],
             ],
         ],

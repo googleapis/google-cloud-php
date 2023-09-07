@@ -15,9 +15,24 @@
                                 "createEnvironment"
                             ]
                         },
+                        "DatabaseFailover": {
+                            "methods": [
+                                "databaseFailover"
+                            ]
+                        },
                         "DeleteEnvironment": {
                             "methods": [
                                 "deleteEnvironment"
+                            ]
+                        },
+                        "ExecuteAirflowCommand": {
+                            "methods": [
+                                "executeAirflowCommand"
+                            ]
+                        },
+                        "FetchDatabaseProperties": {
+                            "methods": [
+                                "fetchDatabaseProperties"
                             ]
                         },
                         "GetEnvironment": {
@@ -35,9 +50,19 @@
                                 "loadSnapshot"
                             ]
                         },
+                        "PollAirflowCommand": {
+                            "methods": [
+                                "pollAirflowCommand"
+                            ]
+                        },
                         "SaveSnapshot": {
                             "methods": [
                                 "saveSnapshot"
+                            ]
+                        },
+                        "StopAirflowCommand": {
+                            "methods": [
+                                "stopAirflowCommand"
                             ]
                         },
                         "UpdateEnvironment": {

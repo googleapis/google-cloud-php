@@ -36,6 +36,23 @@ class CreateGameServerConfigRequest extends \Google\Protobuf\Internal\Message
     private $game_server_config = null;
 
     /**
+     * @param string                                   $parent           Required. The parent resource name, in the following form:
+     *                                                                   `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`. Please see
+     *                                                                   {@see GameServerConfigsServiceClient::gameServerDeploymentName()} for help formatting this field.
+     * @param \Google\Cloud\Gaming\V1\GameServerConfig $gameServerConfig Required. The game server config resource to be created.
+     *
+     * @return \Google\Cloud\Gaming\V1\CreateGameServerConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Gaming\V1\GameServerConfig $gameServerConfig): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGameServerConfig($gameServerConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

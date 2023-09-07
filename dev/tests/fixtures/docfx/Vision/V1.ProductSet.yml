@@ -1,0 +1,252 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ProductSet
+    name: ProductSet
+    friendlyApiName: 'Cloud Vision V1 Client'
+    id: ProductSet
+    summary: |-
+      A ProductSet contains Products. A ProductSet can contain a maximum of 1
+      million reference images. If the limit is exceeded, periodic indexing will
+      fail.
+
+      Generated from protobuf message <code>google.cloud.vision.v1.ProductSet</code>
+    type: class
+    namespace: 'Google \ Cloud \ Vision \ V1'
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ProductSet::__construct()'
+      - '\Google\Cloud\Vision\V1\ProductSet::getName()'
+      - '\Google\Cloud\Vision\V1\ProductSet::setName()'
+      - '\Google\Cloud\Vision\V1\ProductSet::getDisplayName()'
+      - '\Google\Cloud\Vision\V1\ProductSet::setDisplayName()'
+      - '\Google\Cloud\Vision\V1\ProductSet::getIndexTime()'
+      - '\Google\Cloud\Vision\V1\ProductSet::hasIndexTime()'
+      - '\Google\Cloud\Vision\V1\ProductSet::clearIndexTime()'
+      - '\Google\Cloud\Vision\V1\ProductSet::setIndexTime()'
+      - '\Google\Cloud\Vision\V1\ProductSet::getIndexError()'
+      - '\Google\Cloud\Vision\V1\ProductSet::hasIndexError()'
+      - '\Google\Cloud\Vision\V1\ProductSet::clearIndexError()'
+      - '\Google\Cloud\Vision\V1\ProductSet::setIndexError()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ name'
+          var_type: string
+          description: 'The resource name of the ProductSet. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`. This field is ignored when creating a ProductSet.'
+        -
+          id: '↳ display_name'
+          var_type: string
+          description: 'The user-provided name for this ProductSet. Must not be empty. Must be at most 4096 characters long.'
+        -
+          id: '↳ index_time'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
+          description: 'Output only. The time at which this ProductSet was last indexed. Query results will reflect all updates before this time. If this ProductSet has never been indexed, this timestamp is the default value "1970-01-01T00:00:00Z". This field is ignored when creating a ProductSet.'
+        -
+          id: '↳ index_error'
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          description: 'Output only. If there was an error with indexing the product set, the field is populated. This field is ignored when creating a ProductSet.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::getName()'
+    name: getName
+    id: getName
+    summary: |-
+      The resource name of the ProductSet.
+
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
+      This field is ignored when creating a ProductSet.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::setName()'
+    name: setName
+    id: setName
+    summary: |-
+      The resource name of the ProductSet.
+
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
+      This field is ignored when creating a ProductSet.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::getDisplayName()'
+    name: getDisplayName
+    id: getDisplayName
+    summary: |-
+      The user-provided name for this ProductSet. Must not be empty. Must be at
+      most 4096 characters long.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::setDisplayName()'
+    name: setDisplayName
+    id: setDisplayName
+    summary: |-
+      The user-provided name for this ProductSet. Must not be empty. Must be at
+      most 4096 characters long.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::getIndexTime()'
+    name: getIndexTime
+    id: getIndexTime
+    summary: |-
+      Output only. The time at which this ProductSet was last indexed. Query
+      results will reflect all updates before this time. If this ProductSet has
+      never been indexed, this timestamp is the default value
+      "1970-01-01T00:00:00Z".
+
+      This field is ignored when creating a ProductSet.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>|null'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::hasIndexTime()'
+    name: hasIndexTime
+    id: hasIndexTime
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::clearIndexTime()'
+    name: clearIndexTime
+    id: clearIndexTime
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::setIndexTime()'
+    name: setIndexTime
+    id: setIndexTime
+    summary: |-
+      Output only. The time at which this ProductSet was last indexed. Query
+      results will reflect all updates before this time. If this ProductSet has
+      never been indexed, this timestamp is the default value
+      "1970-01-01T00:00:00Z".
+
+      This field is ignored when creating a ProductSet.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::getIndexError()'
+    name: getIndexError
+    id: getIndexError
+    summary: |-
+      Output only. If there was an error with indexing the product set, the field
+      is populated.
+
+      This field is ignored when creating a ProductSet.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>|null'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::hasIndexError()'
+    name: hasIndexError
+    id: hasIndexError
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::clearIndexError()'
+    name: clearIndexError
+    id: clearIndexError
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSet::setIndexError()'
+    name: setIndexError
+    id: setIndexError
+    summary: |-
+      Output only. If there was an error with indexing the product set, the field
+      is populated.
+
+      This field is ignored when creating a ProductSet.
+    parent: \Google\Cloud\Vision\V1\ProductSet
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          description: ''
+      returns:
+        -
+          var_type: $this

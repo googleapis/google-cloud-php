@@ -57,6 +57,24 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
+     * @param string                                        $parent              Required. The parent that owns the collection of PrivateConnections. Please see
+     *                                                                           {@see DatastreamClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Datastream\V1\PrivateConnection $privateConnection   Required. The Private Connectivity resource to create.
+     * @param string                                        $privateConnectionId Required. The private connectivity identifier.
+     *
+     * @return \Google\Cloud\Datastream\V1\CreatePrivateConnectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Datastream\V1\PrivateConnection $privateConnection, string $privateConnectionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setPrivateConnection($privateConnection)
+            ->setPrivateConnectionId($privateConnectionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

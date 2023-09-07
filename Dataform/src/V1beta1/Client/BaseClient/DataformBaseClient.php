@@ -427,6 +427,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::cancelWorkflowInvocationAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/cancel_workflow_invocation.php
+     *
      * @param CancelWorkflowInvocationRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -451,6 +453,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::commitWorkspaceChangesAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/commit_workspace_changes.php
+     *
      * @param CommitWorkspaceChangesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -474,6 +478,8 @@ abstract class DataformBaseClient
      * Creates a new CompilationResult in a given project and location.
      *
      * The async variant is {@see self::createCompilationResultAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_compilation_result.php
      *
      * @param CreateCompilationResultRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -501,6 +507,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::createRepositoryAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/create_repository.php
+     *
      * @param CreateRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -526,6 +534,8 @@ abstract class DataformBaseClient
      * Creates a new WorkflowInvocation in a given Repository.
      *
      * The async variant is {@see self::createWorkflowInvocationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_workflow_invocation.php
      *
      * @param CreateWorkflowInvocationRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -553,6 +563,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::createWorkspaceAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/create_workspace.php
+     *
      * @param CreateWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -579,6 +591,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::deleteRepositoryAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/delete_repository.php
+     *
      * @param DeleteRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -602,6 +616,8 @@ abstract class DataformBaseClient
      * Deletes a single WorkflowInvocation.
      *
      * The async variant is {@see self::deleteWorkflowInvocationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_workflow_invocation.php
      *
      * @param DeleteWorkflowInvocationRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -627,6 +643,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::deleteWorkspaceAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/delete_workspace.php
+     *
      * @param DeleteWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -650,6 +668,8 @@ abstract class DataformBaseClient
      * Fetches Git diff for an uncommitted file in a Workspace.
      *
      * The async variant is {@see self::fetchFileDiffAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_file_diff.php
      *
      * @param FetchFileDiffRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -677,6 +697,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::fetchFileGitStatusesAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/fetch_file_git_statuses.php
+     *
      * @param FetchFileGitStatusesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -702,6 +724,8 @@ abstract class DataformBaseClient
      * Fetches Git ahead/behind against a remote branch.
      *
      * The async variant is {@see self::fetchGitAheadBehindAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_git_ahead_behind.php
      *
      * @param FetchGitAheadBehindRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -729,6 +753,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::fetchRemoteBranchesAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/fetch_remote_branches.php
+     *
      * @param FetchRemoteBranchesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -754,6 +780,8 @@ abstract class DataformBaseClient
      * Fetches a single CompilationResult.
      *
      * The async variant is {@see self::getCompilationResultAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_compilation_result.php
      *
      * @param GetCompilationResultRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -781,6 +809,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::getRepositoryAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/get_repository.php
+     *
      * @param GetRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -806,6 +836,8 @@ abstract class DataformBaseClient
      * Fetches a single WorkflowInvocation.
      *
      * The async variant is {@see self::getWorkflowInvocationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_workflow_invocation.php
      *
      * @param GetWorkflowInvocationRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -833,6 +865,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::getWorkspaceAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/get_workspace.php
+     *
      * @param GetWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -858,6 +892,8 @@ abstract class DataformBaseClient
      * Installs dependency NPM packages (inside a Workspace).
      *
      * The async variant is {@see self::installNpmPackagesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/install_npm_packages.php
      *
      * @param InstallNpmPackagesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -885,6 +921,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::listCompilationResultsAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/list_compilation_results.php
+     *
      * @param ListCompilationResultsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -910,6 +948,8 @@ abstract class DataformBaseClient
      * Lists Repositories in a given project and location.
      *
      * The async variant is {@see self::listRepositoriesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_repositories.php
      *
      * @param ListRepositoriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -937,6 +977,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::listWorkflowInvocationsAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/list_workflow_invocations.php
+     *
      * @param ListWorkflowInvocationsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -963,6 +1005,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::listWorkspacesAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/list_workspaces.php
+     *
      * @param ListWorkspacesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -988,6 +1032,8 @@ abstract class DataformBaseClient
      * Creates a directory inside a Workspace.
      *
      * The async variant is {@see self::makeDirectoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/make_directory.php
      *
      * @param MakeDirectoryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1016,6 +1062,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::moveDirectoryAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/move_directory.php
+     *
      * @param MoveDirectoryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1041,6 +1089,8 @@ abstract class DataformBaseClient
      * Moves a file (inside a Workspace) to a new location.
      *
      * The async variant is {@see self::moveFileAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/move_file.php
      *
      * @param MoveFileRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -1068,6 +1118,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::pullGitCommitsAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/pull_git_commits.php
+     *
      * @param PullGitCommitsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1092,6 +1144,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::pushGitCommitsAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/push_git_commits.php
+     *
      * @param PushGitCommitsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1115,6 +1169,8 @@ abstract class DataformBaseClient
      * Returns CompilationResultActions in a given CompilationResult.
      *
      * The async variant is {@see self::queryCompilationResultActionsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_compilation_result_actions.php
      *
      * @param QueryCompilationResultActionsRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -1142,6 +1198,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::queryDirectoryContentsAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/query_directory_contents.php
+     *
      * @param QueryDirectoryContentsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1167,6 +1225,8 @@ abstract class DataformBaseClient
      * Returns WorkflowInvocationActions in a given WorkflowInvocation.
      *
      * The async variant is {@see self::queryWorkflowInvocationActionsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_workflow_invocation_actions.php
      *
      * @param QueryWorkflowInvocationActionsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -1194,6 +1254,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::readFileAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/read_file.php
+     *
      * @param ReadFileRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -1220,6 +1282,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::removeDirectoryAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/remove_directory.php
+     *
      * @param RemoveDirectoryRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1243,6 +1307,8 @@ abstract class DataformBaseClient
      * Deletes a file (inside a Workspace).
      *
      * The async variant is {@see self::removeFileAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/remove_file.php
      *
      * @param RemoveFileRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1268,6 +1334,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::resetWorkspaceChangesAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/reset_workspace_changes.php
+     *
      * @param ResetWorkspaceChangesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1291,6 +1359,8 @@ abstract class DataformBaseClient
      * Updates a single Repository.
      *
      * The async variant is {@see self::updateRepositoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/update_repository.php
      *
      * @param UpdateRepositoryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1318,6 +1388,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::writeFileAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/write_file.php
+     *
      * @param WriteFileRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1344,6 +1416,8 @@ abstract class DataformBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1beta1/DataformClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1369,6 +1443,8 @@ abstract class DataformBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

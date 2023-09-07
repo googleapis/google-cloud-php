@@ -33,7 +33,7 @@ use Google\Rpc\Status;
 /**
  * Creates a new Cluster in a given project and location.
  *
- * @param string $formattedParent         The name of the parent resource. For the required format, see the
+ * @param string $formattedParent         The location of the new cluster. For the required format, see the
  *                                        comment on the Cluster.name field. Please see
  *                                        {@see AlloyDBAdminClient::locationName()} for help formatting this field.
  * @param string $clusterId               ID of the requesting object.

@@ -58,6 +58,24 @@ class ListSnoozesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The
+     *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *                       `Snooze`s should be listed. The format is:
+     *
+     *                       projects/[PROJECT_ID_OR_NUMBER]
+     *                       Please see {@see SnoozeServiceClient::workspaceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListSnoozesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

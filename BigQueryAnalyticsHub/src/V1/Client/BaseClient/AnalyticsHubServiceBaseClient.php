@@ -71,7 +71,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BigQuery\AnalyticsHub\V1\AnalyticsHubServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -312,6 +314,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::createDataExchangeAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/create_data_exchange.php
+     *
      * @param CreateDataExchangeRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -335,6 +339,8 @@ abstract class AnalyticsHubServiceBaseClient
      * Creates a new listing.
      *
      * The async variant is {@see self::createListingAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/create_listing.php
      *
      * @param CreateListingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -360,6 +366,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::deleteDataExchangeAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/delete_data_exchange.php
+     *
      * @param DeleteDataExchangeRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -382,6 +390,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::deleteListingAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/delete_listing.php
+     *
      * @param DeleteListingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -403,6 +413,8 @@ abstract class AnalyticsHubServiceBaseClient
      * Gets the details of a data exchange.
      *
      * The async variant is {@see self::getDataExchangeAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/get_data_exchange.php
      *
      * @param GetDataExchangeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -428,6 +440,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -451,6 +465,8 @@ abstract class AnalyticsHubServiceBaseClient
      * Gets the details of a listing.
      *
      * The async variant is {@see self::getListingAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/get_listing.php
      *
      * @param GetListingRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -476,6 +492,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::listDataExchangesAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/list_data_exchanges.php
+     *
      * @param ListDataExchangesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -499,6 +517,8 @@ abstract class AnalyticsHubServiceBaseClient
      * Lists all listings in a given project and location.
      *
      * The async variant is {@see self::listListingsAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/list_listings.php
      *
      * @param ListListingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -525,6 +545,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::listOrgDataExchangesAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/list_org_data_exchanges.php
+     *
      * @param ListOrgDataExchangesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -548,6 +570,8 @@ abstract class AnalyticsHubServiceBaseClient
      * Sets the IAM policy.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -578,6 +602,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::subscribeListingAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/subscribe_listing.php
+     *
      * @param SubscribeListingRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -601,6 +627,8 @@ abstract class AnalyticsHubServiceBaseClient
      * Returns the permissions that a caller has.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -626,6 +654,8 @@ abstract class AnalyticsHubServiceBaseClient
      *
      * The async variant is {@see self::updateDataExchangeAsync()} .
      *
+     * @example samples/V1/AnalyticsHubServiceClient/update_data_exchange.php
+     *
      * @param UpdateDataExchangeRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -649,6 +679,8 @@ abstract class AnalyticsHubServiceBaseClient
      * Updates an existing listing.
      *
      * The async variant is {@see self::updateListingAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/update_listing.php
      *
      * @param UpdateListingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

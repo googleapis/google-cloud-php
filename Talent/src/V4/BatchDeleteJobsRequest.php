@@ -35,6 +35,32 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
     private $names;
 
     /**
+     * @param string   $parent Required. The resource name of the tenant under which the job is created.
+     *
+     *                         The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *                         "projects/foo/tenants/bar".
+     *
+     *                         The parent of all of the jobs specified in `names` must match this field. Please see
+     *                         {@see JobServiceClient::tenantName()} for help formatting this field.
+     * @param string[] $names  The names of the jobs to delete.
+     *
+     *                         The format is "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}".
+     *                         For example, "projects/foo/tenants/bar/jobs/baz".
+     *
+     *                         A maximum of 200 jobs can be deleted in a batch.
+     *
+     * @return \Google\Cloud\Talent\V4\BatchDeleteJobsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $names): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNames($names);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -32,7 +32,7 @@ use Google\Cloud\GkeBackup\V1\VolumeBackup;
  * Retrieve the details of a single VolumeBackup.
  *
  * @param string $formattedName Full name of the VolumeBackup resource.
- *                              Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/&#42;/volumeBackups/*
+ *                              Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/&#42;/volumeBackups/*`
  *                              Please see {@see BackupForGKEClient::volumeBackupName()} for help formatting this field.
  */
 function get_volume_backup_sample(string $formattedName): void

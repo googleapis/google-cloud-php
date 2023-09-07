@@ -41,6 +41,23 @@ class SetSslPolicyTargetHttpsProxyRequest extends \Google\Protobuf\Internal\Mess
     private $target_https_proxy = '';
 
     /**
+     * @param string                                      $project                    Project ID for this request.
+     * @param string                                      $targetHttpsProxy           Name of the TargetHttpsProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param \Google\Cloud\Compute\V1\SslPolicyReference $sslPolicyReferenceResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\SetSslPolicyTargetHttpsProxyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $targetHttpsProxy, \Google\Cloud\Compute\V1\SslPolicyReference $sslPolicyReferenceResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setSslPolicyReferenceResource($sslPolicyReferenceResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

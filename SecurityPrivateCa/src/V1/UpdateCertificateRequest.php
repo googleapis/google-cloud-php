@@ -47,6 +47,22 @@ class UpdateCertificateRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param \Google\Cloud\Security\PrivateCA\V1\Certificate $certificate Required. [Certificate][google.cloud.security.privateca.v1.Certificate]
+     *                                                                     with updated values.
+     * @param \Google\Protobuf\FieldMask                      $updateMask  Required. A list of fields to be updated in this request.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Security\PrivateCA\V1\Certificate $certificate, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCertificate($certificate)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

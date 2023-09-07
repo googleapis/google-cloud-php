@@ -103,6 +103,10 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     $regionNetworkFirewallPoliciesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionNetworkFirewallPoliciesClient} to use the
+ * new surface.
  */
 class RegionNetworkFirewallPoliciesGapicClient
 {

@@ -23,12 +23,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class FeatureFlags extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Notify the server that the client supports reverse scans. The server will
+     * reject ReadRowsRequests with the reverse bit set when this is absent.
+     *
+     * Generated from protobuf field <code>bool reverse_scans = 1;</code>
+     */
+    private $reverse_scans = false;
+    /**
      * Notify the server that the client enables batch write flow control by
      * requesting RateLimitInfo from MutateRowsResponse.
      *
      * Generated from protobuf field <code>bool mutate_rows_rate_limit = 3;</code>
      */
     private $mutate_rows_rate_limit = false;
+    /**
+     * Notify the server that the client supports the last_scanned_row field
+     * in ReadRowsResponse for long-running sparse scans.
+     *
+     * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
+     */
+    private $last_scanned_row_responses = false;
 
     /**
      * Constructor.
@@ -36,14 +50,48 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $reverse_scans
+     *           Notify the server that the client supports reverse scans. The server will
+     *           reject ReadRowsRequests with the reverse bit set when this is absent.
      *     @type bool $mutate_rows_rate_limit
      *           Notify the server that the client enables batch write flow control by
      *           requesting RateLimitInfo from MutateRowsResponse.
+     *     @type bool $last_scanned_row_responses
+     *           Notify the server that the client supports the last_scanned_row field
+     *           in ReadRowsResponse for long-running sparse scans.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\FeatureFlags::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Notify the server that the client supports reverse scans. The server will
+     * reject ReadRowsRequests with the reverse bit set when this is absent.
+     *
+     * Generated from protobuf field <code>bool reverse_scans = 1;</code>
+     * @return bool
+     */
+    public function getReverseScans()
+    {
+        return $this->reverse_scans;
+    }
+
+    /**
+     * Notify the server that the client supports reverse scans. The server will
+     * reject ReadRowsRequests with the reverse bit set when this is absent.
+     *
+     * Generated from protobuf field <code>bool reverse_scans = 1;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReverseScans($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reverse_scans = $var;
+
+        return $this;
     }
 
     /**
@@ -70,6 +118,34 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->mutate_rows_rate_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client supports the last_scanned_row field
+     * in ReadRowsResponse for long-running sparse scans.
+     *
+     * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
+     * @return bool
+     */
+    public function getLastScannedRowResponses()
+    {
+        return $this->last_scanned_row_responses;
+    }
+
+    /**
+     * Notify the server that the client supports the last_scanned_row field
+     * in ReadRowsResponse for long-running sparse scans.
+     *
+     * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLastScannedRowResponses($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->last_scanned_row_responses = $var;
 
         return $this;
     }

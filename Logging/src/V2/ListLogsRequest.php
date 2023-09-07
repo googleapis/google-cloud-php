@@ -60,6 +60,25 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The resource name to list logs for:
+     *
+     *                       *  `projects/[PROJECT_ID]`
+     *                       *  `organizations/[ORGANIZATION_ID]`
+     *                       *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     *                       *  `folders/[FOLDER_ID]`
+     *                       Please see {@see LoggingServiceV2Client::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Logging\V2\ListLogsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

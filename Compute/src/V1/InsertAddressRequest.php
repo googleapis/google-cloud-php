@@ -41,6 +41,23 @@ class InsertAddressRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                           $project         Project ID for this request.
+     * @param string                           $region          Name of the region for this request.
+     * @param \Google\Cloud\Compute\V1\Address $addressResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\InsertAddressRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, \Google\Cloud\Compute\V1\Address $addressResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setAddressResource($addressResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

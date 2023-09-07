@@ -18,6 +18,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'target_vpn_gateway',
+                        'fieldAccessors' => [
+                            'getTargetVpnGateway',
+                        ],
+                    ],
+                ],
             ],
             'Insert' => [
                 'longRunning' => [
@@ -33,6 +55,22 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
                 ],
             ],
             'SetLabels' => [
@@ -50,6 +88,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
             ],
             'AggregatedList' => [
                 'pageStreaming' => [
@@ -60,6 +120,40 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\TargetVpnGatewayAggregatedList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\TargetVpnGateway',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'target_vpn_gateway',
+                        'fieldAccessors' => [
+                            'getTargetVpnGateway',
+                        ],
+                    ],
+                ],
             ],
             'List' => [
                 'pageStreaming' => [
@@ -69,6 +163,22 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\TargetVpnGatewayList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
                 ],
             ],
         ],

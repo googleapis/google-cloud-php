@@ -38,6 +38,21 @@ class ListConversationDatasetsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The project and location name to list all conversation datasets
+     *                       for. Format: `projects/<Project ID>/locations/<Location ID>`
+     *                       Please see {@see ConversationDatasetsClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListConversationDatasetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

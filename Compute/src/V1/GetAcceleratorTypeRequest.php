@@ -35,6 +35,23 @@ class GetAcceleratorTypeRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project         Project ID for this request.
+     * @param string $zone            The name of the zone for this request.
+     * @param string $acceleratorType Name of the accelerator type to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetAcceleratorTypeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $acceleratorType): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setAcceleratorType($acceleratorType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -34,7 +34,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -75,7 +75,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure Pig.
      *           Properties that conflict with values set by the Dataproc API may be
-     *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     *           overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      *           /etc/pig/conf/pig.properties, and classes in user code.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATH of
@@ -212,7 +212,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -226,7 +226,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
      * Properties that conflict with values set by the Dataproc API may be
-     * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>

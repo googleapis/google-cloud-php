@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "FirestoreAdminGapicClient",
                     "rpcs": {
+                        "CreateDatabase": {
+                            "methods": [
+                                "createDatabase"
+                            ]
+                        },
                         "CreateIndex": {
                             "methods": [
                                 "createIndex"

@@ -39,6 +39,29 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     private $version = 0;
 
     /**
+     * @param string $name Required. The resource name of the workflow template, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                     * For `projects.regions.workflowTemplates.delete`, the resource name
+     *                     of the template has the following format:
+     *                     `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     *                     * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *                     of the template has the following format:
+     *                     `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     *                     Please see {@see WorkflowTemplateServiceClient::workflowTemplateName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dataproc\V1\DeleteWorkflowTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

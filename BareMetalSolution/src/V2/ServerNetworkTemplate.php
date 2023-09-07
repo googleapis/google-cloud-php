@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Template's unique name. The full resource name follows the pattern:
+     * Output only. Template's unique name. The full resource name follows the
+     * pattern:
      * `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}`
      * Generally, the {server_network_template} follows the syntax of
      * "bond<interface_type_index><bond_mode>" or "nic<interface_type_index>".
@@ -44,7 +45,8 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Template's unique name. The full resource name follows the pattern:
+     *           Output only. Template's unique name. The full resource name follows the
+     *           pattern:
      *           `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}`
      *           Generally, the {server_network_template} follows the syntax of
      *           "bond<interface_type_index><bond_mode>" or "nic<interface_type_index>".
@@ -60,7 +62,8 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Template's unique name. The full resource name follows the pattern:
+     * Output only. Template's unique name. The full resource name follows the
+     * pattern:
      * `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}`
      * Generally, the {server_network_template} follows the syntax of
      * "bond<interface_type_index><bond_mode>" or "nic<interface_type_index>".
@@ -74,7 +77,8 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Template's unique name. The full resource name follows the pattern:
+     * Output only. Template's unique name. The full resource name follows the
+     * pattern:
      * `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}`
      * Generally, the {server_network_template} follows the syntax of
      * "bond<interface_type_index><bond_mode>" or "nic<interface_type_index>".

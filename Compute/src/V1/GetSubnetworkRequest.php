@@ -35,6 +35,23 @@ class GetSubnetworkRequest extends \Google\Protobuf\Internal\Message
     private $subnetwork = '';
 
     /**
+     * @param string $project    Project ID for this request.
+     * @param string $region     Name of the region scoping this request.
+     * @param string $subnetwork Name of the Subnetwork resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetSubnetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $subnetwork): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -181,6 +181,98 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
+     * @param string   $scope      Required. A scope can be a project, a folder, or an organization. The
+     *                             search is limited to the resources within the `scope`. The caller must be
+     *                             granted the
+     *                             [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
+     *                             permission on the desired scope.
+     *
+     *                             The allowed values are:
+     *
+     *                             * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *                             * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+     *                             * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string   $query      Optional. The query statement. See [how to construct a
+     *                             query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
+     *                             for more information. If not specified or empty, it will search all the
+     *                             resources within the specified `scope`.
+     *
+     *                             Examples:
+     *
+     *                             * `name:Important` to find Google Cloud resources whose name contains
+     *                             "Important" as a word.
+     *                             * `name=Important` to find the Google Cloud resource whose name is exactly
+     *                             "Important".
+     *                             * `displayName:Impor*` to find Google Cloud resources whose display name
+     *                             contains "Impor" as a prefix of any word in the field.
+     *                             * `location:us-west*` to find Google Cloud resources whose location
+     *                             contains both "us" and "west" as prefixes.
+     *                             * `labels:prod` to find Google Cloud resources whose labels contain "prod"
+     *                             as a key or value.
+     *                             * `labels.env:prod` to find Google Cloud resources that have a label "env"
+     *                             and its value is "prod".
+     *                             * `labels.env:*` to find Google Cloud resources that have a label "env".
+     *                             * `kmsKey:key` to find Google Cloud resources encrypted with a
+     *                             customer-managed encryption key whose name contains "key" as a word. This
+     *                             field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS
+     *                             key information.
+     *                             * `kmsKeys:key` to find Google Cloud resources encrypted with
+     *                             customer-managed encryption keys whose name contains the word "key".
+     *                             * `relationships:instance-group-1` to find Google Cloud resources that have
+     *                             relationships with "instance-group-1" in the related resource name.
+     *                             * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine
+     *                             instances that have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     *                             * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
+     *                             Compute Engine instances that have relationships with "instance-group-1"
+     *                             in the Compute Engine instance group resource name, for relationship type
+     *                             "INSTANCE_TO_INSTANCEGROUP".
+     *                             * `state:ACTIVE` to find Google Cloud resources whose state contains
+     *                             "ACTIVE" as a word.
+     *                             * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't
+     *                             contain "ACTIVE" as a word.
+     *                             * `createTime<1609459200` to find Google Cloud resources that were created
+     *                             before "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *                             "2021-01-01 00:00:00 UTC" in seconds.
+     *                             * `updateTime>1609459200` to find Google Cloud resources that were updated
+     *                             after "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
+     *                             "2021-01-01 00:00:00 UTC" in seconds.
+     *                             * `Important` to find Google Cloud resources that contain "Important" as a
+     *                             word in any of the searchable fields.
+     *                             * `Impor*` to find Google Cloud resources that contain "Impor" as a prefix
+     *                             of any word in any of the searchable fields.
+     *                             * `Important location:(us-west1 OR global)` to find Google Cloud
+     *                             resources that contain "Important" as a word in any of the searchable
+     *                             fields and are also located in the "us-west1" region or the "global"
+     *                             location.
+     * @param string[] $assetTypes Optional. A list of asset types that this request searches for. If empty,
+     *                             it will search all the [searchable asset
+     *                             types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     *
+     *                             Regular expressions are also supported. For example:
+     *
+     *                             * "compute.googleapis.com.*" snapshots resources whose asset type starts
+     *                             with "compute.googleapis.com".
+     *                             * ".*Instance" snapshots resources whose asset type ends with "Instance".
+     *                             * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+     *
+     *                             See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     *                             regular expression syntax. If the regular expression does not match any
+     *                             supported asset type, an INVALID_ARGUMENT error will be returned.
+     *
+     * @return \Google\Cloud\Asset\V1\SearchAllResourcesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $scope, string $query, array $assetTypes): self
+    {
+        return (new self())
+            ->setScope($scope)
+            ->setQuery($query)
+            ->setAssetTypes($assetTypes);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

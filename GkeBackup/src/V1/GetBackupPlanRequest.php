@@ -17,7 +17,7 @@ class GetBackupPlanRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Fully qualified BackupPlan name.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetBackupPlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Fully qualified BackupPlan name.
-     *                     Format: projects/&#42;/locations/&#42;/backupPlans/*
+     *                     Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      *                     Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\GetBackupPlanRequest
@@ -46,7 +46,7 @@ class GetBackupPlanRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Fully qualified BackupPlan name.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetBackupPlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Fully qualified BackupPlan name.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetBackupPlanRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Fully qualified BackupPlan name.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

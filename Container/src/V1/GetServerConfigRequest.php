@@ -43,6 +43,40 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $projectId Deprecated. The Google Developers Console [project ID or project
+     *                          number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                          This field has been deprecated and replaced by the name field.
+     * @param string $zone      Deprecated. The name of the Google Compute Engine
+     *                          [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     *                          operations for. This field has been deprecated and replaced by the name
+     *                          field.
+     *
+     * @return \Google\Cloud\Container\V1\GetServerConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone);
+    }
+
+    /**
+     * @param string $name The name (project and location) of the server config to get,
+     *                     specified in the format `projects/&#42;/locations/*`.
+     *
+     * @return \Google\Cloud\Container\V1\GetServerConfigRequest
+     *
+     * @experimental
+     */
+    public static function buildFromName(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

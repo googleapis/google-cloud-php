@@ -35,7 +35,8 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      * Output only. The pem-encoded chain that may be used to verify the X.509
      * certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *
-     * Generated from protobuf field <code>repeated string pem_certificate_chain = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string pem_certificate_chain = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     private $pem_certificate_chain;
     /**
@@ -132,11 +133,13 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      * Output only. The pem-encoded chain that may be used to verify the X.509
      * certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *
-     * Generated from protobuf field <code>repeated string pem_certificate_chain = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string pem_certificate_chain = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getPemCertificateChain()
     {
+        @trigger_error('pem_certificate_chain is deprecated.', E_USER_DEPRECATED);
         return $this->pem_certificate_chain;
     }
 
@@ -144,12 +147,14 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      * Output only. The pem-encoded chain that may be used to verify the X.509
      * certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *
-     * Generated from protobuf field <code>repeated string pem_certificate_chain = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string pem_certificate_chain = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setPemCertificateChain($var)
     {
+        @trigger_error('pem_certificate_chain is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->pem_certificate_chain = $arr;
 

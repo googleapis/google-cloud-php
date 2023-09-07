@@ -29,6 +29,21 @@ class GetMachineImageRequest extends \Google\Protobuf\Internal\Message
     private $project = '';
 
     /**
+     * @param string $project      Project ID for this request.
+     * @param string $machineImage The name of the machine image.
+     *
+     * @return \Google\Cloud\Compute\V1\GetMachineImageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $machineImage): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setMachineImage($machineImage);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

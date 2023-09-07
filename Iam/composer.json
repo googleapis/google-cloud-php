@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=7.4",
-        "google/gax": "^1.17.0"
+        "google/gax": "^1.19.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"

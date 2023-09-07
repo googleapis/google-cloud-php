@@ -54,7 +54,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\EssentialContacts\V1\EssentialContactsServiceClient} for the
+ * stable implementation
  *
  * @experimental
  *
@@ -330,6 +332,8 @@ abstract class EssentialContactsServiceBaseClient
      *
      * The async variant is {@see self::computeContactsAsync()} .
      *
+     * @example samples/V1/EssentialContactsServiceClient/compute_contacts.php
+     *
      * @param ComputeContactsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -353,6 +357,8 @@ abstract class EssentialContactsServiceBaseClient
      * Adds a new contact for a resource.
      *
      * The async variant is {@see self::createContactAsync()} .
+     *
+     * @example samples/V1/EssentialContactsServiceClient/create_contact.php
      *
      * @param CreateContactRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -378,6 +384,8 @@ abstract class EssentialContactsServiceBaseClient
      *
      * The async variant is {@see self::deleteContactAsync()} .
      *
+     * @example samples/V1/EssentialContactsServiceClient/delete_contact.php
+     *
      * @param DeleteContactRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -399,6 +407,8 @@ abstract class EssentialContactsServiceBaseClient
      * Gets a single contact.
      *
      * The async variant is {@see self::getContactAsync()} .
+     *
+     * @example samples/V1/EssentialContactsServiceClient/get_contact.php
      *
      * @param GetContactRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -423,6 +433,8 @@ abstract class EssentialContactsServiceBaseClient
      * Lists the contacts that have been set on a resource.
      *
      * The async variant is {@see self::listContactsAsync()} .
+     *
+     * @example samples/V1/EssentialContactsServiceClient/list_contacts.php
      *
      * @param ListContactsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -449,6 +461,8 @@ abstract class EssentialContactsServiceBaseClient
      *
      * The async variant is {@see self::sendTestMessageAsync()} .
      *
+     * @example samples/V1/EssentialContactsServiceClient/send_test_message.php
+     *
      * @param SendTestMessageRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -471,6 +485,8 @@ abstract class EssentialContactsServiceBaseClient
      * Note: A contact's email address cannot be changed.
      *
      * The async variant is {@see self::updateContactAsync()} .
+     *
+     * @example samples/V1/EssentialContactsServiceClient/update_contact.php
      *
      * @param UpdateContactRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -73,7 +73,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient}
+ * for the stable implementation
  *
  * @experimental
  *
@@ -300,6 +302,8 @@ abstract class ClientConnectorServicesServiceBaseClient
      *
      * The async variant is {@see self::createClientConnectorServiceAsync()} .
      *
+     * @example samples/V1/ClientConnectorServicesServiceClient/create_client_connector_service.php
+     *
      * @param CreateClientConnectorServiceRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -323,6 +327,8 @@ abstract class ClientConnectorServicesServiceBaseClient
      * Deletes a single ClientConnectorService.
      *
      * The async variant is {@see self::deleteClientConnectorServiceAsync()} .
+     *
+     * @example samples/V1/ClientConnectorServicesServiceClient/delete_client_connector_service.php
      *
      * @param DeleteClientConnectorServiceRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -348,6 +354,8 @@ abstract class ClientConnectorServicesServiceBaseClient
      *
      * The async variant is {@see self::getClientConnectorServiceAsync()} .
      *
+     * @example samples/V1/ClientConnectorServicesServiceClient/get_client_connector_service.php
+     *
      * @param GetClientConnectorServiceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -371,6 +379,8 @@ abstract class ClientConnectorServicesServiceBaseClient
      * Lists ClientConnectorServices in a given project and location.
      *
      * The async variant is {@see self::listClientConnectorServicesAsync()} .
+     *
+     * @example samples/V1/ClientConnectorServicesServiceClient/list_client_connector_services.php
      *
      * @param ListClientConnectorServicesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -396,6 +406,8 @@ abstract class ClientConnectorServicesServiceBaseClient
      *
      * The async variant is {@see self::updateClientConnectorServiceAsync()} .
      *
+     * @example samples/V1/ClientConnectorServicesServiceClient/update_client_connector_service.php
+     *
      * @param UpdateClientConnectorServiceRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -419,6 +431,8 @@ abstract class ClientConnectorServicesServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/ClientConnectorServicesServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -444,6 +458,8 @@ abstract class ClientConnectorServicesServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/ClientConnectorServicesServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -468,6 +484,8 @@ abstract class ClientConnectorServicesServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ClientConnectorServicesServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -496,6 +514,8 @@ abstract class ClientConnectorServicesServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ClientConnectorServicesServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -526,6 +546,8 @@ abstract class ClientConnectorServicesServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ClientConnectorServicesServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

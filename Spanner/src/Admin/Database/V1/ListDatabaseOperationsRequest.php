@@ -82,6 +82,21 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The instance of the database operations.
+     *                       Values are of the form `projects/<project>/instances/<instance>`. Please see
+     *                       {@see DatabaseAdminClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

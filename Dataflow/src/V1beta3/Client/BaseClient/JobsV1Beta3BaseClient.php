@@ -187,6 +187,8 @@ abstract class JobsV1Beta3BaseClient
      *
      * The async variant is {@see self::aggregatedListJobsAsync()} .
      *
+     * @example samples/V1beta3/JobsV1Beta3Client/aggregated_list_jobs.php
+     *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -212,6 +214,8 @@ abstract class JobsV1Beta3BaseClient
      * Check for existence of active jobs in the given project across all regions.
      *
      * The async variant is {@see self::checkActiveJobsAsync()} .
+     *
+     * @example samples/V1beta3/JobsV1Beta3Client/check_active_jobs.php
      *
      * @param CheckActiveJobsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -245,6 +249,8 @@ abstract class JobsV1Beta3BaseClient
      *
      * The async variant is {@see self::createJobAsync()} .
      *
+     * @example samples/V1beta3/JobsV1Beta3Client/create_job.php
+     *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -276,6 +282,8 @@ abstract class JobsV1Beta3BaseClient
      * jobs that are running in `us-central1`.
      *
      * The async variant is {@see self::getJobAsync()} .
+     *
+     * @example samples/V1beta3/JobsV1Beta3Client/get_job.php
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -310,6 +318,8 @@ abstract class JobsV1Beta3BaseClient
      *
      * The async variant is {@see self::listJobsAsync()} .
      *
+     * @example samples/V1beta3/JobsV1Beta3Client/list_jobs.php
+     *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -335,6 +345,8 @@ abstract class JobsV1Beta3BaseClient
      * Snapshot the state of a streaming job.
      *
      * The async variant is {@see self::snapshotJobAsync()} .
+     *
+     * @example samples/V1beta3/JobsV1Beta3Client/snapshot_job.php
      *
      * @param SnapshotJobRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -367,6 +379,8 @@ abstract class JobsV1Beta3BaseClient
      * of jobs that are running in `us-central1`.
      *
      * The async variant is {@see self::updateJobAsync()} .
+     *
+     * @example samples/V1beta3/JobsV1Beta3Client/update_job.php
      *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

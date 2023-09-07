@@ -194,6 +194,8 @@ abstract class PrivateCatalogBaseClient
      *
      * The async variant is {@see self::searchCatalogsAsync()} .
      *
+     * @example samples/V1beta1/PrivateCatalogClient/search_catalogs.php
+     *
      * @param SearchCatalogsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -221,6 +223,8 @@ abstract class PrivateCatalogBaseClient
      *
      * The async variant is {@see self::searchProductsAsync()} .
      *
+     * @example samples/V1beta1/PrivateCatalogClient/search_products.php
+     *
      * @param SearchProductsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -247,6 +251,8 @@ abstract class PrivateCatalogBaseClient
      * scope of the consumer cloud resource hierarchy context.
      *
      * The async variant is {@see self::searchVersionsAsync()} .
+     *
+     * @example samples/V1beta1/PrivateCatalogClient/search_versions.php
      *
      * @param SearchVersionsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

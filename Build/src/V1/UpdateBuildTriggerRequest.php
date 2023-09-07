@@ -33,6 +33,14 @@ class UpdateBuildTriggerRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildTrigger trigger = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $trigger = null;
+    /**
+     * Update mask for the resource. If this is set,
+     * the server will only update the fields specified in the field mask.
+     * Otherwise, a full update of the mutable resource fields will be performed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     */
+    private $update_mask = null;
 
     /**
      * Constructor.
@@ -46,6 +54,10 @@ class UpdateBuildTriggerRequest extends \Google\Protobuf\Internal\Message
      *           Required. ID of the `BuildTrigger` to update.
      *     @type \Google\Cloud\Build\V1\BuildTrigger $trigger
      *           Required. `BuildTrigger` to update.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Update mask for the resource. If this is set,
+     *           the server will only update the fields specified in the field mask.
+     *           Otherwise, a full update of the mutable resource fields will be performed.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +149,46 @@ class UpdateBuildTriggerRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\BuildTrigger::class);
         $this->trigger = $var;
+
+        return $this;
+    }
+
+    /**
+     * Update mask for the resource. If this is set,
+     * the server will only update the fields specified in the field mask.
+     * Otherwise, a full update of the mutable resource fields will be performed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getUpdateMask()
+    {
+        return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * Update mask for the resource. If this is set,
+     * the server will only update the fields specified in the field mask.
+     * Otherwise, a full update of the mutable resource fields will be performed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->update_mask = $var;
 
         return $this;
     }

@@ -32,6 +32,24 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
     private $entity_type_names;
 
     /**
+     * @param string   $parent          Required. The name of the agent to delete all entities types for. Format:
+     *                                  `projects/<Project ID>/agent`. Please see
+     *                                  {@see EntityTypesClient::agentName()} for help formatting this field.
+     * @param string[] $entityTypeNames Required. The names entity types to delete. All names must point to the
+     *                                  same agent as `parent`.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\BatchDeleteEntityTypesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $entityTypeNames): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEntityTypeNames($entityTypeNames);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

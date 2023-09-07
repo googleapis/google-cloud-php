@@ -47,8 +47,11 @@ use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesResponse;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
+use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -75,6 +78,9 @@ use Google\Cloud\Location\Location;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dialogflow\V2\Client\ConversationsClient} to use the new surface.
  */
 class ConversationsGapicClient
 {
@@ -1060,7 +1066,7 @@ class ConversationsGapicClient
      *           auto-generated one to you.
      *
      *           The conversation ID must be compliant with the regression fomula
-     *           "[a-zA-Z][a-zA-Z0-9_-]*" with the characters length in range of [3,64].
+     *           `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      *           If the field is provided, the caller is resposible for
      *           1. the uniqueness of the ID, otherwise the request will be rejected.
      *           2. the consistency for whether to use custom ID or not under a project to
@@ -1374,6 +1380,88 @@ class ConversationsGapicClient
     }
 
     /**
+     * Get answers for the given query based on knowledge documents.
+     *
+     * Sample code:
+     * ```
+     * $conversationsClient = new ConversationsClient();
+     * try {
+     *     $query = new TextInput();
+     *     $formattedConversationProfile = $conversationsClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
+     *     $response = $conversationsClient->searchKnowledge($query, $formattedConversationProfile);
+     * } finally {
+     *     $conversationsClient->close();
+     * }
+     * ```
+     *
+     * @param TextInput $query               Required. The natural language text query for knowledge search.
+     * @param string    $conversationProfile Required. The conversation profile used to configure the search.
+     *                                       Format: `projects/<Project ID>/locations/<Location
+     *                                       ID>/conversationProfiles/<Conversation Profile ID>`.
+     * @param array     $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $parent
+     *           The parent resource contains the conversation profile
+     *           Format: 'projects/<Project ID>' or `projects/<Project
+     *           ID>/locations/<Location ID>`.
+     *     @type string $sessionId
+     *           The ID of the search session.
+     *           The session_id can be combined with Dialogflow V3 Agent ID retrieved from
+     *           conversation profile or on its own to identify a search session. The search
+     *           history of the same session will impact the search result. It's up to the
+     *           API caller to choose an appropriate `Session ID`. It can be a random number
+     *           or some type of session identifiers (preferably hashed). The length must
+     *           not exceed 36 characters.
+     *     @type string $conversation
+     *           The conversation (between human agent and end user) where the search
+     *           request is triggered. Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>`.
+     *     @type string $latestMessage
+     *           The name of the latest conversation message when the request is
+     *           triggered.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchKnowledge($query, $conversationProfile, array $optionalArgs = [])
+    {
+        $request = new SearchKnowledgeRequest();
+        $requestParamHeaders = [];
+        $request->setQuery($query);
+        $request->setConversationProfile($conversationProfile);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['sessionId'])) {
+            $request->setSessionId($optionalArgs['sessionId']);
+        }
+
+        if (isset($optionalArgs['conversation'])) {
+            $request->setConversation($optionalArgs['conversation']);
+            $requestParamHeaders['conversation'] = $optionalArgs['conversation'];
+        }
+
+        if (isset($optionalArgs['latestMessage'])) {
+            $request->setLatestMessage($optionalArgs['latestMessage']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SearchKnowledge', SearchKnowledgeResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Suggests summary for a conversation based on specific historical messages.
      * The range of the messages to be used for summary can be specified in the
      * request.
@@ -1407,7 +1495,7 @@ class ConversationsGapicClient
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type AssistQueryParameters $assistQueryParams
-     *           Parameters for a human assist query.
+     *           Parameters for a human assist query. Only used for POC/demo purpose.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

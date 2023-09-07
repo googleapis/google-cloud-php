@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Diagnostics information about interconnect, contains detailed and current technical information about Google's side of the connection.
+ * Diagnostics information about the Interconnect connection, which contains detailed and current technical information about Google's side of the connection.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectDiagnostics</code>
  */

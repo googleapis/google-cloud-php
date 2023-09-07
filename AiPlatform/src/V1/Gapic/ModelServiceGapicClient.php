@@ -45,6 +45,7 @@ use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
 use Google\Cloud\AIPlatform\V1\EncryptionSpec;
 use Google\Cloud\AIPlatform\V1\EvaluatedAnnotation;
+use Google\Cloud\AIPlatform\V1\Examples;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
@@ -63,6 +64,7 @@ use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
 use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
+use Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetRequest;
 use Google\Cloud\AIPlatform\V1\UpdateModelRequest;
 use Google\Cloud\AIPlatform\V1\UploadModelRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -99,6 +101,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\ModelServiceClient} to use the new surface.
  */
 class ModelServiceGapicClient
 {
@@ -130,6 +135,8 @@ class ModelServiceGapicClient
     private static $modelEvaluationNameTemplate;
 
     private static $modelEvaluationSliceNameTemplate;
+
+    private static $pipelineJobNameTemplate;
 
     private static $projectLocationEndpointNameTemplate;
 
@@ -221,6 +228,17 @@ class ModelServiceGapicClient
         return self::$modelEvaluationSliceNameTemplate;
     }
 
+    private static function getPipelineJobNameTemplate()
+    {
+        if (self::$pipelineJobNameTemplate == null) {
+            self::$pipelineJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}'
+            );
+        }
+
+        return self::$pipelineJobNameTemplate;
+    }
+
     private static function getProjectLocationEndpointNameTemplate()
     {
         if (self::$projectLocationEndpointNameTemplate == null) {
@@ -263,6 +281,7 @@ class ModelServiceGapicClient
                 'model' => self::getModelNameTemplate(),
                 'modelEvaluation' => self::getModelEvaluationNameTemplate(),
                 'modelEvaluationSlice' => self::getModelEvaluationSliceNameTemplate(),
+                'pipelineJob' => self::getPipelineJobNameTemplate(),
                 'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
                 'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
                 'trainingPipeline' => self::getTrainingPipelineNameTemplate(),
@@ -381,6 +400,25 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a pipeline_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pipelineJob
+     *
+     * @return string The formatted pipeline_job resource.
+     */
+    public static function pipelineJobName($project, $location, $pipelineJob)
+    {
+        return self::getPipelineJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'pipeline_job' => $pipelineJob,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_endpoint resource.
      *
@@ -458,6 +496,7 @@ class ModelServiceGapicClient
      * - model: projects/{project}/locations/{location}/models/{model}
      * - modelEvaluation: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}
      * - modelEvaluationSlice: projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}
+     * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - trainingPipeline: projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}
@@ -727,7 +766,7 @@ class ModelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -744,7 +783,7 @@ class ModelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -993,7 +1032,7 @@ class ModelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1010,7 +1049,7 @@ class ModelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1756,6 +1795,86 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Incrementally update the dataset used for an examples model.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedModel = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->updateExplanationDataset($formattedModel);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $modelServiceClient->updateExplanationDataset($formattedModel);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'updateExplanationDataset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $model        Required. The resource name of the Model to update.
+     *                             Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Examples $examples
+     *           The example config containing the location of the dataset.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateExplanationDataset($model, array $optionalArgs = [])
+    {
+        $request = new UpdateExplanationDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setModel($model);
+        $requestParamHeaders['model'] = $model;
+        if (isset($optionalArgs['examples'])) {
+            $request->setExamples($optionalArgs['examples']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateExplanationDataset',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Updates a Model.
      *
      * Sample code:
@@ -1838,7 +1957,7 @@ class ModelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1855,7 +1974,7 @@ class ModelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

@@ -20,8 +20,8 @@ class InsightTypeConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ý
-5google/cloud/recommender/v1/insight_type_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ö
+Ø
+5google/cloud/recommender/v1/insight_type_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"±
 InsightTypeConfig
 name (	`
 insight_type_generation_config (28.google.cloud.recommender.v1.InsightTypeGenerationConfig
@@ -32,8 +32,8 @@ class InsightTypeConfig
 display_name (	2
 AnnotationsEntry
 key (	
-value (	:8:ÔêAÐ
-,recommender.googleapis.com/InsightTypeConfigJprojects/{project}/locations/{location}/insightTypes/{insight_type}/configTorganizations/{organization}/locations/{location}/insightTypes/{insight_type}/config"F
+value (	:8:¯êA«
+,recommender.googleapis.com/InsightTypeConfigJprojects/{project}/locations/{location}/insightTypes/{insight_type}/configTorganizations/{organization}/locations/{location}/insightTypes/{insight_type}/configYbillingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/config"F
 InsightTypeGenerationConfig\'
 params (2.google.protobuf.StructB£
 com.google.cloud.recommender.v1BInsightTypeConfigProtoPZAcloud.google.com/go/recommender/apiv1/recommenderpb;recommenderpb¢CRECªGoogle.Cloud.Recommender.V1bproto3'

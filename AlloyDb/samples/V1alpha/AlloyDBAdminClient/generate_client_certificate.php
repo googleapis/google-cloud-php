@@ -29,10 +29,10 @@ use Google\Cloud\AlloyDb\V1alpha\GenerateClientCertificateResponse;
 
 /**
  * Generate a client certificate signed by a Cluster CA.
- * The sole purpose of this endpoint is to support the Auth Proxy client and
- * the endpoint's behavior is subject to change without notice, so do not rely
- * on its behavior remaining constant. Future changes will not break the Auth
- * Proxy client.
+ * The sole purpose of this endpoint is to support AlloyDB connectors and the
+ * Auth Proxy client. The endpoint's behavior is subject to change without
+ * notice, so do not rely on its behavior remaining constant. Future changes
+ * will not break AlloyDB connectors or the Auth Proxy client.
  *
  * @param string $formattedParent The name of the parent resource. The required format is:
  *                                * projects/{project}/locations/{location}/clusters/{cluster}

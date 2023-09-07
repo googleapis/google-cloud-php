@@ -21,8 +21,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the cluster for which snapshots should be listed.
-     * Values are of the form
+     * Required. The unique name of the cluster for which snapshots should be
+     * listed. Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
      * e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -45,14 +45,32 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The unique name of the cluster for which snapshots should be
+     *                       listed. Values are of the form
+     *                       `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *                       Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
+     *                       e.g., `projects/{project}/instances/{instance}/clusters/-`. Please see
+     *                       {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The unique name of the cluster for which snapshots should be listed.
-     *           Values are of the form
+     *           Required. The unique name of the cluster for which snapshots should be
+     *           listed. Values are of the form
      *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *           Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
      *           e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -69,8 +87,8 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the cluster for which snapshots should be listed.
-     * Values are of the form
+     * Required. The unique name of the cluster for which snapshots should be
+     * listed. Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
      * e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -84,8 +102,8 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the cluster for which snapshots should be listed.
-     * Values are of the form
+     * Required. The unique name of the cluster for which snapshots should be
+     * listed. Values are of the form
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
      * e.g., `projects/{project}/instances/{instance}/clusters/-`.

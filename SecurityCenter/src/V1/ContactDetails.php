@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The details pertaining to specific contacts
+ * Details about specific contacts
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.ContactDetails</code>
  */

@@ -25,6 +25,22 @@ class GetSnoozeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The ID of the `Snooze` to retrieve. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID]
+     *                     Please see {@see SnoozeServiceClient::snoozeName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetSnoozeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

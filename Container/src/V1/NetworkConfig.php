@@ -90,6 +90,24 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig gateway_api_config = 16;</code>
      */
     private $gateway_api_config = null;
+    /**
+     * Whether multi-networking is enabled for this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
+     */
+    private $enable_multi_networking = false;
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
+     */
+    private $network_performance_config = null;
+    /**
+     * Whether FQDN Network Policy is enabled on this cluster.
+     *
+     * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
+     */
+    private $enable_fqdn_network_policy = null;
 
     /**
      * Constructor.
@@ -132,6 +150,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $gateway_api_config
      *           GatewayAPIConfig contains the desired config of Gateway API on this
      *           cluster.
+     *     @type bool $enable_multi_networking
+     *           Whether multi-networking is enabled for this cluster.
+     *     @type \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig $network_performance_config
+     *           Network bandwidth tier configuration.
+     *     @type bool $enable_fqdn_network_policy
+     *           Whether FQDN Network Policy is enabled on this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -465,6 +489,104 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
         $this->gateway_api_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether multi-networking is enabled for this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
+     * @return bool
+     */
+    public function getEnableMultiNetworking()
+    {
+        return $this->enable_multi_networking;
+    }
+
+    /**
+     * Whether multi-networking is enabled for this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableMultiNetworking($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_multi_networking = $var;
+
+        return $this;
+    }
+
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
+     * @return \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig|null
+     */
+    public function getNetworkPerformanceConfig()
+    {
+        return $this->network_performance_config;
+    }
+
+    public function hasNetworkPerformanceConfig()
+    {
+        return isset($this->network_performance_config);
+    }
+
+    public function clearNetworkPerformanceConfig()
+    {
+        unset($this->network_performance_config);
+    }
+
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
+     * @param \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig $var
+     * @return $this
+     */
+    public function setNetworkPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkConfig\ClusterNetworkPerformanceConfig::class);
+        $this->network_performance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether FQDN Network Policy is enabled on this cluster.
+     *
+     * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
+     * @return bool
+     */
+    public function getEnableFqdnNetworkPolicy()
+    {
+        return isset($this->enable_fqdn_network_policy) ? $this->enable_fqdn_network_policy : false;
+    }
+
+    public function hasEnableFqdnNetworkPolicy()
+    {
+        return isset($this->enable_fqdn_network_policy);
+    }
+
+    public function clearEnableFqdnNetworkPolicy()
+    {
+        unset($this->enable_fqdn_network_policy);
+    }
+
+    /**
+     * Whether FQDN Network Policy is enabled on this cluster.
+     *
+     * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableFqdnNetworkPolicy($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_fqdn_network_policy = $var;
 
         return $this;
     }

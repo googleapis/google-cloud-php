@@ -43,6 +43,31 @@ class CreateNamespaceRequest extends \Google\Protobuf\Internal\Message
     private $namespace = null;
 
     /**
+     * @param string                                        $parent      Required. The resource name of the project and location the namespace
+     *                                                                   will be created in. Please see
+     *                                                                   {@see RegistrationServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\ServiceDirectory\V1\PBNamespace $namespace   Required. A namespace with initial fields set.
+     * @param string                                        $namespaceId Required. The Resource ID must be 1-63 characters long, and comply with
+     *                                                                   <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *                                                                   Specifically, the name must be 1-63 characters long and match the regular
+     *                                                                   expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *                                                                   character must be a lowercase letter, and all following characters must
+     *                                                                   be a dash, lowercase letter, or digit, except the last character, which
+     *                                                                   cannot be a dash.
+     *
+     * @return \Google\Cloud\ServiceDirectory\V1\CreateNamespaceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\ServiceDirectory\V1\PBNamespace $namespace, string $namespaceId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNamespace($namespace)
+            ->setNamespaceId($namespaceId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

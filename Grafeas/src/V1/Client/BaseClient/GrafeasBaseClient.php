@@ -77,7 +77,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Grafeas\V1\GrafeasClient} for the stable implementation
  *
  * @experimental
  *
@@ -288,6 +289,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::batchCreateNotesAsync()} .
      *
+     * @example samples/V1/GrafeasClient/batch_create_notes.php
+     *
      * @param BatchCreateNotesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -311,6 +314,8 @@ abstract class GrafeasBaseClient
      * Creates new occurrences in batch.
      *
      * The async variant is {@see self::batchCreateOccurrencesAsync()} .
+     *
+     * @example samples/V1/GrafeasClient/batch_create_occurrences.php
      *
      * @param BatchCreateOccurrencesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -336,6 +341,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::createNoteAsync()} .
      *
+     * @example samples/V1/GrafeasClient/create_note.php
+     *
      * @param CreateNoteRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -359,6 +366,8 @@ abstract class GrafeasBaseClient
      * Creates a new occurrence.
      *
      * The async variant is {@see self::createOccurrenceAsync()} .
+     *
+     * @example samples/V1/GrafeasClient/create_occurrence.php
      *
      * @param CreateOccurrenceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -384,6 +393,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::deleteNoteAsync()} .
      *
+     * @example samples/V1/GrafeasClient/delete_note.php
+     *
      * @param DeleteNoteRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -408,6 +419,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::deleteOccurrenceAsync()} .
      *
+     * @example samples/V1/GrafeasClient/delete_occurrence.php
+     *
      * @param DeleteOccurrenceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -429,6 +442,8 @@ abstract class GrafeasBaseClient
      * Gets the specified note.
      *
      * The async variant is {@see self::getNoteAsync()} .
+     *
+     * @example samples/V1/GrafeasClient/get_note.php
      *
      * @param GetNoteRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -454,6 +469,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::getOccurrenceAsync()} .
      *
+     * @example samples/V1/GrafeasClient/get_occurrence.php
+     *
      * @param GetOccurrenceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -478,6 +495,8 @@ abstract class GrafeasBaseClient
      * use this method to get a note that belongs to a provider project.
      *
      * The async variant is {@see self::getOccurrenceNoteAsync()} .
+     *
+     * @example samples/V1/GrafeasClient/get_occurrence_note.php
      *
      * @param GetOccurrenceNoteRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -505,6 +524,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::listNoteOccurrencesAsync()} .
      *
+     * @example samples/V1/GrafeasClient/list_note_occurrences.php
+     *
      * @param ListNoteOccurrencesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -528,6 +549,8 @@ abstract class GrafeasBaseClient
      * Lists notes for the specified project.
      *
      * The async variant is {@see self::listNotesAsync()} .
+     *
+     * @example samples/V1/GrafeasClient/list_notes.php
      *
      * @param ListNotesRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -553,6 +576,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::listOccurrencesAsync()} .
      *
+     * @example samples/V1/GrafeasClient/list_occurrences.php
+     *
      * @param ListOccurrencesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -577,6 +602,8 @@ abstract class GrafeasBaseClient
      *
      * The async variant is {@see self::updateNoteAsync()} .
      *
+     * @example samples/V1/GrafeasClient/update_note.php
+     *
      * @param UpdateNoteRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -600,6 +627,8 @@ abstract class GrafeasBaseClient
      * Updates the specified occurrence.
      *
      * The async variant is {@see self::updateOccurrenceAsync()} .
+     *
+     * @example samples/V1/GrafeasClient/update_occurrence.php
      *
      * @param UpdateOccurrenceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

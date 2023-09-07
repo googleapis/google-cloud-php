@@ -64,6 +64,24 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Resource name of the parent containing the listed services, either a
+     *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) or a
+     *                       Monitoring Workspace. The formats are:
+     *
+     *                       projects/[PROJECT_ID_OR_NUMBER]
+     *                       workspaces/[HOST_PROJECT_ID_OR_NUMBER]
+     *
+     * @return \Google\Cloud\Monitoring\V3\ListServicesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

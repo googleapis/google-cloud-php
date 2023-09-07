@@ -241,6 +241,8 @@ abstract class BetaAnalyticsDataBaseClient
      *
      * The async variant is {@see self::batchRunPivotReportsAsync()} .
      *
+     * @example samples/V1beta/BetaAnalyticsDataClient/batch_run_pivot_reports.php
+     *
      * @param BatchRunPivotReportsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -267,6 +269,8 @@ abstract class BetaAnalyticsDataBaseClient
      * GA4 Property.
      *
      * The async variant is {@see self::batchRunReportsAsync()} .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/batch_run_reports.php
      *
      * @param BatchRunReportsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -303,6 +307,8 @@ abstract class BetaAnalyticsDataBaseClient
      *
      * The async variant is {@see self::checkCompatibilityAsync()} .
      *
+     * @example samples/V1beta/BetaAnalyticsDataClient/check_compatibility.php
+     *
      * @param CheckCompatibilityRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -338,6 +344,8 @@ abstract class BetaAnalyticsDataBaseClient
      *
      * The async variant is {@see self::getMetadataAsync()} .
      *
+     * @example samples/V1beta/BetaAnalyticsDataClient/get_metadata.php
+     *
      * @param GetMetadataRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -367,6 +375,8 @@ abstract class BetaAnalyticsDataBaseClient
      * your data.
      *
      * The async variant is {@see self::runPivotReportAsync()} .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/run_pivot_report.php
      *
      * @param RunPivotReportRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -401,6 +411,8 @@ abstract class BetaAnalyticsDataBaseClient
      * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics).
      *
      * The async variant is {@see self::runRealtimeReportAsync()} .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/run_realtime_report.php
      *
      * @param RunRealtimeReportRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -437,6 +449,8 @@ abstract class BetaAnalyticsDataBaseClient
      * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
      *
      * The async variant is {@see self::runReportAsync()} .
+     *
+     * @example samples/V1beta/BetaAnalyticsDataClient/run_report.php
      *
      * @param RunReportRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

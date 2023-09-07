@@ -26,6 +26,22 @@ class GetParticipantRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the participant. Format:
+     *                     `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
+     *                     ID>/participants/<Participant ID>`. Please see
+     *                     {@see ParticipantsClient::participantName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GetParticipantRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

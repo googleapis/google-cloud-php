@@ -189,6 +189,16 @@
                                 "macVerify"
                             ]
                         },
+                        "RawDecrypt": {
+                            "methods": [
+                                "rawDecrypt"
+                            ]
+                        },
+                        "RawEncrypt": {
+                            "methods": [
+                                "rawEncrypt"
+                            ]
+                        },
                         "RestoreCryptoKeyVersion": {
                             "methods": [
                                 "restoreCryptoKeyVersion"

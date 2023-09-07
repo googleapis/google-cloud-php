@@ -94,7 +94,7 @@ class DocFxCommand extends Command
 
         $tocItems = [];
         $packageDescription = $component->getDescription();
-        foreach ($component->getNamespaces() as $namespace) {
+        foreach ($component->getNamespaces() as $namespace => $dir) {
             $pageTree = new PageTree(
                 $xml,
                 $namespace,
@@ -184,6 +184,8 @@ class DocFxCommand extends Command
     {
         $process = new Process([
             'phpdoc',
+            '--visibility',
+            'public,protected,private,internal',
             '-d',
             sprintf('%s/src', $componentPath),
             '--template',

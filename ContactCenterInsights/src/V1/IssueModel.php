@@ -66,6 +66,18 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelLabelStats training_stats = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $training_stats = null;
+    /**
+     * Type of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.ModelType model_type = 9;</code>
+     */
+    private $model_type = 0;
+    /**
+     * Language of the model.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     */
+    private $language_code = '';
 
     /**
      * Constructor.
@@ -92,6 +104,10 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats $training_stats
      *           Output only. Immutable. The issue model's label statistics on its training
      *           data.
+     *     @type int $model_type
+     *           Type of the model.
+     *     @type string $language_code
+     *           Language of the model.
      * }
      */
     public function __construct($data = NULL) {
@@ -349,6 +365,58 @@ class IssueModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats::class);
         $this->training_stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.ModelType model_type = 9;</code>
+     * @return int
+     */
+    public function getModelType()
+    {
+        return $this->model_type;
+    }
+
+    /**
+     * Type of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.ModelType model_type = 9;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setModelType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ContactCenterInsights\V1\IssueModel\ModelType::class);
+        $this->model_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Language of the model.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Language of the model.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
 
         return $this;
     }

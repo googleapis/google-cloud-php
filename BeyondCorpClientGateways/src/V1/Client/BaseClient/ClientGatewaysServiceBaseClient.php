@@ -72,7 +72,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGatewaysServiceClient} for the
+ * stable implementation
  *
  * @experimental
  *
@@ -298,6 +300,8 @@ abstract class ClientGatewaysServiceBaseClient
      *
      * The async variant is {@see self::createClientGatewayAsync()} .
      *
+     * @example samples/V1/ClientGatewaysServiceClient/create_client_gateway.php
+     *
      * @param CreateClientGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -321,6 +325,8 @@ abstract class ClientGatewaysServiceBaseClient
      * Deletes a single ClientGateway.
      *
      * The async variant is {@see self::deleteClientGatewayAsync()} .
+     *
+     * @example samples/V1/ClientGatewaysServiceClient/delete_client_gateway.php
      *
      * @param DeleteClientGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -346,6 +352,8 @@ abstract class ClientGatewaysServiceBaseClient
      *
      * The async variant is {@see self::getClientGatewayAsync()} .
      *
+     * @example samples/V1/ClientGatewaysServiceClient/get_client_gateway.php
+     *
      * @param GetClientGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -369,6 +377,8 @@ abstract class ClientGatewaysServiceBaseClient
      * Lists ClientGateways in a given project and location.
      *
      * The async variant is {@see self::listClientGatewaysAsync()} .
+     *
+     * @example samples/V1/ClientGatewaysServiceClient/list_client_gateways.php
      *
      * @param ListClientGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -394,6 +404,8 @@ abstract class ClientGatewaysServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/ClientGatewaysServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -417,6 +429,8 @@ abstract class ClientGatewaysServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/ClientGatewaysServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -442,6 +456,8 @@ abstract class ClientGatewaysServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ClientGatewaysServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -470,6 +486,8 @@ abstract class ClientGatewaysServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ClientGatewaysServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -500,6 +518,8 @@ abstract class ClientGatewaysServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ClientGatewaysServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

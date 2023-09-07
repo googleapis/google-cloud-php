@@ -204,6 +204,7 @@ return [
                 'project' => 'projects/{project}',
                 'secret' => 'projects/{project}/secrets/{secret}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
+                'topic' => 'projects/{project}/topics/{topic}',
             ],
         ],
     ],

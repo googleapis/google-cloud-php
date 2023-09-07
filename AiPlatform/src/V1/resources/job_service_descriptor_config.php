@@ -627,6 +627,7 @@ return [
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
                 'tensorboard' => 'projects/{project}/locations/{location}/tensorboards/{tensorboard}',
+                'trial' => 'projects/{project}/locations/{location}/studies/{study}/trials/{trial}',
             ],
         ],
     ],

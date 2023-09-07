@@ -25,8 +25,8 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether the answer/item was clicked by the human agent
      * or not. Default to false.
-     * For knowledge search, the answer record is considered to be clicked if the
-     * answer was copied or any URI was clicked.
+     * For knowledge search and knowledge assist, the answer record is considered
+     * to be clicked if the answer was copied or any URI was clicked.
      *
      * Generated from protobuf field <code>bool clicked = 3;</code>
      */
@@ -65,8 +65,8 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
      *     @type bool $clicked
      *           Indicates whether the answer/item was clicked by the human agent
      *           or not. Default to false.
-     *           For knowledge search, the answer record is considered to be clicked if the
-     *           answer was copied or any URI was clicked.
+     *           For knowledge search and knowledge assist, the answer record is considered
+     *           to be clicked if the answer was copied or any URI was clicked.
      *     @type \Google\Protobuf\Timestamp $click_time
      *           Time when the answer/item was clicked.
      *     @type bool $displayed
@@ -141,8 +141,8 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether the answer/item was clicked by the human agent
      * or not. Default to false.
-     * For knowledge search, the answer record is considered to be clicked if the
-     * answer was copied or any URI was clicked.
+     * For knowledge search and knowledge assist, the answer record is considered
+     * to be clicked if the answer was copied or any URI was clicked.
      *
      * Generated from protobuf field <code>bool clicked = 3;</code>
      * @return bool
@@ -155,8 +155,8 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether the answer/item was clicked by the human agent
      * or not. Default to false.
-     * For knowledge search, the answer record is considered to be clicked if the
-     * answer was copied or any URI was clicked.
+     * For knowledge search and knowledge assist, the answer record is considered
+     * to be clicked if the answer was copied or any URI was clicked.
      *
      * Generated from protobuf field <code>bool clicked = 3;</code>
      * @param bool $var

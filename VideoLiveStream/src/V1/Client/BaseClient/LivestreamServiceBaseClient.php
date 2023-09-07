@@ -38,25 +38,33 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Video\LiveStream\V1\Asset;
 use Google\Cloud\Video\LiveStream\V1\Channel;
+use Google\Cloud\Video\LiveStream\V1\CreateAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateInputRequest;
+use Google\Cloud\Video\LiveStream\V1\DeleteAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteEventRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteInputRequest;
 use Google\Cloud\Video\LiveStream\V1\Event;
+use Google\Cloud\Video\LiveStream\V1\GetAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\GetChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\GetEventRequest;
 use Google\Cloud\Video\LiveStream\V1\GetInputRequest;
+use Google\Cloud\Video\LiveStream\V1\GetPoolRequest;
 use Google\Cloud\Video\LiveStream\V1\Input;
+use Google\Cloud\Video\LiveStream\V1\ListAssetsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListChannelsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListEventsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListInputsRequest;
+use Google\Cloud\Video\LiveStream\V1\Pool;
 use Google\Cloud\Video\LiveStream\V1\StartChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\StopChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateChannelRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateInputRequest;
+use Google\Cloud\Video\LiveStream\V1\UpdatePoolRequest;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -75,21 +83,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
  * @internal
  *
+ * @method PromiseInterface createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createChannelAsync(CreateChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createEventAsync(CreateEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInputAsync(CreateInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteChannelAsync(DeleteChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteEventAsync(DeleteEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInputAsync(DeleteInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getChannelAsync(GetChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEventAsync(GetEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInputAsync(GetInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getPoolAsync(GetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listChannelsAsync(ListChannelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInputsAsync(ListInputsRequest $request, array $optionalArgs = [])
@@ -97,6 +112,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface stopChannelAsync(StopChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateChannelAsync(UpdateChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInputAsync(UpdateInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updatePoolAsync(UpdatePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -170,6 +186,25 @@ abstract class LivestreamServiceBaseClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a asset
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $asset
+     *
+     * @return string The formatted asset resource.
+     */
+    public static function assetName(string $project, string $location, string $asset): string
+    {
+        return self::getPathTemplate('asset')->render([
+            'project' => $project,
+            'location' => $location,
+            'asset' => $asset,
+        ]);
     }
 
     /**
@@ -249,6 +284,42 @@ abstract class LivestreamServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $project, string $network): string
+    {
+        return self::getPathTemplate('network')->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pool
+     *
+     * @return string The formatted pool resource.
+     */
+    public static function poolName(string $project, string $location, string $pool): string
+    {
+        return self::getPathTemplate('pool')->render([
+            'project' => $project,
+            'location' => $location,
+            'pool' => $pool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * secret_version resource.
      *
@@ -271,10 +342,13 @@ abstract class LivestreamServiceBaseClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - asset: projects/{project}/locations/{location}/assets/{asset}
      * - channel: projects/{project}/locations/{location}/channels/{channel}
      * - event: projects/{project}/locations/{location}/channels/{channel}/events/{event}
      * - input: projects/{project}/locations/{location}/inputs/{input}
      * - location: projects/{project}/locations/{location}
+     * - network: projects/{project}/global/networks/{network}
+     * - pool: projects/{project}/locations/{location}/pools/{pool}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -368,10 +442,39 @@ abstract class LivestreamServiceBaseClient
     }
 
     /**
+     * Creates a Asset with the provided unique ID in the specified
+     * region.
+     *
+     * The async variant is {@see self::createAssetAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/create_asset.php
+     *
+     * @param CreateAssetRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAsset(CreateAssetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateAsset', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a channel with the provided unique ID in the specified
      * region.
      *
      * The async variant is {@see self::createChannelAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/create_channel.php
      *
      * @param CreateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -397,6 +500,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::createEventAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/create_event.php
+     *
      * @param CreateEventRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -421,6 +526,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::createInputAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/create_input.php
+     *
      * @param CreateInputRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -441,9 +548,37 @@ abstract class LivestreamServiceBaseClient
     }
 
     /**
+     * Deletes the specified asset if it is not used.
+     *
+     * The async variant is {@see self::deleteAssetAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/delete_asset.php
+     *
+     * @param DeleteAssetRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAsset(DeleteAssetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAsset', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes the specified channel.
      *
      * The async variant is {@see self::deleteChannelAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/delete_channel.php
      *
      * @param DeleteChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -469,6 +604,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::deleteEventAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/delete_event.php
+     *
      * @param DeleteEventRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -491,6 +628,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::deleteInputAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/delete_input.php
+     *
      * @param DeleteInputRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -511,9 +650,37 @@ abstract class LivestreamServiceBaseClient
     }
 
     /**
+     * Returns the specified asset.
+     *
+     * The async variant is {@see self::getAssetAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_asset.php
+     *
+     * @param GetAssetRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Asset
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAsset(GetAssetRequest $request, array $callOptions = []): Asset
+    {
+        return $this->startApiCall('GetAsset', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the specified channel.
      *
      * The async variant is {@see self::getChannelAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_channel.php
      *
      * @param GetChannelRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -539,6 +706,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::getEventAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/get_event.php
+     *
      * @param GetEventRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -563,6 +732,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::getInputAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/get_input.php
+     *
      * @param GetInputRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -583,9 +754,63 @@ abstract class LivestreamServiceBaseClient
     }
 
     /**
+     * Returns the specified pool.
+     *
+     * The async variant is {@see self::getPoolAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_pool.php
+     *
+     * @param GetPoolRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Pool
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPool(GetPoolRequest $request, array $callOptions = []): Pool
+    {
+        return $this->startApiCall('GetPool', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns a list of all assets in the specified region.
+     *
+     * The async variant is {@see self::listAssetsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_assets.php
+     *
+     * @param ListAssetsRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAssets(ListAssetsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAssets', $request, $callOptions);
+    }
+
+    /**
      * Returns a list of all channels in the specified region.
      *
      * The async variant is {@see self::listChannelsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_channels.php
      *
      * @param ListChannelsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -611,6 +836,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::listEventsAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/list_events.php
+     *
      * @param ListEventsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -634,6 +861,8 @@ abstract class LivestreamServiceBaseClient
      * Returns a list of all inputs in the specified region.
      *
      * The async variant is {@see self::listInputsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_inputs.php
      *
      * @param ListInputsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -660,6 +889,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::startChannelAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/start_channel.php
+     *
      * @param StartChannelRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -685,6 +916,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::stopChannelAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/stop_channel.php
+     *
      * @param StopChannelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -708,6 +941,8 @@ abstract class LivestreamServiceBaseClient
      * Updates the specified channel.
      *
      * The async variant is {@see self::updateChannelAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/update_channel.php
      *
      * @param UpdateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -733,6 +968,8 @@ abstract class LivestreamServiceBaseClient
      *
      * The async variant is {@see self::updateInputAsync()} .
      *
+     * @example samples/V1/LivestreamServiceClient/update_input.php
+     *
      * @param UpdateInputRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -753,9 +990,37 @@ abstract class LivestreamServiceBaseClient
     }
 
     /**
+     * Updates the specified pool.
+     *
+     * The async variant is {@see self::updatePoolAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/update_pool.php
+     *
+     * @param UpdatePoolRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePool(UpdatePoolRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdatePool', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -780,6 +1045,8 @@ abstract class LivestreamServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -38,6 +38,24 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
     private $dry_run = false;
 
     /**
+     * @param string                        $parent Required. The parent resource under which to create the model. Format:
+     *                                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
+     *                                              Please see {@see ModelServiceClient::catalogName()} for help formatting this field.
+     * @param \Google\Cloud\Retail\V2\Model $model  Required. The payload of the [Model][google.cloud.retail.v2.Model]  to
+     *                                              create.
+     *
+     * @return \Google\Cloud\Retail\V2\CreateModelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Retail\V2\Model $model): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setModel($model);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

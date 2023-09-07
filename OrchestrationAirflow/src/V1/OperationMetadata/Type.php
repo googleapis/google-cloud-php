@@ -55,6 +55,13 @@ class Type
      * Generated from protobuf enum <code>LOAD_SNAPSHOT = 6;</code>
      */
     const LOAD_SNAPSHOT = 6;
+    /**
+     * Triggers failover of environment's Cloud SQL instance (only for highly
+     * resilient environments).
+     *
+     * Generated from protobuf enum <code>DATABASE_FAILOVER = 7;</code>
+     */
+    const DATABASE_FAILOVER = 7;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -64,6 +71,7 @@ class Type
         self::CHECK => 'CHECK',
         self::SAVE_SNAPSHOT => 'SAVE_SNAPSHOT',
         self::LOAD_SNAPSHOT => 'LOAD_SNAPSHOT',
+        self::DATABASE_FAILOVER => 'DATABASE_FAILOVER',
     ];
 
     public static function name($value)

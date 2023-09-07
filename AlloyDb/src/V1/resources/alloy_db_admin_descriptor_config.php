@@ -79,6 +79,44 @@ return [
                     ],
                 ],
             ],
+            'CreateSecondaryCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Cluster',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSecondaryInstance' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -139,6 +177,44 @@ return [
             'FailoverInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'InjectFault' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'PromoteCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Cluster',
                     'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -253,6 +329,30 @@ return [
                     ],
                 ],
             ],
+            'CreateUser' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\User',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUser' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AlloyDb\V1\Backup',
@@ -280,6 +380,18 @@ return [
             'GetInstance' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AlloyDb\V1\Instance',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetUser' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\User',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -369,6 +481,39 @@ return [
                     ],
                 ],
             ],
+            'ListUsers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getUsers',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\ListUsersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateUser' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\User',
+                'headerParams' => [
+                    [
+                        'keyName' => 'user.name',
+                        'fieldAccessors' => [
+                            'getUser',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -410,6 +555,7 @@ return [
                 'instance' => 'projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'user' => 'projects/{project}/locations/{location}/clusters/{cluster}/users/{user}',
             ],
         ],
     ],

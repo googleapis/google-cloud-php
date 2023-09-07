@@ -66,7 +66,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\IndexEndpointServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -316,6 +318,8 @@ abstract class IndexEndpointServiceBaseClient
      *
      * The async variant is {@see self::createIndexEndpointAsync()} .
      *
+     * @example samples/V1/IndexEndpointServiceClient/create_index_endpoint.php
+     *
      * @param CreateIndexEndpointRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -339,6 +343,8 @@ abstract class IndexEndpointServiceBaseClient
      * Deletes an IndexEndpoint.
      *
      * The async variant is {@see self::deleteIndexEndpointAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/delete_index_endpoint.php
      *
      * @param DeleteIndexEndpointRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -366,6 +372,8 @@ abstract class IndexEndpointServiceBaseClient
      *
      * The async variant is {@see self::deployIndexAsync()} .
      *
+     * @example samples/V1/IndexEndpointServiceClient/deploy_index.php
+     *
      * @param DeployIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -389,6 +397,8 @@ abstract class IndexEndpointServiceBaseClient
      * Gets an IndexEndpoint.
      *
      * The async variant is {@see self::getIndexEndpointAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/get_index_endpoint.php
      *
      * @param GetIndexEndpointRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -414,6 +424,8 @@ abstract class IndexEndpointServiceBaseClient
      *
      * The async variant is {@see self::listIndexEndpointsAsync()} .
      *
+     * @example samples/V1/IndexEndpointServiceClient/list_index_endpoints.php
+     *
      * @param ListIndexEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -437,6 +449,8 @@ abstract class IndexEndpointServiceBaseClient
      * Update an existing DeployedIndex under an IndexEndpoint.
      *
      * The async variant is {@see self::mutateDeployedIndexAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/mutate_deployed_index.php
      *
      * @param MutateDeployedIndexRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -463,6 +477,8 @@ abstract class IndexEndpointServiceBaseClient
      *
      * The async variant is {@see self::undeployIndexAsync()} .
      *
+     * @example samples/V1/IndexEndpointServiceClient/undeploy_index.php
+     *
      * @param UndeployIndexRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -486,6 +502,8 @@ abstract class IndexEndpointServiceBaseClient
      * Updates an IndexEndpoint.
      *
      * The async variant is {@see self::updateIndexEndpointAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/update_index_endpoint.php
      *
      * @param UpdateIndexEndpointRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -511,6 +529,8 @@ abstract class IndexEndpointServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/IndexEndpointServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -534,6 +554,8 @@ abstract class IndexEndpointServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -559,6 +581,8 @@ abstract class IndexEndpointServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -587,6 +611,8 @@ abstract class IndexEndpointServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -617,6 +643,8 @@ abstract class IndexEndpointServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/IndexEndpointServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

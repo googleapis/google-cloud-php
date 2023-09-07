@@ -58,6 +58,48 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
+     * @param string                              $projectId Deprecated. The Google Developers Console [project ID or project
+     *                                                       number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *                                                       This field has been deprecated and replaced by the parent field.
+     * @param string                              $zone      Deprecated. The name of the Google Compute Engine
+     *                                                       [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *                                                       cluster resides. This field has been deprecated and replaced by the parent
+     *                                                       field.
+     * @param string                              $clusterId Deprecated. The name of the cluster.
+     *                                                       This field has been deprecated and replaced by the parent field.
+     * @param \Google\Cloud\Container\V1\NodePool $nodePool  Required. The node pool to create.
+     *
+     * @return \Google\Cloud\Container\V1\CreateNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function build(string $projectId, string $zone, string $clusterId, \Google\Cloud\Container\V1\NodePool $nodePool): self
+    {
+        return (new self())
+            ->setProjectId($projectId)
+            ->setZone($zone)
+            ->setClusterId($clusterId)
+            ->setNodePool($nodePool);
+    }
+
+    /**
+     * @param string                              $parent   The parent (project, location, cluster name) where the node pool will be
+     *                                                      created. Specified in the format
+     *                                                      `projects/&#42;/locations/&#42;/clusters/*`.
+     * @param \Google\Cloud\Container\V1\NodePool $nodePool Required. The node pool to create.
+     *
+     * @return \Google\Cloud\Container\V1\CreateNodePoolRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentNodePool(string $parent, \Google\Cloud\Container\V1\NodePool $nodePool): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNodePool($nodePool);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

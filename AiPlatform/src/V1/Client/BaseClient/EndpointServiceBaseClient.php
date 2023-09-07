@@ -66,7 +66,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\EndpointServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -396,6 +397,8 @@ abstract class EndpointServiceBaseClient
      *
      * The async variant is {@see self::createEndpointAsync()} .
      *
+     * @example samples/V1/EndpointServiceClient/create_endpoint.php
+     *
      * @param CreateEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -419,6 +422,8 @@ abstract class EndpointServiceBaseClient
      * Deletes an Endpoint.
      *
      * The async variant is {@see self::deleteEndpointAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/delete_endpoint.php
      *
      * @param DeleteEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -444,6 +449,8 @@ abstract class EndpointServiceBaseClient
      *
      * The async variant is {@see self::deployModelAsync()} .
      *
+     * @example samples/V1/EndpointServiceClient/deploy_model.php
+     *
      * @param DeployModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -468,6 +475,8 @@ abstract class EndpointServiceBaseClient
      *
      * The async variant is {@see self::getEndpointAsync()} .
      *
+     * @example samples/V1/EndpointServiceClient/get_endpoint.php
+     *
      * @param GetEndpointRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -491,6 +500,8 @@ abstract class EndpointServiceBaseClient
      * Lists Endpoints in a Location.
      *
      * The async variant is {@see self::listEndpointsAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/list_endpoints.php
      *
      * @param ListEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -519,6 +530,8 @@ abstract class EndpointServiceBaseClient
      *
      * The async variant is {@see self::mutateDeployedModelAsync()} .
      *
+     * @example samples/V1/EndpointServiceClient/mutate_deployed_model.php
+     *
      * @param MutateDeployedModelRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -544,6 +557,8 @@ abstract class EndpointServiceBaseClient
      *
      * The async variant is {@see self::undeployModelAsync()} .
      *
+     * @example samples/V1/EndpointServiceClient/undeploy_model.php
+     *
      * @param UndeployModelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -567,6 +582,8 @@ abstract class EndpointServiceBaseClient
      * Updates an Endpoint.
      *
      * The async variant is {@see self::updateEndpointAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/update_endpoint.php
      *
      * @param UpdateEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -592,6 +609,8 @@ abstract class EndpointServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/EndpointServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -615,6 +634,8 @@ abstract class EndpointServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -640,6 +661,8 @@ abstract class EndpointServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -668,6 +691,8 @@ abstract class EndpointServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -698,6 +723,8 @@ abstract class EndpointServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

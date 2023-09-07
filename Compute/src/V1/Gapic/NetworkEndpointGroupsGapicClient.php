@@ -81,6 +81,10 @@ use Google\Cloud\Compute\V1\ZoneOperationsClient;
  *     $networkEndpointGroupsClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient} to use the new
+ * surface.
  */
 class NetworkEndpointGroupsGapicClient
 {

@@ -82,6 +82,7 @@ use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
@@ -104,6 +105,7 @@ use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
+use Google\Analytics\Admin\V1alpha\DeleteSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
@@ -138,6 +140,7 @@ use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
+use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
@@ -183,6 +186,8 @@ use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
+use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
+use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasResponse;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
 use Google\Analytics\Admin\V1alpha\ListUserLinksRequest;
@@ -193,6 +198,7 @@ use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
+use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
@@ -203,6 +209,7 @@ use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
 use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
+use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
@@ -215,6 +222,7 @@ use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UserLink;
@@ -334,6 +342,8 @@ class AnalyticsAdminServiceGapicClient
     private static $propertyAccessBindingNameTemplate;
 
     private static $propertyUserLinkNameTemplate;
+
+    private static $sKAdNetworkConversionValueSchemaNameTemplate;
 
     private static $searchAds360LinkNameTemplate;
 
@@ -612,6 +622,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$propertyUserLinkNameTemplate;
     }
 
+    private static function getSKAdNetworkConversionValueSchemaNameTemplate()
+    {
+        if (self::$sKAdNetworkConversionValueSchemaNameTemplate == null) {
+            self::$sKAdNetworkConversionValueSchemaNameTemplate = new PathTemplate('properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}');
+        }
+
+        return self::$sKAdNetworkConversionValueSchemaNameTemplate;
+    }
+
     private static function getSearchAds360LinkNameTemplate()
     {
         if (self::$searchAds360LinkNameTemplate == null) {
@@ -662,6 +681,7 @@ class AnalyticsAdminServiceGapicClient
                 'property' => self::getPropertyNameTemplate(),
                 'propertyAccessBinding' => self::getPropertyAccessBindingNameTemplate(),
                 'propertyUserLink' => self::getPropertyUserLinkNameTemplate(),
+                'sKAdNetworkConversionValueSchema' => self::getSKAdNetworkConversionValueSchemaNameTemplate(),
                 'searchAds360Link' => self::getSearchAds360LinkNameTemplate(),
                 'userLink' => self::getUserLinkNameTemplate(),
             ];
@@ -1196,6 +1216,27 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * sk_ad_network_conversion_value_schema resource.
+     *
+     * @param string $property
+     * @param string $dataStream
+     * @param string $skadnetworkConversionValueSchema
+     *
+     * @return string The formatted sk_ad_network_conversion_value_schema resource.
+     *
+     * @experimental
+     */
+    public static function sKAdNetworkConversionValueSchemaName($property, $dataStream, $skadnetworkConversionValueSchema)
+    {
+        return self::getSKAdNetworkConversionValueSchemaNameTemplate()->render([
+            'property' => $property,
+            'data_stream' => $dataStream,
+            'skadnetwork_conversion_value_schema' => $skadnetworkConversionValueSchema,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * search_ads360_link resource.
      *
      * @param string $property
@@ -1264,6 +1305,7 @@ class AnalyticsAdminServiceGapicClient
      * - property: properties/{property}
      * - propertyAccessBinding: properties/{property}/accessBindings/{access_binding}
      * - propertyUserLink: properties/{property}/userLinks/{user_link}
+     * - sKAdNetworkConversionValueSchema: properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
      * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
      * - userLink: accounts/{account}/userLinks/{user_link}
      *
@@ -2878,6 +2920,51 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates a SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+     *     $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+     *     $response = $analyticsAdminServiceClient->createSKAdNetworkConversionValueSchema($formattedParent, $skadnetworkConversionValueSchema);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                           $parent                           Required. The parent resource where this schema will be created.
+     *                                                                           Format: properties/{property}/dataStreams/{dataStream}
+     * @param SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema Required. SKAdNetwork conversion value schema to create.
+     * @param array                            $optionalArgs                     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createSKAdNetworkConversionValueSchema($parent, $skadnetworkConversionValueSchema, array $optionalArgs = [])
+    {
+        $request = new CreateSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateSKAdNetworkConversionValueSchema', SKAdNetworkConversionValueSchema::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a SearchAds360Link.
      *
      * Sample code:
@@ -3610,6 +3697,47 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteProperty', Property::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes target SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+     *     $analyticsAdminServiceClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the SKAdNetworkConversionValueSchema to delete.
+     *                             Format:
+     *                             properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteSKAdNetworkConversionValueSchema($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteSKAdNetworkConversionValueSchema', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -4718,6 +4846,49 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetProperty', Property::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Looks up a single SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+     *     $response = $analyticsAdminServiceClient->getSKAdNetworkConversionValueSchema($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of SKAdNetwork conversion value schema to look
+     *                             up. Format:
+     *                             properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getSKAdNetworkConversionValueSchema($name, array $optionalArgs = [])
+    {
+        $request = new GetSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSKAdNetworkConversionValueSchema', SKAdNetworkConversionValueSchema::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -6218,6 +6389,79 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lists SKAdNetworkConversionValueSchema on a stream.
+     * Properties can have at most one SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Format:
+     *                             properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
+     *                             Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listSKAdNetworkConversionValueSchemas($parent, array $optionalArgs = [])
+    {
+        $request = new ListSKAdNetworkConversionValueSchemasRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSKAdNetworkConversionValueSchemas', $optionalArgs, ListSKAdNetworkConversionValueSchemasResponse::class, $request);
+    }
+
+    /**
      * Lists all SearchAds360Links on a property.
      *
      * Sample code:
@@ -6961,6 +7205,54 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates a conversion event with the specified attributes.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $conversionEvent = new ConversionEvent();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateConversionEvent($conversionEvent, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ConversionEvent $conversionEvent Required. The conversion event to update.
+     *                                         The `name` field is used to identify the settings to be updated.
+     * @param FieldMask       $updateMask      Required. The list of fields to be updated. Field names must be in snake
+     *                                         case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                         replace the entire entity, use one path with the string "*" to match all
+     *                                         fields.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ConversionEvent
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateConversionEvent($conversionEvent, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateConversionEventRequest();
+        $requestParamHeaders = [];
+        $request->setConversionEvent($conversionEvent);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['conversion_event.name'] = $conversionEvent->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateConversionEvent', ConversionEvent::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates a CustomDimension on a property.
      *
      * Sample code:
@@ -7453,18 +7745,19 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $measurementProtocolSecret = new MeasurementProtocolSecret();
-     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
      * @param MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to update.
+     * @param FieldMask                 $updateMask                Required. The list of fields to be updated. Omitted fields will not be
+     *                                                             updated.
      * @param array                     $optionalArgs              {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -7477,16 +7770,13 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret($measurementProtocolSecret, array $optionalArgs = [])
+    public function updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateMeasurementProtocolSecretRequest();
         $requestParamHeaders = [];
         $request->setMeasurementProtocolSecret($measurementProtocolSecret);
+        $request->setUpdateMask($updateMask);
         $requestParamHeaders['measurement_protocol_secret.name'] = $measurementProtocolSecret->getName();
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
@@ -7539,6 +7829,51 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateProperty', Property::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a SKAdNetworkConversionValueSchema.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema Required. SKAdNetwork conversion value schema to update.
+     * @param FieldMask                        $updateMask                       Required. The list of fields to be updated. Omitted fields will not be
+     *                                                                           updated.
+     * @param array                            $optionalArgs                     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateSKAdNetworkConversionValueSchemaRequest();
+        $requestParamHeaders = [];
+        $request->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['skadnetwork_conversion_value_schema.name'] = $skadnetworkConversionValueSchema->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateSKAdNetworkConversionValueSchema', SKAdNetworkConversionValueSchema::class, $optionalArgs, $request)->wait();
     }
 
     /**

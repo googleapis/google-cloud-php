@@ -53,11 +53,11 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      */
     private $streaming_export_enabled = false;
     /**
-     * If set true, enables intraday export to the linked Google Cloud project.
+     * If set true, enables fresh daily export to the linked Google Cloud project.
      *
-     * Generated from protobuf field <code>bool intraday_export_enabled = 9;</code>
+     * Generated from protobuf field <code>bool fresh_daily_export_enabled = 9;</code>
      */
-    private $intraday_export_enabled = false;
+    private $fresh_daily_export_enabled = false;
     /**
      * If set true, exported data will include advertising identifiers for mobile
      * app streams.
@@ -104,8 +104,8 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *           If set true, enables daily data export to the linked Google Cloud project.
      *     @type bool $streaming_export_enabled
      *           If set true, enables streaming export to the linked Google Cloud project.
-     *     @type bool $intraday_export_enabled
-     *           If set true, enables intraday export to the linked Google Cloud project.
+     *     @type bool $fresh_daily_export_enabled
+     *           If set true, enables fresh daily export to the linked Google Cloud project.
      *     @type bool $include_advertising_id
      *           If set true, exported data will include advertising identifiers for mobile
      *           app streams.
@@ -278,27 +278,27 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set true, enables intraday export to the linked Google Cloud project.
+     * If set true, enables fresh daily export to the linked Google Cloud project.
      *
-     * Generated from protobuf field <code>bool intraday_export_enabled = 9;</code>
+     * Generated from protobuf field <code>bool fresh_daily_export_enabled = 9;</code>
      * @return bool
      */
-    public function getIntradayExportEnabled()
+    public function getFreshDailyExportEnabled()
     {
-        return $this->intraday_export_enabled;
+        return $this->fresh_daily_export_enabled;
     }
 
     /**
-     * If set true, enables intraday export to the linked Google Cloud project.
+     * If set true, enables fresh daily export to the linked Google Cloud project.
      *
-     * Generated from protobuf field <code>bool intraday_export_enabled = 9;</code>
+     * Generated from protobuf field <code>bool fresh_daily_export_enabled = 9;</code>
      * @param bool $var
      * @return $this
      */
-    public function setIntradayExportEnabled($var)
+    public function setFreshDailyExportEnabled($var)
     {
         GPBUtil::checkBool($var);
-        $this->intraday_export_enabled = $var;
+        $this->fresh_daily_export_enabled = $var;
 
         return $this;
     }

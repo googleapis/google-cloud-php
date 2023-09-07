@@ -93,7 +93,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Identity\AccessContextManager\V1\AccessContextManagerClient} for the
+ * stable implementation
  *
  * @experimental
  *
@@ -398,6 +400,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::commitServicePerimetersAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/commit_service_perimeters.php
+     *
      * @param CommitServicePerimetersRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -428,6 +432,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::createAccessLevelAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/create_access_level.php
+     *
      * @param CreateAccessLevelRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -455,6 +461,8 @@ abstract class AccessContextManagerBaseClient
      * BadRequest proto.
      *
      * The async variant is {@see self::createAccessPolicyAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/create_access_policy.php
      *
      * @param AccessPolicy $request     A request to house fields associated with the call.
      * @param array        $callOptions {
@@ -489,6 +497,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::createGcpUserAccessBindingAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/create_gcp_user_access_binding.php
+     *
      * @param CreateGcpUserAccessBindingRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -520,6 +530,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::createServicePerimeterAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/create_service_perimeter.php
+     *
      * @param CreateServicePerimeterRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -549,6 +561,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::deleteAccessLevelAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/delete_access_level.php
+     *
      * @param DeleteAccessLevelRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -577,6 +591,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::deleteAccessPolicyAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/delete_access_policy.php
+     *
      * @param DeleteAccessPolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -604,6 +620,8 @@ abstract class AccessContextManagerBaseClient
      * more time.
      *
      * The async variant is {@see self::deleteGcpUserAccessBindingAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/delete_gcp_user_access_binding.php
      *
      * @param DeleteGcpUserAccessBindingRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -634,6 +652,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::deleteServicePerimeterAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/delete_service_perimeter.php
+     *
      * @param DeleteServicePerimeterRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -660,6 +680,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::getAccessLevelAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/get_access_level.php
+     *
      * @param GetAccessLevelRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -684,6 +706,8 @@ abstract class AccessContextManagerBaseClient
      * [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
      *
      * The async variant is {@see self::getAccessPolicyAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/get_access_policy.php
      *
      * @param GetAccessPolicyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -711,6 +735,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::getGcpUserAccessBindingAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/get_gcp_user_access_binding.php
+     *
      * @param GetGcpUserAccessBindingRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -735,6 +761,8 @@ abstract class AccessContextManagerBaseClient
      * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -762,6 +790,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::getServicePerimeterAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/get_service_perimeter.php
+     *
      * @param GetServicePerimeterRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -787,6 +817,8 @@ abstract class AccessContextManagerBaseClient
      * policy.
      *
      * The async variant is {@see self::listAccessLevelsAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/list_access_levels.php
      *
      * @param ListAccessLevelsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -814,6 +846,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::listAccessPoliciesAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/list_access_policies.php
+     *
      * @param ListAccessPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -840,6 +874,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::listGcpUserAccessBindingsAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/list_gcp_user_access_bindings.php
+     *
      * @param ListGcpUserAccessBindingsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -865,6 +901,8 @@ abstract class AccessContextManagerBaseClient
      * access policy.
      *
      * The async variant is {@see self::listServicePerimetersAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/list_service_perimeters.php
      *
      * @param ListServicePerimetersRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -906,6 +944,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::replaceAccessLevelsAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/replace_access_levels.php
+     *
      * @param ReplaceAccessLevelsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -942,6 +982,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::replaceServicePerimetersAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/replace_service_perimeters.php
+     *
      * @param ReplaceServicePerimetersRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -971,6 +1013,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -999,6 +1043,8 @@ abstract class AccessContextManagerBaseClient
      * ]. This method does not support other resources.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1031,6 +1077,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::updateAccessLevelAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/update_access_level.php
+     *
      * @param UpdateAccessLevelRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1060,6 +1108,8 @@ abstract class AccessContextManagerBaseClient
      *
      * The async variant is {@see self::updateAccessPolicyAsync()} .
      *
+     * @example samples/V1/AccessContextManagerClient/update_access_policy.php
+     *
      * @param UpdateAccessPolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1087,6 +1137,8 @@ abstract class AccessContextManagerBaseClient
      * more time.
      *
      * The async variant is {@see self::updateGcpUserAccessBindingAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/update_gcp_user_access_binding.php
      *
      * @param UpdateGcpUserAccessBindingRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -1118,6 +1170,8 @@ abstract class AccessContextManagerBaseClient
      * errors, an error response is returned for the first error encountered.
      *
      * The async variant is {@see self::updateServicePerimeterAsync()} .
+     *
+     * @example samples/V1/AccessContextManagerClient/update_service_perimeter.php
      *
      * @param UpdateServicePerimeterRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

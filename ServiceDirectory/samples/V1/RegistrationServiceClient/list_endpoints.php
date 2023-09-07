@@ -31,7 +31,7 @@ use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
 /**
  * Lists all endpoints.
  *
- * @param string $formattedParent The resource name of the service whose endpoints we'd like to
+ * @param string $formattedParent The resource name of the service whose endpoints you'd like to
  *                                list. Please see
  *                                {@see RegistrationServiceClient::serviceName()} for help formatting this field.
  */

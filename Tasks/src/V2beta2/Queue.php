@@ -75,7 +75,7 @@ class Queue extends \Google\Protobuf\Internal\Message
     private $retry_config = null;
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by calling
+     * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or
      * uploading
@@ -170,6 +170,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           Pull target.
      *           A pull queue is a queue that has a
      *           [PullTarget][google.cloud.tasks.v2beta2.PullTarget].
+     *     @type \Google\Cloud\Tasks\V2beta2\HttpTarget $http_target
+     *           An http_target is used to override the target values for HTTP tasks.
      *     @type \Google\Cloud\Tasks\V2beta2\RateLimits $rate_limits
      *           Rate limits for task dispatches.
      *           [rate_limits][google.cloud.tasks.v2beta2.Queue.rate_limits] and
@@ -198,7 +200,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *             documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *     @type int $state
      *           Output only. The state of the queue.
-     *           `state` can only be changed by calling
+     *           `state` can only be changed by called
      *           [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
      *           [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or
      *           uploading
@@ -375,6 +377,37 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * An http_target is used to override the target values for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.HttpTarget http_target = 17;</code>
+     * @return \Google\Cloud\Tasks\V2beta2\HttpTarget|null
+     */
+    public function getHttpTarget()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasHttpTarget()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * An http_target is used to override the target values for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.HttpTarget http_target = 17;</code>
+     * @param \Google\Cloud\Tasks\V2beta2\HttpTarget $var
+     * @return $this
+     */
+    public function setHttpTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta2\HttpTarget::class);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
      * Rate limits for task dispatches.
      * [rate_limits][google.cloud.tasks.v2beta2.Queue.rate_limits] and
      * [retry_config][google.cloud.tasks.v2beta2.Queue.retry_config] are related
@@ -492,7 +525,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by calling
+     * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or
      * uploading
@@ -510,7 +543,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by calling
+     * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta2.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta2.CloudTasks.ResumeQueue], or
      * uploading

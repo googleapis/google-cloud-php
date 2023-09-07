@@ -26,6 +26,22 @@ class DeleteCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
     private $name = '';
 
     /**
+     * @param string $name Required. The resource name of the customer repricing config rule to
+     *                     delete. Format:
+     *                     accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}. Please see
+     *                     {@see CloudChannelServiceClient::customerRepricingConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Channel\V1\DeleteCustomerRepricingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

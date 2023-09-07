@@ -84,6 +84,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * See https://goo.gl/xmQnxf for more information and examples of labels.
+     * Note there is some reserved label key for Vertex AI Pipelines.
+     * - `vertex-ai-pipelines-run-billing-id`, user set value will get overrided.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      */
@@ -132,6 +134,17 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
+     * A list of names for the reserved ip ranges under the VPC network
+     * that can be used for this Pipeline Job's workload.
+     * If set, we will deploy the Pipeline Job's workload within the provided ip
+     * ranges. Otherwise, the job will be deployed to any ip ranges under the
+     * provided VPC network.
+     * Example: ['vertex-ai-ip-range'].
+     *
+     * Generated from protobuf field <code>repeated string reserved_ip_ranges = 25;</code>
+     */
+    private $reserved_ip_ranges;
+    /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
      * if empty, will be downloaded.
@@ -147,6 +160,13 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $template_metadata = null;
+    /**
+     * Output only. The schedule resource name.
+     * Only returned if the Pipeline is created by Schedule API.
+     *
+     * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $schedule_name = '';
 
     /**
      * Constructor.
@@ -183,6 +203,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           (Unicode codepoints), can only contain lowercase letters, numeric
      *           characters, underscores and dashes. International characters are allowed.
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
+     *           Note there is some reserved label key for Vertex AI Pipelines.
+     *           - `vertex-ai-pipelines-run-billing-id`, user set value will get overrided.
      *     @type \Google\Cloud\AIPlatform\V1\PipelineJob\RuntimeConfig $runtime_config
      *           Runtime config of the pipeline.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
@@ -210,6 +232,13 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           resources being launched, if applied, such as Vertex AI
      *           Training or Dataflow job. If left unspecified, the workload is not peered
      *           with any network.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
+     *           A list of names for the reserved ip ranges under the VPC network
+     *           that can be used for this Pipeline Job's workload.
+     *           If set, we will deploy the Pipeline Job's workload within the provided ip
+     *           ranges. Otherwise, the job will be deployed to any ip ranges under the
+     *           provided VPC network.
+     *           Example: ['vertex-ai-ip-range'].
      *     @type string $template_uri
      *           A template uri from where the
      *           [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
@@ -218,6 +247,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           Output only. Pipeline template metadata. Will fill up fields if
      *           [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
      *           is from supported template registry.
+     *     @type string $schedule_name
+     *           Output only. The schedule resource name.
+     *           Only returned if the Pipeline is created by Schedule API.
      * }
      */
     public function __construct($data = NULL) {
@@ -567,6 +599,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * See https://goo.gl/xmQnxf for more information and examples of labels.
+     * Note there is some reserved label key for Vertex AI Pipelines.
+     * - `vertex-ai-pipelines-run-billing-id`, user set value will get overrided.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -582,6 +616,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * See https://goo.gl/xmQnxf for more information and examples of labels.
+     * Note there is some reserved label key for Vertex AI Pipelines.
+     * - `vertex-ai-pipelines-run-billing-id`, user set value will get overrided.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -758,6 +794,42 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A list of names for the reserved ip ranges under the VPC network
+     * that can be used for this Pipeline Job's workload.
+     * If set, we will deploy the Pipeline Job's workload within the provided ip
+     * ranges. Otherwise, the job will be deployed to any ip ranges under the
+     * provided VPC network.
+     * Example: ['vertex-ai-ip-range'].
+     *
+     * Generated from protobuf field <code>repeated string reserved_ip_ranges = 25;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReservedIpRanges()
+    {
+        return $this->reserved_ip_ranges;
+    }
+
+    /**
+     * A list of names for the reserved ip ranges under the VPC network
+     * that can be used for this Pipeline Job's workload.
+     * If set, we will deploy the Pipeline Job's workload within the provided ip
+     * ranges. Otherwise, the job will be deployed to any ip ranges under the
+     * provided VPC network.
+     * Example: ['vertex-ai-ip-range'].
+     *
+     * Generated from protobuf field <code>repeated string reserved_ip_ranges = 25;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReservedIpRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->reserved_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
      * if empty, will be downloaded.
@@ -823,6 +895,34 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata::class);
         $this->template_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The schedule resource name.
+     * Only returned if the Pipeline is created by Schedule API.
+     *
+     * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getScheduleName()
+    {
+        return $this->schedule_name;
+    }
+
+    /**
+     * Output only. The schedule resource name.
+     * Only returned if the Pipeline is created by Schedule API.
+     *
+     * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setScheduleName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->schedule_name = $var;
 
         return $this;
     }

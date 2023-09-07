@@ -97,6 +97,32 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
     private $issuing_certificate_authority_id = '';
 
     /**
+     * @param string                                          $parent        Required. The resource name of the
+     *                                                                       [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
+     *                                                                       [Certificate][google.cloud.security.privateca.v1.Certificate], in the
+     *                                                                       format `projects/&#42;/locations/&#42;/caPools/*`. Please see
+     *                                                                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     * @param \Google\Cloud\Security\PrivateCA\V1\Certificate $certificate   Required. A [Certificate][google.cloud.security.privateca.v1.Certificate]
+     *                                                                       with initial field values.
+     * @param string                                          $certificateId Optional. It must be unique within a location and match the regular
+     *                                                                       expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
+     *                                                                       [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *                                                                       in the Enterprise [CertificateAuthority.Tier][], but is optional and its
+     *                                                                       value is ignored otherwise.
+     *
+     * @return \Google\Cloud\Security\PrivateCA\V1\CreateCertificateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Security\PrivateCA\V1\Certificate $certificate, string $certificateId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCertificate($certificate)
+            ->setCertificateId($certificateId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

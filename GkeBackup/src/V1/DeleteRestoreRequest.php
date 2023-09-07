@@ -17,15 +17,15 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full name of the Restore
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * If provided, this value must match the current value of the
-     * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or the request is
-     * rejected.
+     * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
+     * the request is rejected.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
@@ -41,7 +41,7 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Full name of the Restore
-     *                     Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+     *                     Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
      *                     Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\DeleteRestoreRequest
@@ -62,11 +62,11 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Full name of the Restore
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *     @type string $etag
      *           If provided, this value must match the current value of the
-     *           target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or the request is
-     *           rejected.
+     *           target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
+     *           the request is rejected.
      *     @type bool $force
      *           If set to true, any VolumeRestores below this restore will also be deleted.
      *           Otherwise, the request will only succeed if the restore has no
@@ -80,7 +80,7 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full name of the Restore
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -92,7 +92,7 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full name of the Restore
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -108,8 +108,8 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If provided, this value must match the current value of the
-     * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or the request is
-     * rejected.
+     * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
+     * the request is rejected.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      * @return string
@@ -121,8 +121,8 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If provided, this value must match the current value of the
-     * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or the request is
-     * rejected.
+     * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
+     * the request is rejected.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      * @param string $var

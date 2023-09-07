@@ -17,7 +17,7 @@ class ListVolumeBackupsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Backup that contains the VolumeBackups to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,7 +59,7 @@ class ListVolumeBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The Backup that contains the VolumeBackups to list.
-     *                       Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+     *                       Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      *                       Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\ListVolumeBackupsRequest
@@ -80,7 +80,7 @@ class ListVolumeBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The Backup that contains the VolumeBackups to list.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *     @type int $page_size
      *           The target number of results to return in a single response.
      *           If not specified, a default value will be chosen by the service.
@@ -108,7 +108,7 @@ class ListVolumeBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Backup that contains the VolumeBackups to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -120,7 +120,7 @@ class ListVolumeBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Backup that contains the VolumeBackups to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -32,6 +32,25 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     private $ack_ids;
 
     /**
+     * @param string   $subscription Required. The subscription whose message is being acknowledged.
+     *                               Format is `projects/{project}/subscriptions/{sub}`. Please see
+     *                               {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     * @param string[] $ackIds       Required. The acknowledgment ID for the messages being acknowledged that
+     *                               was returned by the Pub/Sub system in the `Pull` response. Must not be
+     *                               empty.
+     *
+     * @return \Google\Cloud\PubSub\V1\AcknowledgeRequest
+     *
+     * @experimental
+     */
+    public static function build(string $subscription, array $ackIds): self
+    {
+        return (new self())
+            ->setSubscription($subscription)
+            ->setAckIds($ackIds);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

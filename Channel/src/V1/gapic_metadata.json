@@ -184,6 +184,16 @@
                                 "listPurchasableSkus"
                             ]
                         },
+                        "ListSkuGroupBillableSkus": {
+                            "methods": [
+                                "listSkuGroupBillableSkus"
+                            ]
+                        },
+                        "ListSkuGroups": {
+                            "methods": [
+                                "listSkuGroups"
+                            ]
+                        },
                         "ListSkus": {
                             "methods": [
                                 "listSkus"

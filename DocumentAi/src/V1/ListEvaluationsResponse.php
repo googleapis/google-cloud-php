@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response from ListEvaluations.
+ * The response from `ListEvaluations`.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ListEvaluationsResponse</code>
  */

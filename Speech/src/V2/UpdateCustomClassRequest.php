@@ -41,6 +41,26 @@ class UpdateCustomClassRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Speech\V2\CustomClass $customClass Required. The CustomClass to update.
+     *
+     *                                                         The CustomClass's `name` field is used to identify the CustomClass to
+     *                                                         update. Format:
+     *                                                         `projects/{project}/locations/{location}/customClasses/{custom_class}`.
+     * @param \Google\Protobuf\FieldMask          $updateMask  The list of fields to be updated. If empty, all fields are considered for
+     *                                                         update.
+     *
+     * @return \Google\Cloud\Speech\V2\UpdateCustomClassRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Speech\V2\CustomClass $customClass, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCustomClass($customClass)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -35,6 +35,21 @@ class DeleteGlobalAddressRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $address Name of the address resource to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteGlobalAddressRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $address): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setAddress($address);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

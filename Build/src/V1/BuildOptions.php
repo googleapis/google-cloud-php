@@ -63,7 +63,14 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      */
     private $dynamic_substitutions = false;
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to include built-in and custom substitutions as env variables
+     * for all build steps.
+     *
+     * Generated from protobuf field <code>bool automap_substitutions = 22;</code>
+     */
+    private $automap_substitutions = false;
+    /**
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>
@@ -159,8 +166,11 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
      *           operations to the substitutions.
      *           NOTE: this is always enabled for triggered builds and cannot be
      *           overridden in the build configuration file.
+     *     @type bool $automap_substitutions
+     *           Option to include built-in and custom substitutions as env variables
+     *           for all build steps.
      *     @type int $log_streaming_option
-     *           Option to define build log streaming behavior to Google Cloud
+     *           Option to define build log streaming behavior to Cloud
      *           Storage.
      *     @type string $worker_pool
      *           This field deprecated; please use `pool.name` instead.
@@ -379,7 +389,35 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to include built-in and custom substitutions as env variables
+     * for all build steps.
+     *
+     * Generated from protobuf field <code>bool automap_substitutions = 22;</code>
+     * @return bool
+     */
+    public function getAutomapSubstitutions()
+    {
+        return $this->automap_substitutions;
+    }
+
+    /**
+     * Option to include built-in and custom substitutions as env variables
+     * for all build steps.
+     *
+     * Generated from protobuf field <code>bool automap_substitutions = 22;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutomapSubstitutions($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->automap_substitutions = $var;
+
+        return $this;
+    }
+
+    /**
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>
@@ -391,7 +429,7 @@ class BuildOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option to define build log streaming behavior to Google Cloud
+     * Option to define build log streaming behavior to Cloud
      * Storage.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.BuildOptions.LogStreamingOption log_streaming_option = 5;</code>

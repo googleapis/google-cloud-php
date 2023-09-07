@@ -180,6 +180,8 @@ abstract class MetricsV1Beta3BaseClient
      *
      * The async variant is {@see self::getJobExecutionDetailsAsync()} .
      *
+     * @example samples/V1beta3/MetricsV1Beta3Client/get_job_execution_details.php
+     *
      * @param GetJobExecutionDetailsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -212,6 +214,8 @@ abstract class MetricsV1Beta3BaseClient
      *
      * The async variant is {@see self::getJobMetricsAsync()} .
      *
+     * @example samples/V1beta3/MetricsV1Beta3Client/get_job_metrics.php
+     *
      * @param GetJobMetricsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -240,6 +244,8 @@ abstract class MetricsV1Beta3BaseClient
      * EXPERIMENTAL.  This API is subject to change or removal without notice.
      *
      * The async variant is {@see self::getStageExecutionDetailsAsync()} .
+     *
+     * @example samples/V1beta3/MetricsV1Beta3Client/get_stage_execution_details.php
      *
      * @param GetStageExecutionDetailsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

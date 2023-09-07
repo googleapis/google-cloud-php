@@ -69,6 +69,9 @@ use Google\Cloud\Compute\V1\ListAcceleratorTypesRequest;
  *     $acceleratorTypesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\AcceleratorTypesClient} to use the new surface.
  */
 class AcceleratorTypesGapicClient
 {

@@ -41,6 +41,23 @@ class DeleteReservationRequest extends \Google\Protobuf\Internal\Message
     private $zone = '';
 
     /**
+     * @param string $project     Project ID for this request.
+     * @param string $zone        Name of the zone for this request.
+     * @param string $reservation Name of the reservation to delete.
+     *
+     * @return \Google\Cloud\Compute\V1\DeleteReservationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $zone, string $reservation): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setZone($zone)
+            ->setReservation($reservation);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

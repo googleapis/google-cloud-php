@@ -35,6 +35,23 @@ class GetRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Mes
     private $region = '';
 
     /**
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param string $instanceGroupManager Name of the managed instance group to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetRegionInstanceGroupManagerRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $instanceGroupManager): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setInstanceGroupManager($instanceGroupManager);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

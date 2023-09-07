@@ -34,6 +34,26 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Vision\V1\Product $product    Required. The Product resource which replaces the one on the server.
+     *                                                    product.name is immutable.
+     * @param \Google\Protobuf\FieldMask      $updateMask The [FieldMask][google.protobuf.FieldMask] that specifies which fields
+     *                                                    to update.
+     *                                                    If update_mask isn't specified, all mutable fields are to be updated.
+     *                                                    Valid mask paths include `product_labels`, `display_name`, and
+     *                                                    `description`.
+     *
+     * @return \Google\Cloud\Vision\V1\UpdateProductRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Vision\V1\Product $product, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setProduct($product)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

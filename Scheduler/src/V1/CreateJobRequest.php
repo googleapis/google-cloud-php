@@ -36,6 +36,28 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     private $job = null;
 
     /**
+     * @param string                         $parent Required. The location name. For example:
+     *                                               `projects/PROJECT_ID/locations/LOCATION_ID`. Please see
+     *                                               {@see CloudSchedulerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Scheduler\V1\Job $job    Required. The job to add. The user can optionally specify a name for the
+     *                                               job in [name][google.cloud.scheduler.v1.Job.name].
+     *                                               [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
+     *                                               existing job. If a name is not specified then the system will
+     *                                               generate a random unique name that will be returned
+     *                                               ([name][google.cloud.scheduler.v1.Job.name]) in the response.
+     *
+     * @return \Google\Cloud\Scheduler\V1\CreateJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Scheduler\V1\Job $job): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setJob($job);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

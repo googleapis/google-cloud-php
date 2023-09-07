@@ -57,7 +57,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ResourceManager\V3\TagHoldsClient} for the stable implementation
  *
  * @experimental
  *
@@ -275,6 +276,8 @@ abstract class TagHoldsBaseClient
      *
      * The async variant is {@see self::createTagHoldAsync()} .
      *
+     * @example samples/V3/TagHoldsClient/create_tag_hold.php
+     *
      * @param CreateTagHoldRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -299,6 +302,8 @@ abstract class TagHoldsBaseClient
      *
      * The async variant is {@see self::deleteTagHoldAsync()} .
      *
+     * @example samples/V3/TagHoldsClient/delete_tag_hold.php
+     *
      * @param DeleteTagHoldRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -322,6 +327,8 @@ abstract class TagHoldsBaseClient
      * Lists TagHolds under a TagValue.
      *
      * The async variant is {@see self::listTagHoldsAsync()} .
+     *
+     * @example samples/V3/TagHoldsClient/list_tag_holds.php
      *
      * @param ListTagHoldsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

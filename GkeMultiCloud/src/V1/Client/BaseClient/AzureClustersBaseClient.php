@@ -71,7 +71,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\GkeMultiCloud\V1\AzureClustersClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -373,6 +375,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::createAzureClientAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/create_azure_client.php
+     *
      * @param CreateAzureClientRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -401,6 +405,8 @@ abstract class AzureClustersBaseClient
      * described to track the status of the operation.
      *
      * The async variant is {@see self::createAzureClusterAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/create_azure_cluster.php
      *
      * @param CreateAzureClusterRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -431,6 +437,8 @@ abstract class AzureClustersBaseClient
      * described to track the status of the operation.
      *
      * The async variant is {@see self::createAzureNodePoolAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/create_azure_node_pool.php
      *
      * @param CreateAzureNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -464,6 +472,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::deleteAzureClientAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/delete_azure_client.php
+     *
      * @param DeleteAzureClientRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -496,6 +506,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::deleteAzureClusterAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/delete_azure_cluster.php
+     *
      * @param DeleteAzureClusterRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -525,6 +537,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::deleteAzureNodePoolAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/delete_azure_node_pool.php
+     *
      * @param DeleteAzureNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -549,6 +563,8 @@ abstract class AzureClustersBaseClient
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      *
      * The async variant is {@see self::generateAzureAccessTokenAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/generate_azure_access_token.php
      *
      * @param GenerateAzureAccessTokenRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -575,6 +591,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::getAzureClientAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/get_azure_client.php
+     *
      * @param GetAzureClientRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -599,6 +617,8 @@ abstract class AzureClustersBaseClient
      * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
      *
      * The async variant is {@see self::getAzureClusterAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/get_azure_cluster.php
      *
      * @param GetAzureClusterRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -625,6 +645,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::getAzureNodePoolAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/get_azure_node_pool.php
+     *
      * @param GetAzureNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -649,6 +671,8 @@ abstract class AzureClustersBaseClient
      * versions, on a given Google Cloud location.
      *
      * The async variant is {@see self::getAzureServerConfigAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/get_azure_server_config.php
      *
      * @param GetAzureServerConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -675,6 +699,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::listAzureClientsAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/list_azure_clients.php
+     *
      * @param ListAzureClientsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -699,6 +725,8 @@ abstract class AzureClustersBaseClient
      * resources on a given Google Cloud project and region.
      *
      * The async variant is {@see self::listAzureClustersAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/list_azure_clusters.php
      *
      * @param ListAzureClustersRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -726,6 +754,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::listAzureNodePoolsAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/list_azure_node_pools.php
+     *
      * @param ListAzureNodePoolsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -750,6 +780,8 @@ abstract class AzureClustersBaseClient
      *
      * The async variant is {@see self::updateAzureClusterAsync()} .
      *
+     * @example samples/V1/AzureClustersClient/update_azure_cluster.php
+     *
      * @param UpdateAzureClusterRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -773,6 +805,8 @@ abstract class AzureClustersBaseClient
      * Updates an [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool].
      *
      * The async variant is {@see self::updateAzureNodePoolAsync()} .
+     *
+     * @example samples/V1/AzureClustersClient/update_azure_node_pool.php
      *
      * @param UpdateAzureNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

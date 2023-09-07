@@ -28,7 +28,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * The IPv4 address to be used for reverse DNS verification.
+     * The address to be used for reverse DNS verification.
      *
      * Generated from protobuf field <code>optional string dns_verification_ip = 241011381;</code>
      */
@@ -46,7 +46,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
-     * The IPv4 address range, in CIDR format, represented by this public advertised prefix.
+     * The address range, in CIDR format, represented by this public advertised prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
@@ -100,13 +100,13 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $dns_verification_ip
-     *           The IPv4 address to be used for reverse DNS verification.
+     *           The address to be used for reverse DNS verification.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a new PublicAdvertisedPrefix. An up-to-date fingerprint must be provided in order to update the PublicAdvertisedPrefix, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a PublicAdvertisedPrefix.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *     @type string $ip_cidr_range
-     *           The IPv4 address range, in CIDR format, represented by this public advertised prefix.
+     *           The address range, in CIDR format, represented by this public advertised prefix.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#publicAdvertisedPrefix for public advertised prefixes.
      *     @type string $name
@@ -200,7 +200,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IPv4 address to be used for reverse DNS verification.
+     * The address to be used for reverse DNS verification.
      *
      * Generated from protobuf field <code>optional string dns_verification_ip = 241011381;</code>
      * @return string
@@ -221,7 +221,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IPv4 address to be used for reverse DNS verification.
+     * The address to be used for reverse DNS verification.
      *
      * Generated from protobuf field <code>optional string dns_verification_ip = 241011381;</code>
      * @param string $var
@@ -308,7 +308,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IPv4 address range, in CIDR format, represented by this public advertised prefix.
+     * The address range, in CIDR format, represented by this public advertised prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
@@ -329,7 +329,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IPv4 address range, in CIDR format, represented by this public advertised prefix.
+     * The address range, in CIDR format, represented by this public advertised prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var

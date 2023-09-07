@@ -49,7 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Run\V2\TasksClient} for the stable implementation
  *
  * @experimental
  *
@@ -244,6 +245,8 @@ abstract class TasksBaseClient
      *
      * The async variant is {@see self::getTaskAsync()} .
      *
+     * @example samples/V2/TasksClient/get_task.php
+     *
      * @param GetTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -267,6 +270,8 @@ abstract class TasksBaseClient
      * Lists Tasks from an Execution of a Job.
      *
      * The async variant is {@see self::listTasksAsync()} .
+     *
+     * @example samples/V2/TasksClient/list_tasks.php
      *
      * @param ListTasksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

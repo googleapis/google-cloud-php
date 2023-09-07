@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class State
 {
     /**
+     * Job state unspecified.
+     *
      * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
      */
     const STATE_UNSPECIFIED = 0;

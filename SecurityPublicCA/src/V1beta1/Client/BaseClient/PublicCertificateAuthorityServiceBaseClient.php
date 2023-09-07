@@ -245,6 +245,8 @@ abstract class PublicCertificateAuthorityServiceBaseClient
      *
      * The async variant is {@see self::createExternalAccountKeyAsync()} .
      *
+     * @example samples/V1beta1/PublicCertificateAuthorityServiceClient/create_external_account_key.php
+     *
      * @param CreateExternalAccountKeyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.

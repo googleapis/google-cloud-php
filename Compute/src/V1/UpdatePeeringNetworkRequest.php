@@ -41,6 +41,23 @@ class UpdatePeeringNetworkRequest extends \Google\Protobuf\Internal\Message
     private $request_id = null;
 
     /**
+     * @param string                                                $project                              Project ID for this request.
+     * @param string                                                $network                              Name of the network resource which the updated peering is belonging to.
+     * @param \Google\Cloud\Compute\V1\NetworksUpdatePeeringRequest $networksUpdatePeeringRequestResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdatePeeringNetworkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $network, \Google\Cloud\Compute\V1\NetworksUpdatePeeringRequest $networksUpdatePeeringRequestResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setNetwork($network)
+            ->setNetworksUpdatePeeringRequestResource($networksUpdatePeeringRequestResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

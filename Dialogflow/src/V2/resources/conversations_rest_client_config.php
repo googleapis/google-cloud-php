@@ -112,6 +112,40 @@ return [
                     ],
                 ],
             ],
+            'SearchKnowledge' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/suggestions:searchKnowledge',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/suggestions:searchKnowledge',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/conversations/*}/suggestions:searchKnowledge',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}/suggestions:searchKnowledge',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
+                        ],
+                    ],
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SuggestConversationSummary' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{conversation=projects/*/conversations/*}/suggestions:suggestConversationSummary',

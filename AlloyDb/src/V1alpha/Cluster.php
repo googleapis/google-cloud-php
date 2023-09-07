@@ -81,13 +81,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $cluster_type = 0;
     /**
-     * Output only. The database engine major version. This is an output-only
-     * field and it's populated at the Cluster creation time. This field cannot be
-     * changed after cluster creation.
+     * Optional. The database engine major version. This is an optional field and
+     * it is populated at the Cluster creation time. If a database version is not
+     * supplied at cluster creation time, then a default database version will
+     * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $database_version = 0;
+    /**
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Cluster.NetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $network_config = null;
     /**
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
@@ -141,9 +146,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $automated_backup_policy = null;
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.SslConfig ssl_config = 18 [deprecated = true];</code>
+     * @deprecated
      */
     protected $ssl_config = null;
     /**
@@ -186,6 +192,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Cluster.PrimaryConfig primary_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $primary_config = null;
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30;</code>
+     */
+    protected $satisfies_pzs = false;
     protected $source;
 
     /**
@@ -226,9 +238,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           time. The cluster type is determined by which RPC was used to create
      *           the cluster (i.e. `CreateCluster` vs. `CreateSecondaryCluster`
      *     @type int $database_version
-     *           Output only. The database engine major version. This is an output-only
-     *           field and it's populated at the Cluster creation time. This field cannot be
-     *           changed after cluster creation.
+     *           Optional. The database engine major version. This is an optional field and
+     *           it is populated at the Cluster creation time. If a database version is not
+     *           supplied at cluster creation time, then a default database version will
+     *           be used.
+     *     @type \Google\Cloud\AlloyDb\V1alpha\Cluster\NetworkConfig $network_config
      *     @type string $network
      *           Required. The resource link for the VPC network in which cluster resources
      *           are created and from which they are accessible via Private IP. The network
@@ -258,7 +272,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           For more information on the defaults, consult the
      *           documentation for the message type.
      *     @type \Google\Cloud\AlloyDb\V1alpha\SslConfig $ssl_config
-     *           SSL configuration for this AlloyDB Cluster.
+     *           SSL configuration for this AlloyDB cluster.
      *     @type \Google\Cloud\AlloyDb\V1alpha\EncryptionConfig $encryption_config
      *           Optional. The encryption config can be specified to encrypt the data disks
      *           and other persistent data resources of a cluster with a
@@ -275,6 +289,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Cross Region replication config specific to SECONDARY cluster.
      *     @type \Google\Cloud\AlloyDb\V1alpha\Cluster\PrimaryConfig $primary_config
      *           Output only. Cross Region replication config specific to PRIMARY cluster.
+     *     @type bool $satisfies_pzs
+     *           Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -627,11 +643,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The database engine major version. This is an output-only
-     * field and it's populated at the Cluster creation time. This field cannot be
-     * changed after cluster creation.
+     * Optional. The database engine major version. This is an optional field and
+     * it is populated at the Cluster creation time. If a database version is not
+     * supplied at cluster creation time, then a default database version will
+     * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getDatabaseVersion()
@@ -640,11 +657,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The database engine major version. This is an output-only
-     * field and it's populated at the Cluster creation time. This field cannot be
-     * changed after cluster creation.
+     * Optional. The database engine major version. This is an optional field and
+     * it is populated at the Cluster creation time. If a database version is not
+     * supplied at cluster creation time, then a default database version will
+     * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -652,6 +670,38 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1alpha\DatabaseVersion::class);
         $this->database_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Cluster.NetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1alpha\Cluster\NetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Cluster.NetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1alpha\Cluster\NetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\Cluster\NetworkConfig::class);
+        $this->network_config = $var;
 
         return $this;
     }
@@ -865,35 +915,41 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.SslConfig ssl_config = 18 [deprecated = true];</code>
      * @return \Google\Cloud\AlloyDb\V1alpha\SslConfig|null
+     * @deprecated
      */
     public function getSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         return $this->ssl_config;
     }
 
     public function hasSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->ssl_config);
     }
 
     public function clearSslConfig()
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         unset($this->ssl_config);
     }
 
     /**
-     * SSL configuration for this AlloyDB Cluster.
+     * SSL configuration for this AlloyDB cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.SslConfig ssl_config = 18;</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.SslConfig ssl_config = 18 [deprecated = true];</code>
      * @param \Google\Cloud\AlloyDb\V1alpha\SslConfig $var
      * @return $this
+     * @deprecated
      */
     public function setSslConfig($var)
     {
+        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\SslConfig::class);
         $this->ssl_config = $var;
 
@@ -1120,6 +1176,32 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\Cluster\PrimaryConfig::class);
         $this->primary_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

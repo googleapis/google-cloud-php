@@ -54,7 +54,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ResourceManager\V3\OrganizationsClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -228,6 +230,8 @@ abstract class OrganizationsBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V3/OrganizationsClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -251,6 +255,8 @@ abstract class OrganizationsBaseClient
      * Fetches an organization resource identified by the specified resource name.
      *
      * The async variant is {@see self::getOrganizationAsync()} .
+     *
+     * @example samples/V3/OrganizationsClient/get_organization.php
      *
      * @param GetOrganizationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -282,6 +288,8 @@ abstract class OrganizationsBaseClient
      *
      * The async variant is {@see self::searchOrganizationsAsync()} .
      *
+     * @example samples/V3/OrganizationsClient/search_organizations.php
+     *
      * @param SearchOrganizationsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -311,6 +319,8 @@ abstract class OrganizationsBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V3/OrganizationsClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -338,6 +348,8 @@ abstract class OrganizationsBaseClient
      * There are no permissions required for making this API call.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V3/OrganizationsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

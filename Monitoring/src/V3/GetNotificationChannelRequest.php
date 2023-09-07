@@ -24,6 +24,22 @@ class GetNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The channel for which to execute the request. The format is:
+     *
+     *                     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
+     *                     Please see {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

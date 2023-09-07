@@ -57,6 +57,25 @@ class UpdateRegionDiskRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param string                        $project      Project ID for this request.
+     * @param string                        $region       The name of the region for this request.
+     * @param string                        $disk         The disk name for this request.
+     * @param \Google\Cloud\Compute\V1\Disk $diskResource The body resource for this request
+     *
+     * @return \Google\Cloud\Compute\V1\UpdateRegionDiskRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $disk, \Google\Cloud\Compute\V1\Disk $diskResource): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setDisk($disk)
+            ->setDiskResource($diskResource);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

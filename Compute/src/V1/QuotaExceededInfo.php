@@ -22,6 +22,12 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
      */
     private $dimensions;
     /**
+     * Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
+     *
+     * Generated from protobuf field <code>optional double future_limit = 456564287;</code>
+     */
+    private $future_limit = null;
+    /**
      * Current effective quota limit. The limit's unit depends on the quota type or metric.
      *
      * Generated from protobuf field <code>optional double limit = 102976443;</code>
@@ -39,6 +45,13 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string metric_name = 409881530;</code>
      */
     private $metric_name = null;
+    /**
+     * Rollout status of the future quota limit.
+     * Check the RolloutStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string rollout_status = 476426816;</code>
+     */
+    private $rollout_status = null;
 
     /**
      * Constructor.
@@ -48,12 +61,17 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $dimensions
      *           The map holding related quota dimensions.
+     *     @type float $future_limit
+     *           Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
      *     @type float $limit
      *           Current effective quota limit. The limit's unit depends on the quota type or metric.
      *     @type string $limit_name
      *           The name of the quota limit.
      *     @type string $metric_name
      *           The Compute Engine quota metric name.
+     *     @type string $rollout_status
+     *           Rollout status of the future quota limit.
+     *           Check the RolloutStatus enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,6 +101,42 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->dimensions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
+     *
+     * Generated from protobuf field <code>optional double future_limit = 456564287;</code>
+     * @return float
+     */
+    public function getFutureLimit()
+    {
+        return isset($this->future_limit) ? $this->future_limit : 0.0;
+    }
+
+    public function hasFutureLimit()
+    {
+        return isset($this->future_limit);
+    }
+
+    public function clearFutureLimit()
+    {
+        unset($this->future_limit);
+    }
+
+    /**
+     * Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
+     *
+     * Generated from protobuf field <code>optional double future_limit = 456564287;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFutureLimit($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->future_limit = $var;
 
         return $this;
     }
@@ -191,6 +245,44 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->metric_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rollout status of the future quota limit.
+     * Check the RolloutStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string rollout_status = 476426816;</code>
+     * @return string
+     */
+    public function getRolloutStatus()
+    {
+        return isset($this->rollout_status) ? $this->rollout_status : '';
+    }
+
+    public function hasRolloutStatus()
+    {
+        return isset($this->rollout_status);
+    }
+
+    public function clearRolloutStatus()
+    {
+        unset($this->rollout_status);
+    }
+
+    /**
+     * Rollout status of the future quota limit.
+     * Check the RolloutStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string rollout_status = 476426816;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRolloutStatus($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rollout_status = $var;
 
         return $this;
     }

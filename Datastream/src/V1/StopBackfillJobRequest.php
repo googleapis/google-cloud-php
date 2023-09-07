@@ -25,6 +25,21 @@ class StopBackfillJobRequest extends \Google\Protobuf\Internal\Message
     private $object = '';
 
     /**
+     * @param string $object Required. The name of the stream object resource to stop the backfill job
+     *                       for. Please see
+     *                       {@see DatastreamClient::streamObjectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Datastream\V1\StopBackfillJobRequest
+     *
+     * @experimental
+     */
+    public static function build(string $object): self
+    {
+        return (new self())
+            ->setObject($object);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

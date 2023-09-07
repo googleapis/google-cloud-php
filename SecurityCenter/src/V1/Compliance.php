@@ -17,20 +17,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class Compliance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp",
-     * etc.
+     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and
+     * OWASP.
      *
      * Generated from protobuf field <code>string standard = 1;</code>
      */
     private $standard = '';
     /**
-     * Version of the standard/benchmark e.g. 1.1
+     * Version of the standard or benchmark, for example, 1.1
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
     private $version = '';
     /**
-     * Policies within the standard/benchmark e.g. A.12.4.1
+     * Policies within the standard or benchmark, for example, A.12.4.1
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
      */
@@ -43,12 +43,12 @@ class Compliance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $standard
-     *           Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp",
-     *           etc.
+     *           Industry-wide compliance standards or benchmarks, such as CIS, PCI, and
+     *           OWASP.
      *     @type string $version
-     *           Version of the standard/benchmark e.g. 1.1
+     *           Version of the standard or benchmark, for example, 1.1
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ids
-     *           Policies within the standard/benchmark e.g. A.12.4.1
+     *           Policies within the standard or benchmark, for example, A.12.4.1
      * }
      */
     public function __construct($data = NULL) {
@@ -57,8 +57,8 @@ class Compliance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp",
-     * etc.
+     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and
+     * OWASP.
      *
      * Generated from protobuf field <code>string standard = 1;</code>
      * @return string
@@ -69,8 +69,8 @@ class Compliance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp",
-     * etc.
+     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and
+     * OWASP.
      *
      * Generated from protobuf field <code>string standard = 1;</code>
      * @param string $var
@@ -85,7 +85,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Version of the standard/benchmark e.g. 1.1
+     * Version of the standard or benchmark, for example, 1.1
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @return string
@@ -96,7 +96,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Version of the standard/benchmark e.g. 1.1
+     * Version of the standard or benchmark, for example, 1.1
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @param string $var
@@ -111,7 +111,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policies within the standard/benchmark e.g. A.12.4.1
+     * Policies within the standard or benchmark, for example, A.12.4.1
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -122,7 +122,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policies within the standard/benchmark e.g. A.12.4.1
+     * Policies within the standard or benchmark, for example, A.12.4.1
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

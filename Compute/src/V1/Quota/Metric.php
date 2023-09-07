@@ -120,6 +120,10 @@ class Metric
      */
     const COMMITTED_NVIDIA_K80_GPUS = 3857188;
     /**
+     * Generated from protobuf enum <code>COMMITTED_NVIDIA_L4_GPUS = 19163645;</code>
+     */
+    const COMMITTED_NVIDIA_L4_GPUS = 19163645;
+    /**
      * Generated from protobuf enum <code>COMMITTED_NVIDIA_P100_GPUS = 107528100;</code>
      */
     const COMMITTED_NVIDIA_P100_GPUS = 107528100;
@@ -326,6 +330,18 @@ class Metric
      */
     const NETWORK_FIREWALL_POLICIES = 101117374;
     /**
+     * Generated from protobuf enum <code>NET_LB_SECURITY_POLICIES_PER_REGION = 157892269;</code>
+     */
+    const NET_LB_SECURITY_POLICIES_PER_REGION = 157892269;
+    /**
+     * Generated from protobuf enum <code>NET_LB_SECURITY_POLICY_RULES_PER_REGION = 356090931;</code>
+     */
+    const NET_LB_SECURITY_POLICY_RULES_PER_REGION = 356090931;
+    /**
+     * Generated from protobuf enum <code>NET_LB_SECURITY_POLICY_RULE_ATTRIBUTES_PER_REGION = 311243888;</code>
+     */
+    const NET_LB_SECURITY_POLICY_RULE_ATTRIBUTES_PER_REGION = 311243888;
+    /**
      * Generated from protobuf enum <code>NODE_GROUPS = 24624817;</code>
      */
     const NODE_GROUPS = 24624817;
@@ -345,6 +361,10 @@ class Metric
      * Generated from protobuf enum <code>NVIDIA_K80_GPUS = 163886599;</code>
      */
     const NVIDIA_K80_GPUS = 163886599;
+    /**
+     * Generated from protobuf enum <code>NVIDIA_L4_GPUS = 491923130;</code>
+     */
+    const NVIDIA_L4_GPUS = 491923130;
     /**
      * Generated from protobuf enum <code>NVIDIA_P100_GPUS = 236601633;</code>
      */
@@ -401,6 +421,10 @@ class Metric
      * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_K80_GPUS = 374960201;</code>
      */
     const PREEMPTIBLE_NVIDIA_K80_GPUS = 374960201;
+    /**
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_L4_GPUS = 100408376;</code>
+     */
+    const PREEMPTIBLE_NVIDIA_L4_GPUS = 100408376;
     /**
      * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P100_GPUS = 337432351;</code>
      */
@@ -493,6 +517,10 @@ class Metric
      * Generated from protobuf enum <code>SECURITY_POLICIES_PER_REGION = 249041734;</code>
      */
     const SECURITY_POLICIES_PER_REGION = 249041734;
+    /**
+     * Generated from protobuf enum <code>SECURITY_POLICY_ADVANCED_RULES_PER_REGION = 371815341;</code>
+     */
+    const SECURITY_POLICY_ADVANCED_RULES_PER_REGION = 371815341;
     /**
      * Generated from protobuf enum <code>SECURITY_POLICY_CEVAL_RULES = 470815689;</code>
      */
@@ -619,6 +647,7 @@ class Metric
         self::COMMITTED_NVIDIA_A100_80GB_GPUS => 'COMMITTED_NVIDIA_A100_80GB_GPUS',
         self::COMMITTED_NVIDIA_A100_GPUS => 'COMMITTED_NVIDIA_A100_GPUS',
         self::COMMITTED_NVIDIA_K80_GPUS => 'COMMITTED_NVIDIA_K80_GPUS',
+        self::COMMITTED_NVIDIA_L4_GPUS => 'COMMITTED_NVIDIA_L4_GPUS',
         self::COMMITTED_NVIDIA_P100_GPUS => 'COMMITTED_NVIDIA_P100_GPUS',
         self::COMMITTED_NVIDIA_P4_GPUS => 'COMMITTED_NVIDIA_P4_GPUS',
         self::COMMITTED_NVIDIA_T4_GPUS => 'COMMITTED_NVIDIA_T4_GPUS',
@@ -670,11 +699,15 @@ class Metric
         self::NETWORK_ATTACHMENTS => 'NETWORK_ATTACHMENTS',
         self::NETWORK_ENDPOINT_GROUPS => 'NETWORK_ENDPOINT_GROUPS',
         self::NETWORK_FIREWALL_POLICIES => 'NETWORK_FIREWALL_POLICIES',
+        self::NET_LB_SECURITY_POLICIES_PER_REGION => 'NET_LB_SECURITY_POLICIES_PER_REGION',
+        self::NET_LB_SECURITY_POLICY_RULES_PER_REGION => 'NET_LB_SECURITY_POLICY_RULES_PER_REGION',
+        self::NET_LB_SECURITY_POLICY_RULE_ATTRIBUTES_PER_REGION => 'NET_LB_SECURITY_POLICY_RULE_ATTRIBUTES_PER_REGION',
         self::NODE_GROUPS => 'NODE_GROUPS',
         self::NODE_TEMPLATES => 'NODE_TEMPLATES',
         self::NVIDIA_A100_80GB_GPUS => 'NVIDIA_A100_80GB_GPUS',
         self::NVIDIA_A100_GPUS => 'NVIDIA_A100_GPUS',
         self::NVIDIA_K80_GPUS => 'NVIDIA_K80_GPUS',
+        self::NVIDIA_L4_GPUS => 'NVIDIA_L4_GPUS',
         self::NVIDIA_P100_GPUS => 'NVIDIA_P100_GPUS',
         self::NVIDIA_P100_VWS_GPUS => 'NVIDIA_P100_VWS_GPUS',
         self::NVIDIA_P4_GPUS => 'NVIDIA_P4_GPUS',
@@ -689,6 +722,7 @@ class Metric
         self::PREEMPTIBLE_NVIDIA_A100_80GB_GPUS => 'PREEMPTIBLE_NVIDIA_A100_80GB_GPUS',
         self::PREEMPTIBLE_NVIDIA_A100_GPUS => 'PREEMPTIBLE_NVIDIA_A100_GPUS',
         self::PREEMPTIBLE_NVIDIA_K80_GPUS => 'PREEMPTIBLE_NVIDIA_K80_GPUS',
+        self::PREEMPTIBLE_NVIDIA_L4_GPUS => 'PREEMPTIBLE_NVIDIA_L4_GPUS',
         self::PREEMPTIBLE_NVIDIA_P100_GPUS => 'PREEMPTIBLE_NVIDIA_P100_GPUS',
         self::PREEMPTIBLE_NVIDIA_P100_VWS_GPUS => 'PREEMPTIBLE_NVIDIA_P100_VWS_GPUS',
         self::PREEMPTIBLE_NVIDIA_P4_GPUS => 'PREEMPTIBLE_NVIDIA_P4_GPUS',
@@ -712,6 +746,7 @@ class Metric
         self::ROUTES => 'ROUTES',
         self::SECURITY_POLICIES => 'SECURITY_POLICIES',
         self::SECURITY_POLICIES_PER_REGION => 'SECURITY_POLICIES_PER_REGION',
+        self::SECURITY_POLICY_ADVANCED_RULES_PER_REGION => 'SECURITY_POLICY_ADVANCED_RULES_PER_REGION',
         self::SECURITY_POLICY_CEVAL_RULES => 'SECURITY_POLICY_CEVAL_RULES',
         self::SECURITY_POLICY_RULES => 'SECURITY_POLICY_RULES',
         self::SECURITY_POLICY_RULES_PER_REGION => 'SECURITY_POLICY_RULES_PER_REGION',

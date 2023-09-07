@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.metastore.v1.DataprocMetastore' => [
+            'AlterMetadataResourceLocation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Metastore\V1\AlterMetadataResourceLocationResponse',
+                    'metadataReturnType' => '\Google\Cloud\Metastore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'service',
+                        'fieldAccessors' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Metastore\V1\Backup',
@@ -101,6 +120,44 @@ return [
             'ExportMetadata' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Metastore\V1\MetadataExport',
+                    'metadataReturnType' => '\Google\Cloud\Metastore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'service',
+                        'fieldAccessors' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveTableToDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Metastore\V1\MoveTableToDatabaseResponse',
+                    'metadataReturnType' => '\Google\Cloud\Metastore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'service',
+                        'fieldAccessors' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryMetadata' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Metastore\V1\QueryMetadataResponse',
                     'metadataReturnType' => '\Google\Cloud\Metastore\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',

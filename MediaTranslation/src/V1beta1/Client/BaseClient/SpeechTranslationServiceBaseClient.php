@@ -152,6 +152,8 @@ abstract class SpeechTranslationServiceBaseClient
      * Performs bidirectional streaming speech translation: receive results while
      * sending audio. This method is only available via the gRPC API (not REST).
      *
+     * @example samples/V1beta1/SpeechTranslationServiceClient/streaming_translate_speech.php
+     *
      * @param array $callOptions {
      *     Optional.
      *

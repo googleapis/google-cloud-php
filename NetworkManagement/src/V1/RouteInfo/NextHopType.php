@@ -91,6 +91,12 @@ class NextHopType
      * Generated from protobuf enum <code>NEXT_HOP_ROUTER_APPLIANCE = 11;</code>
      */
     const NEXT_HOP_ROUTER_APPLIANCE = 11;
+    /**
+     * Next hop is an NCC hub.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_NCC_HUB = 12;</code>
+     */
+    const NEXT_HOP_NCC_HUB = 12;
 
     private static $valueToName = [
         self::NEXT_HOP_TYPE_UNSPECIFIED => 'NEXT_HOP_TYPE_UNSPECIFIED',
@@ -105,6 +111,7 @@ class NextHopType
         self::NEXT_HOP_BLACKHOLE => 'NEXT_HOP_BLACKHOLE',
         self::NEXT_HOP_ILB => 'NEXT_HOP_ILB',
         self::NEXT_HOP_ROUTER_APPLIANCE => 'NEXT_HOP_ROUTER_APPLIANCE',
+        self::NEXT_HOP_NCC_HUB => 'NEXT_HOP_NCC_HUB',
     ];
 
     public static function name($value)

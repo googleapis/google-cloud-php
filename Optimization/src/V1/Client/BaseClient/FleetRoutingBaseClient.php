@@ -62,7 +62,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Optimization\V1\FleetRoutingClient} for the stable implementation
  *
  * @experimental
  *
@@ -228,6 +229,8 @@ abstract class FleetRoutingBaseClient
      *
      * The async variant is {@see self::batchOptimizeToursAsync()} .
      *
+     * @example samples/V1/FleetRoutingClient/batch_optimize_tours.php
+     *
      * @param BatchOptimizeToursRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -264,6 +267,8 @@ abstract class FleetRoutingBaseClient
      * `ShipmentModel`.
      *
      * The async variant is {@see self::optimizeToursAsync()} .
+     *
+     * @example samples/V1/FleetRoutingClient/optimize_tours.php
      *
      * @param OptimizeToursRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

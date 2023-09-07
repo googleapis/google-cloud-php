@@ -39,6 +39,11 @@
                             "methods": [
                                 "classifyText"
                             ]
+                        },
+                        "ModerateText": {
+                            "methods": [
+                                "moderateText"
+                            ]
                         }
                     }
                 }

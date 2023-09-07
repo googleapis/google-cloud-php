@@ -28,9 +28,10 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Tasks\V2\CloudTasksClient;
 
 /**
- * Returns permissions that a caller has on a [Queue][google.cloud.tasks.v2.Queue].
- * If the resource does not exist, this will return an empty set of
- * permissions, not a [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
+ * Returns permissions that a caller has on a
+ * [Queue][google.cloud.tasks.v2.Queue]. If the resource does not exist, this
+ * will return an empty set of permissions, not a
+ * [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
  *
  * Note: This operation is designed to be used for building permission-aware
  * UIs and command-line tools, not for authorization checking. This operation

@@ -33,6 +33,26 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     private $threat_types;
 
     /**
+     * @param string $hashPrefix  A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
+     *                            hash. For JSON requests, this field is base64-encoded.
+     *                            Note that if this parameter is provided by a URI, it must be encoded using
+     *                            the web safe base64 variant (RFC 4648).
+     * @param int[]  $threatTypes Required. The ThreatLists to search in. Multiple ThreatLists may be
+     *                            specified.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1\ThreatType}
+     *
+     * @return \Google\Cloud\WebRisk\V1\SearchHashesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $hashPrefix, array $threatTypes): self
+    {
+        return (new self())
+            ->setHashPrefix($hashPrefix)
+            ->setThreatTypes($threatTypes);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

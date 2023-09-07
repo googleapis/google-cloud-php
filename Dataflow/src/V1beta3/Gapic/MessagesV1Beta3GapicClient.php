@@ -66,6 +66,10 @@ use Google\Protobuf\Timestamp;
  * }
  * ```
  *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Dataflow\V1beta3\Client\MessagesV1Beta3Client} to use the new
+ * surface.
+ *
  * @experimental
  */
 class MessagesV1Beta3GapicClient

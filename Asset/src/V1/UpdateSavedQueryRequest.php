@@ -34,6 +34,28 @@ class UpdateSavedQueryRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Asset\V1\SavedQuery $savedQuery Required. The saved query to update.
+     *
+     *                                                      The saved query's `name` field is used to identify the one to update,
+     *                                                      which has format as below:
+     *
+     *                                                      * projects/project_number/savedQueries/saved_query_id
+     *                                                      * folders/folder_number/savedQueries/saved_query_id
+     *                                                      * organizations/organization_number/savedQueries/saved_query_id
+     * @param \Google\Protobuf\FieldMask        $updateMask Required. The list of fields to update.
+     *
+     * @return \Google\Cloud\Asset\V1\UpdateSavedQueryRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Asset\V1\SavedQuery $savedQuery, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSavedQuery($savedQuery)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

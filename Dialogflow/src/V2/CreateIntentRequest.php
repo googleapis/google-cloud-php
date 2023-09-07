@@ -47,6 +47,46 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
     private $intent_view = 0;
 
     /**
+     * @param string                             $parent Required. The agent to create a intent for.
+     *                                                   Format: `projects/<Project ID>/agent`. Please see
+     *                                                   {@see IntentsClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Intent $intent Required. The intent to create.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateIntentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dialogflow\V2\Intent $intent): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIntent($intent);
+    }
+
+    /**
+     * @param string                             $parent       Required. The agent to create a intent for.
+     *                                                         Format: `projects/<Project ID>/agent`. Please see
+     *                                                         {@see IntentsClient::agentName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\Intent $intent       Required. The intent to create.
+     * @param string                             $languageCode Optional. The language used to access language-specific data.
+     *                                                         If not specified, the agent's default language is used.
+     *                                                         For more information, see
+     *                                                         [Multilingual intent and entity
+     *                                                         data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
+     *
+     * @return \Google\Cloud\Dialogflow\V2\CreateIntentRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentIntentLanguageCode(string $parent, \Google\Cloud\Dialogflow\V2\Intent $intent, string $languageCode): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setIntent($intent)
+            ->setLanguageCode($languageCode);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

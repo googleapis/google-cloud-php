@@ -113,6 +113,10 @@ class Task extends \Google\Protobuf\Internal\Message
      *           queue.
      *           A pull task is a task that has
      *           [PullMessage][google.cloud.tasks.v2beta2.PullMessage] set.
+     *     @type \Google\Cloud\Tasks\V2beta2\HttpRequest $http_request
+     *           HTTP request that is sent to the task's target.
+     *           An HTTP task is a task that has
+     *           [HttpRequest][google.cloud.tasks.v2beta2.HttpRequest] set.
      *     @type \Google\Protobuf\Timestamp $schedule_time
      *           The time when the task is scheduled to be attempted.
      *           For App Engine queues, this is when the task will be attempted or retried.
@@ -277,6 +281,41 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta2\PullMessage::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * HTTP request that is sent to the task's target.
+     * An HTTP task is a task that has
+     * [HttpRequest][google.cloud.tasks.v2beta2.HttpRequest] set.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.HttpRequest http_request = 13;</code>
+     * @return \Google\Cloud\Tasks\V2beta2\HttpRequest|null
+     */
+    public function getHttpRequest()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasHttpRequest()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * HTTP request that is sent to the task's target.
+     * An HTTP task is a task that has
+     * [HttpRequest][google.cloud.tasks.v2beta2.HttpRequest] set.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.HttpRequest http_request = 13;</code>
+     * @param \Google\Cloud\Tasks\V2beta2\HttpRequest $var
+     * @return $this
+     */
+    public function setHttpRequest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta2\HttpRequest::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }

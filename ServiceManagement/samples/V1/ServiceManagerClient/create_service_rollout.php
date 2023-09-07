@@ -46,8 +46,8 @@ use Google\Rpc\Status;
  * Operation<response: Rollout>
  *
  * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
- *                            example: `example.googleapis.com`.
+ *                            [overview](https://cloud.google.com/service-management/overview) for naming
+ *                            requirements.  For example: `example.googleapis.com`.
  */
 function create_service_rollout_sample(string $serviceName): void
 {

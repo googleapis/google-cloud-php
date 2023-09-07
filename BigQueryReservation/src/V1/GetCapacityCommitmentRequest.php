@@ -25,6 +25,21 @@ class GetCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the capacity commitment to retrieve. E.g.,
+     *                     `projects/myproject/locations/US/capacityCommitments/123`
+     *                     Please see {@see ReservationServiceClient::capacityCommitmentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

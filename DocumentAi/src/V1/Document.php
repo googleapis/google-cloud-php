@@ -19,9 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Document extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An IANA published MIME type (also referred to as media type). For more
-     * information, see
-     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      */
@@ -98,18 +97,16 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           Optional. Currently supports Google Cloud Storage URI of the form
-     *              `gs://bucket_name/object_name`. Object versioning is not supported.
-     *              See [Google Cloud Storage Request
-     *              URIs](https://cloud.google.com/storage/docs/reference-uris) for more
-     *              info.
+     *           `gs://bucket_name/object_name`. Object versioning is not supported.
+     *           For more information, refer to [Google Cloud Storage Request
+     *           URIs](https://cloud.google.com/storage/docs/reference-uris).
      *     @type string $content
      *           Optional. Inline document content, represented as a stream of bytes.
      *           Note: As with all `bytes` fields, protobuffers use a pure binary
      *           representation, whereas JSON representations use base64.
      *     @type string $mime_type
-     *           An IANA published MIME type (also referred to as media type). For more
-     *           information, see
-     *           https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *           An IANA published [media type (MIME
+     *           type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *     @type string $text
      *           Optional. UTF-8 encoded text in reading order from the document.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Style>|\Google\Protobuf\Internal\RepeatedField $text_styles
@@ -144,10 +141,9 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Currently supports Google Cloud Storage URI of the form
-     *    `gs://bucket_name/object_name`. Object versioning is not supported.
-     *    See [Google Cloud Storage Request
-     *    URIs](https://cloud.google.com/storage/docs/reference-uris) for more
-     *    info.
+     * `gs://bucket_name/object_name`. Object versioning is not supported.
+     * For more information, refer to [Google Cloud Storage Request
+     * URIs](https://cloud.google.com/storage/docs/reference-uris).
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -164,10 +160,9 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Currently supports Google Cloud Storage URI of the form
-     *    `gs://bucket_name/object_name`. Object versioning is not supported.
-     *    See [Google Cloud Storage Request
-     *    URIs](https://cloud.google.com/storage/docs/reference-uris) for more
-     *    info.
+     * `gs://bucket_name/object_name`. Object versioning is not supported.
+     * For more information, refer to [Google Cloud Storage Request
+     * URIs](https://cloud.google.com/storage/docs/reference-uris).
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -217,9 +212,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IANA published MIME type (also referred to as media type). For more
-     * information, see
-     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      * @return string
@@ -230,9 +224,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IANA published MIME type (also referred to as media type). For more
-     * information, see
-     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME
+     * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      * @param string $var

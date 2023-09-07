@@ -25,15 +25,14 @@ class EntityType extends \Google\Protobuf\Internal\Message
     private $display_name = '';
     /**
      * Name of the type. It must be unique within the schema file and
-     * cannot be a 'Common Type'.  Besides that we use the following naming
-     * conventions:
-     * - *use `snake_casing`*
-     * - name matching is case-sensitive
+     * cannot be a "Common Type".  The following naming conventions are used:
+     * - Use `snake_casing`.
+     * - Name matching is case-sensitive.
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *   compatibility internal infrastructure and tooling can handle any ascii
-     *   character)
+     *   character.)
      * - The `/` is sometimes used to denote a property of a type.  For example
      *   `line_item/amount`.  This convention is deprecated, but will still be
      *   honored for backward compatibility.
@@ -72,15 +71,14 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           User defined name for the type.
      *     @type string $name
      *           Name of the type. It must be unique within the schema file and
-     *           cannot be a 'Common Type'.  Besides that we use the following naming
-     *           conventions:
-     *           - *use `snake_casing`*
-     *           - name matching is case-sensitive
+     *           cannot be a "Common Type".  The following naming conventions are used:
+     *           - Use `snake_casing`.
+     *           - Name matching is case-sensitive.
      *           - Maximum 64 characters.
      *           - Must start with a letter.
      *           - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *             compatibility internal infrastructure and tooling can handle any ascii
-     *             character)
+     *             character.)
      *           - The `/` is sometimes used to denote a property of a type.  For example
      *             `line_item/amount`.  This convention is deprecated, but will still be
      *             honored for backward compatibility.
@@ -163,15 +161,14 @@ class EntityType extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of the type. It must be unique within the schema file and
-     * cannot be a 'Common Type'.  Besides that we use the following naming
-     * conventions:
-     * - *use `snake_casing`*
-     * - name matching is case-sensitive
+     * cannot be a "Common Type".  The following naming conventions are used:
+     * - Use `snake_casing`.
+     * - Name matching is case-sensitive.
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *   compatibility internal infrastructure and tooling can handle any ascii
-     *   character)
+     *   character.)
      * - The `/` is sometimes used to denote a property of a type.  For example
      *   `line_item/amount`.  This convention is deprecated, but will still be
      *   honored for backward compatibility.
@@ -186,15 +183,14 @@ class EntityType extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of the type. It must be unique within the schema file and
-     * cannot be a 'Common Type'.  Besides that we use the following naming
-     * conventions:
-     * - *use `snake_casing`*
-     * - name matching is case-sensitive
+     * cannot be a "Common Type".  The following naming conventions are used:
+     * - Use `snake_casing`.
+     * - Name matching is case-sensitive.
      * - Maximum 64 characters.
      * - Must start with a letter.
      * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *   compatibility internal infrastructure and tooling can handle any ascii
-     *   character)
+     *   character.)
      * - The `/` is sometimes used to denote a property of a type.  For example
      *   `line_item/amount`.  This convention is deprecated, but will still be
      *   honored for backward compatibility.

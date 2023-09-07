@@ -61,7 +61,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -274,6 +276,8 @@ abstract class TranscoderServiceBaseClient
      *
      * The async variant is {@see self::createJobAsync()} .
      *
+     * @example samples/V1/TranscoderServiceClient/create_job.php
+     *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -297,6 +301,8 @@ abstract class TranscoderServiceBaseClient
      * Creates a job template in the specified region.
      *
      * The async variant is {@see self::createJobTemplateAsync()} .
+     *
+     * @example samples/V1/TranscoderServiceClient/create_job_template.php
      *
      * @param CreateJobTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -322,6 +328,8 @@ abstract class TranscoderServiceBaseClient
      *
      * The async variant is {@see self::deleteJobAsync()} .
      *
+     * @example samples/V1/TranscoderServiceClient/delete_job.php
+     *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -344,6 +352,8 @@ abstract class TranscoderServiceBaseClient
      *
      * The async variant is {@see self::deleteJobTemplateAsync()} .
      *
+     * @example samples/V1/TranscoderServiceClient/delete_job_template.php
+     *
      * @param DeleteJobTemplateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -365,6 +375,8 @@ abstract class TranscoderServiceBaseClient
      * Returns the job data.
      *
      * The async variant is {@see self::getJobAsync()} .
+     *
+     * @example samples/V1/TranscoderServiceClient/get_job.php
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -390,6 +402,8 @@ abstract class TranscoderServiceBaseClient
      *
      * The async variant is {@see self::getJobTemplateAsync()} .
      *
+     * @example samples/V1/TranscoderServiceClient/get_job_template.php
+     *
      * @param GetJobTemplateRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -414,6 +428,8 @@ abstract class TranscoderServiceBaseClient
      *
      * The async variant is {@see self::listJobTemplatesAsync()} .
      *
+     * @example samples/V1/TranscoderServiceClient/list_job_templates.php
+     *
      * @param ListJobTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -437,6 +453,8 @@ abstract class TranscoderServiceBaseClient
      * Lists jobs in the specified region.
      *
      * The async variant is {@see self::listJobsAsync()} .
+     *
+     * @example samples/V1/TranscoderServiceClient/list_jobs.php
      *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {

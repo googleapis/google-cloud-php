@@ -260,6 +260,8 @@ abstract class PredictionApiKeyRegistryBaseClient
      *
      * The async variant is {@see self::createPredictionApiKeyRegistrationAsync()} .
      *
+     * @example samples/V1beta1/PredictionApiKeyRegistryClient/create_prediction_api_key_registration.php
+     *
      * @param CreatePredictionApiKeyRegistrationRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -286,6 +288,8 @@ abstract class PredictionApiKeyRegistryBaseClient
      *
      * The async variant is {@see self::deletePredictionApiKeyRegistrationAsync()} .
      *
+     * @example samples/V1beta1/PredictionApiKeyRegistryClient/delete_prediction_api_key_registration.php
+     *
      * @param DeletePredictionApiKeyRegistrationRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -309,6 +313,8 @@ abstract class PredictionApiKeyRegistryBaseClient
      * List the registered apiKeys for use with predict method.
      *
      * The async variant is {@see self::listPredictionApiKeyRegistrationsAsync()} .
+     *
+     * @example samples/V1beta1/PredictionApiKeyRegistryClient/list_prediction_api_key_registrations.php
      *
      * @param ListPredictionApiKeyRegistrationsRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {

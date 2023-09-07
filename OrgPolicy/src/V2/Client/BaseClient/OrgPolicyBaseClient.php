@@ -73,7 +73,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\OrgPolicy\V2\OrgPolicyClient} for the stable implementation
  *
  * @experimental
  *
@@ -352,6 +353,8 @@ abstract class OrgPolicyBaseClient
      *
      * The async variant is {@see self::createPolicyAsync()} .
      *
+     * @example samples/V2/OrgPolicyClient/create_policy.php
+     *
      * @param CreatePolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -379,6 +382,8 @@ abstract class OrgPolicyBaseClient
      *
      * The async variant is {@see self::deletePolicyAsync()} .
      *
+     * @example samples/V2/OrgPolicyClient/delete_policy.php
+     *
      * @param DeletePolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -405,6 +410,8 @@ abstract class OrgPolicyBaseClient
      * not be expanded.
      *
      * The async variant is {@see self::getEffectivePolicyAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/get_effective_policy.php
      *
      * @param GetEffectivePolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -434,6 +441,8 @@ abstract class OrgPolicyBaseClient
      *
      * The async variant is {@see self::getPolicyAsync()} .
      *
+     * @example samples/V2/OrgPolicyClient/get_policy.php
+     *
      * @param GetPolicyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -458,6 +467,8 @@ abstract class OrgPolicyBaseClient
      *
      * The async variant is {@see self::listConstraintsAsync()} .
      *
+     * @example samples/V2/OrgPolicyClient/list_constraints.php
+     *
      * @param ListConstraintsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -481,6 +492,8 @@ abstract class OrgPolicyBaseClient
      * Retrieves all of the `Policies` that exist on a particular resource.
      *
      * The async variant is {@see self::listPoliciesAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/list_policies.php
      *
      * @param ListPoliciesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -513,6 +526,8 @@ abstract class OrgPolicyBaseClient
      * fields.
      *
      * The async variant is {@see self::updatePolicyAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/update_policy.php
      *
      * @param UpdatePolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

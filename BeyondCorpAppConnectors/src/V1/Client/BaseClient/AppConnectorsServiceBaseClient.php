@@ -77,7 +77,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient} for the
+ * stable implementation
  *
  * @experimental
  *
@@ -305,6 +307,8 @@ abstract class AppConnectorsServiceBaseClient
      *
      * The async variant is {@see self::createAppConnectorAsync()} .
      *
+     * @example samples/V1/AppConnectorsServiceClient/create_app_connector.php
+     *
      * @param CreateAppConnectorRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -328,6 +332,8 @@ abstract class AppConnectorsServiceBaseClient
      * Deletes a single AppConnector.
      *
      * The async variant is {@see self::deleteAppConnectorAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/delete_app_connector.php
      *
      * @param DeleteAppConnectorRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -353,6 +359,8 @@ abstract class AppConnectorsServiceBaseClient
      *
      * The async variant is {@see self::getAppConnectorAsync()} .
      *
+     * @example samples/V1/AppConnectorsServiceClient/get_app_connector.php
+     *
      * @param GetAppConnectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -376,6 +384,8 @@ abstract class AppConnectorsServiceBaseClient
      * Lists AppConnectors in a given project and location.
      *
      * The async variant is {@see self::listAppConnectorsAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/list_app_connectors.php
      *
      * @param ListAppConnectorsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -401,6 +411,8 @@ abstract class AppConnectorsServiceBaseClient
      *
      * The async variant is {@see self::reportStatusAsync()} .
      *
+     * @example samples/V1/AppConnectorsServiceClient/report_status.php
+     *
      * @param ReportStatusRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -424,6 +436,8 @@ abstract class AppConnectorsServiceBaseClient
      * Updates the parameters of a single AppConnector.
      *
      * The async variant is {@see self::updateAppConnectorAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/update_app_connector.php
      *
      * @param UpdateAppConnectorRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -449,6 +463,8 @@ abstract class AppConnectorsServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/AppConnectorsServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -472,6 +488,8 @@ abstract class AppConnectorsServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -497,6 +515,8 @@ abstract class AppConnectorsServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -525,6 +545,8 @@ abstract class AppConnectorsServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -555,6 +577,8 @@ abstract class AppConnectorsServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

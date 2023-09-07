@@ -86,6 +86,10 @@ use Google\Cloud\Channel\V1\ListPurchasableOffersRequest\CreateEntitlementPurcha
 use Google\Cloud\Channel\V1\ListPurchasableOffersResponse;
 use Google\Cloud\Channel\V1\ListPurchasableSkusRequest;
 use Google\Cloud\Channel\V1\ListPurchasableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusResponse;
+use Google\Cloud\Channel\V1\ListSkuGroupsRequest;
+use Google\Cloud\Channel\V1\ListSkuGroupsResponse;
 use Google\Cloud\Channel\V1\ListSkusRequest;
 use Google\Cloud\Channel\V1\ListSkusResponse;
 use Google\Cloud\Channel\V1\ListSubscribersRequest;
@@ -149,7 +153,7 @@ use Google\Protobuf\GPBEmpty;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -166,7 +170,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -180,6 +184,10 @@ use Google\Protobuf\GPBEmpty;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Channel\V1\Client\CloudChannelServiceClient} to use the new
+ * surface.
  */
 class CloudChannelServiceGapicClient
 {
@@ -215,6 +223,8 @@ class CloudChannelServiceGapicClient
     private static $offerNameTemplate;
 
     private static $productNameTemplate;
+
+    private static $skuGroupNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -302,6 +312,15 @@ class CloudChannelServiceGapicClient
         return self::$productNameTemplate;
     }
 
+    private static function getSkuGroupNameTemplate()
+    {
+        if (self::$skuGroupNameTemplate == null) {
+            self::$skuGroupNameTemplate = new PathTemplate('accounts/{account}/skuGroups/{sku_group}');
+        }
+
+        return self::$skuGroupNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -313,6 +332,7 @@ class CloudChannelServiceGapicClient
                 'entitlement' => self::getEntitlementNameTemplate(),
                 'offer' => self::getOfferNameTemplate(),
                 'product' => self::getProductNameTemplate(),
+                'skuGroup' => self::getSkuGroupNameTemplate(),
             ];
         }
 
@@ -443,6 +463,23 @@ class CloudChannelServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a sku_group
+     * resource.
+     *
+     * @param string $account
+     * @param string $skuGroup
+     *
+     * @return string The formatted sku_group resource.
+     */
+    public static function skuGroupName($account, $skuGroup)
+    {
+        return self::getSkuGroupNameTemplate()->render([
+            'account' => $account,
+            'sku_group' => $skuGroup,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -453,6 +490,7 @@ class CloudChannelServiceGapicClient
      * - entitlement: accounts/{account}/customers/{customer}/entitlements/{entitlement}
      * - offer: accounts/{account}/offers/{offer}
      * - product: products/{product}
+     * - skuGroup: accounts/{account}/skuGroups/{sku_group}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -617,7 +655,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -634,7 +672,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -827,7 +865,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -844,7 +882,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -951,7 +989,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -968,7 +1006,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1070,7 +1108,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1087,7 +1125,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1544,7 +1582,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1561,7 +1599,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3088,6 +3126,180 @@ class CloudChannelServiceGapicClient
     }
 
     /**
+     * Lists the Billable SKUs in a given SKU group.
+     *
+     * Possible error codes:
+     * PERMISSION_DENIED: If the account making the request and the account
+     * being queried for are different, or the account doesn't exist.
+     * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * INTERNAL: Any non-user error related to technical issue in the
+     * backend. In this case, contact cloud channel support.
+     *
+     * Return Value:
+     * If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+     * resources. The data for each resource is displayed in the ascending order
+     * of:
+     *
+     * * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+     * * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+     *
+     * If unsuccessful, returns an error.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $formattedParent = $cloudChannelServiceClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the SKU group.
+     *                             Format: accounts/{account}/skuGroups/{sku_group}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSkuGroupBillableSkus($parent, array $optionalArgs = [])
+    {
+        $request = new ListSkuGroupBillableSkusRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSkuGroupBillableSkus', $optionalArgs, ListSkuGroupBillableSkusResponse::class, $request);
+    }
+
+    /**
+     * Lists the Rebilling supported SKU groups the account is authorized to
+     * sell.
+     * Reference: https://cloud.google.com/skus/sku-groups
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the account making the request and the account
+     * being queried are different, or the account doesn't exist.
+     * * INTERNAL: Any non-user error related to technical issues in the
+     * backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+     * The data for each resource is displayed in the alphabetical order of SKU
+     * group display name.
+     * The data for each resource is displayed in the ascending order of
+     * [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+     *
+     * If unsuccessful, returns an error.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $parent = 'parent';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups($parent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups($parent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the account from which to list SKU groups.
+     *                             Parent uses the format: accounts/{account}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSkuGroups($parent, array $optionalArgs = [])
+    {
+        $request = new ListSkuGroupsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSkuGroups', $optionalArgs, ListSkuGroupsResponse::class, $request);
+    }
+
+    /**
      * Lists the SKUs for a product the reseller is authorized to sell.
      *
      * Possible error codes:
@@ -3570,7 +3782,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3587,7 +3799,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3736,7 +3948,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3753,7 +3965,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3839,7 +4051,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3856,7 +4068,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -3951,7 +4163,7 @@ class CloudChannelServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -3968,7 +4180,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

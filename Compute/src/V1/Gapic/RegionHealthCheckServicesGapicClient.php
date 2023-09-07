@@ -83,6 +83,10 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  *     $regionHealthCheckServicesClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\Compute\V1\Client\RegionHealthCheckServicesClient} to use the new
+ * surface.
  */
 class RegionHealthCheckServicesGapicClient
 {

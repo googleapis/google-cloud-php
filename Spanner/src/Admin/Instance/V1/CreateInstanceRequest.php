@@ -40,6 +40,28 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance = null;
 
     /**
+     * @param string                                           $parent     Required. The name of the project in which to create the instance. Values
+     *                                                                     are of the form `projects/<project>`. Please see
+     *                                                                     {@see InstanceAdminClient::projectName()} for help formatting this field.
+     * @param string                                           $instanceId Required. The ID of the instance to create.  Valid identifiers are of the
+     *                                                                     form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in
+     *                                                                     length.
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance   Required. The instance to create.  The name may be omitted, but if
+     *                                                                     specified must be `<parent>/instances/<instance_id>`.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, string $instanceId, \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setInstanceId($instanceId)
+            ->setInstance($instance);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

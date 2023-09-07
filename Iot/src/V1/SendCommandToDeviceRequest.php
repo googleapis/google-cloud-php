@@ -41,6 +41,48 @@ class SendCommandToDeviceRequest extends \Google\Protobuf\Internal\Message
     private $subfolder = '';
 
     /**
+     * @param string $name       Required. The name of the device. For example,
+     *                           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *                           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`. Please see
+     *                           {@see DeviceManagerClient::deviceName()} for help formatting this field.
+     * @param string $binaryData Required. The command data to send to the device.
+     *
+     * @return \Google\Cloud\Iot\V1\SendCommandToDeviceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, string $binaryData): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setBinaryData($binaryData);
+    }
+
+    /**
+     * @param string $name       Required. The name of the device. For example,
+     *                           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *                           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`. Please see
+     *                           {@see DeviceManagerClient::deviceName()} for help formatting this field.
+     * @param string $binaryData Required. The command data to send to the device.
+     * @param string $subfolder  Optional subfolder for the command. If empty, the command will be delivered
+     *                           to the /devices/{device-id}/commands topic, otherwise it will be delivered
+     *                           to the /devices/{device-id}/commands/{subfolder} topic. Multi-level
+     *                           subfolders are allowed. This field must not have more than 256 characters,
+     *                           and must not contain any MQTT wildcards ("+" or "#") or null characters.
+     *
+     * @return \Google\Cloud\Iot\V1\SendCommandToDeviceRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameBinaryDataSubfolder(string $name, string $binaryData, string $subfolder): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setBinaryData($binaryData)
+            ->setSubfolder($subfolder);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

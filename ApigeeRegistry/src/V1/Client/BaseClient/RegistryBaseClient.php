@@ -95,7 +95,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ApigeeRegistry\V1\RegistryClient} for the stable implementation
  *
  * @experimental
  *
@@ -524,6 +525,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::createApiAsync()} .
      *
+     * @example samples/V1/RegistryClient/create_api.php
+     *
      * @param CreateApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -547,6 +550,8 @@ abstract class RegistryBaseClient
      * Creates a specified deployment.
      *
      * The async variant is {@see self::createApiDeploymentAsync()} .
+     *
+     * @example samples/V1/RegistryClient/create_api_deployment.php
      *
      * @param CreateApiDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -572,6 +577,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::createApiSpecAsync()} .
      *
+     * @example samples/V1/RegistryClient/create_api_spec.php
+     *
      * @param CreateApiSpecRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -596,6 +603,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::createApiVersionAsync()} .
      *
+     * @example samples/V1/RegistryClient/create_api_version.php
+     *
      * @param CreateApiVersionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -619,6 +628,8 @@ abstract class RegistryBaseClient
      * Creates a specified artifact.
      *
      * The async variant is {@see self::createArtifactAsync()} .
+     *
+     * @example samples/V1/RegistryClient/create_artifact.php
      *
      * @param CreateArtifactRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -645,6 +656,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::deleteApiAsync()} .
      *
+     * @example samples/V1/RegistryClient/delete_api.php
+     *
      * @param DeleteApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -668,6 +681,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::deleteApiDeploymentAsync()} .
      *
+     * @example samples/V1/RegistryClient/delete_api_deployment.php
+     *
      * @param DeleteApiDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -689,6 +704,8 @@ abstract class RegistryBaseClient
      * Deletes a revision of a deployment.
      *
      * The async variant is {@see self::deleteApiDeploymentRevisionAsync()} .
+     *
+     * @example samples/V1/RegistryClient/delete_api_deployment_revision.php
      *
      * @param DeleteApiDeploymentRevisionRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -715,6 +732,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::deleteApiSpecAsync()} .
      *
+     * @example samples/V1/RegistryClient/delete_api_spec.php
+     *
      * @param DeleteApiSpecRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -736,6 +755,8 @@ abstract class RegistryBaseClient
      * Deletes a revision of a spec.
      *
      * The async variant is {@see self::deleteApiSpecRevisionAsync()} .
+     *
+     * @example samples/V1/RegistryClient/delete_api_spec_revision.php
      *
      * @param DeleteApiSpecRevisionRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -762,6 +783,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::deleteApiVersionAsync()} .
      *
+     * @example samples/V1/RegistryClient/delete_api_version.php
+     *
      * @param DeleteApiVersionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -784,6 +807,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::deleteArtifactAsync()} .
      *
+     * @example samples/V1/RegistryClient/delete_artifact.php
+     *
      * @param DeleteArtifactRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -805,6 +830,8 @@ abstract class RegistryBaseClient
      * Returns a specified API.
      *
      * The async variant is {@see self::getApiAsync()} .
+     *
+     * @example samples/V1/RegistryClient/get_api.php
      *
      * @param GetApiRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -830,6 +857,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::getApiDeploymentAsync()} .
      *
+     * @example samples/V1/RegistryClient/get_api_deployment.php
+     *
      * @param GetApiDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -853,6 +882,8 @@ abstract class RegistryBaseClient
      * Returns a specified spec.
      *
      * The async variant is {@see self::getApiSpecAsync()} .
+     *
+     * @example samples/V1/RegistryClient/get_api_spec.php
      *
      * @param GetApiSpecRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -881,6 +912,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::getApiSpecContentsAsync()} .
      *
+     * @example samples/V1/RegistryClient/get_api_spec_contents.php
+     *
      * @param GetApiSpecContentsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -905,6 +938,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::getApiVersionAsync()} .
      *
+     * @example samples/V1/RegistryClient/get_api_version.php
+     *
      * @param GetApiVersionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -928,6 +963,8 @@ abstract class RegistryBaseClient
      * Returns a specified artifact.
      *
      * The async variant is {@see self::getArtifactAsync()} .
+     *
+     * @example samples/V1/RegistryClient/get_artifact.php
      *
      * @param GetArtifactRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -956,6 +993,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::getArtifactContentsAsync()} .
      *
+     * @example samples/V1/RegistryClient/get_artifact_contents.php
+     *
      * @param GetArtifactContentsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -981,6 +1020,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::listApiDeploymentRevisionsAsync()} .
      *
+     * @example samples/V1/RegistryClient/list_api_deployment_revisions.php
+     *
      * @param ListApiDeploymentRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -1004,6 +1045,8 @@ abstract class RegistryBaseClient
      * Returns matching deployments.
      *
      * The async variant is {@see self::listApiDeploymentsAsync()} .
+     *
+     * @example samples/V1/RegistryClient/list_api_deployments.php
      *
      * @param ListApiDeploymentsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1030,6 +1073,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::listApiSpecRevisionsAsync()} .
      *
+     * @example samples/V1/RegistryClient/list_api_spec_revisions.php
+     *
      * @param ListApiSpecRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -1053,6 +1098,8 @@ abstract class RegistryBaseClient
      * Returns matching specs.
      *
      * The async variant is {@see self::listApiSpecsAsync()} .
+     *
+     * @example samples/V1/RegistryClient/list_api_specs.php
      *
      * @param ListApiSpecsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1078,6 +1125,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::listApiVersionsAsync()} .
      *
+     * @example samples/V1/RegistryClient/list_api_versions.php
+     *
      * @param ListApiVersionsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1101,6 +1150,8 @@ abstract class RegistryBaseClient
      * Returns matching APIs.
      *
      * The async variant is {@see self::listApisAsync()} .
+     *
+     * @example samples/V1/RegistryClient/list_apis.php
      *
      * @param ListApisRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -1126,6 +1177,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::listArtifactsAsync()} .
      *
+     * @example samples/V1/RegistryClient/list_artifacts.php
+     *
      * @param ListArtifactsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1149,6 +1202,8 @@ abstract class RegistryBaseClient
      * Used to replace a specified artifact.
      *
      * The async variant is {@see self::replaceArtifactAsync()} .
+     *
+     * @example samples/V1/RegistryClient/replace_artifact.php
      *
      * @param ReplaceArtifactRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1175,6 +1230,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::rollbackApiDeploymentAsync()} .
      *
+     * @example samples/V1/RegistryClient/rollback_api_deployment.php
+     *
      * @param RollbackApiDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1199,6 +1256,8 @@ abstract class RegistryBaseClient
      * Note that this creates a new revision with a new revision ID.
      *
      * The async variant is {@see self::rollbackApiSpecAsync()} .
+     *
+     * @example samples/V1/RegistryClient/rollback_api_spec.php
      *
      * @param RollbackApiSpecRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1225,6 +1284,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::tagApiDeploymentRevisionAsync()} .
      *
+     * @example samples/V1/RegistryClient/tag_api_deployment_revision.php
+     *
      * @param TagApiDeploymentRevisionRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -1248,6 +1309,8 @@ abstract class RegistryBaseClient
      * Adds a tag to a specified revision of a spec.
      *
      * The async variant is {@see self::tagApiSpecRevisionAsync()} .
+     *
+     * @example samples/V1/RegistryClient/tag_api_spec_revision.php
      *
      * @param TagApiSpecRevisionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1273,6 +1336,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::updateApiAsync()} .
      *
+     * @example samples/V1/RegistryClient/update_api.php
+     *
      * @param UpdateApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1296,6 +1361,8 @@ abstract class RegistryBaseClient
      * Used to modify a specified deployment.
      *
      * The async variant is {@see self::updateApiDeploymentAsync()} .
+     *
+     * @example samples/V1/RegistryClient/update_api_deployment.php
      *
      * @param UpdateApiDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1321,6 +1388,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::updateApiSpecAsync()} .
      *
+     * @example samples/V1/RegistryClient/update_api_spec.php
+     *
      * @param UpdateApiSpecRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1344,6 +1413,8 @@ abstract class RegistryBaseClient
      * Used to modify a specified version.
      *
      * The async variant is {@see self::updateApiVersionAsync()} .
+     *
+     * @example samples/V1/RegistryClient/update_api_version.php
      *
      * @param UpdateApiVersionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1369,6 +1440,8 @@ abstract class RegistryBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/RegistryClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1392,6 +1465,8 @@ abstract class RegistryBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/RegistryClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1417,6 +1492,8 @@ abstract class RegistryBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegistryClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1445,6 +1522,8 @@ abstract class RegistryBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegistryClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1475,6 +1554,8 @@ abstract class RegistryBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RegistryClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

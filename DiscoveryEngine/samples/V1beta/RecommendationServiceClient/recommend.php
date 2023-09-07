@@ -68,7 +68,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\UserEvent;
  *                                       quality.
  *
  *                                       The field must be a UTF-8 encoded string with a length limit of 128
- *                                       characters. Otherwise, an INVALID_ARGUMENT error is returned.
+ *                                       characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
  *
  *                                       The field should not contain PII or user-data. We recommend to use Google
  *                                       Analytics [Client

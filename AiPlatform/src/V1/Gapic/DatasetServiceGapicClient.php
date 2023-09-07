@@ -40,6 +40,7 @@ use Google\Cloud\AIPlatform\V1\AnnotationSpec;
 use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
+use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataConfig;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
@@ -72,8 +73,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: The service that handles the CRUD of Vertex AI Dataset and its child
- * resources.
+ * Service Description: The service that manages Vertex AI Dataset and its child resources.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -87,7 +87,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -104,7 +104,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -118,6 +118,9 @@ use Google\Protobuf\FieldMask;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient} to use the new surface.
  */
 class DatasetServiceGapicClient
 {
@@ -518,7 +521,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -535,7 +538,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -656,6 +659,79 @@ class DatasetServiceGapicClient
     }
 
     /**
+     * Deletes a SavedQuery.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedName = $datasetServiceClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
+     *     $operationResponse = $datasetServiceClient->deleteSavedQuery($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $datasetServiceClient->deleteSavedQuery($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'deleteSavedQuery');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the SavedQuery to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteSavedQuery($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSavedQueryRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteSavedQuery',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Exports data from a Dataset.
      *
      * Sample code:
@@ -668,7 +744,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -685,7 +761,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -856,7 +932,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -873,7 +949,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

@@ -54,6 +54,13 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string model_display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $model_display_name = '';
+    /**
+     * Output only. Request-level metadata returned by the model. The metadata
+     * type will be dependent upon the model implementation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $metadata = null;
 
     /**
      * Constructor.
@@ -79,6 +86,9 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *           Output only. The [display
      *           name][google.cloud.aiplatform.v1.Model.display_name] of the Model which is
      *           deployed as the DeployedModel that this prediction hits.
+     *     @type \Google\Protobuf\Value $metadata
+     *           Output only. Request-level metadata returned by the model. The metadata
+     *           type will be dependent upon the model implementation.
      * }
      */
     public function __construct($data = NULL) {
@@ -228,6 +238,44 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Request-level metadata returned by the model. The metadata
+     * type will be dependent upon the model implementation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Output only. Request-level metadata returned by the model. The metadata
+     * type will be dependent upon the model implementation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->metadata = $var;
 
         return $this;
     }

@@ -81,7 +81,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\VizierServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -361,6 +362,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::addTrialMeasurementAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/add_trial_measurement.php
+     *
      * @param AddTrialMeasurementRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -388,6 +391,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::checkTrialEarlyStoppingStateAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/check_trial_early_stopping_state.php
+     *
      * @param CheckTrialEarlyStoppingStateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -411,6 +416,8 @@ abstract class VizierServiceBaseClient
      * Marks a Trial as complete.
      *
      * The async variant is {@see self::completeTrialAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/complete_trial.php
      *
      * @param CompleteTrialRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -437,6 +444,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::createStudyAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/create_study.php
+     *
      * @param CreateStudyRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -460,6 +469,8 @@ abstract class VizierServiceBaseClient
      * Adds a user provided Trial to a Study.
      *
      * The async variant is {@see self::createTrialAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/create_trial.php
      *
      * @param CreateTrialRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -485,6 +496,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::deleteStudyAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/delete_study.php
+     *
      * @param DeleteStudyRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -507,6 +520,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::deleteTrialAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/delete_trial.php
+     *
      * @param DeleteTrialRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -528,6 +543,8 @@ abstract class VizierServiceBaseClient
      * Gets a Study by name.
      *
      * The async variant is {@see self::getStudyAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/get_study.php
      *
      * @param GetStudyRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -552,6 +569,8 @@ abstract class VizierServiceBaseClient
      * Gets a Trial.
      *
      * The async variant is {@see self::getTrialAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/get_trial.php
      *
      * @param GetTrialRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -580,6 +599,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::listOptimalTrialsAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/list_optimal_trials.php
+     *
      * @param ListOptimalTrialsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -604,6 +625,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::listStudiesAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/list_studies.php
+     *
      * @param ListStudiesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -627,6 +650,8 @@ abstract class VizierServiceBaseClient
      * Lists the Trials associated with a Study.
      *
      * The async variant is {@see self::listTrialsAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/list_trials.php
      *
      * @param ListTrialsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -653,6 +678,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::lookupStudyAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/lookup_study.php
+     *
      * @param LookupStudyRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -676,6 +703,8 @@ abstract class VizierServiceBaseClient
      * Stops a Trial.
      *
      * The async variant is {@see self::stopTrialAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/stop_trial.php
      *
      * @param StopTrialRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -701,9 +730,12 @@ abstract class VizierServiceBaseClient
      * suggested by Vertex AI Vizier. Returns a long-running
      * operation associated with the generation of Trial suggestions.
      * When this long-running operation succeeds, it will contain
-     * a [SuggestTrialsResponse][google.cloud.ml.v1.SuggestTrialsResponse].
+     * a
+     * [SuggestTrialsResponse][google.cloud.aiplatform.v1.SuggestTrialsResponse].
      *
      * The async variant is {@see self::suggestTrialsAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/suggest_trials.php
      *
      * @param SuggestTrialsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -729,6 +761,8 @@ abstract class VizierServiceBaseClient
      *
      * The async variant is {@see self::getLocationAsync()} .
      *
+     * @example samples/V1/VizierServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -752,6 +786,8 @@ abstract class VizierServiceBaseClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -777,6 +813,8 @@ abstract class VizierServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -805,6 +843,8 @@ abstract class VizierServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -835,6 +875,8 @@ abstract class VizierServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/VizierServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

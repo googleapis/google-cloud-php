@@ -17,7 +17,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full name of the Backup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Full name of the Backup resource.
-     *                     Format: projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*
+     *                     Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      *                     Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\GetBackupRequest
@@ -46,7 +46,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Full name of the Backup resource.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full name of the Backup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full name of the Backup resource.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

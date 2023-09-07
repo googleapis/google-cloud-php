@@ -67,6 +67,88 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
+     * @param string $parent Required. The container resource on which to execute the request.
+     *                       Acceptable formats:
+     *
+     *                       * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       LOCATION here refers to GCP Locations:
+     *                       https://cloud.google.com/about/locations/
+     *                       RECOMMENDER_ID refers to supported recommenders:
+     *                       https://cloud.google.com/recommender/docs/recommenders. Please see
+     *                       {@see RecommenderClient::recommenderName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Recommender\V1\ListRecommendationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
+     * @param string $parent Required. The container resource on which to execute the request.
+     *                       Acceptable formats:
+     *
+     *                       * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *                       LOCATION here refers to GCP Locations:
+     *                       https://cloud.google.com/about/locations/
+     *                       RECOMMENDER_ID refers to supported recommenders:
+     *                       https://cloud.google.com/recommender/docs/recommenders. Please see
+     *                       {@see RecommenderClient::recommenderName()} for help formatting this field.
+     * @param string $filter Filter expression to restrict the recommendations returned. Supported
+     *                       filter fields:
+     *
+     *                       * `state_info.state`
+     *
+     *                       * `recommenderSubtype`
+     *
+     *                       * `priority`
+     *
+     *                       Examples:
+     *
+     *                       * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     *
+     *                       * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+     *
+     *                       * `priority = P1 OR priority = P2`
+     *
+     *                       * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+     *
+     *                       (These expressions are based on the filter language described at
+     *                       https://google.aip.dev/160)
+     *
+     * @return \Google\Cloud\Recommender\V1\ListRecommendationsRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentFilter(string $parent, string $filter): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setFilter($filter);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -39,6 +39,42 @@ class SetSuggestionFeatureConfigRequest extends \Google\Protobuf\Internal\Messag
     private $suggestion_feature_config = null;
 
     /**
+     * @param string $conversationProfile Required. The Conversation Profile to add or update the suggestion feature
+     *                                    config. Format: `projects/<Project ID>/locations/<Location
+     *                                    ID>/conversationProfiles/<Conversation Profile ID>`.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $conversationProfile): self
+    {
+        return (new self())
+            ->setConversationProfile($conversationProfile);
+    }
+
+    /**
+     * @param string                                                                        $conversationProfile     Required. The Conversation Profile to add or update the suggestion feature
+     *                                                                                                               config. Format: `projects/<Project ID>/locations/<Location
+     *                                                                                                               ID>/conversationProfiles/<Conversation Profile ID>`.
+     * @param int                                                                           $participantRole         Required. The participant role to add or update the suggestion feature
+     *                                                                                                               config. Only HUMAN_AGENT or END_USER can be used.
+     *                                                                                                               For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
+     * @param \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig $suggestionFeatureConfig Required. The suggestion feature config to add or update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigRequest
+     *
+     * @experimental
+     */
+    public static function buildFromConversationProfileParticipantRoleSuggestionFeatureConfig(string $conversationProfile, int $participantRole, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig $suggestionFeatureConfig): self
+    {
+        return (new self())
+            ->setConversationProfile($conversationProfile)
+            ->setParticipantRole($participantRole)
+            ->setSuggestionFeatureConfig($suggestionFeatureConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

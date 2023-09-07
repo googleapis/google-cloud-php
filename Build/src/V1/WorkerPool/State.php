@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>DELETED = 4;</code>
      */
     const DELETED = 4;
+    /**
+     * `WorkerPool` is being updated; new builds cannot be run.
+     *
+     * Generated from protobuf enum <code>UPDATING = 5;</code>
+     */
+    const UPDATING = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::RUNNING => 'RUNNING',
         self::DELETING => 'DELETING',
         self::DELETED => 'DELETED',
+        self::UPDATING => 'UPDATING',
     ];
 
     public static function name($value)

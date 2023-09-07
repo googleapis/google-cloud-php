@@ -38,6 +38,43 @@ class ClearSuggestionFeatureConfigRequest extends \Google\Protobuf\Internal\Mess
     private $suggestion_feature_type = 0;
 
     /**
+     * @param string $conversationProfile Required. The Conversation Profile to add or update the suggestion feature
+     *                                    config. Format: `projects/<Project ID>/locations/<Location
+     *                                    ID>/conversationProfiles/<Conversation Profile ID>`.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $conversationProfile): self
+    {
+        return (new self())
+            ->setConversationProfile($conversationProfile);
+    }
+
+    /**
+     * @param string $conversationProfile   Required. The Conversation Profile to add or update the suggestion feature
+     *                                      config. Format: `projects/<Project ID>/locations/<Location
+     *                                      ID>/conversationProfiles/<Conversation Profile ID>`.
+     * @param int    $participantRole       Required. The participant role to remove the suggestion feature
+     *                                      config. Only HUMAN_AGENT or END_USER can be used.
+     *                                      For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
+     * @param int    $suggestionFeatureType Required. The type of the suggestion feature to remove.
+     *                                      For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\SuggestionFeature\Type}
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest
+     *
+     * @experimental
+     */
+    public static function buildFromConversationProfileParticipantRoleSuggestionFeatureType(string $conversationProfile, int $participantRole, int $suggestionFeatureType): self
+    {
+        return (new self())
+            ->setConversationProfile($conversationProfile)
+            ->setParticipantRole($participantRole)
+            ->setSuggestionFeatureType($suggestionFeatureType);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

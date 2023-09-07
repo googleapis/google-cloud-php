@@ -40,6 +40,23 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesRequest extends \Google\
     private $page_token = '';
 
     /**
+     * @param string $parent Required. Name of parent to list descendant custom modules. Its format is
+     *                       "organizations/{organization}/securityHealthAnalyticsSettings",
+     *                       "folders/{folder}/securityHealthAnalyticsSettings", or
+     *                       "projects/{project}/securityHealthAnalyticsSettings"
+     *                       Please see {@see SecurityCenterClient::securityHealthAnalyticsSettingsName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

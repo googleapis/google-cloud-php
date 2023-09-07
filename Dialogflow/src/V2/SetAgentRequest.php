@@ -30,6 +30,19 @@ class SetAgentRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Dialogflow\V2\Agent $agent Required. The agent to update.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SetAgentRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Dialogflow\V2\Agent $agent): self
+    {
+        return (new self())
+            ->setAgent($agent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

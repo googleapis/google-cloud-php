@@ -54,6 +54,29 @@ class CreateNodeGroupRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
+     * @param string                              $parent      Required. The parent resource where this node group will be created.
+     *                                                         Format: `projects/{project}/regions/{region}/clusters/{cluster}`
+     *                                                         Please see {@see NodeGroupControllerClient::clusterRegionName()} for help formatting this field.
+     * @param \Google\Cloud\Dataproc\V1\NodeGroup $nodeGroup   Required. The node group to create.
+     * @param string                              $nodeGroupId Optional. An optional node group ID. Generated if not specified.
+     *
+     *                                                         The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     *                                                         underscores (_), and hyphens (-). Cannot begin or end with underscore
+     *                                                         or hyphen. Must consist of from 3 to 33 characters.
+     *
+     * @return \Google\Cloud\Dataproc\V1\CreateNodeGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Dataproc\V1\NodeGroup $nodeGroup, string $nodeGroupId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupId($nodeGroupId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -50,6 +50,22 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. A list of resource types that this request searches for. If
+     * empty, it will search all the [trackable resource
+     * types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types).
+     * Regular expressions are also supported. For example:
+     * * `compute.googleapis.com.*` snapshots resources whose type starts
+     * with `compute.googleapis.com`.
+     * * `.*Image` snapshots resources whose type ends with `Image`.
+     * * `.*Image.*` snapshots resources whose type contains `Image`.
+     * See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     * regular expression syntax. If the regular expression does not match any
+     * supported resource type, an INVALID_ARGUMENT error will be returned.
+     *
+     * Generated from protobuf field <code>repeated string resource_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_types;
 
     /**
      * @param string $scope     Required. Resource name of the organization.
@@ -93,6 +109,18 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
      *           When paginating, all other parameters provided to
      *           [KeyTrackingService.SearchProtectedResources][google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]
      *           must match the call that provided the page token.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_types
+     *           Optional. A list of resource types that this request searches for. If
+     *           empty, it will search all the [trackable resource
+     *           types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types).
+     *           Regular expressions are also supported. For example:
+     *           * `compute.googleapis.com.*` snapshots resources whose type starts
+     *           with `compute.googleapis.com`.
+     *           * `.*Image` snapshots resources whose type ends with `Image`.
+     *           * `.*Image.*` snapshots resources whose type contains `Image`.
+     *           See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     *           regular expression syntax. If the regular expression does not match any
+     *           supported resource type, an INVALID_ARGUMENT error will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -220,6 +248,52 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of resource types that this request searches for. If
+     * empty, it will search all the [trackable resource
+     * types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types).
+     * Regular expressions are also supported. For example:
+     * * `compute.googleapis.com.*` snapshots resources whose type starts
+     * with `compute.googleapis.com`.
+     * * `.*Image` snapshots resources whose type ends with `Image`.
+     * * `.*Image.*` snapshots resources whose type contains `Image`.
+     * See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     * regular expression syntax. If the regular expression does not match any
+     * supported resource type, an INVALID_ARGUMENT error will be returned.
+     *
+     * Generated from protobuf field <code>repeated string resource_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResourceTypes()
+    {
+        return $this->resource_types;
+    }
+
+    /**
+     * Optional. A list of resource types that this request searches for. If
+     * empty, it will search all the [trackable resource
+     * types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types).
+     * Regular expressions are also supported. For example:
+     * * `compute.googleapis.com.*` snapshots resources whose type starts
+     * with `compute.googleapis.com`.
+     * * `.*Image` snapshots resources whose type ends with `Image`.
+     * * `.*Image.*` snapshots resources whose type contains `Image`.
+     * See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     * regular expression syntax. If the regular expression does not match any
+     * supported resource type, an INVALID_ARGUMENT error will be returned.
+     *
+     * Generated from protobuf field <code>repeated string resource_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResourceTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_types = $arr;
 
         return $this;
     }

@@ -33,6 +33,27 @@ class UpdateServingConfigRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Retail\V2\ServingConfig $servingConfig Required. The ServingConfig to update.
+     * @param \Google\Protobuf\FieldMask            $updateMask    Indicates which fields in the provided
+     *                                                             [ServingConfig][google.cloud.retail.v2.ServingConfig] to update. The
+     *                                                             following are NOT supported:
+     *
+     *                                                             * [ServingConfig.name][google.cloud.retail.v2.ServingConfig.name]
+     *
+     *                                                             If not set, all supported fields are updated.
+     *
+     * @return \Google\Cloud\Retail\V2\UpdateServingConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Retail\V2\ServingConfig $servingConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setServingConfig($servingConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

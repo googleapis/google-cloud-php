@@ -67,6 +67,42 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     protected $input;
 
     /**
+     * @param string                                $participant Required. The name of the participant this text comes from.
+     *                                                           Format: `projects/<Project ID>/locations/<Location
+     *                                                           ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                                                           {@see ParticipantsClient::participantName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\TextInput $textInput   The natural language text to be processed.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $participant, \Google\Cloud\Dialogflow\V2\TextInput $textInput): self
+    {
+        return (new self())
+            ->setParticipant($participant)
+            ->setTextInput($textInput);
+    }
+
+    /**
+     * @param string                                 $participant Required. The name of the participant this text comes from.
+     *                                                            Format: `projects/<Project ID>/locations/<Location
+     *                                                            ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                                                            {@see ParticipantsClient::participantName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\EventInput $eventInput  An input event to send to Dialogflow.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParticipantEventInput(string $participant, \Google\Cloud\Dialogflow\V2\EventInput $eventInput): self
+    {
+        return (new self())
+            ->setParticipant($participant)
+            ->setEventInput($eventInput);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -80,6 +116,8 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           The natural language text to be processed.
      *     @type \Google\Cloud\Dialogflow\V2\EventInput $event_input
      *           An input event to send to Dialogflow.
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestionInput $suggestion_input
+     *           An input representing the selection of a suggestion.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $reply_audio_config
      *           Speech synthesis configuration.
      *           The speech synthesis settings for a virtual agent that may be configured
@@ -195,6 +233,37 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\EventInput::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * An input representing the selection of a suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionInput suggestion_input = 12;</code>
+     * @return \Google\Cloud\Dialogflow\V2\SuggestionInput|null
+     */
+    public function getSuggestionInput()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasSuggestionInput()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * An input representing the selection of a suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionInput suggestion_input = 12;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SuggestionInput $var
+     * @return $this
+     */
+    public function setSuggestionInput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SuggestionInput::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

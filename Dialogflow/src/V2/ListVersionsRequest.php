@@ -40,6 +40,24 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The agent to list all versions from.
+     *                       Supported formats:
+     *
+     *                       - `projects/<Project ID>/agent`
+     *                       - `projects/<Project ID>/locations/<Location ID>/agent`
+     *                       Please see {@see VersionsClient::agentName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\ListVersionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

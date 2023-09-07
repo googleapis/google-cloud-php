@@ -41,6 +41,31 @@ class CreateLinkRequest extends \Google\Protobuf\Internal\Message
     private $link_id = '';
 
     /**
+     * @param string                        $parent Required. The full resource name of the bucket to create a link for.
+     *
+     *                                              "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *                                              "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *                                              "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *                                              "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *                                              Please see {@see ConfigServiceV2Client::logBucketName()} for help formatting this field.
+     * @param \Google\Cloud\Logging\V2\Link $link   Required. The new link.
+     * @param string                        $linkId Required. The ID to use for the link. The link_id can have up to 100
+     *                                              characters. A valid link_id must only have alphanumeric characters and
+     *                                              underscores within it.
+     *
+     * @return \Google\Cloud\Logging\V2\CreateLinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Logging\V2\Link $link, string $linkId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLink($link)
+            ->setLinkId($linkId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

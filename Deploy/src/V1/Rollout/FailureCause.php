@@ -59,8 +59,8 @@ class FailureCause
      */
     const VERIFICATION_CONFIG_NOT_FOUND = 6;
     /**
-     * Cloud Build failed to fulfill Google Cloud Deploy's request. See
-     * failure_message for additional details.
+     * Cloud Build failed to fulfill Cloud Deploy's request. See failure_message
+     * for additional details.
      *
      * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 7;</code>
      */

@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes an existing Restore.
  *
  * @param string $formattedName Full name of the Restore
- *                              Format: projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*
+ *                              Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
  *                              Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
  */
 function delete_restore_sample(string $formattedName): void

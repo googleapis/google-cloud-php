@@ -64,7 +64,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\ContainerAnalysis\V1\ContainerAnalysisClient} for the stable
+ * implementation
  *
  * @experimental
  *
@@ -238,6 +240,8 @@ abstract class ContainerAnalysisBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V1/ContainerAnalysisClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -261,6 +265,8 @@ abstract class ContainerAnalysisBaseClient
      * Gets a summary of the number and severity of occurrences.
      *
      * The async variant is {@see self::getVulnerabilityOccurrencesSummaryAsync()} .
+     *
+     * @example samples/V1/ContainerAnalysisClient/get_vulnerability_occurrences_summary.php
      *
      * @param GetVulnerabilityOccurrencesSummaryRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -293,6 +299,8 @@ abstract class ContainerAnalysisBaseClient
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
      *
+     * @example samples/V1/ContainerAnalysisClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -322,6 +330,8 @@ abstract class ContainerAnalysisBaseClient
      * occurrences.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ContainerAnalysisClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

@@ -18,6 +18,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
             ],
             'Insert' => [
                 'longRunning' => [
@@ -33,6 +55,22 @@ return [
                     'operationNameMethod' => 'getName',
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
                 ],
             ],
             'Patch' => [
@@ -50,6 +88,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
             ],
             'Update' => [
                 'longRunning' => [
@@ -66,6 +126,28 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
             ],
             'AggregatedList' => [
                 'pageStreaming' => [
@@ -75,6 +157,40 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RouterAggregatedList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\Router',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
                 ],
             ],
             'GetNatMappingInfo' => [
@@ -86,6 +202,52 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getResult',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\VmEndpointNatMappingsList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRouterStatus' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RouterStatusResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
             ],
             'List' => [
                 'pageStreaming' => [
@@ -95,6 +257,46 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RouterList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Preview' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RoutersPreviewResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
                 ],
             ],
         ],

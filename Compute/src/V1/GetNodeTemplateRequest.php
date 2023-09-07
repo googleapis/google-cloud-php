@@ -35,6 +35,23 @@ class GetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project      Project ID for this request.
+     * @param string $region       The name of the region for this request.
+     * @param string $nodeTemplate Name of the node template to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetNodeTemplateRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $nodeTemplate): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setNodeTemplate($nodeTemplate);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -18,6 +18,52 @@ return [
                     'operationStatusMethod' => 'getStatus',
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\InstanceGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
+                ],
             ],
             'List' => [
                 'pageStreaming' => [
@@ -28,6 +74,22 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RegionInstanceGroupList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
             ],
             'ListInstances' => [
                 'pageStreaming' => [
@@ -37,6 +99,28 @@ return [
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RegionInstanceGroupsListInstances',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance_group',
+                        'fieldAccessors' => [
+                            'getInstanceGroup',
+                        ],
+                    ],
                 ],
             ],
         ],

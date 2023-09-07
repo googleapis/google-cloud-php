@@ -45,6 +45,26 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
+     * @param \Google\Cloud\Eventarc\V1\Trigger $trigger      The trigger to be updated.
+     * @param \Google\Protobuf\FieldMask        $updateMask   The fields to be updated; only fields explicitly provided are updated.
+     *                                                        If no field mask is provided, all provided fields in the request are
+     *                                                        updated. To update all fields, provide a field mask of "*".
+     * @param bool                              $allowMissing If set to true, and the trigger is not found, a new trigger will be
+     *                                                        created. In this situation, `update_mask` is ignored.
+     *
+     * @return \Google\Cloud\Eventarc\V1\UpdateTriggerRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Eventarc\V1\Trigger $trigger, \Google\Protobuf\FieldMask $updateMask, bool $allowMissing): self
+    {
+        return (new self())
+            ->setTrigger($trigger)
+            ->setUpdateMask($updateMask)
+            ->setAllowMissing($allowMissing);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

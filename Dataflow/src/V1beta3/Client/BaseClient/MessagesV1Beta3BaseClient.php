@@ -179,6 +179,8 @@ abstract class MessagesV1Beta3BaseClient
      *
      * The async variant is {@see self::listJobMessagesAsync()} .
      *
+     * @example samples/V1beta3/MessagesV1Beta3Client/list_job_messages.php
+     *
      * @param ListJobMessagesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.

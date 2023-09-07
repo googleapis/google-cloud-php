@@ -172,6 +172,8 @@ abstract class FlexTemplatesServiceBaseClient
      *
      * The async variant is {@see self::launchFlexTemplateAsync()} .
      *
+     * @example samples/V1beta3/FlexTemplatesServiceClient/launch_flex_template.php
+     *
      * @param LaunchFlexTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.

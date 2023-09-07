@@ -36,6 +36,7 @@ class RunBuildTriggerRequest extends \Google\Protobuf\Internal\Message
     private $trigger_id = '';
     /**
      * Source to build against this trigger.
+     * Branch and tag names cannot consist of regular expressions.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepoSource source = 3;</code>
      */
@@ -56,6 +57,7 @@ class RunBuildTriggerRequest extends \Google\Protobuf\Internal\Message
      *           Required. ID of the trigger.
      *     @type \Google\Cloud\Build\V1\RepoSource $source
      *           Source to build against this trigger.
+     *           Branch and tag names cannot consist of regular expressions.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +147,7 @@ class RunBuildTriggerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Source to build against this trigger.
+     * Branch and tag names cannot consist of regular expressions.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepoSource source = 3;</code>
      * @return \Google\Cloud\Build\V1\RepoSource|null
@@ -166,6 +169,7 @@ class RunBuildTriggerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Source to build against this trigger.
+     * Branch and tag names cannot consist of regular expressions.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.RepoSource source = 3;</code>
      * @param \Google\Cloud\Build\V1\RepoSource $var

@@ -29,6 +29,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     private $instance_termination_action = null;
     /**
+     * Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration local_ssd_recovery_timeout = 268015590;</code>
+     */
+    private $local_ssd_recovery_timeout = null;
+    /**
      * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
@@ -78,6 +84,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *     @type string $instance_termination_action
      *           Specifies the termination action for the instance.
      *           Check the InstanceTerminationAction enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\Duration $local_ssd_recovery_timeout
+     *           Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
      *     @type string $location_hint
      *           An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *     @type int $min_node_cpus
@@ -169,6 +177,42 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance_termination_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration local_ssd_recovery_timeout = 268015590;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getLocalSsdRecoveryTimeout()
+    {
+        return $this->local_ssd_recovery_timeout;
+    }
+
+    public function hasLocalSsdRecoveryTimeout()
+    {
+        return isset($this->local_ssd_recovery_timeout);
+    }
+
+    public function clearLocalSsdRecoveryTimeout()
+    {
+        unset($this->local_ssd_recovery_timeout);
+    }
+
+    /**
+     * Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration local_ssd_recovery_timeout = 268015590;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setLocalSsdRecoveryTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->local_ssd_recovery_timeout = $var;
 
         return $this;
     }

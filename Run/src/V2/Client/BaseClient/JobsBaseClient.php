@@ -62,7 +62,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\Run\V2\JobsClient} for the stable implementation
  *
  * @experimental
  *
@@ -390,6 +391,8 @@ abstract class JobsBaseClient
      *
      * The async variant is {@see self::createJobAsync()} .
      *
+     * @example samples/V2/JobsClient/create_job.php
+     *
      * @param CreateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -413,6 +416,8 @@ abstract class JobsBaseClient
      * Deletes a Job.
      *
      * The async variant is {@see self::deleteJobAsync()} .
+     *
+     * @example samples/V2/JobsClient/delete_job.php
      *
      * @param DeleteJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -439,6 +444,8 @@ abstract class JobsBaseClient
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
      *
+     * @example samples/V2/JobsClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -462,6 +469,8 @@ abstract class JobsBaseClient
      * Gets information about a Job.
      *
      * The async variant is {@see self::getJobAsync()} .
+     *
+     * @example samples/V2/JobsClient/get_job.php
      *
      * @param GetJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -487,6 +496,8 @@ abstract class JobsBaseClient
      *
      * The async variant is {@see self::listJobsAsync()} .
      *
+     * @example samples/V2/JobsClient/list_jobs.php
+     *
      * @param ListJobsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -510,6 +521,8 @@ abstract class JobsBaseClient
      * Triggers creation of a new Execution of this Job.
      *
      * The async variant is {@see self::runJobAsync()} .
+     *
+     * @example samples/V2/JobsClient/run_job.php
      *
      * @param RunJobRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -535,6 +548,8 @@ abstract class JobsBaseClient
      * any existing policy.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/JobsClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -562,6 +577,8 @@ abstract class JobsBaseClient
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
      *
+     * @example samples/V2/JobsClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -585,6 +602,8 @@ abstract class JobsBaseClient
      * Updates a Job.
      *
      * The async variant is {@see self::updateJobAsync()} .
+     *
+     * @example samples/V2/JobsClient/update_job.php
      *
      * @param UpdateJobRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

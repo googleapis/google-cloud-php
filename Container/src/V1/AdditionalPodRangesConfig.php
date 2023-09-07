@@ -22,6 +22,12 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string pod_range_names = 1;</code>
      */
     private $pod_range_names;
+    /**
+     * Output only. [Output only] Information for additional pod range.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $pod_range_info;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pod_range_names
      *           Name for pod secondary ipv4 range which has the actual range defined ahead.
+     *     @type array<\Google\Cloud\Container\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $pod_range_info
+     *           Output only. [Output only] Information for additional pod range.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +68,32 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->pod_range_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] Information for additional pod range.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPodRangeInfo()
+    {
+        return $this->pod_range_info;
+    }
+
+    /**
+     * Output only. [Output only] Information for additional pod range.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Container\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPodRangeInfo($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\RangeInfo::class);
+        $this->pod_range_info = $arr;
 
         return $this;
     }

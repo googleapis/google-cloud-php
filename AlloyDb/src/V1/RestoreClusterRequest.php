@@ -69,6 +69,9 @@ class RestoreClusterRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AlloyDb\V1\BackupSource $backup_source
      *           Backup source.
+     *     @type \Google\Cloud\AlloyDb\V1\ContinuousBackupSource $continuous_backup_source
+     *           ContinuousBackup source. Continuous backup needs to be enabled in the
+     *           source cluster for this operation to succeed.
      *     @type string $parent
      *           Required. The name of the parent resource. For the required format, see the
      *           comment on the Cluster.name field.
@@ -126,6 +129,39 @@ class RestoreClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\BackupSource::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * ContinuousBackup source. Continuous backup needs to be enabled in the
+     * source cluster for this operation to succeed.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupSource continuous_backup_source = 8;</code>
+     * @return \Google\Cloud\AlloyDb\V1\ContinuousBackupSource|null
+     */
+    public function getContinuousBackupSource()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasContinuousBackupSource()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * ContinuousBackup source. Continuous backup needs to be enabled in the
+     * source cluster for this operation to succeed.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.ContinuousBackupSource continuous_backup_source = 8;</code>
+     * @param \Google\Cloud\AlloyDb\V1\ContinuousBackupSource $var
+     * @return $this
+     */
+    public function setContinuousBackupSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\ContinuousBackupSource::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

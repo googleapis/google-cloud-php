@@ -25,7 +25,7 @@ class Batch
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-“
+È
 !google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"õ
 CreateJobRequest0
 parent (	B ‡A˙Abatch.googleapis.com/Job
@@ -40,10 +40,11 @@ request_id (	B‡A"?
 name (	
 reason (	B‡A
 
-request_id (	B‡A"X
+request_id (	B‡A"o
 ListJobsRequest
 parent (	
-filter (	
+filter (	
+order_by (	B‡A
 	page_size (
 
 page_token (	"j

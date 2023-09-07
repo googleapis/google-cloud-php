@@ -39,18 +39,22 @@ use Google\Cloud\VmwareEngine\V1\ListHcxActivationKeysResponse;
 use Google\Cloud\VmwareEngine\V1\ListNetworkPoliciesResponse;
 use Google\Cloud\VmwareEngine\V1\ListNodeTypesResponse;
 use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsResponse;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionPeeringRoutesResponse;
+use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionsResponse;
 use Google\Cloud\VmwareEngine\V1\ListSubnetsResponse;
 use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksResponse;
 use Google\Cloud\VmwareEngine\V1\NetworkConfig;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
 use Google\Cloud\VmwareEngine\V1\NodeType;
 use Google\Cloud\VmwareEngine\V1\NodeTypeConfig;
+use Google\Cloud\VmwareEngine\V1\PeeringRoute;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud\ManagementCluster;
+use Google\Cloud\VmwareEngine\V1\PrivateConnection;
+use Google\Cloud\VmwareEngine\V1\PrivateConnection\Type;
 use Google\Cloud\VmwareEngine\V1\Subnet;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
-use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\Type;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -666,6 +670,157 @@ class VmwareEngineClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createPrivateConnectionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createPrivateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $vmwareEngineNetwork = 'vmwareEngineNetwork-90899684';
+        $vmwareEngineNetworkCanonical = 'vmwareEngineNetworkCanonical779839377';
+        $peeringId = 'peeringId-1561749894';
+        $uid = 'uid115792';
+        $serviceNetwork = 'serviceNetwork1072775844';
+        $expectedResponse = new PrivateConnection();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setVmwareEngineNetwork($vmwareEngineNetwork);
+        $expectedResponse->setVmwareEngineNetworkCanonical($vmwareEngineNetworkCanonical);
+        $expectedResponse->setPeeringId($peeringId);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setServiceNetwork($serviceNetwork);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createPrivateConnectionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $privateConnectionId = 'privateConnectionId-1948601248';
+        $privateConnection = new PrivateConnection();
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
+        $privateConnectionType = Type::TYPE_UNSPECIFIED;
+        $privateConnection->setType($privateConnectionType);
+        $privateConnectionServiceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
+        $privateConnection->setServiceNetwork($privateConnectionServiceNetwork);
+        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/CreatePrivateConnection', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getPrivateConnectionId();
+        $this->assertProtobufEquals($privateConnectionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getPrivateConnection();
+        $this->assertProtobufEquals($privateConnection, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createPrivateConnectionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createPrivateConnectionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createPrivateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $privateConnectionId = 'privateConnectionId-1948601248';
+        $privateConnection = new PrivateConnection();
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
+        $privateConnectionType = Type::TYPE_UNSPECIFIED;
+        $privateConnection->setType($privateConnectionType);
+        $privateConnectionServiceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
+        $privateConnection->setServiceNetwork($privateConnectionServiceNetwork);
+        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createPrivateConnectionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createVmwareEngineNetworkTest()
     {
         $operationsTransport = $this->createTransport();
@@ -706,7 +861,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $vmwareEngineNetworkId = 'vmwareEngineNetworkId2131972382';
         $vmwareEngineNetwork = new VmwareEngineNetwork();
-        $vmwareEngineNetworkType = Type::TYPE_UNSPECIFIED;
+        $vmwareEngineNetworkType = \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\Type::TYPE_UNSPECIFIED;
         $vmwareEngineNetwork->setType($vmwareEngineNetworkType);
         $response = $gapicClient->createVmwareEngineNetwork($formattedParent, $vmwareEngineNetworkId, $vmwareEngineNetwork);
         $this->assertFalse($response->isDone());
@@ -778,7 +933,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $vmwareEngineNetworkId = 'vmwareEngineNetworkId2131972382';
         $vmwareEngineNetwork = new VmwareEngineNetwork();
-        $vmwareEngineNetworkType = Type::TYPE_UNSPECIFIED;
+        $vmwareEngineNetworkType = \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\Type::TYPE_UNSPECIFIED;
         $vmwareEngineNetwork->setType($vmwareEngineNetworkType);
         $response = $gapicClient->createVmwareEngineNetwork($formattedParent, $vmwareEngineNetworkId, $vmwareEngineNetwork);
         $this->assertFalse($response->isDone());
@@ -1142,6 +1297,123 @@ class VmwareEngineClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePrivateCloudTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deletePrivateConnectionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deletePrivateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deletePrivateConnectionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->deletePrivateConnection($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/DeletePrivateConnection', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deletePrivateConnectionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deletePrivateConnectionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deletePrivateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->deletePrivateConnection($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deletePrivateConnectionTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1611,6 +1883,144 @@ class VmwareEngineClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getPrivateConnectionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $vmwareEngineNetwork = 'vmwareEngineNetwork-90899684';
+        $vmwareEngineNetworkCanonical = 'vmwareEngineNetworkCanonical779839377';
+        $peeringId = 'peeringId-1561749894';
+        $uid = 'uid115792';
+        $serviceNetwork = 'serviceNetwork1072775844';
+        $expectedResponse = new PrivateConnection();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setVmwareEngineNetwork($vmwareEngineNetwork);
+        $expectedResponse->setVmwareEngineNetworkCanonical($vmwareEngineNetworkCanonical);
+        $expectedResponse->setPeeringId($peeringId);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setServiceNetwork($serviceNetwork);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->getPrivateConnection($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/GetPrivateConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPrivateConnectionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        try {
+            $gapicClient->getPrivateConnection($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSubnetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $ipCidrRange = 'ipCidrRange-2049366326';
+        $gatewayIp = 'gatewayIp955798786';
+        $type = 'type3575610';
+        $expectedResponse = new Subnet();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setIpCidrRange($ipCidrRange);
+        $expectedResponse->setGatewayIp($gatewayIp);
+        $expectedResponse->setType($type);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[SUBNET]');
+        $response = $gapicClient->getSubnet($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/GetSubnet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSubnetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[SUBNET]');
+        try {
+            $gapicClient->getSubnet($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getVmwareEngineNetworkTest()
     {
         $transport = $this->createTransport();
@@ -2005,6 +2415,142 @@ class VmwareEngineClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
             $gapicClient->listPrivateClouds($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listPrivateConnectionPeeringRoutesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $peeringRoutesElement = new PeeringRoute();
+        $peeringRoutes = [
+            $peeringRoutesElement,
+        ];
+        $expectedResponse = new ListPrivateConnectionPeeringRoutesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setPeeringRoutes($peeringRoutes);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->listPrivateConnectionPeeringRoutes($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getPeeringRoutes()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/ListPrivateConnectionPeeringRoutes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listPrivateConnectionPeeringRoutesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        try {
+            $gapicClient->listPrivateConnectionPeeringRoutes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listPrivateConnectionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $privateConnectionsElement = new PrivateConnection();
+        $privateConnections = [
+            $privateConnectionsElement,
+        ];
+        $expectedResponse = new ListPrivateConnectionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setPrivateConnections($privateConnections);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listPrivateConnections($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getPrivateConnections()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/ListPrivateConnections', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listPrivateConnectionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        try {
+            $gapicClient->listPrivateConnections($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3081,6 +3627,282 @@ class VmwareEngineClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updatePrivateConnectionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updatePrivateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $vmwareEngineNetwork = 'vmwareEngineNetwork-90899684';
+        $vmwareEngineNetworkCanonical = 'vmwareEngineNetworkCanonical779839377';
+        $peeringId = 'peeringId-1561749894';
+        $uid = 'uid115792';
+        $serviceNetwork = 'serviceNetwork1072775844';
+        $expectedResponse = new PrivateConnection();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setVmwareEngineNetwork($vmwareEngineNetwork);
+        $expectedResponse->setVmwareEngineNetworkCanonical($vmwareEngineNetworkCanonical);
+        $expectedResponse->setPeeringId($peeringId);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setServiceNetwork($serviceNetwork);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updatePrivateConnectionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $privateConnection = new PrivateConnection();
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
+        $privateConnectionType = Type::TYPE_UNSPECIFIED;
+        $privateConnection->setType($privateConnectionType);
+        $privateConnectionServiceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
+        $privateConnection->setServiceNetwork($privateConnectionServiceNetwork);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updatePrivateConnection($privateConnection, $updateMask);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/UpdatePrivateConnection', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getPrivateConnection();
+        $this->assertProtobufEquals($privateConnection, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updatePrivateConnectionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updatePrivateConnectionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updatePrivateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $privateConnection = new PrivateConnection();
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
+        $privateConnectionType = Type::TYPE_UNSPECIFIED;
+        $privateConnection->setType($privateConnectionType);
+        $privateConnectionServiceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
+        $privateConnection->setServiceNetwork($privateConnectionServiceNetwork);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updatePrivateConnection($privateConnection, $updateMask);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updatePrivateConnectionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubnetTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateSubnetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $ipCidrRange = 'ipCidrRange-2049366326';
+        $gatewayIp = 'gatewayIp955798786';
+        $type = 'type3575610';
+        $expectedResponse = new Subnet();
+        $expectedResponse->setName($name);
+        $expectedResponse->setIpCidrRange($ipCidrRange);
+        $expectedResponse->setGatewayIp($gatewayIp);
+        $expectedResponse->setType($type);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateSubnetTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $updateMask = new FieldMask();
+        $subnet = new Subnet();
+        $response = $gapicClient->updateSubnet($updateMask, $subnet);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/UpdateSubnet', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnet();
+        $this->assertProtobufEquals($subnet, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateSubnetTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubnetExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateSubnetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $updateMask = new FieldMask();
+        $subnet = new Subnet();
+        $response = $gapicClient->updateSubnet($updateMask, $subnet);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateSubnetTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateVmwareEngineNetworkTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3119,7 +3941,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $vmwareEngineNetwork = new VmwareEngineNetwork();
-        $vmwareEngineNetworkType = Type::TYPE_UNSPECIFIED;
+        $vmwareEngineNetworkType = \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\Type::TYPE_UNSPECIFIED;
         $vmwareEngineNetwork->setType($vmwareEngineNetworkType);
         $updateMask = new FieldMask();
         $response = $gapicClient->updateVmwareEngineNetwork($vmwareEngineNetwork, $updateMask);
@@ -3188,7 +4010,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $vmwareEngineNetwork = new VmwareEngineNetwork();
-        $vmwareEngineNetworkType = Type::TYPE_UNSPECIFIED;
+        $vmwareEngineNetworkType = \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\Type::TYPE_UNSPECIFIED;
         $vmwareEngineNetwork->setType($vmwareEngineNetworkType);
         $updateMask = new FieldMask();
         $response = $gapicClient->updateVmwareEngineNetwork($vmwareEngineNetwork, $updateMask);

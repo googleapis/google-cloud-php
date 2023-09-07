@@ -42,6 +42,32 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     private $backup_id = '';
 
     /**
+     * @param string                            $parent   Required. The backup's project and location, in the format
+     *                                                    `projects/{project_number}/locations/{location}`. In Filestore,
+     *                                                    backup locations map to Google Cloud regions, for example **us-west1**. Please see
+     *                                                    {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Filestore\V1\Backup $backup   Required. A [backup resource][google.cloud.filestore.v1.Backup]
+     * @param string                            $backupId Required. The ID to use for the backup.
+     *                                                    The ID must be unique within the specified project and location.
+     *
+     *                                                    This value must start with a lowercase letter followed by up to 62
+     *                                                    lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *                                                    Values that do not match this pattern will trigger an INVALID_ARGUMENT
+     *                                                    error.
+     *
+     * @return \Google\Cloud\Filestore\V1\CreateBackupRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Filestore\V1\Backup $backup, string $backupId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setBackup($backup)
+            ->setBackupId($backupId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

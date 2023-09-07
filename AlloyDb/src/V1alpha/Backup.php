@@ -93,7 +93,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     protected $cluster_uid = '';
     /**
      * Required. The full resource name of the backup source cluster
-     * (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     * (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *
      * Generated from protobuf field <code>string cluster_name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -150,6 +150,20 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $expiry_time = null;
+    /**
+     * Output only. The QuantityBasedExpiry of the backup, specified by the
+     * backup's retention policy. Once the expiry quantity is over retention, the
+     * backup is eligible to be garbage collected.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Backup.QuantityBasedExpiry expiry_quantity = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $expiry_quantity = null;
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21;</code>
+     */
+    protected $satisfies_pzs = false;
 
     /**
      * Constructor.
@@ -191,7 +205,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           create this resource.
      *     @type string $cluster_name
      *           Required. The full resource name of the backup source cluster
-     *           (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     *           (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *     @type bool $reconciling
      *           Output only. Reconciling (https://google.aip.dev/128#reconciliation), if
      *           true, indicates that the service is actively updating the resource. This
@@ -216,6 +230,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which after the backup is eligible to be garbage
      *           collected. It is the duration specified by the backup's retention policy,
      *           added to the backup's create_time.
+     *     @type \Google\Cloud\AlloyDb\V1alpha\Backup\QuantityBasedExpiry $expiry_quantity
+     *           Output only. The QuantityBasedExpiry of the backup, specified by the
+     *           backup's retention policy. Once the expiry quantity is over retention, the
+     *           backup is eligible to be garbage collected.
+     *     @type bool $satisfies_pzs
+     *           Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -561,7 +581,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full resource name of the backup source cluster
-     * (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     * (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *
      * Generated from protobuf field <code>string cluster_name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -573,7 +593,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full resource name of the backup source cluster
-     * (e.g., projects/<project>/locations/<location>/clusters/<cluster_id>).
+     * (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}).
      *
      * Generated from protobuf field <code>string cluster_name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -815,6 +835,72 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->expiry_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The QuantityBasedExpiry of the backup, specified by the
+     * backup's retention policy. Once the expiry quantity is over retention, the
+     * backup is eligible to be garbage collected.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Backup.QuantityBasedExpiry expiry_quantity = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1alpha\Backup\QuantityBasedExpiry|null
+     */
+    public function getExpiryQuantity()
+    {
+        return $this->expiry_quantity;
+    }
+
+    public function hasExpiryQuantity()
+    {
+        return isset($this->expiry_quantity);
+    }
+
+    public function clearExpiryQuantity()
+    {
+        unset($this->expiry_quantity);
+    }
+
+    /**
+     * Output only. The QuantityBasedExpiry of the backup, specified by the
+     * backup's retention policy. Once the expiry quantity is over retention, the
+     * backup is eligible to be garbage collected.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.Backup.QuantityBasedExpiry expiry_quantity = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1alpha\Backup\QuantityBasedExpiry $var
+     * @return $this
+     */
+    public function setExpiryQuantity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1alpha\Backup\QuantityBasedExpiry::class);
+        $this->expiry_quantity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

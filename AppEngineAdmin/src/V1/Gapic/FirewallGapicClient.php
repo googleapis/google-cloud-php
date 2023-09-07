@@ -67,6 +67,9 @@ use Google\Protobuf\GPBEmpty;
  *     $firewallClient->close();
  * }
  * ```
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\AppEngine\V1\Client\FirewallClient} to use the new surface.
  */
 class FirewallGapicClient
 {

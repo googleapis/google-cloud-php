@@ -50,7 +50,7 @@ class BigQueryClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '1.24.2';
+    const VERSION = '1.26.1';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -854,6 +854,29 @@ class BigQueryClient
     public function geography($value)
     {
         return new Geography($value);
+    }
+
+    /**
+     * Create a BigQuery Json object.
+     *
+     * Json represents a value with a data type of
+     * [JSON](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#json_type)
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\BigQuery\BigQueryClient;
+     *
+     * $bigQuery = new BigQueryClient();
+     * $json = $bigQuery->json('{"key":"value"}');
+     * ```
+     *
+     * @param string|null $value The JSON string value.
+     * @return Json
+     * @throws InvalidArgumentException If the given $value is not string|null.
+     */
+    public function json($value)
+    {
+        return new Json($value);
     }
 
     /**

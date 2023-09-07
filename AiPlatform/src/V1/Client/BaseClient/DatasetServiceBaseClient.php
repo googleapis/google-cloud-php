@@ -39,6 +39,7 @@ use Google\Cloud\AIPlatform\V1\AnnotationSpec;
 use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
+use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
 use Google\Cloud\AIPlatform\V1\GetDatasetRequest;
@@ -61,8 +62,7 @@ use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: The service that handles the CRUD of Vertex AI Dataset and its child
- * resources.
+ * Service Description: The service that manages Vertex AI Dataset and its child resources.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -72,7 +72,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\AIPlatform\V1\DatasetServiceClient} for the stable implementation
  *
  * @experimental
  *
@@ -80,6 +81,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteSavedQueryAsync(DeleteSavedQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAnnotationSpecAsync(GetAnnotationSpecRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
@@ -372,6 +374,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::createDatasetAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/create_dataset.php
+     *
      * @param CreateDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -396,6 +400,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::deleteDatasetAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/delete_dataset.php
+     *
      * @param DeleteDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -416,9 +422,37 @@ abstract class DatasetServiceBaseClient
     }
 
     /**
+     * Deletes a SavedQuery.
+     *
+     * The async variant is {@see self::deleteSavedQueryAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/delete_saved_query.php
+     *
+     * @param DeleteSavedQueryRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteSavedQuery(DeleteSavedQueryRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteSavedQuery', $request, $callOptions)->wait();
+    }
+
+    /**
      * Exports data from a Dataset.
      *
      * The async variant is {@see self::exportDataAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/export_data.php
      *
      * @param ExportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -444,6 +478,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::getAnnotationSpecAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/get_annotation_spec.php
+     *
      * @param GetAnnotationSpecRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -467,6 +503,8 @@ abstract class DatasetServiceBaseClient
      * Gets a Dataset.
      *
      * The async variant is {@see self::getDatasetAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/get_dataset.php
      *
      * @param GetDatasetRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -492,6 +530,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::importDataAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/import_data.php
+     *
      * @param ImportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -515,6 +555,8 @@ abstract class DatasetServiceBaseClient
      * Lists Annotations belongs to a dataitem
      *
      * The async variant is {@see self::listAnnotationsAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/list_annotations.php
      *
      * @param ListAnnotationsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -540,6 +582,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::listDataItemsAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/list_data_items.php
+     *
      * @param ListDataItemsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -563,6 +607,8 @@ abstract class DatasetServiceBaseClient
      * Lists Datasets in a Location.
      *
      * The async variant is {@see self::listDatasetsAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/list_datasets.php
      *
      * @param ListDatasetsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -588,6 +634,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::listSavedQueriesAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/list_saved_queries.php
+     *
      * @param ListSavedQueriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -611,6 +659,8 @@ abstract class DatasetServiceBaseClient
      * Searches DataItems in a Dataset.
      *
      * The async variant is {@see self::searchDataItemsAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/search_data_items.php
      *
      * @param SearchDataItemsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -636,6 +686,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::updateDatasetAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/update_dataset.php
+     *
      * @param UpdateDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -659,6 +711,8 @@ abstract class DatasetServiceBaseClient
      * Gets information about a location.
      *
      * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -684,6 +738,8 @@ abstract class DatasetServiceBaseClient
      *
      * The async variant is {@see self::listLocationsAsync()} .
      *
+     * @example samples/V1/DatasetServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -708,6 +764,8 @@ abstract class DatasetServiceBaseClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -736,6 +794,8 @@ abstract class DatasetServiceBaseClient
     errors.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -766,6 +826,8 @@ abstract class DatasetServiceBaseClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

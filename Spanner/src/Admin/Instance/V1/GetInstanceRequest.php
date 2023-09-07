@@ -34,6 +34,21 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     private $field_mask = null;
 
     /**
+     * @param string $name Required. The name of the requested instance. Values are of the form
+     *                     `projects/<project>/instances/<instance>`. Please see
+     *                     {@see InstanceAdminClient::instanceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

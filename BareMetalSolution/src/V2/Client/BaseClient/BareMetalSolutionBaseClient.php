@@ -35,12 +35,25 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\BareMetalSolution\V2\CreateNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\CreateProvisioningConfigRequest;
+use Google\Cloud\BareMetalSolution\V2\CreateSSHKeyRequest;
+use Google\Cloud\BareMetalSolution\V2\CreateVolumeSnapshotRequest;
+use Google\Cloud\BareMetalSolution\V2\DeleteNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\DeleteSSHKeyRequest;
+use Google\Cloud\BareMetalSolution\V2\DeleteVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\DetachLunRequest;
+use Google\Cloud\BareMetalSolution\V2\DisableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\EnableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\EvictLunRequest;
+use Google\Cloud\BareMetalSolution\V2\EvictVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\GetInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\GetLunRequest;
 use Google\Cloud\BareMetalSolution\V2\GetNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\GetNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\GetProvisioningConfigRequest;
 use Google\Cloud\BareMetalSolution\V2\GetVolumeRequest;
+use Google\Cloud\BareMetalSolution\V2\GetVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\Instance;
 use Google\Cloud\BareMetalSolution\V2\ListInstancesRequest;
 use Google\Cloud\BareMetalSolution\V2\ListLunsRequest;
@@ -48,19 +61,37 @@ use Google\Cloud\BareMetalSolution\V2\ListNetworkUsageRequest;
 use Google\Cloud\BareMetalSolution\V2\ListNetworkUsageResponse;
 use Google\Cloud\BareMetalSolution\V2\ListNetworksRequest;
 use Google\Cloud\BareMetalSolution\V2\ListNfsSharesRequest;
+use Google\Cloud\BareMetalSolution\V2\ListOSImagesRequest;
+use Google\Cloud\BareMetalSolution\V2\ListProvisioningQuotasRequest;
+use Google\Cloud\BareMetalSolution\V2\ListSSHKeysRequest;
+use Google\Cloud\BareMetalSolution\V2\ListVolumeSnapshotsRequest;
 use Google\Cloud\BareMetalSolution\V2\ListVolumesRequest;
 use Google\Cloud\BareMetalSolution\V2\Lun;
 use Google\Cloud\BareMetalSolution\V2\Network;
 use Google\Cloud\BareMetalSolution\V2\NfsShare;
+use Google\Cloud\BareMetalSolution\V2\ProvisioningConfig;
+use Google\Cloud\BareMetalSolution\V2\RenameInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\RenameNetworkRequest;
+use Google\Cloud\BareMetalSolution\V2\RenameNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\RenameVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\ResetInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\ResizeVolumeRequest;
+use Google\Cloud\BareMetalSolution\V2\RestoreVolumeSnapshotRequest;
+use Google\Cloud\BareMetalSolution\V2\SSHKey;
 use Google\Cloud\BareMetalSolution\V2\StartInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\StopInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigRequest;
+use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigResponse;
 use Google\Cloud\BareMetalSolution\V2\UpdateInstanceRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\UpdateProvisioningConfigRequest;
 use Google\Cloud\BareMetalSolution\V2\UpdateVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\Volume;
+use Google\Cloud\BareMetalSolution\V2\VolumeSnapshot;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -82,32 +113,60 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
+ * This class is currently experimental and may be subject to changes. See {@see
+ * \Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient} for the stable
+ * implementation
  *
  * @experimental
  *
  * @internal
  *
+ * @method PromiseInterface createNfsShareAsync(CreateNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createProvisioningConfigAsync(CreateProvisioningConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createSSHKeyAsync(CreateSSHKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createVolumeSnapshotAsync(CreateVolumeSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteNfsShareAsync(DeleteNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteSSHKeyAsync(DeleteSSHKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteVolumeSnapshotAsync(DeleteVolumeSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface detachLunAsync(DetachLunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface disableInteractiveSerialConsoleAsync(DisableInteractiveSerialConsoleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface enableInteractiveSerialConsoleAsync(EnableInteractiveSerialConsoleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface evictLunAsync(EvictLunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface evictVolumeAsync(EvictVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLunAsync(GetLunRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNfsShareAsync(GetNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getProvisioningConfigAsync(GetProvisioningConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVolumeAsync(GetVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getVolumeSnapshotAsync(GetVolumeSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLunsAsync(ListLunsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNetworkUsageAsync(ListNetworkUsageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNfsSharesAsync(ListNfsSharesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listOSImagesAsync(ListOSImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listProvisioningQuotasAsync(ListProvisioningQuotasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSSHKeysAsync(ListSSHKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listVolumeSnapshotsAsync(ListVolumeSnapshotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listVolumesAsync(ListVolumesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface renameInstanceAsync(RenameInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface renameNetworkAsync(RenameNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface renameNfsShareAsync(RenameNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface renameVolumeAsync(RenameVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetInstanceAsync(ResetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resizeVolumeAsync(ResizeVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface restoreVolumeSnapshotAsync(RestoreVolumeSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startInstanceAsync(StartInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface stopInstanceAsync(StopInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface submitProvisioningConfigAsync(SubmitProvisioningConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateNetworkAsync(UpdateNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateNfsShareAsync(UpdateNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateProvisioningConfigAsync(UpdateProvisioningConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateVolumeAsync(UpdateVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 abstract class BareMetalSolutionBaseClient
 {
@@ -201,6 +260,44 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instanceConfig
+     *
+     * @return string The formatted instance_config resource.
+     */
+    public static function instanceConfigName(string $project, string $location, string $instanceConfig): string
+    {
+        return self::getPathTemplate('instanceConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'instance_config' => $instanceConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * interconnect_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $interconnectAttachment
+     *
+     * @return string The formatted interconnect_attachment resource.
+     */
+    public static function interconnectAttachmentName(string $project, string $region, string $interconnectAttachment): string
+    {
+        return self::getPathTemplate('interconnectAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'interconnect_attachment' => $interconnectAttachment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -278,6 +375,44 @@ abstract class BareMetalSolutionBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * network_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $networkConfig
+     *
+     * @return string The formatted network_config resource.
+     */
+    public static function networkConfigName(string $project, string $location, string $networkConfig): string
+    {
+        return self::getPathTemplate('networkConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'network_config' => $networkConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * provisioning_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $provisioningConfig
+     *
+     * @return string The formatted provisioning_config resource.
+     */
+    public static function provisioningConfigName(string $project, string $location, string $provisioningConfig): string
+    {
+        return self::getPathTemplate('provisioningConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'provisioning_config' => $provisioningConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * server_network_template resource.
      *
      * @param string $project
@@ -292,6 +427,25 @@ abstract class BareMetalSolutionBaseClient
             'project' => $project,
             'location' => $location,
             'server_network_template' => $serverNetworkTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ssh_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $sshKey
+     *
+     * @return string The formatted ssh_key resource.
+     */
+    public static function sshKeyName(string $project, string $location, string $sshKey): string
+    {
+        return self::getPathTemplate('sshKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'ssh_key' => $sshKey,
         ]);
     }
 
@@ -315,16 +469,63 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * volume_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $volumeConfig
+     *
+     * @return string The formatted volume_config resource.
+     */
+    public static function volumeConfigName(string $project, string $location, string $volumeConfig): string
+    {
+        return self::getPathTemplate('volumeConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'volume_config' => $volumeConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * volume_snapshot resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $volume
+     * @param string $snapshot
+     *
+     * @return string The formatted volume_snapshot resource.
+     */
+    public static function volumeSnapshotName(string $project, string $location, string $volume, string $snapshot): string
+    {
+        return self::getPathTemplate('volumeSnapshot')->render([
+            'project' => $project,
+            'location' => $location,
+            'volume' => $volume,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - instance: projects/{project}/locations/{location}/instances/{instance}
+     * - instanceConfig: projects/{project}/locations/{location}/instanceConfigs/{instance_config}
+     * - interconnectAttachment: projects/{project}/regions/{region}/interconnectAttachments/{interconnect_attachment}
      * - location: projects/{project}/locations/{location}
      * - lun: projects/{project}/locations/{location}/volumes/{volume}/luns/{lun}
      * - nFSShare: projects/{project}/locations/{location}/nfsShares/{nfs_share}
      * - network: projects/{project}/locations/{location}/networks/{network}
+     * - networkConfig: projects/{project}/locations/{location}/networkConfigs/{network_config}
+     * - provisioningConfig: projects/{project}/locations/{location}/provisioningConfigs/{provisioning_config}
      * - serverNetworkTemplate: projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}
+     * - sshKey: projects/{project}/locations/{location}/sshKeys/{ssh_key}
      * - volume: projects/{project}/locations/{location}/volumes/{volume}
+     * - volumeConfig: projects/{project}/locations/{location}/volumeConfigs/{volume_config}
+     * - volumeSnapshot: projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -417,9 +618,192 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Create an NFS share.
+     *
+     * The async variant is {@see self::createNfsShareAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/create_nfs_share.php
+     *
+     * @param CreateNfsShareRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createNfsShare(CreateNfsShareRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateNfsShare', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create new ProvisioningConfig.
+     *
+     * The async variant is {@see self::createProvisioningConfigAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/create_provisioning_config.php
+     *
+     * @param CreateProvisioningConfigRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ProvisioningConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createProvisioningConfig(CreateProvisioningConfigRequest $request, array $callOptions = []): ProvisioningConfig
+    {
+        return $this->startApiCall('CreateProvisioningConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Register a public SSH key in the specified project for use with the
+     * interactive serial console feature.
+     *
+     * The async variant is {@see self::createSSHKeyAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/create_ssh_key.php
+     *
+     * @param CreateSSHKeyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SSHKey
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createSSHKey(CreateSSHKeyRequest $request, array $callOptions = []): SSHKey
+    {
+        return $this->startApiCall('CreateSSHKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Takes a snapshot of a boot volume.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * The async variant is {@see self::createVolumeSnapshotAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/create_volume_snapshot.php
+     *
+     * @param CreateVolumeSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return VolumeSnapshot
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createVolumeSnapshot(CreateVolumeSnapshotRequest $request, array $callOptions = []): VolumeSnapshot
+    {
+        return $this->startApiCall('CreateVolumeSnapshot', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete an NFS share. The underlying volume is automatically deleted.
+     *
+     * The async variant is {@see self::deleteNfsShareAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/delete_nfs_share.php
+     *
+     * @param DeleteNfsShareRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteNfsShare(DeleteNfsShareRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteNfsShare', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a public SSH key registered in the specified project.
+     *
+     * The async variant is {@see self::deleteSSHKeyAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/delete_ssh_key.php
+     *
+     * @param DeleteSSHKeyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteSSHKey(DeleteSSHKeyRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteSSHKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a volume snapshot.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * The async variant is {@see self::deleteVolumeSnapshotAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/delete_volume_snapshot.php
+     *
+     * @param DeleteVolumeSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteVolumeSnapshot(DeleteVolumeSnapshotRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteVolumeSnapshot', $request, $callOptions)->wait();
+    }
+
+    /**
      * Detach LUN from Instance.
      *
      * The async variant is {@see self::detachLunAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/detach_lun.php
      *
      * @param DetachLunRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -441,9 +825,117 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Disable the interactive serial console feature on an instance.
+     *
+     * The async variant is {@see self::disableInteractiveSerialConsoleAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/disable_interactive_serial_console.php
+     *
+     * @param DisableInteractiveSerialConsoleRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function disableInteractiveSerialConsole(DisableInteractiveSerialConsoleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DisableInteractiveSerialConsole', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Enable the interactive serial console feature on an instance.
+     *
+     * The async variant is {@see self::enableInteractiveSerialConsoleAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/enable_interactive_serial_console.php
+     *
+     * @param EnableInteractiveSerialConsoleRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function enableInteractiveSerialConsole(EnableInteractiveSerialConsoleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('EnableInteractiveSerialConsole', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Skips lun's cooloff and deletes it now.
+     * Lun must be in cooloff state.
+     *
+     * The async variant is {@see self::evictLunAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/evict_lun.php
+     *
+     * @param EvictLunRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function evictLun(EvictLunRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('EvictLun', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Skips volume's cooloff and deletes it now.
+     * Volume must be in cooloff state.
+     *
+     * The async variant is {@see self::evictVolumeAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/evict_volume.php
+     *
+     * @param EvictVolumeRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function evictVolume(EvictVolumeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('EvictVolume', $request, $callOptions)->wait();
+    }
+
+    /**
      * Get details about a single server.
      *
      * The async variant is {@see self::getInstanceAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -469,6 +961,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::getLunAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/get_lun.php
+     *
      * @param GetLunRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -492,6 +986,8 @@ abstract class BareMetalSolutionBaseClient
      * Get details of a single network.
      *
      * The async variant is {@see self::getNetworkAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_network.php
      *
      * @param GetNetworkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -517,6 +1013,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::getNfsShareAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/get_nfs_share.php
+     *
      * @param GetNfsShareRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -537,9 +1035,37 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Get ProvisioningConfig by name.
+     *
+     * The async variant is {@see self::getProvisioningConfigAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_provisioning_config.php
+     *
+     * @param GetProvisioningConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ProvisioningConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getProvisioningConfig(GetProvisioningConfigRequest $request, array $callOptions = []): ProvisioningConfig
+    {
+        return $this->startApiCall('GetProvisioningConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Get details of a single storage volume.
      *
      * The async variant is {@see self::getVolumeAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_volume.php
      *
      * @param GetVolumeRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -561,9 +1087,38 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Returns the specified snapshot resource.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * The async variant is {@see self::getVolumeSnapshotAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_volume_snapshot.php
+     *
+     * @param GetVolumeSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return VolumeSnapshot
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getVolumeSnapshot(GetVolumeSnapshotRequest $request, array $callOptions = []): VolumeSnapshot
+    {
+        return $this->startApiCall('GetVolumeSnapshot', $request, $callOptions)->wait();
+    }
+
+    /**
      * List servers in a given project and location.
      *
      * The async variant is {@see self::listInstancesAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_instances.php
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -588,6 +1143,8 @@ abstract class BareMetalSolutionBaseClient
      * List storage volume luns for given storage volume.
      *
      * The async variant is {@see self::listLunsAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_luns.php
      *
      * @param ListLunsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -614,6 +1171,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::listNetworkUsageAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/list_network_usage.php
+     *
      * @param ListNetworkUsageRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -637,6 +1196,8 @@ abstract class BareMetalSolutionBaseClient
      * List network in a given project and location.
      *
      * The async variant is {@see self::listNetworksAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_networks.php
      *
      * @param ListNetworksRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -662,6 +1223,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::listNfsSharesAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/list_nfs_shares.php
+     *
      * @param ListNfsSharesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -682,9 +1245,118 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Retrieves the list of OS images which are currently approved.
+     *
+     * The async variant is {@see self::listOSImagesAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_os_images.php
+     *
+     * @param ListOSImagesRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listOSImages(ListOSImagesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListOSImages', $request, $callOptions);
+    }
+
+    /**
+     * List the budget details to provision resources on a given project.
+     *
+     * The async variant is {@see self::listProvisioningQuotasAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_provisioning_quotas.php
+     *
+     * @param ListProvisioningQuotasRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listProvisioningQuotas(ListProvisioningQuotasRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListProvisioningQuotas', $request, $callOptions);
+    }
+
+    /**
+     * Lists the public SSH keys registered for the specified project.
+     * These SSH keys are used only for the interactive serial console feature.
+     *
+     * The async variant is {@see self::listSSHKeysAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_ssh_keys.php
+     *
+     * @param ListSSHKeysRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSSHKeys(ListSSHKeysRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSSHKeys', $request, $callOptions);
+    }
+
+    /**
+     * Retrieves the list of snapshots for the specified volume.
+     * Returns a response with an empty list of snapshots if called
+     * for a non-boot volume.
+     *
+     * The async variant is {@see self::listVolumeSnapshotsAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_volume_snapshots.php
+     *
+     * @param ListVolumeSnapshotsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listVolumeSnapshots(ListVolumeSnapshotsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListVolumeSnapshots', $request, $callOptions);
+    }
+
+    /**
      * List storage volumes in a given project and location.
      *
      * The async variant is {@see self::listVolumesAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_volumes.php
      *
      * @param ListVolumesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -706,10 +1378,120 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * RenameInstance sets a new name for an instance.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * The async variant is {@see self::renameInstanceAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/rename_instance.php
+     *
+     * @param RenameInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Instance
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function renameInstance(RenameInstanceRequest $request, array $callOptions = []): Instance
+    {
+        return $this->startApiCall('RenameInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * RenameNetwork sets a new name for a network.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * The async variant is {@see self::renameNetworkAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/rename_network.php
+     *
+     * @param RenameNetworkRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Network
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function renameNetwork(RenameNetworkRequest $request, array $callOptions = []): Network
+    {
+        return $this->startApiCall('RenameNetwork', $request, $callOptions)->wait();
+    }
+
+    /**
+     * RenameNfsShare sets a new name for an nfsshare.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * The async variant is {@see self::renameNfsShareAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/rename_nfs_share.php
+     *
+     * @param RenameNfsShareRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NfsShare
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function renameNfsShare(RenameNfsShareRequest $request, array $callOptions = []): NfsShare
+    {
+        return $this->startApiCall('RenameNfsShare', $request, $callOptions)->wait();
+    }
+
+    /**
+     * RenameVolume sets a new name for a volume.
+     * Use with caution, previous names become immediately invalidated.
+     *
+     * The async variant is {@see self::renameVolumeAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/rename_volume.php
+     *
+     * @param RenameVolumeRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Volume
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function renameVolume(RenameVolumeRequest $request, array $callOptions = []): Volume
+    {
+        return $this->startApiCall('RenameVolume', $request, $callOptions)->wait();
+    }
+
+    /**
      * Perform an ungraceful, hard reset on a server. Equivalent to shutting the
      * power off and then turning it back on.
      *
      * The async variant is {@see self::resetInstanceAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/reset_instance.php
      *
      * @param ResetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -735,6 +1517,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::resizeVolumeAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/resize_volume.php
+     *
      * @param ResizeVolumeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -755,9 +1539,38 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Uses the specified snapshot to restore its parent volume.
+     * Returns INVALID_ARGUMENT if called for a non-boot volume.
+     *
+     * The async variant is {@see self::restoreVolumeSnapshotAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/restore_volume_snapshot.php
+     *
+     * @param RestoreVolumeSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function restoreVolumeSnapshot(RestoreVolumeSnapshotRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RestoreVolumeSnapshot', $request, $callOptions)->wait();
+    }
+
+    /**
      * Starts a server that was shutdown.
      *
      * The async variant is {@see self::startInstanceAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/start_instance.php
      *
      * @param StartInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -783,6 +1596,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::stopInstanceAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/stop_instance.php
+     *
      * @param StopInstanceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -803,9 +1618,37 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Submit a provisiong configuration for a given project.
+     *
+     * The async variant is {@see self::submitProvisioningConfigAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/submit_provisioning_config.php
+     *
+     * @param SubmitProvisioningConfigRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SubmitProvisioningConfigResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function submitProvisioningConfig(SubmitProvisioningConfigRequest $request, array $callOptions = []): SubmitProvisioningConfigResponse
+    {
+        return $this->startApiCall('SubmitProvisioningConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Update details of a single server.
      *
      * The async variant is {@see self::updateInstanceAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/update_instance.php
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -831,6 +1674,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::updateNetworkAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/update_network.php
+     *
      * @param UpdateNetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -855,6 +1700,8 @@ abstract class BareMetalSolutionBaseClient
      *
      * The async variant is {@see self::updateNfsShareAsync()} .
      *
+     * @example samples/V2/BareMetalSolutionClient/update_nfs_share.php
+     *
      * @param UpdateNfsShareRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -875,9 +1722,37 @@ abstract class BareMetalSolutionBaseClient
     }
 
     /**
+     * Update existing ProvisioningConfig.
+     *
+     * The async variant is {@see self::updateProvisioningConfigAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/update_provisioning_config.php
+     *
+     * @param UpdateProvisioningConfigRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ProvisioningConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateProvisioningConfig(UpdateProvisioningConfigRequest $request, array $callOptions = []): ProvisioningConfig
+    {
+        return $this->startApiCall('UpdateProvisioningConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Update details of a single storage volume.
      *
      * The async variant is {@see self::updateVolumeAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/update_volume.php
      *
      * @param UpdateVolumeRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -896,5 +1771,57 @@ abstract class BareMetalSolutionBaseClient
     public function updateVolume(UpdateVolumeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateVolume', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/get_location.php
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V2/BareMetalSolutionClient/list_locations.php
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

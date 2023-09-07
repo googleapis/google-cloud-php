@@ -63,6 +63,10 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. A deploy Job.
      *     @type \Google\Cloud\Deploy\V1\VerifyJob $verify_job
      *           Output only. A verify Job.
+     *     @type \Google\Cloud\Deploy\V1\PredeployJob $predeploy_job
+     *           Output only. A predeploy Job.
+     *     @type \Google\Cloud\Deploy\V1\PostdeployJob $postdeploy_job
+     *           Output only. A postdeploy Job.
      *     @type \Google\Cloud\Deploy\V1\CreateChildRolloutJob $create_child_rollout_job
      *           Output only. A createChildRollout Job.
      *     @type \Google\Cloud\Deploy\V1\AdvanceChildRolloutJob $advance_child_rollout_job
@@ -240,6 +244,68 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\VerifyJob::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A predeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PredeployJob predeploy_job = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\PredeployJob|null
+     */
+    public function getPredeployJob()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasPredeployJob()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Output only. A predeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PredeployJob predeploy_job = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\PredeployJob $var
+     * @return $this
+     */
+    public function setPredeployJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PredeployJob::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A postdeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PostdeployJob postdeploy_job = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\PostdeployJob|null
+     */
+    public function getPostdeployJob()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasPostdeployJob()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Output only. A postdeploy Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PostdeployJob postdeploy_job = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\PostdeployJob $var
+     * @return $this
+     */
+    public function setPostdeployJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PostdeployJob::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

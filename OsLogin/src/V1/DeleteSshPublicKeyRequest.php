@@ -25,6 +25,22 @@ class DeleteSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The fingerprint of the public key to update. Public keys are
+     *                     identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *                     is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
+     *                     {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\OsLogin\V1\DeleteSshPublicKeyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -31,6 +31,21 @@ class RemoveControlRequest extends \Google\Protobuf\Internal\Message
     private $control_id = '';
 
     /**
+     * @param string $servingConfig Required. The source ServingConfig resource name . Format:
+     *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
+     *                              Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Retail\V2\RemoveControlRequest
+     *
+     * @experimental
+     */
+    public static function build(string $servingConfig): self
+    {
+        return (new self())
+            ->setServingConfig($servingConfig);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

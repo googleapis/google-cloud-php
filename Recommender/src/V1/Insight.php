@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * An insight along with the information used to derive the insight. The insight
- * may have associated recomendations as well.
+ * may have associated recommendations as well.
  *
  * Generated from protobuf message <code>google.cloud.recommender.v1.Insight</code>
  */

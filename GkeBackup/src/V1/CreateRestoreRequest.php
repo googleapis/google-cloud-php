@@ -17,7 +17,7 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The RestorePlan within which to create the Restore.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,11 +31,11 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the Restore resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Restores in this RestorePlan.
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Restores in this RestorePlan.
      *
      * Generated from protobuf field <code>string restore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +43,7 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $parent    Required. The RestorePlan within which to create the Restore.
-     *                                                      Format: projects/&#42;/locations/&#42;/restorePlans/*
+     *                                                      Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      *                                                      Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
      * @param \Google\Cloud\GkeBackup\V1\Restore $restore   Required. The restore resource to create.
      * @param string                             $restoreId Required. The client-provided short name for the Restore resource.
@@ -75,17 +75,17 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The RestorePlan within which to create the Restore.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *     @type \Google\Cloud\GkeBackup\V1\Restore $restore
      *           Required. The restore resource to create.
      *     @type string $restore_id
      *           Required. The client-provided short name for the Restore resource.
      *           This name must:
-     *            - be between 1 and 63 characters long (inclusive)
-     *            - consist of only lower-case ASCII letters, numbers, and dashes
-     *            - start with a lower-case letter
-     *            - end with a lower-case letter or number
-     *            - be unique within the set of Restores in this RestorePlan.
+     *           - be between 1 and 63 characters long (inclusive)
+     *           - consist of only lower-case ASCII letters, numbers, and dashes
+     *           - start with a lower-case letter
+     *           - end with a lower-case letter or number
+     *           - be unique within the set of Restores in this RestorePlan.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,7 +95,7 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The RestorePlan within which to create the Restore.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -107,7 +107,7 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The RestorePlan within which to create the Restore.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -160,11 +160,11 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the Restore resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Restores in this RestorePlan.
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Restores in this RestorePlan.
      *
      * Generated from protobuf field <code>string restore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -177,11 +177,11 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-provided short name for the Restore resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Restores in this RestorePlan.
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Restores in this RestorePlan.
      *
      * Generated from protobuf field <code>string restore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

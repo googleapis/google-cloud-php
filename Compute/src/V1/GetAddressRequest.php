@@ -35,6 +35,23 @@ class GetAddressRequest extends \Google\Protobuf\Internal\Message
     private $region = '';
 
     /**
+     * @param string $project Project ID for this request.
+     * @param string $region  Name of the region for this request.
+     * @param string $address Name of the address resource to return.
+     *
+     * @return \Google\Cloud\Compute\V1\GetAddressRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $region, string $address): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setAddress($address);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

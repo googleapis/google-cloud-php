@@ -25,8 +25,8 @@ class ContinuousValidationEvent extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent $pod_event
      *           Pod event.
-     *     @type \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\UnsupportedPolicyEvent $unsupported_policy_event
-     *           Unsupported policy event.
+     *     @type \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ConfigErrorEvent $config_error_event
+     *           Config error event.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,32 +66,32 @@ class ContinuousValidationEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unsupported policy event.
+     * Config error event.
      *
-     * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.UnsupportedPolicyEvent unsupported_policy_event = 2;</code>
-     * @return \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\UnsupportedPolicyEvent|null
+     * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ConfigErrorEvent config_error_event = 4;</code>
+     * @return \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ConfigErrorEvent|null
      */
-    public function getUnsupportedPolicyEvent()
+    public function getConfigErrorEvent()
     {
-        return $this->readOneof(2);
+        return $this->readOneof(4);
     }
 
-    public function hasUnsupportedPolicyEvent()
+    public function hasConfigErrorEvent()
     {
-        return $this->hasOneof(2);
+        return $this->hasOneof(4);
     }
 
     /**
-     * Unsupported policy event.
+     * Config error event.
      *
-     * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.UnsupportedPolicyEvent unsupported_policy_event = 2;</code>
-     * @param \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\UnsupportedPolicyEvent $var
+     * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ConfigErrorEvent config_error_event = 4;</code>
+     * @param \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ConfigErrorEvent $var
      * @return $this
      */
-    public function setUnsupportedPolicyEvent($var)
+    public function setConfigErrorEvent($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\UnsupportedPolicyEvent::class);
-        $this->writeOneof(2, $var);
+        GPBUtil::checkMessage($var, \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ConfigErrorEvent::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

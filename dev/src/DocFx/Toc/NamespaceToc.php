@@ -26,7 +26,7 @@ use Google\Cloud\Dev\DocFx\Node\ClassNode;
 class NamespaceToc
 {
     protected array $items = [];
-    private bool $isVersionNamespace = false;
+    private ?string $version = null;
 
     public function __construct(
         private string $namespace,
@@ -37,6 +37,7 @@ class NamespaceToc
     {
         $uid = $classNode->getFullname();
         $namespace = $this->namespace . '\\';
+        $isVersionNamespace = false;
         $parts = explode('\\', str_replace('\\' . $namespace, '', $uid));
         if (count($parts) > 1) {
             $nestedNs = $this->namespace . '\\' . $parts[0];
@@ -45,12 +46,21 @@ class NamespaceToc
                 $this->items[$nestedUid] = new NamespaceToc($nestedNs, $parts[0]);
             }
             $this->items[$nestedUid]->addNode($classNode);
+            // new client namespace
+            if ($classNode->isServiceClass() && $parts[0] === 'Client') {
+                $isVersionNamespace = true;
+            }
         } else {
             $this->items[$uid] = new ClassToc($classNode);
-
-            if ($this->items[$uid]->isServiceClass()) {
-                $this->isVersionNamespace = true;
+            // previous client namespace
+            if ($classNode->isServiceClass()) {
+                $isVersionNamespace = true;
             }
+        }
+
+        if ($isVersionNamespace && is_null($this->version)) {
+            $parts = explode('\\', $this->namespace);
+            $this->version = array_pop($parts);
         }
     }
 
@@ -63,9 +73,9 @@ class NamespaceToc
         ];
 
         // Organize into "Services", "Messages", and "Enums" for version namespaces
-        // e.g. "\Google\Cloud\Vision\V1"
-        if ($this->isVersionNamespace) {
-            $tocArray['name'] = $this->namespace;
+        // e.g. "V1"
+        if ($this->version) {
+            $tocArray['name'] = $this->version;
             if ($services = $this->getServicesToc()) {
                 $tocArray['items'][] = [
                     'name' => 'Services',
@@ -109,8 +119,12 @@ class NamespaceToc
             }
         }
 
+        usort($services, function ($a, $b) {
+            return (false !== strpos($a['name'], '(beta)')) <=> (false !== strpos($b['name'], '(beta)'));
+        });
+
         // Do not wrap in namespace if none exist or we're in top level namespace
-        if (!$services || $this->isVersionNamespace) {
+        if (!$services || $this->version) {
             return $services;
         }
 
@@ -136,7 +150,7 @@ class NamespaceToc
         }
 
         // Do not wrap in namespace if none exist or we're in top level namespace
-        if (!$messages || $this->isVersionNamespace) {
+        if (!$messages || $this->version) {
             return $messages;
         }
 
@@ -161,7 +175,7 @@ class NamespaceToc
             }
         }
         // Do not wrap in namespace if none exist or we're in top level namespace
-        if (!$enums || $this->isVersionNamespace) {
+        if (!$enums || $this->version) {
             return $enums;
         }
 
@@ -191,7 +205,7 @@ class NamespaceToc
             }
         }
         // Do not wrap in namespace if none exist or we're in top level namespace
-        if (!$others || $this->isVersionNamespace) {
+        if (!$others || $this->version) {
             return $others;
         }
 

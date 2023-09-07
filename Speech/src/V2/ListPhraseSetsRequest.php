@@ -50,6 +50,21 @@ class ListPhraseSetsRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
+     * @param string $parent Required. The project and location of PhraseSet resources to list. The
+     *                       expected format is `projects/{project}/locations/{location}`. Please see
+     *                       {@see SpeechClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Speech\V2\ListPhraseSetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
