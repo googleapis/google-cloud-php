@@ -114,6 +114,13 @@ class Index extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $index_update_method = 0;
+    /**
+     * Immutable. Customer-managed encryption key spec for an Index. If set, this
+     * Index and all sub-resources of this Index will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 17 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $encryption_spec = null;
 
     /**
      * Constructor.
@@ -171,6 +178,9 @@ class Index extends \Google\Protobuf\Internal\Message
      *     @type int $index_update_method
      *           Immutable. The update method to use with this Index. If not set,
      *           BATCH_UPDATE will be used by default.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Immutable. Customer-managed encryption key spec for an Index. If set, this
+     *           Index and all sub-resources of this Index will be secured by this key.
      * }
      */
     public function __construct($data = NULL) {
@@ -578,6 +588,44 @@ class Index extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\Index\IndexUpdateMethod::class);
         $this->index_update_method = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Customer-managed encryption key spec for an Index. If set, this
+     * Index and all sub-resources of this Index will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 17 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Immutable. Customer-managed encryption key spec for an Index. If set, this
+     * Index and all sub-resources of this Index will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 17 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }
