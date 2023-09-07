@@ -58,6 +58,7 @@ use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\Product;
 use Google\Cloud\Channel\V1\PurchasableOffer;
 use Google\Cloud\Channel\V1\PurchasableSku;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
 use Google\Cloud\Channel\V1\RebillingBasis;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 use Google\Cloud\Channel\V1\RenewalSettings;
@@ -373,12 +374,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $offer2 = 'offer2-1548812529';
         $purchaseOrderId2 = 'purchaseOrderId2-1437424035';
-        $billingAccount = 'billingAccount-545871767';
+        $billingAccount2 = 'billingAccount2-596754980';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer2);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId2);
-        $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setBillingAccount($billingAccount2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3131,6 +3132,68 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function queryEligibleBillingAccountsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new QueryEligibleBillingAccountsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $skus = [];
+        $response = $gapicClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/QueryEligibleBillingAccounts', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCustomer();
+        $this->assertProtobufEquals($formattedCustomer, $actualValue);
+        $actualValue = $actualRequestObject->getSkus();
+        $this->assertProtobufEquals($skus, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryEligibleBillingAccountsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $skus = [];
+        try {
+            $gapicClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

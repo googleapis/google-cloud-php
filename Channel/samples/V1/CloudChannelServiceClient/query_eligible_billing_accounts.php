@@ -22,44 +22,46 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START cloudchannel_v1_generated_CloudChannelService_ListPurchasableOffers_sync]
+// [START cloudchannel_v1_generated_CloudChannelService_QueryEligibleBillingAccounts_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Channel\V1\CloudChannelServiceClient;
-use Google\Cloud\Channel\V1\PurchasableOffer;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
 
 /**
- * Lists the following:
- *
- * * Offers that you can purchase for a customer.
- * * Offers that you can change for an entitlement.
+ * Lists the billing accounts that are eligible to purchase particular SKUs
+ * for a given customer.
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED:
- * * The customer doesn't belong to the reseller
- * * The reseller is not authorized to transact on this Product. See
- * https://support.google.com/channelservices/answer/9759265
+ * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
  * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
  *
- * @param string $formattedCustomer The resource name of the customer to list Offers for.
- *                                  Format: accounts/{account_id}/customers/{customer_id}. Please see
+ * Return value:
+ * Based on the provided list of SKUs, returns a list of SKU groups that must
+ * be purchased using the same billing account and the billing accounts
+ * eligible to purchase each SKU group.
+ *
+ * @param string $formattedCustomer The resource name of the customer to list eligible billing
+ *                                  accounts for. Format: accounts/{account_id}/customers/{customer_id}. Please see
  *                                  {@see CloudChannelServiceClient::customerName()} for help formatting this field.
+ * @param string $skusElement       List of SKUs to list eligible billing accounts for. At least one
+ *                                  SKU is required. Format: products/{product_id}/skus/{sku_id}.
  */
-function list_purchasable_offers_sample(string $formattedCustomer): void
-{
+function query_eligible_billing_accounts_sample(
+    string $formattedCustomer,
+    string $skusElement
+): void {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $skus = [$skusElement,];
+
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listPurchasableOffers($formattedCustomer);
-
-        /** @var PurchasableOffer $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var QueryEligibleBillingAccountsResponse $response */
+        $response = $cloudChannelServiceClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -77,7 +79,8 @@ function list_purchasable_offers_sample(string $formattedCustomer): void
 function callSample(): void
 {
     $formattedCustomer = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
+    $skusElement = '[SKUS]';
 
-    list_purchasable_offers_sample($formattedCustomer);
+    query_eligible_billing_accounts_sample($formattedCustomer, $skusElement);
 }
-// [END cloudchannel_v1_generated_CloudChannelService_ListPurchasableOffers_sync]
+// [END cloudchannel_v1_generated_CloudChannelService_QueryEligibleBillingAccounts_sync]

@@ -50,10 +50,12 @@ use Google\Type\Date;
  * * The new config will not modify exports used with other configs.
  * Changes to the config may be immediate, but may take up to 24 hours.
  * * There is a limit of ten configs for any ChannelPartner or
+ * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+ * for any
  * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
  * * The contained
  * [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
- * vaule must be different from the value used in the current config for a
+ * value must be different from the value used in the current config for a
  * ChannelPartner.
  *
  * Possible Error Codes:
