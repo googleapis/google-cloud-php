@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\DatabaseEntity;
-use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest\DBTreeType;
 
 /**
  * Describes the database entities tree for a specific conversion workspace
@@ -41,9 +40,8 @@ use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest\DBTreeType;
  *                                             are described. Must be in the form of:
  *                                             projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}. Please see
  *                                             {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
- * @param int    $tree                         The tree to fetch.
  */
-function describe_database_entities_sample(string $formattedConversionWorkspace, int $tree): void
+function describe_database_entities_sample(string $formattedConversionWorkspace): void
 {
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
@@ -51,10 +49,7 @@ function describe_database_entities_sample(string $formattedConversionWorkspace,
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataMigrationServiceClient->describeDatabaseEntities(
-            $formattedConversionWorkspace,
-            $tree
-        );
+        $response = $dataMigrationServiceClient->describeDatabaseEntities($formattedConversionWorkspace);
 
         /** @var DatabaseEntity $element */
         foreach ($response as $element) {
@@ -81,8 +76,7 @@ function callSample(): void
         '[LOCATION]',
         '[CONVERSION_WORKSPACE]'
     );
-    $tree = DBTreeType::DB_TREE_TYPE_UNSPECIFIED;
 
-    describe_database_entities_sample($formattedConversionWorkspace, $tree);
+    describe_database_entities_sample($formattedConversionWorkspace);
 }
 // [END datamigration_v1_generated_DataMigrationService_DescribeDatabaseEntities_sync]

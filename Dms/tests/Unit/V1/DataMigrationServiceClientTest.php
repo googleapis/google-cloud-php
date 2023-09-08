@@ -35,7 +35,6 @@ use Google\Cloud\CloudDms\V1\DatabaseEngineInfo;
 use Google\Cloud\CloudDms\V1\DatabaseEntity;
 use Google\Cloud\CloudDms\V1\DatabaseEntityType;
 use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse;
-use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest\DBTreeType;
 use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesResponse;
 use Google\Cloud\CloudDms\V1\FetchStaticIpsResponse;
 use Google\Cloud\CloudDms\V1\ImportRulesFileFormat;
@@ -1712,8 +1711,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $tree = DBTreeType::DB_TREE_TYPE_UNSPECIFIED;
-        $response = $gapicClient->describeDatabaseEntities($formattedConversionWorkspace, $tree);
+        $response = $gapicClient->describeDatabaseEntities($formattedConversionWorkspace);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1725,8 +1723,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DescribeDatabaseEntities', $actualFuncCall);
         $actualValue = $actualRequestObject->getConversionWorkspace();
         $this->assertProtobufEquals($formattedConversionWorkspace, $actualValue);
-        $actualValue = $actualRequestObject->getTree();
-        $this->assertProtobufEquals($tree, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1750,9 +1746,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $tree = DBTreeType::DB_TREE_TYPE_UNSPECIFIED;
         try {
-            $gapicClient->describeDatabaseEntities($formattedConversionWorkspace, $tree);
+            $gapicClient->describeDatabaseEntities($formattedConversionWorkspace);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
