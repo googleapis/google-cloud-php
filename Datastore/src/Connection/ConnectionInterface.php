@@ -21,7 +21,8 @@ namespace Google\Cloud\Datastore\Connection;
  * Represents a connection to
  * [Datastore](https://cloud.google.com/datastore/).
  *
- * @internal
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

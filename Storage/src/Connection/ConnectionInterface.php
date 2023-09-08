@@ -20,6 +20,9 @@ namespace Google\Cloud\Storage\Connection;
 /**
  * Represents a connection to
  * [Cloud Storage](https://cloud.google.com/storage/).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

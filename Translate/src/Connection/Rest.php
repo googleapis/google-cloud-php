@@ -23,8 +23,8 @@ use Google\Cloud\Translate\V2;
 
 if (false) {
     /**
-     * This class is deprecated. Use Google\Cloud\Translate\V2\Connection\Rest instead.
-     * @deprecated
+     * @deprecated This class is no longer supported and will be removed in a future
+     * release.
      */
     class Rest {}
 }
@@ -32,8 +32,7 @@ if (false) {
 class_exists(V2\Rest::class);
 @trigger_error(
     'Google\Cloud\Translate\Rest is deprecated and will be ' .
-    'removed in a future release. Use ' .
-    'Google\Cloud\Translate\V2\Rest instead',
+    'removed in a future release.',
     E_USER_DEPRECATED
 );
 

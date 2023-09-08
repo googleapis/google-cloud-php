@@ -20,6 +20,9 @@ namespace Google\Cloud\Logging\Connection;
 /**
  * Represents a connection to
  * [Stackdriver Logging](https://cloud.google.com/logging/).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

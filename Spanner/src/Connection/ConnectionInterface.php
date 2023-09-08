@@ -22,7 +22,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 /**
  * Describes a connection to the Cloud Spanner API
  *
- * @internal
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

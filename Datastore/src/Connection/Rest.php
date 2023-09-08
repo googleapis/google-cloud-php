@@ -28,7 +28,8 @@ use Google\Cloud\Datastore\DatastoreClient;
  * Implementation of the
  * [Google Datastore JSON API](https://cloud.google.com/datastore/reference/rest/).
  *
- * @internal
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Rest implements ConnectionInterface
 {

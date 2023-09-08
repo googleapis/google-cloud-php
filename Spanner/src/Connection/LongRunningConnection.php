@@ -22,6 +22,9 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 /**
  * Represents a connection to the Long Running Operations portion of the
  * Cloud Spanner API.
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class LongRunningConnection implements LongRunningConnectionInterface
 {

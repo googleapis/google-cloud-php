@@ -26,6 +26,9 @@ use Google\Cloud\Language\LanguageClient;
 /**
  * Implementation of the
  * [Google Natural Language JSON API](https://cloud.google.com/natural-language/reference/rest/).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Rest implements ConnectionInterface
 {

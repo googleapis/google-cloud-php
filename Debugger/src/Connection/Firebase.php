@@ -23,6 +23,9 @@ use Kreait\Firebase\Database;
 
 /**
  * Implementation of the Firebase connection
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Firebase implements ConnectionInterface
 {

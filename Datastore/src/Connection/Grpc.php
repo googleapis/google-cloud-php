@@ -43,7 +43,8 @@ use Google\Protobuf\NullValue;
  * Implementation of
  * [google.datastore.v1](https://cloud.google.com/datastore/docs/reference/data/rpc/google.datastore.v1).
  *
- * @internal
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Grpc implements ConnectionInterface
 {

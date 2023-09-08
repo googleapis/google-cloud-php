@@ -20,6 +20,9 @@ namespace Google\Cloud\Vision\Connection;
 /**
  * Represents a connection to
  * [Cloud Vision](https://cloud.google.com/vision).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

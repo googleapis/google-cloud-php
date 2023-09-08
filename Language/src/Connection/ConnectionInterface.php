@@ -20,6 +20,9 @@ namespace Google\Cloud\Language\Connection;
 /**
  * Represents a connection to
  * [Google Natural Language](https://cloud.google.com/natural-language/).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

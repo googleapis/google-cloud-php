@@ -25,6 +25,9 @@ use Google\Cloud\Debugger\DebuggerClient;
 /**
  * Implementation of the
  * [Google Debugger REST API](https://cloud.google.com/debugger/docs/reference/rest/).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Rest implements ConnectionInterface
 {

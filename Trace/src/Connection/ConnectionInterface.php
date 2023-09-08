@@ -20,6 +20,9 @@ namespace Google\Cloud\Trace\Connection;
 /**
  * Represents a connection to
  * [Trace](https://cloud.google.com/trace).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

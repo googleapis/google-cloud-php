@@ -22,6 +22,9 @@ use Google\Cloud\Core\Upload\AbstractUploader;
 /**
  * Represents a connection to
  * [BigQuery](https://cloud.google.com/bigquery/).
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 interface ConnectionInterface
 {

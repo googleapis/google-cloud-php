@@ -21,6 +21,9 @@ use Google\Cloud\Core\Iam\IamConnectionInterface;
 
 /**
  * Proxy IAM service calls to the Pub/Sub Topic IAM resources
+ * 
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class IamTopic implements IamConnectionInterface
 {
