@@ -59,6 +59,7 @@ class BigQueryClient
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     protected $connection;
 

@@ -73,6 +73,7 @@ class StorageClient
 
     /**
      * @var ConnectionInterface Represents a connection to Storage.
+     * @internal
      */
     protected $connection;
 

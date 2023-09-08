@@ -61,6 +61,8 @@ class SigningHelper
      *
      * @param ConnectionInterface $connection A connection to the Cloud Storage
      *        API.
+     *        @internal This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -111,6 +113,8 @@ class SigningHelper
      *
      * @param ConnectionInterface $connection A connection to the Cloud Storage
      *        API.
+     *        @internal This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -207,6 +211,8 @@ class SigningHelper
      *
      * @param ConnectionInterface $connection A connection to the Cloud Storage
      *        API.
+     *        @internal This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -362,6 +368,8 @@ class SigningHelper
      * Create an HTTP POST policy using v4 signing.
      *
      * @param ConnectionInterface $connection A Connection to Google Cloud Storage.
+     *        @internal This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -780,6 +788,8 @@ class SigningHelper
      * Get the credentials for use with signing.
      *
      * @param ConnectionInterface $connection A Storage connection object.
+     *        @internal This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param array $options Configuration options.
      * @return array A list containing a credentials object at index 0 and the
      *        modified options at index 1.

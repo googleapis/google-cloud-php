@@ -90,6 +90,7 @@ class Subscription
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     protected $connection;
 
@@ -158,6 +159,8 @@ class Subscription
      * but you can instantiate it directly as well.
      *
      * @param ConnectionInterface $connection The service connection object
+     *        @internal This object is created by PubSubClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The current project
      * @param string $name The subscription name
      * @param string $topicName The topic name the subscription is attached to

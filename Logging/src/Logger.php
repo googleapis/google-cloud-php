@@ -66,6 +66,7 @@ class Logger
 
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
+     * @internal
      */
     protected $connection;
 
@@ -115,6 +116,8 @@ class Logger
     /**
      * @param ConnectionInterface $connection Represents a connection to
      *        Stackdriver Logging.
+     *        @internal This object is created by LoggingClient,
+     *        and should not be instantiated outside of this client.
      * @param string $name The name of the log to write entries to.
      * @param string $projectId The project's ID.
      * @param array $resource [optional] The

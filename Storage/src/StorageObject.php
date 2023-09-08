@@ -57,6 +57,7 @@ class StorageObject
 
     /**
      * @var ConnectionInterface Represents a connection to Cloud Storage.
+     * @internal
      */
     protected $connection;
 
@@ -78,6 +79,8 @@ class StorageObject
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
+     *        @internal This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param string $name The object's name.
      * @param string $bucket The name of the bucket the object is contained in.
      * @param string $generation [optional] The generation of the object.

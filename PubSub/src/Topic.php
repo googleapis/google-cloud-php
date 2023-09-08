@@ -56,6 +56,7 @@ class Topic
 
     /**
      * @var ConnectionInterface A connection to the Google Cloud Platform API
+     * @internal
      */
     protected $connection;
 
@@ -103,7 +104,9 @@ class Topic
      * Create a PubSub topic.
      *
      * @param ConnectionInterface $connection A connection to the Google Cloud
-     *        Platform service
+     *        Platform service.
+     *        @internal This object is created by PubSubClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The project Id
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.

@@ -56,6 +56,7 @@ class VisionClient
 
     /**
      * @var Connection\ConnectionInterface
+     * @internal
      */
     protected $connection;
 

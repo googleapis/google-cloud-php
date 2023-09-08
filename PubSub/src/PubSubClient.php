@@ -93,6 +93,7 @@ class PubSubClient
 
     /**
      * @var Connection\ConnectionInterface
+     * @internal
      */
     protected $connection;
 

@@ -100,6 +100,7 @@ class SpannerClient
 
     /**
      * @var Connection\ConnectionInterface
+     * @internal
      */
     protected $connection;
 
