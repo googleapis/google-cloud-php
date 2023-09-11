@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * This names the container into which the channel will be
      * written, this does not name the newly created channel. The resulting
@@ -35,8 +36,9 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     private $notification_channel = null;
 
     /**
-     * @param string                                          $name                Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                                                                             which to execute the request. The format is:
+     * @param string                                          $name                Required. The
+     *                                                                             [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     *                                                                             to execute the request. The format is:
      *
      *                                                                             projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -64,8 +66,9 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *           which to execute the request. The format is:
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     *           to execute the request. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *           This names the container into which the channel will be
      *           written, this does not name the newly created channel. The resulting
@@ -81,8 +84,9 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * This names the container into which the channel will be
      * written, this does not name the newly created channel. The resulting
@@ -98,8 +102,9 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * This names the container into which the channel will be
      * written, this does not name the newly created channel. The resulting

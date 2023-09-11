@@ -482,6 +482,10 @@ class AlertPolicyServiceGapicClient
     /**
      * Creates a new alerting policy.
      *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
+     *
      * Sample code:
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
@@ -494,8 +498,9 @@ class AlertPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string      $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *                                  which to create the alerting policy. The format is:
+     * @param string      $name         Required. The
+     *                                  [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                                  to create the alerting policy. The format is:
      *
      *                                  projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -506,9 +511,9 @@ class AlertPolicyServiceGapicClient
      *                                  a normalized representation of this name as a prefix but adds a suffix of
      *                                  the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
      *                                  container.
-     * @param AlertPolicy $alertPolicy  Required. The requested alerting policy. You should omit the `name` field in this
-     *                                  policy. The name will be returned in the new policy, including
-     *                                  a new `[ALERT_POLICY_ID]` value.
+     * @param AlertPolicy $alertPolicy  Required. The requested alerting policy. You should omit the `name` field
+     *                                  in this policy. The name will be returned in the new policy, including a
+     *                                  new `[ALERT_POLICY_ID]` value.
      * @param array       $optionalArgs {
      *     Optional.
      *
@@ -536,6 +541,10 @@ class AlertPolicyServiceGapicClient
 
     /**
      * Deletes an alerting policy.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * Sample code:
      * ```
@@ -642,8 +651,9 @@ class AlertPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
-     *                             whose alert policies are to be listed. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *                             alert policies are to be listed. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -719,6 +729,10 @@ class AlertPolicyServiceGapicClient
      * a new one or replace only certain fields in the current alerting policy by
      * specifying the fields to be updated via `updateMask`. Returns the
      * updated alerting policy.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * Sample code:
      * ```
