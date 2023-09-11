@@ -54,19 +54,20 @@ use Google\LongRunning\Operation;
  * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
  * try {
  *     $formattedParent = $policyBasedRoutingServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $policyBasedRouteId = 'policy_based_route_id';
  *     $policyBasedRoute = new PolicyBasedRoute();
- *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+ *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+ *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $policyBasedRoutingServiceClient->resumeOperation($operationName, 'createPolicyBasedRoute');
@@ -76,7 +77,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -90,6 +91,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient} to
+ * use the new surface.
  */
 class PolicyBasedRoutingServiceGapicClient
 {
@@ -176,7 +181,7 @@ class PolicyBasedRoutingServiceGapicClient
     {
         if (self::$policyBasedRouteNameTemplate == null) {
             self::$policyBasedRouteNameTemplate = new PathTemplate(
-                'projects/{project}/{location}/global/PolicyBasedRoutes/{policy_based_route}'
+                'projects/{project}/locations/global/PolicyBasedRoutes/{policy_based_route}'
             );
         }
 
@@ -235,19 +240,14 @@ class PolicyBasedRoutingServiceGapicClient
      * policy_based_route resource.
      *
      * @param string $project
-     * @param string $location
      * @param string $policyBasedRoute
      *
      * @return string The formatted policy_based_route resource.
      */
-    public static function policyBasedRouteName(
-        $project,
-        $location,
-        $policyBasedRoute
-    ) {
+    public static function policyBasedRouteName($project, $policyBasedRoute)
+    {
         return self::getPolicyBasedRouteNameTemplate()->render([
             'project' => $project,
-            'location' => $location,
             'policy_based_route' => $policyBasedRoute,
         ]);
     }
@@ -258,7 +258,7 @@ class PolicyBasedRoutingServiceGapicClient
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{resource_id}
-     * - policyBasedRoute: projects/{project}/{location}/global/PolicyBasedRoutes/{policy_based_route}
+     * - policyBasedRoute: projects/{project}/locations/global/PolicyBasedRoutes/{policy_based_route}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -403,19 +403,20 @@ class PolicyBasedRoutingServiceGapicClient
      * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
      * try {
      *     $formattedParent = $policyBasedRoutingServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $policyBasedRouteId = 'policy_based_route_id';
      *     $policyBasedRoute = new PolicyBasedRoute();
-     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $policyBasedRoutingServiceClient->resumeOperation($operationName, 'createPolicyBasedRoute');
@@ -425,7 +426,7 @@ class PolicyBasedRoutingServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -435,21 +436,20 @@ class PolicyBasedRoutingServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent           Required. The parent resource's name of the PolicyBasedRoute.
-     * @param PolicyBasedRoute $policyBasedRoute Required. Initial values for a new Policy Based Route.
-     * @param array            $optionalArgs     {
+     * @param string           $parent             Required. The parent resource's name of the PolicyBasedRoute.
+     * @param string           $policyBasedRouteId Required. Unique id for the Policy Based Route to create.
+     * @param PolicyBasedRoute $policyBasedRoute   Required. Initial values for a new Policy Based Route.
+     * @param array            $optionalArgs       {
      *     Optional.
      *
-     *     @type string $policyBasedRouteId
-     *           Optional. Unique id for the Policy Based Route to create.
      *     @type string $requestId
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes since the first request.
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -468,20 +468,16 @@ class PolicyBasedRoutingServiceGapicClient
      */
     public function createPolicyBasedRoute(
         $parent,
+        $policyBasedRouteId,
         $policyBasedRoute,
         array $optionalArgs = []
     ) {
         $request = new CreatePolicyBasedRouteRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
+        $request->setPolicyBasedRouteId($policyBasedRouteId);
         $request->setPolicyBasedRoute($policyBasedRoute);
         $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['policyBasedRouteId'])) {
-            $request->setPolicyBasedRouteId(
-                $optionalArgs['policyBasedRouteId']
-            );
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -507,7 +503,7 @@ class PolicyBasedRoutingServiceGapicClient
      * ```
      * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
      * try {
-     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[LOCATION]', '[POLICY_BASED_ROUTE]');
+     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
      *     $operationResponse = $policyBasedRoutingServiceClient->deletePolicyBasedRoute($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -542,13 +538,13 @@ class PolicyBasedRoutingServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes after the first request.
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes after the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -596,7 +592,7 @@ class PolicyBasedRoutingServiceGapicClient
      * ```
      * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
      * try {
-     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[LOCATION]', '[POLICY_BASED_ROUTE]');
+     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
      *     $response = $policyBasedRoutingServiceClient->getPolicyBasedRoute($formattedName);
      * } finally {
      *     $policyBasedRoutingServiceClient->close();

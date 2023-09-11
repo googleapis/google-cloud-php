@@ -12,6 +12,15 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'DeletePolicyBasedRoute' => [
                 'longRunning' => [
@@ -21,6 +30,27 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPolicyBasedRoute' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'ListPolicyBasedRoutes' => [
@@ -32,6 +62,21 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getPolicyBasedRoutes',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'templateMap' => [
+                'location' => 'projects/{project}/locations/{location}',
+                'network' => 'projects/{project}/global/networks/{resource_id}',
+                'policyBasedRoute' => 'projects/{project}/locations/global/PolicyBasedRoutes/{policy_based_route}',
             ],
         ],
     ],
