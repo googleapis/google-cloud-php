@@ -24,8 +24,7 @@ use Google\Cloud\Debugger\Debuggee;
  * Represents a connection to
  * [Debugger](https://cloud.google.com/debugger).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 interface ConnectionInterface
 {

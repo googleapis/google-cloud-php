@@ -71,8 +71,7 @@ class Notification
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
-     *        Storage.
-     *        @internal This object is created by StorageClient,
+     *        Storage. This object is created by StorageClient,
      *        and should not be instantiated outside of this client.
      * @param string $id The notification's ID.
      * @param string $bucket The name of the bucket associated with this

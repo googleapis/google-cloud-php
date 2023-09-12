@@ -62,8 +62,7 @@ class Operation
 
     /**
      * @param ConnectionInterface $connection A connection to Google Cloud
-     *        Spanner.
-     *        @internal This object is created by SpannerClient,
+     *        Spanner. This object is created by SpannerClient,
      *        and should not be instantiated outside of this client.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit

@@ -30,8 +30,7 @@ use Google\Cloud\Debugger\V2\Debugger2Client;
  * Implementation of the
  * [Google Debugger gRPC API](https://cloud.google.com/debugger/docs/).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {

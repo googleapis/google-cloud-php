@@ -21,8 +21,7 @@ namespace Google\Cloud\PubSub\Connection;
  * Represents a connection to
  * [Pub/Sub](https://cloud.google.com/pubsub).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 interface ConnectionInterface
 {

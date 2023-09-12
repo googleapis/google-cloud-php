@@ -22,8 +22,7 @@ use Google\Cloud\Core\Iam\IamConnectionInterface;
 /**
  * Class Description
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class IamTable implements IamConnectionInterface
 {

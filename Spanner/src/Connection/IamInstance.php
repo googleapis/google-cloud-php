@@ -22,8 +22,7 @@ use Google\Cloud\Core\Iam\IamConnectionInterface;
 /**
  * Represents a connection to the Cloud Spanner Instance IAM API.
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class IamInstance implements IamConnectionInterface
 {

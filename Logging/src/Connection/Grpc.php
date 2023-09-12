@@ -34,8 +34,7 @@ use Google\Cloud\Logging\V2\MetricsServiceV2Client;
  * Implementation of the
  * [Google Stackdriver Logging gRPC API](https://cloud.google.com/logging/docs/).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {

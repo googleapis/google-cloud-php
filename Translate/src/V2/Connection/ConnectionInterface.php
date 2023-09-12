@@ -23,8 +23,7 @@ use Google\Cloud\Core\Exception\ServiceException;
  * Represents a connection to
  * [Google Cloud Translation](https://cloud.google.com/translation/).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 interface ConnectionInterface
 {

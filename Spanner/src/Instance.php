@@ -126,8 +126,7 @@ class Instance
      * Create an object representing a Cloud Spanner instance.
      *
      * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API.
-     *        @internal This object is created by SpannerClient,
+     *        Cloud Spanner Admin API. This object is created by SpannerClient,
      *        and should not be instantiated outside of this client.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.

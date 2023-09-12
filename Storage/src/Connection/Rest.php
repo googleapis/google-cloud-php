@@ -42,8 +42,7 @@ use Ramsey\Uuid\Uuid;
  * Implementation of the
  * [Google Cloud Storage JSON API](https://cloud.google.com/storage/docs/json_api/).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Rest implements ConnectionInterface
 {

@@ -49,8 +49,7 @@ use Google\Cloud\PubSub\V1\CloudStorageConfig;
  * Implementation of the
  * [Google Pub/Sub gRPC API](https://cloud.google.com/pubsub/docs/reference/rpc/).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {

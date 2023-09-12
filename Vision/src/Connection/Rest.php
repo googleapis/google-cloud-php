@@ -27,8 +27,7 @@ use Google\Cloud\Vision\VisionClient;
  * Implementation of the
  * [Google Cloud Vision JSON API](https://cloud.google.com/vision/reference/rest/).
  *
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Rest implements ConnectionInterface
 {

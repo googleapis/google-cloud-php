@@ -28,8 +28,7 @@ use Google\Cloud\Trace\V2\Span;
  * Implementation of the
  * [Google Trace gRPC API](https://cloud.google.com/trace/docs/).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {

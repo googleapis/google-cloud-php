@@ -96,8 +96,7 @@ class Bucket
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
-     *        Storage.
-     *        @internal This object is created by StorageClient,
+     *        Storage. This object is created by StorageClient,
      *        and should not be instantiated outside of this client.
      * @param string $name The bucket's name.
      * @param array $info [optional] The bucket's metadata.

@@ -104,8 +104,7 @@ class Topic
      * Create a PubSub topic.
      *
      * @param ConnectionInterface $connection A connection to the Google Cloud
-     *        Platform service.
-     *        @internal This object is created by PubSubClient,
+     *        Platform service. This object is created by PubSubClient,
      *        and should not be instantiated outside of this client.
      * @param string $projectId The project Id
      * @param string $name The topic name

@@ -53,7 +53,7 @@ class Model
 
     /**
      * @param ConnectionInterface $connection Represents a connection to BigQuery.
-     *        @internal This object is created by BigQueryClient,
+     *        This object is created by BigQueryClient,
      *        and should not be instantiated outside of this client.
      * @param string $id The model's ID.
      * @param string $datasetId The dataset's ID.

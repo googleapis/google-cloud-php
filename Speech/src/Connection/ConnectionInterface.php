@@ -21,8 +21,7 @@ namespace Google\Cloud\Speech\Connection;
  * Represents a connection to
  * [Google Cloud Speech](https://cloud.google.com/speech/).
  *
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 interface ConnectionInterface
 {

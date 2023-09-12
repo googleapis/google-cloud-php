@@ -74,7 +74,7 @@ class Operation
      * Create an operation
      *
      * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
-     *        @internal This object is created by DatastoreClient,
+     *        This object is created by DatastoreClient,
      *        and should not be instantiated outside of this client.
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.

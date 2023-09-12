@@ -70,8 +70,7 @@ class QueryResults implements \IteratorAggregate
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
-     *        BigQuery.
-     *        @internal This object is created by BigQueryClient,
+     *        BigQuery. This object is created by BigQueryClient,
      *        and should not be instantiated outside of this client.
      * @param string $jobId The job's ID.
      * @param string $projectId The project's ID.

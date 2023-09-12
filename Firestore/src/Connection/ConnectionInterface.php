@@ -20,8 +20,7 @@ namespace Google\Cloud\Firestore\Connection;
 /**
  * Represents a connection to Cloud Firestore.
  *
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 interface ConnectionInterface
 {

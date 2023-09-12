@@ -106,7 +106,7 @@ class Debuggee
      * Instantiate a new Debuggee.
      *
      * @param ConnectionInterface $connection
-     *        @internal This object is created by DebuggerClient,
+     *        This object is created by DebuggerClient,
      *        and should not be instantiated outside of this client.
      * @param array $info [optional] {
      *      Configuration options.

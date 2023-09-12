@@ -28,8 +28,7 @@ use Google\Cloud\Translate\V2\TranslateClient;
  * Implementation of the
  * [Google Cloud Translation REST API](https://cloud.google.com/translation/docs/how-to).
  * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Rest implements ConnectionInterface
 {

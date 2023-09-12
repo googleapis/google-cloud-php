@@ -57,8 +57,7 @@ class Sink
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
-     *        Logging.
-     *        @internal This object is created by LoggingClient,
+     *        Logging. This object is created by LoggingClient,
      *        and should not be instantiated outside of this client.
      * @param string $name The sink's name.
      * @param string $projectId The project's ID.

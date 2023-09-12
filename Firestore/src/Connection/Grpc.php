@@ -34,8 +34,7 @@ use Google\Protobuf\Timestamp as ProtobufTimestamp;
 /**
  * A gRPC connection to Cloud Firestore via GAPIC.
  *
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {

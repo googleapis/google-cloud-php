@@ -56,8 +56,7 @@ class Acl
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
-     *        Cloud Storage.
-     *        @internal This object is created by StorageClient,
+     *        Cloud Storage. This object is created by StorageClient,
      *        and should not be instantiated outside of this client.
      * @param string $type The type of access control this instance applies to.
      * @param array $identity Represents which bucket, file, or generation this

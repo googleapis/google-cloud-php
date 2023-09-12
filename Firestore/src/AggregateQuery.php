@@ -62,7 +62,7 @@ class AggregateQuery
      * Create an aggregation query.
      *
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        @internal This object is created by FirestoreClient,
+     *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
      * @param string $parent The parent of the query.
      * @param array $query Represents the underlying structured query.
