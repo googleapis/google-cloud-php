@@ -27,6 +27,7 @@ use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1beta\UpdateMeasurementProtocolSecretRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a measurement protocol secret.
@@ -42,8 +43,10 @@ function update_measurement_protocol_secret_sample(
     // Prepare the request message.
     $measurementProtocolSecret = (new MeasurementProtocolSecret())
         ->setDisplayName($measurementProtocolSecretDisplayName);
+    $updateMask = new FieldMask();
     $request = (new UpdateMeasurementProtocolSecretRequest())
-        ->setMeasurementProtocolSecret($measurementProtocolSecret);
+        ->setMeasurementProtocolSecret($measurementProtocolSecret)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

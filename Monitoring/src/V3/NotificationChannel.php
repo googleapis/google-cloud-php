@@ -21,7 +21,9 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
 {
     /**
      * The type of the notification channel. This field matches the
-     * value of the [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type] field.
+     * value of the
+     * [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type]
+     * field.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
@@ -54,8 +56,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     /**
      * Configuration fields that define the channel and its behavior. The
      * permissible and required labels are specified in the
-     * [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels] of the
-     * `NotificationChannelDescriptor` corresponding to the `type` field.
+     * [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels]
+     * of the `NotificationChannelDescriptor` corresponding to the `type` field.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
@@ -126,7 +128,9 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *
      *     @type string $type
      *           The type of the notification channel. This field matches the
-     *           value of the [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type] field.
+     *           value of the
+     *           [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type]
+     *           field.
      *     @type string $name
      *           The full REST resource name for this channel. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
@@ -143,8 +147,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Configuration fields that define the channel and its behavior. The
      *           permissible and required labels are specified in the
-     *           [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels] of the
-     *           `NotificationChannelDescriptor` corresponding to the `type` field.
+     *           [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels]
+     *           of the `NotificationChannelDescriptor` corresponding to the `type` field.
      *     @type array|\Google\Protobuf\Internal\MapField $user_labels
      *           User-supplied key/value data that does not need to conform to
      *           the corresponding `NotificationChannelDescriptor`'s schema, unlike
@@ -191,7 +195,9 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the notification channel. This field matches the
-     * value of the [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type] field.
+     * value of the
+     * [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type]
+     * field.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @return string
@@ -203,7 +209,9 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the notification channel. This field matches the
-     * value of the [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type] field.
+     * value of the
+     * [NotificationChannelDescriptor.type][google.monitoring.v3.NotificationChannelDescriptor.type]
+     * field.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @param string $var
@@ -312,8 +320,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     /**
      * Configuration fields that define the channel and its behavior. The
      * permissible and required labels are specified in the
-     * [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels] of the
-     * `NotificationChannelDescriptor` corresponding to the `type` field.
+     * [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels]
+     * of the `NotificationChannelDescriptor` corresponding to the `type` field.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -326,8 +334,8 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     /**
      * Configuration fields that define the channel and its behavior. The
      * permissible and required labels are specified in the
-     * [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels] of the
-     * `NotificationChannelDescriptor` corresponding to the `type` field.
+     * [NotificationChannelDescriptor.labels][google.monitoring.v3.NotificationChannelDescriptor.labels]
+     * of the `NotificationChannelDescriptor` corresponding to the `type` field.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

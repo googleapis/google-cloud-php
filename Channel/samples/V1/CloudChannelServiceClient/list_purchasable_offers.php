@@ -36,7 +36,10 @@ use Google\Cloud\Channel\V1\PurchasableOffer;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The customer doesn't belong to the reseller
+ * * PERMISSION_DENIED:
+ * * The customer doesn't belong to the reseller
+ * * The reseller is not authorized to transact on this Product. See
+ * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
  *
  * @param string $formattedCustomer The resource name of the customer to list Offers for.

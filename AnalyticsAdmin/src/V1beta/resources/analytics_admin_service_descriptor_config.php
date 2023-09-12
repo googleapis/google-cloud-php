@@ -544,6 +544,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateConversionEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1beta\ConversionEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversion_event.name',
+                        'fieldAccessors' => [
+                            'getConversionEvent',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateCustomDimension' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1beta\CustomDimension',

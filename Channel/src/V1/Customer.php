@@ -30,9 +30,9 @@ class Customer extends \Google\Protobuf\Internal\Message
     private $org_display_name = '';
     /**
      * Required. The organization address for the customer. To enforce US laws and
-     * embargoes, we require a region and zip code. You must provide valid
-     * addresses for every customer. To set the customer's language, use the
-     * Customer-level language code.
+     * embargoes, we require a region, postal code, and address lines. You must
+     * provide valid addresses for every customer. To set the customer's
+     * language, use the Customer-level language code.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress org_postal_address = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -122,9 +122,9 @@ class Customer extends \Google\Protobuf\Internal\Message
      *           Required. Name of the organization that the customer entity represents.
      *     @type \Google\Type\PostalAddress $org_postal_address
      *           Required. The organization address for the customer. To enforce US laws and
-     *           embargoes, we require a region and zip code. You must provide valid
-     *           addresses for every customer. To set the customer's language, use the
-     *           Customer-level language code.
+     *           embargoes, we require a region, postal code, and address lines. You must
+     *           provide valid addresses for every customer. To set the customer's
+     *           language, use the Customer-level language code.
      *     @type \Google\Cloud\Channel\V1\ContactInfo $primary_contact_info
      *           Primary contact info.
      *     @type string $alternate_email
@@ -219,9 +219,9 @@ class Customer extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The organization address for the customer. To enforce US laws and
-     * embargoes, we require a region and zip code. You must provide valid
-     * addresses for every customer. To set the customer's language, use the
-     * Customer-level language code.
+     * embargoes, we require a region, postal code, and address lines. You must
+     * provide valid addresses for every customer. To set the customer's
+     * language, use the Customer-level language code.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress org_postal_address = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Type\PostalAddress|null
@@ -243,9 +243,9 @@ class Customer extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The organization address for the customer. To enforce US laws and
-     * embargoes, we require a region and zip code. You must provide valid
-     * addresses for every customer. To set the customer's language, use the
-     * Customer-level language code.
+     * embargoes, we require a region, postal code, and address lines. You must
+     * provide valid addresses for every customer. To set the customer's
+     * language, use the Customer-level language code.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress org_postal_address = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Type\PostalAddress $var

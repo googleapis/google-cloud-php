@@ -300,7 +300,7 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setBillingEnabled($billingEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->projectBillingInfoName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $request = (new GetProjectBillingInfoRequest())
             ->setName($formattedName);
         $response = $gapicClient->getProjectBillingInfo($request);
@@ -334,7 +334,7 @@ class CloudBillingClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->projectBillingInfoName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $request = (new GetProjectBillingInfoRequest())
             ->setName($formattedName);
         try {

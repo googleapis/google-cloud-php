@@ -103,7 +103,12 @@ class LoadJobConfigurationTest extends TestCase
                 ]
             ],
             'writeDisposition' => 'WRITE_TRUNCATE',
-            'useAvroLogicalTypes' => true
+            'useAvroLogicalTypes' => true,
+            'createSession' => true,
+            'connectionProperties' => [
+                'key' => 'session_id',
+                'value' => 'sessionId'
+            ]
         ];
         $this->expectedConfig['configuration']['load'] = $load
             + $this->expectedConfig['configuration']['load'];
@@ -132,7 +137,12 @@ class LoadJobConfigurationTest extends TestCase
             ->timePartitioning($load['timePartitioning'])
             ->rangePartitioning($load['rangePartitioning'])
             ->writeDisposition($load['writeDisposition'])
-            ->useAvroLogicalTypes($load['useAvroLogicalTypes']);
+            ->useAvroLogicalTypes($load['useAvroLogicalTypes'])
+            ->createSession(true)
+            ->connectionProperties([
+                'key' => 'session_id',
+                'value' =>'sessionId'
+            ]);
 
         $this->assertInstanceOf(LoadJobConfiguration::class, $config);
         $this->assertEquals(

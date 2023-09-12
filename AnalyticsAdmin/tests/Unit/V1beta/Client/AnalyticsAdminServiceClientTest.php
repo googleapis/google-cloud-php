@@ -95,6 +95,7 @@ use Google\Analytics\Admin\V1beta\RunAccessReportResponse;
 use Google\Analytics\Admin\V1beta\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1beta\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1beta\UpdateAccountRequest;
+use Google\Analytics\Admin\V1beta\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1beta\UpdateCustomDimensionRequest;
 use Google\Analytics\Admin\V1beta\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\UpdateDataRetentionSettingsRequest;
@@ -3010,6 +3011,82 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateConversionEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $eventName = 'eventName984174864';
+        $deletable = true;
+        $custom = false;
+        $expectedResponse = new ConversionEvent();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEventName($eventName);
+        $expectedResponse->setDeletable($deletable);
+        $expectedResponse->setCustom($custom);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $conversionEvent = new ConversionEvent();
+        $updateMask = new FieldMask();
+        $request = (new UpdateConversionEventRequest())
+            ->setConversionEvent($conversionEvent)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateConversionEvent($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateConversionEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConversionEvent();
+        $this->assertProtobufEquals($conversionEvent, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConversionEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $conversionEvent = new ConversionEvent();
+        $updateMask = new FieldMask();
+        $request = (new UpdateConversionEventRequest())
+            ->setConversionEvent($conversionEvent)
+            ->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateConversionEvent($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateCustomDimensionTest()
     {
         $transport = $this->createTransport();
@@ -3380,8 +3457,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
+        $updateMask = new FieldMask();
         $request = (new UpdateMeasurementProtocolSecretRequest())
-            ->setMeasurementProtocolSecret($measurementProtocolSecret);
+            ->setMeasurementProtocolSecret($measurementProtocolSecret)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateMeasurementProtocolSecret($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3391,6 +3470,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertSame('/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateMeasurementProtocolSecret', $actualFuncCall);
         $actualValue = $actualRequestObject->getMeasurementProtocolSecret();
         $this->assertProtobufEquals($measurementProtocolSecret, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3416,8 +3497,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
+        $updateMask = new FieldMask();
         $request = (new UpdateMeasurementProtocolSecretRequest())
-            ->setMeasurementProtocolSecret($measurementProtocolSecret);
+            ->setMeasurementProtocolSecret($measurementProtocolSecret)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateMeasurementProtocolSecret($request);
             // If the $gapicClient method call did not throw, fail the test

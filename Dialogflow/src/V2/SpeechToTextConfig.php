@@ -42,6 +42,13 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string model = 2;</code>
      */
     private $model = '';
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * seconds of timeout value.
+     *
+     * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>
+     */
+    private $use_timeout_based_endpointing = false;
 
     /**
      * Constructor.
@@ -67,6 +74,9 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           [Cloud Speech API
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      *           for more details.
+     *     @type bool $use_timeout_based_endpointing
+     *           Use timeout based endpointing, interpreting endpointer sensitivy as
+     *           seconds of timeout value.
      * }
      */
     public function __construct($data = NULL) {
@@ -150,6 +160,34 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * seconds of timeout value.
+     *
+     * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>
+     * @return bool
+     */
+    public function getUseTimeoutBasedEndpointing()
+    {
+        return $this->use_timeout_based_endpointing;
+    }
+
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * seconds of timeout value.
+     *
+     * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseTimeoutBasedEndpointing($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_timeout_based_endpointing = $var;
 
         return $this;
     }
