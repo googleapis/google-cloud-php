@@ -37,7 +37,6 @@ use Google\Cloud\CloudDms\V1\DatabaseEntityType;
 use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse;
 use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesResponse;
 use Google\Cloud\CloudDms\V1\FetchStaticIpsResponse;
-use Google\Cloud\CloudDms\V1\ImportRulesFileFormat;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesResponse;
 use Google\Cloud\CloudDms\V1\ListConversionWorkspacesResponse;
 use Google\Cloud\CloudDms\V1\ListMappingRulesResponse;
@@ -2322,10 +2321,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $rulesFormat = ImportRulesFileFormat::IMPORT_RULES_FILE_FORMAT_UNSPECIFIED;
-        $rulesFiles = [];
-        $autoCommit = false;
-        $response = $gapicClient->importMappingRules($formattedParent, $rulesFormat, $rulesFiles, $autoCommit);
+        $response = $gapicClient->importMappingRules($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2337,12 +2333,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ImportMappingRules', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRulesFormat();
-        $this->assertProtobufEquals($rulesFormat, $actualValue);
-        $actualValue = $actualApiRequestObject->getRulesFiles();
-        $this->assertProtobufEquals($rulesFiles, $actualValue);
-        $actualValue = $actualApiRequestObject->getAutoCommit();
-        $this->assertProtobufEquals($autoCommit, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importMappingRulesTest');
         $response->pollUntilComplete([
@@ -2395,10 +2385,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $rulesFormat = ImportRulesFileFormat::IMPORT_RULES_FILE_FORMAT_UNSPECIFIED;
-        $rulesFiles = [];
-        $autoCommit = false;
-        $response = $gapicClient->importMappingRules($formattedParent, $rulesFormat, $rulesFiles, $autoCommit);
+        $response = $gapicClient->importMappingRules($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

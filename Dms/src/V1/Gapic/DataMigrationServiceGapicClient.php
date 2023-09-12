@@ -65,7 +65,6 @@ use Google\Cloud\CloudDms\V1\GetMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\GetPrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\ImportMappingRulesRequest;
 use Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile;
-use Google\Cloud\CloudDms\V1\ImportRulesFileFormat;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesRequest;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesResponse;
 use Google\Cloud\CloudDms\V1\ListConversionWorkspacesRequest;
@@ -2158,10 +2157,7 @@ class DataMigrationServiceGapicClient
      * $dataMigrationServiceClient = new DataMigrationServiceClient();
      * try {
      *     $formattedParent = $dataMigrationServiceClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-     *     $rulesFormat = ImportRulesFileFormat::IMPORT_RULES_FILE_FORMAT_UNSPECIFIED;
-     *     $rulesFiles = [];
-     *     $autoCommit = false;
-     *     $operationResponse = $dataMigrationServiceClient->importMappingRules($formattedParent, $rulesFormat, $rulesFiles, $autoCommit);
+     *     $operationResponse = $dataMigrationServiceClient->importMappingRules($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2172,7 +2168,7 @@ class DataMigrationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataMigrationServiceClient->importMappingRules($formattedParent, $rulesFormat, $rulesFiles, $autoCommit);
+     *     $operationResponse = $dataMigrationServiceClient->importMappingRules($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataMigrationServiceClient->resumeOperation($operationName, 'importMappingRules');
@@ -2192,17 +2188,20 @@ class DataMigrationServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required. Name of the conversion workspace resource to import the rules to
-     *                                  in the form of:
-     *                                  projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
-     * @param int         $rulesFormat  Required. The format of the rules content file.
-     *                                  For allowed values, use constants defined on {@see \Google\Cloud\CloudDms\V1\ImportRulesFileFormat}
-     * @param RulesFile[] $rulesFiles   Required. One or more rules files.
-     * @param bool        $autoCommit   Required. Should the conversion workspace be committed automatically after
-     *                                  the import operation.
-     * @param array       $optionalArgs {
+     * @param string $parent       Required. Name of the conversion workspace resource to import the rules to
+     *                             in the form of:
+     *                             projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
+     * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type int $rulesFormat
+     *           Required. The format of the rules content file.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\CloudDms\V1\ImportRulesFileFormat}
+     *     @type RulesFile[] $rulesFiles
+     *           Required. One or more rules files.
+     *     @type bool $autoCommit
+     *           Required. Should the conversion workspace be committed automatically after
+     *           the import operation.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2213,15 +2212,24 @@ class DataMigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importMappingRules($parent, $rulesFormat, $rulesFiles, $autoCommit, array $optionalArgs = [])
+    public function importMappingRules($parent, array $optionalArgs = [])
     {
         $request = new ImportMappingRulesRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
-        $request->setRulesFormat($rulesFormat);
-        $request->setRulesFiles($rulesFiles);
-        $request->setAutoCommit($autoCommit);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['rulesFormat'])) {
+            $request->setRulesFormat($optionalArgs['rulesFormat']);
+        }
+
+        if (isset($optionalArgs['rulesFiles'])) {
+            $request->setRulesFiles($optionalArgs['rulesFiles']);
+        }
+
+        if (isset($optionalArgs['autoCommit'])) {
+            $request->setAutoCommit($optionalArgs['autoCommit']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ImportMappingRules', $optionalArgs, $request, $this->getOperationsClient())->wait();

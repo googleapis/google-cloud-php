@@ -27,51 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\CloudDms\V1\ConversionWorkspace;
 use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
-use Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile;
-use Google\Cloud\CloudDms\V1\ImportRulesFileFormat;
 use Google\Rpc\Status;
 
 /**
  * Imports the mapping rules for a given conversion workspace.
  * Supports various formats of external rules files.
  *
- * @param string $formattedParent               Name of the conversion workspace resource to import the rules to
- *                                              in the form of:
- *                                              projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}. Please see
- *                                              {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
- * @param int    $rulesFormat                   The format of the rules content file.
- * @param string $rulesFilesRulesSourceFilename The filename of the rules that needs to be converted. The
- *                                              filename is used mainly so that future logs of the import rules job
- *                                              contain it, and can therefore be searched by it.
- * @param string $rulesFilesRulesContent        The text content of the rules that needs to be converted.
- * @param bool   $autoCommit                    Should the conversion workspace be committed automatically after
- *                                              the import operation.
+ * @param string $formattedParent Name of the conversion workspace resource to import the rules to
+ *                                in the form of:
+ *                                projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}. Please see
+ *                                {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
  */
-function import_mapping_rules_sample(
-    string $formattedParent,
-    int $rulesFormat,
-    string $rulesFilesRulesSourceFilename,
-    string $rulesFilesRulesContent,
-    bool $autoCommit
-): void {
+function import_mapping_rules_sample(string $formattedParent): void
+{
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $rulesFile = (new RulesFile())
-        ->setRulesSourceFilename($rulesFilesRulesSourceFilename)
-        ->setRulesContent($rulesFilesRulesContent);
-    $rulesFiles = [$rulesFile,];
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->importMappingRules(
-            $formattedParent,
-            $rulesFormat,
-            $rulesFiles,
-            $autoCommit
-        );
+        $response = $dataMigrationServiceClient->importMappingRules($formattedParent);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -104,17 +79,7 @@ function callSample(): void
         '[LOCATION]',
         '[CONVERSION_WORKSPACE]'
     );
-    $rulesFormat = ImportRulesFileFormat::IMPORT_RULES_FILE_FORMAT_UNSPECIFIED;
-    $rulesFilesRulesSourceFilename = '[RULES_SOURCE_FILENAME]';
-    $rulesFilesRulesContent = '[RULES_CONTENT]';
-    $autoCommit = false;
 
-    import_mapping_rules_sample(
-        $formattedParent,
-        $rulesFormat,
-        $rulesFilesRulesSourceFilename,
-        $rulesFilesRulesContent,
-        $autoCommit
-    );
+    import_mapping_rules_sample($formattedParent);
 }
 // [END datamigration_v1_generated_DataMigrationService_ImportMappingRules_sync]
