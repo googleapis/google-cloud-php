@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class RulesFile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The filename of the rules that needs to be converted. The filename is
-     * used mainly so that future logs of the import rules job contain it, and
-     * can therefore be searched by it.
+     * Required. The filename of the rules that needs to be converted. The
+     * filename is used mainly so that future logs of the import rules job
+     * contain it, and can therefore be searched by it.
      *
-     * Generated from protobuf field <code>string rules_source_filename = 1;</code>
+     * Generated from protobuf field <code>string rules_source_filename = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $rules_source_filename = '';
     /**
-     * The text content of the rules that needs to be converted.
+     * Required. The text content of the rules that needs to be converted.
      *
-     * Generated from protobuf field <code>string rules_content = 2;</code>
+     * Generated from protobuf field <code>string rules_content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $rules_content = '';
 
@@ -37,11 +37,11 @@ class RulesFile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $rules_source_filename
-     *           The filename of the rules that needs to be converted. The filename is
-     *           used mainly so that future logs of the import rules job contain it, and
-     *           can therefore be searched by it.
+     *           Required. The filename of the rules that needs to be converted. The
+     *           filename is used mainly so that future logs of the import rules job
+     *           contain it, and can therefore be searched by it.
      *     @type string $rules_content
-     *           The text content of the rules that needs to be converted.
+     *           Required. The text content of the rules that needs to be converted.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,11 +50,11 @@ class RulesFile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filename of the rules that needs to be converted. The filename is
-     * used mainly so that future logs of the import rules job contain it, and
-     * can therefore be searched by it.
+     * Required. The filename of the rules that needs to be converted. The
+     * filename is used mainly so that future logs of the import rules job
+     * contain it, and can therefore be searched by it.
      *
-     * Generated from protobuf field <code>string rules_source_filename = 1;</code>
+     * Generated from protobuf field <code>string rules_source_filename = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRulesSourceFilename()
@@ -63,11 +63,11 @@ class RulesFile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filename of the rules that needs to be converted. The filename is
-     * used mainly so that future logs of the import rules job contain it, and
-     * can therefore be searched by it.
+     * Required. The filename of the rules that needs to be converted. The
+     * filename is used mainly so that future logs of the import rules job
+     * contain it, and can therefore be searched by it.
      *
-     * Generated from protobuf field <code>string rules_source_filename = 1;</code>
+     * Generated from protobuf field <code>string rules_source_filename = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -80,9 +80,9 @@ class RulesFile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The text content of the rules that needs to be converted.
+     * Required. The text content of the rules that needs to be converted.
      *
-     * Generated from protobuf field <code>string rules_content = 2;</code>
+     * Generated from protobuf field <code>string rules_content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRulesContent()
@@ -91,9 +91,9 @@ class RulesFile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The text content of the rules that needs to be converted.
+     * Required. The text content of the rules that needs to be converted.
      *
-     * Generated from protobuf field <code>string rules_content = 2;</code>
+     * Generated from protobuf field <code>string rules_content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

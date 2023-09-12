@@ -30,6 +30,21 @@ class ApplyConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
+    /**
+     * Optional. Only validates the apply process, but doesn't change the
+     * destination database. Only works for PostgreSQL destination connection
+     * profile.
+     *
+     * Generated from protobuf field <code>bool dry_run = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dry_run = false;
+    /**
+     * Optional. Specifies whether the conversion workspace is to be committed
+     * automatically after the apply.
+     *
+     * Generated from protobuf field <code>bool auto_commit = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $auto_commit = false;
     protected $destination;
 
     /**
@@ -45,8 +60,16 @@ class ApplyConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Filter which entities to apply. Leaving this field empty will apply all of
      *           the entities. Supports Google AIP 160 based filtering.
+     *     @type bool $dry_run
+     *           Optional. Only validates the apply process, but doesn't change the
+     *           destination database. Only works for PostgreSQL destination connection
+     *           profile.
+     *     @type bool $auto_commit
+     *           Optional. Specifies whether the conversion workspace is to be committed
+     *           automatically after the apply.
      *     @type string $connection_profile
-     *           Fully qualified (Uri) name of the destination connection profile.
+     *           Optional. Fully qualified (Uri) name of the destination connection
+     *           profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,9 +136,68 @@ class ApplyConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified (Uri) name of the destination connection profile.
+     * Optional. Only validates the apply process, but doesn't change the
+     * destination database. Only works for PostgreSQL destination connection
+     * profile.
      *
-     * Generated from protobuf field <code>string connection_profile = 100;</code>
+     * Generated from protobuf field <code>bool dry_run = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDryRun()
+    {
+        return $this->dry_run;
+    }
+
+    /**
+     * Optional. Only validates the apply process, but doesn't change the
+     * destination database. Only works for PostgreSQL destination connection
+     * profile.
+     *
+     * Generated from protobuf field <code>bool dry_run = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDryRun($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dry_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether the conversion workspace is to be committed
+     * automatically after the apply.
+     *
+     * Generated from protobuf field <code>bool auto_commit = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAutoCommit()
+    {
+        return $this->auto_commit;
+    }
+
+    /**
+     * Optional. Specifies whether the conversion workspace is to be committed
+     * automatically after the apply.
+     *
+     * Generated from protobuf field <code>bool auto_commit = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutoCommit($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->auto_commit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Fully qualified (Uri) name of the destination connection
+     * profile.
+     *
+     * Generated from protobuf field <code>string connection_profile = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getConnectionProfile()
@@ -129,9 +211,10 @@ class ApplyConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified (Uri) name of the destination connection profile.
+     * Optional. Fully qualified (Uri) name of the destination connection
+     * profile.
      *
-     * Generated from protobuf field <code>string connection_profile = 100;</code>
+     * Generated from protobuf field <code>string connection_profile = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
