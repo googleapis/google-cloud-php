@@ -24,7 +24,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup cache environment
       id: extcache
       uses: shivammathur/cache-extensions@v1
@@ -71,7 +71,7 @@ jobs:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -84,7 +84,7 @@ jobs:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
