@@ -679,4 +679,23 @@ class LoadJobConfiguration implements JobConfigurationInterface
 
         return $this;
     }
+
+    /**
+     * Sets the reference for external table schema.
+     * It is enabled for AVRO, PARQUET and ORC format.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->referenceFileSchemaUri('gs://bucket/source.parquet');
+     * ```
+     *
+     * @param string $referenceFileSchemaUri
+     * @return LoadJobConfiguration
+     */
+    public function referenceFileSchemaUri(string $referenceFileSchemaUri)
+    {
+        $this->config['configuration']['load']['referenceFileSchemaUri'] = $referenceFileSchemaUri;
+
+        return $this;
+    }
 }
