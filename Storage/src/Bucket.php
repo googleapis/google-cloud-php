@@ -565,7 +565,7 @@ class Bucket
     /**
      * Lazily instantiates an object. There are no network requests made at this
      * point. To see the operations that can be performed on an object please
-     * see {@see Google\Cloud\Storage\StorageObject}.
+     * see {@see StorageObject}.
      *
      * Example:
      * ```
@@ -786,7 +786,7 @@ class Bucket
     /**
      * Lazily instantiates a notification. There are no network requests made at
      * this point. To see the operations that can be performed on a notification
-     * please see {@see Google\Cloud\Storage\Notification}.
+     * please see {@see Notification}.
      *
      * Example:
      * ```
@@ -973,7 +973,7 @@ class Bucket
      *           occurs, signified by the hold's release.
      *     @type array $retentionPolicy Defines the retention policy for a
      *           bucket. In order to lock a retention policy, please see
-     *           {@see Google\Cloud\Storage\Bucket::lockRetentionPolicy()}.
+     *           {@see Bucket::lockRetentionPolicy()}.
      *     @type int $retentionPolicy.retentionPeriod Specifies the duration
      *           that objects need to be retained, in seconds. Retention
      *           duration must be greater than zero and less than 100 years.
@@ -1185,8 +1185,8 @@ class Bucket
      * replace the configuration with the rules provided by this builder.
      *
      * This builder is intended to be used in tandem with
-     * {@see Google\Cloud\Storage\StorageClient::createBucket()} and
-     * {@see Google\Cloud\Storage\Bucket::update()}.
+     * {@see StorageClient::createBucket()} and
+     * {@see Bucket::update()}.
      *
      * Example:
      * ```
@@ -1218,11 +1218,11 @@ class Bucket
      * Retrieves a lifecycle builder preconfigured with the lifecycle rules that
      * already exists on the bucket. Use this if you want to make updates to an
      * existing configuration without removing existing rules, as would be the
-     * case when using {@see Google\Cloud\Storage\Bucket::lifecycle()}.
+     * case when using {@see Bucket::lifecycle()}.
      *
      * This builder is intended to be used in tandem with
-     * {@see Google\Cloud\Storage\StorageClient::createBucket()} and
-     * {@see Google\Cloud\Storage\Bucket::update()}.
+     * {@see StorageClient::createBucket()} and
+     * {@see Bucket::update()}.
      *
      * Please note, this method may trigger a network request in order to fetch
      * the existing lifecycle rules from the server.
@@ -1344,8 +1344,8 @@ class Bucket
      * metageneration value will need to be available. It can either be supplied
      * explicitly through the `ifMetagenerationMatch` option or detected for you
      * by ensuring a value is cached locally (by calling
-     * {@see Google\Cloud\Storage\Bucket::reload()} or
-     * {@see Google\Cloud\Storage\Bucket::info()}, for example).
+     * {@see Bucket::reload()} or
+     * {@see Bucket::info()}, for example).
      *
      * Example:
      * ```

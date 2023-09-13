@@ -128,7 +128,7 @@ class StorageClient
     /**
      * Lazily instantiates a bucket. There are no network requests made at this
      * point. To see the operations that can be performed on a bucket please
-     * see {@see Google\Cloud\Storage\Bucket}.
+     * see {@see Bucket}.
      *
      * If `$userProject` is set to true, the current project ID (used to
      * instantiate the client) will be billed for all requests. If
@@ -335,7 +335,7 @@ class StorageClient
      *           occurs, signified by the hold's release.
      *     @type array $retentionPolicy Defines the retention policy for a
      *           bucket. In order to lock a retention policy, please see
-     *           {@see Google\Cloud\Storage\Bucket::lockRetentionPolicy()}.
+     *           {@see Bucket::lockRetentionPolicy()}.
      *     @type int $retentionPolicy.retentionPeriod Specifies the retention
      *           period for objects in seconds. During the retention period an
      *           object cannot be overwritten or deleted. Retention period must

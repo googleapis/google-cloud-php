@@ -170,7 +170,7 @@ class HmacKey
      * Delete the HMAC Key.
      *
      * Key state must be set to `INACTIVE` prior to deletion. See
-     * {@see Google\Cloud\Storage\HmacKey::update()} for details.
+     * {@see HmacKey::update()} for details.
      *
      * Example:
      * ```
