@@ -20,7 +20,7 @@ namespace Google\Cloud\PubSub\Connection;
 /**
  * Represents a connection to
  * [Pub/Sub](https://cloud.google.com/pubsub).
- * 
+ *
  * @internal
  */
 interface ConnectionInterface

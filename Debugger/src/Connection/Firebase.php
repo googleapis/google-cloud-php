@@ -23,7 +23,7 @@ use Kreait\Firebase\Database;
 
 /**
  * Implementation of the Firebase connection
- * 
+ *
  * @internal
  */
 class Firebase implements ConnectionInterface

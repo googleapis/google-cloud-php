@@ -20,7 +20,7 @@ namespace Google\Cloud\Vision\Connection;
 /**
  * Represents a connection to
  * [Cloud Vision](https://cloud.google.com/vision).
- * 
+ *
  * @internal
  */
 interface ConnectionInterface

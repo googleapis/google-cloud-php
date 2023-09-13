@@ -21,7 +21,7 @@ use Google\Cloud\Core\Iam\IamConnectionInterface;
 
 /**
  * Proxy IAM service calls to the Pub/Sub Subscription IAM resources
- * 
+ *
  * @internal
  */
 class IamSubscription implements IamConnectionInterface

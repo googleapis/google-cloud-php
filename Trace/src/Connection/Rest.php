@@ -24,7 +24,7 @@ use Google\Cloud\Core\RestTrait;
 /**
  * Implementation of the
  * [Google Trace REST API](https://cloud.google.com/trace/docs/reference/rest/).
- * 
+ *
  * @internal
  */
 class Rest implements ConnectionInterface

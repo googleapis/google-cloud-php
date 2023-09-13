@@ -22,7 +22,7 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 /**
  * Represents a connection to the Long Running Operations portion of the
  * Cloud Spanner API.
- * 
+ *
  * @internal
  */
 class LongRunningConnection implements LongRunningConnectionInterface

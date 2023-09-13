@@ -20,7 +20,7 @@ namespace Google\Cloud\Language\Connection;
 /**
  * Represents a connection to
  * [Google Natural Language](https://cloud.google.com/natural-language/).
- * 
+ *
  * @internal
  */
 interface ConnectionInterface

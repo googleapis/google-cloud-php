@@ -30,7 +30,7 @@ use Google\Cloud\PubSub\PubSubClient;
  *
  * The `PUBSUB_EMULATOR_HOST` environment variable from the gcloud SDK is
  * honored, otherwise the actual API endpoint will be used.
- * 
+ *
  * @internal
  */
 class Rest implements ConnectionInterface

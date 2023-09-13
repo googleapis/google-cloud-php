@@ -21,7 +21,7 @@ use Google\Cloud\Core\Iam\IamConnectionInterface;
 
 /**
  * Proxy IAM service calls to the Pub/Sub Topic IAM resources
- * 
+ *
  * @internal
  */
 class IamTopic implements IamConnectionInterface
