@@ -809,7 +809,6 @@ class StorageObject
      * ````
      *
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
-     * @see StorageClient::__construct() for information on `$options` formatting.
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
      *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
