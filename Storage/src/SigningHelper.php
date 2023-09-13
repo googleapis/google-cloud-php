@@ -67,7 +67,7 @@ class SigningHelper
      *        leading slash.
      * @param int|null $generation The resource generation.
      * @param array $options Configuration options. See
-     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
+     *        {@see StorageObject::signedUrl()} for
      *        details.
      * @return string
      * @throws \InvalidArgumentException
@@ -117,7 +117,7 @@ class SigningHelper
      *        leading slash.
      * @param int|null $generation The resource generation.
      * @param array $options Configuration options. See
-     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
+     *        {@see StorageObject::signedUrl()} for
      *        details.
      * @return string
      * @throws \InvalidArgumentException
@@ -213,7 +213,7 @@ class SigningHelper
      *        leading slash.
      * @param int|null $generation The resource generation.
      * @param array $options Configuration options. See
-     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
+     *        {@see StorageObject::signedUrl()} for
      *        details.
      * @return string
      * @throws \InvalidArgumentException
@@ -367,7 +367,7 @@ class SigningHelper
      * @param string $resource The URI to the storage resource, preceded by a
      *        leading slash.
      * @param array $options Configuration options. See
-     *        {@see Google\Cloud\Storage\Bucket::generateSignedPostPolicyV4()} for details.
+     *        {@see Bucket::generateSignedPostPolicyV4()} for details.
      * @return array An associative array, containing (string) `uri` and
      *        (array) `fields` keys.
      */

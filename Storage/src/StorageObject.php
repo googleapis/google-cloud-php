@@ -546,7 +546,7 @@ class StorageObject
      * Download an object as a string.
      *
      * For an example of setting the range header to download a subrange of the
-     * object please see {@see Google\Cloud\Storage\StorageObject::downloadAsStream()}.
+     * object please see {@see StorageObject::downloadAsStream()}.
      *
      * Example:
      * ```
@@ -580,7 +580,7 @@ class StorageObject
      * Download an object to a specified location.
      *
      * For an example of setting the range header to download a subrange of the
-     * object please see {@see Google\Cloud\Storage\StorageObject::downloadAsStream()}.
+     * object please see {@see StorageObject::downloadAsStream()}.
      *
      * Example:
      * ```
@@ -684,7 +684,7 @@ class StorageObject
      * Asynchronously download an object as a stream.
      *
      * For an example of setting the range header to download a subrange of the
-     * object please see {@see Google\Cloud\Storage\StorageObject::downloadAsStream()}.
+     * object please see {@see StorageObject::downloadAsStream()}.
      *
      * Example:
      * ```
@@ -763,10 +763,10 @@ class StorageObject
      * Token Creator" IAM role.
      *
      * Additionally, signing using IAM requires different scopes. When creating
-     * an instance of {@see Google\Cloud\Storage\StorageClient}, provide the
+     * an instance of {@see StorageClient}, provide the
      * `https://www.googleapis.com/auth/cloud-platform` scopein `$options.scopes`.
      * This scope may be used entirely in place of the scopes provided in
-     * {@see Google\Cloud\Storage\StorageClient}.
+     * {@see StorageClient}.
      *
      * App Engine and Compute Engine will attempt to sign URLs using IAM.
      *
@@ -904,7 +904,7 @@ class StorageObject
     /**
      * Create a Signed Upload URL for this object.
      *
-     * This method differs from {@see Google\Cloud\Storage\StorageObject::signedUrl()}
+     * This method differs from {@see StorageObject::signedUrl()}
      * in that it allows you to initiate a new resumable upload session. This
      * can be used to allow non-authenticated users to insert an object into a
      * bucket.
@@ -915,7 +915,7 @@ class StorageObject
      * more information.
      *
      * If you prefer to skip this initial step, you may find
-     * {@see Google\Cloud\Storage\StorageObject::beginSignedUploadSession()} to
+     * {@see StorageObject::beginSignedUploadSession()} to
      * fit your needs. Note that `beginSignedUploadSession()` cannot be used
      * with Google Cloud PHP's Signed URL Uploader, and does not support a
      * configurable expiration date.
@@ -1014,7 +1014,7 @@ class StorageObject
      * Create a signed URL upload session.
      *
      * The returned URL differs from the return value of
-     * {@see Google\Cloud\Storage\StorageObject::signedUploadUrl()} in that it
+     * {@see StorageObject::signedUploadUrl()} in that it
      * is ready to accept upload data immediately via an HTTP PUT request.
      *
      * Because an upload session is created by the client, the expiration date

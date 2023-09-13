@@ -30,7 +30,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
  * and the object that changed.
  *
  * To utilize this class and see more examples, please see the relevant
- * notifications based methods exposed on {@see Google\Cloud\Storage\Bucket}.
+ * notifications based methods exposed on {@see Bucket}.
  *
  * Example:
  * ```
