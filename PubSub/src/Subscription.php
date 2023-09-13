@@ -238,7 +238,7 @@ class Subscription
      * Execute a service request creating the subscription.
      *
      * The suggested way of creating a subscription is by calling through
-     * {@see Google\Cloud\PubSub\Topic::subscribe()} or {@see Google\Cloud\PubSub\Topic::subscription()}.
+     * {@see Topic::subscribe()} or {@see Topic::subscription()}.
      *
      * Returns subscription info in the format detailed in the documentation
      * for a [subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
@@ -284,7 +284,7 @@ class Subscription
      *           delivery attempts for any message. The value must be between 5
      *           and 100.
      *     @type bool $enableMessageOrdering If true, messages published with
-     *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
+     *           the same `orderingKey` in {@see Message}
      *           will be delivered to the subscribers in the order in which they
      *           are received by the Pub/Sub system. Otherwise, they may be
      *           delivered in any order.
@@ -467,7 +467,7 @@ class Subscription
      *           delivery attempts for any message. The value must be between 5
      *           and 100.
      *     @type bool $enableMessageOrdering If true, messages published with
-     *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
+     *           the same `orderingKey` in {@see Message}
      *           will be delivered to the subscribers in the order in which they
      *           are received by the Pub/Sub system. Otherwise, they may be
      *           delivered in any order.
@@ -636,10 +636,10 @@ class Subscription
      *
      * Service errors will NOT bubble up from this method. It will always return
      * a boolean value. If you want to check for errors, use
-     * {@see Google\Cloud\PubSub\Subscription::info()}.
+     * {@see Subscription::info()}.
      *
      * If you need to re-check the existence of a subscription that is already
-     * downloaded, call {@see Google\Cloud\PubSub\Subscription::reload()} first
+     * downloaded, call {@see Subscription::reload()} first
      * to refresh the cached information.
      *
      * Example:
@@ -666,7 +666,7 @@ class Subscription
      * Get info on a subscription
      *
      * If the info is already cached on the object, it will return that result.
-     * To fetch a fresh result, use {@see Google\Cloud\PubSub\Subscription::reload()}.
+     * To fetch a fresh result, use {@see Subscription::reload()}.
      *
      * Example:
      * ```
@@ -759,7 +759,7 @@ class Subscription
     /**
      * Acknowledge receipt of a message.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::acknowledgeBatch()} to
+     * Use {@see Subscription::acknowledgeBatch()} to
      * acknowledge multiple messages at once.
      *
      * Example:
@@ -804,7 +804,7 @@ class Subscription
     /**
      * Acknowledge receipt of multiple messages at once.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::acknowledge()} to acknowledge
+     * Use {@see Subscription::acknowledge()} to acknowledge
      * a single message.
      *
      * Example:
@@ -882,7 +882,7 @@ class Subscription
     /**
      * Set the acknowledge deadline for a single ackId.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadlineBatch()} to
+     * Use {@see Subscription::modifyAckDeadlineBatch()} to
      * modify the ack deadline for multiple messages at once.
      *
      * Example:
@@ -930,7 +930,7 @@ class Subscription
     /**
      * Set the acknowledge deadline for multiple ackIds.
      *
-     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadline()} to
+     * Use {@see Subscription::modifyAckDeadline()} to
      * modify the ack deadline for a single message.
      *
      * Example:

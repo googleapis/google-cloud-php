@@ -105,11 +105,11 @@ class Schema
      * Get schema information.
      *
      * Since this method will throw an exception if the schema is not found, you
-     * may find that {@see Google\Cloud\PubSub\Schema::exists()} is a better fit
+     * may find that {@see Schema::exists()} is a better fit
      * for a true/false check.
      *
      * This method will use the previously cached result, if available. To force
-     * a refresh from the API, use {@see Google\Cloud\PubSub\Schema::reload()}.
+     * a refresh from the API, use {@see Schema::reload()}.
      *
      * Example:
      * ```
@@ -138,11 +138,11 @@ class Schema
      * Get schema information from the API.
      *
      * Since this method will throw an exception if the schema is not found, you
-     * may find that {@see Google\Cloud\PubSub\Schema::exists()} is a better fit
+     * may find that {@see Schema::exists()} is a better fit
      * for a true/false check.
      *
      * This method will retrieve a new result from the API. To use a previously
-     * cached result, if one exists, use {@see Google\Cloud\PubSub\Schema::info()}.
+     * cached result, if one exists, use {@see Schema::info()}.
      *
      * Example:
      * ```
