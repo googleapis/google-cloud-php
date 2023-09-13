@@ -50,6 +50,12 @@ class JobStats extends \Google\Protobuf\Internal\Message
      */
     private $reservation_usage;
     /**
+     * Reservation name or "unreserved" for on-demand resource usage.
+     *
+     * Generated from protobuf field <code>string reservation = 14;</code>
+     */
+    protected $reservation = '';
+    /**
      * Parent job name. Only present for child jobs.
      *
      * Generated from protobuf field <code>string parent_job_name = 12;</code>
@@ -82,6 +88,8 @@ class JobStats extends \Google\Protobuf\Internal\Message
      *           This field reported misleading information and will no longer be
      *           populated. Aggregate usage of all jobs submitted to a reservation
      *           should provide a more reliable indicator of reservation imbalance.
+     *     @type string $reservation
+     *           Reservation name or "unreserved" for on-demand resource usage.
      *     @type string $parent_job_name
      *           Parent job name. Only present for child jobs.
      * }
@@ -350,6 +358,32 @@ class JobStats extends \Google\Protobuf\Internal\Message
         @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage::class);
         $this->reservation_usage = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Reservation name or "unreserved" for on-demand resource usage.
+     *
+     * Generated from protobuf field <code>string reservation = 14;</code>
+     * @return string
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * Reservation name or "unreserved" for on-demand resource usage.
+     *
+     * Generated from protobuf field <code>string reservation = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReservation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->reservation = $var;
 
         return $this;
     }
