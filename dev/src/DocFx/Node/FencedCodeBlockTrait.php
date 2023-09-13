@@ -29,9 +29,12 @@ trait FencedCodeBlockTrait
     private function addPhpLanguageHintToFencedCodeBlock(string $description): string
     {
         return preg_replace_callback(
-            '/^(\s+)?```\n((.|\n)*)\n^(\s+)?```$/m',
+            '/^(\s+)?```(\w+)?\n((.|\n)*)\n^(\s+)?```$/mU',
             function ($matches) {
-                list($codeblock, $leadingWhitespace, $contents, $_, $trailingWhitespace) = $matches + [4 => ''];
+                list($codeblock, $leadingWhitespace, $existingTypehint, $contents, $_, $trailingWhitespace) = $matches + [5 => ''];
+                if ($existingTypehint) {
+                    return $codeblock;
+                }
                 return sprintf("%s```php\n%s\n%s```",
                     $leadingWhitespace,
                     $contents,

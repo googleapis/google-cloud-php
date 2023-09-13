@@ -291,6 +291,75 @@ EOF;
             "\n    ```\n",
             $fencedCodeBlock->replace($descriptionWithIndent)
         );
+
+        $descriptionWithMultipleCodeblocks = <<<EOF
+This is a test fenced codeblock
+
+```
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```php
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```php
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+        // Ensure the string does not change
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithMultipleCodeblocks)
+        );
+
+        $descriptionWithDifferentLanguageHint = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```php
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        // Ensure the string does not change
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithDifferentLanguageHint)
+        );
     }
 
     /**
