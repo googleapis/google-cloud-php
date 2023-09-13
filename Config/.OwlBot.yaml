@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/config/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Config/$1/$2
+api-name: Config

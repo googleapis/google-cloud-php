@@ -31,11 +31,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * The client-provided short name for the Backup resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Backups in this BackupPlan
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Backups in this BackupPlan
      *
      * Generated from protobuf field <code>string backup_id = 3;</code>
      */
@@ -81,11 +81,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $backup_id
      *           The client-provided short name for the Backup resource.
      *           This name must:
-     *            - be between 1 and 63 characters long (inclusive)
-     *            - consist of only lower-case ASCII letters, numbers, and dashes
-     *            - start with a lower-case letter
-     *            - end with a lower-case letter or number
-     *            - be unique within the set of Backups in this BackupPlan
+     *           - be between 1 and 63 characters long (inclusive)
+     *           - consist of only lower-case ASCII letters, numbers, and dashes
+     *           - start with a lower-case letter
+     *           - end with a lower-case letter or number
+     *           - be unique within the set of Backups in this BackupPlan
      * }
      */
     public function __construct($data = NULL) {
@@ -160,11 +160,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * The client-provided short name for the Backup resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Backups in this BackupPlan
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Backups in this BackupPlan
      *
      * Generated from protobuf field <code>string backup_id = 3;</code>
      * @return string
@@ -177,11 +177,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * The client-provided short name for the Backup resource.
      * This name must:
-     *  - be between 1 and 63 characters long (inclusive)
-     *  - consist of only lower-case ASCII letters, numbers, and dashes
-     *  - start with a lower-case letter
-     *  - end with a lower-case letter or number
-     *  - be unique within the set of Backups in this BackupPlan
+     * - be between 1 and 63 characters long (inclusive)
+     * - consist of only lower-case ASCII letters, numbers, and dashes
+     * - start with a lower-case letter
+     * - end with a lower-case letter or number
+     * - be unique within the set of Backups in this BackupPlan
      *
      * Generated from protobuf field <code>string backup_id = 3;</code>
      * @param string $var

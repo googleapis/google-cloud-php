@@ -55,6 +55,18 @@ class Target
      * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE = 6;</code>
      */
     const CLOUD_SQL_INSTANCE = 6;
+    /**
+     * Forwarded to a VPC network in another project.
+     *
+     * Generated from protobuf enum <code>ANOTHER_PROJECT = 7;</code>
+     */
+    const ANOTHER_PROJECT = 7;
+    /**
+     * Forwarded to an NCC Hub.
+     *
+     * Generated from protobuf enum <code>NCC_HUB = 8;</code>
+     */
+    const NCC_HUB = 8;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -64,6 +76,8 @@ class Target
         self::GKE_MASTER => 'GKE_MASTER',
         self::IMPORTED_CUSTOM_ROUTE_NEXT_HOP => 'IMPORTED_CUSTOM_ROUTE_NEXT_HOP',
         self::CLOUD_SQL_INSTANCE => 'CLOUD_SQL_INSTANCE',
+        self::ANOTHER_PROJECT => 'ANOTHER_PROJECT',
+        self::NCC_HUB => 'NCC_HUB',
     ];
 
     public static function name($value)

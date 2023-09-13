@@ -47,6 +47,20 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.BakType bak_type = 6;</code>
      */
     private $bak_type = 0;
+    /**
+     * Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
+     * for SQL Server only
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp stop_at = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $stop_at = null;
+    /**
+     * Optional. StopAtMark keyword for transaction log import, Applies to Cloud
+     * SQL for SQL Server only
+     *
+     * Generated from protobuf field <code>string stop_at_mark = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $stop_at_mark = '';
 
     /**
      * Constructor.
@@ -69,6 +83,12 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      *           Cloud SQL for SQL Server.
      *     @type int $bak_type
      *           Type of the bak content, FULL or DIFF.
+     *     @type \Google\Protobuf\Timestamp $stop_at
+     *           Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
+     *           for SQL Server only
+     *     @type string $stop_at_mark
+     *           Optional. StopAtMark keyword for transaction log import, Applies to Cloud
+     *           SQL for SQL Server only
      * }
      */
     public function __construct($data = NULL) {
@@ -343,6 +363,72 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\BakType::class);
         $this->bak_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
+     * for SQL Server only
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp stop_at = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getStopAt()
+    {
+        return $this->stop_at;
+    }
+
+    public function hasStopAt()
+    {
+        return isset($this->stop_at);
+    }
+
+    public function clearStopAt()
+    {
+        unset($this->stop_at);
+    }
+
+    /**
+     * Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
+     * for SQL Server only
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp stop_at = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setStopAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->stop_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. StopAtMark keyword for transaction log import, Applies to Cloud
+     * SQL for SQL Server only
+     *
+     * Generated from protobuf field <code>string stop_at_mark = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getStopAtMark()
+    {
+        return $this->stop_at_mark;
+    }
+
+    /**
+     * Optional. StopAtMark keyword for transaction log import, Applies to Cloud
+     * SQL for SQL Server only
+     *
+     * Generated from protobuf field <code>string stop_at_mark = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStopAtMark($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->stop_at_mark = $var;
 
         return $this;
     }

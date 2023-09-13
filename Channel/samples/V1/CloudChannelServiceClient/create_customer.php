@@ -34,8 +34,11 @@ use Google\Type\PostalAddress;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The reseller account making the request is different
- * from the reseller account in the API request.
+ * * PERMISSION_DENIED:
+ * * The reseller account making the request is different from the
+ * reseller account in the API request.
+ * * You are not authorized to create a customer. See
+ * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT:
  * * Required request parameters are missing or invalid.
  * * Domain field value doesn't match the primary email domain.

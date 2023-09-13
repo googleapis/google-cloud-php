@@ -53,6 +53,14 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $custom = false;
+    /**
+     * Optional. The method by which conversions will be counted across multiple
+     * events within a session. If this value is not provided, it will be set to
+     * `ONCE_PER_EVENT`.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent.ConversionCountingMethod counting_method = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $counting_method = 0;
 
     /**
      * Constructor.
@@ -78,6 +86,10 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      *           usually created for you by the GA system, but in some cases can be created
      *           by property admins. Custom events count towards the maximum number of
      *           custom conversion events that may be created per property.
+     *     @type int $counting_method
+     *           Optional. The method by which conversions will be counted across multiple
+     *           events within a session. If this value is not provided, it will be set to
+     *           `ONCE_PER_EVENT`.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,6 +249,36 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->custom = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The method by which conversions will be counted across multiple
+     * events within a session. If this value is not provided, it will be set to
+     * `ONCE_PER_EVENT`.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent.ConversionCountingMethod counting_method = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCountingMethod()
+    {
+        return $this->counting_method;
+    }
+
+    /**
+     * Optional. The method by which conversions will be counted across multiple
+     * events within a session. If this value is not provided, it will be set to
+     * `ONCE_PER_EVENT`.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent.ConversionCountingMethod counting_method = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCountingMethod($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\ConversionEvent\ConversionCountingMethod::class);
+        $this->counting_method = $var;
 
         return $this;
     }

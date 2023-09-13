@@ -29,6 +29,10 @@ use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
 /**
  * Deletes an alerting policy.
  *
+ * Design your application to single-thread API calls that modify the state of
+ * alerting policies in a single project. This includes calls to
+ * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
+ *
  * @param string $formattedName The alerting policy to delete. The format is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]

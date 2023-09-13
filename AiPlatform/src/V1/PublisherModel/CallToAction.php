@@ -69,6 +69,12 @@ class CallToAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences request_access = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_access = null;
+    /**
+     * Optional. Open evaluation pipeline of the PublisherModel.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_evaluation_pipeline = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $open_evaluation_pipeline = null;
 
     /**
      * Constructor.
@@ -94,6 +100,8 @@ class CallToAction extends \Google\Protobuf\Internal\Message
      *           Optional. Open in Generation AI Studio.
      *     @type \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences $request_access
      *           Optional. Request for access.
+     *     @type \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences $open_evaluation_pipeline
+     *           Optional. Open evaluation pipeline of the PublisherModel.
      * }
      */
     public function __construct($data = NULL) {
@@ -421,6 +429,42 @@ class CallToAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences::class);
         $this->request_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Open evaluation pipeline of the PublisherModel.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_evaluation_pipeline = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences|null
+     */
+    public function getOpenEvaluationPipeline()
+    {
+        return $this->open_evaluation_pipeline;
+    }
+
+    public function hasOpenEvaluationPipeline()
+    {
+        return isset($this->open_evaluation_pipeline);
+    }
+
+    public function clearOpenEvaluationPipeline()
+    {
+        unset($this->open_evaluation_pipeline);
+    }
+
+    /**
+     * Optional. Open evaluation pipeline of the PublisherModel.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_evaluation_pipeline = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences $var
+     * @return $this
+     */
+    public function setOpenEvaluationPipeline($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences::class);
+        $this->open_evaluation_pipeline = $var;
 
         return $this;
     }

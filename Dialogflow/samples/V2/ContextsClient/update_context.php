@@ -36,7 +36,7 @@ use Google\Cloud\Dialogflow\V2\ContextsClient;
  *                            ID>/sessions/<Session ID>/contexts/<Context ID>`.
  *
  *                            The `Context ID` is always converted to lowercase, may only contain
- *                            characters in a-zA-Z0-9_-% and may be at most 250 bytes long.
+ *                            characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long.
  *
  *                            If `Environment ID` is not specified, we assume default 'draft'
  *                            environment. If `User ID` is not specified, we assume default '-' user.

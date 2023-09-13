@@ -90,29 +90,40 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testOrderingKeys($client)
     {
-        if ($client instanceof PubSubClientRest) {
-            $this->markTestSkipped(
-                'enableMessageOrdering not available in REST transport during experimental period.'
-            );
-        }
-
         list ($topic, $sub) = self::topicAndSubscription($client, [], [
             'enableMessageOrdering' => true
         ]);
 
         $key = 'foo';
+        $numOfMessages = 5;
 
-        $message = (new MessageBuilder())
-            ->setData('foobar')
+        foreach (range(1, $numOfMessages) as $i) {
+            $topic->publish((new MessageBuilder())
+            ->setData('message' . $i)
             ->setOrderingKey($key)
-            ->build();
+            ->build());
+        }
 
-        $topic->publish($message);
-        sleep(1);
+        $messages = $sub->pull();
+        $messagesReceived = array();
+        while (count($messagesReceived) != $numOfMessages) {
+            foreach ($messages as $message) {
+                if (!in_array($message->data(), $messagesReceived)) {
+                    // Append message to understand the order
+                    array_push($messagesReceived, $message->data());
+                }
+                // Acknowledgment may take time to reach server
+                $sub->acknowledge($message);
+            }
+            sleep(1);
+            $messages = $sub->pull();
+        }
 
-        $pulled = $sub->pull();
-
-        $this->assertEquals($key, $pulled[0]->orderingKey());
+        $i = 1;
+        foreach ($messagesReceived as $message) {
+            $this->assertEquals('message' . $i, $message);
+            $i++;
+        }
     }
 
     /**

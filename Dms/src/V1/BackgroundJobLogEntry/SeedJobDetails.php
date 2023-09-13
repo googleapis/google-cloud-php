@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SeedJobDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The connection profile which was used for the seed job.
+     * Output only. The connection profile which was used for the seed job.
      *
-     * Generated from protobuf field <code>string connection_profile = 1;</code>
+     * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $connection_profile = '';
 
@@ -29,7 +29,7 @@ class SeedJobDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $connection_profile
-     *           The connection profile which was used for the seed job.
+     *           Output only. The connection profile which was used for the seed job.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class SeedJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The connection profile which was used for the seed job.
+     * Output only. The connection profile which was used for the seed job.
      *
-     * Generated from protobuf field <code>string connection_profile = 1;</code>
+     * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getConnectionProfile()
@@ -49,9 +49,9 @@ class SeedJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The connection profile which was used for the seed job.
+     * Output only. The connection profile which was used for the seed job.
      *
-     * Generated from protobuf field <code>string connection_profile = 1;</code>
+     * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

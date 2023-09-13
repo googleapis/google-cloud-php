@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ApplyJobDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The connection profile which was used for the apply job.
+     * Output only. The connection profile which was used for the apply job.
      *
-     * Generated from protobuf field <code>string connection_profile = 1;</code>
+     * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $connection_profile = '';
     /**
-     * AIP-160 based filter used to specify the entities to apply
+     * Output only. AIP-160 based filter used to specify the entities to apply
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $filter = '';
 
@@ -35,9 +35,9 @@ class ApplyJobDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $connection_profile
-     *           The connection profile which was used for the apply job.
+     *           Output only. The connection profile which was used for the apply job.
      *     @type string $filter
-     *           AIP-160 based filter used to specify the entities to apply
+     *           Output only. AIP-160 based filter used to specify the entities to apply
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class ApplyJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The connection profile which was used for the apply job.
+     * Output only. The connection profile which was used for the apply job.
      *
-     * Generated from protobuf field <code>string connection_profile = 1;</code>
+     * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getConnectionProfile()
@@ -57,9 +57,9 @@ class ApplyJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The connection profile which was used for the apply job.
+     * Output only. The connection profile which was used for the apply job.
      *
-     * Generated from protobuf field <code>string connection_profile = 1;</code>
+     * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class ApplyJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * AIP-160 based filter used to specify the entities to apply
+     * Output only. AIP-160 based filter used to specify the entities to apply
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getFilter()
@@ -83,9 +83,9 @@ class ApplyJobDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * AIP-160 based filter used to specify the entities to apply
+     * Output only. AIP-160 based filter used to specify the entities to apply
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

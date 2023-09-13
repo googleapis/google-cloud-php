@@ -364,6 +364,10 @@ abstract class AlertPolicyServiceBaseClient
     /**
      * Creates a new alerting policy.
      *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
+     *
      * The async variant is {@see self::createAlertPolicyAsync()} .
      *
      * @param CreateAlertPolicyRequest $request     A request to house fields associated with the call.
@@ -387,6 +391,10 @@ abstract class AlertPolicyServiceBaseClient
 
     /**
      * Deletes an alerting policy.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * The async variant is {@see self::deleteAlertPolicyAsync()} .
      *
@@ -460,6 +468,10 @@ abstract class AlertPolicyServiceBaseClient
      * a new one or replace only certain fields in the current alerting policy by
      * specifying the fields to be updated via `updateMask`. Returns the
      * updated alerting policy.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * alerting policies in a single project. This includes calls to
+     * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * The async variant is {@see self::updateAlertPolicyAsync()} .
      *

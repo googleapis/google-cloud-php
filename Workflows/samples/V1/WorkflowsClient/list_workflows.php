@@ -30,7 +30,7 @@ use Google\Cloud\Workflows\V1\ListWorkflowsRequest;
 use Google\Cloud\Workflows\V1\Workflow;
 
 /**
- * Lists Workflows in a given project and location.
+ * Lists workflows in a given project and location.
  * The default order is not specified.
  *
  * @param string $formattedParent Project and location from which the workflows should be listed.

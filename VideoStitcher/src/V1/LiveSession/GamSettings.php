@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Defines fields related to Google Ad Manager (GAM). This should be set if
- * GAM
- * is being used for ads.
+ * GAM is being used for ads.
  *
  * Generated from protobuf message <code>google.cloud.video.stitcher.v1.LiveSession.GamSettings</code>
  */

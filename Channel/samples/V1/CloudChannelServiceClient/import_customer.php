@@ -36,8 +36,11 @@ use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The reseller account making the request is different
- * from the reseller account in the API request.
+ * * PERMISSION_DENIED:
+ * * The reseller account making the request is different from the
+ * reseller account in the API request.
+ * * You are not authorized to import the customer. See
+ * https://support.google.com/channelservices/answer/9759265
  * * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
  * * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
  * expired or invalid.

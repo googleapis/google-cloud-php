@@ -29,6 +29,13 @@ class Summary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> text_sections = 2;</code>
      */
     private $text_sections;
+    /**
+     * The baseline model version used to generate this summary. It is empty if
+     * a baseline model was not used to generate this summary.
+     *
+     * Generated from protobuf field <code>string baseline_model_version = 4;</code>
+     */
+    private $baseline_model_version = '';
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class Summary extends \Google\Protobuf\Internal\Message
      *           The summary content that is divided into sections. The key is the
      *           section's name and the value is the section's content. There is no
      *           specific format for the key or value.
+     *     @type string $baseline_model_version
+     *           The baseline model version used to generate this summary. It is empty if
+     *           a baseline model was not used to generate this summary.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +111,34 @@ class Summary extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->text_sections = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The baseline model version used to generate this summary. It is empty if
+     * a baseline model was not used to generate this summary.
+     *
+     * Generated from protobuf field <code>string baseline_model_version = 4;</code>
+     * @return string
+     */
+    public function getBaselineModelVersion()
+    {
+        return $this->baseline_model_version;
+    }
+
+    /**
+     * The baseline model version used to generate this summary. It is empty if
+     * a baseline model was not used to generate this summary.
+     *
+     * Generated from protobuf field <code>string baseline_model_version = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBaselineModelVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->baseline_model_version = $var;
 
         return $this;
     }

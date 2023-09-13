@@ -97,7 +97,8 @@ class StorageErrorCode
      */
     const CMEK_ENCRYPTION_ERROR = 12;
     /**
-     * Key Management Service (KMS) service returned an error.
+     * Key Management Service (KMS) service returned an error, which can be
+     * retried.
      *
      * Generated from protobuf enum <code>KMS_SERVICE_ERROR = 13;</code>
      */

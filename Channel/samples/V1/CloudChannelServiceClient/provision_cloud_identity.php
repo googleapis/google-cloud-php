@@ -35,7 +35,10 @@ use Google\Rpc\Status;
  *
  * Possible error codes:
  *
- * *  PERMISSION_DENIED: The customer doesn't belong to the reseller.
+ * *  PERMISSION_DENIED:
+ * * The customer doesn't belong to the reseller.
+ * * You are not authorized to provision cloud identity id. See
+ * https://support.google.com/channelservices/answer/9759265
  * *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
  * *  NOT_FOUND: The customer was not found.
  * *  ALREADY_EXISTS: The customer's primary email already exists. Retry

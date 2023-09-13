@@ -24,49 +24,56 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
      */
     private $conversion_workspace = '';
     /**
-     * The maximum number of entities to return. The service may return
+     * Optional. The maximum number of entities to return. The service may return
      * fewer entities than the value specifies.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * The nextPageToken value received in the previous call to
+     * Optional. The nextPageToken value received in the previous call to
      * conversionWorkspace.describeDatabaseEntities, used in the subsequent
      * request to retrieve the next page of results. On first call this should be
      * left blank. When paginating, all other parameters provided to
      * conversionWorkspace.describeDatabaseEntities must match the call that
      * provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * The tree to fetch.
+     * Required. The tree to fetch.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DescribeDatabaseEntitiesRequest.DBTreeType tree = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DescribeDatabaseEntitiesRequest.DBTreeType tree = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tree = 0;
     /**
-     * Whether to retrieve the latest committed version of the entities or the
-     * latest version. This field is ignored if a specific commit_id is specified.
+     * Optional. Whether to retrieve the latest committed version of the entities
+     * or the latest version. This field is ignored if a specific commit_id is
+     * specified.
      *
-     * Generated from protobuf field <code>bool uncommitted = 11;</code>
+     * Generated from protobuf field <code>bool uncommitted = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $uncommitted = false;
     /**
-     * Request a specific commit ID. If not specified, the entities from the
-     * latest commit are returned.
+     * Optional. Request a specific commit ID. If not specified, the entities from
+     * the latest commit are returned.
      *
-     * Generated from protobuf field <code>string commit_id = 12;</code>
+     * Generated from protobuf field <code>string commit_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $commit_id = '';
     /**
-     * Filter the returned entities based on AIP-160 standard.
+     * Optional. Filter the returned entities based on AIP-160 standard.
      *
-     * Generated from protobuf field <code>string filter = 13;</code>
+     * Generated from protobuf field <code>string filter = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
+    /**
+     * Optional. Results view based on AIP-157
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityView view = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $view = 0;
 
     /**
      * Constructor.
@@ -79,25 +86,28 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
      *           are described. Must be in the form of:
      *           projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
      *     @type int $page_size
-     *           The maximum number of entities to return. The service may return
+     *           Optional. The maximum number of entities to return. The service may return
      *           fewer entities than the value specifies.
      *     @type string $page_token
-     *           The nextPageToken value received in the previous call to
+     *           Optional. The nextPageToken value received in the previous call to
      *           conversionWorkspace.describeDatabaseEntities, used in the subsequent
      *           request to retrieve the next page of results. On first call this should be
      *           left blank. When paginating, all other parameters provided to
      *           conversionWorkspace.describeDatabaseEntities must match the call that
      *           provided the page token.
      *     @type int $tree
-     *           The tree to fetch.
+     *           Required. The tree to fetch.
      *     @type bool $uncommitted
-     *           Whether to retrieve the latest committed version of the entities or the
-     *           latest version. This field is ignored if a specific commit_id is specified.
+     *           Optional. Whether to retrieve the latest committed version of the entities
+     *           or the latest version. This field is ignored if a specific commit_id is
+     *           specified.
      *     @type string $commit_id
-     *           Request a specific commit ID. If not specified, the entities from the
-     *           latest commit are returned.
+     *           Optional. Request a specific commit ID. If not specified, the entities from
+     *           the latest commit are returned.
      *     @type string $filter
-     *           Filter the returned entities based on AIP-160 standard.
+     *           Optional. Filter the returned entities based on AIP-160 standard.
+     *     @type int $view
+     *           Optional. Results view based on AIP-157
      * }
      */
     public function __construct($data = NULL) {
@@ -136,10 +146,10 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of entities to return. The service may return
+     * Optional. The maximum number of entities to return. The service may return
      * fewer entities than the value specifies.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -148,10 +158,10 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of entities to return. The service may return
+     * Optional. The maximum number of entities to return. The service may return
      * fewer entities than the value specifies.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -164,14 +174,14 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nextPageToken value received in the previous call to
+     * Optional. The nextPageToken value received in the previous call to
      * conversionWorkspace.describeDatabaseEntities, used in the subsequent
      * request to retrieve the next page of results. On first call this should be
      * left blank. When paginating, all other parameters provided to
      * conversionWorkspace.describeDatabaseEntities must match the call that
      * provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -180,14 +190,14 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nextPageToken value received in the previous call to
+     * Optional. The nextPageToken value received in the previous call to
      * conversionWorkspace.describeDatabaseEntities, used in the subsequent
      * request to retrieve the next page of results. On first call this should be
      * left blank. When paginating, all other parameters provided to
      * conversionWorkspace.describeDatabaseEntities must match the call that
      * provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -200,9 +210,9 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The tree to fetch.
+     * Required. The tree to fetch.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DescribeDatabaseEntitiesRequest.DBTreeType tree = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DescribeDatabaseEntitiesRequest.DBTreeType tree = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getTree()
@@ -211,9 +221,9 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The tree to fetch.
+     * Required. The tree to fetch.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DescribeDatabaseEntitiesRequest.DBTreeType tree = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DescribeDatabaseEntitiesRequest.DBTreeType tree = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -226,10 +236,11 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to retrieve the latest committed version of the entities or the
-     * latest version. This field is ignored if a specific commit_id is specified.
+     * Optional. Whether to retrieve the latest committed version of the entities
+     * or the latest version. This field is ignored if a specific commit_id is
+     * specified.
      *
-     * Generated from protobuf field <code>bool uncommitted = 11;</code>
+     * Generated from protobuf field <code>bool uncommitted = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUncommitted()
@@ -238,10 +249,11 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to retrieve the latest committed version of the entities or the
-     * latest version. This field is ignored if a specific commit_id is specified.
+     * Optional. Whether to retrieve the latest committed version of the entities
+     * or the latest version. This field is ignored if a specific commit_id is
+     * specified.
      *
-     * Generated from protobuf field <code>bool uncommitted = 11;</code>
+     * Generated from protobuf field <code>bool uncommitted = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -254,10 +266,10 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Request a specific commit ID. If not specified, the entities from the
-     * latest commit are returned.
+     * Optional. Request a specific commit ID. If not specified, the entities from
+     * the latest commit are returned.
      *
-     * Generated from protobuf field <code>string commit_id = 12;</code>
+     * Generated from protobuf field <code>string commit_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCommitId()
@@ -266,10 +278,10 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Request a specific commit ID. If not specified, the entities from the
-     * latest commit are returned.
+     * Optional. Request a specific commit ID. If not specified, the entities from
+     * the latest commit are returned.
      *
-     * Generated from protobuf field <code>string commit_id = 12;</code>
+     * Generated from protobuf field <code>string commit_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -282,9 +294,9 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter the returned entities based on AIP-160 standard.
+     * Optional. Filter the returned entities based on AIP-160 standard.
      *
-     * Generated from protobuf field <code>string filter = 13;</code>
+     * Generated from protobuf field <code>string filter = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -293,9 +305,9 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter the returned entities based on AIP-160 standard.
+     * Optional. Filter the returned entities based on AIP-160 standard.
      *
-     * Generated from protobuf field <code>string filter = 13;</code>
+     * Generated from protobuf field <code>string filter = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -303,6 +315,32 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Results view based on AIP-157
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityView view = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Optional. Results view based on AIP-157
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityView view = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\CloudDms\V1\DatabaseEntityView::class);
+        $this->view = $var;
 
         return $this;
     }

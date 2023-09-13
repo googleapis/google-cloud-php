@@ -869,6 +869,7 @@ class ScheduleServiceGapicClient
      *           descending order.
      *
      *           Supported fields:
+     *
      *           * `create_time`
      *           * `start_time`
      *           * `end_time`
@@ -1058,7 +1059,9 @@ class ScheduleServiceGapicClient
      *
      * @param Schedule  $schedule     Required. The Schedule which replaces the resource on the server.
      *                                The following restrictions will be applied:
+     *
      *                                * The scheduled request type cannot be changed.
+     *                                * The non-empty fields cannot be unset.
      *                                * The output_only fields will be ignored if specified.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource. See
      *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].

@@ -30,13 +30,21 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Immutable. Name of the table from which this backup was created. This needs
-     * to be in the same instance as the backup. Values are of the form
+     * Required. Immutable. Name of the table from which this backup was created.
+     * This needs to be in the same instance as the backup. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{source_table}`.
      *
      * Generated from protobuf field <code>string source_table = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $source_table = '';
+    /**
+     * Output only. Name of the backup from which this backup was copied. If a
+     * backup is not created by copying a backup, this field will be empty. Values
+     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *
+     * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_backup = '';
     /**
      * Required. The expiration time of the backup, with microseconds
      * granularity that must be at least 6 hours and at most 90 days
@@ -50,8 +58,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `start_time` is the time that the backup was started
      * (i.e. approximately the time the
-     * [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup] request is received).  The
-     * row data in this backup will be no older than this timestamp.
+     * [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]
+     * request is received).  The row data in this backup will be no older than
+     * this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -99,9 +108,13 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           name of the form
      *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type string $source_table
-     *           Required. Immutable. Name of the table from which this backup was created. This needs
-     *           to be in the same instance as the backup. Values are of the form
+     *           Required. Immutable. Name of the table from which this backup was created.
+     *           This needs to be in the same instance as the backup. Values are of the form
      *           `projects/{project}/instances/{instance}/tables/{source_table}`.
+     *     @type string $source_backup
+     *           Output only. Name of the backup from which this backup was copied. If a
+     *           backup is not created by copying a backup, this field will be empty. Values
+     *           are of the form: projects/<project>/instances/<instance>/backups/<backup>.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Required. The expiration time of the backup, with microseconds
      *           granularity that must be at least 6 hours and at most 90 days
@@ -111,8 +124,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. `start_time` is the time that the backup was started
      *           (i.e. approximately the time the
-     *           [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup] request is received).  The
-     *           row data in this backup will be no older than this timestamp.
+     *           [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]
+     *           request is received).  The row data in this backup will be no older than
+     *           this timestamp.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. `end_time` is the time that the backup was finished. The row
      *           data in the backup will be no newer than this timestamp.
@@ -172,8 +186,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Name of the table from which this backup was created. This needs
-     * to be in the same instance as the backup. Values are of the form
+     * Required. Immutable. Name of the table from which this backup was created.
+     * This needs to be in the same instance as the backup. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{source_table}`.
      *
      * Generated from protobuf field <code>string source_table = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
@@ -185,8 +199,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Name of the table from which this backup was created. This needs
-     * to be in the same instance as the backup. Values are of the form
+     * Required. Immutable. Name of the table from which this backup was created.
+     * This needs to be in the same instance as the backup. Values are of the form
      * `projects/{project}/instances/{instance}/tables/{source_table}`.
      *
      * Generated from protobuf field <code>string source_table = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
@@ -197,6 +211,36 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_table = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Name of the backup from which this backup was copied. If a
+     * backup is not created by copying a backup, this field will be empty. Values
+     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *
+     * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSourceBackup()
+    {
+        return $this->source_backup;
+    }
+
+    /**
+     * Output only. Name of the backup from which this backup was copied. If a
+     * backup is not created by copying a backup, this field will be empty. Values
+     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *
+     * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceBackup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_backup = $var;
 
         return $this;
     }
@@ -248,8 +292,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `start_time` is the time that the backup was started
      * (i.e. approximately the time the
-     * [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup] request is received).  The
-     * row data in this backup will be no older than this timestamp.
+     * [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]
+     * request is received).  The row data in this backup will be no older than
+     * this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -272,8 +317,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `start_time` is the time that the backup was started
      * (i.e. approximately the time the
-     * [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup] request is received).  The
-     * row data in this backup will be no older than this timestamp.
+     * [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]
+     * request is received).  The row data in this backup will be no older than
+     * this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

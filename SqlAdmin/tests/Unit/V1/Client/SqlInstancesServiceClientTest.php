@@ -40,6 +40,8 @@ use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigRequest;
 use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigResponse;
+use Google\Cloud\Sql\V1\SqlInstancesGetLatestRecoveryTimeRequest;
+use Google\Cloud\Sql\V1\SqlInstancesGetLatestRecoveryTimeResponse;
 use Google\Cloud\Sql\V1\SqlInstancesGetRequest;
 use Google\Cloud\Sql\V1\SqlInstancesImportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesInsertRequest;
@@ -594,6 +596,8 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $rootPassword = 'rootPassword448743768';
         $databaseInstalledVersion = 'databaseInstalledVersion-1701014705';
         $maintenanceVersion = 'maintenanceVersion-588975188';
+        $pscServiceAttachmentLink = 'pscServiceAttachmentLink309057421';
+        $dnsName = 'dnsName411992033';
         $expectedResponse = new DatabaseInstance();
         $expectedResponse->setKind($kind);
         $expectedResponse->setEtag($etag);
@@ -610,6 +614,8 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $expectedResponse->setRootPassword($rootPassword);
         $expectedResponse->setDatabaseInstalledVersion($databaseInstalledVersion);
         $expectedResponse->setMaintenanceVersion($maintenanceVersion);
+        $expectedResponse->setPscServiceAttachmentLink($pscServiceAttachmentLink);
+        $expectedResponse->setDnsName($dnsName);
         $transport->addResponse($expectedResponse);
         $request = new SqlInstancesGetRequest();
         $response = $gapicClient->get($request);
@@ -703,6 +709,62 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $request = new SqlInstancesGetDiskShrinkConfigRequest();
         try {
             $gapicClient->getDiskShrinkConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getLatestRecoveryTimeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $expectedResponse = new SqlInstancesGetLatestRecoveryTimeResponse();
+        $expectedResponse->setKind($kind);
+        $transport->addResponse($expectedResponse);
+        $request = new SqlInstancesGetLatestRecoveryTimeRequest();
+        $response = $gapicClient->getLatestRecoveryTime($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/GetLatestRecoveryTime', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getLatestRecoveryTimeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        $request = new SqlInstancesGetLatestRecoveryTimeRequest();
+        try {
+            $gapicClient->getLatestRecoveryTime($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

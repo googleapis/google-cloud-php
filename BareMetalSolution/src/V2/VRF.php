@@ -29,6 +29,9 @@ class VRF extends \Google\Protobuf\Internal\Message
     private $state = 0;
     /**
      * The QOS policy applied to this VRF.
+     * The value is only meaningful when all the vlan attachments have the same
+     * QoS. This field should not be used for new integrations, use vlan
+     * attachment level qos instead. The field is left for backward-compatibility.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 6;</code>
      */
@@ -52,6 +55,9 @@ class VRF extends \Google\Protobuf\Internal\Message
      *           The possible state of VRF.
      *     @type \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy $qos_policy
      *           The QOS policy applied to this VRF.
+     *           The value is only meaningful when all the vlan attachments have the same
+     *           QoS. This field should not be used for new integrations, use vlan
+     *           attachment level qos instead. The field is left for backward-compatibility.
      *     @type array<\Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment>|\Google\Protobuf\Internal\RepeatedField $vlan_attachments
      *           The list of VLAN attachments for the VRF.
      * }
@@ -115,6 +121,9 @@ class VRF extends \Google\Protobuf\Internal\Message
 
     /**
      * The QOS policy applied to this VRF.
+     * The value is only meaningful when all the vlan attachments have the same
+     * QoS. This field should not be used for new integrations, use vlan
+     * attachment level qos instead. The field is left for backward-compatibility.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 6;</code>
      * @return \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy|null
@@ -136,6 +145,9 @@ class VRF extends \Google\Protobuf\Internal\Message
 
     /**
      * The QOS policy applied to this VRF.
+     * The value is only meaningful when all the vlan attachments have the same
+     * QoS. This field should not be used for new integrations, use vlan
+     * attachment level qos instead. The field is left for backward-compatibility.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 6;</code>
      * @param \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy $var

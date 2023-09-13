@@ -36,6 +36,11 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * notifications, and incidents. To avoid confusion, don't use the same
      * display name for multiple policies in the same project. The name is
      * limited to 512 Unicode characters.
+     * The convention for the display_name of a PrometheusQueryLanguageCondition
+     * is "{rule group name}/{alert name}", where the {rule group name} and
+     * {alert name} should be taken from the corresponding Prometheus
+     * configuration file. This convention is not enforced.
+     * In any case the display_name is not a unique key of the AlertPolicy.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
@@ -57,6 +62,12 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * 63 Unicode characters or 128 bytes, whichever is smaller. Labels and
      * values can contain only lowercase letters, numerals, underscores, and
      * dashes. Keys must begin with a letter.
+     * Note that Prometheus {alert name} is a
+     * [valid Prometheus label
+     * names](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels),
+     * whereas Prometheus {rule group} is an unrestricted UTF-8 string.
+     * This means that they cannot be stored as-is in user labels, because
+     * they may contain characters that are not allowed in user-label values.
      *
      * Generated from protobuf field <code>map<string, string> user_labels = 16;</code>
      */
@@ -67,6 +78,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
      * If `condition_time_series_query_language` is present, it must be the only
+     * `condition`.
+     * If `condition_monitoring_query_language` is present, it must be the only
      * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
@@ -92,8 +105,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     private $enabled = null;
     /**
-     * Read-only description of how the alert policy is invalid. OK if the alert
-     * policy is valid. If not OK, the alert policy will not generate incidents.
+     * Read-only description of how the alert policy is invalid. This field is
+     * only set when the alert policy is invalid. An invalid alert policy will not
+     * generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
      */
@@ -153,6 +167,11 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           notifications, and incidents. To avoid confusion, don't use the same
      *           display name for multiple policies in the same project. The name is
      *           limited to 512 Unicode characters.
+     *           The convention for the display_name of a PrometheusQueryLanguageCondition
+     *           is "{rule group name}/{alert name}", where the {rule group name} and
+     *           {alert name} should be taken from the corresponding Prometheus
+     *           configuration file. This convention is not enforced.
+     *           In any case the display_name is not a unique key of the AlertPolicy.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation $documentation
      *           Documentation that is included with notifications and incidents related to
      *           this policy. Best practice is for the documentation to include information
@@ -166,12 +185,20 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           63 Unicode characters or 128 bytes, whichever is smaller. Labels and
      *           values can contain only lowercase letters, numerals, underscores, and
      *           dashes. Keys must begin with a letter.
+     *           Note that Prometheus {alert name} is a
+     *           [valid Prometheus label
+     *           names](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels),
+     *           whereas Prometheus {rule group} is an unrestricted UTF-8 string.
+     *           This means that they cannot be stored as-is in user labels, because
+     *           they may contain characters that are not allowed in user-label values.
      *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           A list of conditions for the policy. The conditions are combined by AND or
      *           OR according to the `combiner` field. If the combined conditions evaluate
      *           to true, then an incident is created. A policy can have from one to six
      *           conditions.
      *           If `condition_time_series_query_language` is present, it must be the only
+     *           `condition`.
+     *           If `condition_monitoring_query_language` is present, it must be the only
      *           `condition`.
      *     @type int $combiner
      *           How to combine the results of multiple conditions to determine if an
@@ -185,8 +212,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           field should always be populated on List and Get operations, unless
      *           a field projection has been specified that strips it out.
      *     @type \Google\Rpc\Status $validity
-     *           Read-only description of how the alert policy is invalid. OK if the alert
-     *           policy is valid. If not OK, the alert policy will not generate incidents.
+     *           Read-only description of how the alert policy is invalid. This field is
+     *           only set when the alert policy is invalid. An invalid alert policy will not
+     *           generate incidents.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
      *           Identifies the notification channels to which notifications should be sent
      *           when incidents are opened or closed or when new violations occur on
@@ -257,6 +285,11 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * notifications, and incidents. To avoid confusion, don't use the same
      * display name for multiple policies in the same project. The name is
      * limited to 512 Unicode characters.
+     * The convention for the display_name of a PrometheusQueryLanguageCondition
+     * is "{rule group name}/{alert name}", where the {rule group name} and
+     * {alert name} should be taken from the corresponding Prometheus
+     * configuration file. This convention is not enforced.
+     * In any case the display_name is not a unique key of the AlertPolicy.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -271,6 +304,11 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * notifications, and incidents. To avoid confusion, don't use the same
      * display name for multiple policies in the same project. The name is
      * limited to 512 Unicode characters.
+     * The convention for the display_name of a PrometheusQueryLanguageCondition
+     * is "{rule group name}/{alert name}", where the {rule group name} and
+     * {alert name} should be taken from the corresponding Prometheus
+     * configuration file. This convention is not enforced.
+     * In any case the display_name is not a unique key of the AlertPolicy.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
@@ -335,6 +373,12 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * 63 Unicode characters or 128 bytes, whichever is smaller. Labels and
      * values can contain only lowercase letters, numerals, underscores, and
      * dashes. Keys must begin with a letter.
+     * Note that Prometheus {alert name} is a
+     * [valid Prometheus label
+     * names](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels),
+     * whereas Prometheus {rule group} is an unrestricted UTF-8 string.
+     * This means that they cannot be stored as-is in user labels, because
+     * they may contain characters that are not allowed in user-label values.
      *
      * Generated from protobuf field <code>map<string, string> user_labels = 16;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -351,6 +395,12 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * 63 Unicode characters or 128 bytes, whichever is smaller. Labels and
      * values can contain only lowercase letters, numerals, underscores, and
      * dashes. Keys must begin with a letter.
+     * Note that Prometheus {alert name} is a
+     * [valid Prometheus label
+     * names](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels),
+     * whereas Prometheus {rule group} is an unrestricted UTF-8 string.
+     * This means that they cannot be stored as-is in user labels, because
+     * they may contain characters that are not allowed in user-label values.
      *
      * Generated from protobuf field <code>map<string, string> user_labels = 16;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -371,6 +421,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * conditions.
      * If `condition_time_series_query_language` is present, it must be the only
      * `condition`.
+     * If `condition_monitoring_query_language` is present, it must be the only
+     * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -386,6 +438,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * to true, then an incident is created. A policy can have from one to six
      * conditions.
      * If `condition_time_series_query_language` is present, it must be the only
+     * `condition`.
+     * If `condition_monitoring_query_language` is present, it must be the only
      * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
@@ -512,8 +566,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Read-only description of how the alert policy is invalid. OK if the alert
-     * policy is valid. If not OK, the alert policy will not generate incidents.
+     * Read-only description of how the alert policy is invalid. This field is
+     * only set when the alert policy is invalid. An invalid alert policy will not
+     * generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
      * @return \Google\Rpc\Status|null
@@ -534,8 +589,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read-only description of how the alert policy is invalid. OK if the alert
-     * policy is valid. If not OK, the alert policy will not generate incidents.
+     * Read-only description of how the alert policy is invalid. This field is
+     * only set when the alert policy is invalid. An invalid alert policy will not
+     * generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
      * @param \Google\Rpc\Status $var

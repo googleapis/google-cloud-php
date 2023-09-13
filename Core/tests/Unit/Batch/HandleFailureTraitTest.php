@@ -100,17 +100,33 @@ class HandleFailureTraitTest extends TestCase
         );
     }
 
-    public function testHandleFailure()
+    /**
+     * @dataProvider handleFailureCases
+     */
+    public function testHandleFailure($key, $item)
     {
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . $this->testDir);
         $this->impl->call('initFailureFile');
-        $this->impl->handleFailure(1, array('apple', 'orange'));
+        $this->impl->handleFailure($key, $item);
         $files = $this->impl->call('getFailedFiles');
         $this->assertCount(1, $files);
-        $unserialized = unserialize(file_get_contents($files[0]));
+        $fp = fopen($files[0], 'r');
+        $unserializedData = [];
+        while ($line = fgets($fp)) {
+            $unserializedData += unserialize(json_decode($line));
+        }
+        @fclose($fp);
         $this->assertEquals(
-            array(1 => array('apple', 'orange')),
-            $unserialized
+            array($key => $item),
+            $unserializedData
         );
+    }
+
+    public function handleFailureCases()
+    {
+        return [
+            [1, array('apple', 'orange')],
+            [2, array('apple' . PHP_EOL, 'orange')]
+        ];
     }
 }

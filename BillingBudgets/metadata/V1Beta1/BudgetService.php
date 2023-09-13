@@ -23,7 +23,7 @@ class BudgetService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
+ø
 9google/cloud/billing/budgets/v1beta1/budget_service.proto$google.cloud.billing.budgets.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/billing/budgets/v1beta1/budget_model.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"–
 CreateBudgetRequest<
 parent (	B,àAúA&$billingbudgets.googleapis.com/BudgetA
@@ -33,9 +33,10 @@ class BudgetService
 update_mask (2.google.protobuf.FieldMaskBàA"N
 GetBudgetRequest:
 name (	B,àAúA&
-$billingbudgets.googleapis.com/Budget"ƒ
+$billingbudgets.googleapis.com/Budget"—
 ListBudgetsRequest<
-parent (	B,àAúA&$billingbudgets.googleapis.com/Budget
+parent (	B,àAúA&$billingbudgets.googleapis.com/Budget
+scope (	BàA
 	page_size (BàA
 
 page_token (	BàA"m

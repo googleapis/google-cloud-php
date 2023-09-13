@@ -41,7 +41,9 @@ class ImportEntitiesMetadata extends \Google\Protobuf\Internal\Message
     private $entity_filter = null;
     /**
      * The location of the import metadata file. This will be the same value as
-     * the [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url] field.
+     * the
+     * [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+     * field.
      *
      * Generated from protobuf field <code>string input_url = 5;</code>
      */
@@ -63,7 +65,9 @@ class ImportEntitiesMetadata extends \Google\Protobuf\Internal\Message
      *           Description of which entities are being imported.
      *     @type string $input_url
      *           The location of the import metadata file. This will be the same value as
-     *           the [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url] field.
+     *           the
+     *           [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+     *           field.
      * }
      */
     public function __construct($data = NULL) {
@@ -217,7 +221,9 @@ class ImportEntitiesMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The location of the import metadata file. This will be the same value as
-     * the [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url] field.
+     * the
+     * [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+     * field.
      *
      * Generated from protobuf field <code>string input_url = 5;</code>
      * @return string
@@ -229,7 +235,9 @@ class ImportEntitiesMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The location of the import metadata file. This will be the same value as
-     * the [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url] field.
+     * the
+     * [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+     * field.
      *
      * Generated from protobuf field <code>string input_url = 5;</code>
      * @param string $var

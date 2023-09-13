@@ -1267,6 +1267,11 @@
                                 "rawPredict"
                             ]
                         },
+                        "ServerStreamingPredict": {
+                            "methods": [
+                                "serverStreamingPredict"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -1532,6 +1537,11 @@
                         "ReadTensorboardBlobData": {
                             "methods": [
                                 "readTensorboardBlobData"
+                            ]
+                        },
+                        "ReadTensorboardSize": {
+                            "methods": [
+                                "readTensorboardSize"
                             ]
                         },
                         "ReadTensorboardTimeSeriesData": {

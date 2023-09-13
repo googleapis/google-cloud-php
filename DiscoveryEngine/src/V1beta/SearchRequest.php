@@ -42,9 +42,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query = '';
     /**
+     * Raw image query.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ImageQuery image_query = 19;</code>
+     */
+    protected $image_query = null;
+    /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 will be coerced to 100.
+     * allowed value is 100. Values above 100 are coerced to 100.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -84,19 +90,20 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $filter = '';
     /**
-     * The order in which documents are returned. Document can be ordered by
+     * The order in which documents are returned. Documents can be ordered by
      * a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
-     * object. Leave it unset if ordered by relevance. OrderBy expression is
+     * object. Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
      */
     protected $order_by = '';
     /**
      * Information about the end user.
-     * Highly recommended for analytics. The user_agent string in UserInfo will
-     * be used to deduce device_type for analytics.
+     * Highly recommended for analytics.
+     * [UserInfo.user_agent][google.cloud.discoveryengine.v1beta.UserInfo.user_agent]
+     * is used to deduce `device_type` for analytics.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.UserInfo user_info = 21;</code>
      */
@@ -129,14 +136,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     private $params;
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion occurs.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.QueryExpansionSpec query_expansion_spec = 13;</code>
      */
     protected $query_expansion_spec = null;
     /**
      * The spell correction specification that specifies the mode under
-     * which spell correction will take effect.
+     * which spell correction takes effect.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.SpellCorrectionSpec spell_correction_spec = 14;</code>
      */
@@ -158,15 +165,49 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $user_pseudo_id = '';
     /**
-     * The content search spec that configs the desired behavior of content
-     * search.
+     * A specification for configuring the behavior of content search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec content_search_spec = 24;</code>
      */
     protected $content_search_spec = null;
     /**
+     * Uses the provided embedding to do additional semantic document retrieval.
+     * The retrieval is based on the dot product of
+     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     * embedding that is provided in
+     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
+     */
+    protected $embedding_spec = null;
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides [ServingConfig.ranking_expression][].
+     * The ranking expression is a single function or multiple functions that are
+     * joint by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   `dotProduct`: embedding function between embedding_field_path and query
+     *   embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     */
+    protected $ranking_expression = '';
+    /**
      * Whether to turn on safe search. This is only supported for
-     * [ContentConfig.PUBLIC_WEBSITE][].
+     * website search.
      *
      * Generated from protobuf field <code>bool safe_search = 20;</code>
      */
@@ -210,10 +251,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           documents under the default branch.
      *     @type string $query
      *           Raw search query.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ImageQuery $image_query
+     *           Raw image query.
      *     @type int $page_size
      *           Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      *           to return. If unspecified, defaults to a reasonable value. The maximum
-     *           allowed value is 100. Values above 100 will be coerced to 100.
+     *           allowed value is 100. Values above 100 are coerced to 100.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *     @type string $page_token
      *           A page token received from a previous
@@ -237,15 +280,16 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           expression is case-sensitive.
      *           If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
      *     @type string $order_by
-     *           The order in which documents are returned. Document can be ordered by
+     *           The order in which documents are returned. Documents can be ordered by
      *           a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
-     *           object. Leave it unset if ordered by relevance. OrderBy expression is
+     *           object. Leave it unset if ordered by relevance. `order_by` expression is
      *           case-sensitive.
-     *           If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\UserInfo $user_info
      *           Information about the end user.
-     *           Highly recommended for analytics. The user_agent string in UserInfo will
-     *           be used to deduce device_type for analytics.
+     *           Highly recommended for analytics.
+     *           [UserInfo.user_agent][google.cloud.discoveryengine.v1beta.UserInfo.user_agent]
+     *           is used to deduce `device_type` for analytics.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
@@ -262,10 +306,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *             which enables image searching.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\QueryExpansionSpec $query_expansion_spec
      *           The query expansion specification that specifies the conditions under which
-     *           query expansion will occur.
+     *           query expansion occurs.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\SpellCorrectionSpec $spell_correction_spec
      *           The spell correction specification that specifies the mode under
-     *           which spell correction will take effect.
+     *           which spell correction takes effect.
      *     @type string $user_pseudo_id
      *           A unique identifier for tracking visitors. For example, this could be
      *           implemented with an HTTP cookie, which should be able to uniquely identify
@@ -279,11 +323,37 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an  `INVALID_ARGUMENT`  error is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec $content_search_spec
-     *           The content search spec that configs the desired behavior of content
-     *           search.
+     *           A specification for configuring the behavior of content search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec $embedding_spec
+     *           Uses the provided embedding to do additional semantic document retrieval.
+     *           The retrieval is based on the dot product of
+     *           [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     *           embedding that is provided in
+     *           [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     *           If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     *           provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *     @type string $ranking_expression
+     *           The ranking expression controls the customized ranking on retrieval
+     *           documents. This overrides [ServingConfig.ranking_expression][].
+     *           The ranking expression is a single function or multiple functions that are
+     *           joint by "+".
+     *             * ranking_expression = function, { " + ", function };
+     *           Supported functions:
+     *             * double * relevance_score
+     *             * double * dotProduct(embedding_field_path)
+     *           Function variables:
+     *             `relevance_score`: pre-defined keywords, used for measure relevance
+     *             between query and document.
+     *             `embedding_field_path`: the document embedding field
+     *             used with query embedding vector.
+     *             `dotProduct`: embedding function between embedding_field_path and query
+     *             embedding vector.
+     *            Example ranking expression:
+     *              If document has an embedding field doc_embedding, the ranking expression
+     *              could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
      *     @type bool $safe_search
      *           Whether to turn on safe search. This is only supported for
-     *           [ContentConfig.PUBLIC_WEBSITE][].
+     *           website search.
      *     @type array|\Google\Protobuf\Internal\MapField $user_labels
      *           The user labels applied to a resource must meet the following requirements:
      *           * Each resource can have multiple labels, up to a maximum of 64.
@@ -398,9 +468,45 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Raw image query.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ImageQuery image_query = 19;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ImageQuery|null
+     */
+    public function getImageQuery()
+    {
+        return $this->image_query;
+    }
+
+    public function hasImageQuery()
+    {
+        return isset($this->image_query);
+    }
+
+    public function clearImageQuery()
+    {
+        unset($this->image_query);
+    }
+
+    /**
+     * Raw image query.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ImageQuery image_query = 19;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ImageQuery $var
+     * @return $this
+     */
+    public function setImageQuery($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ImageQuery::class);
+        $this->image_query = $var;
+
+        return $this;
+    }
+
+    /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 will be coerced to 100.
+     * allowed value is 100. Values above 100 are coerced to 100.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -414,7 +520,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 will be coerced to 100.
+     * allowed value is 100. Values above 100 are coerced to 100.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -538,11 +644,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order in which documents are returned. Document can be ordered by
+     * The order in which documents are returned. Documents can be ordered by
      * a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
-     * object. Leave it unset if ordered by relevance. OrderBy expression is
+     * object. Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
      * @return string
@@ -553,11 +659,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order in which documents are returned. Document can be ordered by
+     * The order in which documents are returned. Documents can be ordered by
      * a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
-     * object. Leave it unset if ordered by relevance. OrderBy expression is
+     * object. Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
      * @param string $var
@@ -573,8 +679,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Information about the end user.
-     * Highly recommended for analytics. The user_agent string in UserInfo will
-     * be used to deduce device_type for analytics.
+     * Highly recommended for analytics.
+     * [UserInfo.user_agent][google.cloud.discoveryengine.v1beta.UserInfo.user_agent]
+     * is used to deduce `device_type` for analytics.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.UserInfo user_info = 21;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1beta\UserInfo|null
@@ -596,8 +703,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Information about the end user.
-     * Highly recommended for analytics. The user_agent string in UserInfo will
-     * be used to deduce device_type for analytics.
+     * Highly recommended for analytics.
+     * [UserInfo.user_agent][google.cloud.discoveryengine.v1beta.UserInfo.user_agent]
+     * is used to deduce `device_type` for analytics.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.UserInfo user_info = 21;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1beta\UserInfo $var
@@ -717,7 +825,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion occurs.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.QueryExpansionSpec query_expansion_spec = 13;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\QueryExpansionSpec|null
@@ -739,7 +847,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion occurs.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.QueryExpansionSpec query_expansion_spec = 13;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\QueryExpansionSpec $var
@@ -755,7 +863,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The spell correction specification that specifies the mode under
-     * which spell correction will take effect.
+     * which spell correction takes effect.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.SpellCorrectionSpec spell_correction_spec = 14;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\SpellCorrectionSpec|null
@@ -777,7 +885,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The spell correction specification that specifies the mode under
-     * which spell correction will take effect.
+     * which spell correction takes effect.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.SpellCorrectionSpec spell_correction_spec = 14;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\SpellCorrectionSpec $var
@@ -838,8 +946,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The content search spec that configs the desired behavior of content
-     * search.
+     * A specification for configuring the behavior of content search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec content_search_spec = 24;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec|null
@@ -860,8 +967,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The content search spec that configs the desired behavior of content
-     * search.
+     * A specification for configuring the behavior of content search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec content_search_spec = 24;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec $var
@@ -876,8 +982,116 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Uses the provided embedding to do additional semantic document retrieval.
+     * The retrieval is based on the dot product of
+     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     * embedding that is provided in
+     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec|null
+     */
+    public function getEmbeddingSpec()
+    {
+        return $this->embedding_spec;
+    }
+
+    public function hasEmbeddingSpec()
+    {
+        return isset($this->embedding_spec);
+    }
+
+    public function clearEmbeddingSpec()
+    {
+        unset($this->embedding_spec);
+    }
+
+    /**
+     * Uses the provided embedding to do additional semantic document retrieval.
+     * The retrieval is based on the dot product of
+     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
+     * embedding that is provided in
+     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
+     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
+     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec $var
+     * @return $this
+     */
+    public function setEmbeddingSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec::class);
+        $this->embedding_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides [ServingConfig.ranking_expression][].
+     * The ranking expression is a single function or multiple functions that are
+     * joint by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   `dotProduct`: embedding function between embedding_field_path and query
+     *   embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     * @return string
+     */
+    public function getRankingExpression()
+    {
+        return $this->ranking_expression;
+    }
+
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides [ServingConfig.ranking_expression][].
+     * The ranking expression is a single function or multiple functions that are
+     * joint by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   `dotProduct`: embedding function between embedding_field_path and query
+     *   embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRankingExpression($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ranking_expression = $var;
+
+        return $this;
+    }
+
+    /**
      * Whether to turn on safe search. This is only supported for
-     * [ContentConfig.PUBLIC_WEBSITE][].
+     * website search.
      *
      * Generated from protobuf field <code>bool safe_search = 20;</code>
      * @return bool
@@ -889,7 +1103,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether to turn on safe search. This is only supported for
-     * [ContentConfig.PUBLIC_WEBSITE][].
+     * website search.
      *
      * Generated from protobuf field <code>bool safe_search = 20;</code>
      * @param bool $var

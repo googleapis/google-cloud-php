@@ -44,6 +44,8 @@ use Google\Cloud\Channel\V1\TransferableOffer;
  * auth token.
  * * The reseller account making the request is different
  * from the reseller account in the query.
+ * * The reseller is not authorized to transact on this Product. See
+ * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
  *
  * Return value:

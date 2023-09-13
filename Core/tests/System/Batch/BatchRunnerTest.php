@@ -146,11 +146,12 @@ class BatchRunnerTest extends TestCase
         file_put_contents(self::$commandFile, 'fail');
 
         $this->runner->submitItem('batch-daemon-system-test', 'banana');
-        $this->runner->submitItem('batch-daemon-system-test', 'lemon');
+        $this->runner->submitItem('batch-daemon-system-test', 'lemon' . PHP_EOL);
+
         sleep(1);
         $result = $this->getResult();
         $this->assertStringNotContainsString('BANANA', $result);
-        $this->assertStringNotContainsString('LEMON', $result);
+        $this->assertStringNotContainsString('LEMON' . PHP_EOL, $result);
 
         // Retry simulation
         unlink(self::$commandFile);
@@ -164,8 +165,9 @@ class BatchRunnerTest extends TestCase
             $retry = new Retry();
             $retry->retryAll();
         }
-        sleep(1);
+        // sleep(1);
+        usleep(500000);
         $this->assertResultContains('BANANA');
-        $this->assertResultContains('LEMON');
+        $this->assertResultContains('LEMON' . PHP_EOL);
     }
 }

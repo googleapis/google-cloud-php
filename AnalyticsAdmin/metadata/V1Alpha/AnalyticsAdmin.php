@@ -29,7 +29,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œä
+Ò¢
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
 RunAccessReportRequest
 entity (	C
@@ -220,10 +220,10 @@ page_token	 (	B‡A"è
 measurement_protocol_secret (29.google.analytics.admin.v1alpha.MeasurementProtocolSecretB‡A"w
 &DeleteMeasurementProtocolSecretRequestM
 name (	B?‡A˙A9
-7analyticsadmin.googleapis.com/MeasurementProtocolSecret"æ
+7analyticsadmin.googleapis.com/MeasurementProtocolSecret"√
 &UpdateMeasurementProtocolSecretRequestc
-measurement_protocol_secret (29.google.analytics.admin.v1alpha.MeasurementProtocolSecretB‡A/
-update_mask (2.google.protobuf.FieldMask"ü
+measurement_protocol_secret (29.google.analytics.admin.v1alpha.MeasurementProtocolSecretB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"ü
 %ListMeasurementProtocolSecretsRequestO
 parent (	B?‡A˙A97analyticsadmin.googleapis.com/MeasurementProtocolSecret
 	page_size (
@@ -231,6 +231,26 @@ page_token	 (	B‡A"è
 page_token (	"¢
 &ListMeasurementProtocolSecretsResponse_
 measurement_protocol_secrets (29.google.analytics.admin.v1alpha.MeasurementProtocolSecret
+next_page_token (	"Ç
+*GetSKAdNetworkConversionValueSchemaRequestT
+name (	BF‡A˙A@
+>analyticsadmin.googleapis.com/SKAdNetworkConversionValueSchema"˚
+-CreateSKAdNetworkConversionValueSchemaRequestV
+parent (	BF‡A˙A@>analyticsadmin.googleapis.com/SKAdNetworkConversionValueSchemar
+#skadnetwork_conversion_value_schema (2@.google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchemaB‡A"Ö
+-DeleteSKAdNetworkConversionValueSchemaRequestT
+name (	BF‡A˙A@
+>analyticsadmin.googleapis.com/SKAdNetworkConversionValueSchema"Ÿ
+-UpdateSKAdNetworkConversionValueSchemaRequestr
+#skadnetwork_conversion_value_schema (2@.google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchemaB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"≠
+,ListSKAdNetworkConversionValueSchemasRequestV
+parent (	BF‡A˙A@>analyticsadmin.googleapis.com/SKAdNetworkConversionValueSchema
+	page_size (
+
+page_token (	"∏
+-ListSKAdNetworkConversionValueSchemasResponsen
+$skadnetwork_conversion_value_schemas (2@.google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchema
 next_page_token (	"l
 GetGoogleSignalsSettingsRequestI
 name (	B;‡A˙A5
@@ -240,7 +260,10 @@ page_token (	"¢
 update_mask (2.google.protobuf.FieldMaskB‡A"µ
 CreateConversionEventRequestN
 conversion_event (2/.google.analytics.admin.v1alpha.ConversionEventB‡AE
-parent (	B5‡A˙A/-analyticsadmin.googleapis.com/ConversionEvent"`
+parent (	B5‡A˙A/-analyticsadmin.googleapis.com/ConversionEvent"§
+UpdateConversionEventRequestN
+conversion_event (2/.google.analytics.admin.v1alpha.ConversionEventB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"`
 GetConversionEventRequestC
 name (	B5‡A˙A/
 -analyticsadmin.googleapis.com/ConversionEvent"c
@@ -567,7 +590,7 @@ page_token (	"w
 page_token (	"Ñ
 ListEventCreateRulesResponseK
 event_create_rules (2/.google.analytics.admin.v1alpha.EventCreateRule
-next_page_token (	2◊⁄
+next_page_token (	2¸Ë
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -605,11 +628,17 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 CreateMeasurementProtocolSecretF.google.analytics.admin.v1alpha.CreateMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"ëÇ”‰ìf"G/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets:measurement_protocol_secret⁄A"parent,measurement_protocol_secretŸ
 DeleteMeasurementProtocolSecretF.google.analytics.admin.v1alpha.DeleteMeasurementProtocolSecretRequest.google.protobuf.Empty"VÇ”‰ìI*G/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}⁄Aname⁄
 UpdateMeasurementProtocolSecretF.google.analytics.admin.v1alpha.UpdateMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"≥Ç”‰ìÇ2c/v1alpha/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}:measurement_protocol_secret⁄A\'measurement_protocol_secret,update_mask˜
-AcknowledgeUserDataCollectionD.google.analytics.admin.v1alpha.AcknowledgeUserDataCollectionRequestE.google.analytics.admin.v1alpha.AcknowledgeUserDataCollectionResponse"IÇ”‰ìC">/v1alpha/{property=properties/*}:acknowledgeUserDataCollection:*‰
+AcknowledgeUserDataCollectionD.google.analytics.admin.v1alpha.AcknowledgeUserDataCollectionRequestE.google.analytics.admin.v1alpha.AcknowledgeUserDataCollectionResponse"IÇ”‰ìC">/v1alpha/{property=properties/*}:acknowledgeUserDataCollection:*ë
+#GetSKAdNetworkConversionValueSchemaJ.google.analytics.admin.v1alpha.GetSKAdNetworkConversionValueSchemaRequest@.google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchema"\\Ç”‰ìOM/v1alpha/{name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}⁄Aname„
+&CreateSKAdNetworkConversionValueSchemaM.google.analytics.admin.v1alpha.CreateSKAdNetworkConversionValueSchemaRequest@.google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchema"ßÇ”‰ìt"M/v1alpha/{parent=properties/*/dataStreams/*}/sKAdNetworkConversionValueSchema:#skadnetwork_conversion_value_schema⁄A*parent,skadnetwork_conversion_value_schemaÌ
+&DeleteSKAdNetworkConversionValueSchemaM.google.analytics.admin.v1alpha.DeleteSKAdNetworkConversionValueSchemaRequest.google.protobuf.Empty"\\Ç”‰ìO*M/v1alpha/{name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}⁄Anameç
+&UpdateSKAdNetworkConversionValueSchemaM.google.analytics.admin.v1alpha.UpdateSKAdNetworkConversionValueSchemaRequest@.google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchema"—Ç”‰ìò2q/v1alpha/{skadnetwork_conversion_value_schema.name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}:#skadnetwork_conversion_value_schema⁄A/skadnetwork_conversion_value_schema,update_mask§
+%ListSKAdNetworkConversionValueSchemasL.google.analytics.admin.v1alpha.ListSKAdNetworkConversionValueSchemasRequestM.google.analytics.admin.v1alpha.ListSKAdNetworkConversionValueSchemasResponse"^Ç”‰ìOM/v1alpha/{parent=properties/*/dataStreams/*}/sKAdNetworkConversionValueSchema⁄Aparent‰
 SearchChangeHistoryEvents@.google.analytics.admin.v1alpha.SearchChangeHistoryEventsRequestA.google.analytics.admin.v1alpha.SearchChangeHistoryEventsResponse"BÇ”‰ì<"7/v1alpha/{account=accounts/*}:searchChangeHistoryEvents:*’
 GetGoogleSignalsSettings?.google.analytics.admin.v1alpha.GetGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"AÇ”‰ì42/v1alpha/{name=properties/*/googleSignalsSettings}⁄Aname¨
 UpdateGoogleSignalsSettingsB.google.analytics.admin.v1alpha.UpdateGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"ëÇ”‰ìe2J/v1alpha/{google_signals_settings.name=properties/*/googleSignalsSettings}:google_signals_settings⁄A#google_signals_settings,update_maskÎ
-CreateConversionEvent<.google.analytics.admin.v1alpha.CreateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"cÇ”‰ìC"//v1alpha/{parent=properties/*}/conversionEvents:conversion_event⁄Aparent,conversion_event¿
+CreateConversionEvent<.google.analytics.admin.v1alpha.CreateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"cÇ”‰ìC"//v1alpha/{parent=properties/*}/conversionEvents:conversion_event⁄Aparent,conversion_eventÅ
+UpdateConversionEvent<.google.analytics.admin.v1alpha.UpdateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"yÇ”‰ìT2@/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}:conversion_event⁄Aconversion_event,update_mask¿
 GetConversionEvent9.google.analytics.admin.v1alpha.GetConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent">Ç”‰ì1//v1alpha/{name=properties/*/conversionEvents/*}⁄Aname≠
 DeleteConversionEvent<.google.analytics.admin.v1alpha.DeleteConversionEventRequest.google.protobuf.Empty">Ç”‰ì1*//v1alpha/{name=properties/*/conversionEvents/*}⁄Aname”
 ListConversionEvents;.google.analytics.admin.v1alpha.ListConversionEventsRequest<.google.analytics.admin.v1alpha.ListConversionEventsResponse"@Ç”‰ì1//v1alpha/{parent=properties/*}/conversionEvents⁄Aparent¯

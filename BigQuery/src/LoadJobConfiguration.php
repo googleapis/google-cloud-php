@@ -637,4 +637,46 @@ class LoadJobConfiguration implements JobConfigurationInterface
 
         return $this;
     }
+
+    /**
+     * Decide whether to create a new session with a random id.
+     * The created session id is returned as part of the SessionInfo
+     * within the query statistics.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->createSession(true);
+     * ```
+     *
+     * @param bool $createSession
+     * @return LoadJobConfiguration
+     */
+    public function createSession(bool $createSession)
+    {
+        $this->config['configuration']['load']['createSession'] = $createSession;
+
+        return $this;
+    }
+
+    /**
+     * Sets connection properties for the load job.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->connectionProperties([
+     *     'key' => 'session_id',
+     *     'value' => 'sessionId'
+     * ]);
+     * ```
+     *
+     * @param array $connectionProperties
+     * @return LoadJobConfiguration
+     */
+    public function connectionProperties(array $connectionProperties)
+    {
+        $this->config['configuration']['load']['connectionProperties'] =
+            $connectionProperties;
+
+        return $this;
+    }
 }

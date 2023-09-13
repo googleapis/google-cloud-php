@@ -24,6 +24,12 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     private $results;
     /**
+     * Results of facets requested by user.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Facet facets = 2;</code>
+     */
+    private $facets;
+    /**
      * The estimated total count of matched items irrespective of pagination. The
      * count of [results][google.cloud.discoveryengine.v1.SearchResponse.results]
      * returned by pagination may be less than the
@@ -43,6 +49,17 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     protected $attribution_token = '';
     /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     */
+    protected $redirect_uri = '';
+    /**
      * A token that can be sent as
      * [SearchRequest.page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
@@ -59,6 +76,21 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string corrected_query = 7;</code>
      */
     protected $corrected_query = '';
+    /**
+     * A summary as part of the search results.
+     * This field is only returned if
+     * [SearchRequest.ContentSearchSpec.summary_spec][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.summary_spec]
+     * is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.Summary summary = 9;</code>
+     */
+    protected $summary = null;
+    /**
+     * Query expansion information for the returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
+     */
+    protected $query_expansion_info = null;
 
     /**
      * Constructor.
@@ -68,6 +100,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           A list of matched documents. The order represents the ranking.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $facets
+     *           Results of facets requested by user.
      *     @type int $total_size
      *           The estimated total count of matched items irrespective of pagination. The
      *           count of [results][google.cloud.discoveryengine.v1.SearchResponse.results]
@@ -79,6 +113,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      *           this search, which enables accurate attribution of search model
      *           performance.
+     *     @type string $redirect_uri
+     *           The URI of a customer-defined redirect page. If redirect action is
+     *           triggered, no search is performed, and only
+     *           [redirect_uri][google.cloud.discoveryengine.v1.SearchResponse.redirect_uri]
+     *           and
+     *           [attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token]
+     *           are set in the response.
      *     @type string $next_page_token
      *           A token that can be sent as
      *           [SearchRequest.page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token]
@@ -88,6 +129,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           Contains the spell corrected query, if found. If the spell correction type
      *           is AUTOMATIC, then the search results are based on corrected_query.
      *           Otherwise the original query is used for search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary $summary
+     *           A summary as part of the search results.
+     *           This field is only returned if
+     *           [SearchRequest.ContentSearchSpec.summary_spec][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.summary_spec]
+     *           is set.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo $query_expansion_info
+     *           Query expansion information for the returned results.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +165,32 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult::class);
         $this->results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Results of facets requested by user.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Facet facets = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFacets()
+    {
+        return $this->facets;
+    }
+
+    /**
+     * Results of facets requested by user.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Facet facets = 2;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFacets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet::class);
+        $this->facets = $arr;
 
         return $this;
     }
@@ -188,6 +262,42 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     * @return string
+     */
+    public function getRedirectUri()
+    {
+        return $this->redirect_uri;
+    }
+
+    /**
+     * The URI of a customer-defined redirect page. If redirect action is
+     * triggered, no search is performed, and only
+     * [redirect_uri][google.cloud.discoveryengine.v1.SearchResponse.redirect_uri]
+     * and
+     * [attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token]
+     * are set in the response.
+     *
+     * Generated from protobuf field <code>string redirect_uri = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedirectUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redirect_uri = $var;
+
+        return $this;
+    }
+
+    /**
      * A token that can be sent as
      * [SearchRequest.page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token]
      * to retrieve the next page. If this field is omitted, there are no
@@ -245,6 +355,84 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->corrected_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * A summary as part of the search results.
+     * This field is only returned if
+     * [SearchRequest.ContentSearchSpec.summary_spec][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.summary_spec]
+     * is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.Summary summary = 9;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary|null
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+    public function hasSummary()
+    {
+        return isset($this->summary);
+    }
+
+    public function clearSummary()
+    {
+        unset($this->summary);
+    }
+
+    /**
+     * A summary as part of the search results.
+     * This field is only returned if
+     * [SearchRequest.ContentSearchSpec.summary_spec][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.summary_spec]
+     * is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.Summary summary = 9;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary $var
+     * @return $this
+     */
+    public function setSummary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary::class);
+        $this->summary = $var;
+
+        return $this;
+    }
+
+    /**
+     * Query expansion information for the returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo|null
+     */
+    public function getQueryExpansionInfo()
+    {
+        return $this->query_expansion_info;
+    }
+
+    public function hasQueryExpansionInfo()
+    {
+        return isset($this->query_expansion_info);
+    }
+
+    public function clearQueryExpansionInfo()
+    {
+        unset($this->query_expansion_info);
+    }
+
+    /**
+     * Query expansion information for the returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo $var
+     * @return $this
+     */
+    public function setQueryExpansionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo::class);
+        $this->query_expansion_info = $var;
 
         return $this;
     }

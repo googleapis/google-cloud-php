@@ -41,6 +41,8 @@ use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
 use Google\Cloud\Location\GetLocationRequest;
@@ -73,6 +75,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -835,6 +838,30 @@ abstract class ConversationsBaseClient
     public function listMessages(ListMessagesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListMessages', $request, $callOptions);
+    }
+
+    /**
+     * Get answers for the given query based on knowledge documents.
+     *
+     * The async variant is {@see self::searchKnowledgeAsync()} .
+     *
+     * @param SearchKnowledgeRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SearchKnowledgeResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchKnowledge(SearchKnowledgeRequest $request, array $callOptions = []): SearchKnowledgeResponse
+    {
+        return $this->startApiCall('SearchKnowledge', $request, $callOptions)->wait();
     }
 
     /**

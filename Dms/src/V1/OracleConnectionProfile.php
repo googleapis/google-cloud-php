@@ -57,6 +57,14 @@ class OracleConnectionProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string database_service = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database_service = '';
+    /**
+     * SSL configuration for the connection to the source Oracle database.
+     *  * Only `SERVER_ONLY` configuration is supported for Oracle SSL.
+     *  * SSL is supported for Oracle versions 12 and above.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig ssl = 7;</code>
+     */
+    private $ssl = null;
     protected $connectivity;
 
     /**
@@ -82,6 +90,10 @@ class OracleConnectionProfile extends \Google\Protobuf\Internal\Message
      *           Output only. Indicates whether a new password is included in the request.
      *     @type string $database_service
      *           Required. Database service for the Oracle connection.
+     *     @type \Google\Cloud\CloudDms\V1\SslConfig $ssl
+     *           SSL configuration for the connection to the source Oracle database.
+     *            * Only `SERVER_ONLY` configuration is supported for Oracle SSL.
+     *            * SSL is supported for Oracle versions 12 and above.
      *     @type \Google\Cloud\CloudDms\V1\StaticServiceIpConnectivity $static_service_ip_connectivity
      *           Static Service IP connectivity.
      *     @type \Google\Cloud\CloudDms\V1\ForwardSshTunnelConnectivity $forward_ssh_connectivity
@@ -257,6 +269,46 @@ class OracleConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database_service = $var;
+
+        return $this;
+    }
+
+    /**
+     * SSL configuration for the connection to the source Oracle database.
+     *  * Only `SERVER_ONLY` configuration is supported for Oracle SSL.
+     *  * SSL is supported for Oracle versions 12 and above.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig ssl = 7;</code>
+     * @return \Google\Cloud\CloudDms\V1\SslConfig|null
+     */
+    public function getSsl()
+    {
+        return $this->ssl;
+    }
+
+    public function hasSsl()
+    {
+        return isset($this->ssl);
+    }
+
+    public function clearSsl()
+    {
+        unset($this->ssl);
+    }
+
+    /**
+     * SSL configuration for the connection to the source Oracle database.
+     *  * Only `SERVER_ONLY` configuration is supported for Oracle SSL.
+     *  * SSL is supported for Oracle versions 12 and above.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig ssl = 7;</code>
+     * @param \Google\Cloud\CloudDms\V1\SslConfig $var
+     * @return $this
+     */
+    public function setSsl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\SslConfig::class);
+        $this->ssl = $var;
 
         return $this;
     }

@@ -29,8 +29,9 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. The full resource URL of the external storage location. Currently, only
-     * Google Cloud Storage is supported. So input_url should be of the form:
+     * Required. The full resource URL of the external storage location.
+     * Currently, only Google Cloud Storage is supported. So input_url should be
+     * of the form:
      * `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
      * `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
      * an optional Cloud Storage namespace path (this is not a Cloud Datastore
@@ -58,8 +59,9 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                        $projectId    Required. Project ID against which to make the request.
      * @param array                                         $labels       Client-assigned labels.
-     * @param string                                        $inputUrl     Required. The full resource URL of the external storage location. Currently, only
-     *                                                                    Google Cloud Storage is supported. So input_url should be of the form:
+     * @param string                                        $inputUrl     Required. The full resource URL of the external storage location.
+     *                                                                    Currently, only Google Cloud Storage is supported. So input_url should be
+     *                                                                    of the form:
      *                                                                    `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
      *                                                                    `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
      *                                                                    an optional Cloud Storage namespace path (this is not a Cloud Datastore
@@ -100,8 +102,9 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Client-assigned labels.
      *     @type string $input_url
-     *           Required. The full resource URL of the external storage location. Currently, only
-     *           Google Cloud Storage is supported. So input_url should be of the form:
+     *           Required. The full resource URL of the external storage location.
+     *           Currently, only Google Cloud Storage is supported. So input_url should be
+     *           of the form:
      *           `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
      *           `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
      *           an optional Cloud Storage namespace path (this is not a Cloud Datastore
@@ -177,8 +180,9 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource URL of the external storage location. Currently, only
-     * Google Cloud Storage is supported. So input_url should be of the form:
+     * Required. The full resource URL of the external storage location.
+     * Currently, only Google Cloud Storage is supported. So input_url should be
+     * of the form:
      * `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
      * `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
      * an optional Cloud Storage namespace path (this is not a Cloud Datastore
@@ -199,8 +203,9 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource URL of the external storage location. Currently, only
-     * Google Cloud Storage is supported. So input_url should be of the form:
+     * Required. The full resource URL of the external storage location.
+     * Currently, only Google Cloud Storage is supported. So input_url should be
+     * of the form:
      * `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
      * `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
      * an optional Cloud Storage namespace path (this is not a Cloud Datastore

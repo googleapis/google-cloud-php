@@ -77,6 +77,12 @@ class State
      * Generated from protobuf enum <code>STARTING = 8;</code>
      */
     const STARTING = 8;
+    /**
+     * The cluster is being repaired. It is not ready for use.
+     *
+     * Generated from protobuf enum <code>REPAIRING = 10;</code>
+     */
+    const REPAIRING = 10;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -89,6 +95,7 @@ class State
         self::STOPPING => 'STOPPING',
         self::STOPPED => 'STOPPED',
         self::STARTING => 'STARTING',
+        self::REPAIRING => 'REPAIRING',
     ];
 
     public static function name($value)

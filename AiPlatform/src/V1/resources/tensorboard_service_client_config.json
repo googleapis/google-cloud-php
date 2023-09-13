@@ -119,6 +119,11 @@
                 "ReadTensorboardBlobData": {
                     "timeout_millis": 60000
                 },
+                "ReadTensorboardSize": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "ReadTensorboardTimeSeriesData": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

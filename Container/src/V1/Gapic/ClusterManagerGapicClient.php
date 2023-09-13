@@ -2805,6 +2805,21 @@ class ClusterManagerGapicClient
      *           Google Compute Engine resources.
      *     @type WindowsNodeConfig $windowsNodeConfig
      *           Parameters that can be configured on Windows nodes.
+     *     @type string $machineType
+     *           Optional. The desired [Google Compute Engine machine
+     *           type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
+     *           node pool. Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified machine type.
+     *     @type string $diskType
+     *           Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
+     *           'pd-balanced') for nodes in the node pool.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk type.
+     *     @type int $diskSizeGb
+     *           Optional. The desired disk size for nodes in the node pool specified in GB.
+     *           The smallest allowed disk size is 10GB.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified disk size.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2912,6 +2927,18 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['windowsNodeConfig'])) {
             $request->setWindowsNodeConfig($optionalArgs['windowsNodeConfig']);
+        }
+
+        if (isset($optionalArgs['machineType'])) {
+            $request->setMachineType($optionalArgs['machineType']);
+        }
+
+        if (isset($optionalArgs['diskType'])) {
+            $request->setDiskType($optionalArgs['diskType']);
+        }
+
+        if (isset($optionalArgs['diskSizeGb'])) {
+            $request->setDiskSizeGb($optionalArgs['diskSizeGb']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
