@@ -323,7 +323,7 @@ use Some\TestFoo;
 \$n = new TestFoo();
 ```
 EOF;
-        // Ensure the string does not change
+        // Ensure the "php" language hint is added to both fenced code blocks.
         $this->assertEquals(
             $expected,
             $fencedCodeBlock->replace($descriptionWithMultipleCodeblocks)
@@ -355,7 +355,7 @@ use Some\TestFoo;
 ```
 EOF;
 
-        // Ensure the string does not change
+        // Ensure the "php" language hint is added only to the second fenced code block.
         $this->assertEquals(
             $expected,
             $fencedCodeBlock->replace($descriptionWithDifferentLanguageHint)
