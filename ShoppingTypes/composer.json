@@ -1,12 +1,14 @@
 {
-    "name": "google/shopping-merchant-inventories",
+    "name": "google/shopping-types",
     "description": "Google Shopping Merchant Inventories Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\": "metadata",
-            "Google\\Shopping\\Merchant\\Inventories\\": "src"
+            "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\V1Beta\\": "metadata/V1Beta",
+            "GPBMetadata\\Google\\Shopping\\Type\\": "metadata/Type",
+            "Google\\Shopping\\Merchant\\Inventories\\V1beta\\": "src/V1beta",
+            "Google\\Shopping\\Type\\": "src/Type"
         }
     },
     "extra": {
@@ -18,8 +20,7 @@
     },
     "require": {
         "php": ">=7.4",
-        "google/gax": "^1.20.0",
-        "google/shopping-types": "^0.1.0"
+        "google/gax": "^1.20.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"
