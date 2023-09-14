@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.23.0](https://github.com/googleapis/gax-php/compare/v1.22.1...v1.23.0) (2023-09-14)
+
+
+### Features
+
+* Typesafety for new surface client options ([#450](https://github.com/googleapis/gax-php/issues/450)) ([21550c5](https://github.com/googleapis/gax-php/commit/21550c5bf07f178f2043b0630f3ac34fcc3a05e0))
+
 ## [1.22.1](https://github.com/googleapis/gax-php/compare/v1.22.0...v1.22.1) (2023-08-04)
 
 
