@@ -31,8 +31,9 @@ use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
 /**
  * Lists the existing alerting policies for the workspace.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name)
- *                     whose alert policies are to be listed. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+ *                     alert policies are to be listed. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  *

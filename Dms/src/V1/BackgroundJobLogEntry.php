@@ -40,23 +40,24 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
      */
     private $finish_time = null;
     /**
-     * Job completion state, i.e. the final state after the job completed.
+     * Output only. Job completion state, i.e. the final state after the job
+     * completed.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.JobCompletionState completion_state = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.JobCompletionState completion_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $completion_state = 0;
     /**
-     * Job completion comment, such as how many entities were seeded,
+     * Output only. Job completion comment, such as how many entities were seeded,
      * how many warnings were found during conversion, and similar information.
      *
-     * Generated from protobuf field <code>string completion_comment = 6;</code>
+     * Generated from protobuf field <code>string completion_comment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $completion_comment = '';
     /**
-     * Whether the client requested the conversion workspace to be committed after
-     * a successful completion of the job.
+     * Output only. Whether the client requested the conversion workspace to be
+     * committed after a successful completion of the job.
      *
-     * Generated from protobuf field <code>bool request_autocommit = 7;</code>
+     * Generated from protobuf field <code>bool request_autocommit = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $request_autocommit = false;
     protected $job_details;
@@ -76,21 +77,22 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $finish_time
      *           The timestamp when the background job was finished.
      *     @type int $completion_state
-     *           Job completion state, i.e. the final state after the job completed.
+     *           Output only. Job completion state, i.e. the final state after the job
+     *           completed.
      *     @type string $completion_comment
-     *           Job completion comment, such as how many entities were seeded,
+     *           Output only. Job completion comment, such as how many entities were seeded,
      *           how many warnings were found during conversion, and similar information.
      *     @type bool $request_autocommit
-     *           Whether the client requested the conversion workspace to be committed after
-     *           a successful completion of the job.
+     *           Output only. Whether the client requested the conversion workspace to be
+     *           committed after a successful completion of the job.
      *     @type \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\SeedJobDetails $seed_job_details
-     *           Seed job details.
+     *           Output only. Seed job details.
      *     @type \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ImportRulesJobDetails $import_rules_job_details
-     *           Import rules job details.
+     *           Output only. Import rules job details.
      *     @type \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ConvertJobDetails $convert_job_details
-     *           Convert job details.
+     *           Output only. Convert job details.
      *     @type \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ApplyJobDetails $apply_job_details
-     *           Apply job details.
+     *           Output only. Apply job details.
      * }
      */
     public function __construct($data = NULL) {
@@ -223,9 +225,10 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job completion state, i.e. the final state after the job completed.
+     * Output only. Job completion state, i.e. the final state after the job
+     * completed.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.JobCompletionState completion_state = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.JobCompletionState completion_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getCompletionState()
@@ -234,9 +237,10 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job completion state, i.e. the final state after the job completed.
+     * Output only. Job completion state, i.e. the final state after the job
+     * completed.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.JobCompletionState completion_state = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.JobCompletionState completion_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -249,10 +253,10 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job completion comment, such as how many entities were seeded,
+     * Output only. Job completion comment, such as how many entities were seeded,
      * how many warnings were found during conversion, and similar information.
      *
-     * Generated from protobuf field <code>string completion_comment = 6;</code>
+     * Generated from protobuf field <code>string completion_comment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCompletionComment()
@@ -261,10 +265,10 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job completion comment, such as how many entities were seeded,
+     * Output only. Job completion comment, such as how many entities were seeded,
      * how many warnings were found during conversion, and similar information.
      *
-     * Generated from protobuf field <code>string completion_comment = 6;</code>
+     * Generated from protobuf field <code>string completion_comment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -277,10 +281,10 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the client requested the conversion workspace to be committed after
-     * a successful completion of the job.
+     * Output only. Whether the client requested the conversion workspace to be
+     * committed after a successful completion of the job.
      *
-     * Generated from protobuf field <code>bool request_autocommit = 7;</code>
+     * Generated from protobuf field <code>bool request_autocommit = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getRequestAutocommit()
@@ -289,10 +293,10 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the client requested the conversion workspace to be committed after
-     * a successful completion of the job.
+     * Output only. Whether the client requested the conversion workspace to be
+     * committed after a successful completion of the job.
      *
-     * Generated from protobuf field <code>bool request_autocommit = 7;</code>
+     * Generated from protobuf field <code>bool request_autocommit = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -305,9 +309,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Seed job details.
+     * Output only. Seed job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.SeedJobDetails seed_job_details = 100;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.SeedJobDetails seed_job_details = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\SeedJobDetails|null
      */
     public function getSeedJobDetails()
@@ -321,9 +325,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Seed job details.
+     * Output only. Seed job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.SeedJobDetails seed_job_details = 100;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.SeedJobDetails seed_job_details = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\SeedJobDetails $var
      * @return $this
      */
@@ -336,9 +340,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Import rules job details.
+     * Output only. Import rules job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ImportRulesJobDetails import_rules_job_details = 101;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ImportRulesJobDetails import_rules_job_details = 101 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ImportRulesJobDetails|null
      */
     public function getImportRulesJobDetails()
@@ -352,9 +356,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Import rules job details.
+     * Output only. Import rules job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ImportRulesJobDetails import_rules_job_details = 101;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ImportRulesJobDetails import_rules_job_details = 101 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ImportRulesJobDetails $var
      * @return $this
      */
@@ -367,9 +371,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Convert job details.
+     * Output only. Convert job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ConvertJobDetails convert_job_details = 102;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ConvertJobDetails convert_job_details = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ConvertJobDetails|null
      */
     public function getConvertJobDetails()
@@ -383,9 +387,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Convert job details.
+     * Output only. Convert job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ConvertJobDetails convert_job_details = 102;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ConvertJobDetails convert_job_details = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ConvertJobDetails $var
      * @return $this
      */
@@ -398,9 +402,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Apply job details.
+     * Output only. Apply job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ApplyJobDetails apply_job_details = 103;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ApplyJobDetails apply_job_details = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ApplyJobDetails|null
      */
     public function getApplyJobDetails()
@@ -414,9 +418,9 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Apply job details.
+     * Output only. Apply job details.
      *
-     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ApplyJobDetails apply_job_details = 103;</code>
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.ApplyJobDetails apply_job_details = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry\ApplyJobDetails $var
      * @return $this
      */

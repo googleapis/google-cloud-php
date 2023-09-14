@@ -1,5 +1,164 @@
 # Changelog
 
+## 0.218.0
+
+<details><summary>google/cloud-ai-platform 0.25.0</summary>
+
+
+
+### Features
+
+* Add contexts to SuggestTrialsRequest in vizier_service.proto ([de3044f](https://github.com/googleapis/google-cloud-php/commit/de3044fd253f3cd60b09f23738f3e52df6cfd94b))
+* Add encryption_spec to index.proto and index_endpoint.proto ([#6611](https://github.com/googleapis/google-cloud-php/issues/6611)) ([de3044f](https://github.com/googleapis/google-cloud-php/commit/de3044fd253f3cd60b09f23738f3e52df6cfd94b))
+* Add TrialContext to study.proto ([de3044f](https://github.com/googleapis/google-cloud-php/commit/de3044fd253f3cd60b09f23738f3e52df6cfd94b))
+
+</details>
+
+<details><summary>google/analytics-admin 0.18.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Add the missing `REQUIRED` annotation to the `update_mask` field of `UpdateMeasurementProtocolSecretRequest`
+* Rename the `enterprise_daily_export_enabled` field to `fresh_daily_export_enabled` in the `BigQueryLink` resource
+* Rename the `enterprise_daily_export_enabled` field to `fresh_daily_export_enabled` in the `BigQueryLink` resource ([#6588](https://github.com/googleapis/google-cloud-php/issues/6588))
+
+### Features
+
+* Add `CoarseValue`, `ConversionValues`, `EventMapping`, `SKAdNetworkConversionValueSchema` types ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Add `GetSKAdNetworkConversionValueSchema`, `CreateSKAdNetworkConversionValueSchema`, `DeleteSKAdNetworkConversionValueSchema`, `UpdateSKAdNetworkConversionValueSchema`, `ListSKAdNetworkConversionValueSchemas` methods to the Admin API v1 alpha ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Add `UpdateConversionEvent` method to the Admin API v1 beta ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Add the `ConversionCountingMethod` enum ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Add the `counting_method` field to the `ConversionEvent` type ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Add the `ITEM` option to the `DimensionScope` enum ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Add the `skadnetwork_conversion_value_schema` field to the `ChangeHistoryResource.resource` oneof type ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Add the `SKADNETWORK_CONVERSION_VALUE_SCHEMA` option to the `ChangeHistoryResourceType` enum ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Make the field `default_uri` of `WebStreamData` mutable ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+
+
+### Bug Fixes
+
+* Add the missing `REQUIRED` annotation to the `update_mask` field of `UpdateMeasurementProtocolSecretRequest` ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Rename the `enterprise_daily_export_enabled` field to `fresh_daily_export_enabled` in the `BigQueryLink` resource ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+* Rename the `enterprise_daily_export_enabled` field to `fresh_daily_export_enabled` in the `BigQueryLink` resource ([#6588](https://github.com/googleapis/google-cloud-php/issues/6588)) ([a624c44](https://github.com/googleapis/google-cloud-php/commit/a624c44cc58f0ead212e16d9ffcf387d4084b647))
+
+</details>
+
+<details><summary>google/cloud-batch 0.11.2</summary>
+
+
+
+### Documentation
+
+* Update description on size_gb in disk field ([#6603](https://github.com/googleapis/google-cloud-php/issues/6603)) ([022b2ee](https://github.com/googleapis/google-cloud-php/commit/022b2ee6b6592c5d759cffde17ca410febd24857))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.27.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Enable session in load job ([#6576](https://github.com/googleapis/google-cloud-php/issues/6576)) ([c27f058](https://github.com/googleapis/google-cloud-php/commit/c27f058a5ad2e651182fabe65d65653853bf3117))
+
+</details>
+
+<details><summary>google/cloud-billing 1.7.3</summary>
+
+
+
+### Bug Fixes
+
+* Fixed resource_reference for name in GetProjectBillingInfo ([#6609](https://github.com/googleapis/google-cloud-php/issues/6609)) ([bb6590c](https://github.com/googleapis/google-cloud-php/commit/bb6590c81e4fedd112bb1331f3b98f305c360589))
+
+</details>
+
+<details><summary>google/cloud-channel 1.8.0</summary>
+
+
+
+### Features
+
+* Launch QueryEligibleBillingAccounts API ([#6614](https://github.com/googleapis/google-cloud-php/issues/6614)) ([9e8db55](https://github.com/googleapis/google-cloud-php/commit/9e8db5540c7a03260bab5b152b2ed42e0a5ff143))
+* Mark ChannelPartnerGranularity as deprecated and offer alternatives ([#6615](https://github.com/googleapis/google-cloud-php/issues/6615)) ([11b8d58](https://github.com/googleapis/google-cloud-php/commit/11b8d581b2db5e03630fd7c10689e90001fa28b4))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.9.0</summary>
+
+
+
+### Features
+
+* Added Knowledge Search API ([ad50f74](https://github.com/googleapis/google-cloud-php/commit/ad50f749431287e7074279e2b4fa32d6d6c2c952))
+* Added speech endpointing setting ([#6596](https://github.com/googleapis/google-cloud-php/issues/6596)) ([ad50f74](https://github.com/googleapis/google-cloud-php/commit/ad50f749431287e7074279e2b4fa32d6d6c2c952))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.7.0</summary>
+
+
+
+### Features
+
+* Added more options for search extractive content support ([3617d3d](https://github.com/googleapis/google-cloud-php/commit/3617d3d1c54d704e7d723c44abea5bcd5ee242fb))
+* Added more skip reasons and details for search summarization ([3617d3d](https://github.com/googleapis/google-cloud-php/commit/3617d3d1c54d704e7d723c44abea5bcd5ee242fb))
+* Added query expansion details in search response ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Added query expansion details in search response ([3617d3d](https://github.com/googleapis/google-cloud-php/commit/3617d3d1c54d704e7d723c44abea5bcd5ee242fb))
+* Allow uri in user events ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Allow uri in user events ([3617d3d](https://github.com/googleapis/google-cloud-php/commit/3617d3d1c54d704e7d723c44abea5bcd5ee242fb))
+* Support bring your own embedding feature ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Support conversational / multi-turn search ([#6602](https://github.com/googleapis/google-cloud-php/issues/6602)) ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Support image search ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Support search summarization ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Support structural search features ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Support tail suggestions in completion API ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Supported bring your own embedding feature ([#6600](https://github.com/googleapis/google-cloud-php/issues/6600)) ([3617d3d](https://github.com/googleapis/google-cloud-php/commit/3617d3d1c54d704e7d723c44abea5bcd5ee242fb))
+* Updated summarization interface for multi-turn search ([3617d3d](https://github.com/googleapis/google-cloud-php/commit/3617d3d1c54d704e7d723c44abea5bcd5ee242fb))
+
+
+### Documentation
+
+* Keep the API doc up-to-date with recent changes ([cc040f3](https://github.com/googleapis/google-cloud-php/commit/cc040f3c7459ecdfbab7f5edcaad3b3f78aa6007))
+* Keep the API doc up-to-date with recent changes ([3617d3d](https://github.com/googleapis/google-cloud-php/commit/3617d3d1c54d704e7d723c44abea5bcd5ee242fb))
+
+</details>
+
+<details><summary>google/cloud-kms 1.20.2</summary>
+
+
+
+### Documentation
+
+* Minor formatting ([#6599](https://github.com/googleapis/google-cloud-php/issues/6599)) ([b745f7c](https://github.com/googleapis/google-cloud-php/commit/b745f7c75a7c5144cdba8dba3b0f090c548723c5))
+* Minor formatting ([#6605](https://github.com/googleapis/google-cloud-php/issues/6605)) ([c911e23](https://github.com/googleapis/google-cloud-php/commit/c911e234409193fdaa5e1a5727e51b894d6e6453))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.4.0</summary>
+
+
+
+### Features
+
+* Added support for walking mode and cost_per_kilometer_below_soft_max ([#6610](https://github.com/googleapis/google-cloud-php/issues/6610)) ([acc3748](https://github.com/googleapis/google-cloud-php/commit/acc3748eeb5056e4ecf4448e030a056deefa9868))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.9.0</summary>
+
+
+
+### Features
+
+* Add MarkRecommendationDismissed method ([#6604](https://github.com/googleapis/google-cloud-php/issues/6604)) ([baba59d](https://github.com/googleapis/google-cloud-php/commit/baba59d65973e28f8a3f7f6e70701badcd39e855))
+* Add Sustainability and Reliability impact ([baba59d](https://github.com/googleapis/google-cloud-php/commit/baba59d65973e28f8a3f7f6e70701badcd39e855))
+* Billing account scoped Recommender/InsightType config ([baba59d](https://github.com/googleapis/google-cloud-php/commit/baba59d65973e28f8a3f7f6e70701badcd39e855))
+
+</details>
+
 ## 0.217.0
 
 <details><summary>google/cloud-batch 0.11.1</summary>

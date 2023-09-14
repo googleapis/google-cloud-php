@@ -80,8 +80,8 @@ class Acl
     }
 
     /**
-     * Delete access controls on a {@see Google\Cloud\Storage\Bucket} or
-     * {@see Google\Cloud\Storage\StorageObject} for a specified entity.
+     * Delete access controls on a {@see Bucket} or
+     * {@see StorageObject} for a specified entity.
      *
      * Example:
      * ```
@@ -106,8 +106,8 @@ class Acl
     }
 
     /**
-     * Get access controls on a {@see Google\Cloud\Storage\Bucket} or
-     * {@see Google\Cloud\Storage\StorageObject}. By default this will return all available
+     * Get access controls on a {@see Bucket} or
+     * {@see StorageObject}. By default this will return all available
      * access controls. You may optionally specify a single entity to return
      * details for as well.
      *
@@ -141,8 +141,8 @@ class Acl
     }
 
     /**
-     * Add access controls on a {@see Google\Cloud\Storage\Bucket} or
-     * {@see Google\Cloud\Storage\StorageObject}.
+     * Add access controls on a {@see Bucket} or
+     * {@see StorageObject}.
      *
      * Example:
      * ```
@@ -173,8 +173,8 @@ class Acl
     }
 
     /**
-     * Update access controls on a {@see Google\Cloud\Storage\Bucket} or
-     * {@see Google\Cloud\Storage\StorageObject}.
+     * Update access controls on a {@see Bucket} or
+     * {@see StorageObject}.
      *
      * Example:
      * ```

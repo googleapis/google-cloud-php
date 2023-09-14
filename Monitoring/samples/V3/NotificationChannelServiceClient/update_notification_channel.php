@@ -31,6 +31,11 @@ use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
  * Updates a notification channel. Fields not specified in the field mask
  * remain unchanged.
  *
+ * Design your application to single-thread API calls that modify the state of
+ * notification channels in a single project. This includes calls to
+ * CreateNotificationChannel, DeleteNotificationChannel and
+ * UpdateNotificationChannel.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
