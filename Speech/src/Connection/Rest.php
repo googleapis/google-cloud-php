@@ -27,7 +27,8 @@ use Google\Cloud\Speech\SpeechClient;
  * Implementation of the
  * [Google Cloud Speech JSON API](https://cloud.google.com/speech/reference/rest/).
  *
- * @internal
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Rest implements ConnectionInterface
 {
