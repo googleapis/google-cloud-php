@@ -1,5 +1,174 @@
 # Changelog
 
+## 0.219.0
+
+<details><summary>google/cloud-bigquery 1.28.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Enable Reference File Schema Uri ([#6621](https://github.com/googleapis/google-cloud-php/issues/6621)) ([be1ad5d](https://github.com/googleapis/google-cloud-php/commit/be1ad5d04c80e1a241a16005942f6fb2e0bd3a37))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.6.1</summary>
+
+
+
+### Documentation
+
+* Update transferConfig.name description to indicate that it supports both formats ([#6618](https://github.com/googleapis/google-cloud-php/issues/6618)) ([844aa8b](https://github.com/googleapis/google-cloud-php/commit/844aa8b85474ccc5d0907d27bf42ecabfce8330a))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.28.2</summary>
+
+
+
+### Bug Fixes
+
+* Add feature flag for improved mutate rows throttling ([#6627](https://github.com/googleapis/google-cloud-php/issues/6627)) ([cdb7b09](https://github.com/googleapis/google-cloud-php/commit/cdb7b093ca5d48d6591a33938145b5dabf055090))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.5.0</summary>
+
+
+
+### Features
+
+* Add the name of the reservation the job was submitted to as a field ([#6623](https://github.com/googleapis/google-cloud-php/issues/6623)) ([c24bcab](https://github.com/googleapis/google-cloud-php/commit/c24bcab407ad9536550eaa14c7533c86775054de))
+
+</details>
+
+<details><summary>google/cloud-core 1.52.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.10.0</summary>
+
+
+
+### Features
+
+* Add optional parameters (tarball_gcs_dir, diagnosis_interval, jobs, yarn_application_ids) in DiagnoseClusterRequest ([#6631](https://github.com/googleapis/google-cloud-php/issues/6631)) ([2df4e91](https://github.com/googleapis/google-cloud-php/commit/2df4e915675183fb864daf529cc27afcb5778ee4))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.24.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-debugger 1.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dms 1.4.0</summary>
+
+
+
+### Features
+
+* Add MappingRule resource and CRUD operations ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+* Add SSL config to Oracle Connection Profile ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+* Add support for CloudSQL editions ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+* Add support for VLDB migrations ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+* Adding GenerateTcpProxyScript API ([#6607](https://github.com/googleapis/google-cloud-php/issues/6607)) ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+* Change CreateConnectionProfileRequest resource reference ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+* Change ImportMappingRulesRequest and DescribeDatabaseEntitiesRequest fields to required ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+* Support for PostgreSQL 15 ([2c497ae](https://github.com/googleapis/google-cloud-php/commit/2c497aeaabb7055dcffd59ae0d154b1fa99e8f36))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.37.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-language 0.31.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.28.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.7.0</summary>
+
+
+
+### Features
+
+* Added support for forecast options in AlertPolicy ([b663c89](https://github.com/googleapis/google-cloud-php/commit/b663c89cb72886231bd1480dc3460f6de64c42e9))
+* Added support for promQL condition type in AlertPolicy ([b663c89](https://github.com/googleapis/google-cloud-php/commit/b663c89cb72886231bd1480dc3460f6de64c42e9))
+* Added support for retriggering notifications in AlertPolicy ([#6617](https://github.com/googleapis/google-cloud-php/issues/6617)) ([b663c89](https://github.com/googleapis/google-cloud-php/commit/b663c89cb72886231bd1480dc3460f6de64c42e9))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 1.3.0</summary>
+
+
+
+### Features
+
+* Add PolicyBasedRouting APIs ([#6619](https://github.com/googleapis/google-cloud-php/issues/6619)) ([78ec3ff](https://github.com/googleapis/google-cloud-php/commit/78ec3ffa508c84d7bdfec9cdbac1b5daf892685a))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.46.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.63.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-speech 1.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.33.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.6.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 1.15.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.7.4</summary>
+
+
+
+</details>
+
 ## 0.218.0
 
 <details><summary>google/cloud-ai-platform 0.25.0</summary>
