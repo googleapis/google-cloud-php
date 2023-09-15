@@ -61,7 +61,6 @@ function callSample(): void
 {
     $formattedName = PolicyBasedRoutingServiceClient::policyBasedRouteName(
         '[PROJECT]',
-        '[LOCATION]',
         '[POLICY_BASED_ROUTE]'
     );
 

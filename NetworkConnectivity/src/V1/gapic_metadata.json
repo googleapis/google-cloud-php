@@ -63,6 +63,35 @@
                     }
                 }
             }
+        },
+        "PolicyBasedRoutingService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PolicyBasedRoutingServiceGapicClient",
+                    "rpcs": {
+                        "CreatePolicyBasedRoute": {
+                            "methods": [
+                                "createPolicyBasedRoute"
+                            ]
+                        },
+                        "DeletePolicyBasedRoute": {
+                            "methods": [
+                                "deletePolicyBasedRoute"
+                            ]
+                        },
+                        "GetPolicyBasedRoute": {
+                            "methods": [
+                                "getPolicyBasedRoute"
+                            ]
+                        },
+                        "ListPolicyBasedRoutes": {
+                            "methods": [
+                                "listPolicyBasedRoutes"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }
