@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/shopping-types",
+    "release_level": "preview",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-types/latest",
+    "library_type": "CORE"
+}

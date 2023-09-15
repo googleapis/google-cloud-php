@@ -10,32 +10,28 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A message that represents custom attributes. Exactly one of `value` or
- * `groupValues` must be provided. Maximum allowed number of characters for each
- * custom attribute is 10240 (represents sum of characters for name and value).
- * Maximum 2500 custom attributes can be set per merchant, with total size of
- * 102.4kB.
+ * `group_values` must not be empty.
  *
  * Generated from protobuf message <code>google.shopping.type.CustomAttribute</code>
  */
 class CustomAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the attribute. Underscores are replaced by spaces upon
-     * insertion. Alphanumeric characters are accepted.
+     * The name of the attribute.
      *
      * Generated from protobuf field <code>optional string name = 1;</code>
      */
     protected $name = null;
     /**
-     * The value of the attribute. Alphanumberic characters are accepted. If
-     * `value` is provided, `groupValues` cannot be provided.
+     * The value of the attribute. If `value` is not empty, `group_values` must be
+     * empty.
      *
      * Generated from protobuf field <code>optional string value = 2;</code>
      */
     protected $value = null;
     /**
      * Subattributes within this attribute group.  If
-     * `groupValues` are provided, `value` cannot be provided.
+     * `group_values` is not empty, `value` must be empty.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute group_values = 3;</code>
      */
@@ -48,14 +44,13 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the attribute. Underscores are replaced by spaces upon
-     *           insertion. Alphanumeric characters are accepted.
+     *           The name of the attribute.
      *     @type string $value
-     *           The value of the attribute. Alphanumberic characters are accepted. If
-     *           `value` is provided, `groupValues` cannot be provided.
+     *           The value of the attribute. If `value` is not empty, `group_values` must be
+     *           empty.
      *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $group_values
      *           Subattributes within this attribute group.  If
-     *           `groupValues` are provided, `value` cannot be provided.
+     *           `group_values` is not empty, `value` must be empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,8 +59,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the attribute. Underscores are replaced by spaces upon
-     * insertion. Alphanumeric characters are accepted.
+     * The name of the attribute.
      *
      * Generated from protobuf field <code>optional string name = 1;</code>
      * @return string
@@ -86,8 +80,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the attribute. Underscores are replaced by spaces upon
-     * insertion. Alphanumeric characters are accepted.
+     * The name of the attribute.
      *
      * Generated from protobuf field <code>optional string name = 1;</code>
      * @param string $var
@@ -102,8 +95,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the attribute. Alphanumberic characters are accepted. If
-     * `value` is provided, `groupValues` cannot be provided.
+     * The value of the attribute. If `value` is not empty, `group_values` must be
+     * empty.
      *
      * Generated from protobuf field <code>optional string value = 2;</code>
      * @return string
@@ -124,8 +117,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the attribute. Alphanumberic characters are accepted. If
-     * `value` is provided, `groupValues` cannot be provided.
+     * The value of the attribute. If `value` is not empty, `group_values` must be
+     * empty.
      *
      * Generated from protobuf field <code>optional string value = 2;</code>
      * @param string $var
@@ -141,7 +134,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
 
     /**
      * Subattributes within this attribute group.  If
-     * `groupValues` are provided, `value` cannot be provided.
+     * `group_values` is not empty, `value` must be empty.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute group_values = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -153,7 +146,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
 
     /**
      * Subattributes within this attribute group.  If
-     * `groupValues` are provided, `value` cannot be provided.
+     * `group_values` is not empty, `value` must be empty.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute group_values = 3;</code>
      * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var

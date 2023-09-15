@@ -1,45 +1,43 @@
-# Google Shopping Merchant Inventories for PHP
-
-> Idiomatic PHP client for [Google Shopping Merchant Inventories](https://developers.google.com/merchant/api).
-
-[![Latest Stable Version](https://poser.pugx.org/google/shopping-merchant-inventories/v/stable)](https://packagist.org/packages/google/shopping-merchant-inventories) [![Packagist](https://img.shields.io/packagist/dm/google/shopping-merchant-inventories.svg)](https://packagist.org/packages/google/shopping-merchant-inventories)
-
-* [API documentation](https://cloud.google.com/php/docs/reference/shopping-merchant-inventories/latest)
+# Google Shopping Types for PHP
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.
 
-### Installation
+This repository is a home for the [protocol buffer][protobuf] types which are
+shared by multiple Google Shopping APIs, generated for PHP.
+The protobuf definitions for these generated PHP classes are provided in the
+[Googleapis][googleapis] repository.
 
-To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
+## Using these generated classes
 
-Now, install this component:
+These classes are made available under an Apache license (see `LICENSE`) and
+you are free to depend on them within your applications. They are
+considered stable and will not change in backwards-incompaible ways.
 
-```sh
-$ composer require google/shopping-merchant-inventories
+They are distributed as the [google/shopping-common-protos][packagist-shopping-common-protos]
+composer package, available on [Packagist][packagist].
+
+In order to depend on these classes, add the following line to your
+composer.json file in the `requires` section:
+
+```
+  "google/shopping-common-protos": "^0.1"
 ```
 
-> Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
-> for PHP
+Or else use composer from the command line:
 
-This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits
-offered by gRPC (such as streaming methods) please see our
-[gRPC installation guide](https://cloud.google.com/php/grpc).
+```bash
+composer require google/shopping-common-protos
+```
 
-### Authentication
+## License
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
-on authenticating your client. Once authenticated, you'll be ready to start making requests.
+These classes are licensed using the Apache 2.0 software license, a
+permissive, copyfree license. You are free to use them in your applications
+provided the license terms are honored.
 
-### Sample
-
-See the [samples directory](https://github.com/googleapis/php-shopping-merchant-inventories/tree/main/samples) for a canonical list of samples.
-
-### Version
-
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
-
-### Next Steps
-
-1. Understand the [official documentation](https://developers.google.com/merchant/api/reference/rest).
+  [protobuf]: https://developers.google.com/protocol-buffers/
+  [googleapis]: https://github.com/googleapis/googleapis/
+  [packagist-shopping-common-protos]: https://packagist.org/packages/google/shopping-common-protos/
+  [packagist]: https://packagist.org/
