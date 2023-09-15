@@ -91,13 +91,13 @@ items:
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
 
-      ```
+      ```php
       $imageData = file_get_contents('path/to/image.jpg');
       $image = $imageAnnotatorClient->createImageObject($imageData);
       $response = $imageAnnotatorClient->faceDetection($image);
       ```
 
-      ```
+      ```php
       $imageUri = "gs://my-bucket/image.jpg";
       $image = $imageAnnotatorClient->createImageObject($imageUri);
       $response = $imageAnnotatorClient->faceDetection($image);
