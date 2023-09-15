@@ -20,11 +20,12 @@ class Apikeys
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ú
-#google/api/apikeys/v2/apikeys.protogoogle.api.apikeys.v2%google/api/apikeys/v2/resources.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"Ñ
+π
+#google/api/apikeys/v2/apikeys.protogoogle.api.apikeys.v2%google/api/apikeys/v2/resources.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ñ
 CreateKeyRequest2
 parent (	B"‡A˙Aapikeys.googleapis.com/Key,
 key (2.google.api.apikeys.v2.KeyB‡A

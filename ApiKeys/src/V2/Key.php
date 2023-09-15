@@ -62,8 +62,8 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. A timestamp when this key was deleted. If the resource is not deleted,
-     * this must be empty.
+     * Output only. A timestamp when this key was deleted. If the resource is not
+     * deleted, this must be empty.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -83,10 +83,10 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $restrictions = null;
     /**
-     * Output only. A checksum computed by the server based on the current value of the Key
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
-     * See https://google.aip.dev/154.
+     * Output only. A checksum computed by the server based on the current value
+     * of the Key resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding. See
+     * https://google.aip.dev/154.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -121,8 +121,8 @@ class Key extends \Google\Protobuf\Internal\Message
      *           Output only. A timestamp identifying the time this key was last
      *           updated.
      *     @type \Google\Protobuf\Timestamp $delete_time
-     *           Output only. A timestamp when this key was deleted. If the resource is not deleted,
-     *           this must be empty.
+     *           Output only. A timestamp when this key was deleted. If the resource is not
+     *           deleted, this must be empty.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Annotations is an unstructured key-value map stored with a policy that
      *           may be set by external tools to store and retrieve arbitrary metadata.
@@ -130,10 +130,10 @@ class Key extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ApiKeys\V2\Restrictions $restrictions
      *           Key restrictions.
      *     @type string $etag
-     *           Output only. A checksum computed by the server based on the current value of the Key
-     *           resource. This may be sent on update and delete requests to ensure the
-     *           client has an up-to-date value before proceeding.
-     *           See https://google.aip.dev/154.
+     *           Output only. A checksum computed by the server based on the current value
+     *           of the Key resource. This may be sent on update and delete requests to
+     *           ensure the client has an up-to-date value before proceeding. See
+     *           https://google.aip.dev/154.
      * }
      */
     public function __construct($data = NULL) {
@@ -338,8 +338,8 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A timestamp when this key was deleted. If the resource is not deleted,
-     * this must be empty.
+     * Output only. A timestamp when this key was deleted. If the resource is not
+     * deleted, this must be empty.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -360,8 +360,8 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A timestamp when this key was deleted. If the resource is not deleted,
-     * this must be empty.
+     * Output only. A timestamp when this key was deleted. If the resource is not
+     * deleted, this must be empty.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -442,10 +442,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A checksum computed by the server based on the current value of the Key
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
-     * See https://google.aip.dev/154.
+     * Output only. A checksum computed by the server based on the current value
+     * of the Key resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding. See
+     * https://google.aip.dev/154.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -456,10 +456,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A checksum computed by the server based on the current value of the Key
-     * resource. This may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
-     * See https://google.aip.dev/154.
+     * Output only. A checksum computed by the server based on the current value
+     * of the Key resource. This may be sent on update and delete requests to
+     * ensure the client has an up-to-date value before proceeding. See
+     * https://google.aip.dev/154.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
