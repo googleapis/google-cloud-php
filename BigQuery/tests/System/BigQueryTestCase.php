@@ -26,21 +26,6 @@ class BigQueryTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     const ENCRYPTION_SERVICE_ACCOUNT_EMAIL_TEMPLATE = 'bq-%s@bigquery-encryption.iam.gserviceaccount.com';
-    const SOURCE_URIS_AVRO = [
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.avro",
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/b-twitter.avro",
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/c-twitter.avro",
-    ];
-    const SOURCE_URIS_PARQUET = [
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.parquet",
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/b-twitter.parquet",
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/c-twitter.parquet",
-    ];
-    const REFERENCE_FILE_SCHEMA_URI_AVRO =
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.avro";
-    const REFERENCE_FILE_SCHEMA_URI_PARQUET =
-        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.parquet";
-    const REFERENCE_SCHEMA = ['username', 'tweet', 'timestamp', 'likes'];
 
     protected static $bucket;
     protected static $storageClient;
