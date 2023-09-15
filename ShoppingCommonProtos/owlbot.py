@@ -24,7 +24,7 @@ from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-src = Path(f"../{php.STAGING_DIR}/ShoppingTypes").resolve()
+src = Path(f"../{php.STAGING_DIR}/ShoppingCommonProtos").resolve()
 dest = Path().resolve()
 
 # Added so that we can pass copy_excludes in the owlbot_main() call
@@ -35,7 +35,6 @@ php.owlbot_main(
     dest=dest,
     copy_excludes=[
         src / "**/[A-Z]*_*.php",
-        src / "**/*GrpcClient.php"
     ],
     version_string="type",
 )

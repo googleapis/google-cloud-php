@@ -386,7 +386,7 @@
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
             "GPBMetadata\\Google\\Rpc\\": "CommonProtos/metadata/Rpc",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\": "ShoppingMerchantInventories/metadata",
-            "GPBMetadata\\Google\\Shopping\\Type\\": "ShoppingTypes/metadata/Type",
+            "GPBMetadata\\Google\\Shopping\\Type\\": "ShoppingCommonProtos/metadata/Type",
             "GPBMetadata\\Google\\Spanner\\": "Spanner/metadata",
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
             "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
@@ -549,7 +549,7 @@
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
             "Google\\LongRunning\\": "LongRunning/src/LongRunning",
             "Google\\Shopping\\Merchant\\Inventories\\": "ShoppingMerchantInventories/src",
-            "Google\\Shopping\\Type\\": "ShoppingTypes/src/Type",
+            "Google\\Shopping\\Type\\": "ShoppingCommonProtos/src/Type",
             "Grafeas\\": "Grafeas/src"
         },
         "files": [

@@ -1,4 +1,4 @@
-# Google Shopping Types for PHP
+# Google Shopping Common Protos for PHP
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
