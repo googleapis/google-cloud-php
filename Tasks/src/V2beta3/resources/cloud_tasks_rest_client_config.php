@@ -2,7 +2,48 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta3/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta3/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.cloud.tasks.v2beta3.CloudTasks' => [
+            'BufferTask' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta3/{queue=projects/*/locations/*/queues/*}/tasks/{task_id}:buffer',
+                'body' => '*',
+                'placeholders' => [
+                    'queue' => [
+                        'getters' => [
+                            'getQueue',
+                        ],
+                    ],
+                    'task_id' => [
+                        'getters' => [
+                            'getTaskId',
+                        ],
+                    ],
+                ],
+            ],
             'CreateQueue' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta3/{parent=projects/*/locations/*}/queues',

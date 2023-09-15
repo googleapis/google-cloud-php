@@ -35,6 +35,7 @@ class Dataset
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     private $connection;
 
@@ -60,7 +61,8 @@ class Dataset
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
-     *        BigQuery.
+     *        BigQuery. This object is created by BigQueryClient,
+     *        and should not be instantiated outside of this client.
      * @param string $id The dataset's ID.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The dataset's metadata.

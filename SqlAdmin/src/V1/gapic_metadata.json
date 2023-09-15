@@ -184,6 +184,11 @@
                                 "getDiskShrinkConfig"
                             ]
                         },
+                        "GetLatestRecoveryTime": {
+                            "methods": [
+                                "getLatestRecoveryTime"
+                            ]
+                        },
                         "Import": {
                             "methods": [
                                 "import"

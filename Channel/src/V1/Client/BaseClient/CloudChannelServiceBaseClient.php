@@ -82,6 +82,8 @@ use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\OperationMetadata;
 use Google\Cloud\Channel\V1\Parameter;
 use Google\Cloud\Channel\V1\ProvisionCloudIdentityRequest;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsRequest;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
 use Google\Cloud\Channel\V1\RegisterSubscriberRequest;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 use Google\Cloud\Channel\V1\StartPaidServiceRequest;
@@ -173,6 +175,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listTransferableSkusAsync(ListTransferableSkusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface lookupOfferAsync(LookupOfferRequest $request, array $optionalArgs = [])
  * @method PromiseInterface provisionCloudIdentityAsync(ProvisionCloudIdentityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryEligibleBillingAccountsAsync(QueryEligibleBillingAccountsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface registerSubscriberAsync(RegisterSubscriberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startPaidServiceAsync(StartPaidServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface suspendEntitlementAsync(SuspendEntitlementRequest $request, array $optionalArgs = [])
@@ -841,10 +844,12 @@ abstract class CloudChannelServiceBaseClient
      * * The new config will not modify exports used with other configs.
      * Changes to the config may be immediate, but may take up to 24 hours.
      * * There is a limit of ten configs for any ChannelPartner or
+     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+     * for any
      * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
      * * The contained
      * [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
-     * vaule must be different from the value used in the current config for a
+     * value must be different from the value used in the current config for a
      * ChannelPartner.
      *
      * Possible Error Codes:
@@ -892,8 +897,11 @@ abstract class CloudChannelServiceBaseClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The reseller account making the request is different
-     * from the reseller account in the API request.
+     * * PERMISSION_DENIED:
+     * * The reseller account making the request is different from the
+     * reseller account in the API request.
+     * * You are not authorized to create a customer. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT:
      * * Required request parameters are missing or invalid.
      * * Domain field value doesn't match the primary email domain.
@@ -940,12 +948,12 @@ abstract class CloudChannelServiceBaseClient
      * * The new config will not modify exports used with other configs.
      * Changes to the config may be immediate, but may take up to 24 hours.
      * * There is a limit of ten configs for any
-     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
-     * or
+     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+     * for any
      * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
      * * The contained
      * [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
-     * vaule must be different from the value used in the current config for a
+     * value must be different from the value used in the current config for a
      * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
      *
      * Possible Error Codes:
@@ -992,7 +1000,10 @@ abstract class CloudChannelServiceBaseClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * * PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller.
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT:
      * * Required request parameters are missing or invalid.
      * * There is already a customer entitlement for a SKU from the same
@@ -1349,8 +1360,11 @@ abstract class CloudChannelServiceBaseClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The reseller account making the request is different
-     * from the reseller account in the API request.
+     * * PERMISSION_DENIED:
+     * * The reseller account making the request is different from the
+     * reseller account in the API request.
+     * * You are not authorized to import the customer. See
+     * https://support.google.com/channelservices/answer/9759265
      * * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
      * * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
      * expired or invalid.
@@ -1682,7 +1696,10 @@ abstract class CloudChannelServiceBaseClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The customer doesn't belong to the reseller
+     * * PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * The async variant is {@see self::listPurchasableOffersAsync()} .
@@ -1906,6 +1923,8 @@ abstract class CloudChannelServiceBaseClient
      * auth token.
      * * The reseller account making the request is different
      * from the reseller account in the query.
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * Return value:
@@ -2014,7 +2033,10 @@ abstract class CloudChannelServiceBaseClient
      *
      * Possible error codes:
      *
-     * *  PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * *  PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller.
+     * * You are not authorized to provision cloud identity id. See
+     * https://support.google.com/channelservices/answer/9759265
      * *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
      * *  NOT_FOUND: The customer was not found.
      * *  ALREADY_EXISTS: The customer's primary email already exists. Retry
@@ -2050,6 +2072,41 @@ abstract class CloudChannelServiceBaseClient
     public function provisionCloudIdentity(ProvisionCloudIdentityRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('ProvisionCloudIdentity', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists the billing accounts that are eligible to purchase particular SKUs
+     * for a given customer.
+     *
+     * Possible error codes:
+     *
+     * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+     *
+     * Return value:
+     * Based on the provided list of SKUs, returns a list of SKU groups that must
+     * be purchased using the same billing account and the billing accounts
+     * eligible to purchase each SKU group.
+     *
+     * The async variant is {@see self::queryEligibleBillingAccountsAsync()} .
+     *
+     * @param QueryEligibleBillingAccountsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryEligibleBillingAccountsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function queryEligibleBillingAccounts(QueryEligibleBillingAccountsRequest $request, array $callOptions = []): QueryEligibleBillingAccountsResponse
+    {
+        return $this->startApiCall('QueryEligibleBillingAccounts', $request, $callOptions)->wait();
     }
 
     /**
@@ -2189,7 +2246,10 @@ abstract class CloudChannelServiceBaseClient
      *
      * Possible error codes:
      *
-     * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+     * * PERMISSION_DENIED:
+     * * The customer doesn't belong to the reseller.
+     * * The reseller is not authorized to transact on this Product. See
+     * https://support.google.com/channelservices/answer/9759265
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      * * NOT_FOUND: The customer or offer resource was not found.
      * * ALREADY_EXISTS: The SKU was already transferred for the customer.

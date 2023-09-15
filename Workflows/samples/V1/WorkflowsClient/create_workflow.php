@@ -33,7 +33,7 @@ use Google\Rpc\Status;
 /**
  * Creates a new workflow. If a workflow with the specified name already
  * exists in the specified project and location, the long running operation
- * will return [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+ * returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
  *
  * @param string $formattedParent Project and location in which the workflow should be created.
  *                                Format:  projects/{project}/locations/{location}

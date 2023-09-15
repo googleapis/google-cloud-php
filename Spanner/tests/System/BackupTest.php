@@ -114,7 +114,7 @@ class BackupTest extends SpannerTestCase
 
         foreach ($allInstances as $i) {
             print(PHP_EOL);
-            print_R($i->name());
+            print_r($i->name());
         }
     }
 

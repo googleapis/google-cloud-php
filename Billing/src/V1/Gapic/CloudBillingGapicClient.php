@@ -102,6 +102,8 @@ class CloudBillingGapicClient
 
     private static $billingAccountNameTemplate;
 
+    private static $projectNameTemplate;
+
     private static $projectBillingInfoNameTemplate;
 
     private static $pathTemplateMap;
@@ -142,6 +144,15 @@ class CloudBillingGapicClient
         return self::$billingAccountNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getProjectBillingInfoNameTemplate()
     {
         if (self::$projectBillingInfoNameTemplate == null) {
@@ -158,6 +169,7 @@ class CloudBillingGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'billingAccount' => self::getBillingAccountNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'projectBillingInfo' => self::getProjectBillingInfoNameTemplate(),
             ];
         }
@@ -181,6 +193,21 @@ class CloudBillingGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_billing_info resource.
      *
@@ -200,6 +227,7 @@ class CloudBillingGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccount: billingAccounts/{billing_account}
+     * - project: projects/{project}
      * - projectBillingInfo: projects/{project}/billingInfo
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -481,7 +509,7 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $formattedName = $cloudBillingClient->projectBillingInfoName('[PROJECT]');
+     *     $formattedName = $cloudBillingClient->projectName('[PROJECT]');
      *     $response = $cloudBillingClient->getProjectBillingInfo($formattedName);
      * } finally {
      *     $cloudBillingClient->close();
@@ -931,8 +959,9 @@ class CloudBillingGapicClient
      *     Optional.
      *
      *     @type ProjectBillingInfo $projectBillingInfo
-     *           The new billing information for the project. Read-only fields are ignored;
-     *           thus, you can leave empty all fields except `billing_account_name`.
+     *           The new billing information for the project. Output-only fields are
+     *           ignored; thus, you can leave empty all fields except
+     *           `billing_account_name`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

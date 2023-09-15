@@ -50,6 +50,12 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool skip_human_review = 4;</code>
      */
     private $skip_human_review = false;
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     */
+    private $process_options = null;
 
     /**
      * @param string $name Required. The resource name of
@@ -93,6 +99,8 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $skip_human_review
      *           Whether human review should be skipped for this request. Default to
      *           `false`.
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions $process_options
+     *           Inference-time options for the process API
      * }
      */
     public function __construct($data = NULL) {
@@ -240,6 +248,42 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->skip_human_review = $var;
+
+        return $this;
+    }
+
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     * @return \Google\Cloud\DocumentAI\V1\ProcessOptions|null
+     */
+    public function getProcessOptions()
+    {
+        return $this->process_options;
+    }
+
+    public function hasProcessOptions()
+    {
+        return isset($this->process_options);
+    }
+
+    public function clearProcessOptions()
+    {
+        unset($this->process_options);
+    }
+
+    /**
+     * Inference-time options for the process API
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
+     * @param \Google\Cloud\DocumentAI\V1\ProcessOptions $var
+     * @return $this
+     */
+    public function setProcessOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions::class);
+        $this->process_options = $var;
 
         return $this;
     }

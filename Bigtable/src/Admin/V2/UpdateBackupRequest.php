@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [UpdateBackup][google.bigtable.admin.v2.BigtableTableAdmin.UpdateBackup].
+ * The request for
+ * [UpdateBackup][google.bigtable.admin.v2.BigtableTableAdmin.UpdateBackup].
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.UpdateBackupRequest</code>
  */
@@ -39,6 +40,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\Bigtable\Admin\V2\Backup $backup     Required. The backup to update. `backup.name`, and the fields to be updated
      *                                                           as specified by `update_mask` are required. Other fields are ignored.
      *                                                           Update is only supported for the following fields:
+     *
      *                                                           * `backup.expire_time`.
      * @param \Google\Protobuf\FieldMask             $updateMask Required. A mask specifying which fields (e.g. `expire_time`) in the
      *                                                           Backup resource should be updated. This mask is relative to the Backup

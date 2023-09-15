@@ -40,6 +40,7 @@ class Trace
 
     /**
      * @var Connection\ConnectionInterface Represents a connection to Stackdriver Trace.
+     * @internal
      */
     private $connection;
 

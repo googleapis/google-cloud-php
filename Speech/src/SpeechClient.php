@@ -56,6 +56,7 @@ class SpeechClient
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     protected $connection;
 

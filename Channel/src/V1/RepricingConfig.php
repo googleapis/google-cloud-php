@@ -53,11 +53,26 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity $entitlement_granularity
-     *           Applies the repricing configuration at the entitlement level. This is
-     *           the only supported value for CustomerRepricingConfig.
+     *           Applies the repricing configuration at the entitlement level.
+     *           Note: If a
+     *           [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     *           using
+     *           [RepricingConfig.EntitlementGranularity][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]
+     *           becomes effective, then no existing or future
+     *           [RepricingConfig.ChannelPartnerGranularity][google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity]
+     *           will apply to the
+     *           [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
+     *           This is the recommended value for both
+     *           [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     *           and
+     *           [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig].
      *     @type \Google\Cloud\Channel\V1\RepricingConfig\ChannelPartnerGranularity $channel_partner_granularity
      *           Applies the repricing configuration at the channel partner level.
-     *           This is the only supported value for ChannelPartnerRepricingConfig.
+     *           Only
+     *           [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     *           supports this value. Deprecated: This is no longer supported. Use
+     *           [RepricingConfig.entitlement_granularity][google.cloud.channel.v1.RepricingConfig.entitlement_granularity]
+     *           instead.
      *     @type \Google\Type\Date $effective_invoice_month
      *           Required. The YearMonth when these adjustments activate. The Day field
      *           needs to be "0" since we only accept YearMonth repricing boundaries.
@@ -79,8 +94,19 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies the repricing configuration at the entitlement level. This is
-     * the only supported value for CustomerRepricingConfig.
+     * Applies the repricing configuration at the entitlement level.
+     * Note: If a
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * using
+     * [RepricingConfig.EntitlementGranularity][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]
+     * becomes effective, then no existing or future
+     * [RepricingConfig.ChannelPartnerGranularity][google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity]
+     * will apply to the
+     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
+     * This is the recommended value for both
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * and
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig].
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.EntitlementGranularity entitlement_granularity = 4;</code>
      * @return \Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity|null
@@ -96,8 +122,19 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies the repricing configuration at the entitlement level. This is
-     * the only supported value for CustomerRepricingConfig.
+     * Applies the repricing configuration at the entitlement level.
+     * Note: If a
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * using
+     * [RepricingConfig.EntitlementGranularity][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]
+     * becomes effective, then no existing or future
+     * [RepricingConfig.ChannelPartnerGranularity][google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity]
+     * will apply to the
+     * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
+     * This is the recommended value for both
+     * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+     * and
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig].
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.EntitlementGranularity entitlement_granularity = 4;</code>
      * @param \Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity $var
@@ -113,31 +150,44 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Applies the repricing configuration at the channel partner level.
-     * This is the only supported value for ChannelPartnerRepricingConfig.
+     * Only
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * supports this value. Deprecated: This is no longer supported. Use
+     * [RepricingConfig.entitlement_granularity][google.cloud.channel.v1.RepricingConfig.entitlement_granularity]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity channel_partner_granularity = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity channel_partner_granularity = 5 [deprecated = true];</code>
      * @return \Google\Cloud\Channel\V1\RepricingConfig\ChannelPartnerGranularity|null
+     * @deprecated
      */
     public function getChannelPartnerGranularity()
     {
+        @trigger_error('channel_partner_granularity is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(5);
     }
 
     public function hasChannelPartnerGranularity()
     {
+        @trigger_error('channel_partner_granularity is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(5);
     }
 
     /**
      * Applies the repricing configuration at the channel partner level.
-     * This is the only supported value for ChannelPartnerRepricingConfig.
+     * Only
+     * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+     * supports this value. Deprecated: This is no longer supported. Use
+     * [RepricingConfig.entitlement_granularity][google.cloud.channel.v1.RepricingConfig.entitlement_granularity]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity channel_partner_granularity = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity channel_partner_granularity = 5 [deprecated = true];</code>
      * @param \Google\Cloud\Channel\V1\RepricingConfig\ChannelPartnerGranularity $var
      * @return $this
+     * @deprecated
      */
     public function setChannelPartnerGranularity($var)
     {
+        @trigger_error('channel_partner_granularity is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\RepricingConfig\ChannelPartnerGranularity::class);
         $this->writeOneof(5, $var);
 

@@ -38,6 +38,19 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TpmAttestation tpm_attestation = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $tpm_attestation = null;
+    /**
+     * Optional. Optional information related to the Confidential Space TEE.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.ConfidentialSpaceInfo confidential_space_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $confidential_space_info = null;
+    /**
+     * Optional. A collection of optional, workload-specified claims that modify
+     * the token output.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenOptions token_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $token_options = null;
 
     /**
      * Constructor.
@@ -55,6 +68,11 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ConfidentialComputing\V1\TpmAttestation $tpm_attestation
      *           Required. The TPM-specific data provided by the attesting platform, used to
      *           populate any of the claims regarding platform state.
+     *     @type \Google\Cloud\ConfidentialComputing\V1\ConfidentialSpaceInfo $confidential_space_info
+     *           Optional. Optional information related to the Confidential Space TEE.
+     *     @type \Google\Cloud\ConfidentialComputing\V1\TokenOptions $token_options
+     *           Optional. A collection of optional, workload-specified claims that modify
+     *           the token output.
      * }
      */
     public function __construct($data = NULL) {
@@ -164,6 +182,80 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\TpmAttestation::class);
         $this->tpm_attestation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional information related to the Confidential Space TEE.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.ConfidentialSpaceInfo confidential_space_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\ConfidentialSpaceInfo|null
+     */
+    public function getConfidentialSpaceInfo()
+    {
+        return $this->confidential_space_info;
+    }
+
+    public function hasConfidentialSpaceInfo()
+    {
+        return isset($this->confidential_space_info);
+    }
+
+    public function clearConfidentialSpaceInfo()
+    {
+        unset($this->confidential_space_info);
+    }
+
+    /**
+     * Optional. Optional information related to the Confidential Space TEE.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.ConfidentialSpaceInfo confidential_space_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\ConfidentialSpaceInfo $var
+     * @return $this
+     */
+    public function setConfidentialSpaceInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\ConfidentialSpaceInfo::class);
+        $this->confidential_space_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A collection of optional, workload-specified claims that modify
+     * the token output.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenOptions token_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\TokenOptions|null
+     */
+    public function getTokenOptions()
+    {
+        return $this->token_options;
+    }
+
+    public function hasTokenOptions()
+    {
+        return isset($this->token_options);
+    }
+
+    public function clearTokenOptions()
+    {
+        unset($this->token_options);
+    }
+
+    /**
+     * Optional. A collection of optional, workload-specified claims that modify
+     * the token output.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenOptions token_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\TokenOptions $var
+     * @return $this
+     */
+    public function setTokenOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\TokenOptions::class);
+        $this->token_options = $var;
 
         return $this;
     }

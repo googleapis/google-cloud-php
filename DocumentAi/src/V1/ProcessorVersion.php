@@ -69,9 +69,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     private $kms_key_version_name = '';
     /**
-     * Denotes that this `ProcessorVersion` is managed by Google.
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *
-     * Generated from protobuf field <code>bool google_managed = 11;</code>
+     * Generated from protobuf field <code>bool google_managed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $google_managed = false;
     /**
@@ -106,7 +106,7 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key_version_name
      *           The KMS key version with which data is encrypted.
      *     @type bool $google_managed
-     *           Denotes that this `ProcessorVersion` is managed by Google.
+     *           Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo $deprecation_info
      *           If set, information about the eventual deprecation of this version.
      * }
@@ -359,9 +359,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this `ProcessorVersion` is managed by Google.
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *
-     * Generated from protobuf field <code>bool google_managed = 11;</code>
+     * Generated from protobuf field <code>bool google_managed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getGoogleManaged()
@@ -370,9 +370,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this `ProcessorVersion` is managed by Google.
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *
-     * Generated from protobuf field <code>bool google_managed = 11;</code>
+     * Generated from protobuf field <code>bool google_managed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

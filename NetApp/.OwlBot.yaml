@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/netapp/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/NetApp/$1/$2
+api-name: NetApp

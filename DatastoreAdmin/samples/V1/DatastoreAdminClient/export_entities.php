@@ -54,8 +54,8 @@ use Google\Rpc\Status;
  *
  *                                The resulting files will be nested deeper than the specified URL prefix.
  *                                The final output URL will be provided in the
- *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url] field. That
- *                                value should be used for subsequent ImportEntities operations.
+ *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+ *                                field. That value should be used for subsequent ImportEntities operations.
  *
  *                                By nesting the data files deeper, the same Cloud Storage bucket can be used
  *                                in multiple ExportEntities operations without conflict.

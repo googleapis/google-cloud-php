@@ -47,6 +47,7 @@ class Table
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     protected $connection;
 
@@ -77,7 +78,8 @@ class Table
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
-     *        BigQuery.
+     *        BigQuery. This object is created by BigQueryClient,
+     *        and should not be instantiated outside of this client.
      * @param string $id The table's id.
      * @param string $datasetId The dataset's id.
      * @param string $projectId The project's id.

@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     * which to create the alerting policy. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     * to create the alerting policy. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * Note that this field names the parent container in which the alerting
      * policy will be written, not the name of the created policy. |name| must be
@@ -31,17 +32,18 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The requested alerting policy. You should omit the `name` field in this
-     * policy. The name will be returned in the new policy, including
-     * a new `[ALERT_POLICY_ID]` value.
+     * Required. The requested alerting policy. You should omit the `name` field
+     * in this policy. The name will be returned in the new policy, including a
+     * new `[ALERT_POLICY_ID]` value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $alert_policy = null;
 
     /**
-     * @param string                                  $name        Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *                                                             which to create the alerting policy. The format is:
+     * @param string                                  $name        Required. The
+     *                                                             [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                                                             to create the alerting policy. The format is:
      *
      *                                                             projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -52,9 +54,9 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *                                                             a normalized representation of this name as a prefix but adds a suffix of
      *                                                             the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
      *                                                             container.
-     * @param \Google\Cloud\Monitoring\V3\AlertPolicy $alertPolicy Required. The requested alerting policy. You should omit the `name` field in this
-     *                                                             policy. The name will be returned in the new policy, including
-     *                                                             a new `[ALERT_POLICY_ID]` value.
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy $alertPolicy Required. The requested alerting policy. You should omit the `name` field
+     *                                                             in this policy. The name will be returned in the new policy, including a
+     *                                                             new `[ALERT_POLICY_ID]` value.
      *
      * @return \Google\Cloud\Monitoring\V3\CreateAlertPolicyRequest
      *
@@ -74,8 +76,9 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *           which to create the alerting policy. The format is:
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *           to create the alerting policy. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *           Note that this field names the parent container in which the alerting
      *           policy will be written, not the name of the created policy. |name| must be
@@ -85,9 +88,9 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *           the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
      *           container.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy $alert_policy
-     *           Required. The requested alerting policy. You should omit the `name` field in this
-     *           policy. The name will be returned in the new policy, including
-     *           a new `[ALERT_POLICY_ID]` value.
+     *           Required. The requested alerting policy. You should omit the `name` field
+     *           in this policy. The name will be returned in the new policy, including a
+     *           new `[ALERT_POLICY_ID]` value.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,8 +99,9 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     * which to create the alerting policy. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     * to create the alerting policy. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * Note that this field names the parent container in which the alerting
      * policy will be written, not the name of the created policy. |name| must be
@@ -116,8 +120,9 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     * which to create the alerting policy. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     * to create the alerting policy. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * Note that this field names the parent container in which the alerting
      * policy will be written, not the name of the created policy. |name| must be
@@ -140,9 +145,9 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The requested alerting policy. You should omit the `name` field in this
-     * policy. The name will be returned in the new policy, including
-     * a new `[ALERT_POLICY_ID]` value.
+     * Required. The requested alerting policy. You should omit the `name` field
+     * in this policy. The name will be returned in the new policy, including a
+     * new `[ALERT_POLICY_ID]` value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\AlertPolicy|null
@@ -163,9 +168,9 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The requested alerting policy. You should omit the `name` field in this
-     * policy. The name will be returned in the new policy, including
-     * a new `[ALERT_POLICY_ID]` value.
+     * Required. The requested alerting policy. You should omit the `name` field
+     * in this policy. The name will be returned in the new policy, including a
+     * new `[ALERT_POLICY_ID]` value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\AlertPolicy $var

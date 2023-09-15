@@ -134,6 +134,17 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
+     * The repo and ref of the repository from which to build. This field
+     * is used only for those triggers that do not respond to SCM events.
+     * Triggers that respond to such events build source at whatever commit
+     * caused the event.
+     * This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     * triggers.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitRepoSource source_to_build = 26;</code>
+     */
+    private $source_to_build = null;
+    /**
      * The service account used for all user-controlled operations including
      * UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild.
      * If no service account is set, then the standard Cloud Build service account
@@ -203,6 +214,8 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      *     @type string $filename
      *           Path, from the source root, to the build configuration file
      *           (i.e. cloudbuild.yaml).
+     *     @type \Google\Cloud\Build\V1\GitFileSource $git_file_source
+     *           The file source describing the local or remote Build template.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when the trigger was created.
      *     @type bool $disabled
@@ -228,6 +241,13 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
      *           then we do not trigger a build.
      *     @type string $filter
      *           Optional. A Common Expression Language string.
+     *     @type \Google\Cloud\Build\V1\GitRepoSource $source_to_build
+     *           The repo and ref of the repository from which to build. This field
+     *           is used only for those triggers that do not respond to SCM events.
+     *           Triggers that respond to such events build source at whatever commit
+     *           caused the event.
+     *           This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     *           triggers.
      *     @type string $service_account
      *           The service account used for all user-controlled operations including
      *           UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild.
@@ -654,6 +674,37 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The file source describing the local or remote Build template.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitFileSource git_file_source = 24;</code>
+     * @return \Google\Cloud\Build\V1\GitFileSource|null
+     */
+    public function getGitFileSource()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasGitFileSource()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * The file source describing the local or remote Build template.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitFileSource git_file_source = 24;</code>
+     * @param \Google\Cloud\Build\V1\GitFileSource $var
+     * @return $this
+     */
+    public function setGitFileSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\GitFileSource::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Time when the trigger was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -841,6 +892,52 @@ class BuildTrigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The repo and ref of the repository from which to build. This field
+     * is used only for those triggers that do not respond to SCM events.
+     * Triggers that respond to such events build source at whatever commit
+     * caused the event.
+     * This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     * triggers.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitRepoSource source_to_build = 26;</code>
+     * @return \Google\Cloud\Build\V1\GitRepoSource|null
+     */
+    public function getSourceToBuild()
+    {
+        return $this->source_to_build;
+    }
+
+    public function hasSourceToBuild()
+    {
+        return isset($this->source_to_build);
+    }
+
+    public function clearSourceToBuild()
+    {
+        unset($this->source_to_build);
+    }
+
+    /**
+     * The repo and ref of the repository from which to build. This field
+     * is used only for those triggers that do not respond to SCM events.
+     * Triggers that respond to such events build source at whatever commit
+     * caused the event.
+     * This field is currently only used by Webhook, Pub/Sub, Manual, and Cron
+     * triggers.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v1.GitRepoSource source_to_build = 26;</code>
+     * @param \Google\Cloud\Build\V1\GitRepoSource $var
+     * @return $this
+     */
+    public function setSourceToBuild($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V1\GitRepoSource::class);
+        $this->source_to_build = $var;
 
         return $this;
     }

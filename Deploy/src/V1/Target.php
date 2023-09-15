@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A `Target` resource in the Google Cloud Deploy API.
+ * A `Target` resource in the Cloud Deploy API.
  * A `Target` defines a location to which a Skaffold configuration
  * can be deployed.
  *
@@ -44,7 +44,7 @@ class Target extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * Optional. User annotations. These attributes can only be set and used by
-     * the user, and not by Google Cloud Deploy. See
+     * the user, and not by Cloud Deploy. See
      * https://google.aip.dev/128#annotations for more details such as format and
      * size limitations.
      *
@@ -53,8 +53,7 @@ class Target extends \Google\Protobuf\Internal\Message
     private $annotations;
     /**
      * Optional. Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -129,13 +128,12 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Optional. Description of the `Target`. Max length is 255 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. User annotations. These attributes can only be set and used by
-     *           the user, and not by Google Cloud Deploy. See
+     *           the user, and not by Cloud Deploy. See
      *           https://google.aip.dev/128#annotations for more details such as format and
      *           size limitations.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels are attributes that can be set and used by both the
-     *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints:
+     *           user and by Cloud Deploy. Labels must meet the following constraints:
      *           * Keys and values can contain only lowercase letters, numeric characters,
      *           underscores, and dashes.
      *           * All characters must use UTF-8 encoding, and international characters are
@@ -286,7 +284,7 @@ class Target extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. User annotations. These attributes can only be set and used by
-     * the user, and not by Google Cloud Deploy. See
+     * the user, and not by Cloud Deploy. See
      * https://google.aip.dev/128#annotations for more details such as format and
      * size limitations.
      *
@@ -300,7 +298,7 @@ class Target extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. User annotations. These attributes can only be set and used by
-     * the user, and not by Google Cloud Deploy. See
+     * the user, and not by Cloud Deploy. See
      * https://google.aip.dev/128#annotations for more details such as format and
      * size limitations.
      *
@@ -318,8 +316,7 @@ class Target extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -338,8 +335,7 @@ class Target extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A `Release` resource in the Google Cloud Deploy API.
+ * A `Release` resource in the Cloud Deploy API.
  * A `Release` defines a specific Skaffold configuration instance
  * that can be deployed.
  *
@@ -39,17 +39,15 @@ class Release extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      */
     private $annotations;
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -132,8 +130,8 @@ class Release extends \Google\Protobuf\Internal\Message
     private $etag = '';
     /**
      * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Google Cloud Deploy supports a
-     * specific set of versions.
+     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
+     * of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
      * Generated from protobuf field <code>string skaffold_version = 19;</code>
@@ -182,13 +180,11 @@ class Release extends \Google\Protobuf\Internal\Message
      *           Description of the `Release`. Max length is 255 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           User annotations. These attributes can only be set and used by the
-     *           user, and not by Google Cloud Deploy. See
-     *           https://google.aip.dev/128#annotations for more details such as format and
-     *           size limitations.
+     *           user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     *           for more details such as format and size limitations.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
-     *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints:
+     *           user and by Cloud Deploy. Labels must meet the following constraints:
      *           * Keys and values can contain only lowercase letters, numeric characters,
      *           underscores, and dashes.
      *           * All characters must use UTF-8 encoding, and international characters are
@@ -223,8 +219,8 @@ class Release extends \Google\Protobuf\Internal\Message
      *           client has an up-to-date value before proceeding.
      *     @type string $skaffold_version
      *           The Skaffold version to use when operating on this release, such as
-     *           "1.20.0". Not all versions are valid; Google Cloud Deploy supports a
-     *           specific set of versions.
+     *           "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
+     *           of versions.
      *           If unset, the most recent supported Skaffold version will be used.
      *     @type array|\Google\Protobuf\Internal\MapField $target_artifacts
      *           Output only. Map from target ID to the target artifacts created
@@ -327,9 +323,8 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -341,9 +336,8 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -359,8 +353,7 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -379,8 +372,7 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -735,8 +727,8 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Google Cloud Deploy supports a
-     * specific set of versions.
+     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
+     * of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
      * Generated from protobuf field <code>string skaffold_version = 19;</code>
@@ -749,8 +741,8 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Google Cloud Deploy supports a
-     * specific set of versions.
+     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
+     * of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
      * Generated from protobuf field <code>string skaffold_version = 19;</code>

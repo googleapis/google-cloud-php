@@ -103,9 +103,6 @@ class BatchPublisher
     }
 
     /**
-    }
-
-    /**
      * Send messages to a batch queue.
      *
      * Example:

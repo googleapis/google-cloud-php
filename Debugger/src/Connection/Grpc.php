@@ -29,6 +29,8 @@ use Google\Cloud\Debugger\V2\Debugger2Client;
 /**
  * Implementation of the
  * [Google Debugger gRPC API](https://cloud.google.com/debugger/docs/).
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {

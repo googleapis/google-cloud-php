@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'CopyBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups:copy',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',

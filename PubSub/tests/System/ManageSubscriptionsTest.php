@@ -51,6 +51,71 @@ class ManageSubscriptionsTest extends PubSubTestCase
     /**
      * @dataProvider clientProvider
      */
+    public function testCreateSubscriptionWithCloudStorageConfig($client)
+    {
+        $gcsBucket = getenv('GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET');
+        if (!$gcsBucket) {
+            $this->markTestSkipped(
+                'Must provide `GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET` to run this test.'
+            );
+            return;
+        }
+
+        $topic = self::topic($client);
+        $bucket = [
+            'bucket' => $gcsBucket,
+            'avroConfig' => ['writeMetadata' => false],
+            'maxDuration' => new Duration(150, 1e+9),
+            'maxBytes' => '2000'
+        ];
+
+        $subsToCreate = [
+            uniqid(self::TESTING_PREFIX),
+        ];
+
+        foreach ($subsToCreate as $subToCreate) {
+            self::$deletionQueue->add($client->subscribe(
+                $subToCreate,
+                $topic,
+                ['cloudStorageConfig' => $bucket]
+            ));
+        }
+
+        $this->assertSubsFound($client, $subsToCreate, true);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testUpdateSubscriptionWithCloudStorageConfig($client)
+    {
+        $gcsBucket = getenv('GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET');
+        if (!$gcsBucket) {
+            $this->markTestSkipped(
+                'Must provide `GCP_PHP_PUBSUB_TEST_CLOUD_STORAGE_BUCKET` to run this test.'
+            );
+            return;
+        }
+
+        $topic = self::topic($client);
+        $subToCreate = uniqid(self::TESTING_PREFIX);
+        $sub = $client->subscribe($subToCreate, $topic);
+        self::$deletionQueue->add($sub);
+
+        $isSetCloudStorageConfig = isset($sub->info()['cloudStorageConfig']) ?? false;
+        $bucket = ['bucket' => $gcsBucket];
+
+        $sub->update([
+            'cloudStorageConfig' => $bucket
+        ]);
+
+        $this->assertEquals(false, $isSetCloudStorageConfig);
+        $this->assertEquals(true, $sub->info()['cloudStorageConfig'] ? true : false);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
     public function testSubscribeAndReload($client)
     {
         $topic = self::topic($client);
@@ -376,7 +441,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
             'identifier' => 'baz'
         ])->build());
 
-        sleep(2);
+        sleep(4);
         $messages = $sub->pull();
         $this->assertCount(2, $messages);
         $this->assertTrue(in_array($messages[0]->attribute('identifier'), ['foo', 'bar']));
@@ -399,29 +464,42 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertTrue($sub->detached());
     }
 
-    private function assertSubsFound($class, $expectedSubs)
-    {
+    private function assertSubsFound(
+        $class,
+        $expectedSubs,
+        $assertForStorageConfig = false
+    ) {
         $backoff = new ExponentialBackoff(8);
-        $hasFoundSubs = $backoff->execute(function () use ($class, $expectedSubs) {
-            $foundSubs = [];
-            $subs = $class->subscriptions();
+        $hasFoundSubs = $backoff->execute(
+            function () use ($class, $expectedSubs, $assertForStorageConfig) {
+                $foundSubs = [];
+                $subs = $class->subscriptions();
 
-            foreach ($subs as $sub) {
-                $nameParts = explode('/', $sub->name());
-                $sName = end($nameParts);
-                foreach ($expectedSubs as $key => $expectedSub) {
-                    if ($sName === $expectedSub) {
-                        $foundSubs[$key] = $sName;
+                foreach ($subs as $sub) {
+                    $nameParts = explode('/', $sub->name());
+                    $sName = end($nameParts);
+                    foreach ($expectedSubs as $key => $expectedSub) {
+                        if ($sName === $expectedSub) {
+                            if ($assertForStorageConfig) {
+                                if (isset($sub->info()['cloudStorageConfig'])) {
+                                    $foundSubs[$key] = $sName;
+                                }
+                            } else {
+                                $foundSubs[$key] = $sName;
+                            }
+                        }
                     }
                 }
-            }
 
-            if (sort($foundSubs) === sort($expectedSubs)) {
-                return true;
-            }
+                if (sort($foundSubs) === sort($expectedSubs)) {
+                    return true;
+                }
 
-            throw new \Exception('Items not found in the allotted number of attempts.');
-        });
+                throw new \Exception(
+                    'Items not found in the allotted number of attempts.'
+                );
+            }
+        );
 
         $this->assertTrue($hasFoundSubs);
     }

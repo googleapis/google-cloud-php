@@ -12,7 +12,7 @@ use UnexpectedValueException;
 class BakType
 {
     /**
-     * default type.
+     * Default type.
      *
      * Generated from protobuf enum <code>BAK_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -29,11 +29,18 @@ class BakType
      * Generated from protobuf enum <code>DIFF = 2;</code>
      */
     const DIFF = 2;
+    /**
+     * SQL Server Transaction Log
+     *
+     * Generated from protobuf enum <code>TLOG = 3;</code>
+     */
+    const TLOG = 3;
 
     private static $valueToName = [
         self::BAK_TYPE_UNSPECIFIED => 'BAK_TYPE_UNSPECIFIED',
         self::FULL => 'FULL',
         self::DIFF => 'DIFF',
+        self::TLOG => 'TLOG',
     ];
 
     public static function name($value)

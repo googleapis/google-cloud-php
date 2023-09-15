@@ -24,8 +24,12 @@ use Google\Cloud\Dev\ReleaseNotes;
 use Google\Cloud\Dev\RunShell;
 use Google\Cloud\Dev\Split;
 use Google\Cloud\Dev\SplitInstall;
+use GuzzleHttp\BodySummarizer;
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -139,12 +143,11 @@ class SplitCommand extends Command
             if (!$packagistToken = $input->getOption('packagist-token')) {
                 throw new \InvalidArgumentException('A packagist token must be provided if a username is provided.');
             }
-            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken);
+            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $output);
         }
 
 
         @mkdir($execDir);
-
         $splitBinaryPath = $this->splitshInstall($output, $shell, $execDir, $input->getOption('splitsh'));
 
         $changelog = $github->getChangelog(
@@ -325,15 +328,54 @@ class SplitCommand extends Command
         }
 
         // This is the first release!
-        if ($tagName === 'v0.1.0' && $packagist) {
-            $output->writeln('<comment>[info]</comment> Creating Packagist package.');
+        if ($tagName === 'v0.1.0') {
+            // Submit the new package to Packagist and add a webhook to update it
+            if ($packagist) {
+                $output->writeln('<comment>[info]</comment> Creating Packagist package.');
 
-            $res = $packagist->createPackage('https://github.com/' . $repoName);
+                $res = $packagist->submitPackage('https://github.com/' . $repoName);
 
-            if ($res) {
-                $output->writeln(sprintf('<comment>%s</comment>: Packagist package created.', $componentId));
+                if ($res) {
+                    $output->writeln(sprintf('<comment>%s</comment>: Packagist package created.', $componentId));
+                } else {
+                    $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist package.', $componentId));
+
+                    return false;
+                }
+
+                if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $packagist->getApiToken())) {
+                    $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook package created.', $componentId));
+                } else {
+                    $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $componentId));
+
+                    return false;
+                }
+            }
+
+            // Ensure issues/projects/wiki/pages/discussion are disabled
+            $ret = $github->updateRepoDetails($repoName, [
+                'has_issues' => false,
+                'has_projects' => false,
+                'has_wiki' => false,
+                'has_pages' => false,
+                'has_discussions' => false,
+            ]);
+
+            if ($ret) {
+                $output->writeln(sprintf('<comment>%s</comment>: Disabled repo issues/projects/etc for first release.', $componentId));
             } else {
-                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist package.', $componentId));
+                $output->writeln(sprintf('<error>%s</error>: Unable to update repo details.', $componentId));
+
+                return false;
+            }
+
+            // Ensure "yoshi-php" is an admin
+            $ret = $github->updateTeamPermission('googleapis', 'yoshi-php', $repoName, 'admin');
+
+            if ($ret) {
+                $output->writeln(sprintf('<comment>%s</comment>: Added "yoshi-php" as admin.', $componentId));
+            } else {
+                $output->writeln(sprintf('<error>%s</error>: Unable to add "yoshi-php" as admin.', $componentId));
 
                 return false;
             }
@@ -396,7 +438,7 @@ class SplitCommand extends Command
     {
         $output->writeln('<comment>[info]</comment> Instantiating GitHub API Wrapper.');
 
-        return new GitHub($shell, $guzzle, $token);
+        return new GitHub($shell, $guzzle, $token, $output);
     }
 
     /**
@@ -408,7 +450,13 @@ class SplitCommand extends Command
      */
     protected function guzzleClient()
     {
-        return new Client;
+        // Create a new HTTP Errors middleware with a body summarizer of length
+        // 240 characters (the default is 120)
+        $httpErrorsMiddleware = Middleware::httpErrors(new BodySummarizer(240));
+        $stack = HandlerStack::create();
+        $stack->remove('http_errors');
+        $stack->unshift($httpErrorsMiddleware, 'http_errors');
+        return new Client(['handler' => $stack]);
     }
 
     /**

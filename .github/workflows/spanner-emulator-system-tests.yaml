@@ -18,14 +18,14 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.7
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.9
         ports:
           - 9010:9010
           - 9020:9020
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Spanner instance
         uses: google-github-actions/setup-gcloud@v1

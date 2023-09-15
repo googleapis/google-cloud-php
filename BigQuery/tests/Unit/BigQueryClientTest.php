@@ -28,6 +28,7 @@ use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
+use Google\Cloud\BigQuery\Json;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
@@ -528,6 +529,19 @@ class BigQueryClientTest extends TestCase
                 $expected + ['data' => 'abc'],
                 'insertJobUpload',
                 $uploader->reveal()
+            ],
+            [
+                $expected + ['configuration' => [
+                    'load' => [
+                        'createSession' => true,
+                        'connectionProperties' => [
+                            'key' => 'session_id',
+                            'value' => 'sessionId'
+                        ]
+                    ]
+                ]],
+                'insertJob',
+                $this->jobResponse
             ]
         ];
     }
@@ -676,5 +690,12 @@ class BigQueryClientTest extends TestCase
         $this->assertEquals(self::PROJECT_ID, $config['projectId']);
         $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
         $this->assertEquals('world', $config['location']);
+    }
+
+    public function testGetsJson()
+    {
+        $json = $this->getClient()->json(json_encode(['id' => 1]));
+
+        $this->assertInstanceOf(Json::class, $json);
     }
 }

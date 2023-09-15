@@ -15,29 +15,29 @@ use UnexpectedValueException;
  * algorithm is usable with
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
- * Algorithms beginning with "RSA_SIGN_" are usable with
+ * Algorithms beginning with `RSA_SIGN_` are usable with
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
- * The fields in the name after "RSA_SIGN_" correspond to the following
+ * The fields in the name after `RSA_SIGN_` correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
  * For PSS, the salt length used is equal to the length of digest
  * algorithm. For example,
  * [RSA_SIGN_PSS_2048_SHA256][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm.RSA_SIGN_PSS_2048_SHA256]
  * will use PSS with a salt length of 256 bits or 32 bytes.
- * Algorithms beginning with "RSA_DECRYPT_" are usable with
+ * Algorithms beginning with `RSA_DECRYPT_` are usable with
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
- * The fields in the name after "RSA_DECRYPT_" correspond to the following
+ * The fields in the name after `RSA_DECRYPT_` correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
- * Algorithms beginning with "EC_SIGN_" are usable with
+ * Algorithms beginning with `EC_SIGN_` are usable with
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
- * The fields in the name after "EC_SIGN_" correspond to the following
+ * The fields in the name after `EC_SIGN_` correspond to the following
  * parameters: elliptic curve, digest algorithm.
- * Algorithms beginning with "HMAC_" are usable with
+ * Algorithms beginning with `HMAC_` are usable with
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [MAC][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.MAC].
- * The suffix following "HMAC_" corresponds to the hash algorithm being used
+ * The suffix following `HMAC_` corresponds to the hash algorithm being used
  * (eg. SHA256).
  * For more information, see [Key purposes and algorithms]
  * (https://cloud.google.com/kms/docs/algorithms).
@@ -70,6 +70,30 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>AES_256_GCM = 19;</code>
      */
     const AES_256_GCM = 19;
+    /**
+     * AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_128_CBC = 42;</code>
+     */
+    const AES_128_CBC = 42;
+    /**
+     * AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_256_CBC = 43;</code>
+     */
+    const AES_256_CBC = 43;
+    /**
+     * AES-CTR (Counter Mode) using 128-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_128_CTR = 44;</code>
+     */
+    const AES_128_CTR = 44;
+    /**
+     * AES-CTR (Counter Mode) using 256-bit keys.
+     *
+     * Generated from protobuf enum <code>AES_256_CTR = 45;</code>
+     */
+    const AES_256_CTR = 45;
     /**
      * RSASSA-PSS 2048 bit key with a SHA256 digest.
      *
@@ -245,6 +269,10 @@ class CryptoKeyVersionAlgorithm
         self::GOOGLE_SYMMETRIC_ENCRYPTION => 'GOOGLE_SYMMETRIC_ENCRYPTION',
         self::AES_128_GCM => 'AES_128_GCM',
         self::AES_256_GCM => 'AES_256_GCM',
+        self::AES_128_CBC => 'AES_128_CBC',
+        self::AES_256_CBC => 'AES_256_CBC',
+        self::AES_128_CTR => 'AES_128_CTR',
+        self::AES_256_CTR => 'AES_256_CTR',
         self::RSA_SIGN_PSS_2048_SHA256 => 'RSA_SIGN_PSS_2048_SHA256',
         self::RSA_SIGN_PSS_3072_SHA256 => 'RSA_SIGN_PSS_3072_SHA256',
         self::RSA_SIGN_PSS_4096_SHA256 => 'RSA_SIGN_PSS_4096_SHA256',

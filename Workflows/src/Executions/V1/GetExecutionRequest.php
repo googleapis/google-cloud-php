@@ -26,8 +26,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. A view defining which fields should be filled in the returned execution.
-     * The API will default to the FULL view.
+     * Optional. A view defining which fields should be filled in the returned
+     * execution. The API will default to the FULL view.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.ExecutionView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -60,8 +60,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
      *           Format:
      *           projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
      *     @type int $view
-     *           Optional. A view defining which fields should be filled in the returned execution.
-     *           The API will default to the FULL view.
+     *           Optional. A view defining which fields should be filled in the returned
+     *           execution. The API will default to the FULL view.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,8 +100,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A view defining which fields should be filled in the returned execution.
-     * The API will default to the FULL view.
+     * Optional. A view defining which fields should be filled in the returned
+     * execution. The API will default to the FULL view.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.ExecutionView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -112,8 +112,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A view defining which fields should be filled in the returned execution.
-     * The API will default to the FULL view.
+     * Optional. A view defining which fields should be filled in the returned
+     * execution. The API will default to the FULL view.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.ExecutionView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

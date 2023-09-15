@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A `Rollout` resource in the Google Cloud Deploy API.
+ * A `Rollout` resource in the Cloud Deploy API.
  * A `Rollout` contains information around a specific deployment to a `Target`.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.Rollout</code>
@@ -39,17 +39,15 @@ class Rollout extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      */
     private $annotations;
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -177,13 +175,11 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           User annotations. These attributes can only be set and used by the
-     *           user, and not by Google Cloud Deploy. See
-     *           https://google.aip.dev/128#annotations for more details such as format and
-     *           size limitations.
+     *           user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     *           for more details such as format and size limitations.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
-     *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints:
+     *           user and by Cloud Deploy. Labels must meet the following constraints:
      *           * Keys and values can contain only lowercase letters, numeric characters,
      *           underscores, and dashes.
      *           * All characters must use UTF-8 encoding, and international characters are
@@ -322,9 +318,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -336,9 +331,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
+     * for more details such as format and size limitations.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -354,8 +348,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are
@@ -374,8 +367,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * Labels are attributes that can be set and used by both the
-     * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints:
+     * user and by Cloud Deploy. Labels must meet the following constraints:
      * * Keys and values can contain only lowercase letters, numeric characters,
      * underscores, and dashes.
      * * All characters must use UTF-8 encoding, and international characters are

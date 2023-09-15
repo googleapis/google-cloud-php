@@ -134,7 +134,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           The UTF-8 encoded natural language text to be processed. Must be sent if
      *           `text_config` is set in the first message. Text length must not exceed
      *           256 bytes for virtual agent interactions. The `input_text` field can be
-     *           only sent once.
+     *           only sent once, and would cancel the speech recognition if any ongoing.
      *     @type \Google\Cloud\Dialogflow\V2\TelephonyDtmfEvents $input_dtmf
      *           The DTMF digits used to invoke intent and fill in parameter value.
      *           This input is ignored if the previous response indicated that DTMF input
@@ -339,7 +339,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      * The UTF-8 encoded natural language text to be processed. Must be sent if
      * `text_config` is set in the first message. Text length must not exceed
      * 256 bytes for virtual agent interactions. The `input_text` field can be
-     * only sent once.
+     * only sent once, and would cancel the speech recognition if any ongoing.
      *
      * Generated from protobuf field <code>string input_text = 6;</code>
      * @return string
@@ -358,7 +358,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      * The UTF-8 encoded natural language text to be processed. Must be sent if
      * `text_config` is set in the first message. Text length must not exceed
      * 256 bytes for virtual agent interactions. The `input_text` field can be
-     * only sent once.
+     * only sent once, and would cancel the speech recognition if any ongoing.
      *
      * Generated from protobuf field <code>string input_text = 6;</code>
      * @param string $var

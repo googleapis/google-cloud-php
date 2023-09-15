@@ -62,6 +62,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
      */
     private $enable_private_path_for_google_cloud_services = null;
+    /**
+     * PSC settings for this instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.PscConfig psc_config = 9;</code>
+     */
+    private $psc_config = null;
 
     /**
      * Constructor.
@@ -92,6 +98,8 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\BoolValue $enable_private_path_for_google_cloud_services
      *           Controls connectivity to private IP instances from Google services,
      *           such as BigQuery.
+     *     @type \Google\Cloud\Sql\V1beta4\PscConfig $psc_config
+     *           PSC settings for this instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -389,6 +397,42 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("enable_private_path_for_google_cloud_services", $var);
         return $this;}
+
+    /**
+     * PSC settings for this instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.PscConfig psc_config = 9;</code>
+     * @return \Google\Cloud\Sql\V1beta4\PscConfig|null
+     */
+    public function getPscConfig()
+    {
+        return $this->psc_config;
+    }
+
+    public function hasPscConfig()
+    {
+        return isset($this->psc_config);
+    }
+
+    public function clearPscConfig()
+    {
+        unset($this->psc_config);
+    }
+
+    /**
+     * PSC settings for this instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.PscConfig psc_config = 9;</code>
+     * @param \Google\Cloud\Sql\V1beta4\PscConfig $var
+     * @return $this
+     */
+    public function setPscConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\PscConfig::class);
+        $this->psc_config = $var;
+
+        return $this;
+    }
 
 }
 

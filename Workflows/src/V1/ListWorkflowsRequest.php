@@ -25,10 +25,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Maximum number of workflows to return per call. The service may return
-     * fewer than this value. If the value is not specified, a default value of
-     * 500 will be used. The maximum permitted value is 1000 and values greater
-     * than 1000 will be coerced down to 1000.
+     * Maximum number of workflows to return per call. The service might return
+     * fewer than this value even if not at the end of the collection. If a value
+     * is not specified, a default value of 500 is used. The maximum permitted
+     * value is 1000 and values greater than 1000 are coerced down to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -49,10 +49,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * Comma-separated list of fields that that specify the order of the results.
+     * Comma-separated list of fields that specify the order of the results.
      * Default sorting order for a field is ascending. To specify descending order
-     * for a field, append a " desc" suffix.
-     * If not specified, the results will be returned in an unspecified order.
+     * for a field, append a "desc" suffix.
+     * If not specified, the results are returned in an unspecified order.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
@@ -83,10 +83,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Project and location from which the workflows should be listed.
      *           Format: projects/{project}/locations/{location}
      *     @type int $page_size
-     *           Maximum number of workflows to return per call. The service may return
-     *           fewer than this value. If the value is not specified, a default value of
-     *           500 will be used. The maximum permitted value is 1000 and values greater
-     *           than 1000 will be coerced down to 1000.
+     *           Maximum number of workflows to return per call. The service might return
+     *           fewer than this value even if not at the end of the collection. If a value
+     *           is not specified, a default value of 500 is used. The maximum permitted
+     *           value is 1000 and values greater than 1000 are coerced down to 1000.
      *     @type string $page_token
      *           A page token, received from a previous `ListWorkflows` call.
      *           Provide this to retrieve the subsequent page.
@@ -95,10 +95,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Filter to restrict results to specific workflows.
      *     @type string $order_by
-     *           Comma-separated list of fields that that specify the order of the results.
+     *           Comma-separated list of fields that specify the order of the results.
      *           Default sorting order for a field is ascending. To specify descending order
-     *           for a field, append a " desc" suffix.
-     *           If not specified, the results will be returned in an unspecified order.
+     *           for a field, append a "desc" suffix.
+     *           If not specified, the results are returned in an unspecified order.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,10 +135,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of workflows to return per call. The service may return
-     * fewer than this value. If the value is not specified, a default value of
-     * 500 will be used. The maximum permitted value is 1000 and values greater
-     * than 1000 will be coerced down to 1000.
+     * Maximum number of workflows to return per call. The service might return
+     * fewer than this value even if not at the end of the collection. If a value
+     * is not specified, a default value of 500 is used. The maximum permitted
+     * value is 1000 and values greater than 1000 are coerced down to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -149,10 +149,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of workflows to return per call. The service may return
-     * fewer than this value. If the value is not specified, a default value of
-     * 500 will be used. The maximum permitted value is 1000 and values greater
-     * than 1000 will be coerced down to 1000.
+     * Maximum number of workflows to return per call. The service might return
+     * fewer than this value even if not at the end of the collection. If a value
+     * is not specified, a default value of 500 is used. The maximum permitted
+     * value is 1000 and values greater than 1000 are coerced down to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -225,10 +225,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma-separated list of fields that that specify the order of the results.
+     * Comma-separated list of fields that specify the order of the results.
      * Default sorting order for a field is ascending. To specify descending order
-     * for a field, append a " desc" suffix.
-     * If not specified, the results will be returned in an unspecified order.
+     * for a field, append a "desc" suffix.
+     * If not specified, the results are returned in an unspecified order.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @return string
@@ -239,10 +239,10 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma-separated list of fields that that specify the order of the results.
+     * Comma-separated list of fields that specify the order of the results.
      * Default sorting order for a field is ascending. To specify descending order
-     * for a field, append a " desc" suffix.
-     * If not specified, the results will be returned in an unspecified order.
+     * for a field, append a "desc" suffix.
+     * If not specified, the results are returned in an unspecified order.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @param string $var

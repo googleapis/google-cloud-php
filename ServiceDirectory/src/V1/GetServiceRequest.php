@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The request message for
  * [RegistrationService.GetService][google.cloud.servicedirectory.v1.RegistrationService.GetService].
- * This should not be used for looking up a service. Insead, use the `resolve`
- * method as it will contain all endpoints and associated metadata.
+ * This should not be used for looking up a service. Instead, use the `resolve`
+ * method as it contains all endpoints and associated annotations.
  *
  * Generated from protobuf message <code>google.cloud.servicedirectory.v1.GetServiceRequest</code>
  */

@@ -46,6 +46,7 @@ class TraceClient
 
     /**
      * @var ConnectionInterface $connection Represents a connection to Trace
+     * @internal
      */
     protected $connection;
 

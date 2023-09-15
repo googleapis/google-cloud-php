@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DeleteQueue][google.cloud.tasks.v2.CloudTasks.DeleteQueue].
+ * Request message for
+ * [DeleteQueue][google.cloud.tasks.v2.CloudTasks.DeleteQueue].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.DeleteQueueRequest</code>
  */

@@ -33,11 +33,12 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The index of the logical interface mapping to the index of the hardware
-     * bond or nic on the chosen network template.
+     * bond or nic on the chosen network template. This field is deprecated.
      *
-     * Generated from protobuf field <code>int32 interface_index = 3;</code>
+     * Generated from protobuf field <code>int32 interface_index = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $interface_index = 0;
+    protected $interface_index = 0;
 
     /**
      * Constructor.
@@ -52,7 +53,7 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      *           forms part of the network template name.
      *     @type int $interface_index
      *           The index of the logical interface mapping to the index of the hardware
-     *           bond or nic on the chosen network template.
+     *           bond or nic on the chosen network template. This field is deprecated.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,26 +117,30 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
 
     /**
      * The index of the logical interface mapping to the index of the hardware
-     * bond or nic on the chosen network template.
+     * bond or nic on the chosen network template. This field is deprecated.
      *
-     * Generated from protobuf field <code>int32 interface_index = 3;</code>
+     * Generated from protobuf field <code>int32 interface_index = 3 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getInterfaceIndex()
     {
+        @trigger_error('interface_index is deprecated.', E_USER_DEPRECATED);
         return $this->interface_index;
     }
 
     /**
      * The index of the logical interface mapping to the index of the hardware
-     * bond or nic on the chosen network template.
+     * bond or nic on the chosen network template. This field is deprecated.
      *
-     * Generated from protobuf field <code>int32 interface_index = 3;</code>
+     * Generated from protobuf field <code>int32 interface_index = 3 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setInterfaceIndex($var)
     {
+        @trigger_error('interface_index is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->interface_index = $var;
 

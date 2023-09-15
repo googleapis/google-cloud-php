@@ -246,10 +246,45 @@ return [
                     ],
                 ],
             ],
+            'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
+            'ListLocations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLocations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
             'templateMap' => [
                 'endpoint' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}',
                 'location' => 'projects/{project}/locations/{location}',
                 'namespace' => 'projects/{project}/locations/{location}/namespaces/{namespace}',
+                'network' => 'projects/{project}/locations/global/networks/{network}',
                 'service' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}',
             ],
         ],

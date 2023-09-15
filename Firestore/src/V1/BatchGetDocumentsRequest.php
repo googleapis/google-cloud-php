@@ -69,7 +69,9 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           stream.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Reads documents as they were at the given time.
-     *           This may not be older than 270 seconds.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      * }
      */
     public function __construct($data = NULL) {
@@ -247,7 +249,9 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads documents as they were at the given time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -264,7 +268,9 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Reads documents as they were at the given time.
-     * This may not be older than 270 seconds.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var

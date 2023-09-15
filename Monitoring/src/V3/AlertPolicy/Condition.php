@@ -94,6 +94,8 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MonitoringQueryLanguageCondition $condition_monitoring_query_language
      *           A condition that uses the Monitoring Query Language to define
      *           alerts.
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\PrometheusQueryLanguageCondition $condition_prometheus_query_language
+     *           A condition that uses the Prometheus query language to define alerts.
      * }
      */
     public function __construct($data = NULL) {
@@ -321,6 +323,37 @@ class Condition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MonitoringQueryLanguageCondition::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * A condition that uses the Prometheus query language to define alerts.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.PrometheusQueryLanguageCondition condition_prometheus_query_language = 21;</code>
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\PrometheusQueryLanguageCondition|null
+     */
+    public function getConditionPrometheusQueryLanguage()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasConditionPrometheusQueryLanguage()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * A condition that uses the Prometheus query language to define alerts.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.PrometheusQueryLanguageCondition condition_prometheus_query_language = 21;</code>
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\PrometheusQueryLanguageCondition $var
+     * @return $this
+     */
+    public function setConditionPrometheusQueryLanguage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\PrometheusQueryLanguageCondition::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }

@@ -37,12 +37,19 @@ class ParameterType
      * Generated from protobuf enum <code>DOUBLE = 3;</code>
      */
     const DOUBLE = 3;
+    /**
+     * Boolean type.
+     *
+     * Generated from protobuf enum <code>BOOLEAN = 4;</code>
+     */
+    const BOOLEAN = 4;
 
     private static $valueToName = [
         self::PARAMETER_TYPE_UNSPECIFIED => 'PARAMETER_TYPE_UNSPECIFIED',
         self::INT64 => 'INT64',
         self::STRING => 'STRING',
         self::DOUBLE => 'DOUBLE',
+        self::BOOLEAN => 'BOOLEAN',
     ];
 
     public static function name($value)

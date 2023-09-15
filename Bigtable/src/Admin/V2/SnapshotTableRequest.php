@@ -37,9 +37,9 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = '';
     /**
-     * Required. The ID by which the new snapshot should be referred to within the parent
-     * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     * rather than
+     * Required. The ID by which the new snapshot should be referred to within the
+     * parent cluster, e.g., `mysnapshot` of the form:
+     * `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
      * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -70,9 +70,9 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *                            Values are of the form
      *                            `projects/{project}/instances/{instance}/clusters/{cluster}`. Please see
      *                            {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
-     * @param string $snapshotId  Required. The ID by which the new snapshot should be referred to within the parent
-     *                            cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     *                            rather than
+     * @param string $snapshotId  Required. The ID by which the new snapshot should be referred to within the
+     *                            parent cluster, e.g., `mysnapshot` of the form:
+     *                            `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      *                            `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      * @param string $description Description of the snapshot.
      *
@@ -104,9 +104,9 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *           Values are of the form
      *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type string $snapshot_id
-     *           Required. The ID by which the new snapshot should be referred to within the parent
-     *           cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     *           rather than
+     *           Required. The ID by which the new snapshot should be referred to within the
+     *           parent cluster, e.g., `mysnapshot` of the form:
+     *           `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      *           `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *     @type \Google\Protobuf\Duration $ttl
      *           The amount of time that the new snapshot can stay active after it is
@@ -183,9 +183,9 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID by which the new snapshot should be referred to within the parent
-     * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     * rather than
+     * Required. The ID by which the new snapshot should be referred to within the
+     * parent cluster, e.g., `mysnapshot` of the form:
+     * `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
      * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -197,9 +197,9 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID by which the new snapshot should be referred to within the parent
-     * cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
-     * rather than
+     * Required. The ID by which the new snapshot should be referred to within the
+     * parent cluster, e.g., `mysnapshot` of the form:
+     * `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
      * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      *
      * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>

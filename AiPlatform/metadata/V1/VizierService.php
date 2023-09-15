@@ -25,7 +25,7 @@ class VizierService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì/
+‘/
 /google/cloud/aiplatform/v1/vizier_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto&google/cloud/aiplatform/v1/study.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"H
 GetStudyRequest5
 name (	B\'‡A˙A!
@@ -49,12 +49,13 @@ page_token (	B‡A
 LookupStudyRequest9
 parent (	B)‡A˙A#
 !locations.googleapis.com/Location
-display_name (	B‡A"Ü
+display_name (	B‡A"«
 SuggestTrialsRequest7
 parent (	B\'‡A˙A!
 aiplatform.googleapis.com/Study
 suggestion_count (B‡A
-	client_id (	B‡A"Ê
+	client_id (	B‡A?
+contexts (2(.google.cloud.aiplatform.v1.TrialContextB‡A"Ê
 SuggestTrialsResponse1
 trials (2!.google.cloud.aiplatform.v1.Trial<
 study_state (2\'.google.cloud.aiplatform.v1.Study.State.

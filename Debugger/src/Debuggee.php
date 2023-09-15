@@ -37,6 +37,7 @@ class Debuggee
 {
     /**
      * @var ConnectionInterface $connection Represents a connection to Debugger
+     * @internal
      */
     private $connection;
 
@@ -105,6 +106,8 @@ class Debuggee
      * Instantiate a new Debuggee.
      *
      * @param ConnectionInterface $connection
+     *        This object is created by DebuggerClient,
+     *        and should not be instantiated outside of this client.
      * @param array $info [optional] {
      *      Configuration options.
      *

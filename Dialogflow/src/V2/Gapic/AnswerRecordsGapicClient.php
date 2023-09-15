@@ -103,15 +103,47 @@ class AnswerRecordsGapicClient
         'https://www.googleapis.com/auth/dialogflow',
     ];
 
+    private static $agentNameTemplate;
+
     private static $answerRecordNameTemplate;
+
+    private static $contextNameTemplate;
+
+    private static $intentNameTemplate;
 
     private static $locationNameTemplate;
 
     private static $projectNameTemplate;
 
+    private static $projectAgentNameTemplate;
+
     private static $projectAnswerRecordNameTemplate;
 
+    private static $projectEnvironmentUserSessionNameTemplate;
+
+    private static $projectEnvironmentUserSessionContextNameTemplate;
+
+    private static $projectIntentNameTemplate;
+
+    private static $projectLocationAgentNameTemplate;
+
     private static $projectLocationAnswerRecordNameTemplate;
+
+    private static $projectLocationEnvironmentUserSessionNameTemplate;
+
+    private static $projectLocationEnvironmentUserSessionContextNameTemplate;
+
+    private static $projectLocationIntentNameTemplate;
+
+    private static $projectLocationSessionNameTemplate;
+
+    private static $projectLocationSessionContextNameTemplate;
+
+    private static $projectSessionNameTemplate;
+
+    private static $projectSessionContextNameTemplate;
+
+    private static $sessionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -134,6 +166,15 @@ class AnswerRecordsGapicClient
         ];
     }
 
+    private static function getAgentNameTemplate()
+    {
+        if (self::$agentNameTemplate == null) {
+            self::$agentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$agentNameTemplate;
+    }
+
     private static function getAnswerRecordNameTemplate()
     {
         if (self::$answerRecordNameTemplate == null) {
@@ -141,6 +182,24 @@ class AnswerRecordsGapicClient
         }
 
         return self::$answerRecordNameTemplate;
+    }
+
+    private static function getContextNameTemplate()
+    {
+        if (self::$contextNameTemplate == null) {
+            self::$contextNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$contextNameTemplate;
+    }
+
+    private static function getIntentNameTemplate()
+    {
+        if (self::$intentNameTemplate == null) {
+            self::$intentNameTemplate = new PathTemplate('projects/{project}/agent/intents/{intent}');
+        }
+
+        return self::$intentNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -161,6 +220,15 @@ class AnswerRecordsGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
     private static function getProjectAnswerRecordNameTemplate()
     {
         if (self::$projectAnswerRecordNameTemplate == null) {
@@ -168,6 +236,42 @@ class AnswerRecordsGapicClient
         }
 
         return self::$projectAnswerRecordNameTemplate;
+    }
+
+    private static function getProjectEnvironmentUserSessionNameTemplate()
+    {
+        if (self::$projectEnvironmentUserSessionNameTemplate == null) {
+            self::$projectEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectEnvironmentUserSessionContextNameTemplate()
+    {
+        if (self::$projectEnvironmentUserSessionContextNameTemplate == null) {
+            self::$projectEnvironmentUserSessionContextNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectEnvironmentUserSessionContextNameTemplate;
+    }
+
+    private static function getProjectIntentNameTemplate()
+    {
+        if (self::$projectIntentNameTemplate == null) {
+            self::$projectIntentNameTemplate = new PathTemplate('projects/{project}/agent/intents/{intent}');
+        }
+
+        return self::$projectIntentNameTemplate;
+    }
+
+    private static function getProjectLocationAgentNameTemplate()
+    {
+        if (self::$projectLocationAgentNameTemplate == null) {
+            self::$projectLocationAgentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent');
+        }
+
+        return self::$projectLocationAgentNameTemplate;
     }
 
     private static function getProjectLocationAnswerRecordNameTemplate()
@@ -179,19 +283,122 @@ class AnswerRecordsGapicClient
         return self::$projectLocationAnswerRecordNameTemplate;
     }
 
+    private static function getProjectLocationEnvironmentUserSessionNameTemplate()
+    {
+        if (self::$projectLocationEnvironmentUserSessionNameTemplate == null) {
+            self::$projectLocationEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectLocationEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectLocationEnvironmentUserSessionContextNameTemplate()
+    {
+        if (self::$projectLocationEnvironmentUserSessionContextNameTemplate == null) {
+            self::$projectLocationEnvironmentUserSessionContextNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectLocationEnvironmentUserSessionContextNameTemplate;
+    }
+
+    private static function getProjectLocationIntentNameTemplate()
+    {
+        if (self::$projectLocationIntentNameTemplate == null) {
+            self::$projectLocationIntentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/intents/{intent}');
+        }
+
+        return self::$projectLocationIntentNameTemplate;
+    }
+
+    private static function getProjectLocationSessionNameTemplate()
+    {
+        if (self::$projectLocationSessionNameTemplate == null) {
+            self::$projectLocationSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/sessions/{session}');
+        }
+
+        return self::$projectLocationSessionNameTemplate;
+    }
+
+    private static function getProjectLocationSessionContextNameTemplate()
+    {
+        if (self::$projectLocationSessionContextNameTemplate == null) {
+            self::$projectLocationSessionContextNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectLocationSessionContextNameTemplate;
+    }
+
+    private static function getProjectSessionNameTemplate()
+    {
+        if (self::$projectSessionNameTemplate == null) {
+            self::$projectSessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$projectSessionNameTemplate;
+    }
+
+    private static function getProjectSessionContextNameTemplate()
+    {
+        if (self::$projectSessionContextNameTemplate == null) {
+            self::$projectSessionContextNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/contexts/{context}');
+        }
+
+        return self::$projectSessionContextNameTemplate;
+    }
+
+    private static function getSessionNameTemplate()
+    {
+        if (self::$sessionNameTemplate == null) {
+            self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$sessionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'agent' => self::getAgentNameTemplate(),
                 'answerRecord' => self::getAnswerRecordNameTemplate(),
+                'context' => self::getContextNameTemplate(),
+                'intent' => self::getIntentNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
                 'projectAnswerRecord' => self::getProjectAnswerRecordNameTemplate(),
+                'projectEnvironmentUserSession' => self::getProjectEnvironmentUserSessionNameTemplate(),
+                'projectEnvironmentUserSessionContext' => self::getProjectEnvironmentUserSessionContextNameTemplate(),
+                'projectIntent' => self::getProjectIntentNameTemplate(),
+                'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
                 'projectLocationAnswerRecord' => self::getProjectLocationAnswerRecordNameTemplate(),
+                'projectLocationEnvironmentUserSession' => self::getProjectLocationEnvironmentUserSessionNameTemplate(),
+                'projectLocationEnvironmentUserSessionContext' => self::getProjectLocationEnvironmentUserSessionContextNameTemplate(),
+                'projectLocationIntent' => self::getProjectLocationIntentNameTemplate(),
+                'projectLocationSession' => self::getProjectLocationSessionNameTemplate(),
+                'projectLocationSessionContext' => self::getProjectLocationSessionContextNameTemplate(),
+                'projectSession' => self::getProjectSessionNameTemplate(),
+                'projectSessionContext' => self::getProjectSessionContextNameTemplate(),
+                'session' => self::getSessionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a agent
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted agent resource.
+     */
+    public static function agentName($project)
+    {
+        return self::getAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -208,6 +415,42 @@ class AnswerRecordsGapicClient
         return self::getAnswerRecordNameTemplate()->render([
             'project' => $project,
             'answer_record' => $answerRecord,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a context
+     * resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted context resource.
+     */
+    public static function contextName($project, $session, $context)
+    {
+        return self::getContextNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a intent
+     * resource.
+     *
+     * @param string $project
+     * @param string $intent
+     *
+     * @return string The formatted intent resource.
+     */
+    public static function intentName($project, $intent)
+    {
+        return self::getIntentNameTemplate()->render([
+            'project' => $project,
+            'intent' => $intent,
         ]);
     }
 
@@ -245,6 +488,21 @@ class AnswerRecordsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_answer_record resource.
      *
      * @param string $project
@@ -257,6 +515,84 @@ class AnswerRecordsGapicClient
         return self::getProjectAnswerRecordNameTemplate()->render([
             'project' => $project,
             'answer_record' => $answerRecord,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_environment_user_session resource.
+     */
+    public static function projectEnvironmentUserSessionName($project, $environment, $user, $session)
+    {
+        return self::getProjectEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_environment_user_session_context resource.
+     */
+    public static function projectEnvironmentUserSessionContextName($project, $environment, $user, $session, $context)
+    {
+        return self::getProjectEnvironmentUserSessionContextNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_intent resource.
+     *
+     * @param string $project
+     * @param string $intent
+     *
+     * @return string The formatted project_intent resource.
+     */
+    public static function projectIntentName($project, $intent)
+    {
+        return self::getProjectIntentNameTemplate()->render([
+            'project' => $project,
+            'intent' => $intent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_agent resource.
+     */
+    public static function projectLocationAgentName($project, $location)
+    {
+        return self::getProjectLocationAgentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -280,14 +616,190 @@ class AnswerRecordsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_location_environment_user_session resource.
+     */
+    public static function projectLocationEnvironmentUserSessionName($project, $location, $environment, $user, $session)
+    {
+        return self::getProjectLocationEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_environment_user_session_context resource.
+     */
+    public static function projectLocationEnvironmentUserSessionContextName($project, $location, $environment, $user, $session, $context)
+    {
+        return self::getProjectLocationEnvironmentUserSessionContextNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_intent resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $intent
+     *
+     * @return string The formatted project_location_intent resource.
+     */
+    public static function projectLocationIntentName($project, $location, $intent)
+    {
+        return self::getProjectLocationIntentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'intent' => $intent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     *
+     * @return string The formatted project_location_session resource.
+     */
+    public static function projectLocationSessionName($project, $location, $session)
+    {
+        return self::getProjectLocationSessionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session_context resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_location_session_context resource.
+     */
+    public static function projectLocationSessionContextName($project, $location, $session, $context)
+    {
+        return self::getProjectLocationSessionContextNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted project_session resource.
+     */
+    public static function projectSessionName($project, $session)
+    {
+        return self::getProjectSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_session_context resource.
+     *
+     * @param string $project
+     * @param string $session
+     * @param string $context
+     *
+     * @return string The formatted project_session_context resource.
+     */
+    public static function projectSessionContextName($project, $session, $context)
+    {
+        return self::getProjectSessionContextNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a session
+     * resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted session resource.
+     */
+    public static function sessionName($project, $session)
+    {
+        return self::getSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - agent: projects/{project}/agent
      * - answerRecord: projects/{project}/answerRecords/{answer_record}
+     * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - intent: projects/{project}/agent/intents/{intent}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
+     * - projectAgent: projects/{project}/agent
      * - projectAnswerRecord: projects/{project}/answerRecords/{answer_record}
+     * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
+     * - projectIntent: projects/{project}/agent/intents/{intent}
+     * - projectLocationAgent: projects/{project}/locations/{location}/agent
      * - projectLocationAnswerRecord: projects/{project}/locations/{location}/answerRecords/{answer_record}
+     * - projectLocationEnvironmentUserSession: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectLocationEnvironmentUserSessionContext: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
+     * - projectLocationIntent: projects/{project}/locations/{location}/agent/intents/{intent}
+     * - projectLocationSession: projects/{project}/locations/{location}/agent/sessions/{session}
+     * - projectLocationSessionContext: projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}
+     * - projectSession: projects/{project}/agent/sessions/{session}
+     * - projectSessionContext: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - session: projects/{project}/agent/sessions/{session}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

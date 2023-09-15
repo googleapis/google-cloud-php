@@ -439,6 +439,18 @@ return [
                 'uriTemplate' => '/v1alpha/properties',
                 'body' => 'property',
             ],
+            'CreateSKAdNetworkConversionValueSchema' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/sKAdNetworkConversionValueSchema',
+                'body' => 'skadnetwork_conversion_value_schema',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSearchAds360Link' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
@@ -627,6 +639,17 @@ return [
             'DeleteProperty' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSKAdNetworkConversionValueSchema' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -920,6 +943,17 @@ return [
                     ],
                 ],
             ],
+            'GetSKAdNetworkConversionValueSchema' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSearchAds360Link' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/searchAds360Links/*}',
@@ -1150,6 +1184,17 @@ return [
                     'filter',
                 ],
             ],
+            'ListSKAdNetworkConversionValueSchemas' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/sKAdNetworkConversionValueSchema',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSearchAds360Links' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/searchAds360Links',
@@ -1295,6 +1340,22 @@ return [
                     'channel_group.name' => [
                         'getters' => [
                             'getChannelGroup',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateConversionEvent' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}',
+                'body' => 'conversion_event',
+                'placeholders' => [
+                    'conversion_event.name' => [
+                        'getters' => [
+                            'getConversionEvent',
                             'getName',
                         ],
                     ],
@@ -1475,6 +1536,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateProperty' => [
                 'method' => 'patch',
@@ -1484,6 +1548,22 @@ return [
                     'property.name' => [
                         'getters' => [
                             'getProperty',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSKAdNetworkConversionValueSchema' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{skadnetwork_conversion_value_schema.name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}',
+                'body' => 'skadnetwork_conversion_value_schema',
+                'placeholders' => [
+                    'skadnetwork_conversion_value_schema.name' => [
+                        'getters' => [
+                            'getSkadnetworkConversionValueSchema',
                             'getName',
                         ],
                     ],

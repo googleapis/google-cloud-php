@@ -36,7 +36,7 @@ use Google\Cloud\Billing\V1\ProjectBillingInfo;
  *
  * @param string $formattedName The resource name of the project for which billing information is
  *                              retrieved. For example, `projects/tokyo-rain-123`. Please see
- *                              {@see CloudBillingClient::projectBillingInfoName()} for help formatting this field.
+ *                              {@see CloudBillingClient::projectName()} for help formatting this field.
  */
 function get_project_billing_info_sample(string $formattedName): void
 {
@@ -64,7 +64,7 @@ function get_project_billing_info_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = CloudBillingClient::projectBillingInfoName('[PROJECT]');
+    $formattedName = CloudBillingClient::projectName('[PROJECT]');
 
     get_project_billing_info_sample($formattedName);
 }

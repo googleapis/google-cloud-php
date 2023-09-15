@@ -28,7 +28,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
 
 /**
- * Sets the IAM Policy for a resource (namespace or service only).
+ * Sets the IAM Policy for a resource
  *
  * @param string $resource REQUIRED: The resource for which the policy is being specified.
  *                         See the operation documentation for the appropriate value for this field.

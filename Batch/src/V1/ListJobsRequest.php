@@ -28,6 +28,13 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
+     * Optional. Sort results. Supported are "name", "name desc", "create_time",
+     * and "create_time desc".
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $order_by = '';
+    /**
      * Page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -63,6 +70,9 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           Parent path.
      *     @type string $filter
      *           List filter.
+     *     @type string $order_by
+     *           Optional. Sort results. Supported are "name", "name desc", "create_time",
+     *           and "create_time desc".
      *     @type int $page_size
      *           Page size.
      *     @type string $page_token
@@ -122,6 +132,34 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Sort results. Supported are "name", "name desc", "create_time",
+     * and "create_time desc".
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. Sort results. Supported are "name", "name desc", "create_time",
+     * and "create_time desc".
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

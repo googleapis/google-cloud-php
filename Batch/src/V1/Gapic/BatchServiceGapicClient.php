@@ -734,6 +734,9 @@ class BatchServiceGapicClient
      *           Parent path.
      *     @type string $filter
      *           List filter.
+     *     @type string $orderBy
+     *           Optional. Sort results. Supported are "name", "name desc", "create_time",
+     *           and "create_time desc".
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -764,6 +767,10 @@ class BatchServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         if (isset($optionalArgs['pageSize'])) {

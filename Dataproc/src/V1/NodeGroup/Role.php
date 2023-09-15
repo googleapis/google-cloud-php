@@ -7,7 +7,7 @@ namespace Google\Cloud\Dataproc\V1\NodeGroup;
 use UnexpectedValueException;
 
 /**
- * Node group roles.
+ * Node pool roles.
  *
  * Protobuf type <code>google.cloud.dataproc.v1.NodeGroup.Role</code>
  */
@@ -20,7 +20,7 @@ class Role
      */
     const ROLE_UNSPECIFIED = 0;
     /**
-     * Job drivers run on the node group.
+     * Job drivers run on the node pool.
      *
      * Generated from protobuf enum <code>DRIVER = 1;</code>
      */

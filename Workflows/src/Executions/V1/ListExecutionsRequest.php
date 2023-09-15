@@ -26,7 +26,7 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Maximum number of executions to return per call.
-     * Max supported value depends on the selected Execution view: it's 10000 for
+     * Max supported value depends on the selected Execution view: it's 1000 for
      * BASIC and 100 for FULL. The default value used if the field is not
      * specified is 100, regardless of the selected view. Values greater than
      * the max value will be coerced down to it.
@@ -39,17 +39,37 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListExecutions` must
      * match the call that provided the page token.
+     * Note that pagination is applied to dynamic data. The list of executions
+     * returned can change between page requests.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
     /**
-     * Optional. A view defining which fields should be filled in the returned executions.
-     * The API will default to the BASIC view.
+     * Optional. A view defining which fields should be filled in the returned
+     * executions. The API will default to the BASIC view.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.ExecutionView view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $view = 0;
+    /**
+     * Optional. Filters applied to the [Executions.ListExecutions] results.
+     * The following fields are supported for filtering:
+     * executionID, state, startTime, endTime, duration, workflowRevisionID,
+     * stepName, and label.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filter = '';
+    /**
+     * Optional. The ordering applied to the [Executions.ListExecutions] results.
+     * By default the ordering is based on descending start time.
+     * The following fields are supported for order by:
+     * executionID, startTime, endTime, duration, state, and workflowRevisionID.
+     *
+     * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $order_by = '';
 
     /**
      * @param string $parent Required. Name of the workflow for which the executions should be listed.
@@ -77,7 +97,7 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *           Format: projects/{project}/locations/{location}/workflows/{workflow}
      *     @type int $page_size
      *           Maximum number of executions to return per call.
-     *           Max supported value depends on the selected Execution view: it's 10000 for
+     *           Max supported value depends on the selected Execution view: it's 1000 for
      *           BASIC and 100 for FULL. The default value used if the field is not
      *           specified is 100, regardless of the selected view. Values greater than
      *           the max value will be coerced down to it.
@@ -86,9 +106,21 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListExecutions` must
      *           match the call that provided the page token.
+     *           Note that pagination is applied to dynamic data. The list of executions
+     *           returned can change between page requests.
      *     @type int $view
-     *           Optional. A view defining which fields should be filled in the returned executions.
-     *           The API will default to the BASIC view.
+     *           Optional. A view defining which fields should be filled in the returned
+     *           executions. The API will default to the BASIC view.
+     *     @type string $filter
+     *           Optional. Filters applied to the [Executions.ListExecutions] results.
+     *           The following fields are supported for filtering:
+     *           executionID, state, startTime, endTime, duration, workflowRevisionID,
+     *           stepName, and label.
+     *     @type string $order_by
+     *           Optional. The ordering applied to the [Executions.ListExecutions] results.
+     *           By default the ordering is based on descending start time.
+     *           The following fields are supported for order by:
+     *           executionID, startTime, endTime, duration, state, and workflowRevisionID.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +158,7 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of executions to return per call.
-     * Max supported value depends on the selected Execution view: it's 10000 for
+     * Max supported value depends on the selected Execution view: it's 1000 for
      * BASIC and 100 for FULL. The default value used if the field is not
      * specified is 100, regardless of the selected view. Values greater than
      * the max value will be coerced down to it.
@@ -141,7 +173,7 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of executions to return per call.
-     * Max supported value depends on the selected Execution view: it's 10000 for
+     * Max supported value depends on the selected Execution view: it's 1000 for
      * BASIC and 100 for FULL. The default value used if the field is not
      * specified is 100, regardless of the selected view. Values greater than
      * the max value will be coerced down to it.
@@ -163,6 +195,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListExecutions` must
      * match the call that provided the page token.
+     * Note that pagination is applied to dynamic data. The list of executions
+     * returned can change between page requests.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -177,6 +211,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListExecutions` must
      * match the call that provided the page token.
+     * Note that pagination is applied to dynamic data. The list of executions
+     * returned can change between page requests.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
@@ -191,8 +227,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A view defining which fields should be filled in the returned executions.
-     * The API will default to the BASIC view.
+     * Optional. A view defining which fields should be filled in the returned
+     * executions. The API will default to the BASIC view.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.ExecutionView view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -203,8 +239,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A view defining which fields should be filled in the returned executions.
-     * The API will default to the BASIC view.
+     * Optional. A view defining which fields should be filled in the returned
+     * executions. The API will default to the BASIC view.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.ExecutionView view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -214,6 +250,70 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Workflows\Executions\V1\ExecutionView::class);
         $this->view = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filters applied to the [Executions.ListExecutions] results.
+     * The following fields are supported for filtering:
+     * executionID, state, startTime, endTime, duration, workflowRevisionID,
+     * stepName, and label.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filters applied to the [Executions.ListExecutions] results.
+     * The following fields are supported for filtering:
+     * executionID, state, startTime, endTime, duration, workflowRevisionID,
+     * stepName, and label.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ordering applied to the [Executions.ListExecutions] results.
+     * By default the ordering is based on descending start time.
+     * The following fields are supported for order by:
+     * executionID, startTime, endTime, duration, state, and workflowRevisionID.
+     *
+     * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. The ordering applied to the [Executions.ListExecutions] results.
+     * By default the ordering is based on descending start time.
+     * The following fields are supported for order by:
+     * executionID, startTime, endTime, duration, state, and workflowRevisionID.
+     *
+     * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

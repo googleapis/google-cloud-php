@@ -28,6 +28,7 @@ use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
+use Google\Cloud\BigQuery\Json;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
@@ -611,6 +612,16 @@ class BigQueryClientTest extends SnippetTestCase
             ],
             $config->toArray()['configuration']['load']
         );
+    }
+
+    public function testJson()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'json');
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('json');
+
+        $this->assertInstanceOf(Json::class, $res->returnVal());
     }
 }
 

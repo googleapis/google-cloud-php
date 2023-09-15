@@ -22,7 +22,8 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      * Use `default_branch` as the branch ID, to list documents under the default
      * branch.
-     * If the caller does not have permission to list [Documents][]s under this
+     * If the caller does not have permission to list
+     * [Document][google.cloud.discoveryengine.v1beta.Document]s under this
      * branch, regardless of whether or not this branch exists, a
      * `PERMISSION_DENIED` error is returned.
      *
@@ -59,7 +60,8 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *                       Use `default_branch` as the branch ID, to list documents under the default
      *                       branch.
      *
-     *                       If the caller does not have permission to list [Documents][]s under this
+     *                       If the caller does not have permission to list
+     *                       [Document][google.cloud.discoveryengine.v1beta.Document]s under this
      *                       branch, regardless of whether or not this branch exists, a
      *                       `PERMISSION_DENIED` error is returned. Please see
      *                       {@see DocumentServiceClient::branchName()} for help formatting this field.
@@ -85,7 +87,8 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      *           Use `default_branch` as the branch ID, to list documents under the default
      *           branch.
-     *           If the caller does not have permission to list [Documents][]s under this
+     *           If the caller does not have permission to list
+     *           [Document][google.cloud.discoveryengine.v1beta.Document]s under this
      *           branch, regardless of whether or not this branch exists, a
      *           `PERMISSION_DENIED` error is returned.
      *     @type int $page_size
@@ -115,7 +118,8 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      * Use `default_branch` as the branch ID, to list documents under the default
      * branch.
-     * If the caller does not have permission to list [Documents][]s under this
+     * If the caller does not have permission to list
+     * [Document][google.cloud.discoveryengine.v1beta.Document]s under this
      * branch, regardless of whether or not this branch exists, a
      * `PERMISSION_DENIED` error is returned.
      *
@@ -132,7 +136,8 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      * Use `default_branch` as the branch ID, to list documents under the default
      * branch.
-     * If the caller does not have permission to list [Documents][]s under this
+     * If the caller does not have permission to list
+     * [Document][google.cloud.discoveryengine.v1beta.Document]s under this
      * branch, regardless of whether or not this branch exists, a
      * `PERMISSION_DENIED` error is returned.
      *

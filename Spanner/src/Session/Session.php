@@ -28,6 +28,7 @@ class Session
 {
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -63,6 +64,8 @@ class Session
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Spanner.
+     *        This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param string $projectId The project ID.
      * @param string $instance The instance name.
      * @param string $database The database name.

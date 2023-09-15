@@ -27,6 +27,20 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job verify_job = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $verify_job = null;
+    /**
+     * Output only. The predeploy Job. This is the predeploy job in the phase.
+     * This is the first job of the phase.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Job predeploy_job = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $predeploy_job = null;
+    /**
+     * Output only. The postdeploy Job. This is the postdeploy job in the phase.
+     * This is the last job of the phase.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Job postdeploy_job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $postdeploy_job = null;
 
     /**
      * Constructor.
@@ -38,6 +52,12 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
      *           Output only. The deploy Job. This is the deploy job in the phase.
      *     @type \Google\Cloud\Deploy\V1\Job $verify_job
      *           Output only. The verify Job. Runs after a deploy if the deploy succeeds.
+     *     @type \Google\Cloud\Deploy\V1\Job $predeploy_job
+     *           Output only. The predeploy Job. This is the predeploy job in the phase.
+     *           This is the first job of the phase.
+     *     @type \Google\Cloud\Deploy\V1\Job $postdeploy_job
+     *           Output only. The postdeploy Job. This is the postdeploy job in the phase.
+     *           This is the last job of the phase.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +133,82 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Job::class);
         $this->verify_job = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The predeploy Job. This is the predeploy job in the phase.
+     * This is the first job of the phase.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Job predeploy_job = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\Job|null
+     */
+    public function getPredeployJob()
+    {
+        return $this->predeploy_job;
+    }
+
+    public function hasPredeployJob()
+    {
+        return isset($this->predeploy_job);
+    }
+
+    public function clearPredeployJob()
+    {
+        unset($this->predeploy_job);
+    }
+
+    /**
+     * Output only. The predeploy Job. This is the predeploy job in the phase.
+     * This is the first job of the phase.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Job predeploy_job = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\Job $var
+     * @return $this
+     */
+    public function setPredeployJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Job::class);
+        $this->predeploy_job = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The postdeploy Job. This is the postdeploy job in the phase.
+     * This is the last job of the phase.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Job postdeploy_job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\Job|null
+     */
+    public function getPostdeployJob()
+    {
+        return $this->postdeploy_job;
+    }
+
+    public function hasPostdeployJob()
+    {
+        return isset($this->postdeploy_job);
+    }
+
+    public function clearPostdeployJob()
+    {
+        unset($this->postdeploy_job);
+    }
+
+    /**
+     * Output only. The postdeploy Job. This is the postdeploy job in the phase.
+     * This is the last job of the phase.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Job postdeploy_job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\Job $var
+     * @return $this
+     */
+    public function setPostdeployJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Job::class);
+        $this->postdeploy_job = $var;
 
         return $this;
     }

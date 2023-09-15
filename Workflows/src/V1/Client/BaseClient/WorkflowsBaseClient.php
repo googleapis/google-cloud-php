@@ -35,6 +35,9 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Workflows\V1\CreateWorkflowRequest;
 use Google\Cloud\Workflows\V1\DeleteWorkflowRequest;
 use Google\Cloud\Workflows\V1\GetWorkflowRequest;
@@ -68,6 +71,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getWorkflowAsync(GetWorkflowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listWorkflowsAsync(ListWorkflowsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateWorkflowAsync(UpdateWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 abstract class WorkflowsBaseClient
 {
@@ -142,6 +147,27 @@ abstract class WorkflowsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'keyRing' => $keyRing,
+            'cryptoKey' => $cryptoKey,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -181,6 +207,7 @@ abstract class WorkflowsBaseClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}
      * - location: projects/{project}/locations/{location}
      * - workflow: projects/{project}/locations/{location}/workflows/{workflow}
      *
@@ -277,7 +304,7 @@ abstract class WorkflowsBaseClient
     /**
      * Creates a new workflow. If a workflow with the specified name already
      * exists in the specified project and location, the long running operation
-     * will return [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+     * returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
      *
      * The async variant is {@see self::createWorkflowAsync()} .
      *
@@ -331,7 +358,7 @@ abstract class WorkflowsBaseClient
     }
 
     /**
-     * Gets details of a single Workflow.
+     * Gets details of a single workflow.
      *
      * The async variant is {@see self::getWorkflowAsync()} .
      *
@@ -357,7 +384,7 @@ abstract class WorkflowsBaseClient
     }
 
     /**
-     * Lists Workflows in a given project and location.
+     * Lists workflows in a given project and location.
      * The default order is not specified.
      *
      * The async variant is {@see self::listWorkflowsAsync()} .
@@ -386,8 +413,8 @@ abstract class WorkflowsBaseClient
     /**
      * Updates an existing workflow.
      * Running this method has no impact on already running executions of the
-     * workflow. A new revision of the workflow may be created as a result of a
-     * successful update operation. In that case, such revision will be used
+     * workflow. A new revision of the workflow might be created as a result of a
+     * successful update operation. In that case, the new revision is used
      * in new workflow executions.
      *
      * The async variant is {@see self::updateWorkflowAsync()} .
@@ -411,5 +438,57 @@ abstract class WorkflowsBaseClient
     public function updateWorkflow(UpdateWorkflowRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateWorkflow', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @example samples/V1/WorkflowsClient/get_location.php
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @example samples/V1/WorkflowsClient/list_locations.php
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

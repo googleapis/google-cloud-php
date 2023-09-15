@@ -61,6 +61,15 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+    /**
+     * Optional. The billing account resource name that is used to pay for this
+     * entitlement when setting up billing on a trial subscription.
+     * This field is only relevant for multi-currency accounts. It should be
+     * left empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $billing_account = '';
 
     /**
      * Constructor.
@@ -93,6 +102,11 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
+     *     @type string $billing_account
+     *           Optional. The billing account resource name that is used to pay for this
+     *           entitlement when setting up billing on a trial subscription.
+     *           This field is only relevant for multi-currency accounts. It should be
+     *           left empty for single currency accounts.
      * }
      */
     public function __construct($data = NULL) {
@@ -256,6 +270,38 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The billing account resource name that is used to pay for this
+     * entitlement when setting up billing on a trial subscription.
+     * This field is only relevant for multi-currency accounts. It should be
+     * left empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBillingAccount()
+    {
+        return $this->billing_account;
+    }
+
+    /**
+     * Optional. The billing account resource name that is used to pay for this
+     * entitlement when setting up billing on a trial subscription.
+     * This field is only relevant for multi-currency accounts. It should be
+     * left empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBillingAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->billing_account = $var;
 
         return $this;
     }

@@ -52,7 +52,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
     private $metric_filter = null;
     /**
      * The number of rows to return. If unspecified, 10,000 rows are returned. The
-     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * API returns a maximum of 250,000 rows per request, no matter how many you
      * ask for. `limit` must be positive.
      * The API can also return fewer rows than the requested `limit`, if there
      * aren't as many dimension values as the `limit`. For instance, there are
@@ -117,7 +117,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *           SQL having-clause. Dimensions cannot be used in this filter.
      *     @type int|string $limit
      *           The number of rows to return. If unspecified, 10,000 rows are returned. The
-     *           API returns a maximum of 100,000 rows per request, no matter how many you
+     *           API returns a maximum of 250,000 rows per request, no matter how many you
      *           ask for. `limit` must be positive.
      *           The API can also return fewer rows than the requested `limit`, if there
      *           aren't as many dimension values as the `limit`. For instance, there are
@@ -307,7 +307,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of rows to return. If unspecified, 10,000 rows are returned. The
-     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * API returns a maximum of 250,000 rows per request, no matter how many you
      * ask for. `limit` must be positive.
      * The API can also return fewer rows than the requested `limit`, if there
      * aren't as many dimension values as the `limit`. For instance, there are
@@ -325,7 +325,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of rows to return. If unspecified, 10,000 rows are returned. The
-     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * API returns a maximum of 250,000 rows per request, no matter how many you
      * ask for. `limit` must be positive.
      * The API can also return fewer rows than the requested `limit`, if there
      * aren't as many dimension values as the `limit`. For instance, there are

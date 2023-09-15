@@ -53,6 +53,7 @@ use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
+use Google\Cloud\Dialogflow\V2\SuggestionInput;
 use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -1062,6 +1063,8 @@ class ParticipantsGapicClient
      *           The natural language text to be processed.
      *     @type EventInput $eventInput
      *           An input event to send to Dialogflow.
+     *     @type SuggestionInput $suggestionInput
+     *           An input representing the selection of a suggestion.
      *     @type OutputAudioConfig $replyAudioConfig
      *           Speech synthesis configuration.
      *           The speech synthesis settings for a virtual agent that may be configured
@@ -1105,6 +1108,10 @@ class ParticipantsGapicClient
 
         if (isset($optionalArgs['eventInput'])) {
             $request->setEventInput($optionalArgs['eventInput']);
+        }
+
+        if (isset($optionalArgs['suggestionInput'])) {
+            $request->setSuggestionInput($optionalArgs['suggestionInput']);
         }
 
         if (isset($optionalArgs['replyAudioConfig'])) {

@@ -42,10 +42,12 @@ use Google\Cloud\CloudDms\V1\ConversionWorkspace;
 use Google\Cloud\CloudDms\V1\ConvertConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\CreateConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\CreateConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\CreateMappingRuleRequest;
 use Google\Cloud\CloudDms\V1\CreateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\DeleteConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\DeleteConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\DeleteMappingRuleRequest;
 use Google\Cloud\CloudDms\V1\DeleteMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\DeletePrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsRequest;
@@ -53,15 +55,19 @@ use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse;
 use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesRequest;
 use Google\Cloud\CloudDms\V1\FetchStaticIpsRequest;
 use Google\Cloud\CloudDms\V1\GenerateSshScriptRequest;
+use Google\Cloud\CloudDms\V1\GenerateTcpProxyScriptRequest;
 use Google\Cloud\CloudDms\V1\GetConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\GetConversionWorkspaceRequest;
+use Google\Cloud\CloudDms\V1\GetMappingRuleRequest;
 use Google\Cloud\CloudDms\V1\GetMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\GetPrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\ImportMappingRulesRequest;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesRequest;
 use Google\Cloud\CloudDms\V1\ListConversionWorkspacesRequest;
+use Google\Cloud\CloudDms\V1\ListMappingRulesRequest;
 use Google\Cloud\CloudDms\V1\ListMigrationJobsRequest;
 use Google\Cloud\CloudDms\V1\ListPrivateConnectionsRequest;
+use Google\Cloud\CloudDms\V1\MappingRule;
 use Google\Cloud\CloudDms\V1\MigrationJob;
 use Google\Cloud\CloudDms\V1\PrivateConnection;
 use Google\Cloud\CloudDms\V1\PromoteMigrationJobRequest;
@@ -74,6 +80,7 @@ use Google\Cloud\CloudDms\V1\SeedConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\SshScript;
 use Google\Cloud\CloudDms\V1\StartMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\StopMigrationJobRequest;
+use Google\Cloud\CloudDms\V1\TcpProxyScript;
 use Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\UpdateConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
@@ -105,23 +112,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface convertConversionWorkspaceAsync(ConvertConversionWorkspaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConnectionProfileAsync(CreateConnectionProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConversionWorkspaceAsync(CreateConversionWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createMappingRuleAsync(CreateMappingRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createMigrationJobAsync(CreateMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConnectionProfileAsync(DeleteConnectionProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConversionWorkspaceAsync(DeleteConversionWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteMappingRuleAsync(DeleteMappingRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteMigrationJobAsync(DeleteMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface describeConversionWorkspaceRevisionsAsync(DescribeConversionWorkspaceRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface describeDatabaseEntitiesAsync(DescribeDatabaseEntitiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface fetchStaticIpsAsync(FetchStaticIpsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateSshScriptAsync(GenerateSshScriptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateTcpProxyScriptAsync(GenerateTcpProxyScriptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConnectionProfileAsync(GetConnectionProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConversionWorkspaceAsync(GetConversionWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getMappingRuleAsync(GetMappingRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getMigrationJobAsync(GetMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importMappingRulesAsync(ImportMappingRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConnectionProfilesAsync(ListConnectionProfilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConversionWorkspacesAsync(ListConversionWorkspacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listMappingRulesAsync(ListMappingRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMigrationJobsAsync(ListMigrationJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface promoteMigrationJobAsync(PromoteMigrationJobRequest $request, array $optionalArgs = [])
@@ -265,6 +277,27 @@ abstract class DataMigrationServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a mapping_rule
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversionWorkspace
+     * @param string $mappingRule
+     *
+     * @return string The formatted mapping_rule resource.
+     */
+    public static function mappingRuleName(string $project, string $location, string $conversionWorkspace, string $mappingRule): string
+    {
+        return self::getPathTemplate('mappingRule')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversion_workspace' => $conversionWorkspace,
+            'mapping_rule' => $mappingRule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * migration_job resource.
      *
@@ -326,6 +359,7 @@ abstract class DataMigrationServiceBaseClient
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
      * - conversionWorkspace: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}
      * - location: projects/{project}/locations/{location}
+     * - mappingRule: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}/mappingRules/{mapping_rule}
      * - migrationJob: projects/{project}/locations/{location}/migrationJobs/{migration_job}
      * - networks: projects/{project}/global/networks/{network}
      * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
@@ -541,6 +575,30 @@ abstract class DataMigrationServiceBaseClient
     }
 
     /**
+     * Creates a new mapping rule for a given conversion workspace.
+     *
+     * The async variant is {@see self::createMappingRuleAsync()} .
+     *
+     * @param CreateMappingRuleRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MappingRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMappingRule(CreateMappingRuleRequest $request, array $callOptions = []): MappingRule
+    {
+        return $this->startApiCall('CreateMappingRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new migration job in a given project and location.
      *
      * The async variant is {@see self::createMigrationJobAsync()} .
@@ -636,6 +694,28 @@ abstract class DataMigrationServiceBaseClient
     public function deleteConversionWorkspace(DeleteConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteConversionWorkspace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single mapping rule.
+     *
+     * The async variant is {@see self::deleteMappingRuleAsync()} .
+     *
+     * @param DeleteMappingRuleRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMappingRule(DeleteMappingRuleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteMappingRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -791,6 +871,31 @@ abstract class DataMigrationServiceBaseClient
     }
 
     /**
+     * Generate a TCP Proxy configuration script to configure a cloud-hosted VM
+     * running a TCP Proxy.
+     *
+     * The async variant is {@see self::generateTcpProxyScriptAsync()} .
+     *
+     * @param GenerateTcpProxyScriptRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TcpProxyScript
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateTcpProxyScript(GenerateTcpProxyScriptRequest $request, array $callOptions = []): TcpProxyScript
+    {
+        return $this->startApiCall('GenerateTcpProxyScript', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single connection profile.
      *
      * The async variant is {@see self::getConnectionProfileAsync()} .
@@ -836,6 +941,30 @@ abstract class DataMigrationServiceBaseClient
     public function getConversionWorkspace(GetConversionWorkspaceRequest $request, array $callOptions = []): ConversionWorkspace
     {
         return $this->startApiCall('GetConversionWorkspace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of a mapping rule.
+     *
+     * The async variant is {@see self::getMappingRuleAsync()} .
+     *
+     * @param GetMappingRuleRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MappingRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMappingRule(GetMappingRuleRequest $request, array $callOptions = []): MappingRule
+    {
+        return $this->startApiCall('GetMappingRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -958,6 +1087,30 @@ abstract class DataMigrationServiceBaseClient
     public function listConversionWorkspaces(ListConversionWorkspacesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListConversionWorkspaces', $request, $callOptions);
+    }
+
+    /**
+     * Lists the mapping rules for a specific conversion workspace.
+     *
+     * The async variant is {@see self::listMappingRulesAsync()} .
+     *
+     * @param ListMappingRulesRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMappingRules(ListMappingRulesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMappingRules', $request, $callOptions);
     }
 
     /**

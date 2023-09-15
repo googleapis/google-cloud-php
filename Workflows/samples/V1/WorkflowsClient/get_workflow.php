@@ -29,9 +29,9 @@ use Google\Cloud\Workflows\V1\GetWorkflowRequest;
 use Google\Cloud\Workflows\V1\Workflow;
 
 /**
- * Gets details of a single Workflow.
+ * Gets details of a single workflow.
  *
- * @param string $formattedName Name of the workflow which information should be retrieved.
+ * @param string $formattedName Name of the workflow for which information should be retrieved.
  *                              Format: projects/{project}/locations/{location}/workflows/{workflow}
  *                              Please see {@see WorkflowsClient::workflowName()} for help formatting this field.
  */

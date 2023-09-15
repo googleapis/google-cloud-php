@@ -17,6 +17,7 @@ class Cloudtasks
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Httpbody::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Tasks\V2Beta3\Queue::initOnce();
         \GPBMetadata\Google\Cloud\Tasks\V2Beta3\Task::initOnce();
@@ -26,8 +27,8 @@ class Cloudtasks
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-—(
-+google/cloud/tasks/v2beta3/cloudtasks.protogoogle.cloud.tasks.v2beta3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/tasks/v2beta3/queue.proto%google/cloud/tasks/v2beta3/task.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"·
+Û+
++google/cloud/tasks/v2beta3/cloudtasks.protogoogle.cloud.tasks.v2beta3google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto&google/cloud/tasks/v2beta3/queue.proto%google/cloud/tasks/v2beta3/task.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"·
 ListQueuesRequest7
 parent (	B\'àAúA!cloudtasks.googleapis.com/Queue
 filter (	
@@ -83,7 +84,13 @@ page_token (	"]
 RunTaskRequest4
 name (	B&àAúA 
 cloudtasks.googleapis.com/Task<
-response_view (2%.google.cloud.tasks.v2beta3.Task.View2¥
+response_view (2%.google.cloud.tasks.v2beta3.Task.View"‰
+BufferTaskRequest5
+queue (	B&àAúA cloudtasks.googleapis.com/Task
+task_id (	BàA\'
+body (2.google.api.HttpBodyBàA"D
+BufferTaskResponse.
+task (2 .google.cloud.tasks.v2beta3.Task2ü
 
 CloudTasks­
 
@@ -106,7 +113,9 @@ PauseQueue-.google.cloud.tasks.v2beta3.PauseQueueRequest!.google.cloud.tasks.v
 CreateTask-.google.cloud.tasks.v2beta3.CreateTaskRequest .google.cloud.tasks.v2beta3.Task"P‚Óä“<"7/v2beta3/{parent=projects/*/locations/*/queues/*}/tasks:*ÚAparent,task›
 
 DeleteTask-.google.cloud.tasks.v2beta3.DeleteTaskRequest.google.protobuf.Empty"F‚Óä“9*7/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}ÚAname¦
-RunTask*.google.cloud.tasks.v2beta3.RunTaskRequest .google.cloud.tasks.v2beta3.Task"M‚Óä“@";/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}:run:*ÚAnameMÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB€
+RunTask*.google.cloud.tasks.v2beta3.RunTaskRequest .google.cloud.tasks.v2beta3.Task"M‚Óä“@";/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}:run:*ÚAnameÔ
+
+BufferTask-.google.cloud.tasks.v2beta3.BufferTaskRequest..google.cloud.tasks.v2beta3.BufferTaskResponse"g‚Óä“L"G/v2beta3/{queue=projects/*/locations/*/queues/*}/tasks/{task_id}:buffer:*ÚAqueue,task_id,bodyMÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB€
 com.google.cloud.tasks.v2beta3BCloudTasksProtoPZCcloud.google.com/go/cloudtasks/apiv2beta3/cloudtaskspb;cloudtaskspb¢TASKSbproto3'
         , true);
 

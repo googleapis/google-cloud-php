@@ -138,6 +138,21 @@ abstract class CloudBillingBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_billing_info resource.
      *
@@ -157,6 +172,7 @@ abstract class CloudBillingBaseClient
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccount: billingAccounts/{billing_account}
+     * - project: projects/{project}
      * - projectBillingInfo: projects/{project}/billingInfo
      *
      * The optional $template argument can be supplied to specify a particular pattern,

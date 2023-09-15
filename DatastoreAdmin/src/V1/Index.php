@@ -34,13 +34,16 @@ class Index extends \Google\Protobuf\Internal\Message
      */
     private $kind = '';
     /**
-     * Required. The index's ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
+     * Required. The index's ancestor mode.  Must not be
+     * ANCESTOR_MODE_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.AncestorMode ancestor = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ancestor = 0;
     /**
      * Required. An ordered sequence of property names and their index attributes.
+     * Requires:
+     * * A maximum of 100 properties.
      *
      * Generated from protobuf field <code>repeated .google.datastore.admin.v1.Index.IndexedProperty properties = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -65,9 +68,12 @@ class Index extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           Required. The entity kind to which this index applies.
      *     @type int $ancestor
-     *           Required. The index's ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
+     *           Required. The index's ancestor mode.  Must not be
+     *           ANCESTOR_MODE_UNSPECIFIED.
      *     @type array<\Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty>|\Google\Protobuf\Internal\RepeatedField $properties
      *           Required. An ordered sequence of property names and their index attributes.
+     *           Requires:
+     *           * A maximum of 100 properties.
      *     @type int $state
      *           Output only. The state of the index.
      * }
@@ -156,7 +162,8 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The index's ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
+     * Required. The index's ancestor mode.  Must not be
+     * ANCESTOR_MODE_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.AncestorMode ancestor = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -167,7 +174,8 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The index's ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
+     * Required. The index's ancestor mode.  Must not be
+     * ANCESTOR_MODE_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.AncestorMode ancestor = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -183,6 +191,8 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. An ordered sequence of property names and their index attributes.
+     * Requires:
+     * * A maximum of 100 properties.
      *
      * Generated from protobuf field <code>repeated .google.datastore.admin.v1.Index.IndexedProperty properties = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -194,6 +204,8 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. An ordered sequence of property names and their index attributes.
+     * Requires:
+     * * A maximum of 100 properties.
      *
      * Generated from protobuf field <code>repeated .google.datastore.admin.v1.Index.IndexedProperty properties = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty>|\Google\Protobuf\Internal\RepeatedField $var

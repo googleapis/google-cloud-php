@@ -27,18 +27,18 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
      * The client can use the `unchanged_names` bloom filter to assist with
-     * this determination.
+     * this determination by testing ALL the document names against the filter;
+     * if the document name is NOT in the filter, it means the document no
+     * longer matches the target.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      */
     private $count = 0;
     /**
-     * A bloom filter that contains the UTF-8 byte encodings of the resource names
-     * of the documents that match
+     * A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     * the resource names of ALL the documents that match
      * [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
-     * that have NOT changed since the query results indicated by the resume token
-     * or timestamp given in `Target.resume_type`.
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * This bloom filter may be omitted at the server's discretion, such as if it
      * is deemed that the client will not make use of it or if it is too
      * computationally expensive to calculate or transmit. Clients must gracefully
@@ -64,14 +64,14 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      *           If different from the count of documents in the client that match, the
      *           client must manually determine which documents no longer match the target.
      *           The client can use the `unchanged_names` bloom filter to assist with
-     *           this determination.
+     *           this determination by testing ALL the document names against the filter;
+     *           if the document name is NOT in the filter, it means the document no
+     *           longer matches the target.
      *     @type \Google\Cloud\Firestore\V1\BloomFilter $unchanged_names
-     *           A bloom filter that contains the UTF-8 byte encodings of the resource names
-     *           of the documents that match
+     *           A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     *           the resource names of ALL the documents that match
      *           [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
-     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`
-     *           that have NOT changed since the query results indicated by the resume token
-     *           or timestamp given in `Target.resume_type`.
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *           This bloom filter may be omitted at the server's discretion, such as if it
      *           is deemed that the client will not make use of it or if it is too
      *           computationally expensive to calculate or transmit. Clients must gracefully
@@ -117,7 +117,9 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
      * The client can use the `unchanged_names` bloom filter to assist with
-     * this determination.
+     * this determination by testing ALL the document names against the filter;
+     * if the document name is NOT in the filter, it means the document no
+     * longer matches the target.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      * @return int
@@ -133,7 +135,9 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
      * The client can use the `unchanged_names` bloom filter to assist with
-     * this determination.
+     * this determination by testing ALL the document names against the filter;
+     * if the document name is NOT in the filter, it means the document no
+     * longer matches the target.
      *
      * Generated from protobuf field <code>int32 count = 2;</code>
      * @param int $var
@@ -148,12 +152,10 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A bloom filter that contains the UTF-8 byte encodings of the resource names
-     * of the documents that match
+     * A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     * the resource names of ALL the documents that match
      * [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
-     * that have NOT changed since the query results indicated by the resume token
-     * or timestamp given in `Target.resume_type`.
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * This bloom filter may be omitted at the server's discretion, such as if it
      * is deemed that the client will not make use of it or if it is too
      * computationally expensive to calculate or transmit. Clients must gracefully
@@ -180,12 +182,10 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A bloom filter that contains the UTF-8 byte encodings of the resource names
-     * of the documents that match
+     * A bloom filter that, despite its name, contains the UTF-8 byte encodings of
+     * the resource names of ALL the documents that match
      * [target_id][google.firestore.v1.ExistenceFilter.target_id], in the form
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
-     * that have NOT changed since the query results indicated by the resume token
-     * or timestamp given in `Target.resume_type`.
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * This bloom filter may be omitted at the server's discretion, such as if it
      * is deemed that the client will not make use of it or if it is too
      * computationally expensive to calculate or transmit. Clients must gracefully

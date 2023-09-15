@@ -37,12 +37,26 @@ class ExecutionEnvironmentUsage
      * Generated from protobuf enum <code>VERIFY = 3;</code>
      */
     const VERIFY = 3;
+    /**
+     * Use for predeploy job execution.
+     *
+     * Generated from protobuf enum <code>PREDEPLOY = 4;</code>
+     */
+    const PREDEPLOY = 4;
+    /**
+     * Use for postdeploy job execution.
+     *
+     * Generated from protobuf enum <code>POSTDEPLOY = 5;</code>
+     */
+    const POSTDEPLOY = 5;
 
     private static $valueToName = [
         self::EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED => 'EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED',
         self::RENDER => 'RENDER',
         self::DEPLOY => 'DEPLOY',
         self::VERIFY => 'VERIFY',
+        self::PREDEPLOY => 'PREDEPLOY',
+        self::POSTDEPLOY => 'POSTDEPLOY',
     ];
 
     public static function name($value)

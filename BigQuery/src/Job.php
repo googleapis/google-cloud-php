@@ -36,6 +36,7 @@ class Job
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     private $connection;
 
@@ -56,7 +57,8 @@ class Job
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
-     *        BigQuery.
+     *        BigQuery. This object is created by BigQueryClient,
+     *        and should not be instantiated outside of this client.
      * @param string $id The job's ID.
      * @param string $projectId The project's ID.
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.

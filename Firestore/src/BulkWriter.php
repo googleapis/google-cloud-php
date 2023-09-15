@@ -117,6 +117,7 @@ class BulkWriter
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -207,6 +208,8 @@ class BulkWriter
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Firestore
+     *        This object is created by FirestoreClient,
+     *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
      * @param array $options [optional] {

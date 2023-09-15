@@ -78,6 +78,7 @@ class LoggingClient
 
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
+     * @internal
      */
     protected $connection;
 

@@ -38,6 +38,9 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Tasks\V2\CreateQueueRequest;
 use Google\Cloud\Tasks\V2\CreateTaskRequest;
 use Google\Cloud\Tasks\V2\DeleteQueueRequest;
@@ -88,6 +91,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateQueueAsync(UpdateQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 abstract class CloudTasksBaseClient
 {
@@ -288,8 +293,8 @@ abstract class CloudTasksBaseClient
      * Creates a queue.
      *
      * Queues created with this method allow tasks to live for a maximum of 31
-     * days. After a task is 31 days old, the task will be deleted regardless of whether
-     * it was dispatched or not.
+     * days. After a task is 31 days old, the task will be deleted regardless of
+     * whether it was dispatched or not.
      *
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
@@ -516,10 +521,10 @@ abstract class CloudTasksBaseClient
     /**
      * Lists the tasks in a queue.
      *
-     * By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is retrieved
-     * due to performance considerations;
-     * [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view] controls the
-     * subset of information which is returned.
+     * By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is
+     * retrieved due to performance considerations;
+     * [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view]
+     * controls the subset of information which is returned.
      *
      * The tasks may be returned in any order. The ordering may change at any
      * time.
@@ -550,9 +555,10 @@ abstract class CloudTasksBaseClient
      *
      * If a queue is paused then the system will stop dispatching tasks
      * until the queue is resumed via
-     * [ResumeQueue][google.cloud.tasks.v2.CloudTasks.ResumeQueue]. Tasks can still be added
-     * when the queue is paused. A queue is paused if its
-     * [state][google.cloud.tasks.v2.Queue.state] is [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+     * [ResumeQueue][google.cloud.tasks.v2.CloudTasks.ResumeQueue]. Tasks can
+     * still be added when the queue is paused. A queue is paused if its
+     * [state][google.cloud.tasks.v2.Queue.state] is
+     * [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
      *
      * The async variant is {@see self::pauseQueueAsync()} .
      *
@@ -609,9 +615,10 @@ abstract class CloudTasksBaseClient
      *
      * This method resumes a queue after it has been
      * [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED] or
-     * [DISABLED][google.cloud.tasks.v2.Queue.State.DISABLED]. The state of a queue is stored
-     * in the queue's [state][google.cloud.tasks.v2.Queue.state]; after calling this method it
-     * will be set to [RUNNING][google.cloud.tasks.v2.Queue.State.RUNNING].
+     * [DISABLED][google.cloud.tasks.v2.Queue.State.DISABLED]. The state of a
+     * queue is stored in the queue's [state][google.cloud.tasks.v2.Queue.state];
+     * after calling this method it will be set to
+     * [RUNNING][google.cloud.tasks.v2.Queue.State.RUNNING].
      *
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
@@ -644,13 +651,14 @@ abstract class CloudTasksBaseClient
      * Forces a task to run now.
      *
      * When this method is called, Cloud Tasks will dispatch the task, even if
-     * the task is already running, the queue has reached its [RateLimits][google.cloud.tasks.v2.RateLimits] or
-     * is [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+     * the task is already running, the queue has reached its
+     * [RateLimits][google.cloud.tasks.v2.RateLimits] or is
+     * [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
      *
      * This command is meant to be used for manual debugging. For
-     * example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to retry a failed
-     * task after a fix has been made or to manually force a task to be
-     * dispatched now.
+     * example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to
+     * retry a failed task after a fix has been made or to manually force a task
+     * to be dispatched now.
      *
      * The dispatched task is returned. That is, the task that is returned
      * contains the [status][Task.status] after the task is dispatched but
@@ -658,9 +666,10 @@ abstract class CloudTasksBaseClient
      *
      * If Cloud Tasks receives a successful response from the task's
      * target, then the task will be deleted; otherwise the task's
-     * [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to the time that
-     * [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] was called plus the retry delay specified
-     * in the queue's [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+     * [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to
+     * the time that [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] was
+     * called plus the retry delay specified in the queue's
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig].
      *
      * [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] returns
      * [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
@@ -688,8 +697,8 @@ abstract class CloudTasksBaseClient
     }
 
     /**
-     * Sets the access control policy for a [Queue][google.cloud.tasks.v2.Queue]. Replaces any existing
-     * policy.
+     * Sets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
+     * Replaces any existing policy.
      *
      * Note: The Cloud Console does not check queue-level IAM permissions yet.
      * Project-level permissions are required to use the Cloud Console.
@@ -722,9 +731,10 @@ abstract class CloudTasksBaseClient
     }
 
     /**
-     * Returns permissions that a caller has on a [Queue][google.cloud.tasks.v2.Queue].
-     * If the resource does not exist, this will return an empty set of
-     * permissions, not a [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
+     * Returns permissions that a caller has on a
+     * [Queue][google.cloud.tasks.v2.Queue]. If the resource does not exist, this
+     * will return an empty set of permissions, not a
+     * [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
      *
      * Note: This operation is designed to be used for building permission-aware
      * UIs and command-line tools, not for authorization checking. This operation
@@ -758,8 +768,8 @@ abstract class CloudTasksBaseClient
      * the queue if it does exist.
      *
      * Queues created with this method allow tasks to live for a maximum of 31
-     * days. After a task is 31 days old, the task will be deleted regardless of whether
-     * it was dispatched or not.
+     * days. After a task is 31 days old, the task will be deleted regardless of
+     * whether it was dispatched or not.
      *
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
@@ -787,5 +797,53 @@ abstract class CloudTasksBaseClient
     public function updateQueue(UpdateQueueRequest $request, array $callOptions = []): Queue
     {
         return $this->startApiCall('UpdateQueue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

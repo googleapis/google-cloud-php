@@ -66,6 +66,12 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      */
     private $backend_type = 0;
     /**
+     * Whether PSC connectivity is enabled for this instance.
+     *
+     * Generated from protobuf field <code>bool psc_enabled = 33;</code>
+     */
+    private $psc_enabled = false;
+    /**
      * The dns name of the instance.
      *
      * Generated from protobuf field <code>string dns_name = 34;</code>
@@ -104,6 +110,8 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           `EXTERNAL`: A database server that is not managed by Google.
      *           This property is read-only; use the `tier` property in the `settings`
      *           object to determine the database type.
+     *     @type bool $psc_enabled
+     *           Whether PSC connectivity is enabled for this instance.
      *     @type string $dns_name
      *           The dns name of the instance.
      * }
@@ -303,6 +311,32 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlBackendType::class);
         $this->backend_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether PSC connectivity is enabled for this instance.
+     *
+     * Generated from protobuf field <code>bool psc_enabled = 33;</code>
+     * @return bool
+     */
+    public function getPscEnabled()
+    {
+        return $this->psc_enabled;
+    }
+
+    /**
+     * Whether PSC connectivity is enabled for this instance.
+     *
+     * Generated from protobuf field <code>bool psc_enabled = 33;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPscEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->psc_enabled = $var;
 
         return $this;
     }
