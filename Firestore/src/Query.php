@@ -118,6 +118,7 @@ class Query
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -143,6 +144,8 @@ class Query
 
     /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     *        This object is created by FirestoreClient,
+     *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object

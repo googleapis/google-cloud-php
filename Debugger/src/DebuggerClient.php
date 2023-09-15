@@ -47,6 +47,7 @@ class DebuggerClient
 
     /**
      * @var ConnectionInterface $connection Represents a connection to Debugger
+     * @internal
      */
     protected $connection;
 

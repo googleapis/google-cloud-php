@@ -85,6 +85,7 @@ class FirestoreClient
 
     /**
      * @var Connection\ConnectionInterface
+     * @internal
      */
     private $connection;
 

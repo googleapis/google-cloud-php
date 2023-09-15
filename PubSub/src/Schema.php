@@ -40,6 +40,7 @@ class Schema
 {
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -55,6 +56,8 @@ class Schema
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
+     *        This object is created by PubSubClient,
+     *        and should not be instantiated outside of this client.
      * @param string $name The schema name.
      * @param array $info [optional] Schema data.
      */

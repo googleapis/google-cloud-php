@@ -63,6 +63,7 @@ class LanguageClient
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     protected $connection;
 

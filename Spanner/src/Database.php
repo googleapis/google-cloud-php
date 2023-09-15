@@ -123,6 +123,7 @@ class Database
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -180,7 +181,8 @@ class Database
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API.
+     *        Cloud Spanner Admin API. This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param Instance $instance The instance in which the database exists.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.

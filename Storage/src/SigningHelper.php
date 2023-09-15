@@ -60,7 +60,8 @@ class SigningHelper
      * Sign using the version inferred from `$options.version`.
      *
      * @param ConnectionInterface $connection A connection to the Cloud Storage
-     *        API.
+     *        API. This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -110,7 +111,8 @@ class SigningHelper
      * This method will be deprecated in the future.
      *
      * @param ConnectionInterface $connection A connection to the Cloud Storage
-     *        API.
+     *        API. This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -206,7 +208,8 @@ class SigningHelper
      * Sign a storage URL using Google Signed URLs v4.
      *
      * @param ConnectionInterface $connection A connection to the Cloud Storage
-     *        API.
+     *        API. This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -362,6 +365,8 @@ class SigningHelper
      * Create an HTTP POST policy using v4 signing.
      *
      * @param ConnectionInterface $connection A Connection to Google Cloud Storage.
+     *        This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -780,6 +785,8 @@ class SigningHelper
      * Get the credentials for use with signing.
      *
      * @param ConnectionInterface $connection A Storage connection object.
+     *        This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param array $options Configuration options.
      * @return array A list containing a credentials object at index 0 and the
      *        modified options at index 1.

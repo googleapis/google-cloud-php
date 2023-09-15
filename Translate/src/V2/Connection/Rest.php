@@ -27,6 +27,8 @@ use Google\Cloud\Translate\V2\TranslateClient;
 /**
  * Implementation of the
  * [Google Cloud Translation REST API](https://cloud.google.com/translation/docs/how-to).
+ * 
+ * @internal
  */
 class Rest implements ConnectionInterface
 {
