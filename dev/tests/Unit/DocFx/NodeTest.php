@@ -101,6 +101,36 @@ class NodeTest extends TestCase
         $this->assertEquals('google.cloud.vision.v1', $class->getProtoPackage());
     }
 
+    public function testSeeTagsInMethodDescription()
+    {
+        $serviceXml = <<<EOF
+<method>
+<docblock>
+    <description></description>
+    <long-description></long-description>
+    <tag name="see"
+         description="Cool External Resource"
+         link="https://wwww.testlink.com"/>
+    <tag name="see"
+         description=""
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient"/>
+    <tag name="see"
+         description="Resume Operation method"
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()"/>
+</docblock>
+</method>
+EOF;
+        $method = new MethodNode(new SimpleXMLElement($serviceXml));
+
+        $content = $method->getContent();
+        $this->assertStringContainsString(
+            'See: <a href="https://wwww.testlink.com">Cool External Resource</a>, ' .
+            '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">\Google\Cloud\Vision\V1\ImageAnnotatorClient</xref>, ' .
+            '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()">Resume Operation method</xref>',
+            $content
+        );
+    }
+
     /**
      * @dataProvider provideReplaceProtoRefWithXref
      */
