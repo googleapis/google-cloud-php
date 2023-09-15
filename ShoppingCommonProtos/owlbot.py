@@ -30,7 +30,7 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(
+php.owlbot_copy_version(
     src=src,
     dest=dest,
     copy_excludes=[
