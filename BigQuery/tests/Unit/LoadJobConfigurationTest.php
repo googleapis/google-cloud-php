@@ -108,7 +108,8 @@ class LoadJobConfigurationTest extends TestCase
             'connectionProperties' => [
                 'key' => 'session_id',
                 'value' => 'sessionId'
-            ]
+            ],
+            'referenceFileSchemaUri' => 'gs://bucket/source.parquet'
         ];
         $this->expectedConfig['configuration']['load'] = $load
             + $this->expectedConfig['configuration']['load'];
@@ -142,7 +143,8 @@ class LoadJobConfigurationTest extends TestCase
             ->connectionProperties([
                 'key' => 'session_id',
                 'value' =>'sessionId'
-            ]);
+            ])
+            ->referenceFileSchemaUri('gs://bucket/source.parquet');
 
         $this->assertInstanceOf(LoadJobConfiguration::class, $config);
         $this->assertEquals(
