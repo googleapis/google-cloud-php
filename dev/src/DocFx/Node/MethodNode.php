@@ -167,8 +167,9 @@ class MethodNode
             }
         }
         if ($links) {
-            $prefix = "\nSee also: ";
-            $content .= "\n" . $prefix . implode($prefix, $links);
+            // Add links as an unordered list
+            $content = "\nSee also:";
+            $content .= "\n - " . implode("\n - ", $links);
         }
 
         return $content;

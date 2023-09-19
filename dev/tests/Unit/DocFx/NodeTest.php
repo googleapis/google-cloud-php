@@ -124,9 +124,10 @@ EOF;
 
         $content = $method->getContent();
         $this->assertStringContainsString(
-            'See also: <a href="https://wwww.testlink.com">Cool External Resource</a>' . "\n" .
-            'See also: <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">\Google\Cloud\Vision\V1\ImageAnnotatorClient</xref>' . "\n" .
-            'See also: <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()">Resume Operation method</xref>',
+            'See also:' . "\n" .
+            ' - <a href="https://wwww.testlink.com">Cool External Resource</a>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">\Google\Cloud\Vision\V1\ImageAnnotatorClient</xref>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()">Resume Operation method</xref>',
             $content
         );
     }
