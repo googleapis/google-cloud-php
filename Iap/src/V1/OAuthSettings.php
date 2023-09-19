@@ -27,7 +27,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      */
     private $login_hint = null;
     /**
-     * List of Oauth client IDs allowed to programmatically authenticate with IAP.
+     * List of OAuth client IDs allowed to programmatically authenticate with IAP.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5;</code>
      */
@@ -46,7 +46,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      *           Note: IAP does not verify that the id token's hd claim matches this value
      *           since access behavior is managed by IAM policies.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $programmatic_clients
-     *           List of Oauth client IDs allowed to programmatically authenticate with IAP.
+     *           List of OAuth client IDs allowed to programmatically authenticate with IAP.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,7 +134,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * List of Oauth client IDs allowed to programmatically authenticate with IAP.
+     * List of OAuth client IDs allowed to programmatically authenticate with IAP.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -145,7 +145,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Oauth client IDs allowed to programmatically authenticate with IAP.
+     * List of OAuth client IDs allowed to programmatically authenticate with IAP.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
