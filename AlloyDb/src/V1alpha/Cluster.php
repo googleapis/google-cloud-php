@@ -97,10 +97,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be removed.
+     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * to create a cluster. Deprecated, use network_config.network instead.
      *
-     * Generated from protobuf field <code>string network = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * @deprecated
      */
     protected $network = '';
     /**
@@ -247,8 +248,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Required. The resource link for the VPC network in which cluster resources
      *           are created and from which they are accessible via Private IP. The network
      *           must belong to the same project as the cluster. It is specified in the
-     *           form: "projects/{project_number}/global/networks/{network_id}". This is
-     *           required to create a cluster. It can be updated, but it cannot be removed.
+     *           form: "projects/{project}/global/networks/{network_id}". This is required
+     *           to create a cluster. Deprecated, use network_config.network instead.
      *     @type string $etag
      *           For Resource freshness validation (https://google.aip.dev/154)
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
@@ -710,14 +711,16 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be removed.
+     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * to create a cluster. Deprecated, use network_config.network instead.
      *
-     * Generated from protobuf field <code>string network = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
+     * @deprecated
      */
     public function getNetwork()
     {
+        @trigger_error('network is deprecated.', E_USER_DEPRECATED);
         return $this->network;
     }
 
@@ -725,15 +728,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be removed.
+     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * to create a cluster. Deprecated, use network_config.network instead.
      *
-     * Generated from protobuf field <code>string network = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setNetwork($var)
     {
+        @trigger_error('network is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->network = $var;
 
