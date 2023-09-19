@@ -226,7 +226,8 @@
         "google/cloud-workflows": "0.4.0",
         "google/grafeas": "0.8.2",
         "google/longrunning": "0.2.6",
-        "google/shopping-merchant-inventories": "0.0.0"
+        "google/shopping-merchant-inventories": "0.0.0",
+        "google/shopping-merchant-reports": "0.0.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -395,6 +396,7 @@
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
             "GPBMetadata\\Google\\Rpc\\": "CommonProtos/metadata/Rpc",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Inventories\\": "ShoppingMerchantInventories/metadata",
+            "GPBMetadata\\Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/metadata",
             "GPBMetadata\\Google\\Shopping\\Type\\": "ShoppingCommonProtos/metadata/Type",
             "GPBMetadata\\Google\\Spanner\\": "Spanner/metadata",
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
@@ -563,6 +565,7 @@
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
             "Google\\LongRunning\\": "LongRunning/src/LongRunning",
             "Google\\Shopping\\Merchant\\Inventories\\": "ShoppingMerchantInventories/src",
+            "Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/src",
             "Google\\Shopping\\Type\\": "ShoppingCommonProtos/src/Type",
             "Grafeas\\": "Grafeas/src"
         },
