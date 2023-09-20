@@ -32,9 +32,9 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
     /**
      * Options for how to filter the returned billing accounts.
-     * Currently this only supports filtering for
+     * This only supports filtering for
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     * single provided reseller billing account.
+     * single provided parent billing account.
      * (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
      * Boolean algebra and other fields are not currently supported.
      *
@@ -57,9 +57,9 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
      *           call. If unspecified, the first page of results is returned.
      *     @type string $filter
      *           Options for how to filter the returned billing accounts.
-     *           Currently this only supports filtering for
+     *           This only supports filtering for
      *           [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     *           single provided reseller billing account.
+     *           single provided parent billing account.
      *           (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
      *           Boolean algebra and other fields are not currently supported.
      * }
@@ -129,9 +129,9 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Options for how to filter the returned billing accounts.
-     * Currently this only supports filtering for
+     * This only supports filtering for
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     * single provided reseller billing account.
+     * single provided parent billing account.
      * (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
      * Boolean algebra and other fields are not currently supported.
      *
@@ -145,9 +145,9 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Options for how to filter the returned billing accounts.
-     * Currently this only supports filtering for
+     * This only supports filtering for
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     * single provided reseller billing account.
+     * single provided parent billing account.
      * (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
      * Boolean algebra and other fields are not currently supported.
      *
