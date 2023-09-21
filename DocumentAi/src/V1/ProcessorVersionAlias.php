@@ -20,13 +20,13 @@ class ProcessorVersionAlias extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alias = 1;</code>
      */
-    protected $alias = '';
+    private $alias = '';
     /**
      * The resource name of aliased processor version.
      *
      * Generated from protobuf field <code>string processor_version = 2 [(.google.api.resource_reference) = {</code>
      */
-    protected $processor_version = '';
+    private $processor_version = '';
 
     /**
      * Constructor.
