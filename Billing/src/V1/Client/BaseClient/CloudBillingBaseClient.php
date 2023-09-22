@@ -279,7 +279,7 @@ abstract class CloudBillingBaseClient
      * typically given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
      * This method will return an error if the parent account has not been
-     * provisioned as a reseller account.
+     * provisioned for subaccounts.
      *
      * The async variant is {@see self::createBillingAccountAsync()} .
      *
