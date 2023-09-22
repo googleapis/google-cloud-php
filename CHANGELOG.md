@@ -1,5 +1,140 @@
 # Changelog
 
+## 0.220.0
+
+<details><summary>google/cloud-alloydb 0.6.0</summary>
+
+
+
+### Features
+
+* Added ClientConnectionConfig ([74f250c](https://github.com/googleapis/google-cloud-php/commit/74f250cc514fc6a13a7723cfe6d1f08639131333))
+* Added DatabaseVersion ([74f250c](https://github.com/googleapis/google-cloud-php/commit/74f250cc514fc6a13a7723cfe6d1f08639131333))
+* Added enum value for PG15 ([#6638](https://github.com/googleapis/google-cloud-php/issues/6638)) ([74f250c](https://github.com/googleapis/google-cloud-php/commit/74f250cc514fc6a13a7723cfe6d1f08639131333))
+* Deprecate network field in favor of network_config.network ([74f250c](https://github.com/googleapis/google-cloud-php/commit/74f250cc514fc6a13a7723cfe6d1f08639131333))
+
+</details>
+
+<details><summary>google/cloud-api-keys 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing 1.7.4</summary>
+
+
+
+### Documentation
+
+* Update service documentation ([#6643](https://github.com/googleapis/google-cloud-php/issues/6643)) ([ce5223d](https://github.com/googleapis/google-cloud-php/commit/ce5223d6793c51e61c15944f4beff26910b0cf9b))
+
+</details>
+
+<details><summary>google/cloud-config 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.9.0</summary>
+
+
+
+### Features
+
+* Additional HTTP bindings for IAM methods ([#6641](https://github.com/googleapis/google-cloud-php/issues/6641)) ([2ae6a42](https://github.com/googleapis/google-cloud-php/commit/2ae6a4215aad1798b63625f09b3cbe7819a3a290))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.7.0</summary>
+
+
+
+### Features
+
+* Added field Processor.processor_version_aliases ([#6645](https://github.com/googleapis/google-cloud-php/issues/6645)) ([5ffe11b](https://github.com/googleapis/google-cloud-php/commit/5ffe11be39008204f13044ae3e6a9cb2e1f99e2c))
+
+</details>
+
+<details><summary>google/cloud-iap 1.3.3</summary>
+
+
+
+### Documentation
+
+* Fixing Oauth typo ([#6634](https://github.com/googleapis/google-cloud-php/issues/6634)) ([ff99d95](https://github.com/googleapis/google-cloud-php/commit/ff99d95eb266e036a0f2ea78fac9709b99d80754))
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 0.3.0</summary>
+
+
+
+### Features
+
+* Added ComputeStorageDescriptor for Compute Engine migration insights ([4e5db8a](https://github.com/googleapis/google-cloud-php/commit/4e5db8aa1ae8b92b8797e4691de2d410fd084a61))
+* Added GenericInsight which exposes generic insights on assets ([#6637](https://github.com/googleapis/google-cloud-php/issues/6637)) ([4e5db8a](https://github.com/googleapis/google-cloud-php/commit/4e5db8aa1ae8b92b8797e4691de2d410fd084a61))
+* Added new target-related options to VirtualMachinePreferences ([4e5db8a](https://github.com/googleapis/google-cloud-php/commit/4e5db8aa1ae8b92b8797e4691de2d410fd084a61))
+
+
+### Bug Fixes
+
+* Deprecated the bios_name, total_rows_count and overlapping_asset_count fields ([4e5db8a](https://github.com/googleapis/google-cloud-php/commit/4e5db8aa1ae8b92b8797e4691de2d410fd084a61))
+
+
+### Documentation
+
+* Updated performance_samples docs ([4e5db8a](https://github.com/googleapis/google-cloud-php/commit/4e5db8aa1ae8b92b8797e4691de2d410fd084a61))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 0.2.1</summary>
+
+
+
+### Documentation
+
+* Update comments ([#6639](https://github.com/googleapis/google-cloud-php/issues/6639)) ([8901df5](https://github.com/googleapis/google-cloud-php/commit/8901df5db4f10d19639828306211308f2ef7f1e9))
+
+</details>
+
+<details><summary>google/cloud-service-usage 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce Shopping Merchant APIs ([#6456](https://github.com/googleapis/google-cloud-php/issues/6456)) ([e9ed1a1](https://github.com/googleapis/google-cloud-php/commit/e9ed1a156a32a07bc6231001fa431d1c162f452f))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce Shopping Merchant APIs ([#6456](https://github.com/googleapis/google-cloud-php/issues/6456)) ([e9ed1a1](https://github.com/googleapis/google-cloud-php/commit/e9ed1a156a32a07bc6231001fa431d1c162f452f))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce Shopping Merchant APIs ([#6456](https://github.com/googleapis/google-cloud-php/issues/6456)) ([e9ed1a1](https://github.com/googleapis/google-cloud-php/commit/e9ed1a156a32a07bc6231001fa431d1c162f452f))
+
+</details>
+
 ## 0.219.0
 
 <details><summary>google/cloud-bigquery 1.28.0</summary>
