@@ -50,6 +50,12 @@ class Processor extends \Google\Protobuf\Internal\Message
      */
     private $default_processor_version = '';
     /**
+     * Output only. The processor version aliases.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorVersionAlias processor_version_aliases = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $processor_version_aliases;
+    /**
      * Output only. Immutable. The http endpoint that can be called to invoke
      * processing.
      *
@@ -89,6 +95,8 @@ class Processor extends \Google\Protobuf\Internal\Message
      *           Output only. The state of the processor.
      *     @type string $default_processor_version
      *           The default processor version.
+     *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorVersionAlias>|\Google\Protobuf\Internal\RepeatedField $processor_version_aliases
+     *           Output only. The processor version aliases.
      *     @type string $process_endpoint
      *           Output only. Immutable. The http endpoint that can be called to invoke
      *           processing.
@@ -236,6 +244,32 @@ class Processor extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->default_processor_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The processor version aliases.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorVersionAlias processor_version_aliases = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProcessorVersionAliases()
+    {
+        return $this->processor_version_aliases;
+    }
+
+    /**
+     * Output only. The processor version aliases.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorVersionAlias processor_version_aliases = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\DocumentAI\V1\ProcessorVersionAlias>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProcessorVersionAliases($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\ProcessorVersionAlias::class);
+        $this->processor_version_aliases = $arr;
 
         return $this;
     }

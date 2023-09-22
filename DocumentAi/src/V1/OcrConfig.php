@@ -55,10 +55,12 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
     private $enable_symbol = false;
     /**
      * Turn on font id model and returns font style information.
+     * Use PremiumFeatures.compute_style_info instead.
      *
-     * Generated from protobuf field <code>bool compute_style_info = 8;</code>
+     * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
+     * @deprecated
      */
-    private $compute_style_info = false;
+    protected $compute_style_info = false;
 
     /**
      * Constructor.
@@ -86,6 +88,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *           Includes symbol level OCR information if set to true.
      *     @type bool $compute_style_info
      *           Turn on font id model and returns font style information.
+     *           Use PremiumFeatures.compute_style_info instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -251,24 +254,30 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Turn on font id model and returns font style information.
+     * Use PremiumFeatures.compute_style_info instead.
      *
-     * Generated from protobuf field <code>bool compute_style_info = 8;</code>
+     * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getComputeStyleInfo()
     {
+        @trigger_error('compute_style_info is deprecated.', E_USER_DEPRECATED);
         return $this->compute_style_info;
     }
 
     /**
      * Turn on font id model and returns font style information.
+     * Use PremiumFeatures.compute_style_info instead.
      *
-     * Generated from protobuf field <code>bool compute_style_info = 8;</code>
+     * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setComputeStyleInfo($var)
     {
+        @trigger_error('compute_style_info is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->compute_style_info = $var;
 

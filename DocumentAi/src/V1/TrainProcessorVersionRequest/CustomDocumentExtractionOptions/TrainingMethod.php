@@ -7,8 +7,8 @@ namespace Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocument
 use UnexpectedValueException;
 
 /**
- * Training Method for CDE. TRAINING_METHOD_UNSPECIFIED will fallback to
- * MODEL_BASED.
+ * Training Method for CDE. `TRAINING_METHOD_UNSPECIFIED` will fall back to
+ * `MODEL_BASED`.
  *
  * Protobuf type <code>google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod</code>
  */
