@@ -164,6 +164,14 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzs = 21;</code>
      */
     protected $satisfies_pzs = false;
+    /**
+     * Output only. The database engine major version of the cluster this backup
+     * was created from. Any restored cluster created from this backup will have
+     * the same database version.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $database_version = 0;
 
     /**
      * Constructor.
@@ -236,6 +244,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           backup is eligible to be garbage collected.
      *     @type bool $satisfies_pzs
      *           Reserved for future use.
+     *     @type int $database_version
+     *           Output only. The database engine major version of the cluster this backup
+     *           was created from. Any restored cluster created from this backup will have
+     *           the same database version.
      * }
      */
     public function __construct($data = NULL) {
@@ -901,6 +913,36 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The database engine major version of the cluster this backup
+     * was created from. Any restored cluster created from this backup will have
+     * the same database version.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDatabaseVersion()
+    {
+        return $this->database_version;
+    }
+
+    /**
+     * Output only. The database engine major version of the cluster this backup
+     * was created from. Any restored cluster created from this backup will have
+     * the same database version.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1alpha.DatabaseVersion database_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseVersion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1alpha\DatabaseVersion::class);
+        $this->database_version = $var;
 
         return $this;
     }
