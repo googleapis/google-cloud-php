@@ -32,6 +32,7 @@ use Google\Rpc\Status;
 
 /**
  * Deletes a single Collector - changes state of collector to "Deleting".
+ * Background jobs does final deletion thorugh producer api.
  *
  * @param string $formattedName Name of the resource. Please see
  *                              {@see RapidMigrationAssessmentClient::collectorName()} for help formatting this field.
