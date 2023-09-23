@@ -234,8 +234,8 @@ class Logger
 
     /**
      * Creates an entry which which can be written to a log. In order to write
-     * the entry to the log please use {@see Google\Cloud\Logging\Logger::write()}
-     * or {@see Google\Cloud\Logging\Logger::writeBatch()}.
+     * the entry to the log please use {@see \Google\Cloud\Logging\Logger::write()}
+     * or {@see \Google\Cloud\Logging\Logger::writeBatch()}.
      *
      * Example:
      * ```
@@ -369,7 +369,7 @@ class Logger
      *
      * @param array|string|Entry $entry The entry to write to the log.
      * @param array $options [optional] Please see
-     *        {@see Google\Cloud\Logging\Logger::entry()} to see the options
+     *        {@see \Google\Cloud\Logging\Logger::entry()} to see the options
      *        that can be applied to a log entry. Please note that if the
      *        provided entry is of type `Entry` these options will overwrite
      *        those that may already be set on the instance.

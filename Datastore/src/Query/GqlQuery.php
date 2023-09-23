@@ -30,7 +30,7 @@ use Google\Cloud\Datastore\EntityMapper;
  * `$options['allowLiterals']` to `true`. As with any SQL dialect, using
  * parameter binding is highly recommended.
  *
- * Idiomatic usage is via {@see Google\Cloud\Datastore\DatastoreClient::gqlQuery()}.
+ * Idiomatic usage is via {@see \Google\Cloud\Datastore\DatastoreClient::gqlQuery()}.
  *
  *
  * Example:

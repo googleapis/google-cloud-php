@@ -258,7 +258,7 @@ class KeyRange
     }
 
     /**
-     * Create a KeyRange from an array created by {@see Google\Cloud\Spanner\KeyRange::keyRangeObject()}.
+     * Create a KeyRange from an array created by {@see \Google\Cloud\Spanner\KeyRange::keyRangeObject()}.
      *
      * @param array $range An array of KeyRange data.
      * @return KeyRange

@@ -25,9 +25,9 @@ namespace Google\Cloud\Trace;
  * allowing access via the array syntax (example below).
  *
  * Attributes are available to
- * {@see Google\Cloud\Trace\Annotation},
- * {@see Google\Cloud\Trace\Link}, and
- * {@see Google\Cloud\Trace\Span}.
+ * {@see \Google\Cloud\Trace\Annotation},
+ * {@see \Google\Cloud\Trace\Link}, and
+ * {@see \Google\Cloud\Trace\Span}.
  *
  * Example:
  * ```

@@ -416,7 +416,7 @@ class StorageClient
      * @param string $uri The URI to accept an upload request.
      * @param string|resource|StreamInterface $data The data to be uploaded
      * @param array $options [optional] Configuration Options. Refer to
-     *        {@see Google\Cloud\Core\Upload\AbstractUploader::__construct()}.
+     *        {@see \Google\Cloud\Core\Upload\AbstractUploader::__construct()}.
      * @return SignedUrlUploader
      */
     public function signedUrlUploader($uri, $data, array $options = [])

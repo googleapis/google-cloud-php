@@ -24,16 +24,16 @@ use Google\Cloud\Core\CallTrait;
  * [Google Cloud Natural Language API](https://cloud.google.com/natural-language/docs).
  *
  * This class is created internally by
- * {@see Google\Cloud\Language\LanguageClient} and is used to
+ * {@see \Google\Cloud\Language\LanguageClient} and is used to
  * represent various document analyzation results. It should not be instantiated
  * externally.
  *
  * Annotations are returned by
- * {@see Google\Cloud\Language\LanguageClient::analyzeEntities()},
- * {@see Google\Cloud\Language\LanguageClient::analyzeSentiment()},
- * {@see Google\Cloud\Language\LanguageClient::analyzeEntitySentiment()},
- * {@see Google\Cloud\Language\LanguageClient::analyzeSyntax()} and
- * {@see Google\Cloud\Language\LanguageClient::annotateText()}.
+ * {@see \Google\Cloud\Language\LanguageClient::analyzeEntities()},
+ * {@see \Google\Cloud\Language\LanguageClient::analyzeSentiment()},
+ * {@see \Google\Cloud\Language\LanguageClient::analyzeEntitySentiment()},
+ * {@see \Google\Cloud\Language\LanguageClient::analyzeSyntax()} and
+ * {@see \Google\Cloud\Language\LanguageClient::annotateText()}.
  *
  * Example:
  * ```

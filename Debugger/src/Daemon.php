@@ -94,7 +94,7 @@ class Daemon
      *            **Defaults to** the current working directory.
      *      @type array $clientConfig The options to instantiate the default
      *            DebuggerClient.
-     *            {@see Google\Cloud\Debugger\DebuggerClient::__construct()}
+     *            {@see \Google\Cloud\Debugger\DebuggerClient::__construct()}
      *            for the available options.
      *      @type array $sourceContext The source code identifier. **Defaults
      *            to** values autodetected from the environment.
@@ -119,7 +119,7 @@ class Daemon
      *            responsible for serializing closures used in the
      *            `$clientConfig`. This is especially important when using the
      *            batch daemon. **Defaults to**
-     *            {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *            {@see \Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *            `opis/closure` library is installed.
      *      @type bool $register Whether to start the worker in the background
      *            using the BatchRunner. **Defaults to** false.

@@ -23,8 +23,8 @@ if (false) {
  *
  * This class may be used directly for multiple non-transactional writes. To
  * run changes in a transaction (with automatic retry/rollback on failure),
- * use {@see Google\Cloud\Firestore\Transaction}. Single modifications can be
- * made using the various methods on {@see Google\Cloud\Firestore\DocumentReference}.
+ * use {@see \Google\Cloud\Firestore\Transaction}. Single modifications can be
+ * made using the various methods on {@see \Google\Cloud\Firestore\DocumentReference}.
  *
  * Example:
  * ```
