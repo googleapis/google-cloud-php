@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Creates a repository. The returned Operation will finish once the
  * repository has been created. Its response will be the created Repository.
  *
- * @param string $formattedParent The name of the parent resource where the repository will be created. Please see
+ * @param string $formattedParent The name of the parent resource where the repository will be
+ *                                created. Please see
  *                                {@see ArtifactRegistryClient::locationName()} for help formatting this field.
  */
 function create_repository_sample(string $formattedParent): void
