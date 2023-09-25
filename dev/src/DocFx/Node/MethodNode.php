@@ -176,6 +176,6 @@ class MethodNode
 
     public function validate(OutputInterface $output): bool
     {
-        return $this->validateXref($this->getContent(), $output);
+        return $this->validateXrefs($this->getContent(), $output);
     }
 }

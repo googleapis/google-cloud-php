@@ -439,38 +439,44 @@ EOF;
     }
 
     /**
-     * @dataProvider provideValidateSeeTags
+     * @dataProvider provideValidateXrefs
      */
-    public function testValidateSeeTags(string $description, $output, $valid)
+    public function testValidateXrefs(string $description, string $errorMessage = null)
     {
+        $output = $this->prophesize(OutputInterface::class);
+        if (is_null($errorMessage)) {
+            $output->writeln(Argument::any())->shouldNotBeCalled();
+        } else {
+            $output->writeln($errorMessage)->shouldBeCalledOnce();
+        }
+
         $xref = new class ($output->reveal()) {
             use XrefTrait;
             public function __construct(private OutputInterface $output) {}
             public function validate(string $description) {
-                var_dump($this->replaceSeeTag($description));
-                return $this->validateSeeTags(
+                $this->replaceSeeTag($description);
+                return $this->validateXrefs(
                     $this->replaceSeeTag($description),
                     $this->output
                 );
             }
         };
-
-        $this->assertEquals($valid, $xref->validate($description));
+        $isValid = is_null($errorMessage);
+        $this->assertEquals($isValid, $xref->validate($description));
     }
 
-    public function provideValidateSeeTags()
+    public function provideValidateXrefs()
     {
-        $validOutput = $this->prophesize(OutputInterface::class);
-        $validOutput->writeln(Argument::any())->shouldNotBeCalled();
-        $invalidOutput = $this->prophesize(OutputInterface::class);
-        $invalidOutput->writeln('Invalid @see tag: Foo\Bar')->shouldBeCalledOnce();
-
         return [
-            ['{@see \OutputInterface}', $validOutput, true], // exists
-            ['Take a look at {@see \OutputInterface} for more.',  $validOutput, true], // exists
-            ['Take a look at https://foo.bar for more.',  $validOutput, true], // external
-            ['{@see Foo\Bar}', $invalidOutput, false], // doesn't exist
-            ['Take a look at {@see Foo\Bar} for more.', $invalidOutput, false], // doesn't exist
+            ['{@see \OutputInterface}'], // valid
+            ['Take a look at {@see \OutputInterface} for more.'], // valid
+            ['Take a look at {@see https://foo.bar} for more.'], // valid
+            ['{@see Foo\Bar}', 'Invalid xref: Foo\Bar'], // invalid
+            ['Take a look at {@see Foo\Bar} for more.', 'Invalid xref: Foo\Bar'], // invalid
+            [
+                '{@see \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo}',
+                'Invalid xref: \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo'
+            ], // invalid
         ];
     }
 }

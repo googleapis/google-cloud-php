@@ -253,7 +253,7 @@ class ClassNode
 
     public function validate(OutputInterface $output): bool
     {
-        $valid = $this->validateXref($this->getContent(), $output);
+        $valid = $this->validateXrefs($this->getContent(), $output);
         foreach ($this->getMethods() as $method) {
             $valid = $method->validate($output) && $valid;
         }
