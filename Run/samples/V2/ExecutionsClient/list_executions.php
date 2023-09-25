@@ -34,8 +34,8 @@ use Google\Cloud\Run\V2\ListExecutionsRequest;
  *
  * @param string $formattedParent The Execution from which the Executions should be listed.
  *                                To list all Executions across Jobs, use "-" instead of Job name.
- *                                Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
- *                                can be project id or number. Please see
+ *                                Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+ *                                `{project}` can be project id or number. Please see
  *                                {@see ExecutionsClient::jobName()} for help formatting this field.
  */
 function list_executions_sample(string $formattedParent): void

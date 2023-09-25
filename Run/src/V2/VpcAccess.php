@@ -9,10 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * VPC Access settings. For more information on creating a VPC Connector, visit
- * https://cloud.google.com/vpc/docs/configure-serverless-vpc-access For
- * information on how to configure Cloud Run with an existing VPC Connector,
- * visit https://cloud.google.com/run/docs/configuring/connecting-vpc
+ * VPC Access settings. For more information on sending traffic to a VPC
+ * network, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
  *
  * Generated from protobuf message <code>google.cloud.run.v2.VpcAccess</code>
  */
@@ -22,16 +20,26 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      * VPC Access connector name.
      * Format: projects/{project}/locations/{location}/connectors/{connector},
      * where {project} can be project id or number.
+     * For more information on sending traffic to a VPC network via a connector,
+     * visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *
      * Generated from protobuf field <code>string connector = 1 [(.google.api.resource_reference) = {</code>
      */
     private $connector = '';
     /**
-     * Traffic VPC egress settings.
+     * Traffic VPC egress settings. If not provided, it defaults to
+     * PRIVATE_RANGES_ONLY.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2;</code>
      */
     private $egress = 0;
+    /**
+     * Direct VPC egress settings. Currently only single network interface is
+     * supported.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3;</code>
+     */
+    private $network_interfaces;
 
     /**
      * Constructor.
@@ -43,8 +51,14 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      *           VPC Access connector name.
      *           Format: projects/{project}/locations/{location}/connectors/{connector},
      *           where {project} can be project id or number.
+     *           For more information on sending traffic to a VPC network via a connector,
+     *           visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *     @type int $egress
-     *           Traffic VPC egress settings.
+     *           Traffic VPC egress settings. If not provided, it defaults to
+     *           PRIVATE_RANGES_ONLY.
+     *     @type array<\Google\Cloud\Run\V2\VpcAccess\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *           Direct VPC egress settings. Currently only single network interface is
+     *           supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,6 +70,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      * VPC Access connector name.
      * Format: projects/{project}/locations/{location}/connectors/{connector},
      * where {project} can be project id or number.
+     * For more information on sending traffic to a VPC network via a connector,
+     * visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *
      * Generated from protobuf field <code>string connector = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -69,6 +85,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      * VPC Access connector name.
      * Format: projects/{project}/locations/{location}/connectors/{connector},
      * where {project} can be project id or number.
+     * For more information on sending traffic to a VPC network via a connector,
+     * visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *
      * Generated from protobuf field <code>string connector = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -83,7 +101,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Traffic VPC egress settings.
+     * Traffic VPC egress settings. If not provided, it defaults to
+     * PRIVATE_RANGES_ONLY.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2;</code>
      * @return int
@@ -94,7 +113,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Traffic VPC egress settings.
+     * Traffic VPC egress settings. If not provided, it defaults to
+     * PRIVATE_RANGES_ONLY.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2;</code>
      * @param int $var
@@ -104,6 +124,34 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\VpcAccess\VpcEgress::class);
         $this->egress = $var;
+
+        return $this;
+    }
+
+    /**
+     * Direct VPC egress settings. Currently only single network interface is
+     * supported.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNetworkInterfaces()
+    {
+        return $this->network_interfaces;
+    }
+
+    /**
+     * Direct VPC egress settings. Currently only single network interface is
+     * supported.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3;</code>
+     * @param array<\Google\Cloud\Run\V2\VpcAccess\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNetworkInterfaces($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Run\V2\VpcAccess\NetworkInterface::class);
+        $this->network_interfaces = $arr;
 
         return $this;
     }

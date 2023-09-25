@@ -18,8 +18,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The full name of the Execution.
      * Format:
-     * projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     * where {project} can be project id or number.
+     * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -28,8 +28,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The full name of the Execution.
      *                     Format:
-     *                     projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     *                     where {project} can be project id or number. Please see
+     *                     `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *                     where `{project}` can be project id or number. Please see
      *                     {@see ExecutionsClient::executionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\GetExecutionRequest
@@ -51,8 +51,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The full name of the Execution.
      *           Format:
-     *           projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     *           where {project} can be project id or number.
+     *           `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *           where `{project}` can be project id or number.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,8 +63,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The full name of the Execution.
      * Format:
-     * projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     * where {project} can be project id or number.
+     * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,8 +77,8 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The full name of the Execution.
      * Format:
-     * projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     * where {project} can be project id or number.
+     * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

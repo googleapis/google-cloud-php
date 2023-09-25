@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.run.v2.Executions' => [
+            'CancelExecution' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Run\V2\Execution',
+                    'metadataReturnType' => '\Google\Cloud\Run\V2\Execution',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteExecution' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Run\V2\Execution',

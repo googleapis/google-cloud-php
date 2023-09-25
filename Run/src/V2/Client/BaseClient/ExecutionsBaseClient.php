@@ -35,6 +35,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Run\V2\CancelExecutionRequest;
 use Google\Cloud\Run\V2\DeleteExecutionRequest;
 use Google\Cloud\Run\V2\Execution;
 use Google\Cloud\Run\V2\GetExecutionRequest;
@@ -60,6 +61,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @internal
  *
+ * @method PromiseInterface cancelExecutionAsync(CancelExecutionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteExecutionAsync(DeleteExecutionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getExecutionAsync(GetExecutionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listExecutionsAsync(ListExecutionsRequest $request, array $optionalArgs = [])
@@ -271,6 +273,32 @@ abstract class ExecutionsBaseClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Cancels an Execution.
+     *
+     * The async variant is {@see self::cancelExecutionAsync()} .
+     *
+     * @example samples/V2/ExecutionsClient/cancel_execution.php
+     *
+     * @param CancelExecutionRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelExecution(CancelExecutionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CancelExecution', $request, $callOptions)->wait();
     }
 
     /**

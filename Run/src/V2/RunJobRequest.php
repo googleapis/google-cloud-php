@@ -37,6 +37,13 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 3;</code>
      */
     private $etag = '';
+    /**
+     * Overrides specification for a given execution of a job. If provided,
+     * overrides will be applied to update the execution or task spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.RunJobRequest.Overrides overrides = 4;</code>
+     */
+    private $overrides = null;
 
     /**
      * @param string $name Required. The full name of the Job.
@@ -70,6 +77,9 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
+     *     @type \Google\Cloud\Run\V2\RunJobRequest\Overrides $overrides
+     *           Overrides specification for a given execution of a job. If provided,
+     *           overrides will be applied to update the execution or task spec.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,6 +169,44 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Overrides specification for a given execution of a job. If provided,
+     * overrides will be applied to update the execution or task spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.RunJobRequest.Overrides overrides = 4;</code>
+     * @return \Google\Cloud\Run\V2\RunJobRequest\Overrides|null
+     */
+    public function getOverrides()
+    {
+        return $this->overrides;
+    }
+
+    public function hasOverrides()
+    {
+        return isset($this->overrides);
+    }
+
+    public function clearOverrides()
+    {
+        unset($this->overrides);
+    }
+
+    /**
+     * Overrides specification for a given execution of a job. If provided,
+     * overrides will be applied to update the execution or task spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.RunJobRequest.Overrides overrides = 4;</code>
+     * @param \Google\Cloud\Run\V2\RunJobRequest\Overrides $var
+     * @return $this
+     */
+    public function setOverrides($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\RunJobRequest\Overrides::class);
+        $this->overrides = $var;
 
         return $this;
     }

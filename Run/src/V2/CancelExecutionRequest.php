@@ -11,12 +11,12 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for deleting an Execution.
  *
- * Generated from protobuf message <code>google.cloud.run.v2.DeleteExecutionRequest</code>
+ * Generated from protobuf message <code>google.cloud.run.v2.CancelExecutionRequest</code>
  */
-class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
+class CancelExecutionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the Execution to delete.
+     * Required. The name of the Execution to cancel.
      * Format:
      * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
      * where `{project}` can be project id or number.
@@ -26,7 +26,7 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Indicates that the request should be validated without actually
-     * deleting any resources.
+     * cancelling any resources.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
@@ -40,13 +40,13 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
-     * @param string $name Required. The name of the Execution to delete.
+     * @param string $name Required. The name of the Execution to cancel.
      *                     Format:
      *                     `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
      *                     where `{project}` can be project id or number. Please see
      *                     {@see ExecutionsClient::executionName()} for help formatting this field.
      *
-     * @return \Google\Cloud\Run\V2\DeleteExecutionRequest
+     * @return \Google\Cloud\Run\V2\CancelExecutionRequest
      *
      * @experimental
      */
@@ -63,13 +63,13 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the Execution to delete.
+     *           Required. The name of the Execution to cancel.
      *           Format:
      *           `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
      *           where `{project}` can be project id or number.
      *     @type bool $validate_only
      *           Indicates that the request should be validated without actually
-     *           deleting any resources.
+     *           cancelling any resources.
      *     @type string $etag
      *           A system-generated fingerprint for this version of the resource.
      *           This may be used to detect modification conflict during updates.
@@ -81,7 +81,7 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Execution to delete.
+     * Required. The name of the Execution to cancel.
      * Format:
      * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
      * where `{project}` can be project id or number.
@@ -95,7 +95,7 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Execution to delete.
+     * Required. The name of the Execution to cancel.
      * Format:
      * `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
      * where `{project}` can be project id or number.
@@ -114,7 +114,7 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates that the request should be validated without actually
-     * deleting any resources.
+     * cancelling any resources.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      * @return bool
@@ -126,7 +126,7 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates that the request should be validated without actually
-     * deleting any resources.
+     * cancelling any resources.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      * @param bool $var

@@ -35,6 +35,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Run\V2\CancelExecutionRequest;
 use Google\Cloud\Run\V2\DeleteExecutionRequest;
 use Google\Cloud\Run\V2\Execution;
 use Google\Cloud\Run\V2\GetExecutionRequest;
@@ -52,7 +53,7 @@ use Google\LongRunning\Operation;
  * $executionsClient = new ExecutionsClient();
  * try {
  *     $formattedName = $executionsClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
- *     $operationResponse = $executionsClient->deleteExecution($formattedName);
+ *     $operationResponse = $executionsClient->cancelExecution($formattedName);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -63,10 +64,10 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $executionsClient->deleteExecution($formattedName);
+ *     $operationResponse = $executionsClient->cancelExecution($formattedName);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $executionsClient->resumeOperation($operationName, 'deleteExecution');
+ *     $newOperationResponse = $executionsClient->resumeOperation($operationName, 'cancelExecution');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -362,6 +363,96 @@ class ExecutionsGapicClient
     }
 
     /**
+     * Cancels an Execution.
+     *
+     * Sample code:
+     * ```
+     * $executionsClient = new ExecutionsClient();
+     * try {
+     *     $formattedName = $executionsClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
+     *     $operationResponse = $executionsClient->cancelExecution($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $executionsClient->cancelExecution($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $executionsClient->resumeOperation($operationName, 'cancelExecution');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $executionsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the Execution to cancel.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *                             where `{project}` can be project id or number.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $validateOnly
+     *           Indicates that the request should be validated without actually
+     *           cancelling any resources.
+     *     @type string $etag
+     *           A system-generated fingerprint for this version of the resource.
+     *           This may be used to detect modification conflict during updates.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function cancelExecution($name, array $optionalArgs = [])
+    {
+        $request = new CancelExecutionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CancelExecution',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes an Execution.
      *
      * Sample code:
@@ -402,8 +493,8 @@ class ExecutionsGapicClient
      *
      * @param string $name         Required. The name of the Execution to delete.
      *                             Format:
-     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     *                             where {project} can be project id or number.
+     *                             `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *                             where `{project}` can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -467,8 +558,8 @@ class ExecutionsGapicClient
      *
      * @param string $name         Required. The full name of the Execution.
      *                             Format:
-     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
-     *                             where {project} can be project id or number.
+     *                             `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *                             where `{project}` can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -530,8 +621,8 @@ class ExecutionsGapicClient
      *
      * @param string $parent       Required. The Execution from which the Executions should be listed.
      *                             To list all Executions across Jobs, use "-" instead of Job name.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     *                             can be project id or number.
+     *                             Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+     *                             `{project}` can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
