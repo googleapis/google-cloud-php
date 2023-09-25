@@ -117,6 +117,18 @@ return [
                     ],
                 ],
             ],
+            'BatchWrite' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:batchWrite',
+                'body' => '*',
+                'placeholders' => [
+                    'session' => [
+                        'getters' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
             'BeginTransaction' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:beginTransaction',

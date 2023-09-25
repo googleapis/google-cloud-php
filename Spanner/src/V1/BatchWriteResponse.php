@@ -27,14 +27,14 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    protected $status = null;
+    private $status = null;
     /**
      * The commit timestamp of the transaction that applied this batch.
      * Present if `status` is `OK`, absent otherwise.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 3;</code>
      */
-    protected $commit_timestamp = null;
+    private $commit_timestamp = null;
 
     /**
      * Constructor.

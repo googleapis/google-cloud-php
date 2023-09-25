@@ -20,13 +20,13 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $session = '';
+    private $session = '';
     /**
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
      */
-    protected $request_options = null;
+    private $request_options = null;
     /**
      * Required. The groups of mutations to be applied.
      *
