@@ -571,6 +571,7 @@ return [
                 'phraseMatcher' => 'projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}',
                 'projectConversationParticipant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',
                 'projectLocationConversationParticipant' => 'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}',
+                'recognizer' => 'projects/{project}/locations/{location}/recognizers/{recognizer}',
                 'settings' => 'projects/{project}/locations/{location}/settings',
                 'view' => 'projects/{project}/locations/{location}/views/{view}',
             ],

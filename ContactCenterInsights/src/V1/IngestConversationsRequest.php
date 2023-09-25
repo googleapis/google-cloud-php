@@ -51,7 +51,8 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\GcsSource $gcs_source
-     *           A cloud storage bucket source.
+     *           A cloud storage bucket source. Note that any previously ingested objects
+     *           from the source will be skipped to avoid duplication.
      *     @type \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\TranscriptObjectConfig $transcript_object_config
      *           Configuration for when `source` contains conversation transcripts.
      *     @type string $parent
@@ -66,7 +67,8 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A cloud storage bucket source.
+     * A cloud storage bucket source. Note that any previously ingested objects
+     * from the source will be skipped to avoid duplication.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.GcsSource gcs_source = 2;</code>
      * @return \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\GcsSource|null
@@ -82,7 +84,8 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A cloud storage bucket source.
+     * A cloud storage bucket source. Note that any previously ingested objects
+     * from the source will be skipped to avoid duplication.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.GcsSource gcs_source = 2;</code>
      * @param \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\GcsSource $var
