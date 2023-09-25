@@ -21,19 +21,19 @@ class PremiumFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_selection_mark_detection = 3;</code>
      */
-    protected $enable_selection_mark_detection = false;
+    private $enable_selection_mark_detection = false;
     /**
      * Turn on font identification model and return font style information.
      *
      * Generated from protobuf field <code>bool compute_style_info = 4;</code>
      */
-    protected $compute_style_info = false;
+    private $compute_style_info = false;
     /**
      * Turn on the model that can extract LaTeX math formulas.
      *
      * Generated from protobuf field <code>bool enable_math_ocr = 5;</code>
      */
-    protected $enable_math_ocr = false;
+    private $enable_math_ocr = false;
 
     /**
      * Constructor.
@@ -137,6 +137,4 @@ class PremiumFeatures extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PremiumFeatures::class, \Google\Cloud\DocumentAI\V1\OcrConfig_PremiumFeatures::class);
 
