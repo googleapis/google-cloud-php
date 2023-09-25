@@ -31,7 +31,7 @@ namespace Google\Cloud\Datastore;
  *
  * Mutations (i.e. insert, update and delete) are not executed immediately.
  * Calls to those methods (and their batch equivalents) will enqueue a new
- * mutation. Calling {@see Google\Cloud\Datastore\Transaction::commit()} will
+ * mutation. Calling {@see \Google\Cloud\Datastore\Transaction::commit()} will
  * execute all the mutations in the order they were enqueued, and end the
  * transaction.
  *
@@ -40,7 +40,7 @@ namespace Google\Cloud\Datastore;
  *
  * Transactions are an **optional** feature of Google Cloud Datastore. Queries,
  * lookups and mutations can be executed outside of a Transaction from
- * {@see Google\Cloud\Datastore\DatastoreClient}.
+ * {@see \Google\Cloud\Datastore\DatastoreClient}.
  *
  * Example:
  * ```
@@ -66,7 +66,7 @@ class Transaction
      * Insert an entity.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * If entities with incomplete keys are provided, this method will immediately
@@ -93,7 +93,7 @@ class Transaction
      * Insert multiple entities.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * If entities with incomplete keys are provided, this method will immediately
@@ -127,7 +127,7 @@ class Transaction
      * Update an entity.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * Example:
@@ -166,7 +166,7 @@ class Transaction
      * Update multiple entities.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * Example:
@@ -211,7 +211,7 @@ class Transaction
      * Upsert an entity.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * Upsert will create a record if one does not already exist, or overwrite
@@ -241,7 +241,7 @@ class Transaction
      * Upsert multiple entities.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * Upsert will create a record if one does not already exist, or overwrite
@@ -283,7 +283,7 @@ class Transaction
      * Delete a record.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * Example:
@@ -306,7 +306,7 @@ class Transaction
      * Delete multiple records.
      *
      * Changes are not immediately committed to Cloud Datastore when calling
-     * this method. Use {@see Google\Cloud\Datastore\Transaction::commit()} to
+     * this method. Use {@see \Google\Cloud\Datastore\Transaction::commit()} to
      * commit changes and end the transaction.
      *
      * Example:

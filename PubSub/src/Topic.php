@@ -580,7 +580,7 @@ class Topic
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
-     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           {@see \Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
      *     @type bool $enableCompression Flag to enable compression of messages
      *           before publishing. Set the flag to `true` to enable compression.

@@ -24,7 +24,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * Read-only snapshot Transaction.
  *
  * For full usage details, please refer to
- * {@see Google\Cloud\Spanner\Database::snapshot()}.
+ * {@see \Google\Cloud\Spanner\Database::snapshot()}.
  *
  * Example:
  * ```
