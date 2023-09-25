@@ -82,13 +82,17 @@ trait XrefTrait
     /**
      * Verifies that all {@see} tags are valid.
      */
-    private function validateXref(string $description, OutputInterface $output): bool
+    private function validateXrefs(string $description, OutputInterface $output): bool
     {
         $valid = true;
         preg_replace_callback(
             '/<xref uid="([^ ]*)"/',
             function ($matches) use ($output, &$valid) {
-                if ('\\' !== $matches[1][0]) {
+                if (0 !== strpos($matches[1], 'http') && '\\' !== $matches[1][0]) {
+                    $output->writeln('Invalid xref: ' . $matches[1]);
+                    $valid = false;
+                }
+                if (substr_count($matches[1], '\Google\\') > 1) {
                     $output->writeln('Invalid xref: ' . $matches[1]);
                     $valid = false;
                 }
