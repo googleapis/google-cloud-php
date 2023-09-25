@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocFx\Node;
 
 use SimpleXMLElement;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @internal
@@ -173,5 +174,10 @@ class MethodNode
         }
 
         return $content;
+    }
+
+    public function validate(OutputInterface $output): bool
+    {
+        return $this->validateXref($this->getContent(), $output);
     }
 }

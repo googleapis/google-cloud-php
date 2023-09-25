@@ -50,8 +50,14 @@ class DocFxCommand extends Command
                 'component-path',
                 '',
                 InputOption::VALUE_OPTIONAL,
-                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.
-            ')
+                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.'
+            )
+            ->addOption(
+                'validate',
+                '',
+                InputOption::VALUE_NONE,
+                'validate the nodes. Logs issues to console and returns false error'
+            )
         ;
     }
 
@@ -92,6 +98,7 @@ class DocFxCommand extends Command
         $indent = 2; // The amount of spaces to use for indentation of nested nodes
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
+        $valid = true;
         $tocItems = [];
         $packageDescription = $component->getDescription();
         foreach ($component->getNamespaces() as $namespace => $dir) {
@@ -103,6 +110,9 @@ class DocFxCommand extends Command
             );
 
             foreach ($pageTree->getPages() as $page) {
+                if ($input->getOption('validate')) {
+                    $valid = $page->getClassNode()->validate($output) && $valid;
+                }
                 $docFxArray = ['items' => $page->getItems()];
 
                 // Dump the YAML for the class node
@@ -175,6 +185,10 @@ class DocFxCommand extends Command
             ]);
             $process->mustRun();
             $output->writeln('Done.');
+        }
+
+        if ($input->getOption('validate') && !$valid) {
+            return 1;
         }
 
         return 0;

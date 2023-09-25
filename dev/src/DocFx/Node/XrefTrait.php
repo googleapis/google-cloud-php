@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * @internal
  */
@@ -75,6 +77,26 @@ trait XrefTrait
             },
             $description
         );
+    }
+
+    /**
+     * Verifies that all {@see} tags are valid.
+     */
+    private function validateXref(string $description, OutputInterface $output): bool
+    {
+        $valid = true;
+        preg_replace_callback(
+            '/<xref uid="([^ ]*)"/',
+            function ($matches) use ($output, &$valid) {
+                if ('\\' !== $matches[1][0]) {
+                    $output->writeln('Invalid xref: ' . $matches[1]);
+                    $valid = false;
+                }
+            },
+            $description
+        );
+
+        return $valid;
     }
 
     /**
