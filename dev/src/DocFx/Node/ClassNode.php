@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocFx\Node;
 
 use SimpleXMLElement;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @internal
@@ -248,5 +249,17 @@ class ClassNode
     public function setTocName(string $tocName)
     {
         $this->tocName = $tocName;
+    }
+
+    public function validate(OutputInterface $output): bool
+    {
+        $valid = $this->validateXref($this->getContent(), $output);
+        foreach ($this->getMethods() as $method) {
+            $valid = $method->validate($output) && $valid;
+        }
+        foreach ($this->getConstants() as $constant) {
+            $valid = $constant->validate($output) && $valid;
+        }
+        return $valid;
     }
 }

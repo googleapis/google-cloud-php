@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
-use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Node\MethodNode;
 use Google\Cloud\Dev\DocFx\Node\XrefTrait;
 use Google\Cloud\Dev\DocFx\Node\FencedCodeBlockTrait;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Symfony\Component\Console\Output\OutputInterface;
 use SimpleXMLElement;
 
 /**
@@ -29,6 +32,8 @@ use SimpleXMLElement;
  */
 class NodeTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testNestedParameters()
     {
         $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
@@ -430,6 +435,42 @@ EOF;
             ['V1p1zeta1', ''],
             ['V1z1beta', ''],
             ['Foo', ''],
+        ];
+    }
+
+    /**
+     * @dataProvider provideValidateSeeTags
+     */
+    public function testValidateSeeTags(string $description, $output, $valid)
+    {
+        $xref = new class ($output->reveal()) {
+            use XrefTrait;
+            public function __construct(private OutputInterface $output) {}
+            public function validate(string $description) {
+                var_dump($this->replaceSeeTag($description));
+                return $this->validateSeeTags(
+                    $this->replaceSeeTag($description),
+                    $this->output
+                );
+            }
+        };
+
+        $this->assertEquals($valid, $xref->validate($description));
+    }
+
+    public function provideValidateSeeTags()
+    {
+        $validOutput = $this->prophesize(OutputInterface::class);
+        $validOutput->writeln(Argument::any())->shouldNotBeCalled();
+        $invalidOutput = $this->prophesize(OutputInterface::class);
+        $invalidOutput->writeln('Invalid @see tag: Foo\Bar')->shouldBeCalledOnce();
+
+        return [
+            ['{@see \OutputInterface}', $validOutput, true], // exists
+            ['Take a look at {@see \OutputInterface} for more.',  $validOutput, true], // exists
+            ['Take a look at https://foo.bar for more.',  $validOutput, true], // external
+            ['{@see Foo\Bar}', $invalidOutput, false], // doesn't exist
+            ['Take a look at {@see Foo\Bar} for more.', $invalidOutput, false], // doesn't exist
         ];
     }
 }

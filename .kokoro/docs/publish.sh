@@ -30,6 +30,7 @@ do
         $PROJECT_DIR/dev/google-cloud docfx \
             --component $COMPONENT \
             --out $DIR/out \
+            --validate \
             --metadata-version $VERSION \
             --staging-bucket $STAGING_BUCKET
     else
@@ -37,6 +38,7 @@ do
         $PROJECT_DIR/dev/google-cloud docfx \
             --component $COMPONENT \
             --out $DIR/out \
+            --validate \
             --metadata-version $VERSION
     fi
 done
