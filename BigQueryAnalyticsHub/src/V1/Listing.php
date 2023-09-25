@@ -26,21 +26,19 @@ class Listing extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Human-readable display name of the listing. The display name must contain
-     * only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     * ( ), ampersands (&) and can't start or end with spaces.
-     * Default value is an empty string.
-     * Max length: 63 bytes.
+     * Required. Human-readable display name of the listing. The display name must
+     * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+     * spaces ( ), ampersands (&) and can't start or end with spaces. Default
+     * value is an empty string. Max length: 63 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
-     * Optional. Short description of the listing. The description must not contain
-     * Unicode non-characters and C0 and C1 control codes except tabs (HT),
-     * new lines (LF), carriage returns (CR), and page breaks (FF).
-     * Default value is an empty string.
-     * Max length: 2000 bytes.
+     * Optional. Short description of the listing. The description must not
+     * contain Unicode non-characters and C0 and C1 control codes except tabs
+     * (HT), new lines (LF), carriage returns (CR), and page breaks (FF). Default
+     * value is an empty string. Max length: 2000 bytes.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -101,6 +99,13 @@ class Listing extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_access = '';
+    /**
+     * Optional. If set, restricted export configuration will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.RestrictedExportConfig restricted_export_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $restricted_export_config = null;
     protected $source;
 
     /**
@@ -115,17 +120,15 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the listing.
      *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
      *     @type string $display_name
-     *           Required. Human-readable display name of the listing. The display name must contain
-     *           only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     *           ( ), ampersands (&) and can't start or end with spaces.
-     *           Default value is an empty string.
-     *           Max length: 63 bytes.
+     *           Required. Human-readable display name of the listing. The display name must
+     *           contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+     *           spaces ( ), ampersands (&) and can't start or end with spaces. Default
+     *           value is an empty string. Max length: 63 bytes.
      *     @type string $description
-     *           Optional. Short description of the listing. The description must not contain
-     *           Unicode non-characters and C0 and C1 control codes except tabs (HT),
-     *           new lines (LF), carriage returns (CR), and page breaks (FF).
-     *           Default value is an empty string.
-     *           Max length: 2000 bytes.
+     *           Optional. Short description of the listing. The description must not
+     *           contain Unicode non-characters and C0 and C1 control codes except tabs
+     *           (HT), new lines (LF), carriage returns (CR), and page breaks (FF). Default
+     *           value is an empty string. Max length: 2000 bytes.
      *     @type string $primary_contact
      *           Optional. Email or URL of the primary point of contact of the listing.
      *           Max Length: 1000 bytes.
@@ -150,6 +153,9 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           Optional. Email or URL of the request access of the listing.
      *           Subscribers can use this reference to request access.
      *           Max Length: 1000 bytes.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig $restricted_export_config
+     *           Optional. If set, restricted export configuration will be propagated and
+     *           enforced on the linked dataset.
      * }
      */
     public function __construct($data = NULL) {
@@ -217,11 +223,10 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Human-readable display name of the listing. The display name must contain
-     * only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     * ( ), ampersands (&) and can't start or end with spaces.
-     * Default value is an empty string.
-     * Max length: 63 bytes.
+     * Required. Human-readable display name of the listing. The display name must
+     * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+     * spaces ( ), ampersands (&) and can't start or end with spaces. Default
+     * value is an empty string. Max length: 63 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -232,11 +237,10 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Human-readable display name of the listing. The display name must contain
-     * only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     * ( ), ampersands (&) and can't start or end with spaces.
-     * Default value is an empty string.
-     * Max length: 63 bytes.
+     * Required. Human-readable display name of the listing. The display name must
+     * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+     * spaces ( ), ampersands (&) and can't start or end with spaces. Default
+     * value is an empty string. Max length: 63 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -251,11 +255,10 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Short description of the listing. The description must not contain
-     * Unicode non-characters and C0 and C1 control codes except tabs (HT),
-     * new lines (LF), carriage returns (CR), and page breaks (FF).
-     * Default value is an empty string.
-     * Max length: 2000 bytes.
+     * Optional. Short description of the listing. The description must not
+     * contain Unicode non-characters and C0 and C1 control codes except tabs
+     * (HT), new lines (LF), carriage returns (CR), and page breaks (FF). Default
+     * value is an empty string. Max length: 2000 bytes.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -266,11 +269,10 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Short description of the listing. The description must not contain
-     * Unicode non-characters and C0 and C1 control codes except tabs (HT),
-     * new lines (LF), carriage returns (CR), and page breaks (FF).
-     * Default value is an empty string.
-     * Max length: 2000 bytes.
+     * Optional. Short description of the listing. The description must not
+     * contain Unicode non-characters and C0 and C1 control codes except tabs
+     * (HT), new lines (LF), carriage returns (CR), and page breaks (FF). Default
+     * value is an empty string. Max length: 2000 bytes.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -524,6 +526,44 @@ class Listing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, restricted export configuration will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.RestrictedExportConfig restricted_export_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig|null
+     */
+    public function getRestrictedExportConfig()
+    {
+        return $this->restricted_export_config;
+    }
+
+    public function hasRestrictedExportConfig()
+    {
+        return isset($this->restricted_export_config);
+    }
+
+    public function clearRestrictedExportConfig()
+    {
+        unset($this->restricted_export_config);
+    }
+
+    /**
+     * Optional. If set, restricted export configuration will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.RestrictedExportConfig restricted_export_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig $var
+     * @return $this
+     */
+    public function setRestrictedExportConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig::class);
+        $this->restricted_export_config = $var;
 
         return $this;
     }
