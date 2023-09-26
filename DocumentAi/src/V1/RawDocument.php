@@ -33,7 +33,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
      * the following:
      * `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\"`, `,`
      * `~`, `=` and `:` are reserved.
-     * If not specified, a default ID will be generated.
+     * If not specified, a default ID is generated.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
@@ -55,7 +55,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
      *           the following:
      *           `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\"`, `,`
      *           `~`, `=` and `:` are reserved.
-     *           If not specified, a default ID will be generated.
+     *           If not specified, a default ID is generated.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,7 +122,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
      * the following:
      * `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\"`, `,`
      * `~`, `=` and `:` are reserved.
-     * If not specified, a default ID will be generated.
+     * If not specified, a default ID is generated.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @return string
@@ -137,7 +137,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
      * the following:
      * `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\"`, `,`
      * `~`, `=` and `:` are reserved.
-     * If not specified, a default ID will be generated.
+     * If not specified, a default ID is generated.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @param string $var

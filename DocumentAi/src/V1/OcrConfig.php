@@ -54,13 +54,28 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_symbol = false;
     /**
-     * Turn on font id model and returns font style information.
-     * Use PremiumFeatures.compute_style_info instead.
+     * Turn on font identification model and return font style information.
+     * Deprecated, use
+     * [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
+     * instead.
      *
      * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @deprecated
      */
     protected $compute_style_info = false;
+    /**
+     * Turn off character box detector in OCR engine. Character box detection is
+     * enabled by default in OCR 2.0+ processors.
+     *
+     * Generated from protobuf field <code>bool disable_character_boxes_detection = 10;</code>
+     */
+    private $disable_character_boxes_detection = false;
+    /**
+     * Configurations for premium OCR features.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.OcrConfig.PremiumFeatures premium_features = 11;</code>
+     */
+    private $premium_features = null;
 
     /**
      * Constructor.
@@ -87,8 +102,15 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_symbol
      *           Includes symbol level OCR information if set to true.
      *     @type bool $compute_style_info
-     *           Turn on font id model and returns font style information.
-     *           Use PremiumFeatures.compute_style_info instead.
+     *           Turn on font identification model and return font style information.
+     *           Deprecated, use
+     *           [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
+     *           instead.
+     *     @type bool $disable_character_boxes_detection
+     *           Turn off character box detector in OCR engine. Character box detection is
+     *           enabled by default in OCR 2.0+ processors.
+     *     @type \Google\Cloud\DocumentAI\V1\OcrConfig\PremiumFeatures $premium_features
+     *           Configurations for premium OCR features.
      * }
      */
     public function __construct($data = NULL) {
@@ -253,8 +275,10 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Turn on font id model and returns font style information.
-     * Use PremiumFeatures.compute_style_info instead.
+     * Turn on font identification model and return font style information.
+     * Deprecated, use
+     * [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
+     * instead.
      *
      * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @return bool
@@ -267,8 +291,10 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Turn on font id model and returns font style information.
-     * Use PremiumFeatures.compute_style_info instead.
+     * Turn on font identification model and return font style information.
+     * Deprecated, use
+     * [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
+     * instead.
      *
      * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @param bool $var
@@ -280,6 +306,70 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
         @trigger_error('compute_style_info is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->compute_style_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Turn off character box detector in OCR engine. Character box detection is
+     * enabled by default in OCR 2.0+ processors.
+     *
+     * Generated from protobuf field <code>bool disable_character_boxes_detection = 10;</code>
+     * @return bool
+     */
+    public function getDisableCharacterBoxesDetection()
+    {
+        return $this->disable_character_boxes_detection;
+    }
+
+    /**
+     * Turn off character box detector in OCR engine. Character box detection is
+     * enabled by default in OCR 2.0+ processors.
+     *
+     * Generated from protobuf field <code>bool disable_character_boxes_detection = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableCharacterBoxesDetection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_character_boxes_detection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configurations for premium OCR features.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.OcrConfig.PremiumFeatures premium_features = 11;</code>
+     * @return \Google\Cloud\DocumentAI\V1\OcrConfig\PremiumFeatures|null
+     */
+    public function getPremiumFeatures()
+    {
+        return $this->premium_features;
+    }
+
+    public function hasPremiumFeatures()
+    {
+        return isset($this->premium_features);
+    }
+
+    public function clearPremiumFeatures()
+    {
+        unset($this->premium_features);
+    }
+
+    /**
+     * Configurations for premium OCR features.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.OcrConfig.PremiumFeatures premium_features = 11;</code>
+     * @param \Google\Cloud\DocumentAI\V1\OcrConfig\PremiumFeatures $var
+     * @return $this
+     */
+    public function setPremiumFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\OcrConfig\PremiumFeatures::class);
+        $this->premium_features = $var;
 
         return $this;
     }
