@@ -130,7 +130,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
-     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           {@see \Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
      * }
      */
@@ -164,7 +164,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */
@@ -182,7 +182,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */
@@ -200,7 +200,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */
@@ -218,7 +218,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */
@@ -236,7 +236,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */
@@ -254,7 +254,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */
@@ -272,7 +272,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */
@@ -290,7 +290,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
+     * @param array $context [optional] Please see {@see \Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      * @return void
      */

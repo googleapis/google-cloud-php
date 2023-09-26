@@ -136,7 +136,7 @@ class LanguageClient
      *        either a string of UTF-8 encoded content, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -193,7 +193,7 @@ class LanguageClient
      *        either a string of UTF-8 encoded content, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -252,7 +252,7 @@ class LanguageClient
      *        either a string of UTF-8 encoded content, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -308,7 +308,7 @@ class LanguageClient
      *        either a string of UTF-8 encoded content, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -365,7 +365,7 @@ class LanguageClient
      *        either a string of UTF-8 encoded content, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -423,7 +423,7 @@ class LanguageClient
      *        either a string of UTF-8 encoded content, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
+     *        {@see \Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *

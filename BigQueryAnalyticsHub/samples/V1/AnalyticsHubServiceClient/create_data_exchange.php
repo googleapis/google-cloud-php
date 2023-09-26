@@ -39,11 +39,10 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
  *                                        Should not use characters that require URL-escaping, or characters
  *                                        outside of ASCII, spaces.
  *                                        Max length: 100 bytes.
- * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display name must
- *                                        contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
- *                                        spaces ( ), ampersands (&) and must not start or end with spaces.
- *                                        Default value is an empty string.
- *                                        Max length: 63 bytes.
+ * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display
+ *                                        name must contain only Unicode letters, numbers (0-9), underscores (_),
+ *                                        dashes (-), spaces ( ), ampersands (&) and must not start or end with
+ *                                        spaces. Default value is an empty string. Max length: 63 bytes.
  */
 function create_data_exchange_sample(
     string $formattedParent,

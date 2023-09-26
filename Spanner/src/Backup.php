@@ -329,7 +329,7 @@ class Backup
      * When backups are created, they may take some time before
      * they are ready for use. This method allows for checking whether a
      * backup is ready. Note that this value is cached within the class instance,
-     * so if you are polling it, first call {@see Google\Cloud\Spanner\Backup::reload()}
+     * so if you are polling it, first call {@see \Google\Cloud\Spanner\Backup::reload()}
      * to refresh the cached value.
      *
      * Example:

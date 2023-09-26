@@ -33,9 +33,9 @@ use Google\Rpc\Code;
  *
  * This class may be used directly for multiple non-transactional writes with
  * automatic retry on failure. To run changes in a transaction (with automatic
- * retry/rollback on failure), use {@see Google\Cloud\Firestore\Transaction}.
+ * retry/rollback on failure), use {@see \Google\Cloud\Firestore\Transaction}.
  * Single modifications can be made using the various methods on
- * {@see Google\Cloud\Firestore\DocumentReference}.
+ * {@see \Google\Cloud\Firestore\DocumentReference}.
  *
  * Example:
  * ```
@@ -337,7 +337,7 @@ class BulkWriter
      *        name. Field data must be provided in the `$fields` argument.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::update()},
+     *        Note that unlike {@see \Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options Configuration options
      * @return BulkWriter
@@ -400,7 +400,7 @@ class BulkWriter
      *        name. Field data must be provided in the `$fields` argument.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\BulkWriter::update()},
+     *        Note that unlike {@see \Google\Cloud\Firestore\BulkWriter::update()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration Options
@@ -471,11 +471,11 @@ class BulkWriter
      *
      * This method supports various sentinel values, to perform special operations
      * on fields. Available sentinel values are provided as methods, found in
-     * {@see Google\Cloud\Firestore\FieldValue}.
+     * {@see \Google\Cloud\Firestore\FieldValue}.
      *
      * Note that field names must be provided using field paths, encoded either
      * as a dot-delimited string (i.e. `foo.bar`), or an instance of
-     * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
+     * {@see \Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
      *
      * Please note that conflicting paths will result in an exception. Paths
      * conflict when one path indicates a location nested within another path.
@@ -506,7 +506,7 @@ class BulkWriter
      *
      * ```
      * // If your field names contain special characters (such as `.`, or symbols),
-     * // using {@see Google\Cloud\Firestore\FieldPath} will properly escape each element.
+     * // using {@see \Google\Cloud\Firestore\FieldPath} will properly escape each element.
      *
      * use Google\Cloud\Firestore\FieldPath;
      *
@@ -1344,7 +1344,7 @@ class BulkWriter
     }
 
     /**
-     * Convert a set of {@see Google\Cloud\Firestore\FieldPath} objects to strings.
+     * Convert a set of {@see \Google\Cloud\Firestore\FieldPath} objects to strings.
      *
      * @param FieldPath[] $paths The input paths.
      * @param FieldValueInterface[] $sentinels Sentinel values.

@@ -761,7 +761,7 @@ class Bucket
      * }
      * @return Notification
      * @throws \InvalidArgumentException When providing a type other than string
-     *         or {@see Google\Cloud\PubSub\Topic} as $topic.
+     *         or {@see \Google\Cloud\PubSub\Topic} as $topic.
      * @throws GoogleException When a project ID has not been detected.
      * @experimental The experimental flag means that while we believe this
      *      method or class is ready for use, it may change before release in
@@ -1419,7 +1419,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
-     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        will expire. May provide an instance of {@see \Google\Cloud\Core\Timestamp},
      *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
      *        UNIX timestamp as an integer.
      * @param array $options {
@@ -1525,7 +1525,7 @@ class Bucket
      * @param string $objectName The path to the file in Google Cloud Storage,
      *        relative to the bucket.
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
-     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        will expire. May provide an instance of {@see \Google\Cloud\Core\Timestamp},
      *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
      *        UNIX timestamp as an integer.
      * @param array $options [optional] {

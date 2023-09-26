@@ -21,7 +21,7 @@ namespace Google\Cloud\Firestore\FieldValue;
  * Represents a field to be deleted.
  *
  * This class is not intended to be used directly. See
- * {@see Google\Cloud\Firestore\FieldValue::deleteField()} for usage.
+ * {@see \Google\Cloud\Firestore\FieldValue::deleteField()} for usage.
  *
  * @internal
  */

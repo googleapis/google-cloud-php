@@ -66,7 +66,7 @@ class Trace
      * @param string $traceId [optional] The id of the trace. If not provided, one will be generated
      *        automatically for you.
      * @param array $spans [optional] Array of Span constructor arguments. See
-     *        {@see Google\Cloud\Trace\Span::__construct()} for configuration details.
+     *        {@see \Google\Cloud\Trace\Span::__construct()} for configuration details.
      */
     public function __construct($projectId, $traceId = null, array $spans = [])
     {
@@ -125,14 +125,14 @@ class Trace
     }
 
     /**
-     * Create an instance of {@see Google\Cloud\Trace\Span}
+     * Create an instance of {@see \Google\Cloud\Trace\Span}
      *
      * Example:
      * ```
      * $span = $trace->span(['name' => 'newSpan']);
      * ```
      *
-     * @param array $options [optional] See {@see Google\Cloud\Trace\Span::__construct()}
+     * @param array $options [optional] See {@see \Google\Cloud\Trace\Span::__construct()}
      *        for configuration details.
      * @return Span
      */

@@ -161,7 +161,7 @@ class TraceClient
     /**
      * Lazily find or instantiates a trace. There are no network requests made at this
      * point. To see the operations that can be performed on a trace please
-     * see {@see Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
+     * see {@see \Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
      * generated for you.
      *
      * Example:

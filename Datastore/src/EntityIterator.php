@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore;
 use Google\Cloud\Core\Iterator\ItemIteratorTrait;
 
 /**
- * Iterates over a set of {@see Google\Cloud\Datastore\Entity} items.
+ * Iterates over a set of {@see \Google\Cloud\Datastore\Entity} items.
  */
 class EntityIterator implements \Iterator
 {

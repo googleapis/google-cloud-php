@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class SubscribeListingResponse extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Subscription object created from this subscribe action.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription subscription = 1;</code>
+     */
+    private $subscription = null;
 
     /**
      * Constructor.
@@ -22,11 +28,49 @@ class SubscribeListingResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription $subscription
+     *           Subscription object created from this subscribe action.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Analyticshub\V1\Analyticshub::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Subscription object created from this subscribe action.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription subscription = 1;</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription|null
+     */
+    public function getSubscription()
+    {
+        return $this->subscription;
+    }
+
+    public function hasSubscription()
+    {
+        return isset($this->subscription);
+    }
+
+    public function clearSubscription()
+    {
+        unset($this->subscription);
+    }
+
+    /**
+     * Subscription object created from this subscribe action.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription subscription = 1;</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription $var
+     * @return $this
+     */
+    public function setSubscription($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription::class);
+        $this->subscription = $var;
+
+        return $this;
     }
 
 }

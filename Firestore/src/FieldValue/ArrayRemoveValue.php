@@ -21,7 +21,7 @@ namespace Google\Cloud\Firestore\FieldValue;
  * Represents an ArrayRemove DocumentTransform.
  *
  * This class is not intended to be used directly. See
- * {@see Google\Cloud\Firestore\FieldValue::arrayRemove()} for usage.
+ * {@see \Google\Cloud\Firestore\FieldValue::arrayRemove()} for usage.
  *
  * @internal
  */
