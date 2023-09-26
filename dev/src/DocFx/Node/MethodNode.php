@@ -167,7 +167,9 @@ class MethodNode
             }
         }
         if ($links) {
-            $content .= "\n\nSee: " . implode(', ', $links);
+            // Add links as an unordered list
+            $content = "\nSee also:";
+            $content .= "\n - " . implode("\n - ", $links);
         }
 
         return $content;
