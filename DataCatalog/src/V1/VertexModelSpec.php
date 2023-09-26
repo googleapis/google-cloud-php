@@ -20,7 +20,7 @@ class VertexModelSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_id = 1;</code>
      */
-    protected $version_id = '';
+    private $version_id = '';
     /**
      * User provided version aliases so that a model version can be referenced via
      * alias
@@ -33,20 +33,20 @@ class VertexModelSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_description = 3;</code>
      */
-    protected $version_description = '';
+    private $version_description = '';
     /**
      * Source of a Vertex model.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.VertexModelSourceInfo vertex_model_source_info = 4;</code>
      */
-    protected $vertex_model_source_info = null;
+    private $vertex_model_source_info = null;
     /**
      * URI of the Docker image to be used as the custom container for serving
      * predictions.
      *
      * Generated from protobuf field <code>string container_image_uri = 5;</code>
      */
-    protected $container_image_uri = '';
+    private $container_image_uri = '';
 
     /**
      * Constructor.

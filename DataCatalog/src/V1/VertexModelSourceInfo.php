@@ -20,7 +20,7 @@ class VertexModelSourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.VertexModelSourceInfo.ModelSourceType source_type = 1;</code>
      */
-    protected $source_type = 0;
+    private $source_type = 0;
     /**
      * If this Model is copy of another Model. If true then
      * [source_type][google.cloud.datacatalog.v1.VertexModelSourceInfo.source_type]
@@ -28,7 +28,7 @@ class VertexModelSourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool copy = 2;</code>
      */
-    protected $copy = false;
+    private $copy = false;
 
     /**
      * Constructor.
