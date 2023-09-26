@@ -412,6 +412,25 @@ abstract class ContactCenterInsightsBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a recognizer
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $recognizer
+     *
+     * @return string The formatted recognizer resource.
+     */
+    public static function recognizerName(string $project, string $location, string $recognizer): string
+    {
+        return self::getPathTemplate('recognizer')->render([
+            'project' => $project,
+            'location' => $location,
+            'recognizer' => $recognizer,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a settings
      * resource.
      *
@@ -461,6 +480,7 @@ abstract class ContactCenterInsightsBaseClient
      * - phraseMatcher: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
      * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
+     * - recognizer: projects/{project}/locations/{location}/recognizers/{recognizer}
      * - settings: projects/{project}/locations/{location}/settings
      * - view: projects/{project}/locations/{location}/views/{view}
      *
