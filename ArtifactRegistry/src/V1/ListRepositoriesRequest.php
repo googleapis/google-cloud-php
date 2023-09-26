@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the parent resource whose repositories will be listed.
+     * Required. The name of the parent resource whose repositories will be
+     * listed.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,7 +36,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The name of the parent resource whose repositories will be listed. Please see
+     * @param string $parent Required. The name of the parent resource whose repositories will be
+     *                       listed. Please see
      *                       {@see ArtifactRegistryClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\ListRepositoriesRequest
@@ -55,7 +57,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the parent resource whose repositories will be listed.
+     *           Required. The name of the parent resource whose repositories will be
+     *           listed.
      *     @type int $page_size
      *           The maximum number of repositories to return. Maximum page size is 1,000.
      *     @type string $page_token
@@ -68,7 +71,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource whose repositories will be listed.
+     * Required. The name of the parent resource whose repositories will be
+     * listed.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +83,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parent resource whose repositories will be listed.
+     * Required. The name of the parent resource whose repositories will be
+     * listed.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
