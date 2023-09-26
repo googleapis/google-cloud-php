@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full resource name of the resource associated with this IAM policy.
+     * The full resource name of the resource on which this IAM policy is set.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
@@ -65,7 +65,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attached_resource
-     *           The full resource name of the resource associated with this IAM policy.
+     *           The full resource name of the resource on which this IAM policy is set.
      *           Example:
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *           See [Cloud Asset Inventory Resource Name
@@ -93,7 +93,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the resource associated with this IAM policy.
+     * The full resource name of the resource on which this IAM policy is set.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
@@ -109,7 +109,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the resource associated with this IAM policy.
+     * The full resource name of the resource on which this IAM policy is set.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
