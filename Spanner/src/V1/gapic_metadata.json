@@ -15,6 +15,11 @@
                                 "batchCreateSessions"
                             ]
                         },
+                        "BatchWrite": {
+                            "methods": [
+                                "batchWrite"
+                            ]
+                        },
                         "BeginTransaction": {
                             "methods": [
                                 "beginTransaction"
