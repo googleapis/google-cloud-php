@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'GetSettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AdvisoryNotifications\V1\Settings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListNotifications' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -35,9 +47,23 @@ return [
                     ],
                 ],
             ],
+            'UpdateSettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AdvisoryNotifications\V1\Settings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'settings.name',
+                        'fieldAccessors' => [
+                            'getSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'location' => 'organizations/{organization}/locations/{location}',
                 'notification' => 'organizations/{organization}/locations/{location}/notifications/{notification}',
+                'settings' => 'organizations/{organization}/locations/{location}/settings',
             ],
         ],
     ],
