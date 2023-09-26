@@ -98,7 +98,7 @@ class StructType
      *
      * Unnamed struct fields may be defined by providing `null` as the first
      * argument value, however you may find it more convenient to use the provided
-     * {@see Google\Cloud\Spanner\StructType::addUnnamed()} method.
+     * {@see \Google\Cloud\Spanner\StructType::addUnnamed()} method.
      *
      * Example:
      * ```
@@ -129,7 +129,7 @@ class StructType
      * @param string|null $name The field name.
      * @param int|ArrayType|StructType $type $type A value type code or nested
      *        struct or array definition. Accepted integer values are defined as
-     *        constants on {@see Google\Cloud\Spanner\Database}, and are as
+     *        constants on {@see \Google\Cloud\Spanner\Database}, and are as
      *        follows: `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING` and
@@ -187,7 +187,7 @@ class StructType
      *
      * @param int|ArrayType|StructType $type $type A value type code or nested
      *        struct or array definition. Accepted integer values are defined as
-     *        constants on {@see Google\Cloud\Spanner\Database}, and are as
+     *        constants on {@see \Google\Cloud\Spanner\Database}, and are as
      *        follows: `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING` and

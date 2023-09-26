@@ -52,7 +52,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      */
@@ -107,7 +109,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type string $disk_interface
      *           Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      *           If not indicated, "NVMe" will be the default one for local ssds.
-     *           We only support "SCSI" for persistent disks now.
+     *           This field is ignored for persistent disks as the interface is chosen
+     *           automatically. See
+     *           https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      * }
      */
     public function __construct($data = NULL) {
@@ -294,7 +298,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      * @return string
@@ -307,7 +313,9 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
-     * We only support "SCSI" for persistent disks now.
+     * This field is ignored for persistent disks as the interface is chosen
+     * automatically. See
+     * https://cloud.google.com/compute/docs/disks/persistent-disks#choose_an_interface.
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      * @param string $var

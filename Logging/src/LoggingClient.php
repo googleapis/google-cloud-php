@@ -131,7 +131,7 @@ class LoggingClient
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
-     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           {@see \Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
      * }
      * @return PsrLogger
@@ -244,7 +244,7 @@ class LoggingClient
     /**
      * Lazily instantiates a sink. There are no network requests made at this
      * point. To see the operations that can be performed on a sink please see
-     * {@see Google\Cloud\Logging\Sink}.
+     * {@see \Google\Cloud\Logging\Sink}.
      *
      * Example:
      * ```
@@ -345,7 +345,7 @@ class LoggingClient
     /**
      * Lazily instantiates a metric. There are no network requests made at this
      * point. To see the operations that can be performed on a metric please see
-     * {@see Google\Cloud\Logging\Metric}.
+     * {@see \Google\Cloud\Logging\Metric}.
      *
      * Example:
      * ```
@@ -548,7 +548,7 @@ class LoggingClient
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
-     *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
+     *           {@see \Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
      * }
      * @return PsrLogger

@@ -55,6 +55,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteSubscription' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/subscriptions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDataExchange' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*}',
@@ -96,6 +107,17 @@ return [
                     ],
                 ],
             ],
+            'GetSubscription' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/subscriptions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListDataExchanges' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataExchanges',
@@ -129,6 +151,58 @@ return [
                     ],
                 ],
             ],
+            'ListSharedResourceSubscriptions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataExchanges/*}:listSubscriptions',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataExchanges/*/listings/*}:listSubscriptions',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSubscriptions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/subscriptions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RefreshSubscription' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/subscriptions/*}:refresh',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RevokeSubscription' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/subscriptions/*}:revoke',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataExchanges/*}:setIamPolicy',
@@ -144,6 +218,18 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SubscribeDataExchange' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*}:subscribe',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

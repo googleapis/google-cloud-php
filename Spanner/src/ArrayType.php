@@ -74,7 +74,7 @@ class ArrayType
     /**
      * @param int|string|null|StructType $type A value type code or nested struct
      *        definition. Accepted integer and string values are defined as constants on
-     *        {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *        {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING`,

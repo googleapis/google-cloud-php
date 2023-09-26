@@ -24,7 +24,7 @@ use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 
 /**
- * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
+ * Utility methods for mapping between datastore and {@see \Google\Cloud\Datastore\Entity}.
  */
 class EntityMapper
 {
@@ -55,7 +55,7 @@ class EntityMapper
      * @param string $projectId The datastore project ID
      * @param bool $encode Whether to encode blobs as base64.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct($projectId, $encode, $returnInt64AsObject)
@@ -70,10 +70,10 @@ class EntityMapper
      *
      * @param array $entityData The incoming entity
      * @param string $className The name of a class to use as the entity. Must
-     *        implement {@see Google\Cloud\Datastore\EntityInterface}.
+     *        implement {@see \Google\Cloud\Datastore\EntityInterface}.
      * @return array
      * @throws \InvalidArgumentException If the value of $className does not
-     *       implement {@see Google\Cloud\Datastore\EntityInterface}.
+     *       implement {@see \Google\Cloud\Datastore\EntityInterface}.
      * @throws \InvalidArgumentException If the custom entity type containts invalid
      *       mappings for embedded entities.
      */

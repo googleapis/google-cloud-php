@@ -77,10 +77,10 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
     private $query = '';
     /**
      * Optional. The page size for search result pagination. Page size is capped
-     * at 500 even if a larger value is given. If set to zero, server will pick an
-     * appropriate default. Returned results may be fewer than requested. When
-     * this happens, there could be more results as long as `next_page_token` is
-     * returned.
+     * at 500 even if a larger value is given. If set to zero or a negative value,
+     * server will pick an appropriate default. Returned results may be fewer than
+     * requested. When this happens, there could be more results as long as
+     * `next_page_token` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -256,10 +256,10 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *             principal type "user".
      *     @type int $page_size
      *           Optional. The page size for search result pagination. Page size is capped
-     *           at 500 even if a larger value is given. If set to zero, server will pick an
-     *           appropriate default. Returned results may be fewer than requested. When
-     *           this happens, there could be more results as long as `next_page_token` is
-     *           returned.
+     *           at 500 even if a larger value is given. If set to zero or a negative value,
+     *           server will pick an appropriate default. Returned results may be fewer than
+     *           requested. When this happens, there could be more results as long as
+     *           `next_page_token` is returned.
      *     @type string $page_token
      *           Optional. If present, retrieve the next batch of results from the preceding
      *           call to this method. `page_token` must be the value of `next_page_token`
@@ -448,10 +448,10 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The page size for search result pagination. Page size is capped
-     * at 500 even if a larger value is given. If set to zero, server will pick an
-     * appropriate default. Returned results may be fewer than requested. When
-     * this happens, there could be more results as long as `next_page_token` is
-     * returned.
+     * at 500 even if a larger value is given. If set to zero or a negative value,
+     * server will pick an appropriate default. Returned results may be fewer than
+     * requested. When this happens, there could be more results as long as
+     * `next_page_token` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -463,10 +463,10 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The page size for search result pagination. Page size is capped
-     * at 500 even if a larger value is given. If set to zero, server will pick an
-     * appropriate default. Returned results may be fewer than requested. When
-     * this happens, there could be more results as long as `next_page_token` is
-     * returned.
+     * at 500 even if a larger value is given. If set to zero or a negative value,
+     * server will pick an appropriate default. Returned results may be fewer than
+     * requested. When this happens, there could be more results as long as
+     * `next_page_token` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

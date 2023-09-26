@@ -36,6 +36,9 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
+use Google\Cloud\Spanner\V1\BatchWriteRequest;
+use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup;
+use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -394,6 +397,83 @@ class SpannerGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Batches the supplied mutation groups in a collection of efficient
+     * transactions. All mutations in a group are committed atomically. However,
+     * mutations across groups can be committed non-atomically in an unspecified
+     * order and thus, they must be independent of each other. Partial failure is
+     * possible, i.e., some groups may have been committed successfully, while
+     * some may have failed. The results of individual batches are streamed into
+     * the response as the batches are applied.
+     *
+     * BatchWrite requests are not replay protected, meaning that each mutation
+     * group may be applied more than once. Replays of non-idempotent mutations
+     * may have undesirable effects. For example, replays of an insert mutation
+     * may produce an already exists error or if you use generated or commit
+     * timestamp-based keys, it may result in additional rows being added to the
+     * mutation's table. We recommend structuring your mutation groups to be
+     * idempotent to avoid this issue.
+     *
+     * Sample code:
+     * ```
+     * $spannerClient = new SpannerClient();
+     * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $mutationGroups = [];
+     *     // Read all responses until the stream is complete
+     *     $stream = $spannerClient->batchWrite($formattedSession, $mutationGroups);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string          $session        Required. The session in which the batch request is to be run.
+     * @param MutationGroup[] $mutationGroups Required. The groups of mutations to be applied.
+     * @param array           $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RequestOptions $requestOptions
+     *           Common options for this request.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchWrite(
+        $session,
+        $mutationGroups,
+        array $optionalArgs = []
+    ) {
+        $request = new BatchWriteRequest();
+        $requestParamHeaders = [];
+        $request->setSession($session);
+        $request->setMutationGroups($mutationGroups);
+        $requestParamHeaders['session'] = $session;
+        if (isset($optionalArgs['requestOptions'])) {
+            $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchWrite',
+            BatchWriteResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**

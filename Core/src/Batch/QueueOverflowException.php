@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * Exception thrown in {@see Google\Cloud\Core\Batch\SysvProcessor::submit()}
+ * Exception thrown in {@see \Google\Cloud\Core\Batch\SysvProcessor::submit()}
  * method when it cannot add an item to the message queue.
  * Possible causes include:
  *

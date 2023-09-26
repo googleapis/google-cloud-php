@@ -34,9 +34,12 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest;
+use Google\Cloud\AdvisoryNotifications\V1\GetSettingsRequest;
 use Google\Cloud\AdvisoryNotifications\V1\ListNotificationsRequest;
 use Google\Cloud\AdvisoryNotifications\V1\ListNotificationsResponse;
 use Google\Cloud\AdvisoryNotifications\V1\Notification;
+use Google\Cloud\AdvisoryNotifications\V1\Settings;
+use Google\Cloud\AdvisoryNotifications\V1\UpdateSettingsRequest;
 
 /**
  * Service Description: Service to manage Security and Privacy Notifications.
@@ -87,6 +90,8 @@ class AdvisoryNotificationsServiceGapicClient
     private static $locationNameTemplate;
 
     private static $notificationNameTemplate;
+
+    private static $settingsNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -140,12 +145,24 @@ class AdvisoryNotificationsServiceGapicClient
         return self::$notificationNameTemplate;
     }
 
+    private static function getSettingsNameTemplate()
+    {
+        if (self::$settingsNameTemplate == null) {
+            self::$settingsNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/settings'
+            );
+        }
+
+        return self::$settingsNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
                 'notification' => self::getNotificationNameTemplate(),
+                'settings' => self::getSettingsNameTemplate(),
             ];
         }
 
@@ -192,11 +209,29 @@ class AdvisoryNotificationsServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a settings
+     * resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted settings resource.
+     */
+    public static function settingsName($organization, $location)
+    {
+        return self::getSettingsNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - location: organizations/{organization}/locations/{location}
      * - notification: organizations/{organization}/locations/{location}/notifications/{notification}
+     * - settings: organizations/{organization}/locations/{location}/settings
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -358,6 +393,56 @@ class AdvisoryNotificationsServiceGapicClient
     }
 
     /**
+     * Get notification settings.
+     *
+     * Sample code:
+     * ```
+     * $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
+     * try {
+     *     $formattedName = $advisoryNotificationsServiceClient->settingsName('[ORGANIZATION]', '[LOCATION]');
+     *     $response = $advisoryNotificationsServiceClient->getSettings($formattedName);
+     * } finally {
+     *     $advisoryNotificationsServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the settings to retrieve.
+     *                             Format:
+     *                             organizations/{organization}/locations/{location}/settings.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AdvisoryNotifications\V1\Settings
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetSettings',
+            Settings::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists notifications under a given parent.
      *
      * Sample code:
@@ -451,5 +536,53 @@ class AdvisoryNotificationsServiceGapicClient
             ListNotificationsResponse::class,
             $request
         );
+    }
+
+    /**
+     * Update notification settings.
+     *
+     * Sample code:
+     * ```
+     * $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
+     * try {
+     *     $settings = new Settings();
+     *     $response = $advisoryNotificationsServiceClient->updateSettings($settings);
+     * } finally {
+     *     $advisoryNotificationsServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Settings $settings     Required. New settings.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AdvisoryNotifications\V1\Settings
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateSettings($settings, array $optionalArgs = [])
+    {
+        $request = new UpdateSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setSettings($settings);
+        $requestParamHeaders['settings.name'] = $settings->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateSettings',
+            Settings::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

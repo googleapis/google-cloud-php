@@ -25,7 +25,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  * Represents a Firestore transaction.
  *
  * This class should be accessed inside a transaction callable, obtained via
- * {@see Google\Cloud\Firestore\FirestoreClient::runTransaction()}.
+ * {@see \Google\Cloud\Firestore\FirestoreClient::runTransaction()}.
  *
  * Note that method examples, while shown as being called directly for the sake
  * of brevity, should be called only within the context of a transaction
@@ -153,7 +153,7 @@ class Transaction
      * requested, except in case of error.
      *
      * Note that this method will **always** return instances of
-     * {@see Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
+     * {@see \Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
      * requested do not exist. It is highly recommended that you check for
      * existence before accessing document data.
      *
@@ -234,7 +234,7 @@ class Transaction
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
      *        Note that unlike
-     *        {@see Google\Cloud\Firestore\DocumentReference::update()}, field
+     *        {@see \Google\Cloud\Firestore\DocumentReference::update()}, field
      *        paths are NOT supported by this method.
      * @return Transaction
      */
@@ -268,7 +268,7 @@ class Transaction
      * @param DocumentReference $document The document to modify or replace.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\Transaction::update()},
+     *        Note that unlike {@see \Google\Cloud\Firestore\Transaction::update()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration options.
@@ -295,11 +295,11 @@ class Transaction
      *
      * This method supports various sentinel values, to perform special operations
      * on fields. Available sentinel values are provided as methods, found in
-     * {@see Google\Cloud\Firestore\FieldValue}.
+     * {@see \Google\Cloud\Firestore\FieldValue}.
      *
      * Note that field names must be provided using field paths, encoded either
      * as a dot-delimited string (i.e. `foo.bar`), or an instance of
-     * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
+     * {@see \Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
      *
      * Please note that conflicting paths will result in an exception. Paths
      * conflict when one path indicates a location nested within another path.
@@ -330,7 +330,7 @@ class Transaction
      *
      * ```
      * // If your field names contain special characters (such as `.`, or symbols),
-     * // using {@see Google\Cloud\Firestore\FieldPath} will properly escape each element.
+     * // using {@see \Google\Cloud\Firestore\FieldPath} will properly escape each element.
      *
      * use Google\Cloud\Firestore\FieldPath;
      *

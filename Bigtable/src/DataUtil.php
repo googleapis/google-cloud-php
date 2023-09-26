@@ -40,8 +40,8 @@ class DataUtil
     }
 
     /**
-     * Check if {@see Google\Cloud\Bigtable\DataUtil::intToByteString()} and
-     * {@see Google\Cloud\Bigtable\DataUtil::byteStringToInt()} supported on
+     * Check if {@see \Google\Cloud\Bigtable\DataUtil::intToByteString()} and
+     * {@see \Google\Cloud\Bigtable\DataUtil::byteStringToInt()} supported on
      * the current platform.
      *
      * @return bool

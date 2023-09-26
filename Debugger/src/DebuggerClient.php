@@ -118,7 +118,7 @@ class DebuggerClient
     /**
      * Lazily instantiate a debuggee. There are no network requests made at this
      * point. To see the operations that can be performed on a debuggee, please
-     * see {@see Google\Cloud\Debugger\Debuggee}.
+     * see {@see \Google\Cloud\Debugger\Debuggee}.
      *
      * Example:
      * ```

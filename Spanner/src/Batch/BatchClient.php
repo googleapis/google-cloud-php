@@ -205,7 +205,7 @@ class BatchClient
     }
 
     /**
-     * Create a {@see Google\Cloud\Spanner\Batch\BatchSnapshot} from a snapshot
+     * Create a {@see \Google\Cloud\Spanner\Batch\BatchSnapshot} from a snapshot
      * identifier.
      *
      * This method can be used to deserialize a snapshot which is
@@ -216,7 +216,7 @@ class BatchClient
      * $snapshot = $batch->snapshotFromString($snapshotString);
      * ```
      *
-     * @param string $identifier A stringified representation of {@see Google\Cloud\Spanner\Batch\BatchSnapshot}.
+     * @param string $identifier A stringified representation of {@see \Google\Cloud\Spanner\Batch\BatchSnapshot}.
      * @return BatchSnapshot
      */
     public function snapshotFromString($identifier)
@@ -241,7 +241,7 @@ class BatchClient
     }
 
     /**
-     * Create a {@see Google\Cloud\Spanner\Batch\PartitionInterface} instance.
+     * Create a {@see \Google\Cloud\Spanner\Batch\PartitionInterface} instance.
      *
      * This method can be used to deserialize a partition which is
      * shared across multiple servers or processes.

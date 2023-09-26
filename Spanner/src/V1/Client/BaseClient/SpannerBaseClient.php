@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
+use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -47,6 +48,7 @@ use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
+use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
@@ -295,6 +297,40 @@ abstract class SpannerBaseClient
     public function batchCreateSessions(BatchCreateSessionsRequest $request, array $callOptions = []): BatchCreateSessionsResponse
     {
         return $this->startApiCall('BatchCreateSessions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batches the supplied mutation groups in a collection of efficient
+     * transactions. All mutations in a group are committed atomically. However,
+     * mutations across groups can be committed non-atomically in an unspecified
+     * order and thus, they must be independent of each other. Partial failure is
+     * possible, i.e., some groups may have been committed successfully, while
+     * some may have failed. The results of individual batches are streamed into
+     * the response as the batches are applied.
+     *
+     * BatchWrite requests are not replay protected, meaning that each mutation
+     * group may be applied more than once. Replays of non-idempotent mutations
+     * may have undesirable effects. For example, replays of an insert mutation
+     * may produce an already exists error or if you use generated or commit
+     * timestamp-based keys, it may result in additional rows being added to the
+     * mutation's table. We recommend structuring your mutation groups to be
+     * idempotent to avoid this issue.
+     *
+     * @param BatchWriteRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchWrite(BatchWriteRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('BatchWrite', $request, $callOptions);
     }
 
     /**

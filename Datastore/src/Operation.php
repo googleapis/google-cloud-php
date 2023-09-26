@@ -30,13 +30,13 @@ use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 /**
  * Run lookups and queries and commit changes.
  *
- * This class is used by {@see Google\Cloud\Datastore\DatastoreClient}
- * and {@see Google\Cloud\Datastore\Transaction} and is not intended to be used
+ * This class is used by {@see \Google\Cloud\Datastore\DatastoreClient}
+ * and {@see \Google\Cloud\Datastore\Transaction} and is not intended to be used
  * directly.
  *
  * Examples are omitted for brevity. Detailed usage examples can be found in
- * {@see Google\Cloud\Datastore\DatastoreClient} and
- * {@see Google\Cloud\Datastore\Transaction}.
+ * {@see \Google\Cloud\Datastore\DatastoreClient} and
+ * {@see \Google\Cloud\Datastore\Transaction}.
  */
 class Operation
 {
@@ -206,10 +206,10 @@ class Operation
      *
      * In certain cases, you may want to create your own entity types.
      * Google Cloud PHP supports custom types implementing
-     * {@see Google\Cloud\Datastore\EntityInterface}. If the name of an
+     * {@see \Google\Cloud\Datastore\EntityInterface}. If the name of an
      * `EntityInterface` implementation is given in the options array, an
      * instance of that class will be returned instead of
-     * {@see Google\Cloud\Datastore\Entity}.
+     * {@see \Google\Cloud\Datastore\Entity}.
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
@@ -223,8 +223,8 @@ class Operation
      *
      *     @type string $className If set, the given class will be returned.
      *           Value must be the name of a class implementing
-     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
-     *           {@see Google\Cloud\Datastore\Entity}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see \Google\Cloud\Datastore\Entity}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      * }
@@ -359,11 +359,11 @@ class Operation
      *           run in a transaction.
      *     @type string|array $className If a string, the given class will be
      *           returned. Value must be the name of a class implementing
-     *           {@see Google\Cloud\Datastore\EntityInterface}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}.
      *           If an array is given, it must be an associative array, where
      *           the key is a Kind and the value must implement
-     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
-     *           {@see Google\Cloud\Datastore\Entity}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see \Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
      *     @type string $databaseId ID of the database to which the entities belong.
@@ -371,8 +371,8 @@ class Operation
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
-     *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
-     *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
+     *         {@see \Google\Cloud\Datastore\Entity}. Members of `missing` and
+     *         `deferred` will be instance of {@see \Google\Cloud\Datastore\Key}.
      * @throws \InvalidArgumentException
      */
     public function lookup(array $keys, array $options = [])
@@ -450,8 +450,8 @@ class Operation
      *           run in a transaction.
      *     @type string $className If set, the given class will be returned.
      *           Value must be the name of a class implementing
-     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
-     *           {@see Google\Cloud\Datastore\Entity}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see \Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $databaseId ID of the database to which the entities belong.
@@ -750,11 +750,11 @@ class Operation
      *
      * @param array $result The EntityResult from a Lookup.
      * @param string|array $class If a string, the name of the class to return results as.
-     *        Must implement {@see Google\Cloud\Datastore\EntityInterface}.
-     *        If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *        Must implement {@see \Google\Cloud\Datastore\EntityInterface}.
+     *        If not set, {@see \Google\Cloud\Datastore\Entity} will be used.
      *        If an array is given, it must be an associative array, where
      *        the key is a Kind and the value is an object implementing
-     *        {@see Google\Cloud\Datastore\EntityInterface}.
+     *        {@see \Google\Cloud\Datastore\EntityInterface}.
      * @return EntityInterface
      */
     private function mapEntityResult(array $result, $class)

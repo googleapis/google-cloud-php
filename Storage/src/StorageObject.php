@@ -813,7 +813,7 @@ class StorageObject
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
-     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        will expire. May provide an instance of {@see \Google\Cloud\Core\Timestamp},
      *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
      *        UNIX timestamp as an integer.
      * @param array $options {
@@ -935,7 +935,7 @@ class StorageObject
      * ```
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
-     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        will expire. May provide an instance of {@see \Google\Cloud\Core\Timestamp},
      *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
      *        UNIX timestamp as an integer.
      * @param array $options {

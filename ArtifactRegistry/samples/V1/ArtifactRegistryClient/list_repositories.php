@@ -32,7 +32,8 @@ use Google\Cloud\ArtifactRegistry\V1\Repository;
 /**
  * Lists repositories.
  *
- * @param string $formattedParent The name of the parent resource whose repositories will be listed. Please see
+ * @param string $formattedParent The name of the parent resource whose repositories will be
+ *                                listed. Please see
  *                                {@see ArtifactRegistryClient::locationName()} for help formatting this field.
  */
 function list_repositories_sample(string $formattedParent): void

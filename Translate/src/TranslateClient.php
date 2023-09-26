@@ -21,7 +21,7 @@ namespace Google\Cloud\Translate;
 
 if (false) {
     /**
-     * This class is deprecated. Use {@see Google\Cloud\Translate\V2\TranslateClient} instead.
+     * This class is deprecated. Use {@see \Google\Cloud\Translate\V2\TranslateClient} instead.
      * @deprecated
      */
     class TranslateClient {}

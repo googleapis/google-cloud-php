@@ -15,6 +15,21 @@ return [
                     ],
                 ],
             ],
+            'BatchWrite' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Spanner\V1\BatchWriteResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'session',
+                        'fieldAccessors' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
             'BeginTransaction' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Spanner\V1\Transaction',
