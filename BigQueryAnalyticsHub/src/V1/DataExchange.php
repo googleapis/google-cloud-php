@@ -25,19 +25,18 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Human-readable display name of the data exchange. The display name must
-     * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
-     * spaces ( ), ampersands (&) and must not start or end with spaces.
-     * Default value is an empty string.
-     * Max length: 63 bytes.
+     * Required. Human-readable display name of the data exchange. The display
+     * name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), ampersands (&) and must not start or end with
+     * spaces. Default value is an empty string. Max length: 63 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
-     * Optional. Description of the data exchange. The description must not contain Unicode
-     * non-characters as well as C0 and C1 control codes except tabs (HT),
-     * new lines (LF), carriage returns (CR), and page breaks (FF).
+     * Optional. Description of the data exchange. The description must not
+     * contain Unicode non-characters as well as C0 and C1 control codes except
+     * tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF).
      * Default value is an empty string.
      * Max length: 2000 bytes.
      *
@@ -45,8 +44,8 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Optional. Email or URL of the primary point of contact of the data exchange.
-     * Max Length: 1000 bytes.
+     * Optional. Email or URL of the primary point of contact of the data
+     * exchange. Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,15 +63,21 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      */
     private $listing_count = 0;
     /**
-     * Optional. Base64 encoded image representing the data exchange. Max Size: 3.0MiB
-     * Expected image dimensions are 512x512 pixels, however the API only
-     * performs validation on size of the encoded data.
-     * Note: For byte fields, the content of the fields are base64-encoded (which
-     * increases the size of the data by 33-36%) when using JSON on the wire.
+     * Optional. Base64 encoded image representing the data exchange. Max
+     * Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API
+     * only performs validation on size of the encoded data. Note: For byte
+     * fields, the content of the fields are base64-encoded (which increases the
+     * size of the data by 33-36%) when using JSON on the wire.
      *
      * Generated from protobuf field <code>bytes icon = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $icon = '';
+    /**
+     * Optional. Configurable data sharing environment option for a data exchange.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig sharing_environment_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sharing_environment_config = null;
 
     /**
      * Constructor.
@@ -84,30 +89,31 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the data exchange.
      *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
      *     @type string $display_name
-     *           Required. Human-readable display name of the data exchange. The display name must
-     *           contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
-     *           spaces ( ), ampersands (&) and must not start or end with spaces.
-     *           Default value is an empty string.
-     *           Max length: 63 bytes.
+     *           Required. Human-readable display name of the data exchange. The display
+     *           name must contain only Unicode letters, numbers (0-9), underscores (_),
+     *           dashes (-), spaces ( ), ampersands (&) and must not start or end with
+     *           spaces. Default value is an empty string. Max length: 63 bytes.
      *     @type string $description
-     *           Optional. Description of the data exchange. The description must not contain Unicode
-     *           non-characters as well as C0 and C1 control codes except tabs (HT),
-     *           new lines (LF), carriage returns (CR), and page breaks (FF).
+     *           Optional. Description of the data exchange. The description must not
+     *           contain Unicode non-characters as well as C0 and C1 control codes except
+     *           tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF).
      *           Default value is an empty string.
      *           Max length: 2000 bytes.
      *     @type string $primary_contact
-     *           Optional. Email or URL of the primary point of contact of the data exchange.
-     *           Max Length: 1000 bytes.
+     *           Optional. Email or URL of the primary point of contact of the data
+     *           exchange. Max Length: 1000 bytes.
      *     @type string $documentation
      *           Optional. Documentation describing the data exchange.
      *     @type int $listing_count
      *           Output only. Number of listings contained in the data exchange.
      *     @type string $icon
-     *           Optional. Base64 encoded image representing the data exchange. Max Size: 3.0MiB
-     *           Expected image dimensions are 512x512 pixels, however the API only
-     *           performs validation on size of the encoded data.
-     *           Note: For byte fields, the content of the fields are base64-encoded (which
-     *           increases the size of the data by 33-36%) when using JSON on the wire.
+     *           Optional. Base64 encoded image representing the data exchange. Max
+     *           Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API
+     *           only performs validation on size of the encoded data. Note: For byte
+     *           fields, the content of the fields are base64-encoded (which increases the
+     *           size of the data by 33-36%) when using JSON on the wire.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig $sharing_environment_config
+     *           Optional. Configurable data sharing environment option for a data exchange.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,11 +150,10 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Human-readable display name of the data exchange. The display name must
-     * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
-     * spaces ( ), ampersands (&) and must not start or end with spaces.
-     * Default value is an empty string.
-     * Max length: 63 bytes.
+     * Required. Human-readable display name of the data exchange. The display
+     * name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), ampersands (&) and must not start or end with
+     * spaces. Default value is an empty string. Max length: 63 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -159,11 +164,10 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Human-readable display name of the data exchange. The display name must
-     * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
-     * spaces ( ), ampersands (&) and must not start or end with spaces.
-     * Default value is an empty string.
-     * Max length: 63 bytes.
+     * Required. Human-readable display name of the data exchange. The display
+     * name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), ampersands (&) and must not start or end with
+     * spaces. Default value is an empty string. Max length: 63 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -178,9 +182,9 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description of the data exchange. The description must not contain Unicode
-     * non-characters as well as C0 and C1 control codes except tabs (HT),
-     * new lines (LF), carriage returns (CR), and page breaks (FF).
+     * Optional. Description of the data exchange. The description must not
+     * contain Unicode non-characters as well as C0 and C1 control codes except
+     * tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF).
      * Default value is an empty string.
      * Max length: 2000 bytes.
      *
@@ -193,9 +197,9 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description of the data exchange. The description must not contain Unicode
-     * non-characters as well as C0 and C1 control codes except tabs (HT),
-     * new lines (LF), carriage returns (CR), and page breaks (FF).
+     * Optional. Description of the data exchange. The description must not
+     * contain Unicode non-characters as well as C0 and C1 control codes except
+     * tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF).
      * Default value is an empty string.
      * Max length: 2000 bytes.
      *
@@ -212,8 +216,8 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Email or URL of the primary point of contact of the data exchange.
-     * Max Length: 1000 bytes.
+     * Optional. Email or URL of the primary point of contact of the data
+     * exchange. Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -224,8 +228,8 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Email or URL of the primary point of contact of the data exchange.
-     * Max Length: 1000 bytes.
+     * Optional. Email or URL of the primary point of contact of the data
+     * exchange. Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -292,11 +296,11 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Base64 encoded image representing the data exchange. Max Size: 3.0MiB
-     * Expected image dimensions are 512x512 pixels, however the API only
-     * performs validation on size of the encoded data.
-     * Note: For byte fields, the content of the fields are base64-encoded (which
-     * increases the size of the data by 33-36%) when using JSON on the wire.
+     * Optional. Base64 encoded image representing the data exchange. Max
+     * Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API
+     * only performs validation on size of the encoded data. Note: For byte
+     * fields, the content of the fields are base64-encoded (which increases the
+     * size of the data by 33-36%) when using JSON on the wire.
      *
      * Generated from protobuf field <code>bytes icon = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -307,11 +311,11 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Base64 encoded image representing the data exchange. Max Size: 3.0MiB
-     * Expected image dimensions are 512x512 pixels, however the API only
-     * performs validation on size of the encoded data.
-     * Note: For byte fields, the content of the fields are base64-encoded (which
-     * increases the size of the data by 33-36%) when using JSON on the wire.
+     * Optional. Base64 encoded image representing the data exchange. Max
+     * Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API
+     * only performs validation on size of the encoded data. Note: For byte
+     * fields, the content of the fields are base64-encoded (which increases the
+     * size of the data by 33-36%) when using JSON on the wire.
      *
      * Generated from protobuf field <code>bytes icon = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -321,6 +325,42 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->icon = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configurable data sharing environment option for a data exchange.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig sharing_environment_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig|null
+     */
+    public function getSharingEnvironmentConfig()
+    {
+        return $this->sharing_environment_config;
+    }
+
+    public function hasSharingEnvironmentConfig()
+    {
+        return isset($this->sharing_environment_config);
+    }
+
+    public function clearSharingEnvironmentConfig()
+    {
+        unset($this->sharing_environment_config);
+    }
+
+    /**
+     * Optional. Configurable data sharing environment option for a data exchange.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig sharing_environment_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig $var
+     * @return $this
+     */
+    public function setSharingEnvironmentConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig::class);
+        $this->sharing_environment_config = $var;
 
         return $this;
     }

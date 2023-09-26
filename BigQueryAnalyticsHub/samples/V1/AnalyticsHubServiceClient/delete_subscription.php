@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,42 +22,42 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticshub_v1_generated_AnalyticsHubService_UpdateListing_sync]
+// [START analyticshub_v1_generated_AnalyticsHubService_DeleteSubscription_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest;
-use Google\Protobuf\FieldMask;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteSubscriptionRequest;
+use Google\Rpc\Status;
 
 /**
- * Updates an existing listing.
+ * Deletes a subscription.
  *
- * @param string $listingDisplayName Human-readable display name of the listing. The display name must
- *                                   contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
- *                                   spaces ( ), ampersands (&) and can't start or end with spaces. Default
- *                                   value is an empty string. Max length: 63 bytes.
+ * @param string $formattedName Resource name of the subscription to delete.
+ *                              e.g. projects/123/locations/US/subscriptions/456
+ *                              Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
  */
-function update_listing_sample(string $listingDisplayName): void
+function delete_subscription_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $listingBigqueryDataset = new BigQueryDatasetSource();
-    $listing = (new Listing())
-        ->setBigqueryDataset($listingBigqueryDataset)
-        ->setDisplayName($listingDisplayName);
-    $request = (new UpdateListingRequest())
-        ->setUpdateMask($updateMask)
-        ->setListing($listing);
+    $request = (new DeleteSubscriptionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Listing $response */
-        $response = $analyticsHubServiceClient->updateListing($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $analyticsHubServiceClient->deleteSubscription($request);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            printf('Operation completed successfully.' . PHP_EOL);
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -74,8 +74,12 @@ function update_listing_sample(string $listingDisplayName): void
  */
 function callSample(): void
 {
-    $listingDisplayName = '[DISPLAY_NAME]';
+    $formattedName = AnalyticsHubServiceClient::subscriptionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[SUBSCRIPTION]'
+    );
 
-    update_listing_sample($listingDisplayName);
+    delete_subscription_sample($formattedName);
 }
-// [END analyticshub_v1_generated_AnalyticsHubService_UpdateListing_sync]
+// [END analyticshub_v1_generated_AnalyticsHubService_DeleteSubscription_sync]

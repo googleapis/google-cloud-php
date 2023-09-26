@@ -40,11 +40,10 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
  *                                   Should not use characters that require URL-escaping, or characters
  *                                   outside of ASCII, spaces.
  *                                   Max length: 100 bytes.
- * @param string $listingDisplayName Human-readable display name of the listing. The display name must contain
- *                                   only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
- *                                   ( ), ampersands (&) and can't start or end with spaces.
- *                                   Default value is an empty string.
- *                                   Max length: 63 bytes.
+ * @param string $listingDisplayName Human-readable display name of the listing. The display name must
+ *                                   contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+ *                                   spaces ( ), ampersands (&) and can't start or end with spaces. Default
+ *                                   value is an empty string. Max length: 63 bytes.
  */
 function create_listing_sample(
     string $formattedParent,

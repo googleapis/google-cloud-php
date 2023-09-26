@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for response when you subscribe to a listing.
+ * Message for response when you subscribe to a Data Exchange.
  *
- * Generated from protobuf message <code>google.cloud.bigquery.analyticshub.v1.SubscribeListingResponse</code>
+ * Generated from protobuf message <code>google.cloud.bigquery.analyticshub.v1.SubscribeDataExchangeResponse</code>
  */
-class SubscribeListingResponse extends \Google\Protobuf\Internal\Message
+class SubscribeDataExchangeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Subscription object created from this subscribe action.

@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListOrgDataExchangesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The organization resource path of the projects containing DataExchanges.
-     * e.g. `organizations/myorg/locations/US`.
+     * Required. The organization resource path of the projects containing
+     * DataExchanges. e.g. `organizations/myorg/locations/US`.
      *
      * Generated from protobuf field <code>string organization = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,8 +39,8 @@ class ListOrgDataExchangesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $organization Required. The organization resource path of the projects containing DataExchanges.
-     *                             e.g. `organizations/myorg/locations/US`.
+     * @param string $organization Required. The organization resource path of the projects containing
+     *                             DataExchanges. e.g. `organizations/myorg/locations/US`.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest
      *
@@ -59,8 +59,8 @@ class ListOrgDataExchangesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $organization
-     *           Required. The organization resource path of the projects containing DataExchanges.
-     *           e.g. `organizations/myorg/locations/US`.
+     *           Required. The organization resource path of the projects containing
+     *           DataExchanges. e.g. `organizations/myorg/locations/US`.
      *     @type int $page_size
      *           The maximum number of results to return in a single response page. Leverage
      *           the page tokens to iterate through the entire collection.
@@ -75,8 +75,8 @@ class ListOrgDataExchangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The organization resource path of the projects containing DataExchanges.
-     * e.g. `organizations/myorg/locations/US`.
+     * Required. The organization resource path of the projects containing
+     * DataExchanges. e.g. `organizations/myorg/locations/US`.
      *
      * Generated from protobuf field <code>string organization = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -87,8 +87,8 @@ class ListOrgDataExchangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The organization resource path of the projects containing DataExchanges.
-     * e.g. `organizations/myorg/locations/US`.
+     * Required. The organization resource path of the projects containing
+     * DataExchanges. e.g. `organizations/myorg/locations/US`.
      *
      * Generated from protobuf field <code>string organization = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

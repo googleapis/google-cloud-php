@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for response when you subscribe to a listing.
+ * Message for response when you refresh a subscription.
  *
- * Generated from protobuf message <code>google.cloud.bigquery.analyticshub.v1.SubscribeListingResponse</code>
+ * Generated from protobuf message <code>google.cloud.bigquery.analyticshub.v1.RefreshSubscriptionResponse</code>
  */
-class SubscribeListingResponse extends \Google\Protobuf\Internal\Message
+class RefreshSubscriptionResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Subscription object created from this subscribe action.
+     * The refreshed subscription resource.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription subscription = 1;</code>
      */
@@ -29,7 +29,7 @@ class SubscribeListingResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription $subscription
-     *           Subscription object created from this subscribe action.
+     *           The refreshed subscription resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class SubscribeListingResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subscription object created from this subscribe action.
+     * The refreshed subscription resource.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription subscription = 1;</code>
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription|null
@@ -59,7 +59,7 @@ class SubscribeListingResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subscription object created from this subscribe action.
+     * The refreshed subscription resource.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription subscription = 1;</code>
      * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription $var
