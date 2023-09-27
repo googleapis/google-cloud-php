@@ -40,6 +40,7 @@ use Google\Cloud\AlloyDb\V1\Backup;
 use Google\Cloud\AlloyDb\V1\BackupSource;
 use Google\Cloud\AlloyDb\V1\BatchCreateInstancesRequest;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\ConnectionInfo;
 use Google\Cloud\AlloyDb\V1\ContinuousBackupSource;
 use Google\Cloud\AlloyDb\V1\CreateBackupRequest;
 use Google\Cloud\AlloyDb\V1\CreateClusterRequest;
@@ -53,8 +54,11 @@ use Google\Cloud\AlloyDb\V1\DeleteClusterRequest;
 use Google\Cloud\AlloyDb\V1\DeleteInstanceRequest;
 use Google\Cloud\AlloyDb\V1\DeleteUserRequest;
 use Google\Cloud\AlloyDb\V1\FailoverInstanceRequest;
+use Google\Cloud\AlloyDb\V1\GenerateClientCertificateRequest;
+use Google\Cloud\AlloyDb\V1\GenerateClientCertificateResponse;
 use Google\Cloud\AlloyDb\V1\GetBackupRequest;
 use Google\Cloud\AlloyDb\V1\GetClusterRequest;
+use Google\Cloud\AlloyDb\V1\GetConnectionInfoRequest;
 use Google\Cloud\AlloyDb\V1\GetInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GetUserRequest;
 use Google\Cloud\AlloyDb\V1\InjectFaultRequest;
@@ -83,6 +87,7 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -1820,6 +1825,93 @@ class AlloyDBAdminGapicClient
     }
 
     /**
+     * Generate a client certificate signed by a Cluster CA.
+     * The sole purpose of this endpoint is to support AlloyDB connectors and the
+     * Auth Proxy client. The endpoint's behavior is subject to change without
+     * notice, so do not rely on its behavior remaining constant. Future changes
+     * will not break AlloyDB connectors or the Auth Proxy client.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $response = $alloyDBAdminClient->generateClientCertificate($formattedParent);
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the parent resource. The required format is:
+     *                             * projects/{project}/locations/{location}/clusters/{cluster}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type Duration $certDuration
+     *           Optional. An optional hint to the endpoint to generate the client
+     *           certificate with the requested duration. The duration can be from 1 hour to
+     *           24 hours. The endpoint may or may not honor the hint. If the hint is left
+     *           unspecified or is not honored, then the endpoint will pick an appropriate
+     *           default duration.
+     *     @type string $publicKey
+     *           Optional. The public key from the client.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AlloyDb\V1\GenerateClientCertificateResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateClientCertificate($parent, array $optionalArgs = [])
+    {
+        $request = new GenerateClientCertificateRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['certDuration'])) {
+            $request->setCertDuration($optionalArgs['certDuration']);
+        }
+
+        if (isset($optionalArgs['publicKey'])) {
+            $request->setPublicKey($optionalArgs['publicKey']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateClientCertificate',
+            GenerateClientCertificateResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets details of a single Backup.
      *
      * Sample code:
@@ -1919,6 +2011,73 @@ class AlloyDBAdminGapicClient
         return $this->startCall(
             'GetCluster',
             Cluster::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get instance metadata used for a connection.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $formattedParent = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $response = $alloyDBAdminClient->getConnectionInfo($formattedParent);
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the parent resource. The required format is:
+     *                             projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AlloyDb\V1\ConnectionInfo
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getConnectionInfo($parent, array $optionalArgs = [])
+    {
+        $request = new GetConnectionInfoRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetConnectionInfo',
+            ConnectionInfo::class,
             $optionalArgs,
             $request
         )->wait();

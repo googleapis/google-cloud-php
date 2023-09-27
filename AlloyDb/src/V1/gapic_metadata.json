@@ -70,6 +70,11 @@
                                 "failoverInstance"
                             ]
                         },
+                        "GenerateClientCertificate": {
+                            "methods": [
+                                "generateClientCertificate"
+                            ]
+                        },
                         "GetBackup": {
                             "methods": [
                                 "getBackup"
@@ -78,6 +83,11 @@
                         "GetCluster": {
                             "methods": [
                                 "getCluster"
+                            ]
+                        },
+                        "GetConnectionInfo": {
+                            "methods": [
+                                "getConnectionInfo"
                             ]
                         },
                         "GetInstance": {

@@ -32,6 +32,7 @@ use Google\Cloud\AlloyDb\V1\BatchCreateInstancesRequest;
 use Google\Cloud\AlloyDb\V1\BatchCreateInstancesResponse;
 use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\ConnectionInfo;
 use Google\Cloud\AlloyDb\V1\CreateBackupRequest;
 use Google\Cloud\AlloyDb\V1\CreateClusterRequest;
 use Google\Cloud\AlloyDb\V1\CreateInstanceRequest;
@@ -44,8 +45,11 @@ use Google\Cloud\AlloyDb\V1\DeleteClusterRequest;
 use Google\Cloud\AlloyDb\V1\DeleteInstanceRequest;
 use Google\Cloud\AlloyDb\V1\DeleteUserRequest;
 use Google\Cloud\AlloyDb\V1\FailoverInstanceRequest;
+use Google\Cloud\AlloyDb\V1\GenerateClientCertificateRequest;
+use Google\Cloud\AlloyDb\V1\GenerateClientCertificateResponse;
 use Google\Cloud\AlloyDb\V1\GetBackupRequest;
 use Google\Cloud\AlloyDb\V1\GetClusterRequest;
+use Google\Cloud\AlloyDb\V1\GetConnectionInfoRequest;
 use Google\Cloud\AlloyDb\V1\GetInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GetUserRequest;
 use Google\Cloud\AlloyDb\V1\InjectFaultRequest;
@@ -1634,6 +1638,70 @@ class AlloyDBAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function generateClientCertificateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $caCert = 'caCert536363365';
+        $expectedResponse = new GenerateClientCertificateResponse();
+        $expectedResponse->setCaCert($caCert);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $request = (new GenerateClientCertificateRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->generateClientCertificate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GenerateClientCertificate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateClientCertificateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $request = (new GenerateClientCertificateRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->generateClientCertificate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getBackupTest()
     {
         $transport = $this->createTransport();
@@ -1776,6 +1844,74 @@ class AlloyDBAdminClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getCluster($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getConnectionInfoTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $ipAddress = 'ipAddress1480014044';
+        $instanceUid = 'instanceUid-737331802';
+        $expectedResponse = new ConnectionInfo();
+        $expectedResponse->setName($name);
+        $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setInstanceUid($instanceUid);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+        $request = (new GetConnectionInfoRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->getConnectionInfo($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GetConnectionInfo', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getConnectionInfoExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+        $request = (new GetConnectionInfoRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->getConnectionInfo($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
