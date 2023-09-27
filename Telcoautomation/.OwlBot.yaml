@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/telcoautomation/(v1alpha1)/.*-php/(.*)
+      dest: /owl-bot-staging/Telcoautomation/$1/$2
+api-name: Telcoautomation
