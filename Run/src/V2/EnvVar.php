@@ -17,7 +17,7 @@ class EnvVar extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the environment variable. Must be a C_IDENTIFIER, and
-     * mnay not exceed 32768 characters.
+     * must not exceed 32768 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,7 +32,7 @@ class EnvVar extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the environment variable. Must be a C_IDENTIFIER, and
-     *           mnay not exceed 32768 characters.
+     *           must not exceed 32768 characters.
      *     @type string $value
      *           Variable references $(VAR_NAME) are expanded
      *           using the previous defined environment variables in the container and
@@ -53,7 +53,7 @@ class EnvVar extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the environment variable. Must be a C_IDENTIFIER, and
-     * mnay not exceed 32768 characters.
+     * must not exceed 32768 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -65,7 +65,7 @@ class EnvVar extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the environment variable. Must be a C_IDENTIFIER, and
-     * mnay not exceed 32768 characters.
+     * must not exceed 32768 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

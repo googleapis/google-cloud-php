@@ -33,8 +33,8 @@ use Google\Cloud\Run\V2\GetExecutionRequest;
  *
  * @param string $formattedName The full name of the Execution.
  *                              Format:
- *                              projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
- *                              where {project} can be project id or number. Please see
+ *                              `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+ *                              where `{project}` can be project id or number. Please see
  *                              {@see ExecutionsClient::executionName()} for help formatting this field.
  */
 function get_execution_sample(string $formattedName): void

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,39 +22,46 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START run_v2_generated_Executions_ListExecutions_sync]
+// [START run_v2_generated_Executions_CancelExecution_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\OperationResponse;
+use Google\Cloud\Run\V2\CancelExecutionRequest;
 use Google\Cloud\Run\V2\Client\ExecutionsClient;
 use Google\Cloud\Run\V2\Execution;
-use Google\Cloud\Run\V2\ListExecutionsRequest;
+use Google\Rpc\Status;
 
 /**
- * Lists Executions from a Job.
+ * Cancels an Execution.
  *
- * @param string $formattedParent The Execution from which the Executions should be listed.
- *                                To list all Executions across Jobs, use "-" instead of Job name.
- *                                Format: `projects/{project}/locations/{location}/jobs/{job}`, where
- *                                `{project}` can be project id or number. Please see
- *                                {@see ExecutionsClient::jobName()} for help formatting this field.
+ * @param string $formattedName The name of the Execution to cancel.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+ *                              where `{project}` can be project id or number. Please see
+ *                              {@see ExecutionsClient::executionName()} for help formatting this field.
  */
-function list_executions_sample(string $formattedParent): void
+function cancel_execution_sample(string $formattedName): void
 {
     // Create a client.
     $executionsClient = new ExecutionsClient();
 
     // Prepare the request message.
-    $request = (new ListExecutionsRequest())
-        ->setParent($formattedParent);
+    $request = (new CancelExecutionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $executionsClient->listExecutions($request);
+        /** @var OperationResponse $response */
+        $response = $executionsClient->cancelExecution($request);
+        $response->pollUntilComplete();
 
-        /** @var Execution $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        if ($response->operationSucceeded()) {
+            /** @var Execution $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -72,8 +79,8 @@ function list_executions_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = ExecutionsClient::jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+    $formattedName = ExecutionsClient::executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
 
-    list_executions_sample($formattedParent);
+    cancel_execution_sample($formattedName);
 }
-// [END run_v2_generated_Executions_ListExecutions_sync]
+// [END run_v2_generated_Executions_CancelExecution_sync]

@@ -37,6 +37,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           For Cloud SQL volumes, contains the specific instances that should be
      *           mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for
      *           more information on how to connect Cloud SQL and Cloud Run.
+     *     @type \Google\Cloud\Run\V2\EmptyDirVolumeSource $empty_dir
+     *           Ephemeral storage used as a shared volume.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,6 +134,37 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\CloudSqlInstance::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Ephemeral storage used as a shared volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EmptyDirVolumeSource empty_dir = 4;</code>
+     * @return \Google\Cloud\Run\V2\EmptyDirVolumeSource|null
+     */
+    public function getEmptyDir()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasEmptyDir()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Ephemeral storage used as a shared volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EmptyDirVolumeSource empty_dir = 4;</code>
+     * @param \Google\Cloud\Run\V2\EmptyDirVolumeSource $var
+     * @return $this
+     */
+    public function setEmptyDir($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\EmptyDirVolumeSource::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }
