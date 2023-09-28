@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * RunJob Overrides that contains Execution fields to be overridden on the go.
+ * RunJob Overrides that contains Execution fields to be overridden.
  *
  * Generated from protobuf message <code>google.cloud.run.v2.RunJobRequest.Overrides</code>
  */
