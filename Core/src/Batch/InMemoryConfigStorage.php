@@ -154,7 +154,7 @@ final class InMemoryConfigStorage implements
      *
      * We want to delay registering the shutdown function. The error
      * reporter also registers a shutdown function and the order matters.
-     * {@see Google\ErrorReporting\Bootstrap::init()}
+     * {@see \Google\Cloud\ErrorReporting\Bootstrap::init()}
      * {@see http://php.net/manual/en/function.register-shutdown-function.php}
      *
      * @param mixed $item An item to submit.

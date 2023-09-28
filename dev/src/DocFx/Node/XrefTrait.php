@@ -88,12 +88,9 @@ trait XrefTrait
         preg_replace_callback(
             '/<xref uid="([^ ]*)"/',
             function ($matches) use ($output, &$valid) {
-                if (0 !== strpos($matches[1], 'http') && '\\' !== $matches[1][0]) {
-                    $output->writeln('Invalid xref: ' . $matches[1]);
-                    $valid = false;
-                }
-                if (substr_count($matches[1], '\Google\\') > 1) {
-                    $output->writeln('Invalid xref: ' . $matches[1]);
+                if (0 !== strpos($matches[1], 'http') && '\\' !== $matches[1][0]
+                    || substr_count($matches[1], '\Google\\') > 1) {
+                    $output->writeln(sprintf('Invalid xref in %s: %s', $this->getFullname(), $matches[1]));
                     $valid = false;
                 }
             },

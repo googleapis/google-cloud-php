@@ -127,9 +127,10 @@ class StorageClient
     }
 
     /**
-     * Lazily instantiates a bucket. There are no network requests made at this
-     * point. To see the operations that can be performed on a bucket please
-     * see {@see Bucket}.
+     * Lazily instantiates a bucket.
+     *
+     * There are no network requests made at this point. To see the operations
+     * that can be performed on a bucket please see {@see Bucket}.
      *
      * If `$userProject` is set to true, the current project ID (used to
      * instantiate the client) will be billed for all requests. If
