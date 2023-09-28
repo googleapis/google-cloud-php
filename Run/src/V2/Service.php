@@ -250,14 +250,6 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $satisfies_pzs = false;
     /**
-     * Optional. Override the traffic tag threshold limit. Garbage collection will
-     * start cleaning up non-serving tagged traffic targets based on creation
-     * item. The default value is 2000.
-     *
-     * Generated from protobuf field <code>int64 traffic_tags_cleanup_threshold = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $traffic_tags_cleanup_threshold = 0;
-    /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
@@ -413,10 +405,6 @@ class Service extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/run/docs/configuring/custom-audiences.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
-     *     @type int|string $traffic_tags_cleanup_threshold
-     *           Optional. Override the traffic tag threshold limit. Garbage collection will
-     *           start cleaning up non-serving tagged traffic targets based on creation
-     *           item. The default value is 2000.
      *     @type bool $reconciling
      *           Output only. Returns true if the Service is currently being acted upon by
      *           the system to bring it into the desired state.
@@ -1365,36 +1353,6 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Override the traffic tag threshold limit. Garbage collection will
-     * start cleaning up non-serving tagged traffic targets based on creation
-     * item. The default value is 2000.
-     *
-     * Generated from protobuf field <code>int64 traffic_tags_cleanup_threshold = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int|string
-     */
-    public function getTrafficTagsCleanupThreshold()
-    {
-        return $this->traffic_tags_cleanup_threshold;
-    }
-
-    /**
-     * Optional. Override the traffic tag threshold limit. Garbage collection will
-     * start cleaning up non-serving tagged traffic targets based on creation
-     * item. The default value is 2000.
-     *
-     * Generated from protobuf field <code>int64 traffic_tags_cleanup_threshold = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setTrafficTagsCleanupThreshold($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->traffic_tags_cleanup_threshold = $var;
 
         return $this;
     }

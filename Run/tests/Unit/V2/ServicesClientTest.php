@@ -101,7 +101,6 @@ class ServicesClientTest extends GeneratedTest
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
         $satisfiesPzs = false;
-        $trafficTagsCleanupThreshold = 795495828;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -118,7 +117,6 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setTrafficTagsCleanupThreshold($trafficTagsCleanupThreshold);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
@@ -262,7 +260,6 @@ class ServicesClientTest extends GeneratedTest
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
         $satisfiesPzs = false;
-        $trafficTagsCleanupThreshold = 795495828;
         $reconciling = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Service();
@@ -279,7 +276,6 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setTrafficTagsCleanupThreshold($trafficTagsCleanupThreshold);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
@@ -461,7 +457,6 @@ class ServicesClientTest extends GeneratedTest
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
         $satisfiesPzs = false;
-        $trafficTagsCleanupThreshold = 795495828;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -478,7 +473,6 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setTrafficTagsCleanupThreshold($trafficTagsCleanupThreshold);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
@@ -759,7 +753,6 @@ class ServicesClientTest extends GeneratedTest
         $latestCreatedRevision = 'latestCreatedRevision452370698';
         $uri = 'uri116076';
         $satisfiesPzs = false;
-        $trafficTagsCleanupThreshold = 795495828;
         $reconciling = false;
         $etag = 'etag3123477';
         $expectedResponse = new Service();
@@ -776,7 +769,6 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
         $expectedResponse->setUri($uri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setTrafficTagsCleanupThreshold($trafficTagsCleanupThreshold);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
