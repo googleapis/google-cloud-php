@@ -67,6 +67,12 @@ class IntegratedSystem
      * Generated from protobuf enum <code>LOOKER = 9;</code>
      */
     const LOOKER = 9;
+    /**
+     * Vertex AI
+     *
+     * Generated from protobuf enum <code>VERTEX_AI = 10;</code>
+     */
+    const VERTEX_AI = 10;
 
     private static $valueToName = [
         self::INTEGRATED_SYSTEM_UNSPECIFIED => 'INTEGRATED_SYSTEM_UNSPECIFIED',
@@ -78,6 +84,7 @@ class IntegratedSystem
         self::CLOUD_BIGTABLE => 'CLOUD_BIGTABLE',
         self::CLOUD_SQL => 'CLOUD_SQL',
         self::LOOKER => 'LOOKER',
+        self::VERTEX_AI => 'VERTEX_AI',
     ];
 
     public static function name($value)
