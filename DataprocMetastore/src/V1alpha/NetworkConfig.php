@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Network configuration for the Dataproc Metastore service.
+ * Next available ID: 4
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1alpha.NetworkConfig</code>
  */
