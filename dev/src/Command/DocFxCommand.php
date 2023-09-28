@@ -52,12 +52,6 @@ class DocFxCommand extends Command
                 InputOption::VALUE_OPTIONAL,
                 'Specify the path of the desired component. Please note, this option is only intended for testing purposes.'
             )
-            ->addOption(
-                'validate',
-                '',
-                InputOption::VALUE_NONE,
-                'validate the nodes. Logs issues to console and returns false error'
-            )
         ;
     }
 
@@ -110,9 +104,8 @@ class DocFxCommand extends Command
             );
 
             foreach ($pageTree->getPages() as $page) {
-                if ($input->getOption('validate')) {
-                    $valid = $page->getClassNode()->validate($output) && $valid;
-                }
+                // validate the docs page. this will fail the job if it's false
+                $page->getClassNode()->validate($output) && $valid;
                 $docFxArray = ['items' => $page->getItems()];
 
                 // Dump the YAML for the class node
@@ -125,6 +118,11 @@ class DocFxCommand extends Command
             }
 
             $tocItems = array_merge($tocItems, $pageTree->getTocItems());
+        }
+
+        // exit early if the docs aren't valid
+        if (!$valid) {
+            return 1;
         }
 
         $releaseLevel = $component->getReleaseLevel();
@@ -185,10 +183,6 @@ class DocFxCommand extends Command
             ]);
             $process->mustRun();
             $output->writeln('Done.');
-        }
-
-        if ($input->getOption('validate') && !$valid) {
-            return 1;
         }
 
         return 0;

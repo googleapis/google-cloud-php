@@ -239,8 +239,9 @@ class Job
     }
 
     /**
-     * Checks the job's completeness. Useful in combination with
-     * {@see Job::reload()} to poll for job status.
+     * Checks the job's completeness.
+     *
+     * Useful in combination with {@see Job::reload()} to poll for job status.
      *
      * Example:
      * ```

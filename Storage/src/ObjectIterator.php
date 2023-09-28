@@ -20,6 +20,8 @@ namespace Google\Cloud\Storage;
 use Google\Cloud\Core\Iterator\ItemIteratorTrait;
 
 /**
+ * ObjectIterator
+ *
  * Iterates over a set of {@see StorageObject} items.
  */
 class ObjectIterator implements \Iterator
