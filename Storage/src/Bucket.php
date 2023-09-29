@@ -566,7 +566,9 @@ class Bucket
 
     /**
      * Lazily instantiates an object. There are no network requests made at this
-     * point. To see the operations that can be performed on an object please
+     * point.
+     *
+     * To see the operations that can be performed on an object please
      * see {@see StorageObject}.
      *
      * Example:
@@ -787,7 +789,9 @@ class Bucket
 
     /**
      * Lazily instantiates a notification. There are no network requests made at
-     * this point. To see the operations that can be performed on a notification
+     * this point.
+     *
+     * To see the operations that can be performed on a notification
      * please see {@see Notification}.
      *
      * Example:
@@ -1218,7 +1222,9 @@ class Bucket
 
     /**
      * Retrieves a lifecycle builder preconfigured with the lifecycle rules that
-     * already exists on the bucket. Use this if you want to make updates to an
+     * already exists on the bucket.
+     *
+     * Use this if you want to make updates to an
      * existing configuration without removing existing rules, as would be the
      * case when using {@see Bucket::lifecycle()}.
      *

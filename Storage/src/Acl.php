@@ -80,6 +80,8 @@ class Acl
     }
 
     /**
+     * Delete access controls.
+     *
      * Delete access controls on a {@see Bucket} or
      * {@see StorageObject} for a specified entity.
      *
@@ -106,6 +108,8 @@ class Acl
     }
 
     /**
+     * Get access controls.
+     *
      * Get access controls on a {@see Bucket} or
      * {@see StorageObject}. By default this will return all available
      * access controls. You may optionally specify a single entity to return
@@ -141,6 +145,8 @@ class Acl
     }
 
     /**
+     * Add access controls.
+     *
      * Add access controls on a {@see Bucket} or
      * {@see StorageObject}.
      *
@@ -173,8 +179,9 @@ class Acl
     }
 
     /**
-     * Update access controls on a {@see Bucket} or
-     * {@see StorageObject}.
+     * Update access controls.
+     *
+     * Update access controls on a {@see Bucket} or {@see StorageObject}.
      *
      * Example:
      * ```

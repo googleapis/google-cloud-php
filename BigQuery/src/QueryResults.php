@@ -306,9 +306,10 @@ class QueryResults implements \IteratorAggregate
     }
 
     /**
-     * Checks the job's completeness. Useful in combination with
-     * {@see QueryResults::reload()} to poll for query
-     * status.
+     * Checks the job's completeness.
+     *
+     * Useful in combination with {@see QueryResults::reload()} to poll for
+     * query status.
      *
      * Example:
      * ```
@@ -331,9 +332,10 @@ class QueryResults implements \IteratorAggregate
     }
 
     /**
-     * Returns a reference to the {@see Job} instance used
-     * to fetch the query results. This is especially useful when attempting to
-     * access job statistics after calling
+     * Returns a reference to the job.
+     *
+     * The {@see Job} instance is used to fetch the query results. This is
+     * especially useful when attempting to access job statistics after calling
      * {@see BigQueryClient::runQuery()}.
      *
      * Example:
