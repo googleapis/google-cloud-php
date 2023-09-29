@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
-use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Node\MethodNode;
 use Google\Cloud\Dev\DocFx\Node\XrefTrait;
 use Google\Cloud\Dev\DocFx\Node\FencedCodeBlockTrait;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Symfony\Component\Console\Output\OutputInterface;
 use SimpleXMLElement;
 
 /**
@@ -29,6 +32,8 @@ use SimpleXMLElement;
  */
 class NodeTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testNestedParameters()
     {
         $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
@@ -431,6 +436,48 @@ EOF;
             ['V1p1zeta1', ''],
             ['V1z1beta', ''],
             ['Foo', ''],
+        ];
+    }
+
+    /**
+     * @dataProvider provideValidateXrefs
+     */
+    public function testValidateXrefs(string $description, string $errorMessage = null)
+    {
+        $output = $this->prophesize(OutputInterface::class);
+        if (is_null($errorMessage)) {
+            $output->writeln(Argument::any())->shouldNotBeCalled();
+        } else {
+            $output->writeln($errorMessage)->shouldBeCalledOnce();
+        }
+
+        $xref = new class ($output->reveal()) {
+            use XrefTrait;
+            public function __construct(private OutputInterface $output) {}
+            public function validate(string $description) {
+                $this->replaceSeeTag($description);
+                return $this->validateXrefs(
+                    $this->replaceSeeTag($description),
+                    $this->output
+                );
+            }
+        };
+        $isValid = is_null($errorMessage);
+        $this->assertEquals($isValid, $xref->validate($description));
+    }
+
+    public function provideValidateXrefs()
+    {
+        return [
+            ['{@see \OutputInterface}'], // valid
+            ['Take a look at {@see \OutputInterface} for more.'], // valid
+            ['Take a look at {@see https://foo.bar} for more.'], // valid
+            ['{@see Foo\Bar}', 'Invalid xref: Foo\Bar'], // invalid
+            ['Take a look at {@see Foo\Bar} for more.', 'Invalid xref: Foo\Bar'], // invalid
+            [
+                '{@see \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo}',
+                'Invalid xref: \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo'
+            ], // invalid
         ];
     }
 }

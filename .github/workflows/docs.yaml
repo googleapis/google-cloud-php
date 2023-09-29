@@ -26,7 +26,7 @@ jobs:
       id: extract
       uses: shrink/actions-docker-extract@v2
       with:
-        image: "phpdoc/phpdoc:20230522201300af6fb5"
+        image: "phpdoc/phpdoc:3.4.1"
         path: "/opt/phpdoc/."
     - name: Symlink phpDocumentor
       run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc

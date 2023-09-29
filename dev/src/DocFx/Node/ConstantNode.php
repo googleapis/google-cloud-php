@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocFx\Node;
 
 use SimpleXMLElement;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @internal
@@ -41,5 +42,10 @@ class ConstantNode
     public function getValue(): string
     {
         return $this->xmlNode->value;
+    }
+
+    public function validate(OutputInterface $output): bool
+    {
+        return $this->validateXrefs($this->getContent(), $output);
     }
 }
