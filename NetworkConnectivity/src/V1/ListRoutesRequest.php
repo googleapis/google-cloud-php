@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [HubService.ListSpokes][google.cloud.networkconnectivity.v1.HubService.ListSpokes].
+ * Request for
+ * [HubService.ListRoutes][google.cloud.networkconnectivity.v1.HubService.ListRoutes]
+ * method.
  *
- * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListSpokesRequest</code>
+ * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListRoutesRequest</code>
  */
-class ListSpokesRequest extends \Google\Protobuf\Internal\Message
+class ListRoutesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource.
+     * Required. The parent resource's name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -48,10 +49,10 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent resource. Please see
-     *                       {@see HubServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent resource's name. Please see
+     *                       {@see HubServiceClient::routeTableName()} for help formatting this field.
      *
-     * @return \Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest
+     * @return \Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest
      *
      * @experimental
      */
@@ -68,7 +69,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource.
+     *           Required. The parent resource's name.
      *     @type int $page_size
      *           The maximum number of results to return per page.
      *     @type string $page_token
@@ -85,7 +86,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource.
+     * Required. The parent resource's name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +97,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource.
+     * Required. The parent resource's name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

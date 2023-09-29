@@ -10,14 +10,16 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The response for
- * [HubService.ListSpokes][google.cloud.networkconnectivity.v1.HubService.ListSpokes].
+ * [HubService.ListHubSpokes][google.cloud.networkconnectivity.v1.HubService.ListHubSpokes].
  *
- * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListSpokesResponse</code>
+ * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListHubSpokesResponse</code>
  */
-class ListSpokesResponse extends \Google\Protobuf\Internal\Message
+class ListHubSpokesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The requested spokes.
+     * The spoke fields can be partially populated based on the `view` field in
+     * the request message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
      */
@@ -45,6 +47,8 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $spokes
      *           The requested spokes.
+     *           The spoke fields can be partially populated based on the `view` field in
+     *           the request message.
      *     @type string $next_page_token
      *           The token for the next page of the response. To see more results,
      *           use this value as the page_token for your next request. If this value
@@ -60,6 +64,8 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The requested spokes.
+     * The spoke fields can be partially populated based on the `view` field in
+     * the request message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -71,6 +77,8 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The requested spokes.
+     * The spoke fields can be partially populated based on the `view` field in
+     * the request message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
      * @param array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $var

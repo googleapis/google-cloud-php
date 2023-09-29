@@ -9,19 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for
- * [HubService.ListSpokes][google.cloud.networkconnectivity.v1.HubService.ListSpokes].
+ * Response for
+ * [HubService.ListRouteTables][google.cloud.networkconnectivity.v1.HubService.ListRouteTables]
+ * method.
  *
- * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListSpokesResponse</code>
+ * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListRouteTablesResponse</code>
  */
-class ListSpokesResponse extends \Google\Protobuf\Internal\Message
+class ListRouteTablesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The requested spokes.
+     * The requested route tables.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RouteTable route_tables = 1;</code>
      */
-    private $spokes;
+    private $route_tables;
     /**
      * The token for the next page of the response. To see more results,
      * use this value as the page_token for your next request. If this value
@@ -31,7 +32,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
     /**
-     * Locations that could not be reached.
+     * Hubs that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
      */
@@ -43,14 +44,14 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $spokes
-     *           The requested spokes.
+     *     @type array<\Google\Cloud\NetworkConnectivity\V1\RouteTable>|\Google\Protobuf\Internal\RepeatedField $route_tables
+     *           The requested route tables.
      *     @type string $next_page_token
      *           The token for the next page of the response. To see more results,
      *           use this value as the page_token for your next request. If this value
      *           is empty, there are no more results.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
-     *           Locations that could not be reached.
+     *           Hubs that could not be reached.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,27 +60,27 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The requested spokes.
+     * The requested route tables.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RouteTable route_tables = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getSpokes()
+    public function getRouteTables()
     {
-        return $this->spokes;
+        return $this->route_tables;
     }
 
     /**
-     * The requested spokes.
+     * The requested route tables.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RouteTable route_tables = 1;</code>
+     * @param array<\Google\Cloud\NetworkConnectivity\V1\RouteTable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setSpokes($var)
+    public function setRouteTables($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkConnectivity\V1\Spoke::class);
-        $this->spokes = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkConnectivity\V1\RouteTable::class);
+        $this->route_tables = $arr;
 
         return $this;
     }
@@ -115,7 +116,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Locations that could not be reached.
+     * Hubs that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -126,7 +127,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Locations that could not be reached.
+     * Hubs that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

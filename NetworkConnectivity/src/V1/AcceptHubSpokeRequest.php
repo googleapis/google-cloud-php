@@ -9,32 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [HubService.CreateHub][google.cloud.networkconnectivity.v1.HubService.CreateHub]
- * method.
+ * The request for
+ * [HubService.AcceptHubSpoke][google.cloud.networkconnectivity.v1.HubService.AcceptHubSpoke].
  *
- * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.CreateHubRequest</code>
+ * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.AcceptHubSpokeRequest</code>
  */
-class CreateHubRequest extends \Google\Protobuf\Internal\Message
+class AcceptHubSpokeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource.
+     * Required. The name of the hub into which to accept the spoke.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    private $name = '';
     /**
-     * Required. A unique identifier for the hub.
+     * Required. The URI of the spoke to accept into the hub.
      *
-     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string spoke_uri = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $hub_id = '';
-    /**
-     * Required. The initial values for a new hub.
-     *
-     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.Hub hub = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    private $hub = null;
+    private $spoke_uri = '';
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID so
      * that if you must retry your request, the server knows to ignore the request
@@ -49,26 +42,25 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID, with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
 
     /**
-     * @param string                                   $parent Required. The parent resource. Please see
-     *                                                         {@see HubServiceClient::locationName()} for help formatting this field.
-     * @param \Google\Cloud\NetworkConnectivity\V1\Hub $hub    Required. The initial values for a new hub.
-     * @param string                                   $hubId  Required. A unique identifier for the hub.
+     * @param string $name     Required. The name of the hub into which to accept the spoke. Please see
+     *                         {@see HubServiceClient::hubName()} for help formatting this field.
+     * @param string $spokeUri Required. The URI of the spoke to accept into the hub. Please see
+     *                         {@see HubServiceClient::spokeName()} for help formatting this field.
      *
-     * @return \Google\Cloud\NetworkConnectivity\V1\CreateHubRequest
+     * @return \Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeRequest
      *
      * @experimental
      */
-    public static function build(string $parent, \Google\Cloud\NetworkConnectivity\V1\Hub $hub, string $hubId): self
+    public static function build(string $name, string $spokeUri): self
     {
         return (new self())
-            ->setParent($parent)
-            ->setHub($hub)
-            ->setHubId($hubId);
+            ->setName($name)
+            ->setSpokeUri($spokeUri);
     }
 
     /**
@@ -77,12 +69,10 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $parent
-     *           Required. The parent resource.
-     *     @type string $hub_id
-     *           Required. A unique identifier for the hub.
-     *     @type \Google\Cloud\NetworkConnectivity\V1\Hub $hub
-     *           Required. The initial values for a new hub.
+     *     @type string $name
+     *           Required. The name of the hub into which to accept the spoke.
+     *     @type string $spoke_uri
+     *           Required. The URI of the spoke to accept into the hub.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -104,89 +94,53 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource.
+     * Required. The name of the hub into which to accept the spoke.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getParent()
+    public function getName()
     {
-        return $this->parent;
+        return $this->name;
     }
 
     /**
-     * Required. The parent resource.
+     * Required. The name of the hub into which to accept the spoke.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setParent($var)
+    public function setName($var)
     {
         GPBUtil::checkString($var, True);
-        $this->parent = $var;
+        $this->name = $var;
 
         return $this;
     }
 
     /**
-     * Required. A unique identifier for the hub.
+     * Required. The URI of the spoke to accept into the hub.
      *
-     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string spoke_uri = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getHubId()
+    public function getSpokeUri()
     {
-        return $this->hub_id;
+        return $this->spoke_uri;
     }
 
     /**
-     * Required. A unique identifier for the hub.
+     * Required. The URI of the spoke to accept into the hub.
      *
-     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string spoke_uri = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setHubId($var)
+    public function setSpokeUri($var)
     {
         GPBUtil::checkString($var, True);
-        $this->hub_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required. The initial values for a new hub.
-     *
-     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.Hub hub = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\NetworkConnectivity\V1\Hub|null
-     */
-    public function getHub()
-    {
-        return $this->hub;
-    }
-
-    public function hasHub()
-    {
-        return isset($this->hub);
-    }
-
-    public function clearHub()
-    {
-        unset($this->hub);
-    }
-
-    /**
-     * Required. The initial values for a new hub.
-     *
-     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.Hub hub = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\NetworkConnectivity\V1\Hub $var
-     * @return $this
-     */
-    public function setHub($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\Hub::class);
-        $this->hub = $var;
+        $this->spoke_uri = $var;
 
         return $this;
     }
@@ -205,7 +159,7 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID, with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRequestId()
@@ -227,7 +181,7 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID, with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
