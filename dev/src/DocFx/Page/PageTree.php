@@ -146,11 +146,15 @@ class PageTree
          * Set a map of protobuf package names to PHP namespaces for Xrefs.
          * This MUST be done after combining GAPIC clients.
          */
-        $protoPackages = [];
+        $protoPackages = [
+            // shared packages
+            'google.longrunning' => 'Google\\LongRunning'
+        ];
         foreach ($pages as $page) {
             $classNode = $page->getClassNode();
             if ($protoPackage = $classNode->getProtoPackage()) {
-                $protoPackages[$protoPackage] = ltrim($classNode->getNamespace(), '\\');
+                $package = rtrim(ltrim($classNode->getNamespace(), '\\'), '\\Client');
+                $protoPackages[$protoPackage] = $package;
             }
         }
 

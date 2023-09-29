@@ -54,7 +54,7 @@ items:
         -
           id: '↳ end_time'
           var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp">Google\Protobuf\Timestamp</a>'
-          description: 'The time when the batch request is finished and <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.'
+          description: 'The time when the batch request is finished and <xref uid="\Google\LongRunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::getState()'
     name: getState
@@ -139,7 +139,7 @@ items:
     id: getEndTime
     summary: |-
       The time when the batch request is finished and
-      <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
+      <xref uid="\Google\LongRunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -170,7 +170,7 @@ items:
     id: setEndTime
     summary: |-
       The time when the batch request is finished and
-      <xref uid="\Google\Longrunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
+      <xref uid="\Google\LongRunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
