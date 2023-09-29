@@ -150,7 +150,8 @@ class PageTree
         foreach ($pages as $page) {
             $classNode = $page->getClassNode();
             if ($protoPackage = $classNode->getProtoPackage()) {
-                $protoPackages[$protoPackage] = ltrim($classNode->getNamespace(), '\\');
+                $package = rtrim(ltrim($classNode->getNamespace(), '\\'), '\\Client');
+                $protoPackages[$protoPackage] = $package;
             }
         }
 
