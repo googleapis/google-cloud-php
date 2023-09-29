@@ -18,7 +18,6 @@
 namespace Google\Cloud\Dev\DocFx\Node;
 
 use SimpleXMLElement;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @internal
