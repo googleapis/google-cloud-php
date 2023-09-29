@@ -35,15 +35,35 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\Location;
+use Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\DeleteHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\DeleteSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\GetGroupRequest;
 use Google\Cloud\NetworkConnectivity\V1\GetHubRequest;
+use Google\Cloud\NetworkConnectivity\V1\GetRouteRequest;
+use Google\Cloud\NetworkConnectivity\V1\GetRouteTableRequest;
 use Google\Cloud\NetworkConnectivity\V1\GetSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\Group;
 use Google\Cloud\NetworkConnectivity\V1\Hub;
+use Google\Cloud\NetworkConnectivity\V1\ListGroupsRequest;
+use Google\Cloud\NetworkConnectivity\V1\ListHubSpokesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListHubsRequest;
+use Google\Cloud\NetworkConnectivity\V1\ListRouteTablesRequest;
+use Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest;
+use Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\Route;
+use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
@@ -71,16 +91,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @internal
  *
+ * @method PromiseInterface acceptHubSpokeAsync(AcceptHubSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createHubAsync(CreateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSpokeAsync(CreateSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteHubAsync(DeleteHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSpokeAsync(DeleteSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getHubAsync(GetHubRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getRouteAsync(GetRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getRouteTableAsync(GetRouteTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSpokeAsync(GetSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listHubSpokesAsync(ListHubSpokesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listHubsAsync(ListHubsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listRouteTablesAsync(ListRouteTablesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSpokesAsync(ListSpokesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface rejectHubSpokeAsync(RejectHubSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateHubAsync(UpdateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSpokeAsync(UpdateSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 abstract class HubServiceBaseClient
 {
@@ -155,6 +189,25 @@ abstract class HubServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a group
+     * resource.
+     *
+     * @param string $project
+     * @param string $hub
+     * @param string $group
+     *
+     * @return string The formatted group resource.
+     */
+    public static function groupName(string $project, string $hub, string $group): string
+    {
+        return self::getPathTemplate('group')->render([
+            'project' => $project,
+            'hub' => $hub,
+            'group' => $group,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a hub
      * resource.
      *
@@ -168,6 +221,27 @@ abstract class HubServiceBaseClient
         return self::getPathTemplate('hub')->render([
             'project' => $project,
             'hub' => $hub,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a hub_route
+     * resource.
+     *
+     * @param string $project
+     * @param string $hub
+     * @param string $routeTable
+     * @param string $route
+     *
+     * @return string The formatted hub_route resource.
+     */
+    public static function hubRouteName(string $project, string $hub, string $routeTable, string $route): string
+    {
+        return self::getPathTemplate('hubRoute')->render([
+            'project' => $project,
+            'hub' => $hub,
+            'route_table' => $routeTable,
+            'route' => $route,
         ]);
     }
 
@@ -244,6 +318,25 @@ abstract class HubServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a route_table
+     * resource.
+     *
+     * @param string $project
+     * @param string $hub
+     * @param string $routeTable
+     *
+     * @return string The formatted route_table resource.
+     */
+    public static function routeTableName(string $project, string $hub, string $routeTable): string
+    {
+        return self::getPathTemplate('routeTable')->render([
+            'project' => $project,
+            'hub' => $hub,
+            'route_table' => $routeTable,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a spoke
      * resource.
      *
@@ -285,11 +378,14 @@ abstract class HubServiceBaseClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - group: projects/{project}/locations/global/hubs/{hub}/groups/{group}
      * - hub: projects/{project}/locations/global/hubs/{hub}
+     * - hubRoute: projects/{project}/locations/global/hubs/{hub}/routeTables/{route_table}/routes/{route}
      * - instance: projects/{project}/zones/{zone}/instances/{instance}
      * - interconnectAttachment: projects/{project}/regions/{region}/interconnectAttachments/{resource_id}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{resource_id}
+     * - routeTable: projects/{project}/locations/global/hubs/{hub}/routeTables/{route_table}
      * - spoke: projects/{project}/locations/{location}/spokes/{spoke}
      * - vpnTunnel: projects/{project}/regions/{region}/vpnTunnels/{resource_id}
      *
@@ -381,6 +477,31 @@ abstract class HubServiceBaseClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Accepts a proposal to attach a Network Connectivity Center spoke
+     * to a hub.
+     *
+     * The async variant is {@see self::acceptHubSpokeAsync()} .
+     *
+     * @param AcceptHubSpokeRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function acceptHubSpoke(AcceptHubSpokeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AcceptHubSpoke', $request, $callOptions)->wait();
     }
 
     /**
@@ -480,6 +601,30 @@ abstract class HubServiceBaseClient
     }
 
     /**
+     * Gets details about a Network Connectivity Center group.
+     *
+     * The async variant is {@see self::getGroupAsync()} .
+     *
+     * @param GetGroupRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Group
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGroup(GetGroupRequest $request, array $callOptions = []): Group
+    {
+        return $this->startApiCall('GetGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details about a Network Connectivity Center hub.
      *
      * The async variant is {@see self::getHubAsync()} .
@@ -501,6 +646,54 @@ abstract class HubServiceBaseClient
     public function getHub(GetHubRequest $request, array $callOptions = []): Hub
     {
         return $this->startApiCall('GetHub', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details about the specified route.
+     *
+     * The async variant is {@see self::getRouteAsync()} .
+     *
+     * @param GetRouteRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Route
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRoute(GetRouteRequest $request, array $callOptions = []): Route
+    {
+        return $this->startApiCall('GetRoute', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details about a Network Connectivity Center route table.
+     *
+     * The async variant is {@see self::getRouteTableAsync()} .
+     *
+     * @param GetRouteTableRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RouteTable
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRouteTable(GetRouteTableRequest $request, array $callOptions = []): RouteTable
+    {
+        return $this->startApiCall('GetRouteTable', $request, $callOptions)->wait();
     }
 
     /**
@@ -528,6 +721,56 @@ abstract class HubServiceBaseClient
     }
 
     /**
+     * Lists groups in a given hub.
+     *
+     * The async variant is {@see self::listGroupsAsync()} .
+     *
+     * @param ListGroupsRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGroups(ListGroupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListGroups', $request, $callOptions);
+    }
+
+    /**
+     * Lists the Network Connectivity Center spokes associated with a
+     * specified hub and location. The list includes both spokes that are attached
+     * to the hub and spokes that have been proposed but not yet accepted.
+     *
+     * The async variant is {@see self::listHubSpokesAsync()} .
+     *
+     * @param ListHubSpokesRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listHubSpokes(ListHubSpokesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListHubSpokes', $request, $callOptions);
+    }
+
+    /**
      * Lists the Network Connectivity Center hubs associated with a given project.
      *
      * The async variant is {@see self::listHubsAsync()} .
@@ -549,6 +792,54 @@ abstract class HubServiceBaseClient
     public function listHubs(ListHubsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListHubs', $request, $callOptions);
+    }
+
+    /**
+     * Lists route tables in a given project.
+     *
+     * The async variant is {@see self::listRouteTablesAsync()} .
+     *
+     * @param ListRouteTablesRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRouteTables(ListRouteTablesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListRouteTables', $request, $callOptions);
+    }
+
+    /**
+     * Lists routes in a given project.
+     *
+     * The async variant is {@see self::listRoutesAsync()} .
+     *
+     * @param ListRoutesRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRoutes(ListRoutesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListRoutes', $request, $callOptions);
     }
 
     /**
@@ -574,6 +865,33 @@ abstract class HubServiceBaseClient
     public function listSpokes(ListSpokesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSpokes', $request, $callOptions);
+    }
+
+    /**
+     * Rejects a Network Connectivity Center spoke from being attached to a hub.
+     * If the spoke was previously in the `ACTIVE` state, it
+     * transitions to the `INACTIVE` state and is no longer able to
+     * connect to other spokes that are attached to the hub.
+     *
+     * The async variant is {@see self::rejectHubSpokeAsync()} .
+     *
+     * @param RejectHubSpokeRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rejectHubSpoke(RejectHubSpokeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RejectHubSpoke', $request, $callOptions)->wait();
     }
 
     /**
@@ -623,5 +941,136 @@ abstract class HubServiceBaseClient
     public function updateSpoke(UpdateSpokeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateSpoke', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see self::getLocationAsync()} .
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * The async variant is {@see self::listLocationsAsync()} .
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * The async variant is {@see self::getIamPolicyAsync()} .
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * The async variant is {@see self::setIamPolicyAsync()} .
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * The async variant is {@see self::testIamPermissionsAsync()} .
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

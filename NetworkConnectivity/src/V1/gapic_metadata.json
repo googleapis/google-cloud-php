@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "HubServiceGapicClient",
                     "rpcs": {
+                        "AcceptHubSpoke": {
+                            "methods": [
+                                "acceptHubSpoke"
+                            ]
+                        },
                         "CreateHub": {
                             "methods": [
                                 "createHub"
@@ -30,9 +35,24 @@
                                 "deleteSpoke"
                             ]
                         },
+                        "GetGroup": {
+                            "methods": [
+                                "getGroup"
+                            ]
+                        },
                         "GetHub": {
                             "methods": [
                                 "getHub"
+                            ]
+                        },
+                        "GetRoute": {
+                            "methods": [
+                                "getRoute"
+                            ]
+                        },
+                        "GetRouteTable": {
+                            "methods": [
+                                "getRouteTable"
                             ]
                         },
                         "GetSpoke": {
@@ -40,14 +60,39 @@
                                 "getSpoke"
                             ]
                         },
+                        "ListGroups": {
+                            "methods": [
+                                "listGroups"
+                            ]
+                        },
+                        "ListHubSpokes": {
+                            "methods": [
+                                "listHubSpokes"
+                            ]
+                        },
                         "ListHubs": {
                             "methods": [
                                 "listHubs"
                             ]
                         },
+                        "ListRouteTables": {
+                            "methods": [
+                                "listRouteTables"
+                            ]
+                        },
+                        "ListRoutes": {
+                            "methods": [
+                                "listRoutes"
+                            ]
+                        },
                         "ListSpokes": {
                             "methods": [
                                 "listSpokes"
+                            ]
+                        },
+                        "RejectHubSpoke": {
+                            "methods": [
+                                "rejectHubSpoke"
                             ]
                         },
                         "UpdateHub": {
@@ -58,6 +103,31 @@
                         "UpdateSpoke": {
                             "methods": [
                                 "updateSpoke"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -87,6 +157,31 @@
                         "ListPolicyBasedRoutes": {
                             "methods": [
                                 "listPolicyBasedRoutes"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

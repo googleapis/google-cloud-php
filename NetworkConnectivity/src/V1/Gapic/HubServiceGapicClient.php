@@ -25,6 +25,7 @@
 namespace Google\Cloud\NetworkConnectivity\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
@@ -35,17 +36,43 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
+use Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\DeleteHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\DeleteSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\GetGroupRequest;
 use Google\Cloud\NetworkConnectivity\V1\GetHubRequest;
+use Google\Cloud\NetworkConnectivity\V1\GetRouteRequest;
+use Google\Cloud\NetworkConnectivity\V1\GetRouteTableRequest;
 use Google\Cloud\NetworkConnectivity\V1\GetSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\Group;
 use Google\Cloud\NetworkConnectivity\V1\Hub;
+use Google\Cloud\NetworkConnectivity\V1\ListGroupsRequest;
+use Google\Cloud\NetworkConnectivity\V1\ListGroupsResponse;
+use Google\Cloud\NetworkConnectivity\V1\ListHubSpokesRequest;
+use Google\Cloud\NetworkConnectivity\V1\ListHubSpokesResponse;
 use Google\Cloud\NetworkConnectivity\V1\ListHubsRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListHubsResponse;
+use Google\Cloud\NetworkConnectivity\V1\ListRouteTablesRequest;
+use Google\Cloud\NetworkConnectivity\V1\ListRouteTablesResponse;
+use Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest;
+use Google\Cloud\NetworkConnectivity\V1\ListRoutesResponse;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesResponse;
+use Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\Route;
+use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
@@ -63,10 +90,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $hubServiceClient = new HubServiceClient();
  * try {
- *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $hubId = 'hub_id';
- *     $hub = new Hub();
- *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
+ *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
+ *     $formattedSpokeUri = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
+ *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -77,10 +103,10 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
+ *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'createHub');
+ *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'acceptHubSpoke');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -127,7 +153,11 @@ class HubServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $groupNameTemplate;
+
     private static $hubNameTemplate;
+
+    private static $hubRouteNameTemplate;
 
     private static $instanceNameTemplate;
 
@@ -136,6 +166,8 @@ class HubServiceGapicClient
     private static $locationNameTemplate;
 
     private static $networkNameTemplate;
+
+    private static $routeTableNameTemplate;
 
     private static $spokeNameTemplate;
 
@@ -170,6 +202,17 @@ class HubServiceGapicClient
         ];
     }
 
+    private static function getGroupNameTemplate()
+    {
+        if (self::$groupNameTemplate == null) {
+            self::$groupNameTemplate = new PathTemplate(
+                'projects/{project}/locations/global/hubs/{hub}/groups/{group}'
+            );
+        }
+
+        return self::$groupNameTemplate;
+    }
+
     private static function getHubNameTemplate()
     {
         if (self::$hubNameTemplate == null) {
@@ -179,6 +222,17 @@ class HubServiceGapicClient
         }
 
         return self::$hubNameTemplate;
+    }
+
+    private static function getHubRouteNameTemplate()
+    {
+        if (self::$hubRouteNameTemplate == null) {
+            self::$hubRouteNameTemplate = new PathTemplate(
+                'projects/{project}/locations/global/hubs/{hub}/routeTables/{route_table}/routes/{route}'
+            );
+        }
+
+        return self::$hubRouteNameTemplate;
     }
 
     private static function getInstanceNameTemplate()
@@ -225,6 +279,17 @@ class HubServiceGapicClient
         return self::$networkNameTemplate;
     }
 
+    private static function getRouteTableNameTemplate()
+    {
+        if (self::$routeTableNameTemplate == null) {
+            self::$routeTableNameTemplate = new PathTemplate(
+                'projects/{project}/locations/global/hubs/{hub}/routeTables/{route_table}'
+            );
+        }
+
+        return self::$routeTableNameTemplate;
+    }
+
     private static function getSpokeNameTemplate()
     {
         if (self::$spokeNameTemplate == null) {
@@ -251,17 +316,39 @@ class HubServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'group' => self::getGroupNameTemplate(),
                 'hub' => self::getHubNameTemplate(),
+                'hubRoute' => self::getHubRouteNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'interconnectAttachment' => self::getInterconnectAttachmentNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
+                'routeTable' => self::getRouteTableNameTemplate(),
                 'spoke' => self::getSpokeNameTemplate(),
                 'vpnTunnel' => self::getVpnTunnelNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a group
+     * resource.
+     *
+     * @param string $project
+     * @param string $hub
+     * @param string $group
+     *
+     * @return string The formatted group resource.
+     */
+    public static function groupName($project, $hub, $group)
+    {
+        return self::getGroupNameTemplate()->render([
+            'project' => $project,
+            'hub' => $hub,
+            'group' => $group,
+        ]);
     }
 
     /**
@@ -278,6 +365,27 @@ class HubServiceGapicClient
         return self::getHubNameTemplate()->render([
             'project' => $project,
             'hub' => $hub,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a hub_route
+     * resource.
+     *
+     * @param string $project
+     * @param string $hub
+     * @param string $routeTable
+     * @param string $route
+     *
+     * @return string The formatted hub_route resource.
+     */
+    public static function hubRouteName($project, $hub, $routeTable, $route)
+    {
+        return self::getHubRouteNameTemplate()->render([
+            'project' => $project,
+            'hub' => $hub,
+            'route_table' => $routeTable,
+            'route' => $route,
         ]);
     }
 
@@ -357,6 +465,25 @@ class HubServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a route_table
+     * resource.
+     *
+     * @param string $project
+     * @param string $hub
+     * @param string $routeTable
+     *
+     * @return string The formatted route_table resource.
+     */
+    public static function routeTableName($project, $hub, $routeTable)
+    {
+        return self::getRouteTableNameTemplate()->render([
+            'project' => $project,
+            'hub' => $hub,
+            'route_table' => $routeTable,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a spoke
      * resource.
      *
@@ -398,11 +525,14 @@ class HubServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - group: projects/{project}/locations/global/hubs/{hub}/groups/{group}
      * - hub: projects/{project}/locations/global/hubs/{hub}
+     * - hubRoute: projects/{project}/locations/global/hubs/{hub}/routeTables/{route_table}/routes/{route}
      * - instance: projects/{project}/zones/{zone}/instances/{instance}
      * - interconnectAttachment: projects/{project}/regions/{region}/interconnectAttachments/{resource_id}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{resource_id}
+     * - routeTable: projects/{project}/locations/global/hubs/{hub}/routeTables/{route_table}
      * - spoke: projects/{project}/locations/{location}/spokes/{spoke}
      * - vpnTunnel: projects/{project}/regions/{region}/vpnTunnels/{resource_id}
      *
@@ -542,6 +672,102 @@ class HubServiceGapicClient
     }
 
     /**
+     * Accepts a proposal to attach a Network Connectivity Center spoke
+     * to a hub.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
+     *     $formattedSpokeUri = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
+     *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'acceptHubSpoke');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the hub into which to accept the spoke.
+     * @param string $spokeUri     Required. The URI of the spoke to accept into the hub.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check to see whether the original operation
+     *           was received. If it was, the server ignores the second request. This
+     *           behavior prevents clients from mistakenly creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID, with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function acceptHubSpoke($name, $spokeUri, array $optionalArgs = [])
+    {
+        $request = new AcceptHubSpokeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setSpokeUri($spokeUri);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'AcceptHubSpoke',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Creates a new Network Connectivity Center hub in the specified project.
      *
      * Sample code:
@@ -589,11 +815,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can
-     *           use it in cases when you need to retry your request. When you need to
-     *           retry, this ID lets the server know that it can ignore the request if it
-     *           has already been completed. The server guarantees that for at least 60
-     *           minutes after the first request.
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -687,11 +913,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can
-     *           use it in cases when you need to retry your request. When you need to
-     *           retry, this ID lets the server know that it can ignore the request if it
-     *           has already been completed. The server guarantees that for at least 60
-     *           minutes after the first request.
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -783,11 +1009,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can
-     *           use it in cases when you need to retry your request. When you need to
-     *           retry, this ID lets the server know that it can ignore the request if it
-     *           has already been completed. The server guarantees that for at least 60
-     *           minutes after the first request.
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -873,11 +1099,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can
-     *           use it in cases when you need to retry your request. When you need to
-     *           retry, this ID lets the server know that it can ignore the request if it
-     *           has already been completed. The server guarantees that for at least 60
-     *           minutes after the first request.
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -918,6 +1144,54 @@ class HubServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets details about a Network Connectivity Center group.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedName = $hubServiceClient->groupName('[PROJECT]', '[HUB]', '[GROUP]');
+     *     $response = $hubServiceClient->getGroup($formattedName);
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the route table resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\Group
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getGroup($name, array $optionalArgs = [])
+    {
+        $request = new GetGroupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetGroup',
+            Group::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -964,6 +1238,102 @@ class HubServiceGapicClient
         return $this->startCall(
             'GetHub',
             Hub::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details about the specified route.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedName = $hubServiceClient->hubRouteName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]', '[ROUTE]');
+     *     $response = $hubServiceClient->getRoute($formattedName);
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the route resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\Route
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getRoute($name, array $optionalArgs = [])
+    {
+        $request = new GetRouteRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetRoute',
+            Route::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details about a Network Connectivity Center route table.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedName = $hubServiceClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
+     *     $response = $hubServiceClient->getRouteTable($formattedName);
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the route table resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\NetworkConnectivity\V1\RouteTable
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getRouteTable($name, array $optionalArgs = [])
+    {
+        $request = new GetRouteTableRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetRouteTable',
+            RouteTable::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1018,6 +1388,208 @@ class HubServiceGapicClient
     }
 
     /**
+     * Lists groups in a given hub.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedParent = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $hubServiceClient->listGroups($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $hubServiceClient->listGroups($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           An expression that filters the list of results.
+     *     @type string $orderBy
+     *           Sort the results by a certain order.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listGroups($parent, array $optionalArgs = [])
+    {
+        $request = new ListGroupsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListGroups',
+            $optionalArgs,
+            ListGroupsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists the Network Connectivity Center spokes associated with a
+     * specified hub and location. The list includes both spokes that are attached
+     * to the hub and spokes that have been proposed but not yet accepted.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $hubServiceClient->listHubSpokes($formattedName);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $hubServiceClient->listHubSpokes($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the hub.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string[] $spokeLocations
+     *           A list of locations.
+     *           Specify one of the following: `[global]`, a single region (for
+     *           example, `[us-central1]`), or a combination of
+     *           values (for example, `[global, us-central1, us-west1]`).
+     *           If the spoke_locations field is populated, the list of results
+     *           includes only spokes in the specified location.
+     *           If the spoke_locations field is not populated, the list of results
+     *           includes spokes in all locations.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           An expression that filters the list of results.
+     *     @type string $orderBy
+     *           Sort the results by name or create_time.
+     *     @type int $view
+     *           The view of the spoke to return.
+     *           The view that you use determines which spoke fields are included in the
+     *           response.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\NetworkConnectivity\V1\ListHubSpokesRequest\SpokeView}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listHubSpokes($name, array $optionalArgs = [])
+    {
+        $request = new ListHubSpokesRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['spokeLocations'])) {
+            $request->setSpokeLocations($optionalArgs['spokeLocations']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListHubSpokes',
+            $optionalArgs,
+            ListHubSpokesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists the Network Connectivity Center hubs associated with a given project.
      *
      * Sample code:
@@ -1057,7 +1629,7 @@ class HubServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           An expression that filters the results listed in the response.
+     *           An expression that filters the list of results.
      *     @type string $orderBy
      *           Sort the results by a certain order.
      *     @type RetrySettings|array $retrySettings
@@ -1107,6 +1679,184 @@ class HubServiceGapicClient
     }
 
     /**
+     * Lists route tables in a given project.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedParent = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $hubServiceClient->listRouteTables($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $hubServiceClient->listRouteTables($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           An expression that filters the list of results.
+     *     @type string $orderBy
+     *           Sort the results by a certain order.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listRouteTables($parent, array $optionalArgs = [])
+    {
+        $request = new ListRouteTablesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListRouteTables',
+            $optionalArgs,
+            ListRouteTablesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists routes in a given project.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedParent = $hubServiceClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $hubServiceClient->listRoutes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $hubServiceClient->listRoutes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource's name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           An expression that filters the list of results.
+     *     @type string $orderBy
+     *           Sort the results by a certain order.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listRoutes($parent, array $optionalArgs = [])
+    {
+        $request = new ListRoutesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListRoutes',
+            $optionalArgs,
+            ListRoutesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists the Network Connectivity Center spokes in a specified project and
      * location.
      *
@@ -1147,7 +1897,7 @@ class HubServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           An expression that filters the results listed in the response.
+     *           An expression that filters the list of results.
      *     @type string $orderBy
      *           Sort the results by a certain order.
      *     @type RetrySettings|array $retrySettings
@@ -1194,6 +1944,110 @@ class HubServiceGapicClient
             ListSpokesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Rejects a Network Connectivity Center spoke from being attached to a hub.
+     * If the spoke was previously in the `ACTIVE` state, it
+     * transitions to the `INACTIVE` state and is no longer able to
+     * connect to other spokes that are attached to the hub.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
+     *     $formattedSpokeUri = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
+     *     $operationResponse = $hubServiceClient->rejectHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $hubServiceClient->rejectHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'rejectHubSpoke');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the hub from which to reject the spoke.
+     * @param string $spokeUri     Required. The URI of the spoke to reject from the hub.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
+     *           ID, the server can check to see whether the original operation
+     *           was received. If it was, the server ignores the second request. This
+     *           behavior prevents clients from mistakenly creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID, with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type string $details
+     *           Optional. Additional information provided by the hub administrator.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rejectHubSpoke($name, $spokeUri, array $optionalArgs = [])
+    {
+        $request = new RejectHubSpokeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setSpokeUri($spokeUri);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['details'])) {
+            $request->setDetails($optionalArgs['details']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RejectHubSpoke',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1247,11 +2101,11 @@ class HubServiceGapicClient
      *           overwritten if it is in the mask. If the user does not provide a mask, then
      *           all fields are overwritten.
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can
-     *           use it in cases when you need to retry your request. When you need to
-     *           retry, this ID lets the server know that it can ignore the request if it
-     *           has already been completed. The server guarantees that for at least 60
-     *           minutes after the first request.
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -1349,11 +2203,11 @@ class HubServiceGapicClient
      *           overwritten if it is in the mask. If the user does not provide a mask, then
      *           all fields are overwritten.
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can
-     *           use it in cases when you need to retry your request. When you need to
-     *           retry, this ID lets the server know that it can ignore the request if it
-     *           has already been completed. The server guarantees that for at least 60
-     *           minutes after the first request.
+     *           Optional. A request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server knows to ignore the request
+     *           if it has already been completed. The server guarantees that a request
+     *           doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -1398,6 +2252,342 @@ class HubServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $response = $hubServiceClient->getLocation();
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $hubServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $hubServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $hubServiceClient->getIamPolicy($resource);
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $hubServiceClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $hubServiceClient = new HubServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $hubServiceClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $hubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

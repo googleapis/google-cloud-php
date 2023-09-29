@@ -83,6 +83,10 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*/groups/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/spokes/*}:getIamPolicy',
                     ],
                     [
@@ -103,6 +107,11 @@ return [
                 'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*}:setIamPolicy',
                 'body' => '*',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*/groups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/spokes/*}:setIamPolicy',
@@ -127,6 +136,11 @@ return [
                 'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*}:testIamPermissions',
                 'body' => '*',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*/groups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/spokes/*}:testIamPermissions',
