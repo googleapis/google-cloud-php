@@ -49,7 +49,8 @@ class SimpleMetadataProvider implements MetadataProviderInterface
 
     /**
      * Return an array representing MonitoredResource.
-     * {@see https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource}
+     *
+     * @see https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource
      *
      * @return array
      */
