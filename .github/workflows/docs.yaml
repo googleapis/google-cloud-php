@@ -24,7 +24,7 @@ jobs:
         php-version: "8.1"
     - name: Extract phpDocumentor
       id: extract
-      uses: shrink/actions-docker-extract@v2
+      uses: shrink/actions-docker-extract@v3
       with:
         image: "phpdoc/phpdoc:20230522201300af6fb5"
         path: "/opt/phpdoc/."
