@@ -1,5 +1,247 @@
 # Changelog
 
+## 0.221.0
+
+<details><summary>google/cloud-advisorynotifications 0.5.0</summary>
+
+
+
+### Features
+
+* Add new RPCs GetSettings, UpdateSettings and new messages Settings, NotificationSettings, GetSettingsRequest, UpdateSettingsRequest ([#6656](https://github.com/googleapis/google-cloud-php/issues/6656)) ([c126ed1](https://github.com/googleapis/google-cloud-php/commit/c126ed14cf0f65bc7d6341d6770f63a7595bf7c2))
+
+</details>
+
+<details><summary>google/cloud-alloydb 0.7.0</summary>
+
+
+
+### Features
+
+* Add support to generate client certificate and get connection info for auth proxy in AlloyDB v1 ([#6663](https://github.com/googleapis/google-cloud-php/issues/6663)) ([15da635](https://github.com/googleapis/google-cloud-php/commit/15da63571e86b48559c9527aafbd410891801b55))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.4.3</summary>
+
+
+
+### Bug Fixes
+
+* Make repository and repository_id in CreateRepository required ([#6649](https://github.com/googleapis/google-cloud-php/issues/6649)) ([0dbb72a](https://github.com/googleapis/google-cloud-php/commit/0dbb72a6d7392c2e7b7f97180b2c77f7682661ad))
+
+</details>
+
+<details><summary>google/cloud-asset 1.13.0</summary>
+
+
+
+### Features
+
+* Add support for directly attached and effective tags ([#6651](https://github.com/googleapis/google-cloud-php/issues/6651)) ([abf766f](https://github.com/googleapis/google-cloud-php/commit/abf766f844126b93a066a7d1dba5bc910bb40036))
+
+</details>
+
+<details><summary>google/cloud-batch 0.11.3</summary>
+
+
+
+### Documentation
+
+* Update batch PD interface support ([#6659](https://github.com/googleapis/google-cloud-php/issues/6659)) ([0d73692](https://github.com/googleapis/google-cloud-php/commit/0d736921f3ec0cc634511c4855eb90c84d90c036))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.28.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 0.3.0</summary>
+
+
+
+### Features
+
+* Add Subscription resource and RPCs ([#6657](https://github.com/googleapis/google-cloud-php/issues/6657)) ([c6e107f](https://github.com/googleapis/google-cloud-php/commit/c6e107f2f73e60d6c52dfcb82bf896a3bfa8daf6))
+* Add support for sharing_environment_config using which you can create data clean rooms. ([c6e107f](https://github.com/googleapis/google-cloud-php/commit/c6e107f2f73e60d6c52dfcb82bf896a3bfa8daf6))
+* Support restricted egress on Listings. ([c6e107f](https://github.com/googleapis/google-cloud-php/commit/c6e107f2f73e60d6c52dfcb82bf896a3bfa8daf6))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.28.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.6.0</summary>
+
+
+
+### Features
+
+* Add optional SpeechConfig to UploadConversationRequest ([#6652](https://github.com/googleapis/google-cloud-php/issues/6652)) ([ca23119](https://github.com/googleapis/google-cloud-php/commit/ca23119bb9699a79d3215a58fbeae971024ae442))
+
+</details>
+
+<details><summary>google/cloud-core 1.52.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.8.0</summary>
+
+
+
+### Features
+
+* Enable Vertex AI Ingestion on DataPlex ([#6660](https://github.com/googleapis/google-cloud-php/issues/6660)) ([5e509e3](https://github.com/googleapis/google-cloud-php/commit/5e509e3891435ab830a12e9295637c6d4bae833c))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.10.0</summary>
+
+
+
+### Features
+
+* Added EndpointLocation (v1, v1beta, v1alpha) ([#6661](https://github.com/googleapis/google-cloud-php/issues/6661)) ([7bdafb9](https://github.com/googleapis/google-cloud-php/commit/7bdafb9c8e4c3aaa1e0af71ff445154073758890))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.24.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-debugger 1.6.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.10.0</summary>
+
+
+
+### Features
+
+* Add the enable_partial_automated_agent_reply flag ([#6667](https://github.com/googleapis/google-cloud-php/issues/6667)) ([8af63c5](https://github.com/googleapis/google-cloud-php/commit/8af63c502aace0d5096106a7369df78cfc481a8a))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.8.0</summary>
+
+
+
+### Features
+
+* Make `page_range` field public ([#6654](https://github.com/googleapis/google-cloud-php/issues/6654)) ([5baae3d](https://github.com/googleapis/google-cloud-php/commit/5baae3d4256ae8607e736f97df5e131b546e8d52))
+
+
+### Bug Fixes
+
+* `OcrConfig.compute_style_info` is deprecated. Use `PremiumFeatures.compute_style_info` instead. ([5baae3d](https://github.com/googleapis/google-cloud-php/commit/5baae3d4256ae8607e736f97df5e131b546e8d52))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.37.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-language 0.31.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.28.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 1.4.0</summary>
+
+
+
+### Features
+
+* Add Network Connectivity Center APIs related to VPC spokes ([#6668](https://github.com/googleapis/google-cloud-php/issues/6668)) ([53e7fbc](https://github.com/googleapis/google-cloud-php/commit/53e7fbccae98106606dc0c502a089093896f9a2b))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.46.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 0.7.0</summary>
+
+
+
+### Features
+
+* Adds support for cancel Execution ([#6653](https://github.com/googleapis/google-cloud-php/issues/6653)) ([91a0964](https://github.com/googleapis/google-cloud-php/commit/91a09643e8a63e5d0a87ef8cd57be9d5bc0aae00))
+* Adds support for Direct VPC egress setting ([91a0964](https://github.com/googleapis/google-cloud-php/commit/91a09643e8a63e5d0a87ef8cd57be9d5bc0aae00))
+* Adds support for Execution overrides ([91a0964](https://github.com/googleapis/google-cloud-php/commit/91a09643e8a63e5d0a87ef8cd57be9d5bc0aae00))
+* New field for Task's scheduled timestamp ([91a0964](https://github.com/googleapis/google-cloud-php/commit/91a09643e8a63e5d0a87ef8cd57be9d5bc0aae00))
+* New fields for multi-container ([91a0964](https://github.com/googleapis/google-cloud-php/commit/91a09643e8a63e5d0a87ef8cd57be9d5bc0aae00))
+
+
+### Bug Fixes
+
+* Removes accidentally exposed field service.traffic_tags_cleanup_threshold in Cloud Run Service ([#6665](https://github.com/googleapis/google-cloud-php/issues/6665)) ([a42e6c0](https://github.com/googleapis/google-cloud-php/commit/a42e6c0bd9a1f5fc3a5f75b1daf4913906a041c9))
+
+
+### Documentation
+
+* General documentation fixes. ([91a0964](https://github.com/googleapis/google-cloud-php/commit/91a09643e8a63e5d0a87ef8cd57be9d5bc0aae00))
+* Minor comment fixes ([a42e6c0](https://github.com/googleapis/google-cloud-php/commit/a42e6c0bd9a1f5fc3a5f75b1daf4913906a041c9))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.64.0</summary>
+
+
+
+### Features
+
+* Add BatchWrite API ([#6650](https://github.com/googleapis/google-cloud-php/issues/6650)) ([952b327](https://github.com/googleapis/google-cloud-php/commit/952b327efa4bec33454dee909d3f9910841c1867))
+
+</details>
+
+<details><summary>google/cloud-speech 1.14.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.33.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.6.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 1.15.2</summary>
+
+
+
+</details>
+
 ## 0.220.0
 
 <details><summary>google/cloud-alloydb 0.6.0</summary>
