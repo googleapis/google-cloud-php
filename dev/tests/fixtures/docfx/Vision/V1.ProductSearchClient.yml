@@ -1004,7 +1004,7 @@ items:
       Asynchronous API that imports a list of reference images to specified
       product sets based on a list of image information.
 
-      The <xref uid="\Google\Longrunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
+      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
       progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
       `Operation.response` contains `ImportProductSetsResponse`. (results)
@@ -1506,7 +1506,7 @@ items:
       ProductSet, you must wait until the PurgeProducts operation has finished
       for that ProductSet.
 
-      The <xref uid="\Google\Longrunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
+      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
       progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
 
