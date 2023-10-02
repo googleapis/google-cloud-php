@@ -15,9 +15,19 @@
                                 "createDataset"
                             ]
                         },
+                        "CreateDatasetVersion": {
+                            "methods": [
+                                "createDatasetVersion"
+                            ]
+                        },
                         "DeleteDataset": {
                             "methods": [
                                 "deleteDataset"
+                            ]
+                        },
+                        "DeleteDatasetVersion": {
+                            "methods": [
+                                "deleteDatasetVersion"
                             ]
                         },
                         "DeleteSavedQuery": {
@@ -40,6 +50,11 @@
                                 "getDataset"
                             ]
                         },
+                        "GetDatasetVersion": {
+                            "methods": [
+                                "getDatasetVersion"
+                            ]
+                        },
                         "ImportData": {
                             "methods": [
                                 "importData"
@@ -55,6 +70,11 @@
                                 "listDataItems"
                             ]
                         },
+                        "ListDatasetVersions": {
+                            "methods": [
+                                "listDatasetVersions"
+                            ]
+                        },
                         "ListDatasets": {
                             "methods": [
                                 "listDatasets"
@@ -63,6 +83,11 @@
                         "ListSavedQueries": {
                             "methods": [
                                 "listSavedQueries"
+                            ]
+                        },
+                        "RestoreDatasetVersion": {
+                            "methods": [
+                                "restoreDatasetVersion"
                             ]
                         },
                         "SearchDataItems": {
