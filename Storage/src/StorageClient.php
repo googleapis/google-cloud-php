@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.33.2';
+    const VERSION = '1.33.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -127,9 +127,10 @@ class StorageClient
     }
 
     /**
-     * Lazily instantiates a bucket. There are no network requests made at this
-     * point. To see the operations that can be performed on a bucket please
-     * see {@see Bucket}.
+     * Lazily instantiates a bucket.
+     *
+     * There are no network requests made at this point. To see the operations
+     * that can be performed on a bucket please see {@see Bucket}.
      *
      * If `$userProject` is set to true, the current project ID (used to
      * instantiate the client) will be billed for all requests. If

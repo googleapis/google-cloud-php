@@ -179,9 +179,10 @@ class Dataset
     }
 
     /**
-     * Lazily instantiates a table. There are no network requests made at this
-     * point. To see the operations that can be performed on a dataset please
-     * see {@see Table}.
+     * Lazily instantiates a table.
+     *
+     * There are no network requests made at this point. To see the operations
+     * that can be performed on a dataset please see {@see Table}.
      *
      * Example:
      * ```
@@ -307,9 +308,10 @@ class Dataset
     }
 
     /**
-     * Lazily instantiates a machine learning model in the dataset. There are no
-     * network requests made at this point. To see the operations that can be performed on a
-     * model, please see {@see Model}.
+     * Lazily instantiates a machine learning model in the dataset.
+     *
+     * There are no network requests made at this point. To see the operations
+     * that can be performed on a model, please see {@see Model}.
      *
      * Example:
      * ```

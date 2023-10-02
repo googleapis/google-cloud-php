@@ -244,7 +244,9 @@ class Model
     }
 
     /**
-     * Returns an extract job configuration to be passed to either
+     * Returns a BigQuery extract job configuration.
+     *
+     * The job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full

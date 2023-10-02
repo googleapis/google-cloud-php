@@ -40,7 +40,7 @@ class TraceClient
 {
     use ClientTrait;
 
-    const VERSION = '1.6.3';
+    const VERSION = '1.6.4';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
