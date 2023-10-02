@@ -88,16 +88,47 @@ trait XrefTrait
         preg_replace_callback(
             '/<xref uid="([^ ]*)"/',
             function ($matches) use ($output, &$valid) {
-                if (0 !== strpos($matches[1], 'http') && '\\' !== $matches[1][0]
-                    || substr_count($matches[1], '\Google\\') > 1) {
-                    $output->writeln(sprintf('Invalid xref in %s: %s', $this->getFullname(), $matches[1]));
-                    $valid = false;
+                if (0 === strpos($matches[1], 'http')) {
+                    return; // Valid external reference
                 }
+                if ('\\' !== $matches[1][0] || substr_count($matches[1], '\Google\\') > 1) {
+                    $output->writeln(sprintf(
+                        'Xref not rendered propery in %s (did you add a reference in the phpdoc summary?): %s',
+                        $this->getFullname(),
+                        $matches[1])
+                    );
+                    $valid = false;
+                    return; // Invalid reference format
+                }
+                if (class_exists($matches[1]) || interface_exists($matches[1] || trait_exists($matches[1]))) {
+                    return; // Valid class reference
+                }
+                if (false !== strpos($matches[1], '::')) {
+                    if (false !== strpos($matches[1], '()')) {
+                        list($class, $method) = explode('::', str_replace('()', '', $matches[1]));
+                        if (method_exists($class, $method)) {
+                            return; // Valid method reference
+                        }
+                        if ('Async' === substr($method, -5)) {
+                            return; // Skip magic Async methods
+                        }
+                    } elseif (defined($matches[1])) {
+                        return; // Valid constant reference
+                    }
+                }
+
+                $output->writeln(sprintf('Invalid xref in %s: %s', $this->getFullname(), $matches[1]));
+                $valid = false;
             },
             $description
         );
 
         return $valid;
+    }
+
+    public function isValidExternalReference($xref)
+    {
+
     }
 
     /**

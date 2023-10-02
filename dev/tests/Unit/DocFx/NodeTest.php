@@ -447,8 +447,10 @@ EOF;
         $output = $this->prophesize(OutputInterface::class);
         if (is_null($errorMessage)) {
             $output->writeln(Argument::any())->shouldNotBeCalled();
+            $shouldBeValid = true;
         } else {
             $output->writeln($errorMessage)->shouldBeCalledOnce();
+            $shouldBeValid = false;
         }
 
         $xref = new class ($output->reveal()) {
@@ -461,9 +463,12 @@ EOF;
                     $this->output
                 );
             }
+            private function getFullname() {
+                return 'Anonymous';
+            }
         };
-        $isValid = is_null($errorMessage);
-        $this->assertEquals($isValid, $xref->validate($description));
+
+        $this->assertEquals($shouldBeValid, $xref->validate($description));
     }
 
     public function provideValidateXrefs()
@@ -472,11 +477,11 @@ EOF;
             ['{@see \OutputInterface}'], // valid
             ['Take a look at {@see \OutputInterface} for more.'], // valid
             ['Take a look at {@see https://foo.bar} for more.'], // valid
-            ['{@see Foo\Bar}', 'Invalid xref: Foo\Bar'], // invalid
-            ['Take a look at {@see Foo\Bar} for more.', 'Invalid xref: Foo\Bar'], // invalid
+            ['{@see Foo\Bar}', 'Invalid xref in Anonymous: Foo\Bar'], // invalid
+            ['Take a look at {@see Foo\Bar} for more.', 'Invalid xref in Anonymous: Foo\Bar'], // invalid
             [
                 '{@see \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo}',
-                'Invalid xref: \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo'
+                'Invalid xref in Anonymous: \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo'
             ], // invalid
         ];
     }
