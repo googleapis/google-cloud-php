@@ -22,9 +22,9 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\ApiCore\LongRunning;
+namespace Google\LongRunning;
 
-use Google\ApiCore\LongRunning\Gapic\OperationsGapicClient;
+use Google\LongRunning\Gapic\OperationsGapicClient;
 
 /** {@inheritdoc} */
 class OperationsClient extends OperationsGapicClient
@@ -32,3 +32,5 @@ class OperationsClient extends OperationsGapicClient
     // This class is intentionally empty, and is intended to hold manual additions to
     // the generated {@see OperationsGapicClient} class.
 }
+
+class_alias('Google\\LongRunning\\OperationsClient', 'Google\\ApiCore\\LongRunning\\OperationsClient');
