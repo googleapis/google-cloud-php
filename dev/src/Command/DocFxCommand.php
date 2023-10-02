@@ -61,7 +61,7 @@ class DocFxCommand extends Command
             throw new RuntimeException('This command must be run on PHP 8.0 or above');
         }
 
-        $componentName = $input->getOption('component') ?: basename(getcwd());
+        $componentName = rtrim($input->getOption('component'), '/') ?: basename(getcwd());
         $component = new Component($componentName, $input->getOption('component-path'));
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $componentName));
         $xml = $input->getOption('xml');

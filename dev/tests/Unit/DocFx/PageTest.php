@@ -119,6 +119,5 @@ class PageTest extends TestCase
         $this->assertNotEmpty($rpcMethod['example']);
         $this->assertCount(1, $rpcMethod['example']);
         $this->assertStringContainsString('function an_rpc_method_sample', $rpcMethod['example'][0]);
-
     }
 }
