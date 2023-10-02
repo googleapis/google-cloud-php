@@ -624,6 +624,7 @@ return [
                 'nasJob' => 'projects/{project}/locations/{location}/nasJobs/{nas_job}',
                 'nasTrialDetail' => 'projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'notificationChannel' => 'projects/{project}/notificationChannels/{notification_channel}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
                 'tensorboard' => 'projects/{project}/locations/{location}/tensorboards/{tensorboard}',

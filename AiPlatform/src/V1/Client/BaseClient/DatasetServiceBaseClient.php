@@ -37,17 +37,23 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\AnnotationSpec;
 use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
+use Google\Cloud\AIPlatform\V1\CreateDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
+use Google\Cloud\AIPlatform\V1\DatasetVersion;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
+use Google\Cloud\AIPlatform\V1\DeleteDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
 use Google\Cloud\AIPlatform\V1\GetDatasetRequest;
+use Google\Cloud\AIPlatform\V1\GetDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\ImportDataRequest;
 use Google\Cloud\AIPlatform\V1\ListAnnotationsRequest;
 use Google\Cloud\AIPlatform\V1\ListDataItemsRequest;
+use Google\Cloud\AIPlatform\V1\ListDatasetVersionsRequest;
 use Google\Cloud\AIPlatform\V1\ListDatasetsRequest;
 use Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest;
+use Google\Cloud\AIPlatform\V1\RestoreDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -80,16 +86,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @internal
  *
  * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createDatasetVersionAsync(CreateDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteDatasetVersionAsync(DeleteDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSavedQueryAsync(DeleteSavedQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAnnotationSpecAsync(GetAnnotationSpecRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getDatasetVersionAsync(GetDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAnnotationsAsync(ListAnnotationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDataItemsAsync(ListDataItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listDatasetVersionsAsync(ListDatasetVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSavedQueriesAsync(ListSavedQueriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface restoreDatasetVersionAsync(RestoreDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchDataItemsAsync(SearchDataItemsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDatasetAsync(UpdateDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -232,6 +243,27 @@ abstract class DatasetServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * dataset_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $datasetVersion
+     *
+     * @return string The formatted dataset_version resource.
+     */
+    public static function datasetVersionName(string $project, string $location, string $dataset, string $datasetVersion): string
+    {
+        return self::getPathTemplate('datasetVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'dataset_version' => $datasetVersion,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -276,6 +308,7 @@ abstract class DatasetServiceBaseClient
      * - annotationSpec: projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}
      * - dataItem: projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}
      * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
+     * - datasetVersion: projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}
      * - location: projects/{project}/locations/{location}
      * - savedQuery: projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}
      *
@@ -396,6 +429,32 @@ abstract class DatasetServiceBaseClient
     }
 
     /**
+     * Create a version from a Dataset.
+     *
+     * The async variant is {@see self::createDatasetVersionAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/create_dataset_version.php
+     *
+     * @param CreateDatasetVersionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDatasetVersion(CreateDatasetVersionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateDatasetVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a Dataset.
      *
      * The async variant is {@see self::deleteDatasetAsync()} .
@@ -419,6 +478,32 @@ abstract class DatasetServiceBaseClient
     public function deleteDataset(DeleteDatasetRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Dataset version.
+     *
+     * The async variant is {@see self::deleteDatasetVersionAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/delete_dataset_version.php
+     *
+     * @param DeleteDatasetVersionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDatasetVersion(DeleteDatasetVersionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDatasetVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -526,6 +611,32 @@ abstract class DatasetServiceBaseClient
     }
 
     /**
+     * Gets a Dataset version.
+     *
+     * The async variant is {@see self::getDatasetVersionAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/get_dataset_version.php
+     *
+     * @param GetDatasetVersionRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DatasetVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDatasetVersion(GetDatasetVersionRequest $request, array $callOptions = []): DatasetVersion
+    {
+        return $this->startApiCall('GetDatasetVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports data into a Dataset.
      *
      * The async variant is {@see self::importDataAsync()} .
@@ -604,6 +715,32 @@ abstract class DatasetServiceBaseClient
     }
 
     /**
+     * Lists DatasetVersions in a Dataset.
+     *
+     * The async variant is {@see self::listDatasetVersionsAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/list_dataset_versions.php
+     *
+     * @param ListDatasetVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDatasetVersions(ListDatasetVersionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDatasetVersions', $request, $callOptions);
+    }
+
+    /**
      * Lists Datasets in a Location.
      *
      * The async variant is {@see self::listDatasetsAsync()} .
@@ -653,6 +790,32 @@ abstract class DatasetServiceBaseClient
     public function listSavedQueries(ListSavedQueriesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSavedQueries', $request, $callOptions);
+    }
+
+    /**
+     * Restores a dataset version.
+     *
+     * The async variant is {@see self::restoreDatasetVersionAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/restore_dataset_version.php
+     *
+     * @param RestoreDatasetVersionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function restoreDatasetVersion(RestoreDatasetVersionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RestoreDatasetVersion', $request, $callOptions)->wait();
     }
 
     /**
