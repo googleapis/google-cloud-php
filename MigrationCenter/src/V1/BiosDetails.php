@@ -17,8 +17,10 @@ class BiosDetails extends \Google\Protobuf\Internal\Message
 {
     /**
      * BIOS name.
+     * This fields is deprecated. Please use the `id` field instead.
      *
-     * Generated from protobuf field <code>string bios_name = 1;</code>
+     * Generated from protobuf field <code>string bios_name = 1 [deprecated = true];</code>
+     * @deprecated
      */
     protected $bios_name = '';
     /**
@@ -60,6 +62,7 @@ class BiosDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type string $bios_name
      *           BIOS name.
+     *           This fields is deprecated. Please use the `id` field instead.
      *     @type string $id
      *           BIOS ID.
      *     @type string $manufacturer
@@ -79,24 +82,30 @@ class BiosDetails extends \Google\Protobuf\Internal\Message
 
     /**
      * BIOS name.
+     * This fields is deprecated. Please use the `id` field instead.
      *
-     * Generated from protobuf field <code>string bios_name = 1;</code>
+     * Generated from protobuf field <code>string bios_name = 1 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getBiosName()
     {
+        @trigger_error('bios_name is deprecated.', E_USER_DEPRECATED);
         return $this->bios_name;
     }
 
     /**
      * BIOS name.
+     * This fields is deprecated. Please use the `id` field instead.
      *
-     * Generated from protobuf field <code>string bios_name = 1;</code>
+     * Generated from protobuf field <code>string bios_name = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setBiosName($var)
     {
+        @trigger_error('bios_name is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->bios_name = $var;
 

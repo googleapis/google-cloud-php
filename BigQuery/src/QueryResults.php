@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -38,6 +39,7 @@ class QueryResults implements \IteratorAggregate
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     protected $connection;
 
@@ -62,13 +64,14 @@ class QueryResults implements \IteratorAggregate
     private $mapper;
 
     /**
-     * @param array Default options to be used for calls to get query results.
+     * @var array Default options to be used for calls to get query results.
      */
     private $queryResultsOptions;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
-     *        BigQuery.
+     *        BigQuery. This object is created by BigQueryClient,
+     *        and should not be instantiated outside of this client.
      * @param string $jobId The job's ID.
      * @param string $projectId The project's ID.
      * @param array $info The query result's metadata.
@@ -303,9 +306,10 @@ class QueryResults implements \IteratorAggregate
     }
 
     /**
-     * Checks the job's completeness. Useful in combination with
-     * {@see QueryResults::reload()} to poll for query
-     * status.
+     * Checks the job's completeness.
+     *
+     * Useful in combination with {@see QueryResults::reload()} to poll for
+     * query status.
      *
      * Example:
      * ```
@@ -328,9 +332,10 @@ class QueryResults implements \IteratorAggregate
     }
 
     /**
-     * Returns a reference to the {@see Job} instance used
-     * to fetch the query results. This is especially useful when attempting to
-     * access job statistics after calling
+     * Returns a reference to the job.
+     *
+     * The {@see Job} instance is used to fetch the query results. This is
+     * especially useful when attempting to access job statistics after calling
      * {@see BigQueryClient::runQuery()}.
      *
      * Example:
@@ -338,7 +343,7 @@ class QueryResults implements \IteratorAggregate
      * $job = $queryResults->job();
      * ```
      *
-     * @return Google\Cloud\BigQuery\Job
+     * @return Job
      */
     public function job()
     {

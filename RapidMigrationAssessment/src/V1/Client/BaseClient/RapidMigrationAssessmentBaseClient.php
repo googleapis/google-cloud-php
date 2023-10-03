@@ -54,7 +54,7 @@ use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Rapid Migration Assessment service
+ * Service Description: Service describing handlers for resources.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -403,6 +403,7 @@ abstract class RapidMigrationAssessmentBaseClient
 
     /**
      * Deletes a single Collector - changes state of collector to "Deleting".
+     * Background jobs does final deletion thorugh producer api.
      *
      * The async variant is {@see self::deleteCollectorAsync()} .
      *

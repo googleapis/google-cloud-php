@@ -29,10 +29,11 @@ FAILED_FILE=$(mktemp -d)/failed
 for DIR in ${DIRS}; do {
     cp ${DIR}/composer.json ${DIR}/composer-local.json
     # Update composer to use local packages
-    for i in bigquery,BigQuery core,Core logging,Logging, pubsub,PubSub storage,Storage; do
+    for i in BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos,0.1; do
         IFS=","; set -- $i;
-        if grep -q "\"google/cloud-$1\":" ${DIR}/composer.json; then
-            composer config repositories.$1 "{\"type\": \"path\", \"url\": \"../$2\", \"options\":{\"versions\":{\"google/cloud-$1\":\"1.100\"}}}" -d ${DIR}
+        if grep -q "\"google/$2\":" ${DIR}/composer.json; then
+            if [ -z "$3" ]; then VERSION="1.100"; else VERSION=$3; fi
+            composer config repositories.$2 "{\"type\": \"path\", \"url\": \"../$1\", \"options\":{\"versions\":{\"google/$2\":\"$VERSION\"}}}" -d ${DIR}
         fi
     done
 

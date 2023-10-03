@@ -26,8 +26,8 @@ use Google\Cloud\Core\Timestamp;
  *
  * This builder does not execute any network requests and is intended to be used
  * in combination with either
- * {@see Google\Cloud\Storage\StorageClient::createBucket()}
- * or {@see Google\Cloud\Storage\Bucket::update()}.
+ * {@see StorageClient::createBucket()}
+ * or {@see Bucket::update()}.
  *
  * Example:
  * ```

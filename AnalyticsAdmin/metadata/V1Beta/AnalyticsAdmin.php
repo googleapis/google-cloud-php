@@ -25,7 +25,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Š—
+¶š
 3google/analytics/admin/v1beta/analytics_admin.protogoogle.analytics.admin.v1beta-google/analytics/admin/v1beta/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"
 RunAccessReportRequest
 entity (	B
@@ -160,10 +160,10 @@ page_token	 (	BàA"
 measurement_protocol_secret (28.google.analytics.admin.v1beta.MeasurementProtocolSecretBàA"w
 &DeleteMeasurementProtocolSecretRequestM
 name (	B?àAúA9
-7analyticsadmin.googleapis.com/MeasurementProtocolSecret"½
+7analyticsadmin.googleapis.com/MeasurementProtocolSecret"Â
 &UpdateMeasurementProtocolSecretRequestb
-measurement_protocol_secret (28.google.analytics.admin.v1beta.MeasurementProtocolSecretBàA/
-update_mask (2.google.protobuf.FieldMask"Ÿ
+measurement_protocol_secret (28.google.analytics.admin.v1beta.MeasurementProtocolSecretBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"Ÿ
 %ListMeasurementProtocolSecretsRequestO
 parent (	B?àAúA97analyticsadmin.googleapis.com/MeasurementProtocolSecret
 	page_size (
@@ -174,7 +174,10 @@ page_token (	"¡
 next_page_token (	"´
 CreateConversionEventRequestM
 conversion_event (2..google.analytics.admin.v1beta.ConversionEventBàAE
-parent (	B5àAúA/-analyticsadmin.googleapis.com/ConversionEvent"`
+parent (	B5àAúA/-analyticsadmin.googleapis.com/ConversionEvent"£
+UpdateConversionEventRequestM
+conversion_event (2..google.analytics.admin.v1beta.ConversionEventBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"`
 GetConversionEventRequestC
 name (	B5àAúA/
 -analyticsadmin.googleapis.com/ConversionEvent"c
@@ -254,7 +257,7 @@ page_token (	"s
 next_page_token (	"V
 GetDataStreamRequest>
 name (	B0àAúA*
-(analyticsadmin.googleapis.com/DataStream2ÚN
+(analyticsadmin.googleapis.com/DataStream2ÛP
 AnalyticsAdminService
 
 GetAccount0.google.analytics.admin.v1beta.GetAccountRequest&.google.analytics.admin.v1beta.Account"(‚Óä“/v1beta/{name=accounts/*}ÚAname‘
@@ -283,7 +286,8 @@ GetAccount0.google.analytics.admin.v1beta.GetAccountRequest&.google.analytics.
 UpdateMeasurementProtocolSecretE.google.analytics.admin.v1beta.UpdateMeasurementProtocolSecretRequest8.google.analytics.admin.v1beta.MeasurementProtocolSecret"²‚Óä“2b/v1beta/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}:measurement_protocol_secretÚA\'measurement_protocol_secret,update_maskô
 AcknowledgeUserDataCollectionC.google.analytics.admin.v1beta.AcknowledgeUserDataCollectionRequestD.google.analytics.admin.v1beta.AcknowledgeUserDataCollectionResponse"H‚Óä“B"=/v1beta/{property=properties/*}:acknowledgeUserDataCollection:*á
 SearchChangeHistoryEvents?.google.analytics.admin.v1beta.SearchChangeHistoryEventsRequest@.google.analytics.admin.v1beta.SearchChangeHistoryEventsResponse"A‚Óä“;"6/v1beta/{account=accounts/*}:searchChangeHistoryEvents:*è
-CreateConversionEvent;.google.analytics.admin.v1beta.CreateConversionEventRequest..google.analytics.admin.v1beta.ConversionEvent"b‚Óä“B"./v1beta/{parent=properties/*}/conversionEvents:conversion_eventÚAparent,conversion_event½
+CreateConversionEvent;.google.analytics.admin.v1beta.CreateConversionEventRequest..google.analytics.admin.v1beta.ConversionEvent"b‚Óä“B"./v1beta/{parent=properties/*}/conversionEvents:conversion_eventÚAparent,conversion_eventş
+UpdateConversionEvent;.google.analytics.admin.v1beta.UpdateConversionEventRequest..google.analytics.admin.v1beta.ConversionEvent"x‚Óä“S2?/v1beta/{conversion_event.name=properties/*/conversionEvents/*}:conversion_eventÚAconversion_event,update_mask½
 GetConversionEvent8.google.analytics.admin.v1beta.GetConversionEventRequest..google.analytics.admin.v1beta.ConversionEvent"=‚Óä“0./v1beta/{name=properties/*/conversionEvents/*}ÚAname«
 DeleteConversionEvent;.google.analytics.admin.v1beta.DeleteConversionEventRequest.google.protobuf.Empty"=‚Óä“0*./v1beta/{name=properties/*/conversionEvents/*}ÚAnameĞ
 ListConversionEvents:.google.analytics.admin.v1beta.ListConversionEventsRequest;.google.analytics.admin.v1beta.ListConversionEventsResponse"?‚Óä“0./v1beta/{parent=properties/*}/conversionEventsÚAparentè

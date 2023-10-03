@@ -1,0 +1,8 @@
+{
+    "language": "php",
+    "distribution_name": "google/shopping-merchant-reports",
+    "release_level": "preview",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-reports/latest",
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "merchantapi"
+}

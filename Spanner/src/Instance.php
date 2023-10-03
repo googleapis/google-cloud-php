@@ -93,6 +93,7 @@ class Instance
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -125,14 +126,15 @@ class Instance
      * Create an object representing a Cloud Spanner instance.
      *
      * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API.
+     *        Cloud Spanner Admin API. This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
      * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The instance name or ID.
      * @param bool $returnInt64AsObject [optional] If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
+     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
      */
@@ -326,7 +328,7 @@ class Instance
      * When instances are created or updated, they may take some time before
      * they are ready for use. This method allows for checking whether an
      * instance is ready. Note that this value is cached within the class instance,
-     * so if you are polling it, first call {@see Google\Cloud\Spanner\Instance::reload()}
+     * so if you are polling it, first call {@see \Google\Cloud\Spanner\Instance::reload()}
      * to refresh the cached value
      *
      * Example:

@@ -80,9 +80,9 @@ class Table
      *           replication. **Defaults to** the "default" application profile.
      *     @type array $headers Headers to be passed with each request.
      *     @type int $retries Number of times to retry. **Defaults to** `3`.
-     *           This settings only applies to {@see Google\Cloud\Bigtable\Table::mutateRows()},
-     *           {@see Google\Cloud\Bigtable\Table::upsert()} and
-     *           {@see Google\Cloud\Bigtable\Table::readRows()}.
+     *           This settings only applies to {@see \Google\Cloud\Bigtable\Table::mutateRows()},
+     *           {@see \Google\Cloud\Bigtable\Table::upsert()} and
+     *           {@see \Google\Cloud\Bigtable\Table::readRows()}.
      * }
      */
     public function __construct(
@@ -111,7 +111,7 @@ class Table
      *
      * @param array $rowMutations An associative array with the key being the
      *        row key and the value being the
-     *        {@see Google\Cloud\Bigtable\Mutations} to perform.
+     *        {@see \Google\Cloud\Bigtable\Mutations} to perform.
      * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails.
@@ -253,7 +253,7 @@ class Table
      *           (`endKeyOpen` or `endKeyClosed`).
      *     @type FilterInterface $filter A filter used to take an input row and
      *           produce an alternate view of the row based on the specified rules.
-     *           To learn more please see {@see Google\Cloud\Bigtable\Filter} which
+     *           To learn more please see {@see \Google\Cloud\Bigtable\Filter} which
      *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
      *     @type int $retries Number of times to retry. **Defaults to** `3`.
@@ -447,10 +447,10 @@ class Table
      *           row. Depending on whether or not any results are yielded, either the
      *           trueMutations or falseMutations will be executed. If unset, checks that the
      *           row contains any values at all. Only a single condition can be set, however
-     *           that filter can be {@see Google\Cloud\Bigtable\Filter::chain()} or
-     *           {@see Google\Cloud\Bigtable\Filter::interleave()} which can wrap multiple other
+     *           that filter can be {@see \Google\Cloud\Bigtable\Filter::chain()} or
+     *           {@see \Google\Cloud\Bigtable\Filter::interleave()} which can wrap multiple other
      *           filters.
-     *           WARNING: {@see Google\Cloud\Bigtable\Filter::condition()} is not supported.
+     *           WARNING: {@see \Google\Cloud\Bigtable\Filter::condition()} is not supported.
      *     @type Mutations $trueMutations Mutations to be atomically applied when the predicate
      *           filter's condition yields at least one cell when applied to the row. Please note
      *           either `trueMutations` or `falseMutations` must be provided.
@@ -462,9 +462,9 @@ class Table
      * @return bool Returns true if predicate filter yielded any output, false otherwise.
      * @throws ApiException If the remote call fails or operation fails
      * @throws \InvalidArgumentException If neither of $trueMutations or $falseMutations is set.
-     *         If $predicateFilter is not instance of {@see Google\Cloud\Bigtable\Filter\FilterInterface}.
-     *         If $trueMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
-     *         If $falseMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
+     *         If $predicateFilter is not instance of {@see \Google\Cloud\Bigtable\Filter\FilterInterface}.
+     *         If $trueMutations is set and is not instance of {@see \Google\Cloud\Bigtable\Mutations}.
+     *         If $falseMutations is set and is not instance of {@see \Google\Cloud\Bigtable\Mutations}.
      */
     public function checkAndMutateRow($rowKey, array $options = [])
     {

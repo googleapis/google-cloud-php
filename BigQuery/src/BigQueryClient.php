@@ -50,7 +50,7 @@ class BigQueryClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '1.25.0';
+    const VERSION = '1.28.1';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -59,6 +59,7 @@ class BigQueryClient
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     protected $connection;
 
@@ -145,7 +146,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns a BigQuery job configuration.
+     *
+     * The job configuration is passed to either
      * {@see BigQueryClient::runQuery()} or
      * {@see BigQueryClient::startQuery()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -216,7 +219,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns a BigQuery job configuration.
+     *
+     * The job configuration is passed to either
      * {@see BigQueryClient::runQuery()} or
      * {@see BigQueryClient::startQuery()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -400,7 +405,9 @@ class BigQueryClient
     }
 
     /**
-     * Lazily instantiates a job. There are no network requests made at this
+     * Lazily instantiates a job.
+     *
+     * There are no network requests made at this
      * point. To see the operations that can be performed on a job please
      * see {@see Job}.
      *
@@ -497,7 +504,9 @@ class BigQueryClient
     }
 
     /**
-     * Lazily instantiates a dataset. There are no network requests made at this
+     * Lazily instantiates a dataset.
+     *
+     * There are no network requests made at this
      * point. To see the operations that can be performed on a dataset please
      * see {@see Dataset}.
      *
@@ -857,6 +866,29 @@ class BigQueryClient
     }
 
     /**
+     * Create a BigQuery Json object.
+     *
+     * Json represents a value with a data type of
+     * [JSON](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#json_type)
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\BigQuery\BigQueryClient;
+     *
+     * $bigQuery = new BigQueryClient();
+     * $json = $bigQuery->json('{"key":"value"}');
+     * ```
+     *
+     * @param string|null $value The JSON string value.
+     * @return Json
+     * @throws InvalidArgumentException If the given $value is not string|null.
+     */
+    public function json($value)
+    {
+        return new Json($value);
+    }
+
+    /**
      * Get a service account for the KMS integration.
      *
      * Example:
@@ -875,7 +907,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a copy job configuration to be passed to either
+     * Returns a BigQuery copy job configuration.
+     *
+     * The copy job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -912,7 +946,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns an extract job configuration to be passed to either
+     * Returns a BigQuery extract job configuration.
+     *
+     * The extract job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -949,7 +985,9 @@ class BigQueryClient
     }
 
     /**
-     * Returns a load job configuration to be passed to either
+     * Returns a BigQuery load job configuration.
+     *
+     * The load job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full

@@ -34,8 +34,11 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest;
+use Google\Cloud\AdvisoryNotifications\V1\GetSettingsRequest;
 use Google\Cloud\AdvisoryNotifications\V1\ListNotificationsRequest;
 use Google\Cloud\AdvisoryNotifications\V1\Notification;
+use Google\Cloud\AdvisoryNotifications\V1\Settings;
+use Google\Cloud\AdvisoryNotifications\V1\UpdateSettingsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -58,7 +61,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @internal
  *
  * @method PromiseInterface getNotificationAsync(GetNotificationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNotificationsAsync(ListNotificationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
  */
 abstract class AdvisoryNotificationsServiceBaseClient
 {
@@ -138,11 +143,29 @@ abstract class AdvisoryNotificationsServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a settings
+     * resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted settings resource.
+     */
+    public static function settingsName(string $organization, string $location): string
+    {
+        return self::getPathTemplate('settings')->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - location: organizations/{organization}/locations/{location}
      * - notification: organizations/{organization}/locations/{location}/notifications/{notification}
+     * - settings: organizations/{organization}/locations/{location}/settings
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -260,6 +283,32 @@ abstract class AdvisoryNotificationsServiceBaseClient
     }
 
     /**
+     * Get notification settings.
+     *
+     * The async variant is {@see self::getSettingsAsync()} .
+     *
+     * @example samples/V1/AdvisoryNotificationsServiceClient/get_settings.php
+     *
+     * @param GetSettingsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Settings
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSettings(GetSettingsRequest $request, array $callOptions = []): Settings
+    {
+        return $this->startApiCall('GetSettings', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists notifications under a given parent.
      *
      * The async variant is {@see self::listNotificationsAsync()} .
@@ -283,5 +332,31 @@ abstract class AdvisoryNotificationsServiceBaseClient
     public function listNotifications(ListNotificationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListNotifications', $request, $callOptions);
+    }
+
+    /**
+     * Update notification settings.
+     *
+     * The async variant is {@see self::updateSettingsAsync()} .
+     *
+     * @example samples/V1/AdvisoryNotificationsServiceClient/update_settings.php
+     *
+     * @param UpdateSettingsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Settings
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSettings(UpdateSettingsRequest $request, array $callOptions = []): Settings
+    {
+        return $this->startApiCall('UpdateSettings', $request, $callOptions)->wait();
     }
 }

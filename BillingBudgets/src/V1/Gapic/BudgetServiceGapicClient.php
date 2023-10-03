@@ -445,6 +445,13 @@ class BudgetServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $scope
+     *           Optional. Set the scope of the budgets to be returned, in the format of the
+     *           resource name. The scope of a budget is the cost that it tracks, such as
+     *           costs for a single project, or the costs for all projects in a folder. Only
+     *           project scope (in the format of "projects/project-id" or "projects/123") is
+     *           supported in this field. When this field is set to a project's resource
+     *           name, the budgets returned are tracking the costs for that project.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -470,6 +477,10 @@ class BudgetServiceGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['scope'])) {
+            $request->setScope($optionalArgs['scope']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

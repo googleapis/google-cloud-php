@@ -35,13 +35,13 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
      */
     private $destination = null;
     /**
-     * A generic list of settings for the workspace.
+     * Optional. A generic list of settings for the workspace.
      * The settings are database pair dependant and can indicate default behavior
      * for the mapping rules engine or turn on or off specific features.
      * Such examples can be: convert_foreign_key_to_interleave=true,
      * skip_triggers=false, ignore_non_table_synonyms=true
      *
-     * Generated from protobuf field <code>map<string, string> global_settings = 4;</code>
+     * Generated from protobuf field <code>map<string, string> global_settings = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $global_settings;
     /**
@@ -76,9 +76,9 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * The display name for the workspace.
+     * Optional. The display name for the workspace.
      *
-     * Generated from protobuf field <code>string display_name = 11;</code>
+     * Generated from protobuf field <code>string display_name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $display_name = '';
 
@@ -96,7 +96,7 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\CloudDms\V1\DatabaseEngineInfo $destination
      *           Required. The destination engine details.
      *     @type array|\Google\Protobuf\Internal\MapField $global_settings
-     *           A generic list of settings for the workspace.
+     *           Optional. A generic list of settings for the workspace.
      *           The settings are database pair dependant and can indicate default behavior
      *           for the mapping rules engine or turn on or off specific features.
      *           Such examples can be: convert_foreign_key_to_interleave=true,
@@ -113,7 +113,7 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the workspace resource was last updated.
      *     @type string $display_name
-     *           The display name for the workspace.
+     *           Optional. The display name for the workspace.
      * }
      */
     public function __construct($data = NULL) {
@@ -222,13 +222,13 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A generic list of settings for the workspace.
+     * Optional. A generic list of settings for the workspace.
      * The settings are database pair dependant and can indicate default behavior
      * for the mapping rules engine or turn on or off specific features.
      * Such examples can be: convert_foreign_key_to_interleave=true,
      * skip_triggers=false, ignore_non_table_synonyms=true
      *
-     * Generated from protobuf field <code>map<string, string> global_settings = 4;</code>
+     * Generated from protobuf field <code>map<string, string> global_settings = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getGlobalSettings()
@@ -237,13 +237,13 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A generic list of settings for the workspace.
+     * Optional. A generic list of settings for the workspace.
      * The settings are database pair dependant and can indicate default behavior
      * for the mapping rules engine or turn on or off specific features.
      * Such examples can be: convert_foreign_key_to_interleave=true,
      * skip_triggers=false, ignore_non_table_synonyms=true
      *
-     * Generated from protobuf field <code>map<string, string> global_settings = 4;</code>
+     * Generated from protobuf field <code>map<string, string> global_settings = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -418,9 +418,9 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name for the workspace.
+     * Optional. The display name for the workspace.
      *
-     * Generated from protobuf field <code>string display_name = 11;</code>
+     * Generated from protobuf field <code>string display_name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDisplayName()
@@ -429,9 +429,9 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name for the workspace.
+     * Optional. The display name for the workspace.
      *
-     * Generated from protobuf field <code>string display_name = 11;</code>
+     * Generated from protobuf field <code>string display_name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -33,6 +33,12 @@ class ImageDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 3;</code>
      */
     private $description = '';
+    /**
+     * List of check results.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.CheckResult check_results = 4;</code>
+     */
+    private $check_results;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class ImageDetails extends \Google\Protobuf\Internal\Message
      *           The result of the audit for this image.
      *     @type string $description
      *           Description of the above result.
+     *     @type array<\Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails\CheckResult>|\Google\Protobuf\Internal\RepeatedField $check_results
+     *           List of check results.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,32 @@ class ImageDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of check results.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.CheckResult check_results = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCheckResults()
+    {
+        return $this->check_results;
+    }
+
+    /**
+     * List of check results.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails.CheckResult check_results = 4;</code>
+     * @param array<\Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails\CheckResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCheckResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails\CheckResult::class);
+        $this->check_results = $arr;
 
         return $this;
     }

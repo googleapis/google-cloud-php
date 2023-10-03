@@ -91,7 +91,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.23.0';
+    const VERSION = '1.24.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -147,7 +147,7 @@ class DatastoreClient
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
      * @throws \InvalidArgumentException
@@ -283,7 +283,7 @@ class DatastoreClient
      * requires a complex key elementPath, you must create the key separately.
      *
      * In complex applications you may want to create your own entity types.
-     * Google Cloud PHP supports subclassing of {@see Google\Cloud\Datastore\Entity}.
+     * Google Cloud PHP supports subclassing of {@see \Google\Cloud\Datastore\Entity}.
      * If the name of a subclass of Entity is given in the options array, an
      * entity will be created with that class rather than the default class.
      *
@@ -382,8 +382,8 @@ class DatastoreClient
      *
      *     @type string $className If set, the given class will be returned.
      *           Value must be the name of a class implementing
-     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
-     *           {@see Google\Cloud\Datastore\Entity}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see \Google\Cloud\Datastore\Entity}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      * }
@@ -608,7 +608,7 @@ class DatastoreClient
      * An entity with incomplete keys will be allocated an ID prior to insertion.
      *
      * Insert by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::insert()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::insert()}.
      *
      * Example:
      * ```
@@ -637,7 +637,7 @@ class DatastoreClient
      * Any entity with incomplete keys will be allocated an ID prior to insertion.
      *
      * Insert by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::insertBatch()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::insertBatch()}.
      *
      * Example:
      * ```
@@ -675,7 +675,7 @@ class DatastoreClient
      * possible by first retrieving the entire entity in its existing state.
      *
      * Update by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::update()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::update()}.
      *
      * Example:
      * ```
@@ -716,7 +716,7 @@ class DatastoreClient
      * possible by first retrieving the entire entity in its existing state.
      *
      * Update by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::updateBatch()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::updateBatch()}.
      *
      * Example:
      * ```
@@ -772,7 +772,7 @@ class DatastoreClient
      * An entity with incomplete keys will be allocated an ID prior to insertion.
      *
      * Upsert by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::upsert()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::upsert()}.
      *
      * Example:
      * ```
@@ -809,7 +809,7 @@ class DatastoreClient
      * Any entity with incomplete keys will be allocated an ID prior to insertion.
      *
      * Upsert by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::upsertBatch()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::upsertBatch()}.
      *
      * Example:
      * ```
@@ -847,7 +847,7 @@ class DatastoreClient
      * Delete an entity
      *
      * Deletion by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::delete()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::delete()}.
      *
      * Example:
      * ```
@@ -880,7 +880,7 @@ class DatastoreClient
      * Delete multiple entities
      *
      * Deletion by this method is non-transactional. If you need transaction
-     * support, use {@see Google\Cloud\Datastore\Transaction::deleteBatch()}.
+     * support, use {@see \Google\Cloud\Datastore\Transaction::deleteBatch()}.
      *
      * Example:
      * ```
@@ -923,7 +923,7 @@ class DatastoreClient
      * Retrieve an entity from the datastore
      *
      * To lookup an entity inside a transaction, use
-     * {@see Google\Cloud\Datastore\Transaction::lookup()}.
+     * {@see \Google\Cloud\Datastore\Transaction::lookup()}.
      *
      * Example:
      * ```
@@ -954,8 +954,8 @@ class DatastoreClient
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $className If set, the given class will be returned.
      *           Value must be the name of a class implementing
-     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
-     *           {@see Google\Cloud\Datastore\Entity}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see \Google\Cloud\Datastore\Entity}.
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
      * }
@@ -974,7 +974,7 @@ class DatastoreClient
      * Get multiple entities
      *
      * To lookup entities inside a transaction, use
-     * {@see Google\Cloud\Datastore\Transaction::lookupBatch()}.
+     * {@see \Google\Cloud\Datastore\Transaction::lookupBatch()}.
      *
      * Example:
      * ```
@@ -1013,11 +1013,11 @@ class DatastoreClient
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string|array $className If a string, the given class will be
      *           returned. Value must be the name of a class implementing
-     *           {@see Google\Cloud\Datastore\EntityInterface}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}.
      *           If an array is given, it must be an associative array, where
      *           the key is a Kind and the value must implement
-     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
-     *           {@see Google\Cloud\Datastore\Entity}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see \Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
      *     @type string $databaseId ID of the database to which the entities belong.
@@ -1025,8 +1025,8 @@ class DatastoreClient
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
-     *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
-     *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
+     *         {@see \Google\Cloud\Datastore\Entity}. Members of `missing` and
+     *         `deferred` will be instance of {@see \Google\Cloud\Datastore\Key}.
      */
     public function lookupBatch(array $keys, array $options = [])
     {
@@ -1076,7 +1076,7 @@ class DatastoreClient
      * Create a GqlQuery object.
      *
      * Returns a Query object which can be executed using
-     * {@see Google\Cloud\Datastore\DatastoreClient::runQuery()}.
+     * {@see \Google\Cloud\Datastore\DatastoreClient::runQuery()}.
      *
      * Example:
      * ```
@@ -1134,7 +1134,7 @@ class DatastoreClient
      *           Queries using Named Bindings should provide a key/value set,
      *           while queries using Positional Bindings must provide a simple
      *           array. Query cursors may be provided using instances of
-     *           {@see Google\Cloud\Datastore\Cursor}.
+     *           {@see \Google\Cloud\Datastore\Cursor}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
@@ -1149,7 +1149,7 @@ class DatastoreClient
      * Run a query and return entities
      *
      * To query datastore inside a transaction, use
-     * {@see Google\Cloud\Datastore\Transaction::runQuery()}.
+     * {@see \Google\Cloud\Datastore\Transaction::runQuery()}.
      *
      * Example:
      * ```
@@ -1176,8 +1176,8 @@ class DatastoreClient
      *
      *     @type string $className If set, the given class will be returned.
      *           Value must be the name of a class implementing
-     *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
-     *           {@see Google\Cloud\Datastore\Entity}.
+     *           {@see \Google\Cloud\Datastore\EntityInterface}. **Defaults to**
+     *           {@see \Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
@@ -1193,7 +1193,7 @@ class DatastoreClient
      * Run an aggregation query and return results.
      *
      * To query datastore inside a transaction, use
-     * {@see Google\Cloud\Datastore\Transaction::runAggregationQuery()}.
+     * {@see \Google\Cloud\Datastore\Transaction::runAggregationQuery()}.
      *
      * Example:
      * ```

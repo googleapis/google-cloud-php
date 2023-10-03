@@ -118,6 +118,7 @@ class Query
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -143,6 +144,8 @@ class Query
 
     /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     *        This object is created by FirestoreClient,
+     *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
@@ -360,12 +363,12 @@ class Query
      * Add a WHERE clause to the Query.
      *
      * For a list of all available operators, see
-     * {@see Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator}.
+     * {@see \Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator}.
      * This method also supports a number of comparison operators which you will
      * be familiar with, such as `=`, `>`, `<`, `<=` and `>=`. For array fields,
      * the `array-contains`, `IN` and `array-contains-any` operators are also
      * available.
-     * This method also supports usage of Filters (see {@see Google\Cloud\Firestore\Filter}).
+     * This method also supports usage of Filters (see {@see \Google\Cloud\Firestore\Filter}).
      * The Filter class helps to create complex queries using AND and OR operators.
      *
      * Example:
@@ -555,7 +558,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -583,7 +586,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query starting point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -611,7 +614,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -639,7 +642,7 @@ class Query
      * ```
      *
      * @param mixed[]|DocumentSnapshot $fieldValues A list of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        defining the query end point.
      * @return Query A new instance of Query with the given changes applied.
      */
@@ -679,7 +682,7 @@ class Query
      *
      * @param string $key The query key.
      * @param mixed[]|DocumentSnapshot $fieldValues An array of values, or an
-     *        instance of {@see Google\Cloud\Firestore\DocumentSnapshot}
+     *        instance of {@see \Google\Cloud\Firestore\DocumentSnapshot}
      *        to use as the query boundary.
      * @param bool $before Whether the query boundary lies just before or after
      *        the provided data.

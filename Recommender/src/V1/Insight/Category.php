@@ -43,6 +43,18 @@ class Category
      * Generated from protobuf enum <code>MANAGEABILITY = 4;</code>
      */
     const MANAGEABILITY = 4;
+    /**
+     * The insight is related to sustainability.
+     *
+     * Generated from protobuf enum <code>SUSTAINABILITY = 5;</code>
+     */
+    const SUSTAINABILITY = 5;
+    /**
+     * This insight is related to reliability.
+     *
+     * Generated from protobuf enum <code>RELIABILITY = 6;</code>
+     */
+    const RELIABILITY = 6;
 
     private static $valueToName = [
         self::CATEGORY_UNSPECIFIED => 'CATEGORY_UNSPECIFIED',
@@ -50,6 +62,8 @@ class Category
         self::SECURITY => 'SECURITY',
         self::PERFORMANCE => 'PERFORMANCE',
         self::MANAGEABILITY => 'MANAGEABILITY',
+        self::SUSTAINABILITY => 'SUSTAINABILITY',
+        self::RELIABILITY => 'RELIABILITY',
     ];
 
     public static function name($value)

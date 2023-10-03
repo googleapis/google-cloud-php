@@ -152,6 +152,22 @@ return [
                     ],
                 ],
             ],
+            'GetLatestRecoveryTime' => [
+                'method' => 'get',
+                'uriTemplate' => '/sql/v1beta4/projects/{project}/instances/{instance}/getLatestRecoveryTime',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Import' => [
                 'method' => 'post',
                 'uriTemplate' => '/sql/v1beta4/projects/{project}/instances/{instance}/import',

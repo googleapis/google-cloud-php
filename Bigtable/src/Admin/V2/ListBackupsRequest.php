@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
+ * The request for
+ * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ListBackupsRequest</code>
  */
@@ -32,43 +33,44 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      * roughly synonymous with equality. Filter rules are case insensitive.
      * The fields eligible for filtering are:
-     *   * `name`
-     *   * `source_table`
-     *   * `state`
-     *   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `size_bytes`
+     * * `name`
+     * * `source_table`
+     * * `state`
+     * * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `size_bytes`
      * To filter on multiple expressions, provide each separate expression within
      * parentheses. By default, each expression is an AND expression. However,
      * you can include AND, OR, and NOT expressions explicitly.
      * Some examples of using filters are:
-     *   * `name:"exact"` --> The backup's name is the string "exact".
-     *   * `name:howl` --> The backup's name contains the string "howl".
-     *   * `source_table:prod`
-     *          --> The source_table's name contains the string "prod".
-     *   * `state:CREATING` --> The backup is pending creation.
-     *   * `state:READY` --> The backup is fully created and ready for use.
-     *   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
-     *          --> The backup name contains the string "howl" and start_time
-     *              of the backup is before 2018-03-28T14:50:00Z.
-     *   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * * `name:"exact"` --> The backup's name is the string "exact".
+     * * `name:howl` --> The backup's name contains the string "howl".
+     * * `source_table:prod`
+     *        --> The source_table's name contains the string "prod".
+     * * `state:CREATING` --> The backup is pending creation.
+     * * `state:READY` --> The backup is fully created and ready for use.
+     * * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
+     *        --> The backup name contains the string "howl" and start_time
+     *            of the backup is before 2018-03-28T14:50:00Z.
+     * * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
      * An expression for specifying the sort order of the results of the request.
-     * The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
-     * syntax is described at https://aip.dev/132#ordering.
+     * The string value should specify one or more fields in
+     * [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
+     * https://aip.dev/132#ordering.
      * Fields supported are:
-     *    * name
-     *    * source_table
-     *    * expire_time
-     *    * start_time
-     *    * end_time
-     *    * size_bytes
-     *    * state
+     * * name
+     * * source_table
+     * * expire_time
+     * * start_time
+     * * end_time
+     * * size_bytes
+     * * state
      * For example, "start_time". The default sorting order is ascending.
      * To specify descending order for the field, a suffix " desc" should
      * be appended to the field name. For example, "start_time desc".
@@ -88,9 +90,10 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
-     * previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
-     * `filter`.
+     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
+     * from a previous
+     * [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
+     * same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
@@ -132,39 +135,40 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      *           roughly synonymous with equality. Filter rules are case insensitive.
      *           The fields eligible for filtering are:
-     *             * `name`
-     *             * `source_table`
-     *             * `state`
-     *             * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *             * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *             * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *             * `size_bytes`
+     *           * `name`
+     *           * `source_table`
+     *           * `state`
+     *           * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *           * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *           * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     *           * `size_bytes`
      *           To filter on multiple expressions, provide each separate expression within
      *           parentheses. By default, each expression is an AND expression. However,
      *           you can include AND, OR, and NOT expressions explicitly.
      *           Some examples of using filters are:
-     *             * `name:"exact"` --> The backup's name is the string "exact".
-     *             * `name:howl` --> The backup's name contains the string "howl".
-     *             * `source_table:prod`
-     *                    --> The source_table's name contains the string "prod".
-     *             * `state:CREATING` --> The backup is pending creation.
-     *             * `state:READY` --> The backup is fully created and ready for use.
-     *             * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
-     *                    --> The backup name contains the string "howl" and start_time
-     *                        of the backup is before 2018-03-28T14:50:00Z.
-     *             * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     *           * `name:"exact"` --> The backup's name is the string "exact".
+     *           * `name:howl` --> The backup's name contains the string "howl".
+     *           * `source_table:prod`
+     *                  --> The source_table's name contains the string "prod".
+     *           * `state:CREATING` --> The backup is pending creation.
+     *           * `state:READY` --> The backup is fully created and ready for use.
+     *           * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
+     *                  --> The backup name contains the string "howl" and start_time
+     *                      of the backup is before 2018-03-28T14:50:00Z.
+     *           * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *     @type string $order_by
      *           An expression for specifying the sort order of the results of the request.
-     *           The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
-     *           syntax is described at https://aip.dev/132#ordering.
+     *           The string value should specify one or more fields in
+     *           [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
+     *           https://aip.dev/132#ordering.
      *           Fields supported are:
-     *              * name
-     *              * source_table
-     *              * expire_time
-     *              * start_time
-     *              * end_time
-     *              * size_bytes
-     *              * state
+     *           * name
+     *           * source_table
+     *           * expire_time
+     *           * start_time
+     *           * end_time
+     *           * size_bytes
+     *           * state
      *           For example, "start_time". The default sorting order is ascending.
      *           To specify descending order for the field, a suffix " desc" should
      *           be appended to the field name. For example, "start_time desc".
@@ -176,9 +180,10 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           less, defaults to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
-     *           previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
-     *           `filter`.
+     *           [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
+     *           from a previous
+     *           [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
+     *           same `parent` and with the same `filter`.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,27 +231,27 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      * roughly synonymous with equality. Filter rules are case insensitive.
      * The fields eligible for filtering are:
-     *   * `name`
-     *   * `source_table`
-     *   * `state`
-     *   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `size_bytes`
+     * * `name`
+     * * `source_table`
+     * * `state`
+     * * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `size_bytes`
      * To filter on multiple expressions, provide each separate expression within
      * parentheses. By default, each expression is an AND expression. However,
      * you can include AND, OR, and NOT expressions explicitly.
      * Some examples of using filters are:
-     *   * `name:"exact"` --> The backup's name is the string "exact".
-     *   * `name:howl` --> The backup's name contains the string "howl".
-     *   * `source_table:prod`
-     *          --> The source_table's name contains the string "prod".
-     *   * `state:CREATING` --> The backup is pending creation.
-     *   * `state:READY` --> The backup is fully created and ready for use.
-     *   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
-     *          --> The backup name contains the string "howl" and start_time
-     *              of the backup is before 2018-03-28T14:50:00Z.
-     *   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * * `name:"exact"` --> The backup's name is the string "exact".
+     * * `name:howl` --> The backup's name contains the string "howl".
+     * * `source_table:prod`
+     *        --> The source_table's name contains the string "prod".
+     * * `state:CREATING` --> The backup is pending creation.
+     * * `state:READY` --> The backup is fully created and ready for use.
+     * * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
+     *        --> The backup name contains the string "howl" and start_time
+     *            of the backup is before 2018-03-28T14:50:00Z.
+     * * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -264,27 +269,27 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      * roughly synonymous with equality. Filter rules are case insensitive.
      * The fields eligible for filtering are:
-     *   * `name`
-     *   * `source_table`
-     *   * `state`
-     *   * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
-     *   * `size_bytes`
+     * * `name`
+     * * `source_table`
+     * * `state`
+     * * `start_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `end_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
+     * * `size_bytes`
      * To filter on multiple expressions, provide each separate expression within
      * parentheses. By default, each expression is an AND expression. However,
      * you can include AND, OR, and NOT expressions explicitly.
      * Some examples of using filters are:
-     *   * `name:"exact"` --> The backup's name is the string "exact".
-     *   * `name:howl` --> The backup's name contains the string "howl".
-     *   * `source_table:prod`
-     *          --> The source_table's name contains the string "prod".
-     *   * `state:CREATING` --> The backup is pending creation.
-     *   * `state:READY` --> The backup is fully created and ready for use.
-     *   * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
-     *          --> The backup name contains the string "howl" and start_time
-     *              of the backup is before 2018-03-28T14:50:00Z.
-     *   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * * `name:"exact"` --> The backup's name is the string "exact".
+     * * `name:howl` --> The backup's name contains the string "howl".
+     * * `source_table:prod`
+     *        --> The source_table's name contains the string "prod".
+     * * `state:CREATING` --> The backup is pending creation.
+     * * `state:READY` --> The backup is fully created and ready for use.
+     * * `(name:howl) AND (start_time < \"2018-03-28T14:50:00Z\")`
+     *        --> The backup name contains the string "howl" and start_time
+     *            of the backup is before 2018-03-28T14:50:00Z.
+     * * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
@@ -300,16 +305,17 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An expression for specifying the sort order of the results of the request.
-     * The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
-     * syntax is described at https://aip.dev/132#ordering.
+     * The string value should specify one or more fields in
+     * [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
+     * https://aip.dev/132#ordering.
      * Fields supported are:
-     *    * name
-     *    * source_table
-     *    * expire_time
-     *    * start_time
-     *    * end_time
-     *    * size_bytes
-     *    * state
+     * * name
+     * * source_table
+     * * expire_time
+     * * start_time
+     * * end_time
+     * * size_bytes
+     * * state
      * For example, "start_time". The default sorting order is ascending.
      * To specify descending order for the field, a suffix " desc" should
      * be appended to the field name. For example, "start_time desc".
@@ -327,16 +333,17 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An expression for specifying the sort order of the results of the request.
-     * The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
-     * syntax is described at https://aip.dev/132#ordering.
+     * The string value should specify one or more fields in
+     * [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
+     * https://aip.dev/132#ordering.
      * Fields supported are:
-     *    * name
-     *    * source_table
-     *    * expire_time
-     *    * start_time
-     *    * end_time
-     *    * size_bytes
-     *    * state
+     * * name
+     * * source_table
+     * * expire_time
+     * * start_time
+     * * end_time
+     * * size_bytes
+     * * state
      * For example, "start_time". The default sorting order is ascending.
      * To specify descending order for the field, a suffix " desc" should
      * be appended to the field name. For example, "start_time desc".
@@ -386,9 +393,10 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
-     * previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
-     * `filter`.
+     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
+     * from a previous
+     * [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
+     * same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @return string
@@ -400,9 +408,10 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
-     * previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
-     * `filter`.
+     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
+     * from a previous
+     * [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
+     * same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @param string $var

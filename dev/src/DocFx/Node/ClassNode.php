@@ -28,7 +28,7 @@ class ClassNode
     use NameTrait;
 
     private $childNode;
-    private array $protoPackages = [];
+    private array $protoPackages;
     private string $tocName;
 
     public function __construct(
@@ -224,8 +224,8 @@ class ClassNode
 
     public function getProtoPackage(): ?string
     {
-        $constants = $this->getConstants();
-        foreach ($constants as $constant) {
+        foreach ($this->xmlNode->constant as $constantNode) {
+            $constant = new ConstantNode($constantNode);
             if ($constant->getName() === 'SERVICE_NAME') {
                 // pop the service from the end to get the package name
                 $package = trim($constant->getValue(), '\'');
@@ -238,6 +238,9 @@ class ClassNode
     public function setProtoPackages(array $protoPackages)
     {
         $this->protoPackages = $protoPackages;
+        if ($this->childNode) {
+            $this->childNode->setProtoPackages($protoPackages);
+        }
     }
 
     public function getTocName()

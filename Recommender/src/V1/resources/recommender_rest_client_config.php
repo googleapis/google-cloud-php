@@ -36,6 +36,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=organizations/*/locations/*/insightTypes/*/config}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/insightTypes/*/config}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -77,6 +81,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/config}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/recommenders/*/config}',
                     ],
                 ],
                 'placeholders' => [
@@ -195,6 +203,35 @@ return [
                     ],
                 ],
             ],
+            'MarkRecommendationDismissed' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markDismissed',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markDismissed',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markDismissed',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markDismissed',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'MarkRecommendationFailed' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markFailed',
@@ -263,6 +300,11 @@ return [
                         'uriTemplate' => '/v1/{insight_type_config.name=organizations/*/locations/*/insightTypes/*/config}',
                         'body' => 'insight_type_config',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{insight_type_config.name=billingAccounts/*/locations/*/insightTypes/*/config}',
+                        'body' => 'insight_type_config',
+                    ],
                 ],
                 'placeholders' => [
                     'insight_type_config.name' => [
@@ -281,6 +323,11 @@ return [
                     [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{recommender_config.name=organizations/*/locations/*/recommenders/*/config}',
+                        'body' => 'recommender_config',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{recommender_config.name=billingAccounts/*/locations/*/recommenders/*/config}',
                         'body' => 'recommender_config',
                     ],
                 ],

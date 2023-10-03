@@ -9,13 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Network Connectivity Center spoke represents a connection between your
- * Google Cloud network resources and a non-Google-Cloud network.
- * When you create a spoke, you associate it with a hub. You must also identify
- * a value for exactly one of the following fields:
+ * A Network Connectivity Center spoke represents one or more network
+ * connectivity resources.
+ * When you create a spoke, you associate it with a hub. You must also
+ * identify a value for exactly one of the following fields:
  * * linked_vpn_tunnels
  * * linked_interconnect_attachments
  * * linked_router_appliance_instances
+ * * linked_vpc_network
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.Spoke</code>
  */
@@ -42,8 +43,8 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional labels in key:value format. For more information about labels, see
-     * [Requirements for
+     * Optional labels in key-value pair format. For more information about
+     * labels, see [Requirements for
      * labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
@@ -61,6 +62,12 @@ class Spoke extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     private $hub = '';
+    /**
+     * Optional. The name of the group that this spoke is associated with.
+     *
+     * Generated from protobuf field <code>string group = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $group = '';
     /**
      * VPN tunnels that are associated with the spoke.
      *
@@ -80,9 +87,15 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     private $linked_router_appliance_instances = null;
     /**
+     * Optional. VPC network that is associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedVpcNetwork linked_vpc_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $linked_vpc_network = null;
+    /**
      * Output only. The Google-generated UUID for the spoke. This value is unique
      * across all spoke resources. If a spoke is deleted and another with the same
-     * name is created, the new spoke is assigned a different unique_id.
+     * name is created, the new spoke is assigned a different `unique_id`.
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -93,6 +106,19 @@ class Spoke extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. The reasons for current state of the spoke. Only present when
+     * the spoke is in the `INACTIVE` state.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke.StateReason reasons = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $reasons;
+    /**
+     * Output only. The type of resource associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeType spoke_type = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $spoke_type = 0;
 
     /**
      * Constructor.
@@ -109,25 +135,34 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time the spoke was last updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional labels in key:value format. For more information about labels, see
-     *           [Requirements for
+     *           Optional labels in key-value pair format. For more information about
+     *           labels, see [Requirements for
      *           labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *     @type string $description
      *           An optional description of the spoke.
      *     @type string $hub
      *           Immutable. The name of the hub that this spoke is attached to.
+     *     @type string $group
+     *           Optional. The name of the group that this spoke is associated with.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedVpnTunnels $linked_vpn_tunnels
      *           VPN tunnels that are associated with the spoke.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedInterconnectAttachments $linked_interconnect_attachments
      *           VLAN attachments that are associated with the spoke.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedRouterApplianceInstances $linked_router_appliance_instances
      *           Router appliance instances that are associated with the spoke.
+     *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedVpcNetwork $linked_vpc_network
+     *           Optional. VPC network that is associated with the spoke.
      *     @type string $unique_id
      *           Output only. The Google-generated UUID for the spoke. This value is unique
      *           across all spoke resources. If a spoke is deleted and another with the same
-     *           name is created, the new spoke is assigned a different unique_id.
+     *           name is created, the new spoke is assigned a different `unique_id`.
      *     @type int $state
      *           Output only. The current lifecycle state of this spoke.
+     *     @type array<\Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *           Output only. The reasons for current state of the spoke. Only present when
+     *           the spoke is in the `INACTIVE` state.
+     *     @type int $spoke_type
+     *           Output only. The type of resource associated with the spoke.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,8 +273,8 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional labels in key:value format. For more information about labels, see
-     * [Requirements for
+     * Optional labels in key-value pair format. For more information about
+     * labels, see [Requirements for
      * labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
@@ -251,8 +286,8 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional labels in key:value format. For more information about labels, see
-     * [Requirements for
+     * Optional labels in key-value pair format. For more information about
+     * labels, see [Requirements for
      * labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
@@ -315,6 +350,32 @@ class Spoke extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->hub = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the group that this spoke is associated with.
+     *
+     * Generated from protobuf field <code>string group = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Optional. The name of the group that this spoke is associated with.
+     *
+     * Generated from protobuf field <code>string group = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->group = $var;
 
         return $this;
     }
@@ -428,9 +489,45 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. VPC network that is associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedVpcNetwork linked_vpc_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkConnectivity\V1\LinkedVpcNetwork|null
+     */
+    public function getLinkedVpcNetwork()
+    {
+        return $this->linked_vpc_network;
+    }
+
+    public function hasLinkedVpcNetwork()
+    {
+        return isset($this->linked_vpc_network);
+    }
+
+    public function clearLinkedVpcNetwork()
+    {
+        unset($this->linked_vpc_network);
+    }
+
+    /**
+     * Optional. VPC network that is associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedVpcNetwork linked_vpc_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkConnectivity\V1\LinkedVpcNetwork $var
+     * @return $this
+     */
+    public function setLinkedVpcNetwork($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\LinkedVpcNetwork::class);
+        $this->linked_vpc_network = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The Google-generated UUID for the spoke. This value is unique
      * across all spoke resources. If a spoke is deleted and another with the same
-     * name is created, the new spoke is assigned a different unique_id.
+     * name is created, the new spoke is assigned a different `unique_id`.
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -443,7 +540,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The Google-generated UUID for the spoke. This value is unique
      * across all spoke resources. If a spoke is deleted and another with the same
-     * name is created, the new spoke is assigned a different unique_id.
+     * name is created, the new spoke is assigned a different `unique_id`.
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -479,6 +576,60 @@ class Spoke extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetworkConnectivity\V1\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reasons for current state of the spoke. Only present when
+     * the spoke is in the `INACTIVE` state.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke.StateReason reasons = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReasons()
+    {
+        return $this->reasons;
+    }
+
+    /**
+     * Output only. The reasons for current state of the spoke. Only present when
+     * the spoke is in the `INACTIVE` state.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke.StateReason reasons = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason::class);
+        $this->reasons = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The type of resource associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeType spoke_type = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getSpokeType()
+    {
+        return $this->spoke_type;
+    }
+
+    /**
+     * Output only. The type of resource associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeType spoke_type = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSpokeType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkConnectivity\V1\SpokeType::class);
+        $this->spoke_type = $var;
 
         return $this;
     }

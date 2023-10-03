@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Context extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Context.
+     * Immutable. The resource name of the Context.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $name = '';
     /**
@@ -105,7 +105,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the Context.
+     *           Immutable. The resource name of the Context.
      *     @type string $display_name
      *           User provided display name of the Context.
      *           May be up to 128 Unicode characters.
@@ -150,9 +150,9 @@ class Context extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Context.
+     * Immutable. The resource name of the Context.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getName()
@@ -161,9 +161,9 @@ class Context extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Context.
+     * Immutable. The resource name of the Context.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

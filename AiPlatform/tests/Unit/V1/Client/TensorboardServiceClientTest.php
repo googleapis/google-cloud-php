@@ -59,6 +59,8 @@ use Google\Cloud\AIPlatform\V1\ListTensorboardsRequest;
 use Google\Cloud\AIPlatform\V1\ListTensorboardsResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataResponse;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeRequest;
+use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardUsageRequest;
@@ -1927,6 +1929,70 @@ class TensorboardServiceClientTest extends GeneratedTest
         try {
             iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function readTensorboardSizeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $storageSizeByte = 126045758;
+        $expectedResponse = new ReadTensorboardSizeResponse();
+        $expectedResponse->setStorageSizeByte($storageSizeByte);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $request = (new ReadTensorboardSizeRequest())
+            ->setTensorboard($formattedTensorboard);
+        $response = $gapicClient->readTensorboardSize($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardSize', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboard();
+        $this->assertProtobufEquals($formattedTensorboard, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function readTensorboardSizeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $request = (new ReadTensorboardSizeRequest())
+            ->setTensorboard($formattedTensorboard);
+        try {
+            $gapicClient->readTensorboardSize($request);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

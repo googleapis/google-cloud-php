@@ -46,6 +46,7 @@ class ValueMapper
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -56,6 +57,8 @@ class ValueMapper
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Firestore
+     *        This object is created by FirestoreClient,
+     *        and should not be instantiated outside of this client.
      * @param bool $returnInt64AsObject Whether to wrap int types in a wrapper
      *        (to preserve values in 32-bit environments).
      */

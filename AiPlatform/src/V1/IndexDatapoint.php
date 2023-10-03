@@ -31,7 +31,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional. List of Restrict of the datapoint, used to perform "restricted
      * searches" where boolean rule are used to filter the subset of the database
-     * eligible for matching. See:
+     * eligible for matching. This uses categorical tokens. See:
      * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -59,7 +59,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction>|\Google\Protobuf\Internal\RepeatedField $restricts
      *           Optional. List of Restrict of the datapoint, used to perform "restricted
      *           searches" where boolean rule are used to filter the subset of the database
-     *           eligible for matching. See:
+     *           eligible for matching. This uses categorical tokens. See:
      *           https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag $crowding_tag
      *           Optional. CrowdingTag of the datapoint, the number of neighbors to return
@@ -128,7 +128,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional. List of Restrict of the datapoint, used to perform "restricted
      * searches" where boolean rule are used to filter the subset of the database
-     * eligible for matching. See:
+     * eligible for matching. This uses categorical tokens. See:
      * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -142,7 +142,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional. List of Restrict of the datapoint, used to perform "restricted
      * searches" where boolean rule are used to filter the subset of the database
-     * eligible for matching. See:
+     * eligible for matching. This uses categorical tokens. See:
      * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

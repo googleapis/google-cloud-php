@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore;
 /**
  * Methods for handling Datastore Entity options boilerplate.
  *
- * This trait partially implements {@see Google\Cloud\Datastore\EntityInterface}
+ * This trait partially implements {@see \Google\Cloud\Datastore\EntityInterface}
  * and is useful when your application requires custom entities with non-standard
  * objects.
  */

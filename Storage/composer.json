@@ -6,7 +6,6 @@
     "require": {
         "php": ">=7.4",
         "google/cloud-core": "^1.51.3",
-        "google/crc32": "^0.2.0",
         "ramsey/uuid": "^4.2.3"
     },
     "require-dev": {

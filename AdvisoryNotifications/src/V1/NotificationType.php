@@ -31,11 +31,25 @@ class NotificationType
      * Generated from protobuf enum <code>NOTIFICATION_TYPE_SENSITIVE_ACTIONS = 2;</code>
      */
     const NOTIFICATION_TYPE_SENSITIVE_ACTIONS = 2;
+    /**
+     * General security MSA
+     *
+     * Generated from protobuf enum <code>NOTIFICATION_TYPE_SECURITY_MSA = 3;</code>
+     */
+    const NOTIFICATION_TYPE_SECURITY_MSA = 3;
+    /**
+     * Threat horizons MSA
+     *
+     * Generated from protobuf enum <code>NOTIFICATION_TYPE_THREAT_HORIZONS = 4;</code>
+     */
+    const NOTIFICATION_TYPE_THREAT_HORIZONS = 4;
 
     private static $valueToName = [
         self::NOTIFICATION_TYPE_UNSPECIFIED => 'NOTIFICATION_TYPE_UNSPECIFIED',
         self::NOTIFICATION_TYPE_SECURITY_PRIVACY_ADVISORY => 'NOTIFICATION_TYPE_SECURITY_PRIVACY_ADVISORY',
         self::NOTIFICATION_TYPE_SENSITIVE_ACTIONS => 'NOTIFICATION_TYPE_SENSITIVE_ACTIONS',
+        self::NOTIFICATION_TYPE_SECURITY_MSA => 'NOTIFICATION_TYPE_SECURITY_MSA',
+        self::NOTIFICATION_TYPE_THREAT_HORIZONS => 'NOTIFICATION_TYPE_THREAT_HORIZONS',
     ];
 
     public static function name($value)

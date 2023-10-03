@@ -19,18 +19,21 @@ class Job
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\LaunchStage::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Api\Routing::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\Condition::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\Execution::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\ExecutionTemplate::initOnce();
+        \GPBMetadata\Google\Cloud\Run\V2\K8SMin::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\VendorSettings::initOnce();
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-· 
-google/cloud/run/v2/job.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto#google/cloud/run/v2/execution.proto,google/cloud/run/v2/execution_template.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"š
+½&
+google/cloud/run/v2/job.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto#google/cloud/run/v2/execution.proto,google/cloud/run/v2/execution_template.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"š
 CreateJobRequest.
 parent (	BàAúArun.googleapis.com/Job*
 job (2.google.cloud.run.v2.JobBàA
@@ -56,12 +59,24 @@ page_token (	
 name (	BàAúA
 run.googleapis.com/Job
 validate_only (
-etag (	"b
+etag (	"Ì
 RunJobRequest,
 name (	BàAúA
 run.googleapis.com/Job
 validate_only (
-etag (	"¦	
+etag (	?
+	overrides (2,.google.cloud.run.v2.RunJobRequest.Overrides¦
+	Overrides[
+container_overrides (2>.google.cloud.run.v2.RunJobRequest.Overrides.ContainerOverride
+
+task_count (BàA*
+timeout (2.google.protobuf.Durationw
+ContainerOverride
+name (	
+args (	BàA(
+env (2.google.cloud.run.v2.EnvVar
+
+clear_args (BàA"¦	
 Job
 name (	
 uid (	BàA
@@ -101,20 +116,26 @@ conditions (2.google.cloud.run.v2.ConditionBàA
 name (	B!úA
 run.googleapis.com/Execution/
 create_time (2.google.protobuf.Timestamp3
-completion_time (2.google.protobuf.Timestamp2Ì
-Jobs©
-	CreateJob%.google.cloud.run.v2.CreateJobRequest.google.longrunning.Operation"V‚Óä“/"(/v2/{parent=projects/*/locations/*}/jobs:jobÚAparent,job,job_idÊA
+completion_time (2.google.protobuf.Timestamp2Š
+JobsÝ
+	CreateJob%.google.cloud.run.v2.CreateJobRequest.google.longrunning.Operation"‰‚Óä“/"(/v2/{parent=projects/*/locations/*}/jobs:jobŠÓä“-+
+parent!projects/*/locations/{location=*}ÚAparent,job,job_idÊA
 
-JobJob
-GetJob".google.cloud.run.v2.GetJobRequest.google.cloud.run.v2.Job"7‚Óä“*(/v2/{name=projects/*/locations/*/jobs/*}ÚAname’
-ListJobs$.google.cloud.run.v2.ListJobsRequest%.google.cloud.run.v2.ListJobsResponse"9‚Óä“*(/v2/{parent=projects/*/locations/*}/jobsÚAparentŸ
-	UpdateJob%.google.cloud.run.v2.UpdateJobRequest.google.longrunning.Operation"L‚Óä“32,/v2/{job.name=projects/*/locations/*/jobs/*}:jobÚAjobÊA
+JobJob³
+GetJob".google.cloud.run.v2.GetJobRequest.google.cloud.run.v2.Job"k‚Óä“*(/v2/{name=projects/*/locations/*/jobs/*}ŠÓä“.,
+name$projects/*/locations/{location=*}/**ÚAnameÅ
+ListJobs$.google.cloud.run.v2.ListJobsRequest%.google.cloud.run.v2.ListJobsResponse"l‚Óä“*(/v2/{parent=projects/*/locations/*}/jobsŠÓä“-+
+parent!projects/*/locations/{location=*}ÚAparentØ
+	UpdateJob%.google.cloud.run.v2.UpdateJobRequest.google.longrunning.Operation"„‚Óä“32,/v2/{job.name=projects/*/locations/*/jobs/*}:jobŠÓä“20
+job.name$projects/*/locations/{location=*}/**ÚAjobÊA
 
-JobJob—
-	DeleteJob%.google.cloud.run.v2.DeleteJobRequest.google.longrunning.Operation"D‚Óä“**(/v2/{name=projects/*/locations/*/jobs/*}ÚAnameÊA
+JobJobË
+	DeleteJob%.google.cloud.run.v2.DeleteJobRequest.google.longrunning.Operation"x‚Óä“**(/v2/{name=projects/*/locations/*/jobs/*}ŠÓä“.,
+name$projects/*/locations/{location=*}/**ÚAnameÊA
 
-JobJob¤
-RunJob".google.cloud.run.v2.RunJobRequest.google.longrunning.Operation"W‚Óä“1",/v2/{name=projects/*/locations/*/jobs/*}:run:*ÚAnameÊA
+JobJobÙ
+RunJob".google.cloud.run.v2.RunJobRequest.google.longrunning.Operation"‹‚Óä“1",/v2/{name=projects/*/locations/*/jobs/*}:run:*ŠÓä“.,
+name$projects/*/locations/{location=*}/**ÚAnameÊA
 	Execution	ExecutionŒ
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"A‚Óä“;9/v2/{resource=projects/*/locations/*/jobs/*}:getIamPolicy
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"D‚Óä“>"9/v2/{resource=projects/*/locations/*/jobs/*}:setIamPolicy:*µ

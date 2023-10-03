@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AlloyDb\V1\Backup;
 use Google\Cloud\AlloyDb\V1\BatchCreateInstancesRequest;
 use Google\Cloud\AlloyDb\V1\Cluster;
+use Google\Cloud\AlloyDb\V1\ConnectionInfo;
 use Google\Cloud\AlloyDb\V1\CreateBackupRequest;
 use Google\Cloud\AlloyDb\V1\CreateClusterRequest;
 use Google\Cloud\AlloyDb\V1\CreateInstanceRequest;
@@ -49,8 +50,11 @@ use Google\Cloud\AlloyDb\V1\DeleteClusterRequest;
 use Google\Cloud\AlloyDb\V1\DeleteInstanceRequest;
 use Google\Cloud\AlloyDb\V1\DeleteUserRequest;
 use Google\Cloud\AlloyDb\V1\FailoverInstanceRequest;
+use Google\Cloud\AlloyDb\V1\GenerateClientCertificateRequest;
+use Google\Cloud\AlloyDb\V1\GenerateClientCertificateResponse;
 use Google\Cloud\AlloyDb\V1\GetBackupRequest;
 use Google\Cloud\AlloyDb\V1\GetClusterRequest;
+use Google\Cloud\AlloyDb\V1\GetConnectionInfoRequest;
 use Google\Cloud\AlloyDb\V1\GetInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GetUserRequest;
 use Google\Cloud\AlloyDb\V1\InjectFaultRequest;
@@ -104,8 +108,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface failoverInstanceAsync(FailoverInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateClientCertificateAsync(GenerateClientCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getConnectionInfoAsync(GetConnectionInfoRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getUserAsync(GetUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface injectFaultAsync(InjectFaultRequest $request, array $optionalArgs = [])
@@ -758,6 +764,36 @@ abstract class AlloyDBAdminBaseClient
     }
 
     /**
+     * Generate a client certificate signed by a Cluster CA.
+     * The sole purpose of this endpoint is to support AlloyDB connectors and the
+     * Auth Proxy client. The endpoint's behavior is subject to change without
+     * notice, so do not rely on its behavior remaining constant. Future changes
+     * will not break AlloyDB connectors or the Auth Proxy client.
+     *
+     * The async variant is {@see self::generateClientCertificateAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/generate_client_certificate.php
+     *
+     * @param GenerateClientCertificateRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateClientCertificateResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateClientCertificate(GenerateClientCertificateRequest $request, array $callOptions = []): GenerateClientCertificateResponse
+    {
+        return $this->startApiCall('GenerateClientCertificate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single Backup.
      *
      * The async variant is {@see self::getBackupAsync()} .
@@ -807,6 +843,32 @@ abstract class AlloyDBAdminBaseClient
     public function getCluster(GetClusterRequest $request, array $callOptions = []): Cluster
     {
         return $this->startApiCall('GetCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get instance metadata used for a connection.
+     *
+     * The async variant is {@see self::getConnectionInfoAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/get_connection_info.php
+     *
+     * @param GetConnectionInfoRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ConnectionInfo
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getConnectionInfo(GetConnectionInfoRequest $request, array $callOptions = []): ConnectionInfo
+    {
+        return $this->startApiCall('GetConnectionInfo', $request, $callOptions)->wait();
     }
 
     /**

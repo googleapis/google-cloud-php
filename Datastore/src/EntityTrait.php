@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore;
 /**
  * A trait to provide Datastore Entity functionality to classes.
  *
- * This class fulfills the {@see Google\Cloud\Datastore\EntityInterface} requirements.
+ * This class fulfills the {@see \Google\Cloud\Datastore\EntityInterface} requirements.
  */
 trait EntityTrait
 {
@@ -45,10 +45,10 @@ trait EntityTrait
      *
      *     @type string $cursor Set only when the entity is obtained by a query
      *           result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::cursor()}.
+     *           {@see \Google\Cloud\Datastore\Entity::cursor()}.
      *     @type string $baseVersion Set only when the entity is obtained by a
      *           query result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::baseVersion()}.
+     *           {@see \Google\Cloud\Datastore\Entity::baseVersion()}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      *     @type array $meanings A list of meaning values for entity properties.
@@ -80,10 +80,10 @@ trait EntityTrait
      *
      *     @type string $cursor Set only when the entity is obtained by a query
      *           result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::cursor()}.
+     *           {@see \Google\Cloud\Datastore\Entity::cursor()}.
      *     @type string $baseVersion Set only when the entity is obtained by a
      *           query result. If set, the entity cursor can be retrieved from
-     *           {@see Google\Cloud\Datastore\Entity::baseVersion()}.
+     *           {@see \Google\Cloud\Datastore\Entity::baseVersion()}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
      *     @type array $meanings A list of meaning values for entity properties.

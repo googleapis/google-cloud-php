@@ -37,6 +37,12 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
     /**
+     * Output only. Measures the duration of the execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration duration = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $duration = null;
+    /**
      * Output only. Current state of the execution.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -79,6 +85,33 @@ class Execution extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.CallLogLevel call_log_level = 9;</code>
      */
     private $call_log_level = 0;
+    /**
+     * Output only. Status tracks the current steps and progress data of this
+     * execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.Status status = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $status = null;
+    /**
+     * Labels associated with this execution.
+     * Labels can contain at most 64 entries. Keys and values can be no longer
+     * than 63 characters and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. Label keys must start with a letter.
+     * International characters are allowed.
+     * By default, labels are inherited from the workflow but are overridden by
+     * any labels associated with the execution.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
+     */
+    private $labels;
+    /**
+     * Output only. Error regarding the state of the Execution resource. For
+     * example, this field will have error details if the execution data is
+     * unavailable due to revoked KMS key permissions.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.StateError state_error = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state_error = null;
 
     /**
      * Constructor.
@@ -94,6 +127,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           Output only. Marks the beginning of execution.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. Marks the end of execution, successful or not.
+     *     @type \Google\Protobuf\Duration $duration
+     *           Output only. Measures the duration of the execution.
      *     @type int $state
      *           Output only. Current state of the execution.
      *     @type string $argument
@@ -113,6 +148,21 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           Output only. Revision of the workflow this execution is using.
      *     @type int $call_log_level
      *           The call logging level associated to this execution.
+     *     @type \Google\Cloud\Workflows\Executions\V1\Execution\Status $status
+     *           Output only. Status tracks the current steps and progress data of this
+     *           execution.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels associated with this execution.
+     *           Labels can contain at most 64 entries. Keys and values can be no longer
+     *           than 63 characters and can only contain lowercase letters, numeric
+     *           characters, underscores, and dashes. Label keys must start with a letter.
+     *           International characters are allowed.
+     *           By default, labels are inherited from the workflow but are overridden by
+     *           any labels associated with the execution.
+     *     @type \Google\Cloud\Workflows\Executions\V1\Execution\StateError $state_error
+     *           Output only. Error regarding the state of the Execution resource. For
+     *           example, this field will have error details if the execution data is
+     *           unavailable due to revoked KMS key permissions.
      * }
      */
     public function __construct($data = NULL) {
@@ -218,6 +268,42 @@ class Execution extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Measures the duration of the execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration duration = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
+    }
+
+    /**
+     * Output only. Measures the duration of the execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration duration = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->duration = $var;
 
         return $this;
     }
@@ -398,6 +484,122 @@ class Execution extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Workflows\Executions\V1\Execution\CallLogLevel::class);
         $this->call_log_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Status tracks the current steps and progress data of this
+     * execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.Status status = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Workflows\Executions\V1\Execution\Status|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. Status tracks the current steps and progress data of this
+     * execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.Status status = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Workflows\Executions\V1\Execution\Status $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Workflows\Executions\V1\Execution\Status::class);
+        $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Labels associated with this execution.
+     * Labels can contain at most 64 entries. Keys and values can be no longer
+     * than 63 characters and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. Label keys must start with a letter.
+     * International characters are allowed.
+     * By default, labels are inherited from the workflow but are overridden by
+     * any labels associated with the execution.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Labels associated with this execution.
+     * Labels can contain at most 64 entries. Keys and values can be no longer
+     * than 63 characters and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. Label keys must start with a letter.
+     * International characters are allowed.
+     * By default, labels are inherited from the workflow but are overridden by
+     * any labels associated with the execution.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Error regarding the state of the Execution resource. For
+     * example, this field will have error details if the execution data is
+     * unavailable due to revoked KMS key permissions.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.StateError state_error = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Workflows\Executions\V1\Execution\StateError|null
+     */
+    public function getStateError()
+    {
+        return $this->state_error;
+    }
+
+    public function hasStateError()
+    {
+        return isset($this->state_error);
+    }
+
+    public function clearStateError()
+    {
+        unset($this->state_error);
+    }
+
+    /**
+     * Output only. Error regarding the state of the Execution resource. For
+     * example, this field will have error details if the execution data is
+     * unavailable due to revoked KMS key permissions.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.executions.v1.Execution.StateError state_error = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Workflows\Executions\V1\Execution\StateError $var
+     * @return $this
+     */
+    public function setStateError($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Workflows\Executions\V1\Execution\StateError::class);
+        $this->state_error = $var;
 
         return $this;
     }

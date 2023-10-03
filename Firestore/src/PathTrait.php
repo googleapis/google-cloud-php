@@ -69,7 +69,7 @@ trait PathTrait
      * Return the database name from a fully-qualified path name.
      *
      * This method returns a fully-qualified path. For the database ID, use
-     * {@see Google\Cloud\Firestore\PathTrait::databaseIdFromName()}.
+     * {@see \Google\Cloud\Firestore\PathTrait::databaseIdFromName()}.
      *
      * @param string $name
      * @return string
@@ -84,7 +84,7 @@ trait PathTrait
      * Return the database ID from a fully-qualified path name.
      *
      * This method returns a bare database ID. For the fully-qualified database
-     * name, use {@see Google\Cloud\Firestore\PathTrait::databaseFromName()}.
+     * name, use {@see \Google\Cloud\Firestore\PathTrait::databaseFromName()}.
      *
      * @param string $name
      * @return string|null

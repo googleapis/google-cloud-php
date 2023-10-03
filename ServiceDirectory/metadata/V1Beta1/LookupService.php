@@ -15,14 +15,14 @@ class LookupService
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Servicedirectory\V1Beta1\Service::initOnce();
-        \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
 ∆
-:google/cloud/servicedirectory/v1beta1/lookup_service.proto%google.cloud.servicedirectory.v1beta1google/api/field_behavior.protogoogle/api/resource.proto3google/cloud/servicedirectory/v1beta1/service.protogoogle/api/client.proto"ê
+:google/cloud/servicedirectory/v1beta1/lookup_service.proto%google.cloud.servicedirectory.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/servicedirectory/v1beta1/service.proto"ê
 ResolveServiceRequest=
 name (	B/‡A˙A)
 \'servicedirectory.googleapis.com/Service

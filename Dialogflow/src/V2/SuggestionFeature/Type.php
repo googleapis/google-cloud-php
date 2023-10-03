@@ -37,12 +37,19 @@ class Type
      * Generated from protobuf enum <code>SMART_REPLY = 3;</code>
      */
     const SMART_REPLY = 3;
+    /**
+     * Run knowledge search with text input from agent or text generated query.
+     *
+     * Generated from protobuf enum <code>KNOWLEDGE_SEARCH = 14;</code>
+     */
+    const KNOWLEDGE_SEARCH = 14;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::ARTICLE_SUGGESTION => 'ARTICLE_SUGGESTION',
         self::FAQ => 'FAQ',
         self::SMART_REPLY => 'SMART_REPLY',
+        self::KNOWLEDGE_SEARCH => 'KNOWLEDGE_SEARCH',
     ];
 
     public static function name($value)

@@ -35,7 +35,8 @@ use Google\Rpc\Status;
  * An index can only be deleted if it is in a `READY` or `ERROR` state. On
  * successful execution of the request, the index will be in a `DELETING`
  * [state][google.datastore.admin.v1.Index.State]. And on completion of the
- * returned [google.longrunning.Operation][google.longrunning.Operation], the index will be removed.
+ * returned [google.longrunning.Operation][google.longrunning.Operation], the
+ * index will be removed.
  *
  * During index deletion, the process could result in an error, in which
  * case the index will move to the `ERROR` state. The process can be recovered

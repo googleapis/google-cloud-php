@@ -34,7 +34,7 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
      * the PipelineJob name. If not provided, an ID will be automatically
      * generated.
      * This value should be less than 128 characters, and valid characters
-     * are /[a-z][0-9]-/.
+     * are `/[a-z][0-9]-/`.
      *
      * Generated from protobuf field <code>string pipeline_job_id = 3;</code>
      */
@@ -50,7 +50,7 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
      *                                                               generated.
      *
      *                                                               This value should be less than 128 characters, and valid characters
-     *                                                               are /[a-z][0-9]-/.
+     *                                                               are `/[a-z][0-9]-/`.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreatePipelineJobRequest
      *
@@ -80,7 +80,7 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
      *           the PipelineJob name. If not provided, an ID will be automatically
      *           generated.
      *           This value should be less than 128 characters, and valid characters
-     *           are /[a-z][0-9]-/.
+     *           are `/[a-z][0-9]-/`.
      * }
      */
     public function __construct($data = NULL) {
@@ -157,7 +157,7 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
      * the PipelineJob name. If not provided, an ID will be automatically
      * generated.
      * This value should be less than 128 characters, and valid characters
-     * are /[a-z][0-9]-/.
+     * are `/[a-z][0-9]-/`.
      *
      * Generated from protobuf field <code>string pipeline_job_id = 3;</code>
      * @return string
@@ -172,7 +172,7 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
      * the PipelineJob name. If not provided, an ID will be automatically
      * generated.
      * This value should be less than 128 characters, and valid characters
-     * are /[a-z][0-9]-/.
+     * are `/[a-z][0-9]-/`.
      *
      * Generated from protobuf field <code>string pipeline_job_id = 3;</code>
      * @param string $var

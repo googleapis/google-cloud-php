@@ -28,9 +28,9 @@ class ExecutionReport extends \Google\Protobuf\Internal\Message
      */
     protected $execution_errors = null;
     /**
-     * Total number of rows in the import job.
+     * Output only. Total number of rows in the import job.
      *
-     * Generated from protobuf field <code>int32 total_rows_count = 3;</code>
+     * Generated from protobuf field <code>int32 total_rows_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $total_rows_count = 0;
 
@@ -45,7 +45,7 @@ class ExecutionReport extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\MigrationCenter\V1\ValidationReport $execution_errors
      *           Validation errors encountered during the execution of the import job.
      *     @type int $total_rows_count
-     *           Total number of rows in the import job.
+     *           Output only. Total number of rows in the import job.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,9 +116,9 @@ class ExecutionReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total number of rows in the import job.
+     * Output only. Total number of rows in the import job.
      *
-     * Generated from protobuf field <code>int32 total_rows_count = 3;</code>
+     * Generated from protobuf field <code>int32 total_rows_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getTotalRowsCount()
@@ -127,9 +127,9 @@ class ExecutionReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total number of rows in the import job.
+     * Output only. Total number of rows in the import job.
      *
-     * Generated from protobuf field <code>int32 total_rows_count = 3;</code>
+     * Generated from protobuf field <code>int32 total_rows_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

@@ -362,6 +362,11 @@ abstract class NotificationChannelServiceBaseClient
      * Creates a new notification channel, representing a single notification
      * endpoint such as an email address, SMS number, or PagerDuty service.
      *
+     * Design your application to single-thread API calls that modify the state of
+     * notification channels in a single project. This includes calls to
+     * CreateNotificationChannel, DeleteNotificationChannel and
+     * UpdateNotificationChannel.
+     *
      * The async variant is {@see self::createNotificationChannelAsync()} .
      *
      * @param CreateNotificationChannelRequest $request     A request to house fields associated with the call.
@@ -385,6 +390,11 @@ abstract class NotificationChannelServiceBaseClient
 
     /**
      * Deletes a notification channel.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * notification channels in a single project. This includes calls to
+     * CreateNotificationChannel, DeleteNotificationChannel and
+     * UpdateNotificationChannel.
      *
      * The async variant is {@see self::deleteNotificationChannelAsync()} .
      *
@@ -530,6 +540,8 @@ abstract class NotificationChannelServiceBaseClient
 
     /**
      * Lists the notification channels that have been created for the project.
+     * To list the types of notification channels that are supported, use
+     * the `ListNotificationChannelDescriptors` method.
      *
      * The async variant is {@see self::listNotificationChannelsAsync()} .
      *
@@ -579,6 +591,11 @@ abstract class NotificationChannelServiceBaseClient
     /**
      * Updates a notification channel. Fields not specified in the field mask
      * remain unchanged.
+     *
+     * Design your application to single-thread API calls that modify the state of
+     * notification channels in a single project. This includes calls to
+     * CreateNotificationChannel, DeleteNotificationChannel and
+     * UpdateNotificationChannel.
      *
      * The async variant is {@see self::updateNotificationChannelAsync()} .
      *

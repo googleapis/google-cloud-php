@@ -43,6 +43,7 @@ use Google\Cloud\Recommender\V1\ListInsightsRequest;
 use Google\Cloud\Recommender\V1\ListRecommendationsRequest;
 use Google\Cloud\Recommender\V1\MarkInsightAcceptedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest;
+use Google\Cloud\Recommender\V1\MarkRecommendationDismissedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest;
 use Google\Cloud\Recommender\V1\Recommendation;
@@ -80,6 +81,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listRecommendationsAsync(ListRecommendationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface markInsightAcceptedAsync(MarkInsightAcceptedRequest $request, array $optionalArgs = [])
  * @method PromiseInterface markRecommendationClaimedAsync(MarkRecommendationClaimedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface markRecommendationDismissedAsync(MarkRecommendationDismissedRequest $request, array $optionalArgs = [])
  * @method PromiseInterface markRecommendationFailedAsync(MarkRecommendationFailedRequest $request, array $optionalArgs = [])
  * @method PromiseInterface markRecommendationSucceededAsync(MarkRecommendationSucceededRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInsightTypeConfigAsync(UpdateInsightTypeConfigRequest $request, array $optionalArgs = [])
@@ -147,6 +149,25 @@ abstract class RecommenderBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * billing_account_location_insight_type_config resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted billing_account_location_insight_type_config resource.
+     */
+    public static function billingAccountLocationInsightTypeConfigName(string $billingAccount, string $location, string $insightType): string
+    {
+        return self::getPathTemplate('billingAccountLocationInsightTypeConfig')->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * billing_account_location_insight_type_insight resource.
      *
      * @param string $billingAccount
@@ -179,6 +200,25 @@ abstract class RecommenderBaseClient
     public static function billingAccountLocationRecommenderName(string $billingAccount, string $location, string $recommender): string
     {
         return self::getPathTemplate('billingAccountLocationRecommender')->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * billing_account_location_recommender_config resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted billing_account_location_recommender_config resource.
+     */
+    public static function billingAccountLocationRecommenderConfigName(string $billingAccount, string $location, string $recommender): string
+    {
+        return self::getPathTemplate('billingAccountLocationRecommenderConfig')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
             'recommender' => $recommender,
@@ -645,8 +685,10 @@ abstract class RecommenderBaseClient
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccountLocationInsightType: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}
+     * - billingAccountLocationInsightTypeConfig: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/config
      * - billingAccountLocationInsightTypeInsight: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - billingAccountLocationRecommender: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}
+     * - billingAccountLocationRecommenderConfig: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/config
      * - billingAccountLocationRecommenderRecommendation: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - folderLocationInsightType: folders/{folder}/locations/{location}/insightTypes/{insight_type}
      * - folderLocationInsightTypeInsight: folders/{folder}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
@@ -970,6 +1012,38 @@ abstract class RecommenderBaseClient
     public function markRecommendationClaimed(MarkRecommendationClaimedRequest $request, array $callOptions = []): Recommendation
     {
         return $this->startApiCall('MarkRecommendationClaimed', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Mark the Recommendation State as Dismissed. Users can use this method to
+     * indicate to the Recommender API that an ACTIVE recommendation has to
+     * be marked back as DISMISSED.
+     *
+     * MarkRecommendationDismissed can be applied to recommendations in ACTIVE
+     * state.
+     *
+     * Requires the recommender.*.update IAM permission for the specified
+     * recommender.
+     *
+     * The async variant is {@see self::markRecommendationDismissedAsync()} .
+     *
+     * @param MarkRecommendationDismissedRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Recommendation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function markRecommendationDismissed(MarkRecommendationDismissedRequest $request, array $callOptions = []): Recommendation
+    {
+        return $this->startApiCall('MarkRecommendationDismissed', $request, $callOptions)->wait();
     }
 
     /**

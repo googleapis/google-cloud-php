@@ -89,12 +89,15 @@ use Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
+use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasResponse;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
 use Google\Analytics\Admin\V1alpha\ListUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
+use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
+use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
@@ -2310,6 +2313,76 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createSKAdNetworkConversionValueSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $applyConversionValues = true;
+        $expectedResponse = new SKAdNetworkConversionValueSchema();
+        $expectedResponse->setName($name);
+        $expectedResponse->setApplyConversionValues($applyConversionValues);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
+        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
+        $response = $gapicClient->createSKAdNetworkConversionValueSchema($formattedParent, $skadnetworkConversionValueSchema);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSKAdNetworkConversionValueSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSkadnetworkConversionValueSchema();
+        $this->assertProtobufEquals($skadnetworkConversionValueSchema, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createSKAdNetworkConversionValueSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
+        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
+        try {
+            $gapicClient->createSKAdNetworkConversionValueSchema($formattedParent, $skadnetworkConversionValueSchema);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createSearchAds360LinkTest()
     {
         $transport = $this->createTransport();
@@ -3306,6 +3379,63 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteSKAdNetworkConversionValueSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+        $gapicClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteSKAdNetworkConversionValueSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteSKAdNetworkConversionValueSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+        try {
+            $gapicClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteSearchAds360LinkTest()
     {
         $transport = $this->createTransport();
@@ -3870,14 +4000,14 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $project = 'project-309310695';
         $dailyExportEnabled = true;
         $streamingExportEnabled = false;
-        $intradayExportEnabled = false;
+        $freshDailyExportEnabled = false;
         $includeAdvertisingId = false;
         $expectedResponse = new BigQueryLink();
         $expectedResponse->setName($name2);
         $expectedResponse->setProject($project);
         $expectedResponse->setDailyExportEnabled($dailyExportEnabled);
         $expectedResponse->setStreamingExportEnabled($streamingExportEnabled);
-        $expectedResponse->setIntradayExportEnabled($intradayExportEnabled);
+        $expectedResponse->setFreshDailyExportEnabled($freshDailyExportEnabled);
         $expectedResponse->setIncludeAdvertisingId($includeAdvertisingId);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -4970,6 +5100,68 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedName = $gapicClient->propertyName('[PROPERTY]');
         try {
             $gapicClient->getProperty($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSKAdNetworkConversionValueSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $applyConversionValues = true;
+        $expectedResponse = new SKAdNetworkConversionValueSchema();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setApplyConversionValues($applyConversionValues);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+        $response = $gapicClient->getSKAdNetworkConversionValueSchema($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSKAdNetworkConversionValueSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSKAdNetworkConversionValueSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
+        try {
+            $gapicClient->getSKAdNetworkConversionValueSchema($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6440,6 +6632,74 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listSKAdNetworkConversionValueSchemasTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $skadnetworkConversionValueSchemasElement = new SKAdNetworkConversionValueSchema();
+        $skadnetworkConversionValueSchemas = [
+            $skadnetworkConversionValueSchemasElement,
+        ];
+        $expectedResponse = new ListSKAdNetworkConversionValueSchemasResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSkadnetworkConversionValueSchemas($skadnetworkConversionValueSchemas);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $response = $gapicClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSkadnetworkConversionValueSchemas()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSKAdNetworkConversionValueSchemas', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSKAdNetworkConversionValueSchemasExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        try {
+            $gapicClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listSearchAds360LinksTest()
     {
         $transport = $this->createTransport();
@@ -7192,6 +7452,76 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateConversionEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $eventName = 'eventName984174864';
+        $deletable = true;
+        $custom = false;
+        $expectedResponse = new ConversionEvent();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEventName($eventName);
+        $expectedResponse->setDeletable($deletable);
+        $expectedResponse->setCustom($custom);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $conversionEvent = new ConversionEvent();
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateConversionEvent($conversionEvent, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateConversionEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConversionEvent();
+        $this->assertProtobufEquals($conversionEvent, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConversionEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $conversionEvent = new ConversionEvent();
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateConversionEvent($conversionEvent, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateCustomDimensionTest()
     {
         $transport = $this->createTransport();
@@ -7904,7 +8234,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
-        $response = $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -7913,6 +8244,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateMeasurementProtocolSecret', $actualFuncCall);
         $actualValue = $actualRequestObject->getMeasurementProtocolSecret();
         $this->assertProtobufEquals($measurementProtocolSecret, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7938,8 +8271,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+            $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8022,6 +8356,76 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateProperty($property, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSKAdNetworkConversionValueSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $applyConversionValues = true;
+        $expectedResponse = new SKAdNetworkConversionValueSchema();
+        $expectedResponse->setName($name);
+        $expectedResponse->setApplyConversionValues($applyConversionValues);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
+        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSKAdNetworkConversionValueSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSkadnetworkConversionValueSchema();
+        $this->assertProtobufEquals($skadnetworkConversionValueSchema, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSKAdNetworkConversionValueSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
+        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
+        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

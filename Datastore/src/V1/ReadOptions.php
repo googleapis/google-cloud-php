@@ -37,9 +37,11 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
      *           or
      *           [RunQueryResponse.transaction][google.datastore.v1.RunQueryResponse.transaction].
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Reads entities as they were at the given time. This may not be older
-     *           than 270 seconds.  This value is only supported for Cloud Firestore in
-     *           Datastore mode.
+     *           Reads entities as they were at the given time. This value is only
+     *           supported for Cloud Firestore in Datastore mode.
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,9 +157,11 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads entities as they were at the given time. This may not be older
-     * than 270 seconds.  This value is only supported for Cloud Firestore in
-     * Datastore mode.
+     * Reads entities as they were at the given time. This value is only
+     * supported for Cloud Firestore in Datastore mode.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -173,9 +177,11 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reads entities as they were at the given time. This may not be older
-     * than 270 seconds.  This value is only supported for Cloud Firestore in
-     * Datastore mode.
+     * Reads entities as they were at the given time. This value is only
+     * supported for Cloud Firestore in Datastore mode.
+     * This must be a microsecond precision timestamp within the past one hour,
+     * or if Point-in-Time Recovery is enabled, can additionally be a whole
+     * minute timestamp within the past 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var

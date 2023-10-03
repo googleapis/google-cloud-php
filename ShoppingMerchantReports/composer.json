@@ -1,0 +1,31 @@
+{
+    "name": "google/shopping-merchant-reports",
+    "description": "Google Shopping Merchant Reports Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Shopping\\Merchant\\Reports\\": "src",
+            "GPBMetadata\\Google\\Shopping\\Merchant\\Reports\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "shopping-merchant-reports",
+            "path": "ShoppingMerchantReports",
+            "target": "googleapis/php-shopping-merchant-reports"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "google/gax": "^1.23.0",
+	"google/shopping-common-protos": "^0.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

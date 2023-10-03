@@ -469,6 +469,23 @@ abstract class JobServiceBaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * notification_channel resource.
+     *
+     * @param string $project
+     * @param string $notificationChannel
+     *
+     * @return string The formatted notification_channel resource.
+     */
+    public static function notificationChannelName(string $project, string $notificationChannel): string
+    {
+        return self::getPathTemplate('notificationChannel')->render([
+            'project' => $project,
+            'notification_channel' => $notificationChannel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_endpoint resource.
      *
      * @param string $project
@@ -564,6 +581,7 @@ abstract class JobServiceBaseClient
      * - nasJob: projects/{project}/locations/{location}/nasJobs/{nas_job}
      * - nasTrialDetail: projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}
      * - network: projects/{project}/global/networks/{network}
+     * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}

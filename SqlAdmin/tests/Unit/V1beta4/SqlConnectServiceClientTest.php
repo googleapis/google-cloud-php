@@ -123,10 +123,12 @@ class SqlConnectServiceClientTest extends GeneratedTest
         // Mock response
         $kind = 'kind3292052';
         $region = 'region-934795532';
+        $pscEnabled = true;
         $dnsName = 'dnsName411992033';
         $expectedResponse = new ConnectSettings();
         $expectedResponse->setKind($kind);
         $expectedResponse->setRegion($region);
+        $expectedResponse->setPscEnabled($pscEnabled);
         $expectedResponse->setDnsName($dnsName);
         $transport->addResponse($expectedResponse);
         $response = $gapicClient->getConnectSettings();

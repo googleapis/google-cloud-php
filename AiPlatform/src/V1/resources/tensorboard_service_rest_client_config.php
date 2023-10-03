@@ -247,6 +247,17 @@ return [
                     ],
                 ],
             ],
+            'ReadTensorboardSize' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readSize',
+                'placeholders' => [
+                    'tensorboard' => [
+                        'getters' => [
+                            'getTensorboard',
+                        ],
+                    ],
+                ],
+            ],
             'ReadTensorboardTimeSeriesData' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:read',
@@ -405,6 +416,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:getIamPolicy',
                     ],
                     [
@@ -440,6 +455,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:setIamPolicy',
                         'body' => '*',
                     ],
                     [
@@ -483,6 +503,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:testIamPermissions',
                     ],
                     [
                         'method' => 'post',

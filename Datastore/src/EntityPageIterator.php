@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore;
 use Google\Cloud\Core\Iterator\PageIteratorTrait;
 
 /**
- * Iterates over a set of pages containing {@see Google\Cloud\Datastore\Entity}
+ * Iterates over a set of pages containing {@see \Google\Cloud\Datastore\Entity}
  * items.
  */
 class EntityPageIterator implements \Iterator

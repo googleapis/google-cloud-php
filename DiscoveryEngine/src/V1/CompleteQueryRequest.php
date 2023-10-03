@@ -41,11 +41,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * API calls. Do not use it when there is no traffic for Search API.
      * * `user-event` - Using suggestions generated from user-imported search
      * events.
+     * * `document-completable` - Using suggestions taken directly from
+     * user-imported document fields marked as completable.
      * Default values:
      * * `document` is the default model for regular dataStores.
      * * `search-history` is the default model for
-     * [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1.IndustryVertical.SITE_SEARCH]
-     * dataStores.
+     * [IndustryVertical.SITE_SEARCH][] dataStores.
      *
      * Generated from protobuf field <code>string query_model = 3;</code>
      */
@@ -66,6 +67,15 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string user_pseudo_id = 4;</code>
      */
     protected $user_pseudo_id = '';
+    /**
+     * Indicates if tail suggestions should be returned if there are no
+     * suggestions that match the full query. Even if set to true, if there are
+     * suggestions that match the full query, those are returned and no
+     * tail suggestions are returned.
+     *
+     * Generated from protobuf field <code>bool include_tail_suggestions = 5;</code>
+     */
+    protected $include_tail_suggestions = false;
 
     /**
      * Constructor.
@@ -89,11 +99,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           API calls. Do not use it when there is no traffic for Search API.
      *           * `user-event` - Using suggestions generated from user-imported search
      *           events.
+     *           * `document-completable` - Using suggestions taken directly from
+     *           user-imported document fields marked as completable.
      *           Default values:
      *           * `document` is the default model for regular dataStores.
      *           * `search-history` is the default model for
-     *           [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1.IndustryVertical.SITE_SEARCH]
-     *           dataStores.
+     *           [IndustryVertical.SITE_SEARCH][] dataStores.
      *     @type string $user_pseudo_id
      *           A unique identifier for tracking visitors. For example, this could be
      *           implemented with an HTTP cookie, which should be able to uniquely identify
@@ -106,6 +117,11 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.user_pseudo_id][google.cloud.discoveryengine.v1.SearchRequest.user_pseudo_id].
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     @type bool $include_tail_suggestions
+     *           Indicates if tail suggestions should be returned if there are no
+     *           suggestions that match the full query. Even if set to true, if there are
+     *           suggestions that match the full query, those are returned and no
+     *           tail suggestions are returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,11 +196,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * API calls. Do not use it when there is no traffic for Search API.
      * * `user-event` - Using suggestions generated from user-imported search
      * events.
+     * * `document-completable` - Using suggestions taken directly from
+     * user-imported document fields marked as completable.
      * Default values:
      * * `document` is the default model for regular dataStores.
      * * `search-history` is the default model for
-     * [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1.IndustryVertical.SITE_SEARCH]
-     * dataStores.
+     * [IndustryVertical.SITE_SEARCH][] dataStores.
      *
      * Generated from protobuf field <code>string query_model = 3;</code>
      * @return string
@@ -203,11 +220,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * API calls. Do not use it when there is no traffic for Search API.
      * * `user-event` - Using suggestions generated from user-imported search
      * events.
+     * * `document-completable` - Using suggestions taken directly from
+     * user-imported document fields marked as completable.
      * Default values:
      * * `document` is the default model for regular dataStores.
      * * `search-history` is the default model for
-     * [IndustryVertical.SITE_SEARCH][google.cloud.discoveryengine.v1.IndustryVertical.SITE_SEARCH]
-     * dataStores.
+     * [IndustryVertical.SITE_SEARCH][] dataStores.
      *
      * Generated from protobuf field <code>string query_model = 3;</code>
      * @param string $var
@@ -263,6 +281,38 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->user_pseudo_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates if tail suggestions should be returned if there are no
+     * suggestions that match the full query. Even if set to true, if there are
+     * suggestions that match the full query, those are returned and no
+     * tail suggestions are returned.
+     *
+     * Generated from protobuf field <code>bool include_tail_suggestions = 5;</code>
+     * @return bool
+     */
+    public function getIncludeTailSuggestions()
+    {
+        return $this->include_tail_suggestions;
+    }
+
+    /**
+     * Indicates if tail suggestions should be returned if there are no
+     * suggestions that match the full query. Even if set to true, if there are
+     * suggestions that match the full query, those are returned and no
+     * tail suggestions are returned.
+     *
+     * Generated from protobuf field <code>bool include_tail_suggestions = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIncludeTailSuggestions($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->include_tail_suggestions = $var;
 
         return $this;
     }

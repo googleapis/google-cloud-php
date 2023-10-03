@@ -10,6 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Options for a transaction that can be used to read and write documents.
+ * Firestore does not allow 3rd party auth requests to create read-write.
+ * transactions.
  *
  * Generated from protobuf message <code>google.firestore.v1.TransactionOptions.ReadWrite</code>
  */

@@ -24,7 +24,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      */
     protected $key = '';
     /**
-     * Set only if values should be bucketized into intervals. Must be set
+     * Set only if values should be bucketed into intervals. Must be set
      * for facets with numerical values. Must not be set for facet with text
      * values. Maximum number of intervals is 30.
      *
@@ -35,8 +35,8 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet for the given restricted values. Only supported on
      * textual fields. For example, suppose "category" has three values
      * "Action > 2022", "Action > 2021" and "Sci-Fi > 2022". If set
-     * "restricted_values" to "Action > 2022", the "category" facet will only
-     * contain "Action > 2022". Only supported on textual fields. Maximum
+     * "restricted_values" to "Action > 2022", the "category" facet only
+     * contains "Action > 2022". Only supported on textual fields. Maximum
      * is 10.
      *
      * Generated from protobuf field <code>repeated string restricted_values = 3;</code>
@@ -46,7 +46,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that start with the given string prefix. For
      * example, suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "prefixes" to "Action", the
-     * "category" facet will only contain "Action > 2022" and "Action > 2021".
+     * "category" facet only contains "Action > 2022" and "Action > 2021".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 4;</code>
@@ -56,7 +56,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that contains the given strings. For example,
      * suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
-     * "category" facet will only contain "Action > 2022" and "Sci-Fi > 2022".
+     * "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 5;</code>
@@ -99,27 +99,27 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           [Document][google.cloud.discoveryengine.v1beta.Document] object, over
      *           which the facet values are computed. Facet key is case-sensitive.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\Interval>|\Google\Protobuf\Internal\RepeatedField $intervals
-     *           Set only if values should be bucketized into intervals. Must be set
+     *           Set only if values should be bucketed into intervals. Must be set
      *           for facets with numerical values. Must not be set for facet with text
      *           values. Maximum number of intervals is 30.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_values
      *           Only get facet for the given restricted values. Only supported on
      *           textual fields. For example, suppose "category" has three values
      *           "Action > 2022", "Action > 2021" and "Sci-Fi > 2022". If set
-     *           "restricted_values" to "Action > 2022", the "category" facet will only
-     *           contain "Action > 2022". Only supported on textual fields. Maximum
+     *           "restricted_values" to "Action > 2022", the "category" facet only
+     *           contains "Action > 2022". Only supported on textual fields. Maximum
      *           is 10.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prefixes
      *           Only get facet values that start with the given string prefix. For
      *           example, suppose "category" has three values "Action > 2022",
      *           "Action > 2021" and "Sci-Fi > 2022". If set "prefixes" to "Action", the
-     *           "category" facet will only contain "Action > 2022" and "Action > 2021".
+     *           "category" facet only contains "Action > 2022" and "Action > 2021".
      *           Only supported on textual fields. Maximum is 10.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contains
      *           Only get facet values that contains the given strings. For example,
      *           suppose "category" has three values "Action > 2022",
      *           "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
-     *           "category" facet will only contain "Action > 2022" and "Sci-Fi > 2022".
+     *           "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".
      *           Only supported on textual fields. Maximum is 10.
      *     @type bool $case_insensitive
      *           True to make facet keys case insensitive when getting faceting
@@ -176,7 +176,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set only if values should be bucketized into intervals. Must be set
+     * Set only if values should be bucketed into intervals. Must be set
      * for facets with numerical values. Must not be set for facet with text
      * values. Maximum number of intervals is 30.
      *
@@ -189,7 +189,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set only if values should be bucketized into intervals. Must be set
+     * Set only if values should be bucketed into intervals. Must be set
      * for facets with numerical values. Must not be set for facet with text
      * values. Maximum number of intervals is 30.
      *
@@ -209,8 +209,8 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet for the given restricted values. Only supported on
      * textual fields. For example, suppose "category" has three values
      * "Action > 2022", "Action > 2021" and "Sci-Fi > 2022". If set
-     * "restricted_values" to "Action > 2022", the "category" facet will only
-     * contain "Action > 2022". Only supported on textual fields. Maximum
+     * "restricted_values" to "Action > 2022", the "category" facet only
+     * contains "Action > 2022". Only supported on textual fields. Maximum
      * is 10.
      *
      * Generated from protobuf field <code>repeated string restricted_values = 3;</code>
@@ -225,8 +225,8 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet for the given restricted values. Only supported on
      * textual fields. For example, suppose "category" has three values
      * "Action > 2022", "Action > 2021" and "Sci-Fi > 2022". If set
-     * "restricted_values" to "Action > 2022", the "category" facet will only
-     * contain "Action > 2022". Only supported on textual fields. Maximum
+     * "restricted_values" to "Action > 2022", the "category" facet only
+     * contains "Action > 2022". Only supported on textual fields. Maximum
      * is 10.
      *
      * Generated from protobuf field <code>repeated string restricted_values = 3;</code>
@@ -245,7 +245,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that start with the given string prefix. For
      * example, suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "prefixes" to "Action", the
-     * "category" facet will only contain "Action > 2022" and "Action > 2021".
+     * "category" facet only contains "Action > 2022" and "Action > 2021".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 4;</code>
@@ -260,7 +260,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that start with the given string prefix. For
      * example, suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "prefixes" to "Action", the
-     * "category" facet will only contain "Action > 2022" and "Action > 2021".
+     * "category" facet only contains "Action > 2022" and "Action > 2021".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 4;</code>
@@ -279,7 +279,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that contains the given strings. For example,
      * suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
-     * "category" facet will only contain "Action > 2022" and "Sci-Fi > 2022".
+     * "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 5;</code>
@@ -294,7 +294,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that contains the given strings. For example,
      * suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
-     * "category" facet will only contain "Action > 2022" and "Sci-Fi > 2022".
+     * "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 5;</code>

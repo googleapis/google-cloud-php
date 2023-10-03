@@ -7,8 +7,7 @@ namespace Google\Cloud\Workflows\V1\Workflow;
 use UnexpectedValueException;
 
 /**
- * Describes the current state of workflow deployment. More states may be
- * added in the future.
+ * Describes the current state of workflow deployment.
  *
  * Protobuf type <code>google.cloud.workflows.v1.Workflow.State</code>
  */
@@ -26,10 +25,17 @@ class State
      * Generated from protobuf enum <code>ACTIVE = 1;</code>
      */
     const ACTIVE = 1;
+    /**
+     * Workflow data is unavailable. See the `state_error` field.
+     *
+     * Generated from protobuf enum <code>UNAVAILABLE = 2;</code>
+     */
+    const UNAVAILABLE = 2;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::ACTIVE => 'ACTIVE',
+        self::UNAVAILABLE => 'UNAVAILABLE',
     ];
 
     public static function name($value)

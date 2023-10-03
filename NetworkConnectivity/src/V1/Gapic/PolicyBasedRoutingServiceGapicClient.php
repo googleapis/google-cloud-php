@@ -25,6 +25,7 @@
 namespace Google\Cloud\NetworkConnectivity\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
@@ -35,6 +36,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkConnectivity\V1\CreatePolicyBasedRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\DeletePolicyBasedRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\GetPolicyBasedRouteRequest;
@@ -42,6 +53,7 @@ use Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesResponse;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
 use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Policy-Based Routing allows GCP customers to specify flexibile routing
@@ -54,19 +66,20 @@ use Google\LongRunning\Operation;
  * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
  * try {
  *     $formattedParent = $policyBasedRoutingServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $policyBasedRouteId = 'policy_based_route_id';
  *     $policyBasedRoute = new PolicyBasedRoute();
- *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+ *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+ *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $policyBasedRoutingServiceClient->resumeOperation($operationName, 'createPolicyBasedRoute');
@@ -76,7 +89,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -90,6 +103,10 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * This service has a new (beta) implementation. See {@see
+ * \Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient} to
+ * use the new surface.
  */
 class PolicyBasedRoutingServiceGapicClient
 {
@@ -176,7 +193,7 @@ class PolicyBasedRoutingServiceGapicClient
     {
         if (self::$policyBasedRouteNameTemplate == null) {
             self::$policyBasedRouteNameTemplate = new PathTemplate(
-                'projects/{project}/{location}/global/PolicyBasedRoutes/{policy_based_route}'
+                'projects/{project}/locations/global/PolicyBasedRoutes/{policy_based_route}'
             );
         }
 
@@ -235,19 +252,14 @@ class PolicyBasedRoutingServiceGapicClient
      * policy_based_route resource.
      *
      * @param string $project
-     * @param string $location
      * @param string $policyBasedRoute
      *
      * @return string The formatted policy_based_route resource.
      */
-    public static function policyBasedRouteName(
-        $project,
-        $location,
-        $policyBasedRoute
-    ) {
+    public static function policyBasedRouteName($project, $policyBasedRoute)
+    {
         return self::getPolicyBasedRouteNameTemplate()->render([
             'project' => $project,
-            'location' => $location,
             'policy_based_route' => $policyBasedRoute,
         ]);
     }
@@ -258,7 +270,7 @@ class PolicyBasedRoutingServiceGapicClient
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{resource_id}
-     * - policyBasedRoute: projects/{project}/{location}/global/PolicyBasedRoutes/{policy_based_route}
+     * - policyBasedRoute: projects/{project}/locations/global/PolicyBasedRoutes/{policy_based_route}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -403,19 +415,20 @@ class PolicyBasedRoutingServiceGapicClient
      * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
      * try {
      *     $formattedParent = $policyBasedRoutingServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $policyBasedRouteId = 'policy_based_route_id';
      *     $policyBasedRoute = new PolicyBasedRoute();
-     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRoute);
+     *     $operationResponse = $policyBasedRoutingServiceClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $policyBasedRoutingServiceClient->resumeOperation($operationName, 'createPolicyBasedRoute');
@@ -425,7 +438,7 @@ class PolicyBasedRoutingServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -435,21 +448,20 @@ class PolicyBasedRoutingServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent           Required. The parent resource's name of the PolicyBasedRoute.
-     * @param PolicyBasedRoute $policyBasedRoute Required. Initial values for a new Policy Based Route.
-     * @param array            $optionalArgs     {
+     * @param string           $parent             Required. The parent resource's name of the PolicyBasedRoute.
+     * @param string           $policyBasedRouteId Required. Unique id for the Policy Based Route to create.
+     * @param PolicyBasedRoute $policyBasedRoute   Required. Initial values for a new Policy Based Route.
+     * @param array            $optionalArgs       {
      *     Optional.
      *
-     *     @type string $policyBasedRouteId
-     *           Optional. Unique id for the Policy Based Route to create.
      *     @type string $requestId
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes since the first request.
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -468,20 +480,16 @@ class PolicyBasedRoutingServiceGapicClient
      */
     public function createPolicyBasedRoute(
         $parent,
+        $policyBasedRouteId,
         $policyBasedRoute,
         array $optionalArgs = []
     ) {
         $request = new CreatePolicyBasedRouteRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
+        $request->setPolicyBasedRouteId($policyBasedRouteId);
         $request->setPolicyBasedRoute($policyBasedRoute);
         $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['policyBasedRouteId'])) {
-            $request->setPolicyBasedRouteId(
-                $optionalArgs['policyBasedRouteId']
-            );
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -507,7 +515,7 @@ class PolicyBasedRoutingServiceGapicClient
      * ```
      * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
      * try {
-     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[LOCATION]', '[POLICY_BASED_ROUTE]');
+     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
      *     $operationResponse = $policyBasedRoutingServiceClient->deletePolicyBasedRoute($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -542,13 +550,13 @@ class PolicyBasedRoutingServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes after the first request.
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes after the first request.
      *
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -596,7 +604,7 @@ class PolicyBasedRoutingServiceGapicClient
      * ```
      * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
      * try {
-     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[LOCATION]', '[POLICY_BASED_ROUTE]');
+     *     $formattedName = $policyBasedRoutingServiceClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
      *     $response = $policyBasedRoutingServiceClient->getPolicyBasedRoute($formattedName);
      * } finally {
      *     $policyBasedRoutingServiceClient->close();
@@ -724,5 +732,341 @@ class PolicyBasedRoutingServiceGapicClient
             ListPolicyBasedRoutesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
+     * try {
+     *     $response = $policyBasedRoutingServiceClient->getLocation();
+     * } finally {
+     *     $policyBasedRoutingServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $policyBasedRoutingServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $policyBasedRoutingServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $policyBasedRoutingServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $policyBasedRoutingServiceClient->getIamPolicy($resource);
+     * } finally {
+     *     $policyBasedRoutingServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $policyBasedRoutingServiceClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $policyBasedRoutingServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $policyBasedRoutingServiceClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $policyBasedRoutingServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
     }
 }

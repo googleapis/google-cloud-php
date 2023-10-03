@@ -28,16 +28,22 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     private $next_hop_type = 0;
     /**
-     * Name of a Compute Engine route.
+     * Indicates where route is applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RouteInfo.RouteScope route_scope = 14;</code>
+     */
+    private $route_scope = 0;
+    /**
+     * Name of a route.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
     private $display_name = '';
     /**
-     * URI of a Compute Engine route.
-     * Dynamic route from cloud router does not have a URI.
+     * URI of a route.
+     * Dynamic, peering static and peering dynamic routes do not have an URI.
      * Advertised route from Google Cloud VPC to on-premises network also does
-     * not have a URI.
+     * not have an URI.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -55,7 +61,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     private $next_hop = '';
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network. NETWORK routes only.
      *
      * Generated from protobuf field <code>string network_uri = 5;</code>
      */
@@ -72,6 +78,42 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string instance_tags = 7;</code>
      */
     private $instance_tags;
+    /**
+     * Source IP address range of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>string src_ip_range = 10;</code>
+     */
+    private $src_ip_range = '';
+    /**
+     * Destination port ranges of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string dest_port_ranges = 11;</code>
+     */
+    private $dest_port_ranges;
+    /**
+     * Source port ranges of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string src_port_ranges = 12;</code>
+     */
+    private $src_port_ranges;
+    /**
+     * Protocols of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string protocols = 13;</code>
+     */
+    private $protocols;
+    /**
+     * URI of a NCC Hub. NCC_HUB routes only.
+     *
+     * Generated from protobuf field <code>optional string ncc_hub_uri = 15;</code>
+     */
+    private $ncc_hub_uri = null;
+    /**
+     * URI of a NCC Spoke. NCC_HUB routes only.
+     *
+     * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
+     */
+    private $ncc_spoke_uri = null;
 
     /**
      * Constructor.
@@ -83,23 +125,37 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *           Type of route.
      *     @type int $next_hop_type
      *           Type of next hop.
+     *     @type int $route_scope
+     *           Indicates where route is applicable.
      *     @type string $display_name
-     *           Name of a Compute Engine route.
+     *           Name of a route.
      *     @type string $uri
-     *           URI of a Compute Engine route.
-     *           Dynamic route from cloud router does not have a URI.
+     *           URI of a route.
+     *           Dynamic, peering static and peering dynamic routes do not have an URI.
      *           Advertised route from Google Cloud VPC to on-premises network also does
-     *           not have a URI.
+     *           not have an URI.
      *     @type string $dest_ip_range
      *           Destination IP range of the route.
      *     @type string $next_hop
      *           Next hop of the route.
      *     @type string $network_uri
-     *           URI of a Compute Engine network.
+     *           URI of a Compute Engine network. NETWORK routes only.
      *     @type int $priority
      *           Priority of the route.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_tags
      *           Instance tags of the route.
+     *     @type string $src_ip_range
+     *           Source IP address range of the route. Policy based routes only.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_port_ranges
+     *           Destination port ranges of the route. Policy based routes only.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_port_ranges
+     *           Source port ranges of the route. Policy based routes only.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $protocols
+     *           Protocols of the route. Policy based routes only.
+     *     @type string $ncc_hub_uri
+     *           URI of a NCC Hub. NCC_HUB routes only.
+     *     @type string $ncc_spoke_uri
+     *           URI of a NCC Spoke. NCC_HUB routes only.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,7 +216,33 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a Compute Engine route.
+     * Indicates where route is applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RouteInfo.RouteScope route_scope = 14;</code>
+     * @return int
+     */
+    public function getRouteScope()
+    {
+        return $this->route_scope;
+    }
+
+    /**
+     * Indicates where route is applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RouteInfo.RouteScope route_scope = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRouteScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\RouteInfo\RouteScope::class);
+        $this->route_scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of a route.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @return string
@@ -171,7 +253,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a Compute Engine route.
+     * Name of a route.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @param string $var
@@ -186,10 +268,10 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine route.
-     * Dynamic route from cloud router does not have a URI.
+     * URI of a route.
+     * Dynamic, peering static and peering dynamic routes do not have an URI.
      * Advertised route from Google Cloud VPC to on-premises network also does
-     * not have a URI.
+     * not have an URI.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -200,10 +282,10 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine route.
-     * Dynamic route from cloud router does not have a URI.
+     * URI of a route.
+     * Dynamic, peering static and peering dynamic routes do not have an URI.
      * Advertised route from Google Cloud VPC to on-premises network also does
-     * not have a URI.
+     * not have an URI.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -270,7 +352,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network. NETWORK routes only.
      *
      * Generated from protobuf field <code>string network_uri = 5;</code>
      * @return string
@@ -281,7 +363,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network. NETWORK routes only.
      *
      * Generated from protobuf field <code>string network_uri = 5;</code>
      * @param string $var
@@ -343,6 +425,182 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->instance_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Source IP address range of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>string src_ip_range = 10;</code>
+     * @return string
+     */
+    public function getSrcIpRange()
+    {
+        return $this->src_ip_range;
+    }
+
+    /**
+     * Source IP address range of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>string src_ip_range = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSrcIpRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->src_ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Destination port ranges of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string dest_port_ranges = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDestPortRanges()
+    {
+        return $this->dest_port_ranges;
+    }
+
+    /**
+     * Destination port ranges of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string dest_port_ranges = 11;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDestPortRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->dest_port_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Source port ranges of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string src_port_ranges = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSrcPortRanges()
+    {
+        return $this->src_port_ranges;
+    }
+
+    /**
+     * Source port ranges of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string src_port_ranges = 12;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSrcPortRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->src_port_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Protocols of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string protocols = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProtocols()
+    {
+        return $this->protocols;
+    }
+
+    /**
+     * Protocols of the route. Policy based routes only.
+     *
+     * Generated from protobuf field <code>repeated string protocols = 13;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProtocols($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->protocols = $arr;
+
+        return $this;
+    }
+
+    /**
+     * URI of a NCC Hub. NCC_HUB routes only.
+     *
+     * Generated from protobuf field <code>optional string ncc_hub_uri = 15;</code>
+     * @return string
+     */
+    public function getNccHubUri()
+    {
+        return isset($this->ncc_hub_uri) ? $this->ncc_hub_uri : '';
+    }
+
+    public function hasNccHubUri()
+    {
+        return isset($this->ncc_hub_uri);
+    }
+
+    public function clearNccHubUri()
+    {
+        unset($this->ncc_hub_uri);
+    }
+
+    /**
+     * URI of a NCC Hub. NCC_HUB routes only.
+     *
+     * Generated from protobuf field <code>optional string ncc_hub_uri = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNccHubUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ncc_hub_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * URI of a NCC Spoke. NCC_HUB routes only.
+     *
+     * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
+     * @return string
+     */
+    public function getNccSpokeUri()
+    {
+        return isset($this->ncc_spoke_uri) ? $this->ncc_spoke_uri : '';
+    }
+
+    public function hasNccSpokeUri()
+    {
+        return isset($this->ncc_spoke_uri);
+    }
+
+    public function clearNccSpokeUri()
+    {
+        unset($this->ncc_spoke_uri);
+    }
+
+    /**
+     * URI of a NCC Spoke. NCC_HUB routes only.
+     *
+     * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNccSpokeUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ncc_spoke_uri = $var;
 
         return $this;
     }

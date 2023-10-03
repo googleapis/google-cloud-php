@@ -147,7 +147,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     * if empty, will be downloaded.
+     * if empty, will be downloaded. Currently, only uri from Vertex Template
+     * Registry & Gallery is supported. Reference to
+     * https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      */
@@ -160,6 +162,13 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $template_metadata = null;
+    /**
+     * Output only. The schedule resource name.
+     * Only returned if the Pipeline is created by Schedule API.
+     *
+     * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $schedule_name = '';
 
     /**
      * Constructor.
@@ -235,11 +244,16 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *     @type string $template_uri
      *           A template uri from where the
      *           [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     *           if empty, will be downloaded.
+     *           if empty, will be downloaded. Currently, only uri from Vertex Template
+     *           Registry & Gallery is supported. Reference to
+     *           https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *     @type \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata $template_metadata
      *           Output only. Pipeline template metadata. Will fill up fields if
      *           [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
      *           is from supported template registry.
+     *     @type string $schedule_name
+     *           Output only. The schedule resource name.
+     *           Only returned if the Pipeline is created by Schedule API.
      * }
      */
     public function __construct($data = NULL) {
@@ -822,7 +836,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     * if empty, will be downloaded.
+     * if empty, will be downloaded. Currently, only uri from Vertex Template
+     * Registry & Gallery is supported. Reference to
+     * https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      * @return string
@@ -835,7 +851,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     /**
      * A template uri from where the
      * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec],
-     * if empty, will be downloaded.
+     * if empty, will be downloaded. Currently, only uri from Vertex Template
+     * Registry & Gallery is supported. Reference to
+     * https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      * @param string $var
@@ -885,6 +903,34 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata::class);
         $this->template_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The schedule resource name.
+     * Only returned if the Pipeline is created by Schedule API.
+     *
+     * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getScheduleName()
+    {
+        return $this->schedule_name;
+    }
+
+    /**
+     * Output only. The schedule resource name.
+     * Only returned if the Pipeline is created by Schedule API.
+     *
+     * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setScheduleName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->schedule_name = $var;
 
         return $this;
     }

@@ -75,6 +75,18 @@ class GroupPreferenceSetFinding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ReportSummary.ComputeEngineFinding compute_engine_finding = 10;</code>
      */
     protected $compute_engine_finding = null;
+    /**
+     * A set of findings that applies to VMWare machines in the input.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ReportSummary.VmwareEngineFinding vmware_engine_finding = 11;</code>
+     */
+    protected $vmware_engine_finding = null;
+    /**
+     * A set of findings that applies to Sole-Tenant machines in the input.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ReportSummary.SoleTenantFinding sole_tenant_finding = 12;</code>
+     */
+    protected $sole_tenant_finding = null;
 
     /**
      * Constructor.
@@ -102,6 +114,10 @@ class GroupPreferenceSetFinding extends \Google\Protobuf\Internal\Message
      *           Miscellaneous monthly cost for this preference set.
      *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\ComputeEngineFinding $compute_engine_finding
      *           A set of findings that applies to Compute Engine machines in the input.
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareEngineFinding $vmware_engine_finding
+     *           A set of findings that applies to VMWare machines in the input.
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\SoleTenantFinding $sole_tenant_finding
+     *           A set of findings that applies to Sole-Tenant machines in the input.
      * }
      */
     public function __construct($data = NULL) {
@@ -445,6 +461,78 @@ class GroupPreferenceSetFinding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\ReportSummary\ComputeEngineFinding::class);
         $this->compute_engine_finding = $var;
+
+        return $this;
+    }
+
+    /**
+     * A set of findings that applies to VMWare machines in the input.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ReportSummary.VmwareEngineFinding vmware_engine_finding = 11;</code>
+     * @return \Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareEngineFinding|null
+     */
+    public function getVmwareEngineFinding()
+    {
+        return $this->vmware_engine_finding;
+    }
+
+    public function hasVmwareEngineFinding()
+    {
+        return isset($this->vmware_engine_finding);
+    }
+
+    public function clearVmwareEngineFinding()
+    {
+        unset($this->vmware_engine_finding);
+    }
+
+    /**
+     * A set of findings that applies to VMWare machines in the input.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ReportSummary.VmwareEngineFinding vmware_engine_finding = 11;</code>
+     * @param \Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareEngineFinding $var
+     * @return $this
+     */
+    public function setVmwareEngineFinding($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareEngineFinding::class);
+        $this->vmware_engine_finding = $var;
+
+        return $this;
+    }
+
+    /**
+     * A set of findings that applies to Sole-Tenant machines in the input.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ReportSummary.SoleTenantFinding sole_tenant_finding = 12;</code>
+     * @return \Google\Cloud\MigrationCenter\V1\ReportSummary\SoleTenantFinding|null
+     */
+    public function getSoleTenantFinding()
+    {
+        return $this->sole_tenant_finding;
+    }
+
+    public function hasSoleTenantFinding()
+    {
+        return isset($this->sole_tenant_finding);
+    }
+
+    public function clearSoleTenantFinding()
+    {
+        unset($this->sole_tenant_finding);
+    }
+
+    /**
+     * A set of findings that applies to Sole-Tenant machines in the input.
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.ReportSummary.SoleTenantFinding sole_tenant_finding = 12;</code>
+     * @param \Google\Cloud\MigrationCenter\V1\ReportSummary\SoleTenantFinding $var
+     * @return $this
+     */
+    public function setSoleTenantFinding($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\ReportSummary\SoleTenantFinding::class);
+        $this->sole_tenant_finding = $var;
 
         return $this;
     }

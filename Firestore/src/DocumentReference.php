@@ -40,6 +40,7 @@ class DocumentReference
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -60,6 +61,8 @@ class DocumentReference
 
     /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     *        This object is created by FirestoreClient,
+     *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param CollectionReference $parent The collection in which this document is contained.
      * @param string $name The fully-qualified document name.
@@ -98,8 +101,8 @@ class DocumentReference
      * `projects/<project-id>/databases/<database-id>/documents/<relative-path>`.
      *
      * Other methods are available to retrieve different parts of a collection name:
-     * * {@see Google\Cloud\Firestore\DocumentReference::id()} Returns the last element.
-     * * {@see Google\Cloud\Firestore\DocumentReference::path()} Returns the path, relative to the database.
+     * * {@see \Google\Cloud\Firestore\DocumentReference::id()} Returns the last element.
+     * * {@see \Google\Cloud\Firestore\DocumentReference::path()} Returns the path, relative to the database.
      *
      * Example:
      * ```
@@ -119,7 +122,7 @@ class DocumentReference
      * Paths identify the location of a document, relative to the database name.
      *
      * To retrieve the document ID (the last element of the path), use
-     * {@see Google\Cloud\Firestore\DocumentReference::id()}.
+     * {@see \Google\Cloud\Firestore\DocumentReference::id()}.
      *
      * Example:
      * ```
@@ -138,7 +141,7 @@ class DocumentReference
      *
      * IDs are the path element which identifies a resource. To retrieve the
      * path of a resource, relative to the database name, use
-     * {@see Google\Cloud\Firestore\DocumentReference::path()}.
+     * {@see \Google\Cloud\Firestore\DocumentReference::path()}.
      *
      * Example:
      * ```
@@ -170,7 +173,7 @@ class DocumentReference
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::update()},
+     *        Note that unlike {@see \Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options Configuration Options.
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
@@ -206,7 +209,7 @@ class DocumentReference
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
-     *        Note that unlike {@see Google\Cloud\Firestore\DocumentReference::update()},
+     *        Note that unlike {@see \Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration Options
@@ -237,11 +240,11 @@ class DocumentReference
      *
      * This method supports various sentinel values, to perform special operations
      * on fields. Available sentinel values are provided as methods, found in
-     * {@see Google\Cloud\Firestore\FieldValue}.
+     * {@see \Google\Cloud\Firestore\FieldValue}.
      *
      * Note that field names must be provided using field paths, encoded either
      * as a dot-delimited string (i.e. `foo.bar`), or an instance of
-     * {@see Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
+     * {@see \Google\Cloud\Firestore\FieldPath}. Nested arrays are not allowed.
      *
      * Please note that conflicting paths will result in an exception. Paths
      * conflict when one path indicates a location nested within another path.
@@ -272,7 +275,7 @@ class DocumentReference
      *
      * ```
      * // If your field names contain special characters (such as `.`, or symbols),
-     * // using {@see Google\Cloud\Firestore\FieldPath} will properly escape each element.
+     * // using {@see \Google\Cloud\Firestore\FieldPath} will properly escape each element.
      *
      * use Google\Cloud\Firestore\FieldPath;
      *

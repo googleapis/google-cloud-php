@@ -28,6 +28,12 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      */
     private $pod = '';
     /**
+     * The name of the policy.
+     *
+     * Generated from protobuf field <code>string policy_name = 8;</code>
+     */
+    private $policy_name = '';
+    /**
      * Deploy time of the Pod from k8s.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp deploy_time = 2;</code>
@@ -62,6 +68,8 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      *           The k8s namespace of the Pod.
      *     @type string $pod
      *           The name of the Pod.
+     *     @type string $policy_name
+     *           The name of the policy.
      *     @type \Google\Protobuf\Timestamp $deploy_time
      *           Deploy time of the Pod from k8s.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -125,6 +133,32 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->pod = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the policy.
+     *
+     * Generated from protobuf field <code>string policy_name = 8;</code>
+     * @return string
+     */
+    public function getPolicyName()
+    {
+        return $this->policy_name;
+    }
+
+    /**
+     * The name of the policy.
+     *
+     * Generated from protobuf field <code>string policy_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPolicyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->policy_name = $var;
 
         return $this;
     }

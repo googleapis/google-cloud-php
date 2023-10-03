@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata related to the progress of the Import operation. This will be
+ * Metadata related to the progress of the Import operation. This is
  * returned by the google.longrunning.Operation.metadata field.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1beta.ImportUserEventsMetadata</code>

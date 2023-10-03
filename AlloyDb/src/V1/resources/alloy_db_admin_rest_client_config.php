@@ -155,6 +155,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateClientCertificate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}:generateClientCertificate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backups/*}',
@@ -173,6 +185,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetConnectionInfo' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*/instances/*}/connectionInfo',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

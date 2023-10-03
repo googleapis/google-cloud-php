@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.run.v2.Executions' => [
+            'CancelExecution' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/jobs/*/executions/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteExecution' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/jobs/*/executions/*}',

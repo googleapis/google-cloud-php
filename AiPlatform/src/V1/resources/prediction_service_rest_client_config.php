@@ -53,6 +53,25 @@ return [
                     ],
                 ],
             ],
+            'ServerStreamingPredict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:serverStreamingPredict',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:serverStreamingPredict',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'endpoint' => [
+                        'getters' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [
@@ -101,6 +120,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:getIamPolicy',
                     ],
                     [
@@ -136,6 +159,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:setIamPolicy',
                         'body' => '*',
                     ],
                     [
@@ -179,6 +207,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:testIamPermissions',
                     ],
                     [
                         'method' => 'post',

@@ -31,6 +31,7 @@ use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
@@ -171,6 +172,153 @@ class BigtableTableAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function copyBackupTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/copyBackupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $sourceTable = 'sourceTable1670858410';
+        $sourceBackup2 = 'sourceBackup2889376921';
+        $sizeBytes = 1796325715;
+        $expectedResponse = new Backup();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSourceTable($sourceTable);
+        $expectedResponse->setSourceBackup($sourceBackup2);
+        $expectedResponse->setSizeBytes($sizeBytes);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/copyBackupTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $backupId = 'backupId1355353272';
+        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $expireTime = new Timestamp();
+        $request = (new CopyBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($formattedSourceBackup)
+            ->setExpireTime($expireTime);
+        $response = $gapicClient->copyBackup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CopyBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSourceBackup();
+        $this->assertProtobufEquals($formattedSourceBackup, $actualValue);
+        $actualValue = $actualApiRequestObject->getExpireTime();
+        $this->assertProtobufEquals($expireTime, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/copyBackupTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function copyBackupExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/copyBackupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $backupId = 'backupId1355353272';
+        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $expireTime = new Timestamp();
+        $request = (new CopyBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($formattedSourceBackup)
+            ->setExpireTime($expireTime);
+        $response = $gapicClient->copyBackup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/copyBackupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -193,10 +341,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $sourceTable = 'sourceTable1670858410';
+        $sourceBackup = 'sourceBackup-258292122';
         $sizeBytes = 1796325715;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setSourceTable($sourceTable);
+        $expectedResponse->setSourceBackup($sourceBackup);
         $expectedResponse->setSizeBytes($sizeBytes);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -851,10 +1001,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $sourceTable = 'sourceTable1670858410';
+        $sourceBackup = 'sourceBackup-258292122';
         $sizeBytes = 1796325715;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setSourceTable($sourceTable);
+        $expectedResponse->setSourceBackup($sourceBackup);
         $expectedResponse->setSizeBytes($sizeBytes);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1942,10 +2094,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $sourceTable = 'sourceTable1670858410';
+        $sourceBackup = 'sourceBackup-258292122';
         $sizeBytes = 1796325715;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setSourceTable($sourceTable);
+        $expectedResponse->setSourceBackup($sourceBackup);
         $expectedResponse->setSizeBytes($sizeBytes);
         $transport->addResponse($expectedResponse);
         // Mock request

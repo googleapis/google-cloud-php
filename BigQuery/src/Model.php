@@ -32,6 +32,7 @@ class Model
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
+     * @internal
      */
     private $connection;
 
@@ -52,6 +53,8 @@ class Model
 
     /**
      * @param ConnectionInterface $connection Represents a connection to BigQuery.
+     *        This object is created by BigQueryClient,
+     *        and should not be instantiated outside of this client.
      * @param string $id The model's ID.
      * @param string $datasetId The dataset's ID.
      * @param string $projectId The project's ID.
@@ -241,7 +244,9 @@ class Model
     }
 
     /**
-     * Returns an extract job configuration to be passed to either
+     * Returns a BigQuery extract job configuration.
+     *
+     * The job configuration is passed to either
      * {@see BigQueryClient::runJob()} or
      * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full

@@ -83,6 +83,15 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> webhook_headers = 14;</code>
      */
     private $webhook_headers;
+    /**
+     * The platform of the virtual agent response messages.
+     * If not empty, only emits messages from this platform in the response.
+     * Valid values are the enum names of
+     * [platform][google.cloud.dialogflow.v2.Intent.Message.platform].
+     *
+     * Generated from protobuf field <code>string platform = 18;</code>
+     */
+    private $platform = '';
 
     /**
      * Constructor.
@@ -126,6 +135,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           "Host", "Content-Length", "Connection", "From", "User-Agent",
      *           "Accept-Encoding", "If-Modified-Since", "If-None-Match", "X-Forwarded-For",
      *           etc.
+     *     @type string $platform
+     *           The platform of the virtual agent response messages.
+     *           If not empty, only emits messages from this platform in the response.
+     *           Valid values are the enum names of
+     *           [platform][google.cloud.dialogflow.v2.Intent.Message.platform].
      * }
      */
     public function __construct($data = NULL) {
@@ -407,6 +421,38 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->webhook_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The platform of the virtual agent response messages.
+     * If not empty, only emits messages from this platform in the response.
+     * Valid values are the enum names of
+     * [platform][google.cloud.dialogflow.v2.Intent.Message.platform].
+     *
+     * Generated from protobuf field <code>string platform = 18;</code>
+     * @return string
+     */
+    public function getPlatform()
+    {
+        return $this->platform;
+    }
+
+    /**
+     * The platform of the virtual agent response messages.
+     * If not empty, only emits messages from this platform in the response.
+     * Valid values are the enum names of
+     * [platform][google.cloud.dialogflow.v2.Intent.Message.platform].
+     *
+     * Generated from protobuf field <code>string platform = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPlatform($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->platform = $var;
 
         return $this;
     }

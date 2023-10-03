@@ -21,6 +21,20 @@ class VerifyMigrationJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. Field mask is used to specify the changed fields to be verified.
+     * It will not update the migration job.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $update_mask = null;
+    /**
+     * Optional. The changed migration job parameters to verify.
+     * It will not update the migration job.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob migration_job = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $migration_job = null;
 
     /**
      * Constructor.
@@ -30,6 +44,12 @@ class VerifyMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Name of the migration job resource to verify.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. Field mask is used to specify the changed fields to be verified.
+     *           It will not update the migration job.
+     *     @type \Google\Cloud\CloudDms\V1\MigrationJob $migration_job
+     *           Optional. The changed migration job parameters to verify.
+     *           It will not update the migration job.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +79,82 @@ class VerifyMigrationJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Field mask is used to specify the changed fields to be verified.
+     * It will not update the migration job.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getUpdateMask()
+    {
+        return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * Optional. Field mask is used to specify the changed fields to be verified.
+     * It will not update the migration job.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The changed migration job parameters to verify.
+     * It will not update the migration job.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob migration_job = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\CloudDms\V1\MigrationJob|null
+     */
+    public function getMigrationJob()
+    {
+        return $this->migration_job;
+    }
+
+    public function hasMigrationJob()
+    {
+        return isset($this->migration_job);
+    }
+
+    public function clearMigrationJob()
+    {
+        unset($this->migration_job);
+    }
+
+    /**
+     * Optional. The changed migration job parameters to verify.
+     * It will not update the migration job.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob migration_job = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\CloudDms\V1\MigrationJob $var
+     * @return $this
+     */
+    public function setMigrationJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\MigrationJob::class);
+        $this->migration_job = $var;
 
         return $this;
     }

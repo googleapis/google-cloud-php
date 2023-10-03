@@ -27,6 +27,7 @@
 namespace Google\Cloud\ServiceDirectory\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
@@ -41,6 +42,10 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\ServiceDirectory\V1beta1\CreateEndpointRequest;
 use Google\Cloud\ServiceDirectory\V1beta1\CreateNamespaceRequest;
 use Google\Cloud\ServiceDirectory\V1beta1\CreateServiceRequest;
@@ -859,7 +864,7 @@ class RegistrationServiceGapicClient
     }
 
     /**
-     * Gets the IAM Policy for a resource (namespace or service only).
+     * Gets the IAM Policy for a resource
      *
      * Sample code:
      * ```
@@ -1062,8 +1067,8 @@ class RegistrationServiceGapicClient
      *           General `filter` string syntax:
      *           `<field> <operator> <value> (<logical connector>)`
      *
-     *           *   `<field>` can be `name`, `address`, `port`, or `metadata.<key>` for map
-     *           field
+     *           *   `<field>` can be `name`, `address`, `port`, `metadata.<key>` for map
+     *           field, or `attributes.<field>` for attributes field
      *           *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
      *           means `HAS`, and is roughly the same as `=`
      *           *   `<value>` must be the same data type as field
@@ -1087,6 +1092,8 @@ class RegistrationServiceGapicClient
      *           *   `doesnotexist.foo=bar` returns an empty list. Note that endpoint
      *           doesn't have a field called "doesnotexist". Since the filter does not
      *           match any endpoints, it returns no results
+     *           *   `attributes.kubernetes_resource_type=KUBERNETES_RESOURCE_TYPE_CLUSTER_
+     *           IP` returns endpoints with the corresponding kubernetes_resource_type
      *
      *           For more information about filtering, see
      *           [API Filtering](https://aip.dev/160).
@@ -1175,8 +1182,8 @@ class RegistrationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the project and location whose namespaces you'd like
-     *                             to list.
+     * @param string $parent       Required. The resource name of the project and location whose namespaces
+     *                             you'd like to list.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1195,7 +1202,8 @@ class RegistrationServiceGapicClient
      *           General `filter` string syntax:
      *           `<field> <operator> <value> (<logical connector>)`
      *
-     *           *   `<field>` can be `name` or `labels.<key>` for map field
+     *           *   `<field>` can be `name`, `labels.<key>` for map field, or
+     *           `attributes.<field>` for attributes field
      *           *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
      *           means `HAS`, and is roughly the same as `=`
      *           *   `<value>` must be the same data type as field
@@ -1214,6 +1222,8 @@ class RegistrationServiceGapicClient
      *           *   `doesnotexist.foo=bar` returns an empty list. Note that namespace
      *           doesn't have a field called "doesnotexist". Since the filter does not
      *           match any namespaces, it returns no results
+     *           *   `attributes.managed_registration=true` returns namespaces that are
+     *           managed by a GCP product or service
      *
      *           For more information about filtering, see
      *           [API Filtering](https://aip.dev/160).
@@ -1344,6 +1354,9 @@ class RegistrationServiceGapicClient
      *           *   `doesnotexist.foo=bar` returns an empty list. Note that service
      *           doesn't have a field called "doesnotexist". Since the filter does not
      *           match any services, it returns no results
+     *           *   `attributes.managed_registration=true` returns services that are
+     *           managed
+     *           by a GCP product or service
      *
      *           For more information about filtering, see
      *           [API Filtering](https://aip.dev/160).
@@ -1407,7 +1420,7 @@ class RegistrationServiceGapicClient
     }
 
     /**
-     * Sets the IAM Policy for a resource (namespace or service only).
+     * Sets the IAM Policy for a resource
      *
      * Sample code:
      * ```
@@ -1474,7 +1487,8 @@ class RegistrationServiceGapicClient
     }
 
     /**
-     * Tests IAM permissions for a resource (namespace or service only).
+     * Tests IAM permissions for a resource (namespace, service  or
+     * service workload only).
      *
      * Sample code:
      * ```
@@ -1699,5 +1713,149 @@ class RegistrationServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $registrationServiceClient = new RegistrationServiceClient();
+     * try {
+     *     $response = $registrationServiceClient->getLocation();
+     * } finally {
+     *     $registrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $registrationServiceClient = new RegistrationServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $registrationServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $registrationServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $registrationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }

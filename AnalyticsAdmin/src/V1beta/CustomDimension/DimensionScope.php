@@ -31,11 +31,18 @@ class DimensionScope
      * Generated from protobuf enum <code>USER = 2;</code>
      */
     const USER = 2;
+    /**
+     * Dimension scoped to eCommerce items
+     *
+     * Generated from protobuf enum <code>ITEM = 3;</code>
+     */
+    const ITEM = 3;
 
     private static $valueToName = [
         self::DIMENSION_SCOPE_UNSPECIFIED => 'DIMENSION_SCOPE_UNSPECIFIED',
         self::EVENT => 'EVENT',
         self::USER => 'USER',
+        self::ITEM => 'ITEM',
     ];
 
     public static function name($value)

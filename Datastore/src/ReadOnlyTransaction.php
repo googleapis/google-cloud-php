@@ -29,7 +29,7 @@ namespace Google\Cloud\Datastore;
  *
  * Transactions are an **optional** feature of Google Cloud Datastore. Queries,
  * lookups and mutations can be executed outside of a Transaction from
- * {@see Google\Cloud\Datastore\DatastoreClient}.
+ * {@see \Google\Cloud\Datastore\DatastoreClient}.
  *
  * Example:
  * ```

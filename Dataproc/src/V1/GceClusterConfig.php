@@ -110,11 +110,11 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $tags;
     /**
-     * The Compute Engine metadata entries to add to all instances (see
+     * Optional. The Compute Engine metadata entries to add to all instances (see
      * [Project and instance
      * metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
-     * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
+     * Generated from protobuf field <code>map<string, string> metadata = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $metadata;
     /**
@@ -213,7 +213,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           The Compute Engine tags to add to all instances (see [Tagging
      *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
-     *           The Compute Engine metadata entries to add to all instances (see
+     *           Optional. The Compute Engine metadata entries to add to all instances (see
      *           [Project and instance
      *           metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *     @type \Google\Cloud\Dataproc\V1\ReservationAffinity $reservation_affinity
@@ -543,11 +543,11 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine metadata entries to add to all instances (see
+     * Optional. The Compute Engine metadata entries to add to all instances (see
      * [Project and instance
      * metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
-     * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
+     * Generated from protobuf field <code>map<string, string> metadata = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getMetadata()
@@ -556,11 +556,11 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine metadata entries to add to all instances (see
+     * Optional. The Compute Engine metadata entries to add to all instances (see
      * [Project and instance
      * metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
-     * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
+     * Generated from protobuf field <code>map<string, string> metadata = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

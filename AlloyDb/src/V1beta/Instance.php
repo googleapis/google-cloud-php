@@ -191,6 +191,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Instance.UpdatePolicy update_policy = 22;</code>
      */
     protected $update_policy = null;
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_connection_config = null;
 
     /**
      * Constructor.
@@ -285,6 +291,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           This field is not persisted when you update the instance.
      *           To use a non-default update policy, you must
      *           specify explicitly specify the value in each update request.
+     *     @type \Google\Cloud\AlloyDb\V1beta\Instance\ClientConnectionConfig $client_connection_config
+     *           Optional. Client connection specific configurations
      * }
      */
     public function __construct($data = NULL) {
@@ -1026,6 +1034,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1beta\Instance\UpdatePolicy::class);
         $this->update_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1beta\Instance\ClientConnectionConfig|null
+     */
+    public function getClientConnectionConfig()
+    {
+        return $this->client_connection_config;
+    }
+
+    public function hasClientConnectionConfig()
+    {
+        return isset($this->client_connection_config);
+    }
+
+    public function clearClientConnectionConfig()
+    {
+        unset($this->client_connection_config);
+    }
+
+    /**
+     * Optional. Client connection specific configurations
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1beta\Instance\ClientConnectionConfig $var
+     * @return $this
+     */
+    public function setClientConnectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1beta\Instance\ClientConnectionConfig::class);
+        $this->client_connection_config = $var;
 
         return $this;
     }

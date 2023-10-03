@@ -25,10 +25,31 @@ class State
      * Generated from protobuf enum <code>PROVISIONED = 1;</code>
      */
     const PROVISIONED = 1;
+    /**
+     * The NFS Share is being created.
+     *
+     * Generated from protobuf enum <code>CREATING = 2;</code>
+     */
+    const CREATING = 2;
+    /**
+     * The NFS Share is being updated.
+     *
+     * Generated from protobuf enum <code>UPDATING = 3;</code>
+     */
+    const UPDATING = 3;
+    /**
+     * The NFS Share has been requested to be deleted.
+     *
+     * Generated from protobuf enum <code>DELETING = 4;</code>
+     */
+    const DELETING = 4;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::PROVISIONED => 'PROVISIONED',
+        self::CREATING => 'CREATING',
+        self::UPDATING => 'UPDATING',
+        self::DELETING => 'DELETING',
     ];
 
     public static function name($value)

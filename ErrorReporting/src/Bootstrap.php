@@ -129,7 +129,7 @@ class Bootstrap
         if (self::$psrLogger) {
             $service = self::$psrLogger->getMetadataProvider()->serviceId();
             $version = self::$psrLogger->getMetadataProvider()->versionId();
-            self::$psrLogger->error($message, [
+            $context = [
                 'context' => [
                     'reportLocation' => [
                         'filePath' => $ex->getFile(),
@@ -142,7 +142,12 @@ class Bootstrap
                     'service' => $service,
                     'version' => $version,
                 ]
-            ]);
+            ];
+            $httpRequest = self::getHttpRequest();
+            if (!empty($httpRequest)) {
+                $context['context']['httpRequest'] = self::getHttpRequest();
+            }
+            self::$psrLogger->error($message, $context);
         } else {
             $stderr = defined('STDERR') ? STDERR : fopen('php://stderr', 'w');
             fwrite($stderr, $message . PHP_EOL);
@@ -186,6 +191,10 @@ class Bootstrap
                 'version' => $version
             ]
         ];
+        $httpRequest = self::getHttpRequest();
+        if (!empty($httpRequest)) {
+            $context['context']['httpRequest'] = self::getHttpRequest();
+        }
         self::$psrLogger->log(
             self::getErrorLevelString($level),
             $message,
@@ -232,6 +241,10 @@ class Bootstrap
                             'version' => $version
                         ]
                     ];
+                    $httpRequest = self::getHttpRequest();
+                    if (!empty($httpRequest)) {
+                        $context['context']['httpRequest'] = self::getHttpRequest();
+                    }
                     if (self::$psrLogger) {
                         self::$psrLogger->log(
                             self::getErrorLevelString($err['type']),
@@ -267,5 +280,37 @@ class Bootstrap
             $functionName[] = $trace[0]['class'];
         }
         return implode('', array_reverse($functionName));
+    }
+
+    /**
+     * Builds an HttpRequestContext from available server information.
+     *
+     * @return array An HttpRequestContext.
+     */
+    private static function getHttpRequest()
+    {
+        $httpRequest = [];
+        if (isset($_SERVER)) {
+            if (isset($_SERVER['REQUEST_METHOD'])) {
+                $httpRequest['method'] = $_SERVER['REQUEST_METHOD'];
+            }
+            if (isset($_SERVER['HTTP_USER_AGENT'])) {
+                $httpRequest['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
+            }
+            if (isset($_SERVER['HTTP_REFERER'])) {
+                $httpRequest['referrer'] = $_SERVER['HTTP_REFERER'];
+            }
+            if (isset($_SERVER['REMOTE_ADDR'])) {
+                $httpRequest['remoteIp'] = $_SERVER['REMOTE_ADDR'];
+            }
+            if (isset($_SERVER['HTTP_HOST']) && isset($_SERVER['REQUEST_URI'])) {
+                $httpRequest['url'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')
+                    . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            }
+            if (http_response_code() !== false) {
+                $httpRequest['responseStatusCode'] = http_response_code();
+            }
+        }
+        return $httpRequest;
     }
 }

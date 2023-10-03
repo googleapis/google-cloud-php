@@ -7,9 +7,9 @@ namespace Google\Cloud\Dataproc\V1\DataprocMetricConfig;
 use UnexpectedValueException;
 
 /**
- * A source for the collection of Dataproc OSS metrics (see [available OSS
+ * A source for the collection of Dataproc custom metrics (see [Custom
  * metrics]
- * (https://cloud.google.com//dataproc/docs/guides/monitoring#available_oss_metrics)).
+ * (https://cloud.google.com//dataproc/docs/guides/dataproc-metrics#custom_metrics)).
  *
  * Protobuf type <code>google.cloud.dataproc.v1.DataprocMetricConfig.MetricSource</code>
  */
@@ -22,9 +22,9 @@ class MetricSource
      */
     const METRIC_SOURCE_UNSPECIFIED = 0;
     /**
-     * Default monitoring agent metrics. If this source is enabled,
+     * Monitoring agent metrics. If this source is enabled,
      * Dataproc enables the monitoring agent in Compute Engine,
-     * and collects default monitoring agent metrics, which are published
+     * and collects monitoring agent metrics, which are published
      * with an `agent.googleapis.com` prefix.
      *
      * Generated from protobuf enum <code>MONITORING_AGENT_DEFAULTS = 1;</code>

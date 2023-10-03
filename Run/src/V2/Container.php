@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A single application container.
  * This specifies both the container to run, the command to run in the container
  * and the arguments to supply to it.
- * Note that additional arguments may be supplied by the system to the container
+ * Note that additional arguments can be supplied by the system to the container
  * at runtime.
  *
  * Generated from protobuf message <code>google.cloud.run.v2.Container</code>
@@ -99,6 +99,12 @@ class Container extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
      */
     private $startup_probe = null;
+    /**
+     * Names of the containers that must start before this container.
+     *
+     * Generated from protobuf field <code>repeated string depends_on = 12;</code>
+     */
+    private $depends_on;
 
     /**
      * Constructor.
@@ -142,6 +148,8 @@ class Container extends \Google\Protobuf\Internal\Message
      *           All other probes are disabled if a startup probe is provided, until it
      *           succeeds. Container will not be added to service endpoints if the probe
      *           fails.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $depends_on
+     *           Names of the containers that must start before this container.
      * }
      */
     public function __construct($data = NULL) {
@@ -489,6 +497,32 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\Probe::class);
         $this->startup_probe = $var;
+
+        return $this;
+    }
+
+    /**
+     * Names of the containers that must start before this container.
+     *
+     * Generated from protobuf field <code>repeated string depends_on = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDependsOn()
+    {
+        return $this->depends_on;
+    }
+
+    /**
+     * Names of the containers that must start before this container.
+     *
+     * Generated from protobuf field <code>repeated string depends_on = 12;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDependsOn($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->depends_on = $arr;
 
         return $this;
     }

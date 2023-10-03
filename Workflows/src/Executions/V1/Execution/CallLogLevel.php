@@ -15,7 +15,7 @@ use UnexpectedValueException;
 class CallLogLevel
 {
     /**
-     * No call logging specified.
+     * No call logging level specified.
      *
      * Generated from protobuf enum <code>CALL_LOG_LEVEL_UNSPECIFIED = 0;</code>
      */
@@ -33,11 +33,18 @@ class CallLogLevel
      * Generated from protobuf enum <code>LOG_ERRORS_ONLY = 2;</code>
      */
     const LOG_ERRORS_ONLY = 2;
+    /**
+     * Explicitly log nothing.
+     *
+     * Generated from protobuf enum <code>LOG_NONE = 3;</code>
+     */
+    const LOG_NONE = 3;
 
     private static $valueToName = [
         self::CALL_LOG_LEVEL_UNSPECIFIED => 'CALL_LOG_LEVEL_UNSPECIFIED',
         self::LOG_ALL_CALLS => 'LOG_ALL_CALLS',
         self::LOG_ERRORS_ONLY => 'LOG_ERRORS_ONLY',
+        self::LOG_NONE => 'LOG_NONE',
     ];
 
     public static function name($value)

@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A contiguous set of minutes: startMinutesAgo, startMinutesAgo + 1, ...,
- * endMinutesAgo. Requests are allowed up to 2 minute ranges.
+ * A contiguous set of minutes: `startMinutesAgo`, `startMinutesAgo + 1`, ...,
+ * `endMinutesAgo`. Requests are allowed up to 2 minute ranges.
  *
  * Generated from protobuf message <code>google.analytics.data.v1beta.MinuteRange</code>
  */

@@ -22,9 +22,10 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
-     * The IP address of the share on this network.
+     * Output only. The IP address of the share on this network. Assigned
+     * automatically during provisioning based on the network's services_cidr.
      *
-     * Generated from protobuf field <code>string share_ip = 2;</code>
+     * Generated from protobuf field <code>string share_ip = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $share_ip = '';
     /**
@@ -59,6 +60,14 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool no_root_squash = 7;</code>
      */
     private $no_root_squash = false;
+    /**
+     * Output only. The path to access NFS, in format shareIP:/InstanceID
+     * InstanceID is the generated ID instead of customer provided name.
+     * example like "10.0.0.0:/g123456789-nfs001"
+     *
+     * Generated from protobuf field <code>string nfs_path = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $nfs_path = '';
 
     /**
      * Constructor.
@@ -69,7 +78,8 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           The network the access point sits on.
      *     @type string $share_ip
-     *           The IP address of the share on this network.
+     *           Output only. The IP address of the share on this network. Assigned
+     *           automatically during provisioning based on the network's services_cidr.
      *     @type string $allowed_clients_cidr
      *           The subnet of IP addresses permitted to access the share.
      *     @type int $mount_permissions
@@ -82,6 +92,10 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
      *           Disable root squashing, which is a feature of NFS.
      *           Root squash is a special mapping of the remote superuser (root) identity
      *           when using identity authentication.
+     *     @type string $nfs_path
+     *           Output only. The path to access NFS, in format shareIP:/InstanceID
+     *           InstanceID is the generated ID instead of customer provided name.
+     *           example like "10.0.0.0:/g123456789-nfs001"
      * }
      */
     public function __construct($data = NULL) {
@@ -116,9 +130,10 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IP address of the share on this network.
+     * Output only. The IP address of the share on this network. Assigned
+     * automatically during provisioning based on the network's services_cidr.
      *
-     * Generated from protobuf field <code>string share_ip = 2;</code>
+     * Generated from protobuf field <code>string share_ip = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getShareIp()
@@ -127,9 +142,10 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IP address of the share on this network.
+     * Output only. The IP address of the share on this network. Assigned
+     * automatically during provisioning based on the network's services_cidr.
      *
-     * Generated from protobuf field <code>string share_ip = 2;</code>
+     * Generated from protobuf field <code>string share_ip = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -271,6 +287,36 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->no_root_squash = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The path to access NFS, in format shareIP:/InstanceID
+     * InstanceID is the generated ID instead of customer provided name.
+     * example like "10.0.0.0:/g123456789-nfs001"
+     *
+     * Generated from protobuf field <code>string nfs_path = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getNfsPath()
+    {
+        return $this->nfs_path;
+    }
+
+    /**
+     * Output only. The path to access NFS, in format shareIP:/InstanceID
+     * InstanceID is the generated ID instead of customer provided name.
+     * example like "10.0.0.0:/g123456789-nfs001"
+     *
+     * Generated from protobuf field <code>string nfs_path = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNfsPath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->nfs_path = $var;
 
         return $this;
     }

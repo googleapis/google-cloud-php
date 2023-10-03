@@ -73,9 +73,7 @@ class VodSession extends \Google\Protobuf\Internal\Message
      */
     private $asset_id = '';
     /**
-     * Required. Determines how the ad should be tracked. If
-     * [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
-     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     * Required. Determines how the ad should be tracked.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -120,9 +118,7 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *     @type string $asset_id
      *           Output only. The generated ID of the VodSession's source media.
      *     @type int $ad_tracking
-     *           Required. Determines how the ad should be tracked. If
-     *           [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
-     *           is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     *           Required. Determines how the ad should be tracked.
      *     @type \Google\Cloud\Video\Stitcher\V1\VodSession\GamSettings $gam_settings
      *           This field should be set with appropriate values if GAM is being used for
      *           ads.
@@ -380,9 +376,7 @@ class VodSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ad should be tracked. If
-     * [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
-     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     * Required. Determines how the ad should be tracked.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -393,9 +387,7 @@ class VodSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ad should be tracked. If
-     * [gam_vod_config][google.cloud.video.stitcher.v1.VodSession.gam_vod_config]
-     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     * Required. Determines how the ad should be tracked.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

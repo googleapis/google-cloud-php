@@ -22,7 +22,45 @@ return [
                     ],
                 ],
             ],
+            'CreateDatasetVersion' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\DatasetVersion',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\CreateDatasetVersionOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDataset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\DeleteOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDatasetVersion' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\DeleteOperationMetadata',
@@ -98,6 +136,25 @@ return [
                     ],
                 ],
             ],
+            'RestoreDatasetVersion' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\DatasetVersion',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\RestoreDatasetVersionOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetAnnotationSpec' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\AnnotationSpec',
@@ -113,6 +170,18 @@ return [
             'GetDataset' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\Dataset',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDatasetVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\DatasetVersion',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -153,6 +222,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\ListDataItemsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatasetVersions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatasetVersions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\ListDatasetVersionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -312,6 +401,7 @@ return [
                 'annotationSpec' => 'projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}',
                 'dataItem' => 'projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}',
                 'dataset' => 'projects/{project}/locations/{location}/datasets/{dataset}',
+                'datasetVersion' => 'projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}',
                 'location' => 'projects/{project}/locations/{location}',
                 'savedQuery' => 'projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}',
             ],

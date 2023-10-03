@@ -23,19 +23,27 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
      */
     private $name = '';
     /**
-     * Specifies whether the conversion workspace is to be committed automatically
-     * after the conversion.
+     * Optional. Specifies whether the conversion workspace is to be committed
+     * automatically after the conversion.
      *
-     * Generated from protobuf field <code>bool auto_commit = 4;</code>
+     * Generated from protobuf field <code>bool auto_commit = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $auto_commit = false;
     /**
-     * Filter the entities to convert. Leaving this field empty will convert all
-     * of the entities. Supports Google AIP-160 style filtering.
+     * Optional. Filter the entities to convert. Leaving this field empty will
+     * convert all of the entities. Supports Google AIP-160 style filtering.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
+    /**
+     * Optional. Automatically convert the full entity path for each entity
+     * specified by the filter. For example, if the filter specifies a table, that
+     * table schema (and database if there is one) will also be converted.
+     *
+     * Generated from protobuf field <code>bool convert_full_path = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $convert_full_path = false;
 
     /**
      * Constructor.
@@ -47,11 +55,15 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
      *           Name of the conversion workspace resource to convert in the form of:
      *           projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
      *     @type bool $auto_commit
-     *           Specifies whether the conversion workspace is to be committed automatically
-     *           after the conversion.
+     *           Optional. Specifies whether the conversion workspace is to be committed
+     *           automatically after the conversion.
      *     @type string $filter
-     *           Filter the entities to convert. Leaving this field empty will convert all
-     *           of the entities. Supports Google AIP-160 style filtering.
+     *           Optional. Filter the entities to convert. Leaving this field empty will
+     *           convert all of the entities. Supports Google AIP-160 style filtering.
+     *     @type bool $convert_full_path
+     *           Optional. Automatically convert the full entity path for each entity
+     *           specified by the filter. For example, if the filter specifies a table, that
+     *           table schema (and database if there is one) will also be converted.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,10 +100,10 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Specifies whether the conversion workspace is to be committed automatically
-     * after the conversion.
+     * Optional. Specifies whether the conversion workspace is to be committed
+     * automatically after the conversion.
      *
-     * Generated from protobuf field <code>bool auto_commit = 4;</code>
+     * Generated from protobuf field <code>bool auto_commit = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAutoCommit()
@@ -100,10 +112,10 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Specifies whether the conversion workspace is to be committed automatically
-     * after the conversion.
+     * Optional. Specifies whether the conversion workspace is to be committed
+     * automatically after the conversion.
      *
-     * Generated from protobuf field <code>bool auto_commit = 4;</code>
+     * Generated from protobuf field <code>bool auto_commit = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -116,10 +128,10 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Filter the entities to convert. Leaving this field empty will convert all
-     * of the entities. Supports Google AIP-160 style filtering.
+     * Optional. Filter the entities to convert. Leaving this field empty will
+     * convert all of the entities. Supports Google AIP-160 style filtering.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -128,10 +140,10 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Filter the entities to convert. Leaving this field empty will convert all
-     * of the entities. Supports Google AIP-160 style filtering.
+     * Optional. Filter the entities to convert. Leaving this field empty will
+     * convert all of the entities. Supports Google AIP-160 style filtering.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -139,6 +151,36 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Automatically convert the full entity path for each entity
+     * specified by the filter. For example, if the filter specifies a table, that
+     * table schema (and database if there is one) will also be converted.
+     *
+     * Generated from protobuf field <code>bool convert_full_path = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getConvertFullPath()
+    {
+        return $this->convert_full_path;
+    }
+
+    /**
+     * Optional. Automatically convert the full entity path for each entity
+     * specified by the filter. For example, if the filter specifies a table, that
+     * table schema (and database if there is one) will also be converted.
+     *
+     * Generated from protobuf field <code>bool convert_full_path = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setConvertFullPath($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->convert_full_path = $var;
 
         return $this;
     }

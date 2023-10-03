@@ -135,7 +135,7 @@ class ExponentialBackoff
 
     /**
      * If not set, defaults to using
-     * {@see Google\Cloud\Core\ExponentialBackoff::calculateDelay()}.
+     * {@see \Google\Cloud\Core\ExponentialBackoff::calculateDelay()}.
      *
      * @param callable $calcDelayFunction
      * @return void

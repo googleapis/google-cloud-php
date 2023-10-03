@@ -18,6 +18,8 @@
 namespace Google\Cloud\Dev\Command;
 
 use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\GitHub;
+use Google\Cloud\Dev\RunShell;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,8 +35,7 @@ use GuzzleHttp\Client;
  */
 class RepoInfoCommand extends Command
 {
-    private Client $http;
-    private array $headers;
+    private GitHub $github;
 
     private static $allFields = [
         'name' => 'Name',
@@ -59,14 +60,9 @@ class RepoInfoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->http = new Client();
-        $this->headers = [
-            'Accept' => 'application/vnd.github+json',
-            'X-GitHub-Api-Version' => '2022-11-28',
-        ];
-        if ($token = $input->getOption('token')) {
-            $this->headers['Authorization'] = 'Bearer ' . $token;
-        }
+        // Create github client wrapper
+        $this->github = new GitHub(new RunShell(), new Client(), $input->getOption('token'), $output);
+
         $nextPageQuestion = new ConfirmationQuestion('Next Page (enter)', true);
         $table = (new Table($output))->setHeaders(self::$allFields);
         if ($componentName = $input->getArgument('component')) {
@@ -89,7 +85,7 @@ class RepoInfoCommand extends Command
             }
             $details = $this->getRepoDetails($component);
             if ($input->getOption('fix')) {
-                if (!$token) {
+                if (!$this->github->token) {
                     throw new \InvalidArgumentException('Token required to fix compliance');
                 }
                 $refreshDetails = false;
@@ -97,7 +93,7 @@ class RepoInfoCommand extends Command
                     $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
                 }
                 if (!$this->checkTeamCompliance($details)) {
-                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, $details);
+                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
                 }
                 if ($refreshDetails) {
                     $details = $this->getRepoDetails($component);
@@ -136,44 +132,34 @@ class RepoInfoCommand extends Command
             implode(', ', $fieldsToUpdate)
         ), true);
         if ($this->getHelper('question')->ask($input, $output, $question)) {
-            $url = 'https://api.github.com/repos/googleapis/' . $details['name'];
-            $response = $this->http->patch($url, [
-                'headers' => $this->headers,
-                'body' => json_encode(array_fill_keys($fieldsToUpdate, false)),
-            ]);
+            $this->github->updateRepoDetails(
+                'googleapis/' . $details['name'],
+                array_fill_keys($fieldsToUpdate, false)
+            );
             return true;
         }
         return false;
     }
 
-    private function askFixTeamCompliance(InputInterface $input, OutputInterface $output, array $details)
+    private function askFixTeamCompliance(InputInterface $input, OutputInterface $output, string $repoName)
     {
         $question = new ConfirmationQuestion(sprintf(
             'Repo %s does not have "yoshi-php" as an admin. Would you like to add it? (Y/n)',
-            $details['name']
+            $repoName
         ), true);
         if ($this->getHelper('question')->ask($input, $output, $question)) {
-            $url = 'https://api.github.com/orgs/googleapis/teams/yoshi-php/repos/googleapis/' . $details['name'];
-            $response = $this->http->put($url, [
-                'headers' => $this->headers,
-                'body' => '{"permission":"admin"}',
-            ]);
-            return true;
+            return $this->github->updateTeamPermission('googleapis', 'yoshi-php', $repoName, 'admin');
         }
         return false;
     }
 
     private function getRepoDetails(Component $component): array
     {
-        // get configuration fields
-        $response = $this->http->get('https://api.github.com/repos/' . $component->getRepoName(), [
-            'headers' => $this->headers
-        ]);
         // use "array_intersect_key" to filter out fields that were not requested.
         $fields = array_map(
             fn ($field) => is_bool($field) ? var_export($field, true) : $field,
             array_intersect_key(
-                json_decode((string) $response->getBody(), true),
+                $this->github->getRepoDetails($component->getRepoName()),
                 self::$allFields
             )
         );
@@ -185,22 +171,17 @@ class RepoInfoCommand extends Command
 
     private function getRepoTeamDetails(Component $component)
     {
-        if (!isset($this->headers['Authorization'])) {
+        if (!$this->github->token) {
             return '**Token Required**';
         }
         // get team fields
-        $response = $this->http->get(
-            'https://api.github.com/repos/' . $component->getRepoName() . '/teams', [
-            'headers' => $this->headers,
-            'http_errors' => false,
-        ]);
-        if ($response->getStatusCode() === 200) {
-            return implode("\n", array_map(
-                fn ($team) => $team['name'] . ': ' . $team['permission'],
-                json_decode((string) $response->getBody(), true)
-            )) . "\n";
+        $teams = $this->github->getTeams($component->getRepoName());
+        if (is_null($teams)) {
+            return '**ACCESS DENIED**';
         }
-
-        return '**ACCESS DENIED**';
+        return implode("\n", array_map(
+            fn ($team) => $team['name'] . ': ' . $team['permission'],
+            $teams
+        )) . "\n";
     }
 }

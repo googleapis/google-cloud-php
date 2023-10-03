@@ -24,8 +24,9 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The new billing information for the project. Read-only fields are ignored;
-     * thus, you can leave empty all fields except `billing_account_name`.
+     * The new billing information for the project. Output-only fields are
+     * ignored; thus, you can leave empty all fields except
+     * `billing_account_name`.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.ProjectBillingInfo project_billing_info = 2;</code>
      */
@@ -35,8 +36,9 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      * @param string                                      $name               Required. The resource name of the project associated with the billing
      *                                                                        information that you want to update. For example,
      *                                                                        `projects/tokyo-rain-123`.
-     * @param \Google\Cloud\Billing\V1\ProjectBillingInfo $projectBillingInfo The new billing information for the project. Read-only fields are ignored;
-     *                                                                        thus, you can leave empty all fields except `billing_account_name`.
+     * @param \Google\Cloud\Billing\V1\ProjectBillingInfo $projectBillingInfo The new billing information for the project. Output-only fields are
+     *                                                                        ignored; thus, you can leave empty all fields except
+     *                                                                        `billing_account_name`.
      *
      * @return \Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest
      *
@@ -60,8 +62,9 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      *           information that you want to update. For example,
      *           `projects/tokyo-rain-123`.
      *     @type \Google\Cloud\Billing\V1\ProjectBillingInfo $project_billing_info
-     *           The new billing information for the project. Read-only fields are ignored;
-     *           thus, you can leave empty all fields except `billing_account_name`.
+     *           The new billing information for the project. Output-only fields are
+     *           ignored; thus, you can leave empty all fields except
+     *           `billing_account_name`.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,8 +103,9 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new billing information for the project. Read-only fields are ignored;
-     * thus, you can leave empty all fields except `billing_account_name`.
+     * The new billing information for the project. Output-only fields are
+     * ignored; thus, you can leave empty all fields except
+     * `billing_account_name`.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.ProjectBillingInfo project_billing_info = 2;</code>
      * @return \Google\Cloud\Billing\V1\ProjectBillingInfo|null
@@ -122,8 +126,9 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new billing information for the project. Read-only fields are ignored;
-     * thus, you can leave empty all fields except `billing_account_name`.
+     * The new billing information for the project. Output-only fields are
+     * ignored; thus, you can leave empty all fields except
+     * `billing_account_name`.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.ProjectBillingInfo project_billing_info = 2;</code>
      * @param \Google\Cloud\Billing\V1\ProjectBillingInfo $var

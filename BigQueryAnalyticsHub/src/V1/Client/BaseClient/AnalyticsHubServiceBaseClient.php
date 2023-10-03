@@ -27,6 +27,8 @@ namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Client\BaseClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -38,14 +40,23 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\GetSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -53,6 +64,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -83,13 +95,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getListingAsync(GetListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSharedResourceSubscriptionsAsync(ListSharedResourceSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface refreshSubscriptionAsync(RefreshSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface revokeSubscriptionAsync(RevokeSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface subscribeDataExchangeAsync(SubscribeDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
@@ -118,6 +137,8 @@ abstract class AnalyticsHubServiceBaseClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -135,6 +156,35 @@ abstract class AnalyticsHubServiceBaseClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
     }
 
     /**
@@ -212,6 +262,25 @@ abstract class AnalyticsHubServiceBaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subscription
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $subscription
+     *
+     * @return string The formatted subscription resource.
+     */
+    public static function subscriptionName(string $project, string $location, string $subscription): string
+    {
+        return self::getPathTemplate('subscription')->render([
+            'project' => $project,
+            'location' => $location,
+            'subscription' => $subscription,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -219,6 +288,7 @@ abstract class AnalyticsHubServiceBaseClient
      * - dataset: projects/{project}/datasets/{dataset}
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
+     * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -296,6 +366,7 @@ abstract class AnalyticsHubServiceBaseClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -410,6 +481,32 @@ abstract class AnalyticsHubServiceBaseClient
     }
 
     /**
+     * Deletes a subscription.
+     *
+     * The async variant is {@see self::deleteSubscriptionAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/delete_subscription.php
+     *
+     * @param DeleteSubscriptionRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteSubscription(DeleteSubscriptionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteSubscription', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets the details of a data exchange.
      *
      * The async variant is {@see self::getDataExchangeAsync()} .
@@ -485,6 +582,32 @@ abstract class AnalyticsHubServiceBaseClient
     public function getListing(GetListingRequest $request, array $callOptions = []): Listing
     {
         return $this->startApiCall('GetListing', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of a Subscription.
+     *
+     * The async variant is {@see self::getSubscriptionAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/get_subscription.php
+     *
+     * @param GetSubscriptionRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Subscription
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSubscription(GetSubscriptionRequest $request, array $callOptions = []): Subscription
+    {
+        return $this->startApiCall('GetSubscription', $request, $callOptions)->wait();
     }
 
     /**
@@ -567,6 +690,112 @@ abstract class AnalyticsHubServiceBaseClient
     }
 
     /**
+     * Lists all subscriptions on a given Data Exchange or Listing.
+     *
+     * The async variant is {@see self::listSharedResourceSubscriptionsAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/list_shared_resource_subscriptions.php
+     *
+     * @param ListSharedResourceSubscriptionsRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSharedResourceSubscriptions(ListSharedResourceSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSharedResourceSubscriptions', $request, $callOptions);
+    }
+
+    /**
+     * Lists all subscriptions in a given project and location.
+     *
+     * The async variant is {@see self::listSubscriptionsAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/list_subscriptions.php
+     *
+     * @param ListSubscriptionsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSubscriptions(ListSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSubscriptions', $request, $callOptions);
+    }
+
+    /**
+     * Refreshes a Subscription to a Data Exchange. A Data Exchange can become
+     * stale when a publisher adds or removes data. This is a long-running
+     * operation as it may create many linked datasets.
+     *
+     * The async variant is {@see self::refreshSubscriptionAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/refresh_subscription.php
+     *
+     * @param RefreshSubscriptionRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function refreshSubscription(RefreshSubscriptionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RefreshSubscription', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Revokes a given subscription.
+     *
+     * The async variant is {@see self::revokeSubscriptionAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/revoke_subscription.php
+     *
+     * @param RevokeSubscriptionRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RevokeSubscriptionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function revokeSubscription(RevokeSubscriptionRequest $request, array $callOptions = []): RevokeSubscriptionResponse
+    {
+        return $this->startApiCall('RevokeSubscription', $request, $callOptions)->wait();
+    }
+
+    /**
      * Sets the IAM policy.
      *
      * The async variant is {@see self::setIamPolicyAsync()} .
@@ -590,6 +819,33 @@ abstract class AnalyticsHubServiceBaseClient
     public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a Subscription to a Data Exchange. This is a long-running operation
+     * as it will create one or more linked datasets.
+     *
+     * The async variant is {@see self::subscribeDataExchangeAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/subscribe_data_exchange.php
+     *
+     * @param SubscribeDataExchangeRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function subscribeDataExchange(SubscribeDataExchangeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SubscribeDataExchange', $request, $callOptions)->wait();
     }
 
     /**

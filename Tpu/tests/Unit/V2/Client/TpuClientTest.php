@@ -117,6 +117,8 @@ class TpuClientTest extends GeneratedTest
         $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
         $id = 3355;
+        $queuedResource = 'queuedResource-1642799782';
+        $multisliceNode = true;
         $expectedResponse = new Node();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -125,6 +127,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
         $expectedResponse->setId($id);
+        $expectedResponse->setQueuedResource($queuedResource);
+        $expectedResponse->setMultisliceNode($multisliceNode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -135,8 +139,6 @@ class TpuClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $node = new Node();
-        $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
-        $node->setAcceleratorType($nodeAcceleratorType);
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new CreateNodeRequest())
@@ -209,8 +211,6 @@ class TpuClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $node = new Node();
-        $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
-        $node->setAcceleratorType($nodeAcceleratorType);
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new CreateNodeRequest())
@@ -565,6 +565,8 @@ class TpuClientTest extends GeneratedTest
         $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
         $id = 3355;
+        $queuedResource = 'queuedResource-1642799782';
+        $multisliceNode = true;
         $expectedResponse = new Node();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -573,6 +575,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
         $expectedResponse->setId($id);
+        $expectedResponse->setQueuedResource($queuedResource);
+        $expectedResponse->setMultisliceNode($multisliceNode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
@@ -935,6 +939,8 @@ class TpuClientTest extends GeneratedTest
         $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
         $id = 3355;
+        $queuedResource = 'queuedResource-1642799782';
+        $multisliceNode = true;
         $expectedResponse = new Node();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -943,6 +949,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
         $expectedResponse->setId($id);
+        $expectedResponse->setQueuedResource($queuedResource);
+        $expectedResponse->setMultisliceNode($multisliceNode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1070,6 +1078,8 @@ class TpuClientTest extends GeneratedTest
         $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
         $id = 3355;
+        $queuedResource = 'queuedResource-1642799782';
+        $multisliceNode = true;
         $expectedResponse = new Node();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -1078,6 +1088,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
         $expectedResponse->setId($id);
+        $expectedResponse->setQueuedResource($queuedResource);
+        $expectedResponse->setMultisliceNode($multisliceNode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1205,6 +1217,8 @@ class TpuClientTest extends GeneratedTest
         $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
         $id = 3355;
+        $queuedResource = 'queuedResource-1642799782';
+        $multisliceNode = true;
         $expectedResponse = new Node();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -1213,6 +1227,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
         $expectedResponse->setId($id);
+        $expectedResponse->setQueuedResource($queuedResource);
+        $expectedResponse->setMultisliceNode($multisliceNode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1223,8 +1239,6 @@ class TpuClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $node = new Node();
-        $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
-        $node->setAcceleratorType($nodeAcceleratorType);
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new UpdateNodeRequest())
@@ -1297,8 +1311,6 @@ class TpuClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $node = new Node();
-        $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
-        $node->setAcceleratorType($nodeAcceleratorType);
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new UpdateNodeRequest())
@@ -1478,6 +1490,8 @@ class TpuClientTest extends GeneratedTest
         $runtimeVersion = 'runtimeVersion1819622257';
         $cidrBlock = 'cidrBlock313022466';
         $id = 3355;
+        $queuedResource = 'queuedResource-1642799782';
+        $multisliceNode = true;
         $expectedResponse = new Node();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -1486,6 +1500,8 @@ class TpuClientTest extends GeneratedTest
         $expectedResponse->setRuntimeVersion($runtimeVersion);
         $expectedResponse->setCidrBlock($cidrBlock);
         $expectedResponse->setId($id);
+        $expectedResponse->setQueuedResource($queuedResource);
+        $expectedResponse->setMultisliceNode($multisliceNode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1496,8 +1512,6 @@ class TpuClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $node = new Node();
-        $nodeAcceleratorType = 'nodeAcceleratorType-620315165';
-        $node->setAcceleratorType($nodeAcceleratorType);
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
         $request = (new CreateNodeRequest())

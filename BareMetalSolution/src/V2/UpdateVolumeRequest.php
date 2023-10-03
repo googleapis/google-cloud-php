@@ -26,11 +26,7 @@ class UpdateVolumeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to update.
      * The only currently supported fields are:
-     *   `snapshot_auto_delete_behavior`
-     *   `snapshot_schedule_policy_name`
      *   'labels'
-     *   'snapshot_enabled'
-     *   'snapshot_reservation_detail.reserved_space_percent'
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -43,11 +39,7 @@ class UpdateVolumeRequest extends \Google\Protobuf\Internal\Message
      *                                                              Format: projects/{project}/locations/{location}/volumes/{volume}
      * @param \Google\Protobuf\FieldMask                $updateMask The list of fields to update.
      *                                                              The only currently supported fields are:
-     *                                                              `snapshot_auto_delete_behavior`
-     *                                                              `snapshot_schedule_policy_name`
      *                                                              'labels'
-     *                                                              'snapshot_enabled'
-     *                                                              'snapshot_reservation_detail.reserved_space_percent'
      *
      * @return \Google\Cloud\BareMetalSolution\V2\UpdateVolumeRequest
      *
@@ -73,11 +65,7 @@ class UpdateVolumeRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to update.
      *           The only currently supported fields are:
-     *             `snapshot_auto_delete_behavior`
-     *             `snapshot_schedule_policy_name`
      *             'labels'
-     *             'snapshot_enabled'
-     *             'snapshot_reservation_detail.reserved_space_percent'
      * }
      */
     public function __construct($data = NULL) {
@@ -128,11 +116,7 @@ class UpdateVolumeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to update.
      * The only currently supported fields are:
-     *   `snapshot_auto_delete_behavior`
-     *   `snapshot_schedule_policy_name`
      *   'labels'
-     *   'snapshot_enabled'
-     *   'snapshot_reservation_detail.reserved_space_percent'
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -155,11 +139,7 @@ class UpdateVolumeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to update.
      * The only currently supported fields are:
-     *   `snapshot_auto_delete_behavior`
-     *   `snapshot_schedule_policy_name`
      *   'labels'
-     *   'snapshot_enabled'
-     *   'snapshot_reservation_detail.reserved_space_percent'
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

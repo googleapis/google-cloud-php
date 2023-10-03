@@ -46,9 +46,10 @@ class SeedConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *           Should the conversion workspace be committed automatically after the
      *           seed operation.
      *     @type string $source_connection_profile
-     *           Fully qualified (Uri) name of the source connection profile.
+     *           Optional. Fully qualified (Uri) name of the source connection profile.
      *     @type string $destination_connection_profile
-     *           Fully qualified (Uri) name of the destination connection profile.
+     *           Optional. Fully qualified (Uri) name of the destination connection
+     *           profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,9 +116,9 @@ class SeedConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified (Uri) name of the source connection profile.
+     * Optional. Fully qualified (Uri) name of the source connection profile.
      *
-     * Generated from protobuf field <code>string source_connection_profile = 100;</code>
+     * Generated from protobuf field <code>string source_connection_profile = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSourceConnectionProfile()
@@ -131,9 +132,9 @@ class SeedConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified (Uri) name of the source connection profile.
+     * Optional. Fully qualified (Uri) name of the source connection profile.
      *
-     * Generated from protobuf field <code>string source_connection_profile = 100;</code>
+     * Generated from protobuf field <code>string source_connection_profile = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -146,9 +147,10 @@ class SeedConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified (Uri) name of the destination connection profile.
+     * Optional. Fully qualified (Uri) name of the destination connection
+     * profile.
      *
-     * Generated from protobuf field <code>string destination_connection_profile = 101;</code>
+     * Generated from protobuf field <code>string destination_connection_profile = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDestinationConnectionProfile()
@@ -162,9 +164,10 @@ class SeedConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified (Uri) name of the destination connection profile.
+     * Optional. Fully qualified (Uri) name of the destination connection
+     * profile.
      *
-     * Generated from protobuf field <code>string destination_connection_profile = 101;</code>
+     * Generated from protobuf field <code>string destination_connection_profile = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
