@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
-use Symfony\Component\Console\Output\OutputInterface;
-
 /**
  * @internal
  */

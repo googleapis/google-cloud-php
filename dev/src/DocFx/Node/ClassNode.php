@@ -290,7 +290,7 @@ class ClassNode
                 }
                 if ('\\' !== $matches[1][0] || substr_count($matches[1], '\Google\\') > 1) {
                     $output->writeln(sprintf(
-                        'Xref not rendered propery in %s (did you add a reference in the phpdoc summary?): %s',
+                        'Xref not rendered propery in %s: %s',
                         $fullname,
                         $matches[1])
                     );

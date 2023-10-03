@@ -453,35 +453,27 @@ EOF;
             $shouldBeValid = false;
         }
 
-        $xref = new class ($output->reveal()) {
-            use XrefTrait;
-            public function __construct(private OutputInterface $output) {}
-            public function validate(string $description) {
-                $this->replaceSeeTag($description);
-                return $this->validateXrefs(
-                    $this->replaceSeeTag($description),
-                    $this->output
-                );
-            }
-            private function getFullname() {
-                return 'Anonymous';
-            }
-        };
+        $classXml = '<class><full_name>TestClass</full_name><docblock><description>%s</description></docblock></class>';
+        $xref = new ClassNode(new SimpleXMLElement(sprintf($classXml, $description)));
 
-        $this->assertEquals($shouldBeValid, $xref->validate($description));
+        $this->assertEquals($shouldBeValid, $xref->validate($output->reveal()));
     }
 
     public function provideValidateXrefs()
     {
         return [
-            ['{@see \OutputInterface}'], // valid
-            ['Take a look at {@see \OutputInterface} for more.'], // valid
+            ['{@see \OutputInterface}', 'Invalid xref in TestClass: \OutputInterface'], // invalid class (doesn't exist)
+            ['{@see \SimpleXMLElement}.'], // valid class
+            ['{@see \SimpleXMLElement::method()}', 'Invalid xref in TestClass: \SimpleXMLElement::method()'], // invalid method (doesn't exist)
+            ['{@see \SimpleXMLElement::addAttribute()}'], // valid method
+            ['{@see \SimpleXMLElement::OUTPUT_FOO}', 'Invalid xref in TestClass: \SimpleXMLElement::OUTPUT_FOO'],  // invalid constant (doesn't exist)
+            [sprintf('{@see \%s::OUTPUT_NORMAL}', OutputInterface::class)], // valid constant
             ['Take a look at {@see https://foo.bar} for more.'], // valid
-            ['{@see Foo\Bar}', 'Invalid xref in Anonymous: Foo\Bar'], // invalid
-            ['Take a look at {@see Foo\Bar} for more.', 'Invalid xref in Anonymous: Foo\Bar'], // invalid
+            ['{@see Foo\Bar}', 'Xref not rendered propery in TestClass: Foo\Bar'], // invalid
+            ['Take a look at {@see Foo\Bar} for more.', 'Xref not rendered propery in TestClass: Foo\Bar'], // invalid
             [
                 '{@see \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo}',
-                'Invalid xref in Anonymous: \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo'
+                'Xref not rendered propery in TestClass: \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo'
             ], // invalid
         ];
     }
