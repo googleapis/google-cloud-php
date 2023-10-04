@@ -59,6 +59,48 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     private $hashed_account_id = '';
     /**
+     * Optional. Flag for a reCAPTCHA express request for an assessment without a
+     * token. If enabled, `site_key` must reference a SCORE key with WAF feature
+     * set to EXPRESS.
+     *
+     * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $express = false;
+    /**
+     * Optional. The URI resource the user requested that triggered an assessment.
+     *
+     * Generated from protobuf field <code>string requested_uri = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $requested_uri = '';
+    /**
+     * Optional. Flag for running WAF token assessment.
+     * If enabled, the token must be specified, and have been created by a
+     * WAF-enabled key.
+     *
+     * Generated from protobuf field <code>bool waf_token_assessment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $waf_token_assessment = false;
+    /**
+     * Optional. Optional JA3 fingerprint for SSL clients.
+     *
+     * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ja3 = '';
+    /**
+     * Optional. HTTP header information about the request.
+     *
+     * Generated from protobuf field <code>repeated string headers = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $headers;
+    /**
+     * Optional. Flag for enabling firewall policy config assessment.
+     * If this flag is enabled, the firewall policy will be evaluated and a
+     * suggested firewall action will be returned in the response.
+     *
+     * Generated from protobuf field <code>bool firewall_policy_evaluation = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $firewall_policy_evaluation = false;
+    /**
      * Optional. Data describing a payment transaction to be assessed. Sending
      * this data enables reCAPTCHA Enterprise Fraud Prevention and the
      * FraudPreventionAssessment component in the response.
@@ -92,6 +134,24 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type string $hashed_account_id
      *           Optional. Unique stable hashed user identifier for the request. The
      *           identifier must be hashed using hmac-sha256 with stable secret.
+     *     @type bool $express
+     *           Optional. Flag for a reCAPTCHA express request for an assessment without a
+     *           token. If enabled, `site_key` must reference a SCORE key with WAF feature
+     *           set to EXPRESS.
+     *     @type string $requested_uri
+     *           Optional. The URI resource the user requested that triggered an assessment.
+     *     @type bool $waf_token_assessment
+     *           Optional. Flag for running WAF token assessment.
+     *           If enabled, the token must be specified, and have been created by a
+     *           WAF-enabled key.
+     *     @type string $ja3
+     *           Optional. Optional JA3 fingerprint for SSL clients.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $headers
+     *           Optional. HTTP header information about the request.
+     *     @type bool $firewall_policy_evaluation
+     *           Optional. Flag for enabling firewall policy config assessment.
+     *           If this flag is enabled, the firewall policy will be evaluated and a
+     *           suggested firewall action will be returned in the response.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData $transaction_data
      *           Optional. Data describing a payment transaction to be assessed. Sending
      *           this data enables reCAPTCHA Enterprise Fraud Prevention and the
@@ -269,6 +329,174 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->hashed_account_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Flag for a reCAPTCHA express request for an assessment without a
+     * token. If enabled, `site_key` must reference a SCORE key with WAF feature
+     * set to EXPRESS.
+     *
+     * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getExpress()
+    {
+        return $this->express;
+    }
+
+    /**
+     * Optional. Flag for a reCAPTCHA express request for an assessment without a
+     * token. If enabled, `site_key` must reference a SCORE key with WAF feature
+     * set to EXPRESS.
+     *
+     * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExpress($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->express = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The URI resource the user requested that triggered an assessment.
+     *
+     * Generated from protobuf field <code>string requested_uri = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRequestedUri()
+    {
+        return $this->requested_uri;
+    }
+
+    /**
+     * Optional. The URI resource the user requested that triggered an assessment.
+     *
+     * Generated from protobuf field <code>string requested_uri = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestedUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->requested_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Flag for running WAF token assessment.
+     * If enabled, the token must be specified, and have been created by a
+     * WAF-enabled key.
+     *
+     * Generated from protobuf field <code>bool waf_token_assessment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getWafTokenAssessment()
+    {
+        return $this->waf_token_assessment;
+    }
+
+    /**
+     * Optional. Flag for running WAF token assessment.
+     * If enabled, the token must be specified, and have been created by a
+     * WAF-enabled key.
+     *
+     * Generated from protobuf field <code>bool waf_token_assessment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setWafTokenAssessment($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->waf_token_assessment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional JA3 fingerprint for SSL clients.
+     *
+     * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getJa3()
+    {
+        return $this->ja3;
+    }
+
+    /**
+     * Optional. Optional JA3 fingerprint for SSL clients.
+     *
+     * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJa3($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ja3 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. HTTP header information about the request.
+     *
+     * Generated from protobuf field <code>repeated string headers = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * Optional. HTTP header information about the request.
+     *
+     * Generated from protobuf field <code>repeated string headers = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setHeaders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Flag for enabling firewall policy config assessment.
+     * If this flag is enabled, the firewall policy will be evaluated and a
+     * suggested firewall action will be returned in the response.
+     *
+     * Generated from protobuf field <code>bool firewall_policy_evaluation = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getFirewallPolicyEvaluation()
+    {
+        return $this->firewall_policy_evaluation;
+    }
+
+    /**
+     * Optional. Flag for enabling firewall policy config assessment.
+     * If this flag is enabled, the firewall policy will be evaluated and a
+     * suggested firewall action will be returned in the response.
+     *
+     * Generated from protobuf field <code>bool firewall_policy_evaluation = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFirewallPolicyEvaluation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->firewall_policy_evaluation = $var;
 
         return $this;
     }

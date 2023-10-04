@@ -37,11 +37,16 @@ use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
 use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\CreateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\DeleteFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
+use Google\Cloud\RecaptchaEnterprise\V1\GetFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
+use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
@@ -50,6 +55,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\UpdateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -74,16 +80,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface annotateAssessmentAsync(AnnotateAssessmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAssessmentAsync(CreateAssessmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createFirewallPolicyAsync(CreateFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createKeyAsync(CreateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteFirewallPolicyAsync(DeleteFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteKeyAsync(DeleteKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getFirewallPolicyAsync(GetFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getMetricsAsync(GetMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listFirewallPoliciesAsync(ListFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRelatedAccountGroupMembershipsAsync(ListRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRelatedAccountGroupsAsync(ListRelatedAccountGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface migrateKeyAsync(MigrateKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface retrieveLegacySecretKeyAsync(RetrieveLegacySecretKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchRelatedAccountGroupMembershipsAsync(SearchRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateFirewallPolicyAsync(UpdateFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
  */
 abstract class RecaptchaEnterpriseServiceBaseClient
@@ -141,6 +152,23 @@ abstract class RecaptchaEnterpriseServiceBaseClient
         return self::getPathTemplate('assessment')->render([
             'project' => $project,
             'assessment' => $assessment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * firewall_policy resource.
+     *
+     * @param string $project
+     * @param string $firewallpolicy
+     *
+     * @return string The formatted firewall_policy resource.
+     */
+    public static function firewallPolicyName(string $project, string $firewallpolicy): string
+    {
+        return self::getPathTemplate('firewallPolicy')->render([
+            'project' => $project,
+            'firewallpolicy' => $firewallpolicy,
         ]);
     }
 
@@ -215,6 +243,7 @@ abstract class RecaptchaEnterpriseServiceBaseClient
      * The following name formats are supported:
      * Template: Pattern
      * - assessment: projects/{project}/assessments/{assessment}
+     * - firewallPolicy: projects/{project}/firewallpolicies/{firewallpolicy}
      * - key: projects/{project}/keys/{key}
      * - metrics: projects/{project}/keys/{key}/metrics
      * - project: projects/{project}
@@ -359,6 +388,32 @@ abstract class RecaptchaEnterpriseServiceBaseClient
     }
 
     /**
+     * Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA
+     * Enterprise actions can be executed.
+     * A project may have a maximum of 1000 policies.
+     *
+     * The async variant is {@see self::createFirewallPolicyAsync()} .
+     *
+     * @param CreateFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FirewallPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createFirewallPolicy(CreateFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicy
+    {
+        return $this->startApiCall('CreateFirewallPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new reCAPTCHA Enterprise key.
      *
      * The async variant is {@see self::createKeyAsync()} .
@@ -383,6 +438,28 @@ abstract class RecaptchaEnterpriseServiceBaseClient
     }
 
     /**
+     * Deletes the specified firewall policy.
+     *
+     * The async variant is {@see self::deleteFirewallPolicyAsync()} .
+     *
+     * @param DeleteFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteFirewallPolicy(DeleteFirewallPolicyRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteFirewallPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes the specified key.
      *
      * The async variant is {@see self::deleteKeyAsync()} .
@@ -402,6 +479,30 @@ abstract class RecaptchaEnterpriseServiceBaseClient
     public function deleteKey(DeleteKeyRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the specified firewall policy.
+     *
+     * The async variant is {@see self::getFirewallPolicyAsync()} .
+     *
+     * @param GetFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FirewallPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getFirewallPolicy(GetFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicy
+    {
+        return $this->startApiCall('GetFirewallPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -451,6 +552,30 @@ abstract class RecaptchaEnterpriseServiceBaseClient
     public function getMetrics(GetMetricsRequest $request, array $callOptions = []): Metrics
     {
         return $this->startApiCall('GetMetrics', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the list of all firewall policies that belong to a project.
+     *
+     * The async variant is {@see self::listFirewallPoliciesAsync()} .
+     *
+     * @param ListFirewallPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listFirewallPolicies(ListFirewallPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListFirewallPolicies', $request, $callOptions);
     }
 
     /**
@@ -529,7 +654,7 @@ abstract class RecaptchaEnterpriseServiceBaseClient
      * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise.
      * Once a key is migrated, it can be used from either product. SiteVerify
      * requests are billed as CreateAssessment calls. You must be
-     * authenticated as one of the current owners of the reCAPTCHA Site Key, and
+     * authenticated as one of the current owners of the reCAPTCHA Key, and
      * your user must have the reCAPTCHA Enterprise Admin IAM role in the
      * destination project.
      *
@@ -602,6 +727,30 @@ abstract class RecaptchaEnterpriseServiceBaseClient
     public function searchRelatedAccountGroupMemberships(SearchRelatedAccountGroupMembershipsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('SearchRelatedAccountGroupMemberships', $request, $callOptions);
+    }
+
+    /**
+     * Updates the specified firewall policy.
+     *
+     * The async variant is {@see self::updateFirewallPolicyAsync()} .
+     *
+     * @param UpdateFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FirewallPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateFirewallPolicy(UpdateFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicy
+    {
+        return $this->startApiCall('UpdateFirewallPolicy', $request, $callOptions)->wait();
     }
 
     /**

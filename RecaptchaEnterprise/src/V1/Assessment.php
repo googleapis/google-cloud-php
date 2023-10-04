@@ -17,7 +17,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name for the Assessment in the format
-     * "projects/{project}/assessments/{assessment}".
+     * `projects/{project}/assessments/{assessment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -62,11 +62,25 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     private $private_password_leak_verification = null;
     /**
+     * Assessment returned when firewall policies belonging to the project are
+     * evaluated using the field firewall_policy_evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10;</code>
+     */
+    private $firewall_policy_assessment = null;
+    /**
      * Assessment returned by Fraud Prevention when TransactionData is provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
      */
     private $fraud_prevention_assessment = null;
+    /**
+     * Output only. Fraud Signals specific to the users involved in a payment
+     * transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals fraud_signals = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $fraud_signals = null;
 
     /**
      * Constructor.
@@ -76,7 +90,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name for the Assessment in the format
-     *           "projects/{project}/assessments/{assessment}".
+     *           `projects/{project}/assessments/{assessment}`.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\Event $event
      *           The event being assessed.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis $risk_analysis
@@ -92,8 +106,14 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $private_password_leak_verification
      *           The private password leak verification field contains the parameters that
      *           are used to to check for leaks privately without sharing user credentials.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicyAssessment $firewall_policy_assessment
+     *           Assessment returned when firewall policies belonging to the project are
+     *           evaluated using the field firewall_policy_evaluation.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment $fraud_prevention_assessment
      *           Assessment returned by Fraud Prevention when TransactionData is provided.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals $fraud_signals
+     *           Output only. Fraud Signals specific to the users involved in a payment
+     *           transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,7 +123,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name for the Assessment in the format
-     * "projects/{project}/assessments/{assessment}".
+     * `projects/{project}/assessments/{assessment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -115,7 +135,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name for the Assessment in the format
-     * "projects/{project}/assessments/{assessment}".
+     * `projects/{project}/assessments/{assessment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -352,6 +372,44 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Assessment returned when firewall policies belonging to the project are
+     * evaluated using the field firewall_policy_evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicyAssessment|null
+     */
+    public function getFirewallPolicyAssessment()
+    {
+        return $this->firewall_policy_assessment;
+    }
+
+    public function hasFirewallPolicyAssessment()
+    {
+        return isset($this->firewall_policy_assessment);
+    }
+
+    public function clearFirewallPolicyAssessment()
+    {
+        unset($this->firewall_policy_assessment);
+    }
+
+    /**
+     * Assessment returned when firewall policies belonging to the project are
+     * evaluated using the field firewall_policy_evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicyAssessment $var
+     * @return $this
+     */
+    public function setFirewallPolicyAssessment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicyAssessment::class);
+        $this->firewall_policy_assessment = $var;
+
+        return $this;
+    }
+
+    /**
      * Assessment returned by Fraud Prevention when TransactionData is provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11;</code>
@@ -383,6 +441,44 @@ class Assessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment::class);
         $this->fraud_prevention_assessment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Fraud Signals specific to the users involved in a payment
+     * transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals fraud_signals = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals|null
+     */
+    public function getFraudSignals()
+    {
+        return $this->fraud_signals;
+    }
+
+    public function hasFraudSignals()
+    {
+        return isset($this->fraud_signals);
+    }
+
+    public function clearFraudSignals()
+    {
+        unset($this->fraud_signals);
+    }
+
+    /**
+     * Output only. Fraud Signals specific to the users involved in a payment
+     * transaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals fraud_signals = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals $var
+     * @return $this
+     */
+    public function setFraudSignals($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals::class);
+        $this->fraud_signals = $var;
 
         return $this;
     }
