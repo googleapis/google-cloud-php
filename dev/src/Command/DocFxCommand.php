@@ -25,22 +25,21 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
-use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
-use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
+use Google\Cloud\Dev\Component;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
-use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\DocFx\XrefValidationTrait;
 
 /**
  * @internal
  */
 class DocFxCommand extends Command
 {
+    use XrefValidationTrait;
+
     private array $composerJson;
     private array $repoMetadataJson;
-
-    private const XREF_REGEX = '/<xref uid="([^ ]*)"/';
 
     protected function configure()
     {
@@ -226,7 +225,11 @@ class DocFxCommand extends Command
                 $hadWarning = true;
             }
             foreach ($this->getBrokenXrefs($node->getContent()) as $brokenRef) {
-                $output->write(sprintf("\n<comment>Broken xref in %s: %s</>", $node->getFullname(), $brokenRef));
+                $output->write(sprintf(
+                    "\n<comment>Broken xref in %s: %s</>",
+                    $node->getFullname(),
+                    $brokenRef ?: '<options=bold>empty</>')
+                );
                 $valid = $valid && (false || $isGenerated);
                 $hadWarning = true;
             }
@@ -235,76 +238,5 @@ class DocFxCommand extends Command
             $output->writeln('');
         }
         return $valid;
-    }
-
-    /**
-     * Verifies that protobuf references and @see tags are properly formatted.
-     */
-    private function getInvalidXrefs(string $description): array
-    {
-        $invalidRefs = [];
-        preg_replace_callback(
-            self::XREF_REGEX,
-            function ($matches) use (&$invalidRefs) {
-                // Valid external reference
-                if (0 === strpos($matches[1], 'http')) {
-                    return;
-                }
-                // Invalid reference format
-                if ('\\' !== $matches[1][0] || substr_count($matches[1], '\Google\\') > 1) {
-                    $invalidRefs[] = $matches[1];
-                }
-            },
-            $description
-        );
-
-        return $invalidRefs;
-    }
-
-    /**
-     * Verifies that protobuf references and @see tags reference classes that exist.
-     */
-    private function getBrokenXrefs(string $description): array
-    {
-        $brokenRefs = [];
-        preg_replace_callback(
-            self::XREF_REGEX,
-            function ($matches) use (&$brokenRefs) {
-                if (0 === strpos($matches[1], 'http')) {
-                    return; // Valid external reference
-                }
-                if (in_array(
-                    $matches[1],
-                    ['\\' . AppEngineFlexFormatter::class, '\\' . AppEngineFlexFormatterV2::class])
-                ) {
-                    return; // We cannot run "class_exists" on these because they will throw a fatal error.
-                }
-                if (class_exists($matches[1]) || interface_exists($matches[1] || trait_exists($matches[1]))) {
-                    return; // Valid class reference
-                }
-                if (false !== strpos($matches[1], '::')) {
-                    if (false !== strpos($matches[1], '()')) {
-                        list($class, $method) = explode('::', str_replace('()', '', $matches[1]));
-                        if (method_exists($class, $method)) {
-                            return; // Valid method reference
-                        }
-                        if ('Async' === substr($method, -5)) {
-                            return; // Skip magic Async methods
-                        }
-                    } elseif (defined($matches[1])) {
-                        return; // Valid constant reference
-                    }
-                }
-                // empty hrefs show up as "\\"
-                if ($matches[1] === '\\\\') {
-                    $brokenRefs[] = '<options=bold>empty</>';
-                } else {
-                    $brokenRefs[] = $matches[1];
-                }
-            },
-            $description
-        );
-
-        return $brokenRefs;
     }
 }

@@ -21,6 +21,7 @@ use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Node\MethodNode;
 use Google\Cloud\Dev\DocFx\Node\XrefTrait;
 use Google\Cloud\Dev\DocFx\Node\FencedCodeBlockTrait;
+use Google\Cloud\Dev\DocFx\XrefValidationTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -440,41 +441,66 @@ EOF;
     }
 
     /**
-     * @dataProvider provideValidateXrefs
+     * @dataProvider provideInvalidXrefs
      */
-    public function testValidateXrefs(string $description, string $errorMessage = null)
+    public function testInvalidXrefs(string $description, array $invalidXrefs = [])
     {
-        $output = $this->prophesize(OutputInterface::class);
-        if (is_null($errorMessage)) {
-            $output->writeln(Argument::any())->shouldNotBeCalled();
-            $shouldBeValid = true;
-        } else {
-            $output->writeln($errorMessage)->shouldBeCalledOnce();
-            $shouldBeValid = false;
-        }
-
         $classXml = '<class><full_name>TestClass</full_name><docblock><description>%s</description></docblock></class>';
-        $xref = new ClassNode(new SimpleXMLElement(sprintf($classXml, $description)));
+        $class = new ClassNode(new SimpleXMLElement(sprintf($classXml, $description)));
 
-        $this->assertEquals($shouldBeValid, $xref->validate($output->reveal()));
+        $validator = new class () {
+            use XrefValidationTrait {
+                getInvalidXrefs as public;
+            }
+        };
+
+        $this->assertEquals($invalidXrefs, $validator->getInvalidXrefs($class->getContent()));
     }
 
-    public function provideValidateXrefs()
+    public function provideInvalidXrefs()
     {
         return [
-            ['{@see \OutputInterface}', 'Invalid xref in TestClass: \OutputInterface'], // invalid class (doesn't exist)
-            ['{@see \SimpleXMLElement}.'], // valid class
-            ['{@see \SimpleXMLElement::method()}', 'Invalid xref in TestClass: \SimpleXMLElement::method()'], // invalid method (doesn't exist)
+            ['{@see \DoesntExist}'], // class doesn't exist, but is still a valid xref
+            ['{@see \SimpleXMLElement::method()}'], // method doesn't exist, but is still a valid xref
             ['{@see \SimpleXMLElement::addAttribute()}'], // valid method
-            ['{@see \SimpleXMLElement::OUTPUT_FOO}', 'Invalid xref in TestClass: \SimpleXMLElement::OUTPUT_FOO'],  // invalid constant (doesn't exist)
+            ['{@see \SimpleXMLElement::OUTPUT_FOO}'],  // constant doesn't exist, but is still a valid xref
             [sprintf('{@see \%s::OUTPUT_NORMAL}', OutputInterface::class)], // valid constant
             ['Take a look at {@see https://foo.bar} for more.'], // valid
-            ['{@see Foo\Bar}', 'Xref not rendered propery in TestClass: Foo\Bar'], // invalid
-            ['Take a look at {@see Foo\Bar} for more.', 'Xref not rendered propery in TestClass: Foo\Bar'], // invalid
+            ['{@see Foo\Bar}', ['Foo\Bar']], // invalid
+            ['Take a look at {@see Foo\Bar} for more.', ['Foo\Bar']], // invalid
             [
                 '{@see \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo}',
-                'Xref not rendered propery in TestClass: \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo'
+                ['\Google\Cloud\PubSub\Google\Cloud\PubSub\Foo']
             ], // invalid
+        ];
+    }
+
+    /**
+     * @dataProvider provideBrokenXrefs
+     */
+    public function testBrokenXrefs(string $description, array $brokenXrefs = [])
+    {
+        $classXml = '<class><full_name>TestClass</full_name><docblock><description>%s</description></docblock></class>';
+        $class = new ClassNode(new SimpleXMLElement(sprintf($classXml, $description)));
+
+        $validator = new class () {
+            use XrefValidationTrait {
+                getBrokenXrefs as public;
+            }
+        };
+
+        $this->assertEquals($brokenXrefs, $validator->getBrokenXrefs($class->getContent()));
+    }
+
+    public function provideBrokenXrefs()
+    {
+        return [
+            ['{@see \OutputInterface}', ['\OutputInterface']], // invalid class (doesn't exist)
+            ['{@see \SimpleXMLElement}.'], // valid class
+            ['{@see \SimpleXMLElement::method()}', ['\SimpleXMLElement::method()']], // invalid method (doesn't exist)
+            ['{@see \SimpleXMLElement::addAttribute()}'], // valid method
+            ['{@see \SimpleXMLElement::OUTPUT_FOO}', ['\SimpleXMLElement::OUTPUT_FOO']],  // invalid constant (doesn't exist)
+            [sprintf('{@see \%s::OUTPUT_NORMAL}', OutputInterface::class)], // valid constant
         ];
     }
 }
