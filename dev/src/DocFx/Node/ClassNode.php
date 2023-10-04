@@ -17,10 +17,7 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
-use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
-use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
 use SimpleXMLElement;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @internal
@@ -174,16 +171,16 @@ class ClassNode
         foreach ($this->xmlNode->method as $methodNode) {
             $method = new MethodNode($methodNode, $this->protoPackages);
             if ($method->isPublic() && !$method->isInherited() && !$method->isExcludedMethod()) {
-                // This is to fix an issue in phpdocumentor where magic methods do not have
-                // "inhereted_from" set as expected.
-                // TODO: Remove this once the above issue is fixed.
-                // @see https://github.com/phpDocumentor/phpDocumentor/pull/3520
-                if (false !== strpos($method->getFullname(), 'Async()')) {
-                    list($class, $_) = explode('::', $method->getFullname());
-                    if ($class !== $this->getFullName()) {
-                        continue;
-                    }
-                }
+                // // This is to fix an issue in phpdocumentor where magic methods do not have
+                // // "inhereted_from" set as expected.
+                // // TODO: Remove this once the above issue is fixed.
+                // // @see https://github.com/phpDocumentor/phpDocumentor/pull/3520
+                // if (false !== strpos($method->getFullname(), 'Async()')) {
+                //     list($class, $_) = explode('::', $method->getFullname());
+                //     if ($class !== $this->getFullName()) {
+                //         continue;
+                //     }
+                // }
                 $methods[] = $method;
             }
         }
@@ -262,75 +259,5 @@ class ClassNode
     public function setTocName(string $tocName)
     {
         $this->tocName = $tocName;
-    }
-
-    public function validate(OutputInterface $output): bool
-    {
-        $valid = $this->validateXrefs($this->getContent(), $this->getFullname(), $output);
-        foreach ($this->getMethods() as $method) {
-            $valid = $this->validateXrefs($method->getContent(), $method->getFullname(), $output) && $valid;
-        }
-        foreach ($this->getConstants() as $constant) {
-            $valid = $this->validateXrefs($constant->getContent(), $constant->getFullname(), $output) && $valid;
-        }
-        return $valid;
-    }
-
-    /**
-     * Verifies that all {@see} tags are valid.
-     */
-    private function validateXrefs(string $description, string $fullname, OutputInterface $output): bool
-    {
-        $valid = true;
-        preg_replace_callback(
-            '/<xref uid="([^ ]*)"/',
-            function ($matches) use ($output, &$valid, $fullname) {
-                if (0 === strpos($matches[1], 'http')) {
-                    return; // Valid external reference
-                }
-                if ('\\' !== $matches[1][0] || substr_count($matches[1], '\Google\\') > 1) {
-                    $output->writeln(sprintf(
-                        'Xref not rendered propery in %s: %s',
-                        $fullname,
-                        $matches[1])
-                    );
-                    $valid = false;
-                    return; // Invalid reference format
-                }
-                if (in_array(
-                    $matches[1],
-                    ['\\' . AppEngineFlexFormatter::class, '\\' .AppEngineFlexFormatterV2::class])
-                ) {
-                    return; // We cannot run "class_exists" on these because they will throw a fatal error.
-                }
-                if (class_exists($matches[1]) || interface_exists($matches[1] || trait_exists($matches[1]))) {
-                    return; // Valid class reference
-                }
-                if (false !== strpos($matches[1], '::')) {
-                    if (false !== strpos($matches[1], '()')) {
-                        list($class, $method) = explode('::', str_replace('()', '', $matches[1]));
-                        if (method_exists($class, $method)) {
-                            return; // Valid method reference
-                        }
-                        if ('Async' === substr($method, -5)) {
-                            return; // Skip magic Async methods
-                        }
-                    } elseif (defined($matches[1])) {
-                        return; // Valid constant reference
-                    }
-                }
-
-                $output->writeln(sprintf('Invalid xref in %s: %s', $fullname, $matches[1]));
-
-                if ($this->isProtobufMessageClass() || $this->isProtobufEnumClass()) {
-                    // Don't report missing references for protobuf messages (we cant control these)
-                    return;
-                }
-                $valid = false;
-            },
-            $description
-        );
-
-        return $valid;
     }
 }

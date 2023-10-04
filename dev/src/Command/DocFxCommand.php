@@ -25,6 +25,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
+use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
+use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
+use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use Google\Cloud\Dev\Component;
@@ -36,6 +39,8 @@ class DocFxCommand extends Command
 {
     private array $composerJson;
     private array $repoMetadataJson;
+
+    private const XREF_REGEX = '/<xref uid="([^ ]*)"/';
 
     protected function configure()
     {
@@ -95,6 +100,7 @@ class DocFxCommand extends Command
         $valid = true;
         $tocItems = [];
         $packageDescription = $component->getDescription();
+        $isBeta = 'stable' !== $component->getReleaseLevel();
         foreach ($component->getNamespaces() as $namespace => $dir) {
             $pageTree = new PageTree(
                 $xml,
@@ -105,7 +111,7 @@ class DocFxCommand extends Command
 
             foreach ($pageTree->getPages() as $page) {
                 // validate the docs page. this will fail the job if it's false
-                $page->getClassNode()->validate($output) && $valid;
+                $valid = $this->validate($page->getClassNode(), $output) && $valid;
                 $docFxArray = ['items' => $page->getItems()];
 
                 // Dump the YAML for the class node
@@ -125,11 +131,10 @@ class DocFxCommand extends Command
             return 1;
         }
 
-        $releaseLevel = $component->getReleaseLevel();
         if (file_exists($overviewFile = sprintf('%s/README.md', $component->getPath()))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
-                $releaseLevel !== 'stable'
+                $isBeta
             );
             $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
             file_put_contents($outFile, $overview->getContents());
@@ -141,7 +146,7 @@ class DocFxCommand extends Command
         $componentToc = array_filter([
             'uid' => $component->getReferenceDocumentationUid(),
             'name' => $component->getPackageName(),
-            'status' => $releaseLevel !== 'stable' ? 'beta' : '',
+            'status' => $isBeta ? 'beta' : '',
             'items' => $tocItems,
         ]);
         $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
@@ -206,5 +211,100 @@ class DocFxCommand extends Command
         $process->setTimeout(120);
 
         return $process;
+    }
+
+    private function validate(ClassNode $class, OutputInterface $output): bool
+    {
+        $valid = true;
+        $hadWarning = false;
+        $isGenerated = $class->isProtobufMessageClass() || $class->isProtobufEnumClass() || $class->isServiceClass();
+        $nodes = array_merge([$class], $class->getMethods(), $class->getConstants());
+        foreach ($nodes as $node) {
+            foreach ($this->getInvalidXrefs($node->getContent()) as $invalidRef) {
+                $output->write(sprintf("\n<error>Invalid xref in %s: %s</>", $node->getFullname(), $invalidRef));
+                $valid = false;
+                $hadWarning = true;
+            }
+            foreach ($this->getBrokenXrefs($node->getContent()) as $brokenRef) {
+                $output->write(sprintf("\n<comment>Broken xref in %s: %s</>", $node->getFullname(), $brokenRef));
+                $valid = $valid && (false || $isGenerated);
+                $hadWarning = true;
+            }
+        }
+        if ($hadWarning) {
+            $output->writeln('');
+        }
+        return $valid;
+    }
+
+    /**
+     * Verifies that protobuf references and @see tags are properly formatted.
+     */
+    private function getInvalidXrefs(string $description): array
+    {
+        $invalidRefs = [];
+        preg_replace_callback(
+            self::XREF_REGEX,
+            function ($matches) use (&$invalidRefs) {
+                // Valid external reference
+                if (0 === strpos($matches[1], 'http')) {
+                    return;
+                }
+                // Invalid reference format
+                if ('\\' !== $matches[1][0] || substr_count($matches[1], '\Google\\') > 1) {
+                    $invalidRefs[] = $matches[1];
+                }
+            },
+            $description
+        );
+
+        return $invalidRefs;
+    }
+
+    /**
+     * Verifies that protobuf references and @see tags reference classes that exist.
+     */
+    private function getBrokenXrefs(string $description): array
+    {
+        $brokenRefs = [];
+        preg_replace_callback(
+            self::XREF_REGEX,
+            function ($matches) use (&$brokenRefs) {
+                if (0 === strpos($matches[1], 'http')) {
+                    return; // Valid external reference
+                }
+                if (in_array(
+                    $matches[1],
+                    ['\\' . AppEngineFlexFormatter::class, '\\' . AppEngineFlexFormatterV2::class])
+                ) {
+                    return; // We cannot run "class_exists" on these because they will throw a fatal error.
+                }
+                if (class_exists($matches[1]) || interface_exists($matches[1] || trait_exists($matches[1]))) {
+                    return; // Valid class reference
+                }
+                if (false !== strpos($matches[1], '::')) {
+                    if (false !== strpos($matches[1], '()')) {
+                        list($class, $method) = explode('::', str_replace('()', '', $matches[1]));
+                        if (method_exists($class, $method)) {
+                            return; // Valid method reference
+                        }
+                        if ('Async' === substr($method, -5)) {
+                            return; // Skip magic Async methods
+                        }
+                    } elseif (defined($matches[1])) {
+                        return; // Valid constant reference
+                    }
+                }
+                // empty hrefs show up as "\\"
+                if ($matches[1] === '\\\\') {
+                    $brokenRefs[] = '<options=bold>empty</>';
+                } else {
+                    $brokenRefs[] = $matches[1];
+                }
+            },
+            $description
+        );
+
+        return $brokenRefs;
     }
 }
