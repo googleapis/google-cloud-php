@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the instance for which a list of app profiles is
-     * requested. Values are of the form
+     * Required. The unique name of the instance for which a list of app profiles
+     * is requested. Values are of the form
      * `projects/{project}/instances/{instance}`.
      * Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      * e.g., `projects/myproject/instances/-`.
@@ -45,8 +45,8 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The unique name of the instance for which a list of app profiles is
-     *                       requested. Values are of the form
+     * @param string $parent Required. The unique name of the instance for which a list of app profiles
+     *                       is requested. Values are of the form
      *                       `projects/{project}/instances/{instance}`.
      *                       Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      *                       e.g., `projects/myproject/instances/-`. Please see
@@ -69,8 +69,8 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The unique name of the instance for which a list of app profiles is
-     *           requested. Values are of the form
+     *           Required. The unique name of the instance for which a list of app profiles
+     *           is requested. Values are of the form
      *           `projects/{project}/instances/{instance}`.
      *           Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      *           e.g., `projects/myproject/instances/-`.
@@ -92,8 +92,8 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance for which a list of app profiles is
-     * requested. Values are of the form
+     * Required. The unique name of the instance for which a list of app profiles
+     * is requested. Values are of the form
      * `projects/{project}/instances/{instance}`.
      * Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      * e.g., `projects/myproject/instances/-`.
@@ -107,8 +107,8 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the instance for which a list of app profiles is
-     * requested. Values are of the form
+     * Required. The unique name of the instance for which a list of app profiles
+     * is requested. Values are of the form
      * `projects/{project}/instances/{instance}`.
      * Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
      * e.g., `projects/myproject/instances/-`.
