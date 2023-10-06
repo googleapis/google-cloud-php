@@ -28,6 +28,13 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string allowed_package_names = 1;</code>
      */
     private $allowed_package_names;
+    /**
+     * Set to true for keys that are used in an Android application that is
+     * available for download in app stores in addition to the Google Play Store.
+     *
+     * Generated from protobuf field <code>bool support_non_google_app_store_distribution = 3;</code>
+     */
+    private $support_non_google_app_store_distribution = false;
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
      *           Android package names of apps allowed to use the key.
      *           Example: 'com.companyname.appname'
+     *     @type bool $support_non_google_app_store_distribution
+     *           Set to true for keys that are used in an Android application that is
+     *           available for download in app stores in addition to the Google Play Store.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,34 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->allowed_package_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Set to true for keys that are used in an Android application that is
+     * available for download in app stores in addition to the Google Play Store.
+     *
+     * Generated from protobuf field <code>bool support_non_google_app_store_distribution = 3;</code>
+     * @return bool
+     */
+    public function getSupportNonGoogleAppStoreDistribution()
+    {
+        return $this->support_non_google_app_store_distribution;
+    }
+
+    /**
+     * Set to true for keys that are used in an Android application that is
+     * available for download in app stores in addition to the Google Play Store.
+     *
+     * Generated from protobuf field <code>bool support_non_google_app_store_distribution = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportNonGoogleAppStoreDistribution($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->support_non_google_app_store_distribution = $var;
 
         return $this;
     }

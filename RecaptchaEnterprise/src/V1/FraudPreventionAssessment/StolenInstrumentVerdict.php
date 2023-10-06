@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Probability (0-1) of this transaction being executed with a stolen
-     * instrument.
+     * Probability of this transaction being executed with a stolen instrument.
+     * Values are from 0.0 (lowest) to 1.0 (highest).
      *
      * Generated from protobuf field <code>float risk = 1;</code>
      */
@@ -31,8 +31,8 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $risk
-     *           Probability (0-1) of this transaction being executed with a stolen
-     *           instrument.
+     *           Probability of this transaction being executed with a stolen instrument.
+     *           Values are from 0.0 (lowest) to 1.0 (highest).
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +41,8 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability (0-1) of this transaction being executed with a stolen
-     * instrument.
+     * Probability of this transaction being executed with a stolen instrument.
+     * Values are from 0.0 (lowest) to 1.0 (highest).
      *
      * Generated from protobuf field <code>float risk = 1;</code>
      * @return float
@@ -53,8 +53,8 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Probability (0-1) of this transaction being executed with a stolen
-     * instrument.
+     * Probability of this transaction being executed with a stolen instrument.
+     * Values are from 0.0 (lowest) to 1.0 (highest).
      *
      * Generated from protobuf field <code>float risk = 1;</code>
      * @param float $var

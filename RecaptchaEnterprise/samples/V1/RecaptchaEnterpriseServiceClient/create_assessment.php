@@ -31,7 +31,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  * Creates an Assessment of the likelihood an event is legitimate.
  *
  * @param string $formattedParent The name of the project in which the assessment will be created,
- *                                in the format "projects/{project}". Please see
+ *                                in the format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */
 function create_assessment_sample(string $formattedParent): void

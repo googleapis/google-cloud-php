@@ -38,11 +38,17 @@ use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
 use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\CreateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\DeleteFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
+use Google\Cloud\RecaptchaEnterprise\V1\GetFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
+use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest;
@@ -56,6 +62,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent;
+use Google\Cloud\RecaptchaEnterprise\V1\UpdateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -109,6 +116,8 @@ class RecaptchaEnterpriseServiceGapicClient
 
     private static $assessmentNameTemplate;
 
+    private static $firewallPolicyNameTemplate;
+
     private static $keyNameTemplate;
 
     private static $metricsNameTemplate;
@@ -158,6 +167,17 @@ class RecaptchaEnterpriseServiceGapicClient
         return self::$assessmentNameTemplate;
     }
 
+    private static function getFirewallPolicyNameTemplate()
+    {
+        if (self::$firewallPolicyNameTemplate == null) {
+            self::$firewallPolicyNameTemplate = new PathTemplate(
+                'projects/{project}/firewallpolicies/{firewallpolicy}'
+            );
+        }
+
+        return self::$firewallPolicyNameTemplate;
+    }
+
     private static function getKeyNameTemplate()
     {
         if (self::$keyNameTemplate == null) {
@@ -205,6 +225,7 @@ class RecaptchaEnterpriseServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'assessment' => self::getAssessmentNameTemplate(),
+                'firewallPolicy' => self::getFirewallPolicyNameTemplate(),
                 'key' => self::getKeyNameTemplate(),
                 'metrics' => self::getMetricsNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
@@ -229,6 +250,23 @@ class RecaptchaEnterpriseServiceGapicClient
         return self::getAssessmentNameTemplate()->render([
             'project' => $project,
             'assessment' => $assessment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * firewall_policy resource.
+     *
+     * @param string $project
+     * @param string $firewallpolicy
+     *
+     * @return string The formatted firewall_policy resource.
+     */
+    public static function firewallPolicyName($project, $firewallpolicy)
+    {
+        return self::getFirewallPolicyNameTemplate()->render([
+            'project' => $project,
+            'firewallpolicy' => $firewallpolicy,
         ]);
     }
 
@@ -305,6 +343,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - assessment: projects/{project}/assessments/{assessment}
+     * - firewallPolicy: projects/{project}/firewallpolicies/{firewallpolicy}
      * - key: projects/{project}/keys/{key}
      * - metrics: projects/{project}/keys/{key}/metrics
      * - project: projects/{project}
@@ -426,7 +465,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the Assessment, in the format
-     *                             "projects/{project}/assessments/{assessment}".
+     *                             `projects/{project}/assessments/{assessment}`.
      * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can
      *                             be left empty to provide reasons that apply to an event without concluding
      *                             whether the event is legitimate or fraudulent.
@@ -509,7 +548,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string     $parent       Required. The name of the project in which the assessment will be created,
-     *                                 in the format "projects/{project}".
+     *                                 in the format `projects/{project}`.
      * @param Assessment $assessment   Required. The assessment details.
      * @param array      $optionalArgs {
      *     Optional.
@@ -549,6 +588,63 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA
+     * Enterprise actions can be executed.
+     * A project may have a maximum of 1000 policies.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
+     *     $firewallPolicy = new FirewallPolicy();
+     *     $response = $recaptchaEnterpriseServiceClient->createFirewallPolicy($formattedParent, $firewallPolicy);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent         Required. The name of the project this policy will apply to, in the format
+     *                                       `projects/{project}`.
+     * @param FirewallPolicy $firewallPolicy Required. Information to create the policy.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createFirewallPolicy(
+        $parent,
+        $firewallPolicy,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setFirewallPolicy($firewallPolicy);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateFirewallPolicy',
+            FirewallPolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a new reCAPTCHA Enterprise key.
      *
      * Sample code:
@@ -564,7 +660,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The name of the project in which the key will be created, in the
-     *                             format "projects/{project}".
+     *                             format `projects/{project}`.
      * @param Key    $key          Required. Information to create a reCAPTCHA Enterprise key.
      * @param array  $optionalArgs {
      *     Optional.
@@ -601,6 +697,53 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Deletes the specified firewall policy.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedName = $recaptchaEnterpriseServiceClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
+     *     $recaptchaEnterpriseServiceClient->deleteFirewallPolicy($formattedName);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the policy to be deleted, in the format
+     *                             `projects/{project}/firewallpolicies/{firewallpolicy}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteFirewallPolicy($name, array $optionalArgs = [])
+    {
+        $request = new DeleteFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteFirewallPolicy',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Deletes the specified key.
      *
      * Sample code:
@@ -615,7 +758,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $name         Required. The name of the key to be deleted, in the format
-     *                             "projects/{project}/keys/{key}".
+     *                             `projects/{project}/keys/{key}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -648,6 +791,55 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Returns the specified firewall policy.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedName = $recaptchaEnterpriseServiceClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
+     *     $response = $recaptchaEnterpriseServiceClient->getFirewallPolicy($formattedName);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the requested policy, in the format
+     *                             `projects/{project}/firewallpolicies/{firewallpolicy}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getFirewallPolicy($name, array $optionalArgs = [])
+    {
+        $request = new GetFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetFirewallPolicy',
+            FirewallPolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the specified key.
      *
      * Sample code:
@@ -662,7 +854,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $name         Required. The name of the requested key, in the format
-     *                             "projects/{project}/keys/{key}".
+     *                             `projects/{project}/keys/{key}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -712,7 +904,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $name         Required. The name of the requested metrics, in the format
-     *                             "projects/{project}/keys/{key}/metrics".
+     *                             `projects/{project}/keys/{key}/metrics`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -747,6 +939,84 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Returns the list of all firewall policies that belong to a project.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listFirewallPolicies($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listFirewallPolicies($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the project to list the policies for, in the format
+     *                             `projects/{project}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listFirewallPolicies($parent, array $optionalArgs = [])
+    {
+        $request = new ListFirewallPoliciesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListFirewallPolicies',
+            $optionalArgs,
+            ListFirewallPoliciesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Returns the list of all keys that belong to a project.
      *
      * Sample code:
@@ -773,7 +1043,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The name of the project that contains the keys that will be
-     *                             listed, in the format "projects/{project}".
+     *                             listed, in the format `projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -931,7 +1201,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The name of the project to list related account groups from, in
-     *                             the format "projects/{project}".
+     *                             the format `projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -986,7 +1256,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise.
      * Once a key is migrated, it can be used from either product. SiteVerify
      * requests are billed as CreateAssessment calls. You must be
-     * authenticated as one of the current owners of the reCAPTCHA Site Key, and
+     * authenticated as one of the current owners of the reCAPTCHA Key, and
      * your user must have the reCAPTCHA Enterprise Admin IAM role in the
      * destination project.
      *
@@ -1002,7 +1272,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $name         Required. The name of the key to be migrated, in the format
-     *                             "projects/{project}/keys/{key}".
+     *                             `projects/{project}/keys/{key}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1066,7 +1336,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      *
      * @param string $key          Required. The public key name linked to the requested secret key in the
-     *                             format "projects/{project}/keys/{key}".
+     *                             format `projects/{project}/keys/{key}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1128,13 +1398,13 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @param string $project      Required. The name of the project to search related account group
      *                             memberships from. Specify the project name in the following format:
-     *                             "projects/{project}".
+     *                             `projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $hashedAccountId
-     *           Optional. The unique stable hashed user identifier we should search
-     *           connections to. The identifier should correspond to a `hashed_account_id`
+     *           Optional. The unique stable hashed user identifier used to search
+     *           connections. The identifier should correspond to a `hashed_account_id`
      *           provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
@@ -1187,6 +1457,65 @@ class RecaptchaEnterpriseServiceGapicClient
             SearchRelatedAccountGroupMembershipsResponse::class,
             $request
         );
+    }
+
+    /**
+     * Updates the specified firewall policy.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $firewallPolicy = new FirewallPolicy();
+     *     $response = $recaptchaEnterpriseServiceClient->updateFirewallPolicy($firewallPolicy);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param FirewallPolicy $firewallPolicy Required. The policy to update.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. The mask to control which fields of the policy get updated. If
+     *           the mask is not present, all fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateFirewallPolicy(
+        $firewallPolicy,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setFirewallPolicy($firewallPolicy);
+        $requestParamHeaders[
+            'firewall_policy.name'
+        ] = $firewallPolicy->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateFirewallPolicy',
+            FirewallPolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

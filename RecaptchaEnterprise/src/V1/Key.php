@@ -18,7 +18,7 @@ class Key extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name for the Key in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -30,14 +30,14 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
-     * Creating and managing labels</a>.
+     * See [Creating and managing labels]
+     * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      */
     private $labels;
     /**
-     * Output only. The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this key.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -64,7 +64,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name for the Key in the format
-     *           "projects/{project}/keys/{key}".
+     *           `projects/{project}/keys/{key}`.
      *     @type string $display_name
      *           Human-readable display name of this key. Modifiable by user.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings $web_settings
@@ -74,10 +74,10 @@ class Key extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\IOSKeySettings $ios_settings
      *           Settings for keys that can be used by iOS apps.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
-     *           Creating and managing labels</a>.
+     *           See [Creating and managing labels]
+     *           (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The timestamp corresponding to the creation of this Key.
+     *           Output only. The timestamp corresponding to the creation of this key.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
      *           Options for user acceptance testing.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $waf_settings
@@ -91,7 +91,7 @@ class Key extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the Key in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -103,7 +103,7 @@ class Key extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the Key in the format
-     * "projects/{project}/keys/{key}".
+     * `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -237,8 +237,8 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
-     * Creating and managing labels</a>.
+     * See [Creating and managing labels]
+     * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -249,8 +249,8 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
-     * Creating and managing labels</a>.
+     * See [Creating and managing labels]
+     * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -265,7 +265,7 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this key.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -286,7 +286,7 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this key.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
