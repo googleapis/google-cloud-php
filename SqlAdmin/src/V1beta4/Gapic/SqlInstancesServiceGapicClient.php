@@ -1797,7 +1797,7 @@ class SqlInstancesServiceGapicClient
      *     @type int $syncParallelLevel
      *           Optional. Parallel level for initial data sync. Currently only applicable
      *           for MySQL.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesStartExternalSyncRequest\ExternalSyncParallelLevel}
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
