@@ -21,7 +21,7 @@ class StandardIsolation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.Priority priority = 1;</code>
      */
-    protected $priority = 0;
+    private $priority = 0;
 
     /**
      * Constructor.
