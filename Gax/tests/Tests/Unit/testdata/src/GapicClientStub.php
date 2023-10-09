@@ -41,10 +41,7 @@ use Google\ApiCore\GapicClientTrait;
  */
 class GapicClientStub
 {
-    use GapicClientTrait;
-
-    public function call($fn, array $args = [])
-    {
-        return call_user_func_array([$this, $fn], $args);
+    use GapicClientTrait {
+        getGapicVersion as public;
     }
 }

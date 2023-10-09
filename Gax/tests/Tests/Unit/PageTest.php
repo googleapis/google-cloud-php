@@ -55,10 +55,7 @@ class PageTest extends TestCase
 
         $internalCall = $this->createCallWithResponseSequence($responseSequence);
         $callable = function () use ($internalCall) {
-            list($response, $status) = call_user_func_array(
-                array($internalCall, 'takeAction'),
-                func_get_args()
-            );
+            list($response, $status) = $internalCall->takeAction(...func_get_args());
             return $promise = new \GuzzleHttp\Promise\Promise(function () use (&$promise, $response) {
                 $promise->resolve($response);
             });
