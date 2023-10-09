@@ -50,7 +50,7 @@ class ArrayTraitTest extends TestCase
         $value = '123';
         $key = 'key';
         $array = [$key => $value];
-        $actualValue = $this->implementation->call('pluck', [$key, &$array]);
+        $actualValue = $this->implementation->pluck($key, $array);
 
         $this->assertEquals($value, $actualValue);
         $this->assertEquals([], $array);
@@ -60,7 +60,7 @@ class ArrayTraitTest extends TestCase
     {
         $array = [];
         $this->expectException(InvalidArgumentException::class);
-        $this->implementation->call('pluck', ['not_here', &$array]);
+        $this->implementation->pluck('not_here', $array);
     }
 
     public function testPluckArray()
@@ -72,7 +72,7 @@ class ArrayTraitTest extends TestCase
         ];
         $expectedArray = $array;
 
-       $actualValues = $this->implementation->call('pluckArray', [$keys, &$array]);
+       $actualValues = $this->implementation->pluckArray($keys, $array);
 
        $this->assertEquals($expectedArray, $actualValues);
        $this->assertEquals([], $array);
@@ -80,17 +80,17 @@ class ArrayTraitTest extends TestCase
 
     public function testIsAssocTrue()
     {
-        $actual = $this->implementation->call('isAssoc', [[
+        $actual = $this->implementation->isAssoc([
             'test' => 1,
             'test' => 2
-        ]]);
+        ]);
 
         $this->assertTrue($actual);
     }
 
     public function testIsAssocFalse()
     {
-        $actual = $this->implementation->call('isAssoc', [[1, 2, 3]]);
+        $actual = $this->implementation->isAssoc([1, 2, 3]);
 
         $this->assertFalse($actual);
     }
@@ -106,7 +106,7 @@ class ArrayTraitTest extends TestCase
             'array' => [],
         ];
 
-        $res = $this->implementation->call('arrayFilterRemoveNull', [$input]);
+        $res = $this->implementation->arrayFilterRemoveNull($input);
         $this->assertFalse(array_key_exists('null', $res));
         $this->assertTrue(array_key_exists('false', $res));
         $this->assertTrue(array_key_exists('zero', $res));
@@ -120,7 +120,7 @@ class ArrayTraitTest extends TestCase
      */
     public function testSubsetArray($keys, $array, $expectedSubset)
     {
-        $actualSubset = $this->implementation->call('subsetArray', [$keys, $array]);
+        $actualSubset = $this->implementation->subsetArray($keys, $array);
         $this->assertSame($expectedSubset, $actualSubset);
     }
 
@@ -157,10 +157,11 @@ class ArrayTraitTest extends TestCase
 
 class ArrayTraitStub
 {
-    use ArrayTrait;
-
-    public function call($fn, array $args)
-    {
-        return call_user_func_array([$this, $fn], $args);
+    use ArrayTrait {
+        arrayFilterRemoveNull as public;
+        isAssoc as public;
+        pluck as public;
+        pluckArray as public;
+        subsetArray as public;
     }
 }

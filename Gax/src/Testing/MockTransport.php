@@ -75,21 +75,21 @@ class MockTransport implements TransportInterface
     public function startBidiStreamingCall(Call $call, array $options)
     {
         $newArgs = ['/' . $call->getMethod(), $this->deserialize, $options, $options];
-        $response = call_user_func_array(array($this, '_bidiRequest'), $newArgs);
+        $response = $this->_bidiRequest(...$newArgs);
         return new BidiStream($response, $call->getDescriptor());
     }
 
     public function startClientStreamingCall(Call $call, array $options)
     {
         $newArgs = ['/' . $call->getMethod(), $this->deserialize, $options, $options];
-        $response = call_user_func_array(array($this, '_clientStreamRequest'), $newArgs);
+        $response = $this->_clientStreamRequest(...$newArgs);
         return new ClientStream($response, $call->getDescriptor());
     }
 
     public function startServerStreamingCall(Call $call, array $options)
     {
         $newArgs = ['/' . $call->getMethod(), $call->getMessage(), $this->deserialize, $options, $options];
-        $response = call_user_func_array(array($this, '_serverStreamRequest'), $newArgs);
+        $response = $this->_serverStreamRequest(...$newArgs);
         return new ServerStream($response, $call->getDescriptor());
     }
 
