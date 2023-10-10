@@ -26,17 +26,1449 @@
 
 namespace Google\Cloud\Dataform\V1beta1\Client;
 
-use Google\Cloud\Dataform\V1beta1\Client\BaseClient\DataformBaseClient;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ResourceHelperTrait;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CompilationResult;
+use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\FetchFileDiffRequest;
+use Google\Cloud\Dataform\V1beta1\FetchFileDiffResponse;
+use Google\Cloud\Dataform\V1beta1\FetchFileGitStatusesRequest;
+use Google\Cloud\Dataform\V1beta1\FetchFileGitStatusesResponse;
+use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindRequest;
+use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindResponse;
+use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
+use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
+use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\GetWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\GetWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesRequest;
+use Google\Cloud\Dataform\V1beta1\InstallNpmPackagesResponse;
+use Google\Cloud\Dataform\V1beta1\ListCompilationResultsRequest;
+use Google\Cloud\Dataform\V1beta1\ListRepositoriesRequest;
+use Google\Cloud\Dataform\V1beta1\ListWorkflowInvocationsRequest;
+use Google\Cloud\Dataform\V1beta1\ListWorkspacesRequest;
+use Google\Cloud\Dataform\V1beta1\MakeDirectoryRequest;
+use Google\Cloud\Dataform\V1beta1\MakeDirectoryResponse;
+use Google\Cloud\Dataform\V1beta1\MoveDirectoryRequest;
+use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
+use Google\Cloud\Dataform\V1beta1\MoveFileRequest;
+use Google\Cloud\Dataform\V1beta1\MoveFileResponse;
+use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsRequest;
+use Google\Cloud\Dataform\V1beta1\ReadFileRequest;
+use Google\Cloud\Dataform\V1beta1\ReadFileResponse;
+use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
+use Google\Cloud\Dataform\V1beta1\Repository;
+use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
+use Google\Cloud\Dataform\V1beta1\Workspace;
+use Google\Cloud\Dataform\V1beta1\WriteFileRequest;
+use Google\Cloud\Dataform\V1beta1\WriteFileResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\Location;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * {@inheritdoc}
+ * Service Description: Dataform is a service to develop, create, document, test, and update curated
+ * tables in BigQuery.
+ *
+ * This class provides the ability to make remote calls to the backing service through method
+ * calls that map to API methods.
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  *
  * This class is currently experimental and may be subject to changes.
  *
  * @experimental
+ *
+ * @method PromiseInterface cancelWorkflowInvocationAsync(CancelWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createWorkflowInvocationAsync(CreateWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createWorkspaceAsync(CreateWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteWorkflowInvocationAsync(DeleteWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteWorkspaceAsync(DeleteWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchFileDiffAsync(FetchFileDiffRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchFileGitStatusesAsync(FetchFileGitStatusesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchGitAheadBehindAsync(FetchGitAheadBehindRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface fetchRemoteBranchesAsync(FetchRemoteBranchesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getWorkflowInvocationAsync(GetWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getWorkspaceAsync(GetWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface installNpmPackagesAsync(InstallNpmPackagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listCompilationResultsAsync(ListCompilationResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listWorkflowInvocationsAsync(ListWorkflowInvocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listWorkspacesAsync(ListWorkspacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface makeDirectoryAsync(MakeDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moveDirectoryAsync(MoveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moveFileAsync(MoveFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface pullGitCommitsAsync(PullGitCommitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface pushGitCommitsAsync(PushGitCommitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryCompilationResultActionsAsync(QueryCompilationResultActionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryDirectoryContentsAsync(QueryDirectoryContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryWorkflowInvocationActionsAsync(QueryWorkflowInvocationActionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface readFileAsync(ReadFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface removeDirectoryAsync(RemoveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface removeFileAsync(RemoveFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface resetWorkspaceChangesAsync(ResetWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface writeFileAsync(WriteFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
-final class DataformClient extends DataformBaseClient
+final class DataformClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to
-    // the generated {@see DataformBaseClient} class.
+    use GapicClientTrait;
+    use ResourceHelperTrait;
+
+    /** The name of the service. */
+    private const SERVICE_NAME = 'google.cloud.dataform.v1beta1.Dataform';
+
+    /** The default address of the service. */
+    private const SERVICE_ADDRESS = 'dataform.googleapis.com';
+
+    /** The default port of the service. */
+    private const DEFAULT_SERVICE_PORT = 443;
+
+    /** The name of the code generator, to be included in the agent header. */
+    private const CODEGEN_NAME = 'gapic';
+
+    /** The default scopes required by the service. */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
+
+    private static function getClientDefaults()
+    {
+        return [
+            'serviceName' => self::SERVICE_NAME,
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/dataform_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/dataform_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/dataform_grpc_config.json',
+            'credentialsConfig' => [
+                'defaultScopes' => self::$serviceScopes,
+            ],
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__ . '/../resources/dataform_rest_client_config.php',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * compilation_result resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $compilationResult
+     *
+     * @return string The formatted compilation_result resource.
+     *
+     * @experimental
+     */
+    public static function compilationResultName(string $project, string $location, string $repository, string $compilationResult): string
+    {
+        return self::getPathTemplate('compilationResult')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'compilation_result' => $compilationResult,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     *
+     * @experimental
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a repository
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     *
+     * @return string The formatted repository resource.
+     *
+     * @experimental
+     */
+    public static function repositoryName(string $project, string $location, string $repository): string
+    {
+        return self::getPathTemplate('repository')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     *
+     * @experimental
+     */
+    public static function secretVersionName(string $project, string $secret, string $version): string
+    {
+        return self::getPathTemplate('secretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * workflow_invocation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $workflowInvocation
+     *
+     * @return string The formatted workflow_invocation resource.
+     *
+     * @experimental
+     */
+    public static function workflowInvocationName(string $project, string $location, string $repository, string $workflowInvocation): string
+    {
+        return self::getPathTemplate('workflowInvocation')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'workflow_invocation' => $workflowInvocation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a workspace
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $workspace
+     *
+     * @return string The formatted workspace resource.
+     *
+     * @experimental
+     */
+    public static function workspaceName(string $project, string $location, string $repository, string $workspace): string
+    {
+        return self::getPathTemplate('workspace')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'workspace' => $workspace,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - compilationResult: projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}
+     * - location: projects/{project}/locations/{location}
+     * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
+     * - workflowInvocation: projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}
+     * - workspace: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     *
+     * @experimental
+     */
+    public static function parseName(string $formattedName, string $template = null): array
+    {
+        return self::parseFormattedName($formattedName, $template);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param array $options {
+     *     Optional. Options for configuring the service API wrapper.
+     *
+     *     @type string $apiEndpoint
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'dataform.googleapis.com:443'.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the
+     *           client. For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either
+     *           a path to a JSON file, or a PHP array containing the decoded JSON data. By
+     *           default this settings points to the default client config file, which is
+     *           provided in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
+     * }
+     *
+     * @throws ValidationException
+     *
+     * @experimental
+     */
+    public function __construct(array $options = [])
+    {
+        $clientOptions = $this->buildClientOptions($options);
+        $this->setClientOptions($clientOptions);
+    }
+
+    /** Handles execution of the async variants for each documented method. */
+    public function __call($method, $args)
+    {
+        if (substr($method, -5) !== 'Async') {
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
+        }
+
+        array_unshift($args, substr($method, 0, -5));
+        return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Requests cancellation of a running WorkflowInvocation.
+     *
+     * The async variant is {@see DataformGapicClient::cancelWorkflowInvocationAsync()}
+     * .
+     *
+     * @example samples/V1beta1/DataformClient/cancel_workflow_invocation.php
+     *
+     * @param CancelWorkflowInvocationRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function cancelWorkflowInvocation(CancelWorkflowInvocationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('CancelWorkflowInvocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Applies a Git commit for uncommitted files in a Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::commitWorkspaceChangesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/commit_workspace_changes.php
+     *
+     * @param CommitWorkspaceChangesRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function commitWorkspaceChanges(CommitWorkspaceChangesRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('CommitWorkspaceChanges', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new CompilationResult in a given project and location.
+     *
+     * The async variant is {@see DataformGapicClient::createCompilationResultAsync()}
+     * .
+     *
+     * @example samples/V1beta1/DataformClient/create_compilation_result.php
+     *
+     * @param CreateCompilationResultRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CompilationResult
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createCompilationResult(CreateCompilationResultRequest $request, array $callOptions = []): CompilationResult
+    {
+        return $this->startApiCall('CreateCompilationResult', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new Repository in a given project and location.
+     *
+     * The async variant is {@see DataformGapicClient::createRepositoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_repository.php
+     *
+     * @param CreateRepositoryRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Repository
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createRepository(CreateRepositoryRequest $request, array $callOptions = []): Repository
+    {
+        return $this->startApiCall('CreateRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new WorkflowInvocation in a given Repository.
+     *
+     * The async variant is {@see DataformGapicClient::createWorkflowInvocationAsync()}
+     * .
+     *
+     * @example samples/V1beta1/DataformClient/create_workflow_invocation.php
+     *
+     * @param CreateWorkflowInvocationRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WorkflowInvocation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createWorkflowInvocation(CreateWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
+    {
+        return $this->startApiCall('CreateWorkflowInvocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new Workspace in a given Repository.
+     *
+     * The async variant is {@see DataformGapicClient::createWorkspaceAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_workspace.php
+     *
+     * @param CreateWorkspaceRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Workspace
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createWorkspace(CreateWorkspaceRequest $request, array $callOptions = []): Workspace
+    {
+        return $this->startApiCall('CreateWorkspace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Repository.
+     *
+     * The async variant is {@see DataformGapicClient::deleteRepositoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_repository.php
+     *
+     * @param DeleteRepositoryRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteRepository(DeleteRepositoryRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single WorkflowInvocation.
+     *
+     * The async variant is {@see DataformGapicClient::deleteWorkflowInvocationAsync()}
+     * .
+     *
+     * @example samples/V1beta1/DataformClient/delete_workflow_invocation.php
+     *
+     * @param DeleteWorkflowInvocationRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteWorkflowInvocation(DeleteWorkflowInvocationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteWorkflowInvocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::deleteWorkspaceAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_workspace.php
+     *
+     * @param DeleteWorkspaceRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteWorkspace(DeleteWorkspaceRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteWorkspace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches Git diff for an uncommitted file in a Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::fetchFileDiffAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_file_diff.php
+     *
+     * @param FetchFileDiffRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchFileDiffResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchFileDiff(FetchFileDiffRequest $request, array $callOptions = []): FetchFileDiffResponse
+    {
+        return $this->startApiCall('FetchFileDiff', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches Git statuses for the files in a Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::fetchFileGitStatusesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_file_git_statuses.php
+     *
+     * @param FetchFileGitStatusesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchFileGitStatusesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchFileGitStatuses(FetchFileGitStatusesRequest $request, array $callOptions = []): FetchFileGitStatusesResponse
+    {
+        return $this->startApiCall('FetchFileGitStatuses', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches Git ahead/behind against a remote branch.
+     *
+     * The async variant is {@see DataformGapicClient::fetchGitAheadBehindAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_git_ahead_behind.php
+     *
+     * @param FetchGitAheadBehindRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchGitAheadBehindResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchGitAheadBehind(FetchGitAheadBehindRequest $request, array $callOptions = []): FetchGitAheadBehindResponse
+    {
+        return $this->startApiCall('FetchGitAheadBehind', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a Repository's remote branches.
+     *
+     * The async variant is {@see DataformGapicClient::fetchRemoteBranchesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_remote_branches.php
+     *
+     * @param FetchRemoteBranchesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchRemoteBranchesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchRemoteBranches(FetchRemoteBranchesRequest $request, array $callOptions = []): FetchRemoteBranchesResponse
+    {
+        return $this->startApiCall('FetchRemoteBranches', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a single CompilationResult.
+     *
+     * The async variant is {@see DataformGapicClient::getCompilationResultAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_compilation_result.php
+     *
+     * @param GetCompilationResultRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CompilationResult
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getCompilationResult(GetCompilationResultRequest $request, array $callOptions = []): CompilationResult
+    {
+        return $this->startApiCall('GetCompilationResult', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a single Repository.
+     *
+     * The async variant is {@see DataformGapicClient::getRepositoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_repository.php
+     *
+     * @param GetRepositoryRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Repository
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getRepository(GetRepositoryRequest $request, array $callOptions = []): Repository
+    {
+        return $this->startApiCall('GetRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a single WorkflowInvocation.
+     *
+     * The async variant is {@see DataformGapicClient::getWorkflowInvocationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_workflow_invocation.php
+     *
+     * @param GetWorkflowInvocationRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WorkflowInvocation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getWorkflowInvocation(GetWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
+    {
+        return $this->startApiCall('GetWorkflowInvocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a single Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::getWorkspaceAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_workspace.php
+     *
+     * @param GetWorkspaceRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Workspace
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getWorkspace(GetWorkspaceRequest $request, array $callOptions = []): Workspace
+    {
+        return $this->startApiCall('GetWorkspace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Installs dependency NPM packages (inside a Workspace).
+     *
+     * The async variant is {@see DataformGapicClient::installNpmPackagesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/install_npm_packages.php
+     *
+     * @param InstallNpmPackagesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return InstallNpmPackagesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function installNpmPackages(InstallNpmPackagesRequest $request, array $callOptions = []): InstallNpmPackagesResponse
+    {
+        return $this->startApiCall('InstallNpmPackages', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists CompilationResults in a given Repository.
+     *
+     * The async variant is {@see DataformGapicClient::listCompilationResultsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_compilation_results.php
+     *
+     * @param ListCompilationResultsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listCompilationResults(ListCompilationResultsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListCompilationResults', $request, $callOptions);
+    }
+
+    /**
+     * Lists Repositories in a given project and location.
+     *
+     * The async variant is {@see DataformGapicClient::listRepositoriesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_repositories.php
+     *
+     * @param ListRepositoriesRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listRepositories(ListRepositoriesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListRepositories', $request, $callOptions);
+    }
+
+    /**
+     * Lists WorkflowInvocations in a given Repository.
+     *
+     * The async variant is {@see DataformGapicClient::listWorkflowInvocationsAsync()}
+     * .
+     *
+     * @example samples/V1beta1/DataformClient/list_workflow_invocations.php
+     *
+     * @param ListWorkflowInvocationsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listWorkflowInvocations(ListWorkflowInvocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListWorkflowInvocations', $request, $callOptions);
+    }
+
+    /**
+     * Lists Workspaces in a given Repository.
+     *
+     * The async variant is {@see DataformGapicClient::listWorkspacesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_workspaces.php
+     *
+     * @param ListWorkspacesRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listWorkspaces(ListWorkspacesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListWorkspaces', $request, $callOptions);
+    }
+
+    /**
+     * Creates a directory inside a Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::makeDirectoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/make_directory.php
+     *
+     * @param MakeDirectoryRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MakeDirectoryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function makeDirectory(MakeDirectoryRequest $request, array $callOptions = []): MakeDirectoryResponse
+    {
+        return $this->startApiCall('MakeDirectory', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Moves a directory (inside a Workspace), and all of its contents, to a new
+     * location.
+     *
+     * The async variant is {@see DataformGapicClient::moveDirectoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/move_directory.php
+     *
+     * @param MoveDirectoryRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MoveDirectoryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function moveDirectory(MoveDirectoryRequest $request, array $callOptions = []): MoveDirectoryResponse
+    {
+        return $this->startApiCall('MoveDirectory', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Moves a file (inside a Workspace) to a new location.
+     *
+     * The async variant is {@see DataformGapicClient::moveFileAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/move_file.php
+     *
+     * @param MoveFileRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MoveFileResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function moveFile(MoveFileRequest $request, array $callOptions = []): MoveFileResponse
+    {
+        return $this->startApiCall('MoveFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Pulls Git commits from the Repository's remote into a Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::pullGitCommitsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/pull_git_commits.php
+     *
+     * @param PullGitCommitsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function pullGitCommits(PullGitCommitsRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('PullGitCommits', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Pushes Git commits from a Workspace to the Repository's remote.
+     *
+     * The async variant is {@see DataformGapicClient::pushGitCommitsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/push_git_commits.php
+     *
+     * @param PushGitCommitsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function pushGitCommits(PushGitCommitsRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('PushGitCommits', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns CompilationResultActions in a given CompilationResult.
+     *
+     * The async variant is
+     * {@see DataformGapicClient::queryCompilationResultActionsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_compilation_result_actions.php
+     *
+     * @param QueryCompilationResultActionsRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryCompilationResultActions(QueryCompilationResultActionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('QueryCompilationResultActions', $request, $callOptions);
+    }
+
+    /**
+     * Returns the contents of a given Workspace directory.
+     *
+     * The async variant is {@see DataformGapicClient::queryDirectoryContentsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_directory_contents.php
+     *
+     * @param QueryDirectoryContentsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryDirectoryContents(QueryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('QueryDirectoryContents', $request, $callOptions);
+    }
+
+    /**
+     * Returns WorkflowInvocationActions in a given WorkflowInvocation.
+     *
+     * The async variant is
+     * {@see DataformGapicClient::queryWorkflowInvocationActionsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_workflow_invocation_actions.php
+     *
+     * @param QueryWorkflowInvocationActionsRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryWorkflowInvocationActions(QueryWorkflowInvocationActionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('QueryWorkflowInvocationActions', $request, $callOptions);
+    }
+
+    /**
+     * Returns the contents of a file (inside a Workspace).
+     *
+     * The async variant is {@see DataformGapicClient::readFileAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/read_file.php
+     *
+     * @param ReadFileRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReadFileResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function readFile(ReadFileRequest $request, array $callOptions = []): ReadFileResponse
+    {
+        return $this->startApiCall('ReadFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a directory (inside a Workspace) and all of its contents.
+     *
+     * The async variant is {@see DataformGapicClient::removeDirectoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/remove_directory.php
+     *
+     * @param RemoveDirectoryRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function removeDirectory(RemoveDirectoryRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('RemoveDirectory', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a file (inside a Workspace).
+     *
+     * The async variant is {@see DataformGapicClient::removeFileAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/remove_file.php
+     *
+     * @param RemoveFileRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function removeFile(RemoveFileRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('RemoveFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Performs a Git reset for uncommitted files in a Workspace.
+     *
+     * The async variant is {@see DataformGapicClient::resetWorkspaceChangesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/reset_workspace_changes.php
+     *
+     * @param ResetWorkspaceChangesRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function resetWorkspaceChanges(ResetWorkspaceChangesRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('ResetWorkspaceChanges', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a single Repository.
+     *
+     * The async variant is {@see DataformGapicClient::updateRepositoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/update_repository.php
+     *
+     * @param UpdateRepositoryRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Repository
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateRepository(UpdateRepositoryRequest $request, array $callOptions = []): Repository
+    {
+        return $this->startApiCall('UpdateRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Writes to a file (inside a Workspace).
+     *
+     * The async variant is {@see DataformGapicClient::writeFileAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/write_file.php
+     *
+     * @param WriteFileRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WriteFileResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function writeFile(WriteFileRequest $request, array $callOptions = []): WriteFileResponse
+    {
+        return $this->startApiCall('WriteFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see DataformGapicClient::getLocationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_location.php
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * The async variant is {@see DataformGapicClient::listLocationsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_locations.php
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
+    }
 }
