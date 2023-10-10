@@ -46,6 +46,21 @@ class ListLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The `name` of the parent product to list local inventories for.
+     *                       Format:
+     *                       `accounts/{account}/products/{product}`
+     *
+     * @return \Google\Shopping\Merchant\Inventories\V1beta\ListLocalInventoriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START merchantapi_v1beta_generated_LocalInventoryService_DeleteLocalInventory_sync]
 use Google\ApiCore\ApiException;
-use Google\Shopping\Merchant\Inventories\V1beta\LocalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1beta\Client\LocalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1beta\DeleteLocalInventoryRequest;
 
 /**
  * Deletes the specified `LocalInventory` from the given product in your
@@ -43,9 +44,13 @@ function delete_local_inventory_sample(string $formattedName): void
     // Create a client.
     $localInventoryServiceClient = new LocalInventoryServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteLocalInventoryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $localInventoryServiceClient->deleteLocalInventory($formattedName);
+        $localInventoryServiceClient->deleteLocalInventory($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
