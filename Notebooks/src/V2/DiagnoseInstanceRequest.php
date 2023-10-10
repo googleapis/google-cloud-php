@@ -21,19 +21,19 @@ class DiagnoseInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Required. Defines flags that are used to run the diagnostic tool
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.DiagnosticConfig diagnostic_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $diagnostic_config = null;
+    private $diagnostic_config = null;
     /**
      * Optional. Maxmium amount of time in minutes before the operation times out.
      *
      * Generated from protobuf field <code>int32 timeout_minutes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $timeout_minutes = 0;
+    private $timeout_minutes = 0;
 
     /**
      * @param string                                      $name             Required. Format:
