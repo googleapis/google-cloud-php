@@ -399,7 +399,7 @@ trait GapicClientTrait
             $headerInfo['restVersion'] = Version::getApiCoreVersion();
         }
         $this->agentHeader = AgentHeader::buildAgentHeader($headerInfo);
-      
+
         // Set "client_library_name" depending on client library surface being used
         $userAgentHeader = sprintf(
             'gcloud-php-%s/%s',
@@ -1103,6 +1103,6 @@ trait GapicClientTrait
      */
     private function isNewClientSurface(): bool
     {
-        return $this->isNewClient ?? $this->isNewClient = substr(__CLASS__, -10) === 'BaseClient';
+        return $this->isNewClient ?? $this->isNewClient = substr(__CLASS__, -11) !== 'GapicClient';
     }
 }
