@@ -25,6 +25,22 @@ class DeleteLocalInventoryRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the local inventory for the given product to delete.
+     *                     Format:
+     *                     `accounts/{account}/products/{product}/localInventories/{store_code}`
+     *                     Please see {@see LocalInventoryServiceClient::localInventoryName()} for help formatting this field.
+     *
+     * @return \Google\Shopping\Merchant\Inventories\V1beta\DeleteLocalInventoryRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
