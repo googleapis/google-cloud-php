@@ -28,6 +28,12 @@ class SecurityKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string private_key = 2;</code>
      */
     private $private_key = '';
+    /**
+     * The security key nickname explicitly set by the user.
+     *
+     * Generated from protobuf field <code>optional string device_nickname = 5;</code>
+     */
+    private $device_nickname = null;
     protected $protocol_type;
 
     /**
@@ -45,6 +51,8 @@ class SecurityKey extends \Google\Protobuf\Internal\Message
      *           The U2F protocol type.
      *     @type \Google\Cloud\OsLogin\V1beta\WebAuthn $web_authn
      *           The Web Authentication protocol type.
+     *     @type string $device_nickname
+     *           The security key nickname explicitly set by the user.
      * }
      */
     public function __construct($data = NULL) {
@@ -164,6 +172,42 @@ class SecurityKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OsLogin\V1beta\WebAuthn::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * The security key nickname explicitly set by the user.
+     *
+     * Generated from protobuf field <code>optional string device_nickname = 5;</code>
+     * @return string
+     */
+    public function getDeviceNickname()
+    {
+        return isset($this->device_nickname) ? $this->device_nickname : '';
+    }
+
+    public function hasDeviceNickname()
+    {
+        return isset($this->device_nickname);
+    }
+
+    public function clearDeviceNickname()
+    {
+        unset($this->device_nickname);
+    }
+
+    /**
+     * The security key nickname explicitly set by the user.
+     *
+     * Generated from protobuf field <code>optional string device_nickname = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeviceNickname($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->device_nickname = $var;
 
         return $this;
     }
