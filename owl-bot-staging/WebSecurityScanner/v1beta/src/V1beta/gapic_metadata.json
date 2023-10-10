@@ -1,0 +1,83 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.websecurityscanner.v1beta",
+    "libraryPackage": "Google\\Cloud\\WebSecurityScanner\\V1beta",
+    "services": {
+        "WebSecurityScanner": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WebSecurityScannerGapicClient",
+                    "rpcs": {
+                        "CreateScanConfig": {
+                            "methods": [
+                                "createScanConfig"
+                            ]
+                        },
+                        "DeleteScanConfig": {
+                            "methods": [
+                                "deleteScanConfig"
+                            ]
+                        },
+                        "GetFinding": {
+                            "methods": [
+                                "getFinding"
+                            ]
+                        },
+                        "GetScanConfig": {
+                            "methods": [
+                                "getScanConfig"
+                            ]
+                        },
+                        "GetScanRun": {
+                            "methods": [
+                                "getScanRun"
+                            ]
+                        },
+                        "ListCrawledUrls": {
+                            "methods": [
+                                "listCrawledUrls"
+                            ]
+                        },
+                        "ListFindingTypeStats": {
+                            "methods": [
+                                "listFindingTypeStats"
+                            ]
+                        },
+                        "ListFindings": {
+                            "methods": [
+                                "listFindings"
+                            ]
+                        },
+                        "ListScanConfigs": {
+                            "methods": [
+                                "listScanConfigs"
+                            ]
+                        },
+                        "ListScanRuns": {
+                            "methods": [
+                                "listScanRuns"
+                            ]
+                        },
+                        "StartScanRun": {
+                            "methods": [
+                                "startScanRun"
+                            ]
+                        },
+                        "StopScanRun": {
+                            "methods": [
+                                "stopScanRun"
+                            ]
+                        },
+                        "UpdateScanConfig": {
+                            "methods": [
+                                "updateScanConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
