@@ -260,7 +260,7 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $destination
+     *     @type \Google\Shopping\Type\Destination $destination
      *           Destination of the product to which metrics apply. Segment.
      *           Product performance data is not available for the LOCAL_INVENTORY_ADS
      *           destination.
@@ -379,11 +379,11 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      * destination.
      *
      * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
-     * @return int
+     * @return \Google\Shopping\Type\Destination|null
      */
     public function getDestination()
     {
-        return isset($this->destination) ? $this->destination : 0;
+        return $this->destination;
     }
 
     public function hasDestination()
@@ -402,12 +402,12 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      * destination.
      *
      * Generated from protobuf field <code>optional .google.shopping.type.Destination destination = 1;</code>
-     * @param int $var
+     * @param \Google\Shopping\Type\Destination $var
      * @return $this
      */
     public function setDestination($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Type\Destination::class);
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Destination::class);
         $this->destination = $var;
 
         return $this;
