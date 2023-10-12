@@ -25,7 +25,7 @@ class RouteModifiers extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool avoid_tolls = 2;</code>
      */
-    protected $avoid_tolls = false;
+    private $avoid_tolls = false;
     /**
      * Specifies whether to avoid highways where reasonable. Preference will be
      * given to routes not containing highways. Applies only to motorized travel
@@ -33,7 +33,7 @@ class RouteModifiers extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool avoid_highways = 3;</code>
      */
-    protected $avoid_highways = false;
+    private $avoid_highways = false;
     /**
      * Specifies whether to avoid ferries where reasonable. Preference will be
      * given to routes not containing travel by ferries. Applies only to motorized
@@ -41,7 +41,7 @@ class RouteModifiers extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool avoid_ferries = 4;</code>
      */
-    protected $avoid_ferries = false;
+    private $avoid_ferries = false;
     /**
      * Optional. Specifies whether to avoid navigating indoors where reasonable.
      * Preference will be given to routes not containing indoor navigation.
@@ -49,7 +49,7 @@ class RouteModifiers extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool avoid_indoor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $avoid_indoor = false;
+    private $avoid_indoor = false;
 
     /**
      * Constructor.
