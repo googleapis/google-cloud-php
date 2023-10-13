@@ -903,6 +903,9 @@ class Database
         $startTransactionFn = function ($session, $options) use (&$attempt) {
             if ($attempt > 0) {
                 $options['isRetry'] = true;
+            } else {
+                // Make the begin options
+                $options['begin'] = $options['transactionOptions'];
             }
 
             $transaction = $this->operation->transaction($session, $options);

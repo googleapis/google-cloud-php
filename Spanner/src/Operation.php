@@ -210,7 +210,7 @@ class Operation
      * }
      * @return Result
      */
-    public function execute(Session $session, $sql, array $options = [])
+    public function execute(Session $session, $sql, array $options = [], string &$transactionId = null)
     {
         $options += [
             'parameters' => [],
@@ -224,7 +224,13 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
-        $call = function ($resumeToken = null) use ($session, $sql, $options) {
+        // Initially with begin, transactionId will be null.
+        // Once generated it will get populated from Result->rows()
+        // Incase of stream failure, the transactionId is preserved here to reuse.
+        $call = function ($resumeToken = null) use ($session, $sql, $options, &$transactionId) {
+            if ( !is_null($transactionId) ) {
+                $options['transaction'] = ['id' => $transactionId];
+            }
             if ($resumeToken) {
                 $options['resumeToken'] = $resumeToken;
             }
@@ -236,7 +242,7 @@ class Operation
             ] + $options);
         };
 
-        return new Result($this, $session, $call, $context, $this->mapper);
+        return new Result($this, $session, $call, $context, $this->mapper, $transactionId);
     }
 
     /**
@@ -261,11 +267,13 @@ class Operation
         Session $session,
         Transaction $transaction,
         $sql,
-        array $options = []
+        array $options = [],
+        string &$transactionId = null
     ) {
-        $res = $this->execute($session, $sql, [
-            'transactionId' => $transaction->id()
-        ] + $options);
+        if (!isset($options['begin'])) {
+            $options += ['transactionId' => $transaction->id()];
+        }
+        $res = $this->execute($session, $sql, $options, $transactionId);
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -436,12 +444,20 @@ class Operation
         }
 
         if (!$options['singleUse']) {
-            $res = $this->beginTransaction($session, $options);
+            if (isset($options['begin']) and !isset($transactionOptions['partitionedDml'])) {
+                $res = ['id' => ['begin' => $options['begin']]];
+            } else {
+                $res = $this->beginTransaction($session, $options);
+            }
         } else {
             $res = [];
         }
 
-        return $this->createTransaction($session, $res, ['tag' => $transactionTag]);
+        return $this->createTransaction(
+            $session,
+            $res,
+            ['tag' => $transactionTag, 'isRetry' => $options['isRetry']]
+        );
     }
 
     /**
@@ -463,7 +479,13 @@ class Operation
 
         $options['isRetry'] = $options['isRetry'] ?? false;
 
-        return new Transaction($this, $session, $res['id'], $options['isRetry'], $options['tag']);
+        return new Transaction(
+            $this,
+            $session,
+            $res['id'],
+            $options['isRetry'],
+            $options['tag']
+        );
     }
 
     /**

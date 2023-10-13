@@ -440,8 +440,18 @@ class Transaction implements TransactionalReadInterface
         $options['seqno'] = $this->seqno;
         $this->seqno++;
 
+        $options['transactionType'] = $this->context;
+        if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
+            $options['begin'] = $this->transactionId['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
+        $selector = $this->transactionSelector($options, $this->options);
+
+        $options['transaction'] = $selector[0];
+          
         return $this->operation
-            ->executeUpdate($this->session, $this, $sql, $options);
+            ->executeUpdate($this->session, $this, $sql, $options, $this->transactionId);
     }
 
     /**
@@ -538,9 +548,17 @@ class Transaction implements TransactionalReadInterface
         }
         $options['seqno'] = $this->seqno;
         $this->seqno++;
+    
+        $options['transactionType'] = $this->context;
+        if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
+            $options['begin'] = true;
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
+        $selector = $this->transactionSelector($options, $this->options);
 
         return $this->operation
-            ->executeUpdateBatch($this->session, $this, $statements, $options);
+            ->executeUpdateBatch($this->session, $this, $statements, $options, $this->transactionId);
     }
 
     /**

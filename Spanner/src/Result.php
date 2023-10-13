@@ -136,7 +136,8 @@ class Result implements \IteratorAggregate
         callable $call,
         $transactionContext,
         ValueMapper $mapper,
-        $retries = 3
+        $retries = 3,
+        &$transactionId = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -144,6 +145,7 @@ class Result implements \IteratorAggregate
         $this->transactionContext = $transactionContext;
         $this->mapper = $mapper;
         $this->retries = $retries;
+        $this->transactionId = &$transactionId;
     }
 
     /**
@@ -467,6 +469,7 @@ class Result implements \IteratorAggregate
         }
 
         if (isset($result['metadata']['transaction']['id']) && $result['metadata']['transaction']['id']) {
+            $this->transactionId = $result['metadata']['transaction']['id'];
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
                 $this->snapshot = $this->operation->createSnapshot(
                     $this->session,
