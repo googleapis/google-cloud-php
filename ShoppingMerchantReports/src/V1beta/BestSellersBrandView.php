@@ -36,7 +36,7 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Required in the `SELECT` clause. Condition on `report_granularity` is
      * required in the `WHERE` clause.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ReportGranularity report_granularity = 2;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ReportGranularity.ReportGranularityEnum report_granularity = 2;</code>
      */
     protected $report_granularity = null;
     /**
@@ -88,20 +88,20 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Estimated demand in relation to the brand with the highest popularity rank
      * in the same category and country.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand relative_demand = 9;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand.RelativeDemandEnum relative_demand = 9;</code>
      */
     protected $relative_demand = null;
     /**
      * Estimated demand in relation to the brand with the highest popularity rank
      * in the same category and country in the previous week or month.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand previous_relative_demand = 10;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand.RelativeDemandEnum previous_relative_demand = 10;</code>
      */
     protected $previous_relative_demand = null;
     /**
      * Change in the estimated demand. Whether it rose, sank or remained flat.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemandChangeType relative_demand_change = 11;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemandChangeType.RelativeDemandChangeTypeEnum relative_demand_change = 11;</code>
      */
     protected $relative_demand_change = null;
 
@@ -211,7 +211,7 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Required in the `SELECT` clause. Condition on `report_granularity` is
      * required in the `WHERE` clause.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ReportGranularity report_granularity = 2;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ReportGranularity.ReportGranularityEnum report_granularity = 2;</code>
      * @return int
      */
     public function getReportGranularity()
@@ -235,13 +235,13 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Required in the `SELECT` clause. Condition on `report_granularity` is
      * required in the `WHERE` clause.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ReportGranularity report_granularity = 2;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ReportGranularity.ReportGranularityEnum report_granularity = 2;</code>
      * @param int $var
      * @return $this
      */
     public function setReportGranularity($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\ReportGranularity::class);
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\ReportGranularity\ReportGranularityEnum::class);
         $this->report_granularity = $var;
 
         return $this;
@@ -485,7 +485,7 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Estimated demand in relation to the brand with the highest popularity rank
      * in the same category and country.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand relative_demand = 9;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand.RelativeDemandEnum relative_demand = 9;</code>
      * @return int
      */
     public function getRelativeDemand()
@@ -507,13 +507,13 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Estimated demand in relation to the brand with the highest popularity rank
      * in the same category and country.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand relative_demand = 9;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand.RelativeDemandEnum relative_demand = 9;</code>
      * @param int $var
      * @return $this
      */
     public function setRelativeDemand($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\RelativeDemand::class);
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\RelativeDemand\RelativeDemandEnum::class);
         $this->relative_demand = $var;
 
         return $this;
@@ -523,7 +523,7 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Estimated demand in relation to the brand with the highest popularity rank
      * in the same category and country in the previous week or month.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand previous_relative_demand = 10;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand.RelativeDemandEnum previous_relative_demand = 10;</code>
      * @return int
      */
     public function getPreviousRelativeDemand()
@@ -545,13 +545,13 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
      * Estimated demand in relation to the brand with the highest popularity rank
      * in the same category and country in the previous week or month.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand previous_relative_demand = 10;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemand.RelativeDemandEnum previous_relative_demand = 10;</code>
      * @param int $var
      * @return $this
      */
     public function setPreviousRelativeDemand($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\RelativeDemand::class);
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\RelativeDemand\RelativeDemandEnum::class);
         $this->previous_relative_demand = $var;
 
         return $this;
@@ -560,7 +560,7 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
     /**
      * Change in the estimated demand. Whether it rose, sank or remained flat.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemandChangeType relative_demand_change = 11;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemandChangeType.RelativeDemandChangeTypeEnum relative_demand_change = 11;</code>
      * @return int
      */
     public function getRelativeDemandChange()
@@ -581,13 +581,13 @@ class BestSellersBrandView extends \Google\Protobuf\Internal\Message
     /**
      * Change in the estimated demand. Whether it rose, sank or remained flat.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemandChangeType relative_demand_change = 11;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.RelativeDemandChangeType.RelativeDemandChangeTypeEnum relative_demand_change = 11;</code>
      * @param int $var
      * @return $this
      */
     public function setRelativeDemandChange($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\RelativeDemandChangeType::class);
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\RelativeDemandChangeType\RelativeDemandChangeTypeEnum::class);
         $this->relative_demand_change = $var;
 
         return $this;

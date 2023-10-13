@@ -151,6 +151,4 @@ class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IssueSeverityPerReportingContext::class, \Google\Shopping\Merchant\Reports\V1beta\ProductView_ItemIssue_ItemIssueSeverity_IssueSeverityPerReportingContext::class);
 

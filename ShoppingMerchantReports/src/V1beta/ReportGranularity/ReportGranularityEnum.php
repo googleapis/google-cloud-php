@@ -59,6 +59,4 @@ class ReportGranularityEnum
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReportGranularityEnum::class, \Google\Shopping\Merchant\Reports\V1beta\ReportGranularity_ReportGranularityEnum::class);
 

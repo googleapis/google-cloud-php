@@ -85,6 +85,4 @@ class RelativeDemandEnum
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RelativeDemandEnum::class, \Google\Shopping\Merchant\Reports\V1beta\RelativeDemand_RelativeDemandEnum::class);
 
