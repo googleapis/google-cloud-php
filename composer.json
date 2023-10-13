@@ -51,7 +51,7 @@
         "monolog/monolog": "^2.0||^3.0",
         "psr/http-message": "^1.0|^2.0",
         "ramsey/uuid": "^4.0",
-        "google/gax": "^1.19.1",
+        "google/gax": "^1.24.0",
         "google/common-protos": "^4.0",
         "google/auth": "^1.18"
     },
