@@ -470,8 +470,7 @@ final class VideoStitcherServiceClient
     /**
      * Creates a new CDN key.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::createCdnKeyAsync()}
-     * .
+     * The async variant is {@see VideoStitcherServiceClient::createCdnKeyAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/create_cdn_key.php
      *
@@ -498,8 +497,8 @@ final class VideoStitcherServiceClient
      * Registers the live config with the provided unique ID in
      * the specified region.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::createLiveConfigAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::createLiveConfigAsync()}
+     * .
      *
      * @example samples/V1/VideoStitcherServiceClient/create_live_config.php
      *
@@ -525,8 +524,8 @@ final class VideoStitcherServiceClient
     /**
      * Creates a new live session.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::createLiveSessionAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::createLiveSessionAsync()}
+     * .
      *
      * @example samples/V1/VideoStitcherServiceClient/create_live_session.php
      *
@@ -552,8 +551,7 @@ final class VideoStitcherServiceClient
     /**
      * Creates a slate.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::createSlateAsync()}
-     * .
+     * The async variant is {@see VideoStitcherServiceClient::createSlateAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/create_slate.php
      *
@@ -580,8 +578,8 @@ final class VideoStitcherServiceClient
      * Creates a client side playback VOD session and returns the full
      * tracking and playback metadata of the session.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::createVodSessionAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::createVodSessionAsync()}
+     * .
      *
      * @example samples/V1/VideoStitcherServiceClient/create_vod_session.php
      *
@@ -607,8 +605,7 @@ final class VideoStitcherServiceClient
     /**
      * Deletes the specified CDN key.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::deleteCdnKeyAsync()}
-     * .
+     * The async variant is {@see VideoStitcherServiceClient::deleteCdnKeyAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/delete_cdn_key.php
      *
@@ -634,8 +631,8 @@ final class VideoStitcherServiceClient
     /**
      * Deletes the specified live config.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::deleteLiveConfigAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::deleteLiveConfigAsync()}
+     * .
      *
      * @example samples/V1/VideoStitcherServiceClient/delete_live_config.php
      *
@@ -661,8 +658,7 @@ final class VideoStitcherServiceClient
     /**
      * Deletes the specified slate.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::deleteSlateAsync()}
-     * .
+     * The async variant is {@see VideoStitcherServiceClient::deleteSlateAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/delete_slate.php
      *
@@ -688,7 +684,7 @@ final class VideoStitcherServiceClient
     /**
      * Returns the specified CDN key.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::getCdnKeyAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::getCdnKeyAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_cdn_key.php
      *
@@ -715,7 +711,7 @@ final class VideoStitcherServiceClient
      * Returns the specified ad tag detail for the specified live session.
      *
      * The async variant is
-     * {@see VideoStitcherServiceGapicClient::getLiveAdTagDetailAsync()} .
+     * {@see VideoStitcherServiceClient::getLiveAdTagDetailAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_live_ad_tag_detail.php
      *
@@ -742,8 +738,7 @@ final class VideoStitcherServiceClient
      * Returns the specified live config managed by the Video
      * Stitcher service.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::getLiveConfigAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::getLiveConfigAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_live_config.php
      *
@@ -769,8 +764,7 @@ final class VideoStitcherServiceClient
     /**
      * Returns the details for the specified live session.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::getLiveSessionAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::getLiveSessionAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_live_session.php
      *
@@ -796,7 +790,7 @@ final class VideoStitcherServiceClient
     /**
      * Returns the specified slate.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::getSlateAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::getSlateAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_slate.php
      *
@@ -822,8 +816,8 @@ final class VideoStitcherServiceClient
     /**
      * Returns the specified ad tag detail for the specified VOD session.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::getVodAdTagDetailAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::getVodAdTagDetailAsync()}
+     * .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_vod_ad_tag_detail.php
      *
@@ -850,8 +844,7 @@ final class VideoStitcherServiceClient
      * Returns the full tracking, playback metadata, and relevant ad-ops
      * logs for the specified VOD session.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::getVodSessionAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::getVodSessionAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_vod_session.php
      *
@@ -878,7 +871,7 @@ final class VideoStitcherServiceClient
      * Returns the specified stitching information for the specified VOD session.
      *
      * The async variant is
-     * {@see VideoStitcherServiceGapicClient::getVodStitchDetailAsync()} .
+     * {@see VideoStitcherServiceClient::getVodStitchDetailAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/get_vod_stitch_detail.php
      *
@@ -904,8 +897,7 @@ final class VideoStitcherServiceClient
     /**
      * Lists all CDN keys in the specified project and location.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::listCdnKeysAsync()}
-     * .
+     * The async variant is {@see VideoStitcherServiceClient::listCdnKeysAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/list_cdn_keys.php
      *
@@ -932,7 +924,7 @@ final class VideoStitcherServiceClient
      * Return the list of ad tag details for the specified live session.
      *
      * The async variant is
-     * {@see VideoStitcherServiceGapicClient::listLiveAdTagDetailsAsync()} .
+     * {@see VideoStitcherServiceClient::listLiveAdTagDetailsAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/list_live_ad_tag_details.php
      *
@@ -959,8 +951,7 @@ final class VideoStitcherServiceClient
      * Lists all live configs managed by the Video Stitcher that
      * belong to the specified project and region.
      *
-     * The async variant is
-     * {@see VideoStitcherServiceGapicClient::listLiveConfigsAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::listLiveConfigsAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/list_live_configs.php
      *
@@ -986,7 +977,7 @@ final class VideoStitcherServiceClient
     /**
      * Lists all slates in the specified project and location.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::listSlatesAsync()} .
+     * The async variant is {@see VideoStitcherServiceClient::listSlatesAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/list_slates.php
      *
@@ -1013,7 +1004,7 @@ final class VideoStitcherServiceClient
      * Return the list of ad tag details for the specified VOD session.
      *
      * The async variant is
-     * {@see VideoStitcherServiceGapicClient::listVodAdTagDetailsAsync()} .
+     * {@see VideoStitcherServiceClient::listVodAdTagDetailsAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/list_vod_ad_tag_details.php
      *
@@ -1041,7 +1032,7 @@ final class VideoStitcherServiceClient
      * session.
      *
      * The async variant is
-     * {@see VideoStitcherServiceGapicClient::listVodStitchDetailsAsync()} .
+     * {@see VideoStitcherServiceClient::listVodStitchDetailsAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/list_vod_stitch_details.php
      *
@@ -1068,8 +1059,7 @@ final class VideoStitcherServiceClient
      * Updates the specified CDN key. Only update fields specified
      * in the call method body.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::updateCdnKeyAsync()}
-     * .
+     * The async variant is {@see VideoStitcherServiceClient::updateCdnKeyAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/update_cdn_key.php
      *
@@ -1095,8 +1085,7 @@ final class VideoStitcherServiceClient
     /**
      * Updates the specified slate.
      *
-     * The async variant is {@see VideoStitcherServiceGapicClient::updateSlateAsync()}
-     * .
+     * The async variant is {@see VideoStitcherServiceClient::updateSlateAsync()} .
      *
      * @example samples/V1/VideoStitcherServiceClient/update_slate.php
      *

@@ -276,8 +276,7 @@ final class VpcAccessServiceClient
     /**
      * Creates a Serverless VPC Access connector, returns an operation.
      *
-     * The async variant is {@see VpcAccessServiceGapicClient::createConnectorAsync()}
-     * .
+     * The async variant is {@see VpcAccessServiceClient::createConnectorAsync()} .
      *
      * @param CreateConnectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -302,8 +301,7 @@ final class VpcAccessServiceClient
      * Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the
      * resource does not exist.
      *
-     * The async variant is {@see VpcAccessServiceGapicClient::deleteConnectorAsync()}
-     * .
+     * The async variant is {@see VpcAccessServiceClient::deleteConnectorAsync()} .
      *
      * @param DeleteConnectorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -328,7 +326,7 @@ final class VpcAccessServiceClient
      * Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource
      * does not exist.
      *
-     * The async variant is {@see VpcAccessServiceGapicClient::getConnectorAsync()} .
+     * The async variant is {@see VpcAccessServiceClient::getConnectorAsync()} .
      *
      * @param GetConnectorRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -352,7 +350,7 @@ final class VpcAccessServiceClient
     /**
      * Lists Serverless VPC Access connectors.
      *
-     * The async variant is {@see VpcAccessServiceGapicClient::listConnectorsAsync()} .
+     * The async variant is {@see VpcAccessServiceClient::listConnectorsAsync()} .
      *
      * @param ListConnectorsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -376,7 +374,7 @@ final class VpcAccessServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see VpcAccessServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see VpcAccessServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
