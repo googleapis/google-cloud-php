@@ -231,7 +231,7 @@ final class SqlInstancesServiceClient
      * operation replaces that version. There cannot be more than one CA version
      * waiting to be rotated in.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::addServerCaAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::addServerCaAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/add_server_ca.php
      *
@@ -258,7 +258,7 @@ final class SqlInstancesServiceClient
      * Creates a Cloud SQL instance as a clone of the source instance. Using this
      * operation might cause your instance to restart.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::cloneAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::cloneAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/clone.php
      *
@@ -287,8 +287,7 @@ final class SqlInstancesServiceClient
      * the certificate to authenticate as themselves when connecting to the
      * database.
      *
-     * The async variant is
-     * {@see SqlInstancesServiceGapicClient::createEphemeralAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::createEphemeralAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/create_ephemeral.php
      *
@@ -314,7 +313,7 @@ final class SqlInstancesServiceClient
     /**
      * Deletes a Cloud SQL instance.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::deleteAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::deleteAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/delete.php
      *
@@ -341,8 +340,7 @@ final class SqlInstancesServiceClient
      * Demotes the stand-alone instance to be a Cloud SQL read replica for an
      * external database server.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::demoteMasterAsync()}
-     * .
+     * The async variant is {@see SqlInstancesServiceClient::demoteMasterAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/demote_master.php
      *
@@ -369,7 +367,7 @@ final class SqlInstancesServiceClient
      * Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL
      * dump or CSV file.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::exportAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::exportAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/export.php
      *
@@ -402,7 +400,7 @@ final class SqlInstancesServiceClient
      * If using Legacy HA (MySQL only), this causes the instance to failover to
      * its failover replica instance.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::failoverAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::failoverAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/failover.php
      *
@@ -428,7 +426,7 @@ final class SqlInstancesServiceClient
     /**
      * Retrieves a resource containing information about a Cloud SQL instance.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::getAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::getAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/get.php
      *
@@ -455,7 +453,7 @@ final class SqlInstancesServiceClient
      * Get Disk Shrink Config for a given instance.
      *
      * The async variant is
-     * {@see SqlInstancesServiceGapicClient::getDiskShrinkConfigAsync()} .
+     * {@see SqlInstancesServiceClient::getDiskShrinkConfigAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/get_disk_shrink_config.php
      *
@@ -482,7 +480,7 @@ final class SqlInstancesServiceClient
      * Get Latest Recovery Time for a given instance.
      *
      * The async variant is
-     * {@see SqlInstancesServiceGapicClient::getLatestRecoveryTimeAsync()} .
+     * {@see SqlInstancesServiceClient::getLatestRecoveryTimeAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/get_latest_recovery_time.php
      *
@@ -509,7 +507,7 @@ final class SqlInstancesServiceClient
      * Imports data into a Cloud SQL instance from a SQL dump  or CSV file in
      * Cloud Storage.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::importAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::importAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/import.php
      *
@@ -535,7 +533,7 @@ final class SqlInstancesServiceClient
     /**
      * Creates a new Cloud SQL instance.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::insertAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::insertAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/insert.php
      *
@@ -561,7 +559,7 @@ final class SqlInstancesServiceClient
     /**
      * Lists instances under a given project.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/list.php
      *
@@ -591,8 +589,7 @@ final class SqlInstancesServiceClient
      * yet used to sign a certificate, and a CA used to sign a certificate that
      * has previously rotated out.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::listServerCasAsync()}
-     * .
+     * The async variant is {@see SqlInstancesServiceClient::listServerCasAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/list_server_cas.php
      *
@@ -619,7 +616,7 @@ final class SqlInstancesServiceClient
      * Partially updates settings of a Cloud SQL instance by merging the request
      * with the current configuration. This method supports patch semantics.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::patchAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::patchAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/patch.php
      *
@@ -645,8 +642,8 @@ final class SqlInstancesServiceClient
     /**
      * Perform Disk Shrink on primary instance.
      *
-     * The async variant is
-     * {@see SqlInstancesServiceGapicClient::performDiskShrinkAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::performDiskShrinkAsync()}
+     * .
      *
      * @example samples/V1/SqlInstancesServiceClient/perform_disk_shrink.php
      *
@@ -673,8 +670,7 @@ final class SqlInstancesServiceClient
      * Promotes the read replica instance to be a stand-alone Cloud SQL instance.
      * Using this operation might cause your instance to restart.
      *
-     * The async variant is
-     * {@see SqlInstancesServiceGapicClient::promoteReplicaAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::promoteReplicaAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/promote_replica.php
      *
@@ -700,7 +696,7 @@ final class SqlInstancesServiceClient
     /**
      * Reencrypt CMEK instance with latest key version.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::reencryptAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::reencryptAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/reencrypt.php
      *
@@ -727,7 +723,7 @@ final class SqlInstancesServiceClient
      * Reschedules the maintenance on the given instance.
      *
      * The async variant is
-     * {@see SqlInstancesServiceGapicClient::rescheduleMaintenanceAsync()} .
+     * {@see SqlInstancesServiceClient::rescheduleMaintenanceAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/reschedule_maintenance.php
      *
@@ -753,8 +749,7 @@ final class SqlInstancesServiceClient
     /**
      * Reset Replica Size to primary instance disk size.
      *
-     * The async variant is
-     * {@see SqlInstancesServiceGapicClient::resetReplicaSizeAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::resetReplicaSizeAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/reset_replica_size.php
      *
@@ -781,8 +776,7 @@ final class SqlInstancesServiceClient
      * Deletes all client certificates and generates a new server SSL certificate
      * for the instance.
      *
-     * The async variant is
-     * {@see SqlInstancesServiceGapicClient::resetSslConfigAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::resetSslConfigAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/reset_ssl_config.php
      *
@@ -808,7 +802,7 @@ final class SqlInstancesServiceClient
     /**
      * Restarts a Cloud SQL instance.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::restartAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::restartAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/restart.php
      *
@@ -835,8 +829,7 @@ final class SqlInstancesServiceClient
      * Restores a backup of a Cloud SQL instance. Using this operation might cause
      * your instance to restart.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::restoreBackupAsync()}
-     * .
+     * The async variant is {@see SqlInstancesServiceClient::restoreBackupAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/restore_backup.php
      *
@@ -863,8 +856,7 @@ final class SqlInstancesServiceClient
      * Rotates the server certificate to one signed by the Certificate Authority
      * (CA) version previously added with the addServerCA method.
      *
-     * The async variant is
-     * {@see SqlInstancesServiceGapicClient::rotateServerCaAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::rotateServerCaAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/rotate_server_ca.php
      *
@@ -890,8 +882,8 @@ final class SqlInstancesServiceClient
     /**
      * Start External primary instance migration.
      *
-     * The async variant is
-     * {@see SqlInstancesServiceGapicClient::startExternalSyncAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::startExternalSyncAsync()}
+     * .
      *
      * @example samples/V1/SqlInstancesServiceClient/start_external_sync.php
      *
@@ -917,8 +909,7 @@ final class SqlInstancesServiceClient
     /**
      * Starts the replication in the read replica instance.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::startReplicaAsync()}
-     * .
+     * The async variant is {@see SqlInstancesServiceClient::startReplicaAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/start_replica.php
      *
@@ -944,7 +935,7 @@ final class SqlInstancesServiceClient
     /**
      * Stops the replication in the read replica instance.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::stopReplicaAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::stopReplicaAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/stop_replica.php
      *
@@ -971,7 +962,7 @@ final class SqlInstancesServiceClient
      * Truncate MySQL general and slow query log tables
      * MySQL only.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::truncateLogAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::truncateLogAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/truncate_log.php
      *
@@ -998,7 +989,7 @@ final class SqlInstancesServiceClient
      * Updates settings of a Cloud SQL instance. Using this operation might cause
      * your instance to restart.
      *
-     * The async variant is {@see SqlInstancesServiceGapicClient::updateAsync()} .
+     * The async variant is {@see SqlInstancesServiceClient::updateAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/update.php
      *
@@ -1025,7 +1016,7 @@ final class SqlInstancesServiceClient
      * Verify External primary instance external sync settings.
      *
      * The async variant is
-     * {@see SqlInstancesServiceGapicClient::verifyExternalSyncSettingsAsync()} .
+     * {@see SqlInstancesServiceClient::verifyExternalSyncSettingsAsync()} .
      *
      * @example samples/V1/SqlInstancesServiceClient/verify_external_sync_settings.php
      *

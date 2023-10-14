@@ -173,7 +173,7 @@ final class SqlDatabasesServiceClient
     /**
      * Deletes a database from a Cloud SQL instance.
      *
-     * The async variant is {@see SqlDatabasesServiceGapicClient::deleteAsync()} .
+     * The async variant is {@see SqlDatabasesServiceClient::deleteAsync()} .
      *
      * @example samples/V1/SqlDatabasesServiceClient/delete.php
      *
@@ -200,7 +200,7 @@ final class SqlDatabasesServiceClient
      * Retrieves a resource containing information about a database inside a Cloud
      * SQL instance.
      *
-     * The async variant is {@see SqlDatabasesServiceGapicClient::getAsync()} .
+     * The async variant is {@see SqlDatabasesServiceClient::getAsync()} .
      *
      * @example samples/V1/SqlDatabasesServiceClient/get.php
      *
@@ -229,7 +229,7 @@ final class SqlDatabasesServiceClient
      *
      * **Note:** You can't modify the default character set and collation.
      *
-     * The async variant is {@see SqlDatabasesServiceGapicClient::insertAsync()} .
+     * The async variant is {@see SqlDatabasesServiceClient::insertAsync()} .
      *
      * @example samples/V1/SqlDatabasesServiceClient/insert.php
      *
@@ -255,7 +255,7 @@ final class SqlDatabasesServiceClient
     /**
      * Lists databases in the specified Cloud SQL instance.
      *
-     * The async variant is {@see SqlDatabasesServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlDatabasesServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlDatabasesServiceClient/list.php
      *
@@ -282,7 +282,7 @@ final class SqlDatabasesServiceClient
      * Partially updates a resource containing information about a database inside
      * a Cloud SQL instance. This method supports patch semantics.
      *
-     * The async variant is {@see SqlDatabasesServiceGapicClient::patchAsync()} .
+     * The async variant is {@see SqlDatabasesServiceClient::patchAsync()} .
      *
      * @example samples/V1/SqlDatabasesServiceClient/patch.php
      *
@@ -309,7 +309,7 @@ final class SqlDatabasesServiceClient
      * Updates a resource containing information about a database inside a Cloud
      * SQL instance.
      *
-     * The async variant is {@see SqlDatabasesServiceGapicClient::updateAsync()} .
+     * The async variant is {@see SqlDatabasesServiceClient::updateAsync()} .
      *
      * @example samples/V1/SqlDatabasesServiceClient/update.php
      *

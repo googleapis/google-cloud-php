@@ -172,7 +172,7 @@ final class SqlSslCertsServiceClient
      * Deletes the SSL certificate. For First Generation instances, the
      * certificate remains valid until the instance is restarted.
      *
-     * The async variant is {@see SqlSslCertsServiceGapicClient::deleteAsync()} .
+     * The async variant is {@see SqlSslCertsServiceClient::deleteAsync()} .
      *
      * @example samples/V1/SqlSslCertsServiceClient/delete.php
      *
@@ -200,7 +200,7 @@ final class SqlSslCertsServiceClient
      * (required for usage).  The private key must be saved from the response to
      * initial creation.
      *
-     * The async variant is {@see SqlSslCertsServiceGapicClient::getAsync()} .
+     * The async variant is {@see SqlSslCertsServiceClient::getAsync()} .
      *
      * @example samples/V1/SqlSslCertsServiceClient/get.php
      *
@@ -228,7 +228,7 @@ final class SqlSslCertsServiceClient
      * server certificate authority.  The new certificate will not be usable until
      * the instance is restarted.
      *
-     * The async variant is {@see SqlSslCertsServiceGapicClient::insertAsync()} .
+     * The async variant is {@see SqlSslCertsServiceClient::insertAsync()} .
      *
      * @example samples/V1/SqlSslCertsServiceClient/insert.php
      *
@@ -254,7 +254,7 @@ final class SqlSslCertsServiceClient
     /**
      * Lists all of the current SSL certificates for the instance.
      *
-     * The async variant is {@see SqlSslCertsServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlSslCertsServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlSslCertsServiceClient/list.php
      *

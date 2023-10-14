@@ -309,7 +309,7 @@ final class CommentServiceClient
      * Add a new comment to the specified Case.
      * The comment object must have the following fields set: body.
      *
-     * The async variant is {@see CommentServiceGapicClient::createCommentAsync()} .
+     * The async variant is {@see CommentServiceClient::createCommentAsync()} .
      *
      * @example samples/V2/CommentServiceClient/create_comment.php
      *
@@ -335,7 +335,7 @@ final class CommentServiceClient
     /**
      * Retrieve all Comments associated with the Case object.
      *
-     * The async variant is {@see CommentServiceGapicClient::listCommentsAsync()} .
+     * The async variant is {@see CommentServiceClient::listCommentsAsync()} .
      *
      * @example samples/V2/CommentServiceClient/list_comments.php
      *

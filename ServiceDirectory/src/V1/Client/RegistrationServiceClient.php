@@ -353,8 +353,7 @@ final class RegistrationServiceClient
     /**
      * Creates an endpoint, and returns the new endpoint.
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::createEndpointAsync()} .
+     * The async variant is {@see RegistrationServiceClient::createEndpointAsync()} .
      *
      * @param CreateEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -378,8 +377,7 @@ final class RegistrationServiceClient
     /**
      * Creates a namespace, and returns the new namespace.
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::createNamespaceAsync()} .
+     * The async variant is {@see RegistrationServiceClient::createNamespaceAsync()} .
      *
      * @param CreateNamespaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -403,8 +401,7 @@ final class RegistrationServiceClient
     /**
      * Creates a service, and returns the new service.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::createServiceAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::createServiceAsync()} .
      *
      * @param CreateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -428,8 +425,7 @@ final class RegistrationServiceClient
     /**
      * Deletes an endpoint.
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::deleteEndpointAsync()} .
+     * The async variant is {@see RegistrationServiceClient::deleteEndpointAsync()} .
      *
      * @param DeleteEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -452,8 +448,7 @@ final class RegistrationServiceClient
      * Deletes a namespace. This also deletes all services and endpoints in
      * the namespace.
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::deleteNamespaceAsync()} .
+     * The async variant is {@see RegistrationServiceClient::deleteNamespaceAsync()} .
      *
      * @param DeleteNamespaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -476,8 +471,7 @@ final class RegistrationServiceClient
      * Deletes a service. This also deletes all endpoints associated with
      * the service.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::deleteServiceAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::deleteServiceAsync()} .
      *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -499,7 +493,7 @@ final class RegistrationServiceClient
     /**
      * Gets an endpoint.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::getEndpointAsync()} .
+     * The async variant is {@see RegistrationServiceClient::getEndpointAsync()} .
      *
      * @param GetEndpointRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -523,8 +517,7 @@ final class RegistrationServiceClient
     /**
      * Gets the IAM Policy for a resource (namespace or service only).
      *
-     * The async variant is {@see RegistrationServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -548,8 +541,7 @@ final class RegistrationServiceClient
     /**
      * Gets a namespace.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::getNamespaceAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::getNamespaceAsync()} .
      *
      * @param GetNamespaceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -573,7 +565,7 @@ final class RegistrationServiceClient
     /**
      * Gets a service.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::getServiceAsync()} .
+     * The async variant is {@see RegistrationServiceClient::getServiceAsync()} .
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -597,8 +589,7 @@ final class RegistrationServiceClient
     /**
      * Lists all endpoints.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::listEndpointsAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::listEndpointsAsync()} .
      *
      * @param ListEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -622,8 +613,7 @@ final class RegistrationServiceClient
     /**
      * Lists all namespaces.
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::listNamespacesAsync()} .
+     * The async variant is {@see RegistrationServiceClient::listNamespacesAsync()} .
      *
      * @param ListNamespacesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -647,8 +637,7 @@ final class RegistrationServiceClient
     /**
      * Lists all services belonging to a namespace.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::listServicesAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::listServicesAsync()} .
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -672,8 +661,7 @@ final class RegistrationServiceClient
     /**
      * Sets the IAM Policy for a resource (namespace or service only).
      *
-     * The async variant is {@see RegistrationServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -697,8 +685,8 @@ final class RegistrationServiceClient
     /**
      * Tests IAM permissions for a resource (namespace or service only).
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see RegistrationServiceClient::testIamPermissionsAsync()}
+     * .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -722,8 +710,7 @@ final class RegistrationServiceClient
     /**
      * Updates an endpoint.
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::updateEndpointAsync()} .
+     * The async variant is {@see RegistrationServiceClient::updateEndpointAsync()} .
      *
      * @param UpdateEndpointRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -747,8 +734,7 @@ final class RegistrationServiceClient
     /**
      * Updates a namespace.
      *
-     * The async variant is
-     * {@see RegistrationServiceGapicClient::updateNamespaceAsync()} .
+     * The async variant is {@see RegistrationServiceClient::updateNamespaceAsync()} .
      *
      * @param UpdateNamespaceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -772,8 +758,7 @@ final class RegistrationServiceClient
     /**
      * Updates a service.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::updateServiceAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::updateServiceAsync()} .
      *
      * @param UpdateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -797,7 +782,7 @@ final class RegistrationServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see RegistrationServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -821,8 +806,7 @@ final class RegistrationServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see RegistrationServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see RegistrationServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

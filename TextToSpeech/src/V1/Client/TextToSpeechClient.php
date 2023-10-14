@@ -215,7 +215,7 @@ final class TextToSpeechClient
     /**
      * Returns a list of Voice supported for synthesis.
      *
-     * The async variant is {@see TextToSpeechGapicClient::listVoicesAsync()} .
+     * The async variant is {@see TextToSpeechClient::listVoicesAsync()} .
      *
      * @param ListVoicesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -240,7 +240,7 @@ final class TextToSpeechClient
      * Synthesizes speech synchronously: receive results after all text input
      * has been processed.
      *
-     * The async variant is {@see TextToSpeechGapicClient::synthesizeSpeechAsync()} .
+     * The async variant is {@see TextToSpeechClient::synthesizeSpeechAsync()} .
      *
      * @param SynthesizeSpeechRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

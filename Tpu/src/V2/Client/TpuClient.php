@@ -340,7 +340,7 @@ final class TpuClient
     /**
      * Creates a node.
      *
-     * The async variant is {@see TpuGapicClient::createNodeAsync()} .
+     * The async variant is {@see TpuClient::createNodeAsync()} .
      *
      * @example samples/V2/TpuClient/create_node.php
      *
@@ -366,7 +366,7 @@ final class TpuClient
     /**
      * Deletes a node.
      *
-     * The async variant is {@see TpuGapicClient::deleteNodeAsync()} .
+     * The async variant is {@see TpuClient::deleteNodeAsync()} .
      *
      * @example samples/V2/TpuClient/delete_node.php
      *
@@ -392,7 +392,7 @@ final class TpuClient
     /**
      * Generates the Cloud TPU service identity for the project.
      *
-     * The async variant is {@see TpuGapicClient::generateServiceIdentityAsync()} .
+     * The async variant is {@see TpuClient::generateServiceIdentityAsync()} .
      *
      * @example samples/V2/TpuClient/generate_service_identity.php
      *
@@ -418,7 +418,7 @@ final class TpuClient
     /**
      * Gets AcceleratorType.
      *
-     * The async variant is {@see TpuGapicClient::getAcceleratorTypeAsync()} .
+     * The async variant is {@see TpuClient::getAcceleratorTypeAsync()} .
      *
      * @example samples/V2/TpuClient/get_accelerator_type.php
      *
@@ -444,7 +444,7 @@ final class TpuClient
     /**
      * Retrieves the guest attributes for the node.
      *
-     * The async variant is {@see TpuGapicClient::getGuestAttributesAsync()} .
+     * The async variant is {@see TpuClient::getGuestAttributesAsync()} .
      *
      * @example samples/V2/TpuClient/get_guest_attributes.php
      *
@@ -470,7 +470,7 @@ final class TpuClient
     /**
      * Gets the details of a node.
      *
-     * The async variant is {@see TpuGapicClient::getNodeAsync()} .
+     * The async variant is {@see TpuClient::getNodeAsync()} .
      *
      * @example samples/V2/TpuClient/get_node.php
      *
@@ -496,7 +496,7 @@ final class TpuClient
     /**
      * Gets a runtime version.
      *
-     * The async variant is {@see TpuGapicClient::getRuntimeVersionAsync()} .
+     * The async variant is {@see TpuClient::getRuntimeVersionAsync()} .
      *
      * @example samples/V2/TpuClient/get_runtime_version.php
      *
@@ -522,7 +522,7 @@ final class TpuClient
     /**
      * Lists accelerator types supported by this API.
      *
-     * The async variant is {@see TpuGapicClient::listAcceleratorTypesAsync()} .
+     * The async variant is {@see TpuClient::listAcceleratorTypesAsync()} .
      *
      * @example samples/V2/TpuClient/list_accelerator_types.php
      *
@@ -548,7 +548,7 @@ final class TpuClient
     /**
      * Lists nodes.
      *
-     * The async variant is {@see TpuGapicClient::listNodesAsync()} .
+     * The async variant is {@see TpuClient::listNodesAsync()} .
      *
      * @example samples/V2/TpuClient/list_nodes.php
      *
@@ -574,7 +574,7 @@ final class TpuClient
     /**
      * Lists runtime versions supported by this API.
      *
-     * The async variant is {@see TpuGapicClient::listRuntimeVersionsAsync()} .
+     * The async variant is {@see TpuClient::listRuntimeVersionsAsync()} .
      *
      * @example samples/V2/TpuClient/list_runtime_versions.php
      *
@@ -600,7 +600,7 @@ final class TpuClient
     /**
      * Starts a node.
      *
-     * The async variant is {@see TpuGapicClient::startNodeAsync()} .
+     * The async variant is {@see TpuClient::startNodeAsync()} .
      *
      * @example samples/V2/TpuClient/start_node.php
      *
@@ -626,7 +626,7 @@ final class TpuClient
     /**
      * Stops a node. This operation is only available with single TPU nodes.
      *
-     * The async variant is {@see TpuGapicClient::stopNodeAsync()} .
+     * The async variant is {@see TpuClient::stopNodeAsync()} .
      *
      * @example samples/V2/TpuClient/stop_node.php
      *
@@ -652,7 +652,7 @@ final class TpuClient
     /**
      * Updates the configurations of a node.
      *
-     * The async variant is {@see TpuGapicClient::updateNodeAsync()} .
+     * The async variant is {@see TpuClient::updateNodeAsync()} .
      *
      * @example samples/V2/TpuClient/update_node.php
      *
@@ -678,7 +678,7 @@ final class TpuClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see TpuGapicClient::getLocationAsync()} .
+     * The async variant is {@see TpuClient::getLocationAsync()} .
      *
      * @example samples/V2/TpuClient/get_location.php
      *
@@ -704,7 +704,7 @@ final class TpuClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see TpuGapicClient::listLocationsAsync()} .
+     * The async variant is {@see TpuClient::listLocationsAsync()} .
      *
      * @example samples/V2/TpuClient/list_locations.php
      *
