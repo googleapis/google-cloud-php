@@ -456,7 +456,7 @@ final class DataMigrationServiceClient
      * Applies draft tree onto a specific destination database.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::applyConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::applyConversionWorkspaceAsync()} .
      *
      * @param ApplyConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -481,7 +481,7 @@ final class DataMigrationServiceClient
      * Marks all the data in the conversion workspace as committed.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::commitConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::commitConversionWorkspaceAsync()} .
      *
      * @param CommitConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -506,7 +506,7 @@ final class DataMigrationServiceClient
      * Creates a draft tree schema for the destination database.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::convertConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::convertConversionWorkspaceAsync()} .
      *
      * @param ConvertConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -531,7 +531,7 @@ final class DataMigrationServiceClient
      * Creates a new connection profile in a given project and location.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::createConnectionProfileAsync()} .
+     * {@see DataMigrationServiceClient::createConnectionProfileAsync()} .
      *
      * @param CreateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -556,7 +556,7 @@ final class DataMigrationServiceClient
      * Creates a new conversion workspace in a given project and location.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::createConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::createConversionWorkspaceAsync()} .
      *
      * @param CreateConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -580,8 +580,8 @@ final class DataMigrationServiceClient
     /**
      * Creates a new mapping rule for a given conversion workspace.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::createMappingRuleAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::createMappingRuleAsync()}
+     * .
      *
      * @param CreateMappingRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -606,7 +606,7 @@ final class DataMigrationServiceClient
      * Creates a new migration job in a given project and location.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::createMigrationJobAsync()} .
+     * {@see DataMigrationServiceClient::createMigrationJobAsync()} .
      *
      * @param CreateMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -631,7 +631,7 @@ final class DataMigrationServiceClient
      * Creates a new private connection in a given project and location.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::createPrivateConnectionAsync()} .
+     * {@see DataMigrationServiceClient::createPrivateConnectionAsync()} .
      *
      * @param CreatePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -658,7 +658,7 @@ final class DataMigrationServiceClient
      * active migration jobs.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::deleteConnectionProfileAsync()} .
+     * {@see DataMigrationServiceClient::deleteConnectionProfileAsync()} .
      *
      * @param DeleteConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -683,7 +683,7 @@ final class DataMigrationServiceClient
      * Deletes a single conversion workspace.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::deleteConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::deleteConversionWorkspaceAsync()} .
      *
      * @param DeleteConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -707,8 +707,8 @@ final class DataMigrationServiceClient
     /**
      * Deletes a single mapping rule.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::deleteMappingRuleAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::deleteMappingRuleAsync()}
+     * .
      *
      * @param DeleteMappingRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -731,7 +731,7 @@ final class DataMigrationServiceClient
      * Deletes a single migration job.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::deleteMigrationJobAsync()} .
+     * {@see DataMigrationServiceClient::deleteMigrationJobAsync()} .
      *
      * @param DeleteMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -756,7 +756,7 @@ final class DataMigrationServiceClient
      * Deletes a single Database Migration Service private connection.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::deletePrivateConnectionAsync()} .
+     * {@see DataMigrationServiceClient::deletePrivateConnectionAsync()} .
      *
      * @param DeletePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -782,8 +782,7 @@ final class DataMigrationServiceClient
      * workspace.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::describeConversionWorkspaceRevisionsAsync()}
-     * .
+     * {@see DataMigrationServiceClient::describeConversionWorkspaceRevisionsAsync()} .
      *
      * @param DescribeConversionWorkspaceRevisionsRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
@@ -813,7 +812,7 @@ final class DataMigrationServiceClient
      * simple data objects describing the structure of the client database.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::describeDatabaseEntitiesAsync()} .
+     * {@see DataMigrationServiceClient::describeDatabaseEntitiesAsync()} .
      *
      * @param DescribeDatabaseEntitiesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -838,8 +837,7 @@ final class DataMigrationServiceClient
      * Fetches a set of static IP addresses that need to be allowlisted by the
      * customer when using the static-IP connectivity method.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::fetchStaticIpsAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::fetchStaticIpsAsync()} .
      *
      * @param FetchStaticIpsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -864,8 +862,8 @@ final class DataMigrationServiceClient
      * Generate a SSH configuration script to configure the reverse SSH
      * connectivity.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::generateSshScriptAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::generateSshScriptAsync()}
+     * .
      *
      * @param GenerateSshScriptRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -891,7 +889,7 @@ final class DataMigrationServiceClient
      * running a TCP Proxy.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::generateTcpProxyScriptAsync()} .
+     * {@see DataMigrationServiceClient::generateTcpProxyScriptAsync()} .
      *
      * @param GenerateTcpProxyScriptRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -916,7 +914,7 @@ final class DataMigrationServiceClient
      * Gets details of a single connection profile.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::getConnectionProfileAsync()} .
+     * {@see DataMigrationServiceClient::getConnectionProfileAsync()} .
      *
      * @param GetConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -941,7 +939,7 @@ final class DataMigrationServiceClient
      * Gets details of a single conversion workspace.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::getConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::getConversionWorkspaceAsync()} .
      *
      * @param GetConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -965,8 +963,7 @@ final class DataMigrationServiceClient
     /**
      * Gets the details of a mapping rule.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::getMappingRuleAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::getMappingRuleAsync()} .
      *
      * @param GetMappingRuleRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -990,8 +987,7 @@ final class DataMigrationServiceClient
     /**
      * Gets details of a single migration job.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::getMigrationJobAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::getMigrationJobAsync()} .
      *
      * @param GetMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1016,7 +1012,7 @@ final class DataMigrationServiceClient
      * Gets details of a single private connection.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::getPrivateConnectionAsync()} .
+     * {@see DataMigrationServiceClient::getPrivateConnectionAsync()} .
      *
      * @param GetPrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1042,7 +1038,7 @@ final class DataMigrationServiceClient
      * Supports various formats of external rules files.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::importMappingRulesAsync()} .
+     * {@see DataMigrationServiceClient::importMappingRulesAsync()} .
      *
      * @param ImportMappingRulesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1068,7 +1064,7 @@ final class DataMigrationServiceClient
      * location.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::listConnectionProfilesAsync()} .
+     * {@see DataMigrationServiceClient::listConnectionProfilesAsync()} .
      *
      * @param ListConnectionProfilesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1093,7 +1089,7 @@ final class DataMigrationServiceClient
      * Lists conversion workspaces in a given project and location.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::listConversionWorkspacesAsync()} .
+     * {@see DataMigrationServiceClient::listConversionWorkspacesAsync()} .
      *
      * @param ListConversionWorkspacesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1117,8 +1113,8 @@ final class DataMigrationServiceClient
     /**
      * Lists the mapping rules for a specific conversion workspace.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::listMappingRulesAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::listMappingRulesAsync()}
+     * .
      *
      * @param ListMappingRulesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1142,8 +1138,8 @@ final class DataMigrationServiceClient
     /**
      * Lists migration jobs in a given project and location.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::listMigrationJobsAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::listMigrationJobsAsync()}
+     * .
      *
      * @param ListMigrationJobsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1168,7 +1164,7 @@ final class DataMigrationServiceClient
      * Retrieves a list of private connections in a given project and location.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::listPrivateConnectionsAsync()} .
+     * {@see DataMigrationServiceClient::listPrivateConnectionsAsync()} .
      *
      * @param ListPrivateConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1194,7 +1190,7 @@ final class DataMigrationServiceClient
      * promoting the destination to be a standalone database.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::promoteMigrationJobAsync()} .
+     * {@see DataMigrationServiceClient::promoteMigrationJobAsync()} .
      *
      * @param PromoteMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1221,7 +1217,7 @@ final class DataMigrationServiceClient
      * scratch.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::restartMigrationJobAsync()} .
+     * {@see DataMigrationServiceClient::restartMigrationJobAsync()} .
      *
      * @param RestartMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1247,7 +1243,7 @@ final class DataMigrationServiceClient
      * stopped during CDC phase).
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::resumeMigrationJobAsync()} .
+     * {@see DataMigrationServiceClient::resumeMigrationJobAsync()} .
      *
      * @param ResumeMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1272,7 +1268,7 @@ final class DataMigrationServiceClient
      * Rolls back a conversion workspace to the last committed snapshot.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::rollbackConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::rollbackConversionWorkspaceAsync()} .
      *
      * @param RollbackConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1302,7 +1298,7 @@ final class DataMigrationServiceClient
      * Instead, they are a way to expose the data plane jobs log.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::searchBackgroundJobsAsync()} .
+     * {@see DataMigrationServiceClient::searchBackgroundJobsAsync()} .
      *
      * @param SearchBackgroundJobsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1328,7 +1324,7 @@ final class DataMigrationServiceClient
      * conversion workspace.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::seedConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::seedConversionWorkspaceAsync()} .
      *
      * @param SeedConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1352,8 +1348,8 @@ final class DataMigrationServiceClient
     /**
      * Start an already created migration job.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::startMigrationJobAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::startMigrationJobAsync()}
+     * .
      *
      * @param StartMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1377,8 +1373,8 @@ final class DataMigrationServiceClient
     /**
      * Stops a running migration job.
      *
-     * The async variant is
-     * {@see DataMigrationServiceGapicClient::stopMigrationJobAsync()} .
+     * The async variant is {@see DataMigrationServiceClient::stopMigrationJobAsync()}
+     * .
      *
      * @param StopMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1403,7 +1399,7 @@ final class DataMigrationServiceClient
      * Update the configuration of a single connection profile.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::updateConnectionProfileAsync()} .
+     * {@see DataMigrationServiceClient::updateConnectionProfileAsync()} .
      *
      * @param UpdateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1428,7 +1424,7 @@ final class DataMigrationServiceClient
      * Updates the parameters of a single conversion workspace.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::updateConversionWorkspaceAsync()} .
+     * {@see DataMigrationServiceClient::updateConversionWorkspaceAsync()} .
      *
      * @param UpdateConversionWorkspaceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -1453,7 +1449,7 @@ final class DataMigrationServiceClient
      * Updates the parameters of a single migration job.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::updateMigrationJobAsync()} .
+     * {@see DataMigrationServiceClient::updateMigrationJobAsync()} .
      *
      * @param UpdateMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1479,7 +1475,7 @@ final class DataMigrationServiceClient
      * and that all configuration and prerequisites are met.
      *
      * The async variant is
-     * {@see DataMigrationServiceGapicClient::verifyMigrationJobAsync()} .
+     * {@see DataMigrationServiceClient::verifyMigrationJobAsync()} .
      *
      * @param VerifyMigrationJobRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

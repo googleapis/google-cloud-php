@@ -337,7 +337,7 @@ final class AwsClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AwsClustersGapicClient::createAwsClusterAsync()} .
+     * The async variant is {@see AwsClustersClient::createAwsClusterAsync()} .
      *
      * @example samples/V1/AwsClustersClient/create_aws_cluster.php
      *
@@ -368,7 +368,7 @@ final class AwsClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AwsClustersGapicClient::createAwsNodePoolAsync()} .
+     * The async variant is {@see AwsClustersClient::createAwsNodePoolAsync()} .
      *
      * @example samples/V1/AwsClustersClient/create_aws_node_pool.php
      *
@@ -402,7 +402,7 @@ final class AwsClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AwsClustersGapicClient::deleteAwsClusterAsync()} .
+     * The async variant is {@see AwsClustersClient::deleteAwsClusterAsync()} .
      *
      * @example samples/V1/AwsClustersClient/delete_aws_cluster.php
      *
@@ -433,7 +433,7 @@ final class AwsClustersClient
      * [Operation][google.longrunning.Operation] resource that can be
      * described to track the status of the operation.
      *
-     * The async variant is {@see AwsClustersGapicClient::deleteAwsNodePoolAsync()} .
+     * The async variant is {@see AwsClustersClient::deleteAwsNodePoolAsync()} .
      *
      * @example samples/V1/AwsClustersClient/delete_aws_node_pool.php
      *
@@ -460,8 +460,7 @@ final class AwsClustersClient
      * Generates a short-lived access token to authenticate to a given
      * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
      *
-     * The async variant is
-     * {@see AwsClustersGapicClient::generateAwsAccessTokenAsync()} .
+     * The async variant is {@see AwsClustersClient::generateAwsAccessTokenAsync()} .
      *
      * @example samples/V1/AwsClustersClient/generate_aws_access_token.php
      *
@@ -488,7 +487,7 @@ final class AwsClustersClient
      * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
      * resource.
      *
-     * The async variant is {@see AwsClustersGapicClient::getAwsClusterAsync()} .
+     * The async variant is {@see AwsClustersClient::getAwsClusterAsync()} .
      *
      * @example samples/V1/AwsClustersClient/get_aws_cluster.php
      *
@@ -515,7 +514,7 @@ final class AwsClustersClient
      * Describes a specific
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
      *
-     * The async variant is {@see AwsClustersGapicClient::getAwsNodePoolAsync()} .
+     * The async variant is {@see AwsClustersClient::getAwsNodePoolAsync()} .
      *
      * @example samples/V1/AwsClustersClient/get_aws_node_pool.php
      *
@@ -542,7 +541,7 @@ final class AwsClustersClient
      * Returns information, such as supported AWS regions and Kubernetes
      * versions, on a given Google Cloud location.
      *
-     * The async variant is {@see AwsClustersGapicClient::getAwsServerConfigAsync()} .
+     * The async variant is {@see AwsClustersClient::getAwsServerConfigAsync()} .
      *
      * @example samples/V1/AwsClustersClient/get_aws_server_config.php
      *
@@ -569,7 +568,7 @@ final class AwsClustersClient
      * Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
      * on a given Google Cloud project and region.
      *
-     * The async variant is {@see AwsClustersGapicClient::listAwsClustersAsync()} .
+     * The async variant is {@see AwsClustersClient::listAwsClustersAsync()} .
      *
      * @example samples/V1/AwsClustersClient/list_aws_clusters.php
      *
@@ -597,7 +596,7 @@ final class AwsClustersClient
      * resources on a given
      * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *
-     * The async variant is {@see AwsClustersGapicClient::listAwsNodePoolsAsync()} .
+     * The async variant is {@see AwsClustersClient::listAwsNodePoolsAsync()} .
      *
      * @example samples/V1/AwsClustersClient/list_aws_node_pools.php
      *
@@ -623,7 +622,7 @@ final class AwsClustersClient
     /**
      * Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
      *
-     * The async variant is {@see AwsClustersGapicClient::updateAwsClusterAsync()} .
+     * The async variant is {@see AwsClustersClient::updateAwsClusterAsync()} .
      *
      * @example samples/V1/AwsClustersClient/update_aws_cluster.php
      *
@@ -649,7 +648,7 @@ final class AwsClustersClient
     /**
      * Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
      *
-     * The async variant is {@see AwsClustersGapicClient::updateAwsNodePoolAsync()} .
+     * The async variant is {@see AwsClustersClient::updateAwsNodePoolAsync()} .
      *
      * @example samples/V1/AwsClustersClient/update_aws_node_pool.php
      *

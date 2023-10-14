@@ -411,7 +411,7 @@ final class DocumentProcessorServiceClient
      * to Cloud Storage as JSON in the [Document] format.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::batchProcessDocumentsAsync()} .
+     * {@see DocumentProcessorServiceClient::batchProcessDocumentsAsync()} .
      *
      * @param BatchProcessRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -438,7 +438,7 @@ final class DocumentProcessorServiceClient
      * processor will be at `ENABLED` state by default after its creation.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::createProcessorAsync()} .
+     * {@see DocumentProcessorServiceClient::createProcessorAsync()} .
      *
      * @param CreateProcessorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -464,7 +464,7 @@ final class DocumentProcessorServiceClient
      * enabled and then deletes all artifacts associated with this processor.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::deleteProcessorAsync()} .
+     * {@see DocumentProcessorServiceClient::deleteProcessorAsync()} .
      *
      * @param DeleteProcessorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -490,7 +490,7 @@ final class DocumentProcessorServiceClient
      * will be deleted.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::deleteProcessorVersionAsync()} .
+     * {@see DocumentProcessorServiceClient::deleteProcessorVersionAsync()} .
      *
      * @param DeleteProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -515,7 +515,7 @@ final class DocumentProcessorServiceClient
      * Deploys the processor version.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::deployProcessorVersionAsync()} .
+     * {@see DocumentProcessorServiceClient::deployProcessorVersionAsync()} .
      *
      * @param DeployProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -540,7 +540,7 @@ final class DocumentProcessorServiceClient
      * Disables a processor
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::disableProcessorAsync()} .
+     * {@see DocumentProcessorServiceClient::disableProcessorAsync()} .
      *
      * @param DisableProcessorRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -565,7 +565,7 @@ final class DocumentProcessorServiceClient
      * Enables a processor
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::enableProcessorAsync()} .
+     * {@see DocumentProcessorServiceClient::enableProcessorAsync()} .
      *
      * @param EnableProcessorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -591,7 +591,7 @@ final class DocumentProcessorServiceClient
      * Evaluation.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::evaluateProcessorVersionAsync()} .
+     * {@see DocumentProcessorServiceClient::evaluateProcessorVersionAsync()} .
      *
      * @param EvaluateProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -618,7 +618,7 @@ final class DocumentProcessorServiceClient
      * here, because it isn't paginated.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::fetchProcessorTypesAsync()} .
+     * {@see DocumentProcessorServiceClient::fetchProcessorTypesAsync()} .
      *
      * @param FetchProcessorTypesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -642,8 +642,8 @@ final class DocumentProcessorServiceClient
     /**
      * Retrieves a specific evaluation.
      *
-     * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::getEvaluationAsync()} .
+     * The async variant is {@see DocumentProcessorServiceClient::getEvaluationAsync()}
+     * .
      *
      * @param GetEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -667,8 +667,8 @@ final class DocumentProcessorServiceClient
     /**
      * Gets a processor detail.
      *
-     * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::getProcessorAsync()} .
+     * The async variant is {@see DocumentProcessorServiceClient::getProcessorAsync()}
+     * .
      *
      * @param GetProcessorRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -693,7 +693,7 @@ final class DocumentProcessorServiceClient
      * Gets a processor type detail.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::getProcessorTypeAsync()} .
+     * {@see DocumentProcessorServiceClient::getProcessorTypeAsync()} .
      *
      * @param GetProcessorTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -718,7 +718,7 @@ final class DocumentProcessorServiceClient
      * Gets a processor version detail.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::getProcessorVersionAsync()} .
+     * {@see DocumentProcessorServiceClient::getProcessorVersionAsync()} .
      *
      * @param GetProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -743,7 +743,7 @@ final class DocumentProcessorServiceClient
      * Retrieves a set of evaluations for a given processor version.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::listEvaluationsAsync()} .
+     * {@see DocumentProcessorServiceClient::listEvaluationsAsync()} .
      *
      * @param ListEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -768,7 +768,7 @@ final class DocumentProcessorServiceClient
      * Lists the processor types that exist.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::listProcessorTypesAsync()} .
+     * {@see DocumentProcessorServiceClient::listProcessorTypesAsync()} .
      *
      * @param ListProcessorTypesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -793,7 +793,7 @@ final class DocumentProcessorServiceClient
      * Lists all versions of a processor.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::listProcessorVersionsAsync()} .
+     * {@see DocumentProcessorServiceClient::listProcessorVersionsAsync()} .
      *
      * @param ListProcessorVersionsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -818,7 +818,7 @@ final class DocumentProcessorServiceClient
      * Lists all processors which belong to this project.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::listProcessorsAsync()} .
+     * {@see DocumentProcessorServiceClient::listProcessorsAsync()} .
      *
      * @param ListProcessorsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -843,7 +843,7 @@ final class DocumentProcessorServiceClient
      * Processes a single document.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::processDocumentAsync()} .
+     * {@see DocumentProcessorServiceClient::processDocumentAsync()} .
      *
      * @param ProcessRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -869,7 +869,7 @@ final class DocumentProcessorServiceClient
      * the specified processor.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::reviewDocumentAsync()} .
+     * {@see DocumentProcessorServiceClient::reviewDocumentAsync()} .
      *
      * @param ReviewDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -898,7 +898,7 @@ final class DocumentProcessorServiceClient
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::setDefaultProcessorVersionAsync()} .
+     * {@see DocumentProcessorServiceClient::setDefaultProcessorVersionAsync()} .
      *
      * @param SetDefaultProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -925,7 +925,7 @@ final class DocumentProcessorServiceClient
      * [TrainProcessorVersionMetadata][google.cloud.documentai.v1.TrainProcessorVersionMetadata].
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::trainProcessorVersionAsync()} .
+     * {@see DocumentProcessorServiceClient::trainProcessorVersionAsync()} .
      *
      * @param TrainProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -950,7 +950,7 @@ final class DocumentProcessorServiceClient
      * Undeploys the processor version.
      *
      * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::undeployProcessorVersionAsync()} .
+     * {@see DocumentProcessorServiceClient::undeployProcessorVersionAsync()} .
      *
      * @param UndeployProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -974,8 +974,7 @@ final class DocumentProcessorServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see DocumentProcessorServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -999,8 +998,8 @@ final class DocumentProcessorServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see DocumentProcessorServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DocumentProcessorServiceClient::listLocationsAsync()}
+     * .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

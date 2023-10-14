@@ -298,8 +298,7 @@ final class DomainsClient
      * Updates a `Registration`'s contact settings. Some changes require
      * confirmation by the domain's registrant contact .
      *
-     * The async variant is {@see DomainsGapicClient::configureContactSettingsAsync()}
-     * .
+     * The async variant is {@see DomainsClient::configureContactSettingsAsync()} .
      *
      * @example samples/V1/DomainsClient/configure_contact_settings.php
      *
@@ -325,7 +324,7 @@ final class DomainsClient
     /**
      * Updates a `Registration`'s DNS settings.
      *
-     * The async variant is {@see DomainsGapicClient::configureDnsSettingsAsync()} .
+     * The async variant is {@see DomainsClient::configureDnsSettingsAsync()} .
      *
      * @example samples/V1/DomainsClient/configure_dns_settings.php
      *
@@ -351,8 +350,7 @@ final class DomainsClient
     /**
      * Updates a `Registration`'s management settings.
      *
-     * The async variant is
-     * {@see DomainsGapicClient::configureManagementSettingsAsync()} .
+     * The async variant is {@see DomainsClient::configureManagementSettingsAsync()} .
      *
      * @example samples/V1/DomainsClient/configure_management_settings.php
      *
@@ -396,7 +394,7 @@ final class DomainsClient
      * domain does not renew automatically unless the new owner sets up billing in
      * Google Domains.
      *
-     * The async variant is {@see DomainsGapicClient::deleteRegistrationAsync()} .
+     * The async variant is {@see DomainsClient::deleteRegistrationAsync()} .
      *
      * @example samples/V1/DomainsClient/delete_registration.php
      *
@@ -430,7 +428,7 @@ final class DomainsClient
      * not renew automatically unless the new owner sets up billing in Google
      * Domains.
      *
-     * The async variant is {@see DomainsGapicClient::exportRegistrationAsync()} .
+     * The async variant is {@see DomainsClient::exportRegistrationAsync()} .
      *
      * @example samples/V1/DomainsClient/export_registration.php
      *
@@ -456,7 +454,7 @@ final class DomainsClient
     /**
      * Gets the details of a `Registration` resource.
      *
-     * The async variant is {@see DomainsGapicClient::getRegistrationAsync()} .
+     * The async variant is {@see DomainsClient::getRegistrationAsync()} .
      *
      * @example samples/V1/DomainsClient/get_registration.php
      *
@@ -482,7 +480,7 @@ final class DomainsClient
     /**
      * Lists the `Registration` resources in a project.
      *
-     * The async variant is {@see DomainsGapicClient::listRegistrationsAsync()} .
+     * The async variant is {@see DomainsClient::listRegistrationsAsync()} .
      *
      * @example samples/V1/DomainsClient/list_registrations.php
      *
@@ -520,7 +518,7 @@ final class DomainsClient
      * domain was not registered successfully, and you can safely delete the
      * resource and retry registration.
      *
-     * The async variant is {@see DomainsGapicClient::registerDomainAsync()} .
+     * The async variant is {@see DomainsClient::registerDomainAsync()} .
      *
      * @example samples/V1/DomainsClient/register_domain.php
      *
@@ -549,7 +547,7 @@ final class DomainsClient
      * You can call this method only after 60 days have elapsed since the initial
      * domain registration.
      *
-     * The async variant is {@see DomainsGapicClient::resetAuthorizationCodeAsync()} .
+     * The async variant is {@see DomainsClient::resetAuthorizationCodeAsync()} .
      *
      * @example samples/V1/DomainsClient/reset_authorization_code.php
      *
@@ -579,8 +577,7 @@ final class DomainsClient
      * You can call this method only after 60 days have elapsed since the initial
      * domain registration.
      *
-     * The async variant is {@see DomainsGapicClient::retrieveAuthorizationCodeAsync()}
-     * .
+     * The async variant is {@see DomainsClient::retrieveAuthorizationCodeAsync()} .
      *
      * @example samples/V1/DomainsClient/retrieve_authorization_code.php
      *
@@ -607,8 +604,7 @@ final class DomainsClient
      * Gets parameters needed to register a new domain name, including price and
      * up-to-date availability. Use the returned values to call `RegisterDomain`.
      *
-     * The async variant is
-     * {@see DomainsGapicClient::retrieveRegisterParametersAsync()} .
+     * The async variant is {@see DomainsClient::retrieveRegisterParametersAsync()} .
      *
      * @example samples/V1/DomainsClient/retrieve_register_parameters.php
      *
@@ -639,8 +635,7 @@ final class DomainsClient
      *
      * Use the returned values to call `TransferDomain`.
      *
-     * The async variant is
-     * {@see DomainsGapicClient::retrieveTransferParametersAsync()} .
+     * The async variant is {@see DomainsClient::retrieveTransferParametersAsync()} .
      *
      * @example samples/V1/DomainsClient/retrieve_transfer_parameters.php
      *
@@ -670,7 +665,7 @@ final class DomainsClient
      * `RetrieveRegisterParameters` on a domain before registering to confirm
      * availability.
      *
-     * The async variant is {@see DomainsGapicClient::searchDomainsAsync()} .
+     * The async variant is {@see DomainsClient::searchDomainsAsync()} .
      *
      * @example samples/V1/DomainsClient/search_domains.php
      *
@@ -716,7 +711,7 @@ final class DomainsClient
      * end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete
      * the resource and retry the transfer.
      *
-     * The async variant is {@see DomainsGapicClient::transferDomainAsync()} .
+     * The async variant is {@see DomainsClient::transferDomainAsync()} .
      *
      * @example samples/V1/DomainsClient/transfer_domain.php
      *
@@ -747,7 +742,7 @@ final class DomainsClient
      * * To update DNS configuration, see `ConfigureDnsSettings`
      * * To update contact information, see `ConfigureContactSettings`
      *
-     * The async variant is {@see DomainsGapicClient::updateRegistrationAsync()} .
+     * The async variant is {@see DomainsClient::updateRegistrationAsync()} .
      *
      * @example samples/V1/DomainsClient/update_registration.php
      *

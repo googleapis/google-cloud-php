@@ -393,8 +393,7 @@ final class UserEventServiceClient
      * This method is used only by the Discovery Engine API JavaScript pixel and
      * Google Tag Manager. Users should not call this method directly.
      *
-     * The async variant is {@see UserEventServiceGapicClient::collectUserEventAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::collectUserEventAsync()} .
      *
      * @example samples/V1beta/UserEventServiceClient/collect_user_event.php
      *
@@ -428,8 +427,7 @@ final class UserEventServiceClient
      * possible for a subset of the items to be successfully inserted.
      * Operation.metadata is of type ImportMetadata.
      *
-     * The async variant is {@see UserEventServiceGapicClient::importUserEventsAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::importUserEventsAsync()} .
      *
      * @example samples/V1beta/UserEventServiceClient/import_user_events.php
      *
@@ -457,7 +455,7 @@ final class UserEventServiceClient
     /**
      * Writes a single user event.
      *
-     * The async variant is {@see UserEventServiceGapicClient::writeUserEventAsync()} .
+     * The async variant is {@see UserEventServiceClient::writeUserEventAsync()} .
      *
      * @example samples/V1beta/UserEventServiceClient/write_user_event.php
      *
