@@ -1,0 +1,113 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.iot.v1",
+    "libraryPackage": "Google\\Cloud\\Iot\\V1",
+    "services": {
+        "DeviceManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeviceManagerGapicClient",
+                    "rpcs": {
+                        "BindDeviceToGateway": {
+                            "methods": [
+                                "bindDeviceToGateway"
+                            ]
+                        },
+                        "CreateDevice": {
+                            "methods": [
+                                "createDevice"
+                            ]
+                        },
+                        "CreateDeviceRegistry": {
+                            "methods": [
+                                "createDeviceRegistry"
+                            ]
+                        },
+                        "DeleteDevice": {
+                            "methods": [
+                                "deleteDevice"
+                            ]
+                        },
+                        "DeleteDeviceRegistry": {
+                            "methods": [
+                                "deleteDeviceRegistry"
+                            ]
+                        },
+                        "GetDevice": {
+                            "methods": [
+                                "getDevice"
+                            ]
+                        },
+                        "GetDeviceRegistry": {
+                            "methods": [
+                                "getDeviceRegistry"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "ListDeviceConfigVersions": {
+                            "methods": [
+                                "listDeviceConfigVersions"
+                            ]
+                        },
+                        "ListDeviceRegistries": {
+                            "methods": [
+                                "listDeviceRegistries"
+                            ]
+                        },
+                        "ListDeviceStates": {
+                            "methods": [
+                                "listDeviceStates"
+                            ]
+                        },
+                        "ListDevices": {
+                            "methods": [
+                                "listDevices"
+                            ]
+                        },
+                        "ModifyCloudToDeviceConfig": {
+                            "methods": [
+                                "modifyCloudToDeviceConfig"
+                            ]
+                        },
+                        "SendCommandToDevice": {
+                            "methods": [
+                                "sendCommandToDevice"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UnbindDeviceFromGateway": {
+                            "methods": [
+                                "unbindDeviceFromGateway"
+                            ]
+                        },
+                        "UpdateDevice": {
+                            "methods": [
+                                "updateDevice"
+                            ]
+                        },
+                        "UpdateDeviceRegistry": {
+                            "methods": [
+                                "updateDeviceRegistry"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
