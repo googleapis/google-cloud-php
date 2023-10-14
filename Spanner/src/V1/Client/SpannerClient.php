@@ -276,7 +276,7 @@ final class SpannerClient
      * This API can be used to initialize a session cache on the clients.
      * See https://goo.gl/TgSFN2 for best practices on session cache management.
      *
-     * The async variant is {@see SpannerGapicClient::batchCreateSessionsAsync()} .
+     * The async variant is {@see SpannerClient::batchCreateSessionsAsync()} .
      *
      * @param BatchCreateSessionsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -337,7 +337,7 @@ final class SpannerClient
      * [Commit][google.spanner.v1.Spanner.Commit] can begin a new transaction as a
      * side-effect.
      *
-     * The async variant is {@see SpannerGapicClient::beginTransactionAsync()} .
+     * The async variant is {@see SpannerClient::beginTransactionAsync()} .
      *
      * @param BeginTransactionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -374,7 +374,7 @@ final class SpannerClient
      * we recommend that you perform another read from the database to see the
      * state of things as they are now.
      *
-     * The async variant is {@see SpannerGapicClient::commitAsync()} .
+     * The async variant is {@see SpannerClient::commitAsync()} .
      *
      * @param CommitRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -416,7 +416,7 @@ final class SpannerClient
      * Idle sessions can be kept alive by sending a trivial SQL query
      * periodically, e.g., `"SELECT 1"`.
      *
-     * The async variant is {@see SpannerGapicClient::createSessionAsync()} .
+     * The async variant is {@see SpannerClient::createSessionAsync()} .
      *
      * @param CreateSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -442,7 +442,7 @@ final class SpannerClient
      * asynchronously trigger cancellation of any operations that are running with
      * this session.
      *
-     * The async variant is {@see SpannerGapicClient::deleteSessionAsync()} .
+     * The async variant is {@see SpannerClient::deleteSessionAsync()} .
      *
      * @param DeleteSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -474,7 +474,7 @@ final class SpannerClient
      * Execution stops after the first failed statement; the remaining statements
      * are not executed.
      *
-     * The async variant is {@see SpannerGapicClient::executeBatchDmlAsync()} .
+     * The async variant is {@see SpannerClient::executeBatchDmlAsync()} .
      *
      * @param ExecuteBatchDmlRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -508,7 +508,7 @@ final class SpannerClient
      * Larger result sets can be fetched in streaming fashion by calling
      * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] instead.
      *
-     * The async variant is {@see SpannerGapicClient::executeSqlAsync()} .
+     * The async variant is {@see SpannerClient::executeSqlAsync()} .
      *
      * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -558,7 +558,7 @@ final class SpannerClient
      * This is mainly useful for determining whether a session is still
      * alive.
      *
-     * The async variant is {@see SpannerGapicClient::getSessionAsync()} .
+     * The async variant is {@see SpannerClient::getSessionAsync()} .
      *
      * @param GetSessionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -582,7 +582,7 @@ final class SpannerClient
     /**
      * Lists all sessions in a given database.
      *
-     * The async variant is {@see SpannerGapicClient::listSessionsAsync()} .
+     * The async variant is {@see SpannerClient::listSessionsAsync()} .
      *
      * @param ListSessionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -616,7 +616,7 @@ final class SpannerClient
      * old.  When any of these happen, it is not possible to resume the query, and
      * the whole operation must be restarted from the beginning.
      *
-     * The async variant is {@see SpannerGapicClient::partitionQueryAsync()} .
+     * The async variant is {@see SpannerClient::partitionQueryAsync()} .
      *
      * @param PartitionQueryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -652,7 +652,7 @@ final class SpannerClient
      * old.  When any of these happen, it is not possible to resume the read, and
      * the whole operation must be restarted from the beginning.
      *
-     * The async variant is {@see SpannerGapicClient::partitionReadAsync()} .
+     * The async variant is {@see SpannerClient::partitionReadAsync()} .
      *
      * @param PartitionReadRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -688,7 +688,7 @@ final class SpannerClient
      * Larger result sets can be yielded in streaming fashion by calling
      * [StreamingRead][google.spanner.v1.Spanner.StreamingRead] instead.
      *
-     * The async variant is {@see SpannerGapicClient::readAsync()} .
+     * The async variant is {@see SpannerClient::readAsync()} .
      *
      * @param ReadRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -719,7 +719,7 @@ final class SpannerClient
      * transaction was already aborted, or the transaction is not
      * found. `Rollback` never returns `ABORTED`.
      *
-     * The async variant is {@see SpannerGapicClient::rollbackAsync()} .
+     * The async variant is {@see SpannerClient::rollbackAsync()} .
      *
      * @param RollbackRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
