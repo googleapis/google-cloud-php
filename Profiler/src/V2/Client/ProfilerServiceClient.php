@@ -239,8 +239,7 @@ final class ProfilerServiceClient
      * The client provides the profile to create along with the profile bytes, the
      * server records it.
      *
-     * The async variant is
-     * {@see ProfilerServiceGapicClient::createOfflineProfileAsync()} .
+     * The async variant is {@see ProfilerServiceClient::createOfflineProfileAsync()} .
      *
      * @param CreateOfflineProfileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -277,7 +276,7 @@ final class ProfilerServiceClient
      * "google.rpc.retryinfo-bin".
      *
      *
-     * The async variant is {@see ProfilerServiceGapicClient::createProfileAsync()} .
+     * The async variant is {@see ProfilerServiceClient::createProfileAsync()} .
      *
      * @param CreateProfileRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -304,7 +303,7 @@ final class ProfilerServiceClient
      * offline mode is currently not supported: the profile content must be
      * provided at the time of the profile creation.
      *
-     * The async variant is {@see ProfilerServiceGapicClient::updateProfileAsync()} .
+     * The async variant is {@see ProfilerServiceClient::updateProfileAsync()} .
      *
      * @param UpdateProfileRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

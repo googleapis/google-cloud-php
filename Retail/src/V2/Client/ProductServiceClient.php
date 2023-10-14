@@ -323,8 +323,7 @@ final class ProductServiceClient
      * updates will not be marked as [done][google.longrunning.Operation.done]
      * until being obsolete.
      *
-     * The async variant is
-     * {@see ProductServiceGapicClient::addFulfillmentPlacesAsync()} .
+     * The async variant is {@see ProductServiceClient::addFulfillmentPlacesAsync()} .
      *
      * @param AddFulfillmentPlacesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -375,8 +374,7 @@ final class ProductServiceClient
      * updates will not be marked as [done][google.longrunning.Operation.done]
      * until being obsolete.
      *
-     * The async variant is
-     * {@see ProductServiceGapicClient::addLocalInventoriesAsync()} .
+     * The async variant is {@see ProductServiceClient::addLocalInventoriesAsync()} .
      *
      * @param AddLocalInventoriesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -400,7 +398,7 @@ final class ProductServiceClient
     /**
      * Creates a [Product][google.cloud.retail.v2.Product].
      *
-     * The async variant is {@see ProductServiceGapicClient::createProductAsync()} .
+     * The async variant is {@see ProductServiceClient::createProductAsync()} .
      *
      * @param CreateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -424,7 +422,7 @@ final class ProductServiceClient
     /**
      * Deletes a [Product][google.cloud.retail.v2.Product].
      *
-     * The async variant is {@see ProductServiceGapicClient::deleteProductAsync()} .
+     * The async variant is {@see ProductServiceClient::deleteProductAsync()} .
      *
      * @param DeleteProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -446,7 +444,7 @@ final class ProductServiceClient
     /**
      * Gets a [Product][google.cloud.retail.v2.Product].
      *
-     * The async variant is {@see ProductServiceGapicClient::getProductAsync()} .
+     * The async variant is {@see ProductServiceClient::getProductAsync()} .
      *
      * @param GetProductRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -476,7 +474,7 @@ final class ProductServiceClient
      * Note that it is possible for a subset of the
      * [Product][google.cloud.retail.v2.Product]s to be successfully updated.
      *
-     * The async variant is {@see ProductServiceGapicClient::importProductsAsync()} .
+     * The async variant is {@see ProductServiceClient::importProductsAsync()} .
      *
      * @param ImportProductsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -500,7 +498,7 @@ final class ProductServiceClient
     /**
      * Gets a list of [Product][google.cloud.retail.v2.Product]s.
      *
-     * The async variant is {@see ProductServiceGapicClient::listProductsAsync()} .
+     * The async variant is {@see ProductServiceClient::listProductsAsync()} .
      *
      * @param ListProductsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -552,8 +550,8 @@ final class ProductServiceClient
      * updates will not be marked as [done][google.longrunning.Operation.done]
      * until being obsolete.
      *
-     * The async variant is
-     * {@see ProductServiceGapicClient::removeFulfillmentPlacesAsync()} .
+     * The async variant is {@see ProductServiceClient::removeFulfillmentPlacesAsync()}
+     * .
      *
      * @param RemoveFulfillmentPlacesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -602,8 +600,8 @@ final class ProductServiceClient
      * updates will not be marked as [done][google.longrunning.Operation.done]
      * until being obsolete.
      *
-     * The async variant is
-     * {@see ProductServiceGapicClient::removeLocalInventoriesAsync()} .
+     * The async variant is {@see ProductServiceClient::removeLocalInventoriesAsync()}
+     * .
      *
      * @param RemoveLocalInventoriesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -675,7 +673,7 @@ final class ProductServiceClient
      * updates are not marked as [done][google.longrunning.Operation.done] until
      * they are obsolete.
      *
-     * The async variant is {@see ProductServiceGapicClient::setInventoryAsync()} .
+     * The async variant is {@see ProductServiceClient::setInventoryAsync()} .
      *
      * @param SetInventoryRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -699,7 +697,7 @@ final class ProductServiceClient
     /**
      * Updates a [Product][google.cloud.retail.v2.Product].
      *
-     * The async variant is {@see ProductServiceGapicClient::updateProductAsync()} .
+     * The async variant is {@see ProductServiceClient::updateProductAsync()} .
      *
      * @param UpdateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

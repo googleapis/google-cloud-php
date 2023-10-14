@@ -241,7 +241,7 @@ final class TasksClient
     /**
      * Gets information about a Task.
      *
-     * The async variant is {@see TasksGapicClient::getTaskAsync()} .
+     * The async variant is {@see TasksClient::getTaskAsync()} .
      *
      * @example samples/V2/TasksClient/get_task.php
      *
@@ -267,7 +267,7 @@ final class TasksClient
     /**
      * Lists Tasks from an Execution of a Job.
      *
-     * The async variant is {@see TasksGapicClient::listTasksAsync()} .
+     * The async variant is {@see TasksClient::listTasksAsync()} .
      *
      * @example samples/V2/TasksClient/list_tasks.php
      *

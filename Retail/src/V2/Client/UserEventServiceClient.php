@@ -285,8 +285,7 @@ final class UserEventServiceClient
      * This method is used only by the Retail API JavaScript pixel and Google Tag
      * Manager. Users should not call this method directly.
      *
-     * The async variant is {@see UserEventServiceGapicClient::collectUserEventAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::collectUserEventAsync()} .
      *
      * @param CollectUserEventRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -316,8 +315,7 @@ final class UserEventServiceClient
      * possible for a subset of the items to be successfully inserted.
      * `Operation.metadata` is of type `ImportMetadata`.
      *
-     * The async variant is {@see UserEventServiceGapicClient::importUserEventsAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::importUserEventsAsync()} .
      *
      * @param ImportUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -344,8 +342,7 @@ final class UserEventServiceClient
      * could take hours or days to complete. To test a filter, use the list
      * command first.
      *
-     * The async variant is {@see UserEventServiceGapicClient::purgeUserEventsAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::purgeUserEventsAsync()} .
      *
      * @param PurgeUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -376,8 +373,7 @@ final class UserEventServiceClient
      * method to correct events joined with the wrong product catalog. A rejoin
      * operation can take hours or days to complete.
      *
-     * The async variant is {@see UserEventServiceGapicClient::rejoinUserEventsAsync()}
-     * .
+     * The async variant is {@see UserEventServiceClient::rejoinUserEventsAsync()} .
      *
      * @param RejoinUserEventsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -401,7 +397,7 @@ final class UserEventServiceClient
     /**
      * Writes a single user event.
      *
-     * The async variant is {@see UserEventServiceGapicClient::writeUserEventAsync()} .
+     * The async variant is {@see UserEventServiceClient::writeUserEventAsync()} .
      *
      * @param WriteUserEventRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

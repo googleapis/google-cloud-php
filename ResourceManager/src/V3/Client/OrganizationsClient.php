@@ -226,7 +226,7 @@ final class OrganizationsClient
      * Authorization requires the IAM permission
      * `resourcemanager.organizations.getIamPolicy` on the specified organization.
      *
-     * The async variant is {@see OrganizationsGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see OrganizationsClient::getIamPolicyAsync()} .
      *
      * @example samples/V3/OrganizationsClient/get_iam_policy.php
      *
@@ -252,7 +252,7 @@ final class OrganizationsClient
     /**
      * Fetches an organization resource identified by the specified resource name.
      *
-     * The async variant is {@see OrganizationsGapicClient::getOrganizationAsync()} .
+     * The async variant is {@see OrganizationsClient::getOrganizationAsync()} .
      *
      * @example samples/V3/OrganizationsClient/get_organization.php
      *
@@ -284,8 +284,7 @@ final class OrganizationsClient
      * Search will only return organizations on which the user has the permission
      * `resourcemanager.organizations.get`
      *
-     * The async variant is {@see OrganizationsGapicClient::searchOrganizationsAsync()}
-     * .
+     * The async variant is {@see OrganizationsClient::searchOrganizationsAsync()} .
      *
      * @example samples/V3/OrganizationsClient/search_organizations.php
      *
@@ -316,7 +315,7 @@ final class OrganizationsClient
      * Authorization requires the IAM permission
      * `resourcemanager.organizations.setIamPolicy` on the specified organization.
      *
-     * The async variant is {@see OrganizationsGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see OrganizationsClient::setIamPolicyAsync()} .
      *
      * @example samples/V3/OrganizationsClient/set_iam_policy.php
      *
@@ -346,8 +345,7 @@ final class OrganizationsClient
      *
      * There are no permissions required for making this API call.
      *
-     * The async variant is {@see OrganizationsGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see OrganizationsClient::testIamPermissionsAsync()} .
      *
      * @example samples/V3/OrganizationsClient/test_iam_permissions.php
      *

@@ -341,7 +341,7 @@ final class RecaptchaEnterpriseServiceClient
      * on whether the event turned out to be authentic or fraudulent.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::annotateAssessmentAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::annotateAssessmentAsync()} .
      *
      * @param AnnotateAssessmentRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -366,7 +366,7 @@ final class RecaptchaEnterpriseServiceClient
      * Creates an Assessment of the likelihood an event is legitimate.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::createAssessmentAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::createAssessmentAsync()} .
      *
      * @param CreateAssessmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -393,7 +393,7 @@ final class RecaptchaEnterpriseServiceClient
      * A project may have a maximum of 1000 policies.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::createFirewallPolicyAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::createFirewallPolicyAsync()} .
      *
      * @param CreateFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -417,8 +417,7 @@ final class RecaptchaEnterpriseServiceClient
     /**
      * Creates a new reCAPTCHA Enterprise key.
      *
-     * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::createKeyAsync()} .
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::createKeyAsync()} .
      *
      * @param CreateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -443,7 +442,7 @@ final class RecaptchaEnterpriseServiceClient
      * Deletes the specified firewall policy.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::deleteFirewallPolicyAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::deleteFirewallPolicyAsync()} .
      *
      * @param DeleteFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -465,8 +464,7 @@ final class RecaptchaEnterpriseServiceClient
     /**
      * Deletes the specified key.
      *
-     * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::deleteKeyAsync()} .
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::deleteKeyAsync()} .
      *
      * @param DeleteKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -489,7 +487,7 @@ final class RecaptchaEnterpriseServiceClient
      * Returns the specified firewall policy.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::getFirewallPolicyAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::getFirewallPolicyAsync()} .
      *
      * @param GetFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -513,8 +511,7 @@ final class RecaptchaEnterpriseServiceClient
     /**
      * Returns the specified key.
      *
-     * The async variant is {@see RecaptchaEnterpriseServiceGapicClient::getKeyAsync()}
-     * .
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::getKeyAsync()} .
      *
      * @param GetKeyRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -539,8 +536,8 @@ final class RecaptchaEnterpriseServiceClient
      * Get some aggregated metrics for a Key. This data can be used to build
      * dashboards.
      *
-     * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::getMetricsAsync()} .
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::getMetricsAsync()}
+     * .
      *
      * @param GetMetricsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -565,7 +562,7 @@ final class RecaptchaEnterpriseServiceClient
      * Returns the list of all firewall policies that belong to a project.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::listFirewallPoliciesAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::listFirewallPoliciesAsync()} .
      *
      * @param ListFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -589,8 +586,7 @@ final class RecaptchaEnterpriseServiceClient
     /**
      * Returns the list of all keys that belong to a project.
      *
-     * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::listKeysAsync()} .
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::listKeysAsync()} .
      *
      * @param ListKeysRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -615,7 +611,7 @@ final class RecaptchaEnterpriseServiceClient
      * Get memberships in a group of related accounts.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::listRelatedAccountGroupMembershipsAsync()}
+     * {@see RecaptchaEnterpriseServiceClient::listRelatedAccountGroupMembershipsAsync()}
      * .
      *
      * @param ListRelatedAccountGroupMembershipsRequest $request     A request to house fields associated with the call.
@@ -641,7 +637,7 @@ final class RecaptchaEnterpriseServiceClient
      * List groups of related accounts.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::listRelatedAccountGroupsAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::listRelatedAccountGroupsAsync()} .
      *
      * @param ListRelatedAccountGroupsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -670,8 +666,8 @@ final class RecaptchaEnterpriseServiceClient
      * your user must have the reCAPTCHA Enterprise Admin IAM role in the
      * destination project.
      *
-     * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::migrateKeyAsync()} .
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::migrateKeyAsync()}
+     * .
      *
      * @param MigrateKeyRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -698,7 +694,7 @@ final class RecaptchaEnterpriseServiceClient
      * legacy reCAPTCHA.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::retrieveLegacySecretKeyAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::retrieveLegacySecretKeyAsync()} .
      *
      * @param RetrieveLegacySecretKeyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -723,7 +719,7 @@ final class RecaptchaEnterpriseServiceClient
      * Search group memberships related to a given account.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::searchRelatedAccountGroupMembershipsAsync()}
+     * {@see RecaptchaEnterpriseServiceClient::searchRelatedAccountGroupMembershipsAsync()}
      * .
      *
      * @param SearchRelatedAccountGroupMembershipsRequest $request     A request to house fields associated with the call.
@@ -749,7 +745,7 @@ final class RecaptchaEnterpriseServiceClient
      * Updates the specified firewall policy.
      *
      * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::updateFirewallPolicyAsync()} .
+     * {@see RecaptchaEnterpriseServiceClient::updateFirewallPolicyAsync()} .
      *
      * @param UpdateFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -773,8 +769,7 @@ final class RecaptchaEnterpriseServiceClient
     /**
      * Updates the specified key.
      *
-     * The async variant is
-     * {@see RecaptchaEnterpriseServiceGapicClient::updateKeyAsync()} .
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::updateKeyAsync()} .
      *
      * @param UpdateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

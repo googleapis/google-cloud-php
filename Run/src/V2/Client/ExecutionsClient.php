@@ -276,7 +276,7 @@ final class ExecutionsClient
     /**
      * Cancels an Execution.
      *
-     * The async variant is {@see ExecutionsGapicClient::cancelExecutionAsync()} .
+     * The async variant is {@see ExecutionsClient::cancelExecutionAsync()} .
      *
      * @example samples/V2/ExecutionsClient/cancel_execution.php
      *
@@ -302,7 +302,7 @@ final class ExecutionsClient
     /**
      * Deletes an Execution.
      *
-     * The async variant is {@see ExecutionsGapicClient::deleteExecutionAsync()} .
+     * The async variant is {@see ExecutionsClient::deleteExecutionAsync()} .
      *
      * @example samples/V2/ExecutionsClient/delete_execution.php
      *
@@ -328,7 +328,7 @@ final class ExecutionsClient
     /**
      * Gets information about an Execution.
      *
-     * The async variant is {@see ExecutionsGapicClient::getExecutionAsync()} .
+     * The async variant is {@see ExecutionsClient::getExecutionAsync()} .
      *
      * @example samples/V2/ExecutionsClient/get_execution.php
      *
@@ -354,7 +354,7 @@ final class ExecutionsClient
     /**
      * Lists Executions from a Job.
      *
-     * The async variant is {@see ExecutionsGapicClient::listExecutionsAsync()} .
+     * The async variant is {@see ExecutionsClient::listExecutionsAsync()} .
      *
      * @example samples/V2/ExecutionsClient/list_executions.php
      *

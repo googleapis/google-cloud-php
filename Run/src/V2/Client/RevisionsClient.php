@@ -274,7 +274,7 @@ final class RevisionsClient
     /**
      * Deletes a Revision.
      *
-     * The async variant is {@see RevisionsGapicClient::deleteRevisionAsync()} .
+     * The async variant is {@see RevisionsClient::deleteRevisionAsync()} .
      *
      * @example samples/V2/RevisionsClient/delete_revision.php
      *
@@ -300,7 +300,7 @@ final class RevisionsClient
     /**
      * Gets information about a Revision.
      *
-     * The async variant is {@see RevisionsGapicClient::getRevisionAsync()} .
+     * The async variant is {@see RevisionsClient::getRevisionAsync()} .
      *
      * @example samples/V2/RevisionsClient/get_revision.php
      *
@@ -326,7 +326,7 @@ final class RevisionsClient
     /**
      * Lists Revisions from a given Service, or from a given location.
      *
-     * The async variant is {@see RevisionsGapicClient::listRevisionsAsync()} .
+     * The async variant is {@see RevisionsClient::listRevisionsAsync()} .
      *
      * @example samples/V2/RevisionsClient/list_revisions.php
      *

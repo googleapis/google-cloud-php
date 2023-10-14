@@ -254,7 +254,7 @@ final class ServingConfigServiceClient
      * Returns a FAILED_PRECONDITION error if the addition could exceed maximum
      * number of control allowed for that type of control.
      *
-     * The async variant is {@see ServingConfigServiceGapicClient::addControlAsync()} .
+     * The async variant is {@see ServingConfigServiceClient::addControlAsync()} .
      *
      * @param AddControlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -283,7 +283,7 @@ final class ServingConfigServiceClient
      * FAILED_PRECONDITION error is returned.
      *
      * The async variant is
-     * {@see ServingConfigServiceGapicClient::createServingConfigAsync()} .
+     * {@see ServingConfigServiceClient::createServingConfigAsync()} .
      *
      * @param CreateServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -310,7 +310,7 @@ final class ServingConfigServiceClient
      * Returns a NotFound error if the ServingConfig does not exist.
      *
      * The async variant is
-     * {@see ServingConfigServiceGapicClient::deleteServingConfigAsync()} .
+     * {@see ServingConfigServiceClient::deleteServingConfigAsync()} .
      *
      * @param DeleteServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -334,8 +334,8 @@ final class ServingConfigServiceClient
      *
      * Returns a NotFound error if the ServingConfig does not exist.
      *
-     * The async variant is
-     * {@see ServingConfigServiceGapicClient::getServingConfigAsync()} .
+     * The async variant is {@see ServingConfigServiceClient::getServingConfigAsync()}
+     * .
      *
      * @param GetServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -360,7 +360,7 @@ final class ServingConfigServiceClient
      * Lists all ServingConfigs linked to this catalog.
      *
      * The async variant is
-     * {@see ServingConfigServiceGapicClient::listServingConfigsAsync()} .
+     * {@see ServingConfigServiceClient::listServingConfigsAsync()} .
      *
      * @param ListServingConfigsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -387,8 +387,7 @@ final class ServingConfigServiceClient
      * Returns a NOT_FOUND error if the Control is not enabled for the
      * ServingConfig.
      *
-     * The async variant is
-     * {@see ServingConfigServiceGapicClient::removeControlAsync()} .
+     * The async variant is {@see ServingConfigServiceClient::removeControlAsync()} .
      *
      * @param RemoveControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -413,7 +412,7 @@ final class ServingConfigServiceClient
      * Updates a ServingConfig.
      *
      * The async variant is
-     * {@see ServingConfigServiceGapicClient::updateServingConfigAsync()} .
+     * {@see ServingConfigServiceClient::updateServingConfigAsync()} .
      *
      * @param UpdateServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
