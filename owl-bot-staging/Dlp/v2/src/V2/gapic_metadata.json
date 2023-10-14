@@ -1,0 +1,188 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.privacy.dlp.v2",
+    "libraryPackage": "Google\\Cloud\\Dlp\\V2",
+    "services": {
+        "DlpService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DlpServiceGapicClient",
+                    "rpcs": {
+                        "ActivateJobTrigger": {
+                            "methods": [
+                                "activateJobTrigger"
+                            ]
+                        },
+                        "CancelDlpJob": {
+                            "methods": [
+                                "cancelDlpJob"
+                            ]
+                        },
+                        "CreateDeidentifyTemplate": {
+                            "methods": [
+                                "createDeidentifyTemplate"
+                            ]
+                        },
+                        "CreateDlpJob": {
+                            "methods": [
+                                "createDlpJob"
+                            ]
+                        },
+                        "CreateInspectTemplate": {
+                            "methods": [
+                                "createInspectTemplate"
+                            ]
+                        },
+                        "CreateJobTrigger": {
+                            "methods": [
+                                "createJobTrigger"
+                            ]
+                        },
+                        "CreateStoredInfoType": {
+                            "methods": [
+                                "createStoredInfoType"
+                            ]
+                        },
+                        "DeidentifyContent": {
+                            "methods": [
+                                "deidentifyContent"
+                            ]
+                        },
+                        "DeleteDeidentifyTemplate": {
+                            "methods": [
+                                "deleteDeidentifyTemplate"
+                            ]
+                        },
+                        "DeleteDlpJob": {
+                            "methods": [
+                                "deleteDlpJob"
+                            ]
+                        },
+                        "DeleteInspectTemplate": {
+                            "methods": [
+                                "deleteInspectTemplate"
+                            ]
+                        },
+                        "DeleteJobTrigger": {
+                            "methods": [
+                                "deleteJobTrigger"
+                            ]
+                        },
+                        "DeleteStoredInfoType": {
+                            "methods": [
+                                "deleteStoredInfoType"
+                            ]
+                        },
+                        "FinishDlpJob": {
+                            "methods": [
+                                "finishDlpJob"
+                            ]
+                        },
+                        "GetDeidentifyTemplate": {
+                            "methods": [
+                                "getDeidentifyTemplate"
+                            ]
+                        },
+                        "GetDlpJob": {
+                            "methods": [
+                                "getDlpJob"
+                            ]
+                        },
+                        "GetInspectTemplate": {
+                            "methods": [
+                                "getInspectTemplate"
+                            ]
+                        },
+                        "GetJobTrigger": {
+                            "methods": [
+                                "getJobTrigger"
+                            ]
+                        },
+                        "GetStoredInfoType": {
+                            "methods": [
+                                "getStoredInfoType"
+                            ]
+                        },
+                        "HybridInspectDlpJob": {
+                            "methods": [
+                                "hybridInspectDlpJob"
+                            ]
+                        },
+                        "HybridInspectJobTrigger": {
+                            "methods": [
+                                "hybridInspectJobTrigger"
+                            ]
+                        },
+                        "InspectContent": {
+                            "methods": [
+                                "inspectContent"
+                            ]
+                        },
+                        "ListDeidentifyTemplates": {
+                            "methods": [
+                                "listDeidentifyTemplates"
+                            ]
+                        },
+                        "ListDlpJobs": {
+                            "methods": [
+                                "listDlpJobs"
+                            ]
+                        },
+                        "ListInfoTypes": {
+                            "methods": [
+                                "listInfoTypes"
+                            ]
+                        },
+                        "ListInspectTemplates": {
+                            "methods": [
+                                "listInspectTemplates"
+                            ]
+                        },
+                        "ListJobTriggers": {
+                            "methods": [
+                                "listJobTriggers"
+                            ]
+                        },
+                        "ListStoredInfoTypes": {
+                            "methods": [
+                                "listStoredInfoTypes"
+                            ]
+                        },
+                        "RedactImage": {
+                            "methods": [
+                                "redactImage"
+                            ]
+                        },
+                        "ReidentifyContent": {
+                            "methods": [
+                                "reidentifyContent"
+                            ]
+                        },
+                        "UpdateDeidentifyTemplate": {
+                            "methods": [
+                                "updateDeidentifyTemplate"
+                            ]
+                        },
+                        "UpdateInspectTemplate": {
+                            "methods": [
+                                "updateInspectTemplate"
+                            ]
+                        },
+                        "UpdateJobTrigger": {
+                            "methods": [
+                                "updateJobTrigger"
+                            ]
+                        },
+                        "UpdateStoredInfoType": {
+                            "methods": [
+                                "updateStoredInfoType"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
