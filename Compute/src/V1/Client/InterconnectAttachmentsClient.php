@@ -242,8 +242,8 @@ final class InterconnectAttachmentsClient
     /**
      * Retrieves an aggregated list of interconnect attachments.
      *
-     * The async variant is
-     * {@see InterconnectAttachmentsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see InterconnectAttachmentsClient::aggregatedListAsync()}
+     * .
      *
      * @param AggregatedListInterconnectAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
@@ -267,7 +267,7 @@ final class InterconnectAttachmentsClient
     /**
      * Deletes the specified interconnect attachment.
      *
-     * The async variant is {@see InterconnectAttachmentsGapicClient::deleteAsync()} .
+     * The async variant is {@see InterconnectAttachmentsClient::deleteAsync()} .
      *
      * @param DeleteInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -291,7 +291,7 @@ final class InterconnectAttachmentsClient
     /**
      * Returns the specified interconnect attachment.
      *
-     * The async variant is {@see InterconnectAttachmentsGapicClient::getAsync()} .
+     * The async variant is {@see InterconnectAttachmentsClient::getAsync()} .
      *
      * @param GetInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -315,7 +315,7 @@ final class InterconnectAttachmentsClient
     /**
      * Creates an InterconnectAttachment in the specified project using the data included in the request.
      *
-     * The async variant is {@see InterconnectAttachmentsGapicClient::insertAsync()} .
+     * The async variant is {@see InterconnectAttachmentsClient::insertAsync()} .
      *
      * @param InsertInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -339,7 +339,7 @@ final class InterconnectAttachmentsClient
     /**
      * Retrieves the list of interconnect attachments contained within the specified region.
      *
-     * The async variant is {@see InterconnectAttachmentsGapicClient::listAsync()} .
+     * The async variant is {@see InterconnectAttachmentsClient::listAsync()} .
      *
      * @param ListInterconnectAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -363,7 +363,7 @@ final class InterconnectAttachmentsClient
     /**
      * Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see InterconnectAttachmentsGapicClient::patchAsync()} .
+     * The async variant is {@see InterconnectAttachmentsClient::patchAsync()} .
      *
      * @param PatchInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -387,8 +387,7 @@ final class InterconnectAttachmentsClient
     /**
      * Sets the labels on an InterconnectAttachment. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see InterconnectAttachmentsGapicClient::setLabelsAsync()}
-     * .
+     * The async variant is {@see InterconnectAttachmentsClient::setLabelsAsync()} .
      *
      * @param SetLabelsInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

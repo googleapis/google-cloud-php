@@ -236,7 +236,7 @@ final class RegionInstanceTemplatesClient
     /**
      * Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone.
      *
-     * The async variant is {@see RegionInstanceTemplatesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionInstanceTemplatesClient::deleteAsync()} .
      *
      * @param DeleteRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -260,7 +260,7 @@ final class RegionInstanceTemplatesClient
     /**
      * Returns the specified instance template.
      *
-     * The async variant is {@see RegionInstanceTemplatesGapicClient::getAsync()} .
+     * The async variant is {@see RegionInstanceTemplatesClient::getAsync()} .
      *
      * @param GetRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -284,7 +284,7 @@ final class RegionInstanceTemplatesClient
     /**
      * Creates an instance template in the specified project and region using the global instance template whose URL is included in the request.
      *
-     * The async variant is {@see RegionInstanceTemplatesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionInstanceTemplatesClient::insertAsync()} .
      *
      * @param InsertRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -308,7 +308,7 @@ final class RegionInstanceTemplatesClient
     /**
      * Retrieves a list of instance templates that are contained within the specified project and region.
      *
-     * The async variant is {@see RegionInstanceTemplatesGapicClient::listAsync()} .
+     * The async variant is {@see RegionInstanceTemplatesClient::listAsync()} .
      *
      * @param ListRegionInstanceTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

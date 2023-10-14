@@ -299,7 +299,7 @@ final class ClientConnectorServicesServiceClient
      * Creates a new ClientConnectorService in a given project and location.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::createClientConnectorServiceAsync()}
+     * {@see ClientConnectorServicesServiceClient::createClientConnectorServiceAsync()}
      * .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/create_client_connector_service.php
@@ -327,7 +327,7 @@ final class ClientConnectorServicesServiceClient
      * Deletes a single ClientConnectorService.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::deleteClientConnectorServiceAsync()}
+     * {@see ClientConnectorServicesServiceClient::deleteClientConnectorServiceAsync()}
      * .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/delete_client_connector_service.php
@@ -355,8 +355,7 @@ final class ClientConnectorServicesServiceClient
      * Gets details of a single ClientConnectorService.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::getClientConnectorServiceAsync()}
-     * .
+     * {@see ClientConnectorServicesServiceClient::getClientConnectorServiceAsync()} .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/get_client_connector_service.php
      *
@@ -383,7 +382,7 @@ final class ClientConnectorServicesServiceClient
      * Lists ClientConnectorServices in a given project and location.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::listClientConnectorServicesAsync()}
+     * {@see ClientConnectorServicesServiceClient::listClientConnectorServicesAsync()}
      * .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/list_client_connector_services.php
@@ -411,7 +410,7 @@ final class ClientConnectorServicesServiceClient
      * Updates the parameters of a single ClientConnectorService.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::updateClientConnectorServiceAsync()}
+     * {@see ClientConnectorServicesServiceClient::updateClientConnectorServiceAsync()}
      * .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/update_client_connector_service.php
@@ -439,7 +438,7 @@ final class ClientConnectorServicesServiceClient
      * Gets information about a location.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::getLocationAsync()} .
+     * {@see ClientConnectorServicesServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/get_location.php
      *
@@ -466,7 +465,7 @@ final class ClientConnectorServicesServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::listLocationsAsync()} .
+     * {@see ClientConnectorServicesServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/list_locations.php
      *
@@ -494,7 +493,7 @@ final class ClientConnectorServicesServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::getIamPolicyAsync()} .
+     * {@see ClientConnectorServicesServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/get_iam_policy.php
      *
@@ -525,7 +524,7 @@ final class ClientConnectorServicesServiceClient
     errors.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::setIamPolicyAsync()} .
+     * {@see ClientConnectorServicesServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/set_iam_policy.php
      *
@@ -558,7 +557,7 @@ final class ClientConnectorServicesServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see ClientConnectorServicesServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see ClientConnectorServicesServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ClientConnectorServicesServiceClient/test_iam_permissions.php
      *

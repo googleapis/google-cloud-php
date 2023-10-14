@@ -312,8 +312,7 @@ final class ConsumerProcurementServiceClient
      * Returns the requested
      * [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
      *
-     * The async variant is
-     * {@see ConsumerProcurementServiceGapicClient::getOrderAsync()} .
+     * The async variant is {@see ConsumerProcurementServiceClient::getOrderAsync()} .
      *
      * @example samples/V1/ConsumerProcurementServiceClient/get_order.php
      *
@@ -341,8 +340,8 @@ final class ConsumerProcurementServiceClient
      * resources that the user has access to, within the scope of the parent
      * resource.
      *
-     * The async variant is
-     * {@see ConsumerProcurementServiceGapicClient::listOrdersAsync()} .
+     * The async variant is {@see ConsumerProcurementServiceClient::listOrdersAsync()}
+     * .
      *
      * @example samples/V1/ConsumerProcurementServiceClient/list_orders.php
      *
@@ -377,8 +376,8 @@ final class ConsumerProcurementServiceClient
      * [OrderState.ORDER_STATE_ACTIVE][google.cloud.commerce.consumer.procurement.v1.OrderState.ORDER_STATE_ACTIVE].
      * In case of failure, the order resource will be removed.
      *
-     * The async variant is
-     * {@see ConsumerProcurementServiceGapicClient::placeOrderAsync()} .
+     * The async variant is {@see ConsumerProcurementServiceClient::placeOrderAsync()}
+     * .
      *
      * @example samples/V1/ConsumerProcurementServiceClient/place_order.php
      *

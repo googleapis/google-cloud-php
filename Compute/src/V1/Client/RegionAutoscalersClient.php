@@ -239,7 +239,7 @@ final class RegionAutoscalersClient
     /**
      * Deletes the specified autoscaler.
      *
-     * The async variant is {@see RegionAutoscalersGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionAutoscalersClient::deleteAsync()} .
      *
      * @param DeleteRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -263,7 +263,7 @@ final class RegionAutoscalersClient
     /**
      * Returns the specified autoscaler.
      *
-     * The async variant is {@see RegionAutoscalersGapicClient::getAsync()} .
+     * The async variant is {@see RegionAutoscalersClient::getAsync()} .
      *
      * @param GetRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -287,7 +287,7 @@ final class RegionAutoscalersClient
     /**
      * Creates an autoscaler in the specified project using the data included in the request.
      *
-     * The async variant is {@see RegionAutoscalersGapicClient::insertAsync()} .
+     * The async variant is {@see RegionAutoscalersClient::insertAsync()} .
      *
      * @param InsertRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -311,7 +311,7 @@ final class RegionAutoscalersClient
     /**
      * Retrieves a list of autoscalers contained within the specified region.
      *
-     * The async variant is {@see RegionAutoscalersGapicClient::listAsync()} .
+     * The async variant is {@see RegionAutoscalersClient::listAsync()} .
      *
      * @param ListRegionAutoscalersRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -335,7 +335,7 @@ final class RegionAutoscalersClient
     /**
      * Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see RegionAutoscalersGapicClient::patchAsync()} .
+     * The async variant is {@see RegionAutoscalersClient::patchAsync()} .
      *
      * @param PatchRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -359,7 +359,7 @@ final class RegionAutoscalersClient
     /**
      * Updates an autoscaler in the specified project using the data included in the request.
      *
-     * The async variant is {@see RegionAutoscalersGapicClient::updateAsync()} .
+     * The async variant is {@see RegionAutoscalersClient::updateAsync()} .
      *
      * @param UpdateRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

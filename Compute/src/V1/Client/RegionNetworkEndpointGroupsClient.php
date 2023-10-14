@@ -236,8 +236,7 @@ final class RegionNetworkEndpointGroupsClient
     /**
      * Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.
      *
-     * The async variant is
-     * {@see RegionNetworkEndpointGroupsGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionNetworkEndpointGroupsClient::deleteAsync()} .
      *
      * @param DeleteRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -261,7 +260,7 @@ final class RegionNetworkEndpointGroupsClient
     /**
      * Returns the specified network endpoint group.
      *
-     * The async variant is {@see RegionNetworkEndpointGroupsGapicClient::getAsync()} .
+     * The async variant is {@see RegionNetworkEndpointGroupsClient::getAsync()} .
      *
      * @param GetRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -285,8 +284,7 @@ final class RegionNetworkEndpointGroupsClient
     /**
      * Creates a network endpoint group in the specified project using the parameters that are included in the request.
      *
-     * The async variant is
-     * {@see RegionNetworkEndpointGroupsGapicClient::insertAsync()} .
+     * The async variant is {@see RegionNetworkEndpointGroupsClient::insertAsync()} .
      *
      * @param InsertRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -310,8 +308,7 @@ final class RegionNetworkEndpointGroupsClient
     /**
      * Retrieves the list of regional network endpoint groups available to the specified project in the given region.
      *
-     * The async variant is {@see RegionNetworkEndpointGroupsGapicClient::listAsync()}
-     * .
+     * The async variant is {@see RegionNetworkEndpointGroupsClient::listAsync()} .
      *
      * @param ListRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

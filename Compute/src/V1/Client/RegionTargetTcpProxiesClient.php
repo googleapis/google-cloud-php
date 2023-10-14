@@ -236,7 +236,7 @@ final class RegionTargetTcpProxiesClient
     /**
      * Deletes the specified TargetTcpProxy resource.
      *
-     * The async variant is {@see RegionTargetTcpProxiesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionTargetTcpProxiesClient::deleteAsync()} .
      *
      * @param DeleteRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -260,7 +260,7 @@ final class RegionTargetTcpProxiesClient
     /**
      * Returns the specified TargetTcpProxy resource.
      *
-     * The async variant is {@see RegionTargetTcpProxiesGapicClient::getAsync()} .
+     * The async variant is {@see RegionTargetTcpProxiesClient::getAsync()} .
      *
      * @param GetRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -284,7 +284,7 @@ final class RegionTargetTcpProxiesClient
     /**
      * Creates a TargetTcpProxy resource in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see RegionTargetTcpProxiesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionTargetTcpProxiesClient::insertAsync()} .
      *
      * @param InsertRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -308,7 +308,7 @@ final class RegionTargetTcpProxiesClient
     /**
      * Retrieves a list of TargetTcpProxy resources available to the specified project in a given region.
      *
-     * The async variant is {@see RegionTargetTcpProxiesGapicClient::listAsync()} .
+     * The async variant is {@see RegionTargetTcpProxiesClient::listAsync()} .
      *
      * @param ListRegionTargetTcpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

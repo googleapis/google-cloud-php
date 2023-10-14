@@ -237,7 +237,7 @@ final class TargetInstancesClient
     /**
      * Retrieves an aggregated list of target instances.
      *
-     * The async variant is {@see TargetInstancesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see TargetInstancesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListTargetInstancesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -261,7 +261,7 @@ final class TargetInstancesClient
     /**
      * Deletes the specified TargetInstance resource.
      *
-     * The async variant is {@see TargetInstancesGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetInstancesClient::deleteAsync()} .
      *
      * @param DeleteTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -285,7 +285,7 @@ final class TargetInstancesClient
     /**
      * Returns the specified TargetInstance resource.
      *
-     * The async variant is {@see TargetInstancesGapicClient::getAsync()} .
+     * The async variant is {@see TargetInstancesClient::getAsync()} .
      *
      * @param GetTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -309,7 +309,7 @@ final class TargetInstancesClient
     /**
      * Creates a TargetInstance resource in the specified project and zone using the data included in the request.
      *
-     * The async variant is {@see TargetInstancesGapicClient::insertAsync()} .
+     * The async variant is {@see TargetInstancesClient::insertAsync()} .
      *
      * @param InsertTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -333,7 +333,7 @@ final class TargetInstancesClient
     /**
      * Retrieves a list of TargetInstance resources available to the specified project and zone.
      *
-     * The async variant is {@see TargetInstancesGapicClient::listAsync()} .
+     * The async variant is {@see TargetInstancesClient::listAsync()} .
      *
      * @param ListTargetInstancesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

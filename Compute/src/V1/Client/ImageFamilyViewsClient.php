@@ -175,7 +175,7 @@ final class ImageFamilyViewsClient
     /**
      * Returns the latest image that is part of an image family, is not deprecated and is rolled out in the specified zone.
      *
-     * The async variant is {@see ImageFamilyViewsGapicClient::getAsync()} .
+     * The async variant is {@see ImageFamilyViewsClient::getAsync()} .
      *
      * @param GetImageFamilyViewRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

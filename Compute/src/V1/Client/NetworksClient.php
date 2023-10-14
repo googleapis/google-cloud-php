@@ -249,7 +249,7 @@ final class NetworksClient
     /**
      * Adds a peering to the specified network.
      *
-     * The async variant is {@see NetworksGapicClient::addPeeringAsync()} .
+     * The async variant is {@see NetworksClient::addPeeringAsync()} .
      *
      * @param AddPeeringNetworkRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -273,7 +273,7 @@ final class NetworksClient
     /**
      * Deletes the specified network.
      *
-     * The async variant is {@see NetworksGapicClient::deleteAsync()} .
+     * The async variant is {@see NetworksClient::deleteAsync()} .
      *
      * @param DeleteNetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -297,7 +297,7 @@ final class NetworksClient
     /**
      * Returns the specified network.
      *
-     * The async variant is {@see NetworksGapicClient::getAsync()} .
+     * The async variant is {@see NetworksClient::getAsync()} .
      *
      * @param GetNetworkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -321,7 +321,7 @@ final class NetworksClient
     /**
      * Returns the effective firewalls on a given network.
      *
-     * The async variant is {@see NetworksGapicClient::getEffectiveFirewallsAsync()} .
+     * The async variant is {@see NetworksClient::getEffectiveFirewallsAsync()} .
      *
      * @param GetEffectiveFirewallsNetworkRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -345,7 +345,7 @@ final class NetworksClient
     /**
      * Creates a network in the specified project using the data included in the request.
      *
-     * The async variant is {@see NetworksGapicClient::insertAsync()} .
+     * The async variant is {@see NetworksClient::insertAsync()} .
      *
      * @param InsertNetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -369,7 +369,7 @@ final class NetworksClient
     /**
      * Retrieves the list of networks available to the specified project.
      *
-     * The async variant is {@see NetworksGapicClient::listAsync()} .
+     * The async variant is {@see NetworksClient::listAsync()} .
      *
      * @param ListNetworksRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -393,7 +393,7 @@ final class NetworksClient
     /**
      * Lists the peering routes exchanged over peering connection.
      *
-     * The async variant is {@see NetworksGapicClient::listPeeringRoutesAsync()} .
+     * The async variant is {@see NetworksClient::listPeeringRoutesAsync()} .
      *
      * @param ListPeeringRoutesNetworksRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -417,7 +417,7 @@ final class NetworksClient
     /**
      * Patches the specified network with the data included in the request. Only the following fields can be modified: routingConfig.routingMode.
      *
-     * The async variant is {@see NetworksGapicClient::patchAsync()} .
+     * The async variant is {@see NetworksClient::patchAsync()} .
      *
      * @param PatchNetworkRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -441,7 +441,7 @@ final class NetworksClient
     /**
      * Removes a peering from the specified network.
      *
-     * The async variant is {@see NetworksGapicClient::removePeeringAsync()} .
+     * The async variant is {@see NetworksClient::removePeeringAsync()} .
      *
      * @param RemovePeeringNetworkRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -465,7 +465,7 @@ final class NetworksClient
     /**
      * Switches the network mode from auto subnet mode to custom subnet mode.
      *
-     * The async variant is {@see NetworksGapicClient::switchToCustomModeAsync()} .
+     * The async variant is {@see NetworksClient::switchToCustomModeAsync()} .
      *
      * @param SwitchToCustomModeNetworkRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -489,7 +489,7 @@ final class NetworksClient
     /**
      * Updates the specified network peering with the data included in the request. You can only modify the NetworkPeering.export_custom_routes field and the NetworkPeering.import_custom_routes field.
      *
-     * The async variant is {@see NetworksGapicClient::updatePeeringAsync()} .
+     * The async variant is {@see NetworksClient::updatePeeringAsync()} .
      *
      * @param UpdatePeeringNetworkRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

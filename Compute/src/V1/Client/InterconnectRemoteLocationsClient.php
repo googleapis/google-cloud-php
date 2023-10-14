@@ -179,7 +179,7 @@ final class InterconnectRemoteLocationsClient
     /**
      * Returns the details for the specified interconnect remote location. Gets a list of available interconnect remote locations by making a list() request.
      *
-     * The async variant is {@see InterconnectRemoteLocationsGapicClient::getAsync()} .
+     * The async variant is {@see InterconnectRemoteLocationsClient::getAsync()} .
      *
      * @param GetInterconnectRemoteLocationRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -203,8 +203,7 @@ final class InterconnectRemoteLocationsClient
     /**
      * Retrieves the list of interconnect remote locations available to the specified project.
      *
-     * The async variant is {@see InterconnectRemoteLocationsGapicClient::listAsync()}
-     * .
+     * The async variant is {@see InterconnectRemoteLocationsClient::listAsync()} .
      *
      * @param ListInterconnectRemoteLocationsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

@@ -178,7 +178,7 @@ final class ZonesClient
     /**
      * Returns the specified Zone resource.
      *
-     * The async variant is {@see ZonesGapicClient::getAsync()} .
+     * The async variant is {@see ZonesClient::getAsync()} .
      *
      * @param GetZoneRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -202,7 +202,7 @@ final class ZonesClient
     /**
      * Retrieves the list of Zone resources available to the specified project.
      *
-     * The async variant is {@see ZonesGapicClient::listAsync()} .
+     * The async variant is {@see ZonesClient::listAsync()} .
      *
      * @param ListZonesRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

@@ -240,7 +240,7 @@ final class ExternalVpnGatewaysClient
     /**
      * Deletes the specified externalVpnGateway.
      *
-     * The async variant is {@see ExternalVpnGatewaysGapicClient::deleteAsync()} .
+     * The async variant is {@see ExternalVpnGatewaysClient::deleteAsync()} .
      *
      * @param DeleteExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -264,7 +264,7 @@ final class ExternalVpnGatewaysClient
     /**
      * Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
      *
-     * The async variant is {@see ExternalVpnGatewaysGapicClient::getAsync()} .
+     * The async variant is {@see ExternalVpnGatewaysClient::getAsync()} .
      *
      * @param GetExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -288,7 +288,7 @@ final class ExternalVpnGatewaysClient
     /**
      * Creates a ExternalVpnGateway in the specified project using the data included in the request.
      *
-     * The async variant is {@see ExternalVpnGatewaysGapicClient::insertAsync()} .
+     * The async variant is {@see ExternalVpnGatewaysClient::insertAsync()} .
      *
      * @param InsertExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -312,7 +312,7 @@ final class ExternalVpnGatewaysClient
     /**
      * Retrieves the list of ExternalVpnGateway available to the specified project.
      *
-     * The async variant is {@see ExternalVpnGatewaysGapicClient::listAsync()} .
+     * The async variant is {@see ExternalVpnGatewaysClient::listAsync()} .
      *
      * @param ListExternalVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -336,7 +336,7 @@ final class ExternalVpnGatewaysClient
     /**
      * Sets the labels on an ExternalVpnGateway. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see ExternalVpnGatewaysGapicClient::setLabelsAsync()} .
+     * The async variant is {@see ExternalVpnGatewaysClient::setLabelsAsync()} .
      *
      * @param SetLabelsExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -360,8 +360,8 @@ final class ExternalVpnGatewaysClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is
-     * {@see ExternalVpnGatewaysGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ExternalVpnGatewaysClient::testIamPermissionsAsync()}
+     * .
      *
      * @param TestIamPermissionsExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {

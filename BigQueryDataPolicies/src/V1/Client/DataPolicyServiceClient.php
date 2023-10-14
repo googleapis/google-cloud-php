@@ -252,8 +252,7 @@ final class DataPolicyServiceClient
      * Creates a new data policy under a project with the given `dataPolicyId`
      * (used as the display name), policy tag, and data policy type.
      *
-     * The async variant is
-     * {@see DataPolicyServiceGapicClient::createDataPolicyAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::createDataPolicyAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/create_data_policy.php
      *
@@ -279,8 +278,7 @@ final class DataPolicyServiceClient
     /**
      * Deletes the data policy specified by its resource name.
      *
-     * The async variant is
-     * {@see DataPolicyServiceGapicClient::deleteDataPolicyAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::deleteDataPolicyAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/delete_data_policy.php
      *
@@ -304,7 +302,7 @@ final class DataPolicyServiceClient
     /**
      * Gets the data policy specified by its resource name.
      *
-     * The async variant is {@see DataPolicyServiceGapicClient::getDataPolicyAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::getDataPolicyAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/get_data_policy.php
      *
@@ -330,7 +328,7 @@ final class DataPolicyServiceClient
     /**
      * Gets the IAM policy for the specified data policy.
      *
-     * The async variant is {@see DataPolicyServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/get_iam_policy.php
      *
@@ -356,8 +354,7 @@ final class DataPolicyServiceClient
     /**
      * List all of the data policies in the specified parent project.
      *
-     * The async variant is
-     * {@see DataPolicyServiceGapicClient::listDataPoliciesAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::listDataPoliciesAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/list_data_policies.php
      *
@@ -383,8 +380,7 @@ final class DataPolicyServiceClient
     /**
      * Renames the id (display name) of the specified data policy.
      *
-     * The async variant is
-     * {@see DataPolicyServiceGapicClient::renameDataPolicyAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::renameDataPolicyAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/rename_data_policy.php
      *
@@ -410,7 +406,7 @@ final class DataPolicyServiceClient
     /**
      * Sets the IAM policy for the specified data policy.
      *
-     * The async variant is {@see DataPolicyServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/set_iam_policy.php
      *
@@ -436,8 +432,7 @@ final class DataPolicyServiceClient
     /**
      * Returns the caller's permission on the specified data policy resource.
      *
-     * The async variant is
-     * {@see DataPolicyServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/test_iam_permissions.php
      *
@@ -464,8 +459,7 @@ final class DataPolicyServiceClient
      * Updates the metadata for an existing data policy. The target data policy
      * can be specified by the resource name.
      *
-     * The async variant is
-     * {@see DataPolicyServiceGapicClient::updateDataPolicyAsync()} .
+     * The async variant is {@see DataPolicyServiceClient::updateDataPolicyAsync()} .
      *
      * @example samples/V1/DataPolicyServiceClient/update_data_policy.php
      *

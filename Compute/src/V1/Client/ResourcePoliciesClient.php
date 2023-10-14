@@ -247,7 +247,7 @@ final class ResourcePoliciesClient
     /**
      * Retrieves an aggregated list of resource policies.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListResourcePoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -271,7 +271,7 @@ final class ResourcePoliciesClient
     /**
      * Deletes the specified resource policy.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::deleteAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::deleteAsync()} .
      *
      * @param DeleteResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -295,7 +295,7 @@ final class ResourcePoliciesClient
     /**
      * Retrieves all information of the specified resource policy.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::getAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::getAsync()} .
      *
      * @param GetResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -319,7 +319,7 @@ final class ResourcePoliciesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -343,7 +343,7 @@ final class ResourcePoliciesClient
     /**
      * Creates a new resource policy.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::insertAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::insertAsync()} .
      *
      * @param InsertResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -367,7 +367,7 @@ final class ResourcePoliciesClient
     /**
      * A list all the resource policies that have been configured for the specified project in specified region.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::listAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::listAsync()} .
      *
      * @param ListResourcePoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -391,7 +391,7 @@ final class ResourcePoliciesClient
     /**
      * Modify the specified resource policy.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::patchAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::patchAsync()} .
      *
      * @param PatchResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -415,7 +415,7 @@ final class ResourcePoliciesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see ResourcePoliciesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -439,8 +439,7 @@ final class ResourcePoliciesClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is
-     * {@see ResourcePoliciesGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ResourcePoliciesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

@@ -237,8 +237,7 @@ final class GlobalPublicDelegatedPrefixesClient
     /**
      * Deletes the specified global PublicDelegatedPrefix.
      *
-     * The async variant is
-     * {@see GlobalPublicDelegatedPrefixesGapicClient::deleteAsync()} .
+     * The async variant is {@see GlobalPublicDelegatedPrefixesClient::deleteAsync()} .
      *
      * @param DeleteGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -262,8 +261,7 @@ final class GlobalPublicDelegatedPrefixesClient
     /**
      * Returns the specified global PublicDelegatedPrefix resource.
      *
-     * The async variant is {@see GlobalPublicDelegatedPrefixesGapicClient::getAsync()}
-     * .
+     * The async variant is {@see GlobalPublicDelegatedPrefixesClient::getAsync()} .
      *
      * @param GetGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -287,8 +285,7 @@ final class GlobalPublicDelegatedPrefixesClient
     /**
      * Creates a global PublicDelegatedPrefix in the specified project using the parameters that are included in the request.
      *
-     * The async variant is
-     * {@see GlobalPublicDelegatedPrefixesGapicClient::insertAsync()} .
+     * The async variant is {@see GlobalPublicDelegatedPrefixesClient::insertAsync()} .
      *
      * @param InsertGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -312,8 +309,7 @@ final class GlobalPublicDelegatedPrefixesClient
     /**
      * Lists the global PublicDelegatedPrefixes for a project.
      *
-     * The async variant is
-     * {@see GlobalPublicDelegatedPrefixesGapicClient::listAsync()} .
+     * The async variant is {@see GlobalPublicDelegatedPrefixesClient::listAsync()} .
      *
      * @param ListGlobalPublicDelegatedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -337,8 +333,7 @@ final class GlobalPublicDelegatedPrefixesClient
     /**
      * Patches the specified global PublicDelegatedPrefix resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is
-     * {@see GlobalPublicDelegatedPrefixesGapicClient::patchAsync()} .
+     * The async variant is {@see GlobalPublicDelegatedPrefixesClient::patchAsync()} .
      *
      * @param PatchGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {

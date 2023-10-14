@@ -244,7 +244,7 @@ final class BackendBucketsClient
     /**
      * Adds a key for validating requests with signed URLs for this backend bucket.
      *
-     * The async variant is {@see BackendBucketsGapicClient::addSignedUrlKeyAsync()} .
+     * The async variant is {@see BackendBucketsClient::addSignedUrlKeyAsync()} .
      *
      * @param AddSignedUrlKeyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -268,7 +268,7 @@ final class BackendBucketsClient
     /**
      * Deletes the specified BackendBucket resource.
      *
-     * The async variant is {@see BackendBucketsGapicClient::deleteAsync()} .
+     * The async variant is {@see BackendBucketsClient::deleteAsync()} .
      *
      * @param DeleteBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -292,8 +292,7 @@ final class BackendBucketsClient
     /**
      * Deletes a key for validating requests with signed URLs for this backend bucket.
      *
-     * The async variant is {@see BackendBucketsGapicClient::deleteSignedUrlKeyAsync()}
-     * .
+     * The async variant is {@see BackendBucketsClient::deleteSignedUrlKeyAsync()} .
      *
      * @param DeleteSignedUrlKeyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -317,7 +316,7 @@ final class BackendBucketsClient
     /**
      * Returns the specified BackendBucket resource.
      *
-     * The async variant is {@see BackendBucketsGapicClient::getAsync()} .
+     * The async variant is {@see BackendBucketsClient::getAsync()} .
      *
      * @param GetBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -341,7 +340,7 @@ final class BackendBucketsClient
     /**
      * Creates a BackendBucket resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see BackendBucketsGapicClient::insertAsync()} .
+     * The async variant is {@see BackendBucketsClient::insertAsync()} .
      *
      * @param InsertBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -365,7 +364,7 @@ final class BackendBucketsClient
     /**
      * Retrieves the list of BackendBucket resources available to the specified project.
      *
-     * The async variant is {@see BackendBucketsGapicClient::listAsync()} .
+     * The async variant is {@see BackendBucketsClient::listAsync()} .
      *
      * @param ListBackendBucketsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -389,7 +388,7 @@ final class BackendBucketsClient
     /**
      * Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see BackendBucketsGapicClient::patchAsync()} .
+     * The async variant is {@see BackendBucketsClient::patchAsync()} .
      *
      * @param PatchBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -413,8 +412,7 @@ final class BackendBucketsClient
     /**
      * Sets the edge security policy for the specified backend bucket.
      *
-     * The async variant is
-     * {@see BackendBucketsGapicClient::setEdgeSecurityPolicyAsync()} .
+     * The async variant is {@see BackendBucketsClient::setEdgeSecurityPolicyAsync()} .
      *
      * @param SetEdgeSecurityPolicyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -438,7 +436,7 @@ final class BackendBucketsClient
     /**
      * Updates the specified BackendBucket resource with the data included in the request.
      *
-     * The async variant is {@see BackendBucketsGapicClient::updateAsync()} .
+     * The async variant is {@see BackendBucketsClient::updateAsync()} .
      *
      * @param UpdateBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

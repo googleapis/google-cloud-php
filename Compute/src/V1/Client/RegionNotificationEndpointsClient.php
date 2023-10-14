@@ -236,8 +236,7 @@ final class RegionNotificationEndpointsClient
     /**
      * Deletes the specified NotificationEndpoint in the given region
      *
-     * The async variant is
-     * {@see RegionNotificationEndpointsGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionNotificationEndpointsClient::deleteAsync()} .
      *
      * @param DeleteRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -261,7 +260,7 @@ final class RegionNotificationEndpointsClient
     /**
      * Returns the specified NotificationEndpoint resource in the given region.
      *
-     * The async variant is {@see RegionNotificationEndpointsGapicClient::getAsync()} .
+     * The async variant is {@see RegionNotificationEndpointsClient::getAsync()} .
      *
      * @param GetRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -285,8 +284,7 @@ final class RegionNotificationEndpointsClient
     /**
      * Create a NotificationEndpoint in the specified project in the given region using the parameters that are included in the request.
      *
-     * The async variant is
-     * {@see RegionNotificationEndpointsGapicClient::insertAsync()} .
+     * The async variant is {@see RegionNotificationEndpointsClient::insertAsync()} .
      *
      * @param InsertRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -310,8 +308,7 @@ final class RegionNotificationEndpointsClient
     /**
      * Lists the NotificationEndpoints for a project in the given region.
      *
-     * The async variant is {@see RegionNotificationEndpointsGapicClient::listAsync()}
-     * .
+     * The async variant is {@see RegionNotificationEndpointsClient::listAsync()} .
      *
      * @param ListRegionNotificationEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

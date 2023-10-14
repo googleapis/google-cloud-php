@@ -238,7 +238,7 @@ final class RegionTargetHttpProxiesClient
     /**
      * Deletes the specified TargetHttpProxy resource.
      *
-     * The async variant is {@see RegionTargetHttpProxiesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionTargetHttpProxiesClient::deleteAsync()} .
      *
      * @param DeleteRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -262,7 +262,7 @@ final class RegionTargetHttpProxiesClient
     /**
      * Returns the specified TargetHttpProxy resource in the specified region.
      *
-     * The async variant is {@see RegionTargetHttpProxiesGapicClient::getAsync()} .
+     * The async variant is {@see RegionTargetHttpProxiesClient::getAsync()} .
      *
      * @param GetRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -286,7 +286,7 @@ final class RegionTargetHttpProxiesClient
     /**
      * Creates a TargetHttpProxy resource in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see RegionTargetHttpProxiesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionTargetHttpProxiesClient::insertAsync()} .
      *
      * @param InsertRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -310,7 +310,7 @@ final class RegionTargetHttpProxiesClient
     /**
      * Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region.
      *
-     * The async variant is {@see RegionTargetHttpProxiesGapicClient::listAsync()} .
+     * The async variant is {@see RegionTargetHttpProxiesClient::listAsync()} .
      *
      * @param ListRegionTargetHttpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -334,8 +334,7 @@ final class RegionTargetHttpProxiesClient
     /**
      * Changes the URL map for TargetHttpProxy.
      *
-     * The async variant is {@see RegionTargetHttpProxiesGapicClient::setUrlMapAsync()}
-     * .
+     * The async variant is {@see RegionTargetHttpProxiesClient::setUrlMapAsync()} .
      *
      * @param SetUrlMapRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

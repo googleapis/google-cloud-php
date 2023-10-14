@@ -244,8 +244,7 @@ final class InstanceTemplatesClient
     /**
      * Retrieves the list of all InstanceTemplates resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see InstanceTemplatesGapicClient::aggregatedListAsync()}
-     * .
+     * The async variant is {@see InstanceTemplatesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListInstanceTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -269,7 +268,7 @@ final class InstanceTemplatesClient
     /**
      * Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone. It is not possible to delete templates that are already in use by a managed instance group.
      *
-     * The async variant is {@see InstanceTemplatesGapicClient::deleteAsync()} .
+     * The async variant is {@see InstanceTemplatesClient::deleteAsync()} .
      *
      * @param DeleteInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -293,7 +292,7 @@ final class InstanceTemplatesClient
     /**
      * Returns the specified instance template.
      *
-     * The async variant is {@see InstanceTemplatesGapicClient::getAsync()} .
+     * The async variant is {@see InstanceTemplatesClient::getAsync()} .
      *
      * @param GetInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -317,7 +316,7 @@ final class InstanceTemplatesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see InstanceTemplatesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see InstanceTemplatesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -341,7 +340,7 @@ final class InstanceTemplatesClient
     /**
      * Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template.
      *
-     * The async variant is {@see InstanceTemplatesGapicClient::insertAsync()} .
+     * The async variant is {@see InstanceTemplatesClient::insertAsync()} .
      *
      * @param InsertInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -365,7 +364,7 @@ final class InstanceTemplatesClient
     /**
      * Retrieves a list of instance templates that are contained within the specified project.
      *
-     * The async variant is {@see InstanceTemplatesGapicClient::listAsync()} .
+     * The async variant is {@see InstanceTemplatesClient::listAsync()} .
      *
      * @param ListInstanceTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -389,7 +388,7 @@ final class InstanceTemplatesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see InstanceTemplatesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see InstanceTemplatesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -413,8 +412,7 @@ final class InstanceTemplatesClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is
-     * {@see InstanceTemplatesGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see InstanceTemplatesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {

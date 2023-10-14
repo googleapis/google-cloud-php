@@ -244,7 +244,7 @@ final class TargetSslProxiesClient
     /**
      * Deletes the specified TargetSslProxy resource.
      *
-     * The async variant is {@see TargetSslProxiesGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::deleteAsync()} .
      *
      * @param DeleteTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -268,7 +268,7 @@ final class TargetSslProxiesClient
     /**
      * Returns the specified TargetSslProxy resource.
      *
-     * The async variant is {@see TargetSslProxiesGapicClient::getAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::getAsync()} .
      *
      * @param GetTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -292,7 +292,7 @@ final class TargetSslProxiesClient
     /**
      * Creates a TargetSslProxy resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see TargetSslProxiesGapicClient::insertAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::insertAsync()} .
      *
      * @param InsertTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -316,7 +316,7 @@ final class TargetSslProxiesClient
     /**
      * Retrieves the list of TargetSslProxy resources available to the specified project.
      *
-     * The async variant is {@see TargetSslProxiesGapicClient::listAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::listAsync()} .
      *
      * @param ListTargetSslProxiesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -340,8 +340,7 @@ final class TargetSslProxiesClient
     /**
      * Changes the BackendService for TargetSslProxy.
      *
-     * The async variant is
-     * {@see TargetSslProxiesGapicClient::setBackendServiceAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::setBackendServiceAsync()} .
      *
      * @param SetBackendServiceTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -365,8 +364,7 @@ final class TargetSslProxiesClient
     /**
      * Changes the Certificate Map for TargetSslProxy.
      *
-     * The async variant is
-     * {@see TargetSslProxiesGapicClient::setCertificateMapAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::setCertificateMapAsync()} .
      *
      * @param SetCertificateMapTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -390,7 +388,7 @@ final class TargetSslProxiesClient
     /**
      * Changes the ProxyHeaderType for TargetSslProxy.
      *
-     * The async variant is {@see TargetSslProxiesGapicClient::setProxyHeaderAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::setProxyHeaderAsync()} .
      *
      * @param SetProxyHeaderTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -414,8 +412,7 @@ final class TargetSslProxiesClient
     /**
      * Changes SslCertificates for TargetSslProxy.
      *
-     * The async variant is
-     * {@see TargetSslProxiesGapicClient::setSslCertificatesAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::setSslCertificatesAsync()} .
      *
      * @param SetSslCertificatesTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -439,7 +436,7 @@ final class TargetSslProxiesClient
     /**
      * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends.
      *
-     * The async variant is {@see TargetSslProxiesGapicClient::setSslPolicyAsync()} .
+     * The async variant is {@see TargetSslProxiesClient::setSslPolicyAsync()} .
      *
      * @param SetSslPolicyTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

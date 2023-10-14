@@ -249,7 +249,7 @@ final class RoutersClient
     /**
      * Retrieves an aggregated list of routers.
      *
-     * The async variant is {@see RoutersGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see RoutersClient::aggregatedListAsync()} .
      *
      * @param AggregatedListRoutersRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -273,7 +273,7 @@ final class RoutersClient
     /**
      * Deletes the specified Router resource.
      *
-     * The async variant is {@see RoutersGapicClient::deleteAsync()} .
+     * The async variant is {@see RoutersClient::deleteAsync()} .
      *
      * @param DeleteRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -297,7 +297,7 @@ final class RoutersClient
     /**
      * Returns the specified Router resource.
      *
-     * The async variant is {@see RoutersGapicClient::getAsync()} .
+     * The async variant is {@see RoutersClient::getAsync()} .
      *
      * @param GetRouterRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -321,7 +321,7 @@ final class RoutersClient
     /**
      * Retrieves runtime Nat mapping information of VM endpoints.
      *
-     * The async variant is {@see RoutersGapicClient::getNatMappingInfoAsync()} .
+     * The async variant is {@see RoutersClient::getNatMappingInfoAsync()} .
      *
      * @param GetNatMappingInfoRoutersRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -345,7 +345,7 @@ final class RoutersClient
     /**
      * Retrieves runtime information of the specified router.
      *
-     * The async variant is {@see RoutersGapicClient::getRouterStatusAsync()} .
+     * The async variant is {@see RoutersClient::getRouterStatusAsync()} .
      *
      * @param GetRouterStatusRouterRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -369,7 +369,7 @@ final class RoutersClient
     /**
      * Creates a Router resource in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see RoutersGapicClient::insertAsync()} .
+     * The async variant is {@see RoutersClient::insertAsync()} .
      *
      * @param InsertRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -393,7 +393,7 @@ final class RoutersClient
     /**
      * Retrieves a list of Router resources available to the specified project.
      *
-     * The async variant is {@see RoutersGapicClient::listAsync()} .
+     * The async variant is {@see RoutersClient::listAsync()} .
      *
      * @param ListRoutersRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -417,7 +417,7 @@ final class RoutersClient
     /**
      * Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see RoutersGapicClient::patchAsync()} .
+     * The async variant is {@see RoutersClient::patchAsync()} .
      *
      * @param PatchRouterRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -441,7 +441,7 @@ final class RoutersClient
     /**
      * Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
      *
-     * The async variant is {@see RoutersGapicClient::previewAsync()} .
+     * The async variant is {@see RoutersClient::previewAsync()} .
      *
      * @param PreviewRouterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -465,7 +465,7 @@ final class RoutersClient
     /**
      * Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload.
      *
-     * The async variant is {@see RoutersGapicClient::updateAsync()} .
+     * The async variant is {@see RoutersClient::updateAsync()} .
      *
      * @param UpdateRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

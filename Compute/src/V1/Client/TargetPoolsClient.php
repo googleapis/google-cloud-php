@@ -250,7 +250,7 @@ final class TargetPoolsClient
     /**
      * Adds health check URLs to a target pool.
      *
-     * The async variant is {@see TargetPoolsGapicClient::addHealthCheckAsync()} .
+     * The async variant is {@see TargetPoolsClient::addHealthCheckAsync()} .
      *
      * @param AddHealthCheckTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -274,7 +274,7 @@ final class TargetPoolsClient
     /**
      * Adds an instance to a target pool.
      *
-     * The async variant is {@see TargetPoolsGapicClient::addInstanceAsync()} .
+     * The async variant is {@see TargetPoolsClient::addInstanceAsync()} .
      *
      * @param AddInstanceTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -298,7 +298,7 @@ final class TargetPoolsClient
     /**
      * Retrieves an aggregated list of target pools.
      *
-     * The async variant is {@see TargetPoolsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see TargetPoolsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListTargetPoolsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -322,7 +322,7 @@ final class TargetPoolsClient
     /**
      * Deletes the specified target pool.
      *
-     * The async variant is {@see TargetPoolsGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetPoolsClient::deleteAsync()} .
      *
      * @param DeleteTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -346,7 +346,7 @@ final class TargetPoolsClient
     /**
      * Returns the specified target pool.
      *
-     * The async variant is {@see TargetPoolsGapicClient::getAsync()} .
+     * The async variant is {@see TargetPoolsClient::getAsync()} .
      *
      * @param GetTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -370,7 +370,7 @@ final class TargetPoolsClient
     /**
      * Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
      *
-     * The async variant is {@see TargetPoolsGapicClient::getHealthAsync()} .
+     * The async variant is {@see TargetPoolsClient::getHealthAsync()} .
      *
      * @param GetHealthTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -394,7 +394,7 @@ final class TargetPoolsClient
     /**
      * Creates a target pool in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see TargetPoolsGapicClient::insertAsync()} .
+     * The async variant is {@see TargetPoolsClient::insertAsync()} .
      *
      * @param InsertTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -418,7 +418,7 @@ final class TargetPoolsClient
     /**
      * Retrieves a list of target pools available to the specified project and region.
      *
-     * The async variant is {@see TargetPoolsGapicClient::listAsync()} .
+     * The async variant is {@see TargetPoolsClient::listAsync()} .
      *
      * @param ListTargetPoolsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -442,7 +442,7 @@ final class TargetPoolsClient
     /**
      * Removes health check URL from a target pool.
      *
-     * The async variant is {@see TargetPoolsGapicClient::removeHealthCheckAsync()} .
+     * The async variant is {@see TargetPoolsClient::removeHealthCheckAsync()} .
      *
      * @param RemoveHealthCheckTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -466,7 +466,7 @@ final class TargetPoolsClient
     /**
      * Removes instance URL from a target pool.
      *
-     * The async variant is {@see TargetPoolsGapicClient::removeInstanceAsync()} .
+     * The async variant is {@see TargetPoolsClient::removeInstanceAsync()} .
      *
      * @param RemoveInstanceTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -490,7 +490,7 @@ final class TargetPoolsClient
     /**
      * Changes a backup target pool's configurations.
      *
-     * The async variant is {@see TargetPoolsGapicClient::setBackupAsync()} .
+     * The async variant is {@see TargetPoolsClient::setBackupAsync()} .
      *
      * @param SetBackupTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
