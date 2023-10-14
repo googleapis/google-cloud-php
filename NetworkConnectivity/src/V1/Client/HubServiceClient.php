@@ -481,7 +481,7 @@ final class HubServiceClient
      * Accepts a proposal to attach a Network Connectivity Center spoke
      * to a hub.
      *
-     * The async variant is {@see HubServiceGapicClient::acceptHubSpokeAsync()} .
+     * The async variant is {@see HubServiceClient::acceptHubSpokeAsync()} .
      *
      * @param AcceptHubSpokeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -505,7 +505,7 @@ final class HubServiceClient
     /**
      * Creates a new Network Connectivity Center hub in the specified project.
      *
-     * The async variant is {@see HubServiceGapicClient::createHubAsync()} .
+     * The async variant is {@see HubServiceClient::createHubAsync()} .
      *
      * @param CreateHubRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -529,7 +529,7 @@ final class HubServiceClient
     /**
      * Creates a Network Connectivity Center spoke.
      *
-     * The async variant is {@see HubServiceGapicClient::createSpokeAsync()} .
+     * The async variant is {@see HubServiceClient::createSpokeAsync()} .
      *
      * @param CreateSpokeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -553,7 +553,7 @@ final class HubServiceClient
     /**
      * Deletes a Network Connectivity Center hub.
      *
-     * The async variant is {@see HubServiceGapicClient::deleteHubAsync()} .
+     * The async variant is {@see HubServiceClient::deleteHubAsync()} .
      *
      * @param DeleteHubRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -577,7 +577,7 @@ final class HubServiceClient
     /**
      * Deletes a Network Connectivity Center spoke.
      *
-     * The async variant is {@see HubServiceGapicClient::deleteSpokeAsync()} .
+     * The async variant is {@see HubServiceClient::deleteSpokeAsync()} .
      *
      * @param DeleteSpokeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -601,7 +601,7 @@ final class HubServiceClient
     /**
      * Gets details about a Network Connectivity Center group.
      *
-     * The async variant is {@see HubServiceGapicClient::getGroupAsync()} .
+     * The async variant is {@see HubServiceClient::getGroupAsync()} .
      *
      * @param GetGroupRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -625,7 +625,7 @@ final class HubServiceClient
     /**
      * Gets details about a Network Connectivity Center hub.
      *
-     * The async variant is {@see HubServiceGapicClient::getHubAsync()} .
+     * The async variant is {@see HubServiceClient::getHubAsync()} .
      *
      * @param GetHubRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -649,7 +649,7 @@ final class HubServiceClient
     /**
      * Gets details about the specified route.
      *
-     * The async variant is {@see HubServiceGapicClient::getRouteAsync()} .
+     * The async variant is {@see HubServiceClient::getRouteAsync()} .
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -673,7 +673,7 @@ final class HubServiceClient
     /**
      * Gets details about a Network Connectivity Center route table.
      *
-     * The async variant is {@see HubServiceGapicClient::getRouteTableAsync()} .
+     * The async variant is {@see HubServiceClient::getRouteTableAsync()} .
      *
      * @param GetRouteTableRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -697,7 +697,7 @@ final class HubServiceClient
     /**
      * Gets details about a Network Connectivity Center spoke.
      *
-     * The async variant is {@see HubServiceGapicClient::getSpokeAsync()} .
+     * The async variant is {@see HubServiceClient::getSpokeAsync()} .
      *
      * @param GetSpokeRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -721,7 +721,7 @@ final class HubServiceClient
     /**
      * Lists groups in a given hub.
      *
-     * The async variant is {@see HubServiceGapicClient::listGroupsAsync()} .
+     * The async variant is {@see HubServiceClient::listGroupsAsync()} .
      *
      * @param ListGroupsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -747,7 +747,7 @@ final class HubServiceClient
      * specified hub and location. The list includes both spokes that are attached
      * to the hub and spokes that have been proposed but not yet accepted.
      *
-     * The async variant is {@see HubServiceGapicClient::listHubSpokesAsync()} .
+     * The async variant is {@see HubServiceClient::listHubSpokesAsync()} .
      *
      * @param ListHubSpokesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -771,7 +771,7 @@ final class HubServiceClient
     /**
      * Lists the Network Connectivity Center hubs associated with a given project.
      *
-     * The async variant is {@see HubServiceGapicClient::listHubsAsync()} .
+     * The async variant is {@see HubServiceClient::listHubsAsync()} .
      *
      * @param ListHubsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -795,7 +795,7 @@ final class HubServiceClient
     /**
      * Lists route tables in a given project.
      *
-     * The async variant is {@see HubServiceGapicClient::listRouteTablesAsync()} .
+     * The async variant is {@see HubServiceClient::listRouteTablesAsync()} .
      *
      * @param ListRouteTablesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -819,7 +819,7 @@ final class HubServiceClient
     /**
      * Lists routes in a given project.
      *
-     * The async variant is {@see HubServiceGapicClient::listRoutesAsync()} .
+     * The async variant is {@see HubServiceClient::listRoutesAsync()} .
      *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -844,7 +844,7 @@ final class HubServiceClient
      * Lists the Network Connectivity Center spokes in a specified project and
      * location.
      *
-     * The async variant is {@see HubServiceGapicClient::listSpokesAsync()} .
+     * The async variant is {@see HubServiceClient::listSpokesAsync()} .
      *
      * @param ListSpokesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -871,7 +871,7 @@ final class HubServiceClient
      * transitions to the `INACTIVE` state and is no longer able to
      * connect to other spokes that are attached to the hub.
      *
-     * The async variant is {@see HubServiceGapicClient::rejectHubSpokeAsync()} .
+     * The async variant is {@see HubServiceClient::rejectHubSpokeAsync()} .
      *
      * @param RejectHubSpokeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -896,7 +896,7 @@ final class HubServiceClient
      * Updates the description and/or labels of a Network Connectivity Center
      * hub.
      *
-     * The async variant is {@see HubServiceGapicClient::updateHubAsync()} .
+     * The async variant is {@see HubServiceClient::updateHubAsync()} .
      *
      * @param UpdateHubRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -920,7 +920,7 @@ final class HubServiceClient
     /**
      * Updates the parameters of a Network Connectivity Center spoke.
      *
-     * The async variant is {@see HubServiceGapicClient::updateSpokeAsync()} .
+     * The async variant is {@see HubServiceClient::updateSpokeAsync()} .
      *
      * @param UpdateSpokeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -944,7 +944,7 @@ final class HubServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see HubServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see HubServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -968,7 +968,7 @@ final class HubServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see HubServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see HubServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -993,7 +993,7 @@ final class HubServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see HubServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see HubServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1021,7 +1021,7 @@ final class HubServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see HubServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see HubServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1051,7 +1051,7 @@ final class HubServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see HubServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see HubServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

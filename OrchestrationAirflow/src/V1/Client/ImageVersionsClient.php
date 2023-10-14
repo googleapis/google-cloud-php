@@ -163,7 +163,7 @@ final class ImageVersionsClient
     /**
      * List ImageVersions for provided location.
      *
-     * The async variant is {@see ImageVersionsGapicClient::listImageVersionsAsync()} .
+     * The async variant is {@see ImageVersionsClient::listImageVersionsAsync()} .
      *
      * @param ListImageVersionsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

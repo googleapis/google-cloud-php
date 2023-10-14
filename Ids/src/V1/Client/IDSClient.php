@@ -272,7 +272,7 @@ final class IDSClient
     /**
      * Creates a new Endpoint in a given project and location.
      *
-     * The async variant is {@see IDSGapicClient::createEndpointAsync()} .
+     * The async variant is {@see IDSClient::createEndpointAsync()} .
      *
      * @example samples/V1/IDSClient/create_endpoint.php
      *
@@ -298,7 +298,7 @@ final class IDSClient
     /**
      * Deletes a single Endpoint.
      *
-     * The async variant is {@see IDSGapicClient::deleteEndpointAsync()} .
+     * The async variant is {@see IDSClient::deleteEndpointAsync()} .
      *
      * @example samples/V1/IDSClient/delete_endpoint.php
      *
@@ -324,7 +324,7 @@ final class IDSClient
     /**
      * Gets details of a single Endpoint.
      *
-     * The async variant is {@see IDSGapicClient::getEndpointAsync()} .
+     * The async variant is {@see IDSClient::getEndpointAsync()} .
      *
      * @example samples/V1/IDSClient/get_endpoint.php
      *
@@ -350,7 +350,7 @@ final class IDSClient
     /**
      * Lists Endpoints in a given project and location.
      *
-     * The async variant is {@see IDSGapicClient::listEndpointsAsync()} .
+     * The async variant is {@see IDSClient::listEndpointsAsync()} .
      *
      * @example samples/V1/IDSClient/list_endpoints.php
      *

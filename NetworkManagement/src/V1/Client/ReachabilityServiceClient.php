@@ -277,7 +277,7 @@ final class ReachabilityServiceClient
      * see the Connectivity Test documentation.
      *
      * The async variant is
-     * {@see ReachabilityServiceGapicClient::createConnectivityTestAsync()} .
+     * {@see ReachabilityServiceClient::createConnectivityTestAsync()} .
      *
      * @param CreateConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -302,7 +302,7 @@ final class ReachabilityServiceClient
      * Deletes a specific `ConnectivityTest`.
      *
      * The async variant is
-     * {@see ReachabilityServiceGapicClient::deleteConnectivityTestAsync()} .
+     * {@see ReachabilityServiceClient::deleteConnectivityTestAsync()} .
      *
      * @param DeleteConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -327,7 +327,7 @@ final class ReachabilityServiceClient
      * Gets the details of a specific Connectivity Test.
      *
      * The async variant is
-     * {@see ReachabilityServiceGapicClient::getConnectivityTestAsync()} .
+     * {@see ReachabilityServiceClient::getConnectivityTestAsync()} .
      *
      * @param GetConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -352,7 +352,7 @@ final class ReachabilityServiceClient
      * Lists all Connectivity Tests owned by a project.
      *
      * The async variant is
-     * {@see ReachabilityServiceGapicClient::listConnectivityTestsAsync()} .
+     * {@see ReachabilityServiceClient::listConnectivityTestsAsync()} .
      *
      * @param ListConnectivityTestsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -388,7 +388,7 @@ final class ReachabilityServiceClient
      * the reachability result returns a value of `UNKNOWN`.
      *
      * The async variant is
-     * {@see ReachabilityServiceGapicClient::rerunConnectivityTestAsync()} .
+     * {@see ReachabilityServiceClient::rerunConnectivityTestAsync()} .
      *
      * @param RerunConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -426,7 +426,7 @@ final class ReachabilityServiceClient
      * in `ConnectivityTest` for for more details.
      *
      * The async variant is
-     * {@see ReachabilityServiceGapicClient::updateConnectivityTestAsync()} .
+     * {@see ReachabilityServiceClient::updateConnectivityTestAsync()} .
      *
      * @param UpdateConnectivityTestRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

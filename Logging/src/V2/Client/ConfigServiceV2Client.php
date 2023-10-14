@@ -1093,7 +1093,7 @@ final class ConfigServiceV2Client
     /**
      * Copies a set of log entries from a log bucket to a Cloud Storage bucket.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::copyLogEntriesAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::copyLogEntriesAsync()} .
      *
      * @param CopyLogEntriesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1118,7 +1118,7 @@ final class ConfigServiceV2Client
      * Creates a log bucket that can be used to store log entries. After a bucket
      * has been created, the bucket's location cannot be changed.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::createBucketAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::createBucketAsync()} .
      *
      * @param CreateBucketRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1144,8 +1144,7 @@ final class ConfigServiceV2Client
      *
      * After a bucket has been created, the bucket's location cannot be changed.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::createBucketAsyncAsync()}
-     * .
+     * The async variant is {@see ConfigServiceV2Client::createBucketAsyncAsync()} .
      *
      * @param CreateBucketRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1171,7 +1170,7 @@ final class ConfigServiceV2Client
      * resource. Only log entries belonging to that resource can be excluded. You
      * can have up to 10 exclusions in a resource.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::createExclusionAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::createExclusionAsync()} .
      *
      * @param CreateExclusionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1197,7 +1196,7 @@ final class ConfigServiceV2Client
      * to use BigQuery to read the logs stored in the log bucket. A log bucket may
      * currently only contain one link.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::createLinkAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::createLinkAsync()} .
      *
      * @param CreateLinkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1224,7 +1223,7 @@ final class ConfigServiceV2Client
      * `writer_identity` is not permitted to write to the destination. A sink can
      * export log entries only from the resource owning the sink.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::createSinkAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::createSinkAsync()} .
      *
      * @param CreateSinkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1249,7 +1248,7 @@ final class ConfigServiceV2Client
      * Creates a view over log entries in a log bucket. A bucket may contain a
      * maximum of 30 views.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::createViewAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::createViewAsync()} .
      *
      * @param CreateViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1277,7 +1276,7 @@ final class ConfigServiceV2Client
      * After 7 days, the bucket will be purged and all log entries in the bucket
      * will be permanently deleted.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::deleteBucketAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::deleteBucketAsync()} .
      *
      * @param DeleteBucketRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1299,7 +1298,7 @@ final class ConfigServiceV2Client
     /**
      * Deletes an exclusion in the _Default sink.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::deleteExclusionAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::deleteExclusionAsync()} .
      *
      * @param DeleteExclusionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1322,7 +1321,7 @@ final class ConfigServiceV2Client
      * Deletes a link. This will also delete the corresponding BigQuery linked
      * dataset.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::deleteLinkAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::deleteLinkAsync()} .
      *
      * @param DeleteLinkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1347,7 +1346,7 @@ final class ConfigServiceV2Client
      * Deletes a sink. If the sink has a unique `writer_identity`, then that
      * service account is also deleted.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::deleteSinkAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::deleteSinkAsync()} .
      *
      * @param DeleteSinkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1372,7 +1371,7 @@ final class ConfigServiceV2Client
      * a state where it can delete the view. If this occurs, please try again in a
      * few minutes.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::deleteViewAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::deleteViewAsync()} .
      *
      * @param DeleteViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1394,7 +1393,7 @@ final class ConfigServiceV2Client
     /**
      * Gets a log bucket.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::getBucketAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::getBucketAsync()} .
      *
      * @param GetBucketRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1427,7 +1426,7 @@ final class ConfigServiceV2Client
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::getCmekSettingsAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::getCmekSettingsAsync()} .
      *
      * @param GetCmekSettingsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1451,7 +1450,7 @@ final class ConfigServiceV2Client
     /**
      * Gets the description of an exclusion in the _Default sink.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::getExclusionAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::getExclusionAsync()} .
      *
      * @param GetExclusionRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1475,7 +1474,7 @@ final class ConfigServiceV2Client
     /**
      * Gets a link.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::getLinkAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::getLinkAsync()} .
      *
      * @param GetLinkRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -1508,7 +1507,7 @@ final class ConfigServiceV2Client
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::getSettingsAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::getSettingsAsync()} .
      *
      * @param GetSettingsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1532,7 +1531,7 @@ final class ConfigServiceV2Client
     /**
      * Gets a sink.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::getSinkAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::getSinkAsync()} .
      *
      * @param GetSinkRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -1556,7 +1555,7 @@ final class ConfigServiceV2Client
     /**
      * Gets a view on a log bucket..
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::getViewAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::getViewAsync()} .
      *
      * @param GetViewRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -1580,7 +1579,7 @@ final class ConfigServiceV2Client
     /**
      * Lists log buckets.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::listBucketsAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::listBucketsAsync()} .
      *
      * @param ListBucketsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1604,7 +1603,7 @@ final class ConfigServiceV2Client
     /**
      * Lists all the exclusions on the _Default sink in a parent resource.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::listExclusionsAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::listExclusionsAsync()} .
      *
      * @param ListExclusionsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1628,7 +1627,7 @@ final class ConfigServiceV2Client
     /**
      * Lists links.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::listLinksAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::listLinksAsync()} .
      *
      * @param ListLinksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1652,7 +1651,7 @@ final class ConfigServiceV2Client
     /**
      * Lists sinks.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::listSinksAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::listSinksAsync()} .
      *
      * @param ListSinksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1676,7 +1675,7 @@ final class ConfigServiceV2Client
     /**
      * Lists views on a log bucket.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::listViewsAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::listViewsAsync()} .
      *
      * @param ListViewsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1701,7 +1700,7 @@ final class ConfigServiceV2Client
      * Undeletes a log bucket. A bucket that has been deleted can be undeleted
      * within the grace period of 7 days.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::undeleteBucketAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::undeleteBucketAsync()} .
      *
      * @param UndeleteBucketRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1728,7 +1727,7 @@ final class ConfigServiceV2Client
      *
      * After a bucket has been created, the bucket's location cannot be changed.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::updateBucketAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::updateBucketAsync()} .
      *
      * @param UpdateBucketRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1757,8 +1756,7 @@ final class ConfigServiceV2Client
      *
      * After a bucket has been created, the bucket's location cannot be changed.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::updateBucketAsyncAsync()}
-     * .
+     * The async variant is {@see ConfigServiceV2Client::updateBucketAsyncAsync()} .
      *
      * @param UpdateBucketRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1796,8 +1794,7 @@ final class ConfigServiceV2Client
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
-     * The async variant is
-     * {@see ConfigServiceV2GapicClient::updateCmekSettingsAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::updateCmekSettingsAsync()} .
      *
      * @param UpdateCmekSettingsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1822,7 +1819,7 @@ final class ConfigServiceV2Client
      * Changes one or more properties of an existing exclusion in the _Default
      * sink.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::updateExclusionAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::updateExclusionAsync()} .
      *
      * @param UpdateExclusionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1861,7 +1858,7 @@ final class ConfigServiceV2Client
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::updateSettingsAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::updateSettingsAsync()} .
      *
      * @param UpdateSettingsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1889,7 +1886,7 @@ final class ConfigServiceV2Client
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::updateSinkAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::updateSinkAsync()} .
      *
      * @param UpdateSinkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1917,7 +1914,7 @@ final class ConfigServiceV2Client
      * a state where it can update the view. If this occurs, please try again in a
      * few minutes.
      *
-     * The async variant is {@see ConfigServiceV2GapicClient::updateViewAsync()} .
+     * The async variant is {@see ConfigServiceV2Client::updateViewAsync()} .
      *
      * @param UpdateViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

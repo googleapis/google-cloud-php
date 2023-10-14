@@ -366,8 +366,7 @@ final class AlertPolicyServiceClient
      * alerting policies in a single project. This includes calls to
      * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
-     * The async variant is
-     * {@see AlertPolicyServiceGapicClient::createAlertPolicyAsync()} .
+     * The async variant is {@see AlertPolicyServiceClient::createAlertPolicyAsync()} .
      *
      * @param CreateAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -395,8 +394,7 @@ final class AlertPolicyServiceClient
      * alerting policies in a single project. This includes calls to
      * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
-     * The async variant is
-     * {@see AlertPolicyServiceGapicClient::deleteAlertPolicyAsync()} .
+     * The async variant is {@see AlertPolicyServiceClient::deleteAlertPolicyAsync()} .
      *
      * @param DeleteAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -418,8 +416,7 @@ final class AlertPolicyServiceClient
     /**
      * Gets a single alerting policy.
      *
-     * The async variant is {@see AlertPolicyServiceGapicClient::getAlertPolicyAsync()}
-     * .
+     * The async variant is {@see AlertPolicyServiceClient::getAlertPolicyAsync()} .
      *
      * @param GetAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -443,8 +440,7 @@ final class AlertPolicyServiceClient
     /**
      * Lists the existing alerting policies for the workspace.
      *
-     * The async variant is
-     * {@see AlertPolicyServiceGapicClient::listAlertPoliciesAsync()} .
+     * The async variant is {@see AlertPolicyServiceClient::listAlertPoliciesAsync()} .
      *
      * @param ListAlertPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -475,8 +471,7 @@ final class AlertPolicyServiceClient
      * alerting policies in a single project. This includes calls to
      * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
-     * The async variant is
-     * {@see AlertPolicyServiceGapicClient::updateAlertPolicyAsync()} .
+     * The async variant is {@see AlertPolicyServiceClient::updateAlertPolicyAsync()} .
      *
      * @param UpdateAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

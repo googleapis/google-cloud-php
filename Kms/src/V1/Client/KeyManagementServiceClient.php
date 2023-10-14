@@ -395,8 +395,8 @@ final class KeyManagementServiceClient
      * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
      * ASYMMETRIC_DECRYPT.
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::asymmetricDecryptAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::asymmetricDecryptAsync()}
+     * .
      *
      * @param AsymmetricDecryptRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -424,8 +424,7 @@ final class KeyManagementServiceClient
      * key retrieved from
      * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::asymmetricSignAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::asymmetricSignAsync()} .
      *
      * @param AsymmetricSignRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -454,8 +453,7 @@ final class KeyManagementServiceClient
      * [CryptoKey.version_template.algorithm][google.cloud.kms.v1.CryptoKeyVersionTemplate.algorithm]
      * are required.
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::createCryptoKeyAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::createCryptoKeyAsync()} .
      *
      * @param CreateCryptoKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -485,7 +483,7 @@ final class KeyManagementServiceClient
      * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED].
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::createCryptoKeyVersionAsync()} .
+     * {@see KeyManagementServiceClient::createCryptoKeyVersionAsync()} .
      *
      * @param CreateCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -513,8 +511,7 @@ final class KeyManagementServiceClient
      * [ImportJob.import_method][google.cloud.kms.v1.ImportJob.import_method] is
      * required.
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::createImportJobAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::createImportJobAsync()} .
      *
      * @param CreateImportJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -539,8 +536,7 @@ final class KeyManagementServiceClient
      * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and
      * Location.
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::createKeyRingAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::createKeyRingAsync()} .
      *
      * @param CreateKeyRingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -567,7 +563,7 @@ final class KeyManagementServiceClient
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::decryptAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::decryptAsync()} .
      *
      * @param DecryptRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -612,7 +608,7 @@ final class KeyManagementServiceClient
      * may be called to reverse the process.
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::destroyCryptoKeyVersionAsync()} .
+     * {@see KeyManagementServiceClient::destroyCryptoKeyVersionAsync()} .
      *
      * @param DestroyCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -639,7 +635,7 @@ final class KeyManagementServiceClient
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::encryptAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::encryptAsync()} .
      *
      * @param EncryptRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -665,7 +661,7 @@ final class KeyManagementServiceClient
      * location.
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::generateRandomBytesAsync()} .
+     * {@see KeyManagementServiceClient::generateRandomBytesAsync()} .
      *
      * @param GenerateRandomBytesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -691,8 +687,7 @@ final class KeyManagementServiceClient
      * well as its [primary][google.cloud.kms.v1.CryptoKey.primary]
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::getCryptoKeyAsync()}
-     * .
+     * The async variant is {@see KeyManagementServiceClient::getCryptoKeyAsync()} .
      *
      * @param GetCryptoKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -718,7 +713,7 @@ final class KeyManagementServiceClient
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::getCryptoKeyVersionAsync()} .
+     * {@see KeyManagementServiceClient::getCryptoKeyVersionAsync()} .
      *
      * @param GetCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -742,8 +737,7 @@ final class KeyManagementServiceClient
     /**
      * Returns metadata for a given [ImportJob][google.cloud.kms.v1.ImportJob].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::getImportJobAsync()}
-     * .
+     * The async variant is {@see KeyManagementServiceClient::getImportJobAsync()} .
      *
      * @param GetImportJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -767,7 +761,7 @@ final class KeyManagementServiceClient
     /**
      * Returns metadata for a given [KeyRing][google.cloud.kms.v1.KeyRing].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::getKeyRingAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::getKeyRingAsync()} .
      *
      * @param GetKeyRingRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -796,8 +790,7 @@ final class KeyManagementServiceClient
      * or
      * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::getPublicKeyAsync()}
-     * .
+     * The async variant is {@see KeyManagementServiceClient::getPublicKeyAsync()} .
      *
      * @param GetPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -829,7 +822,7 @@ final class KeyManagementServiceClient
      * next sequential id within the [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::importCryptoKeyVersionAsync()} .
+     * {@see KeyManagementServiceClient::importCryptoKeyVersionAsync()} .
      *
      * @param ImportCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -854,7 +847,7 @@ final class KeyManagementServiceClient
      * Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::listCryptoKeyVersionsAsync()} .
+     * {@see KeyManagementServiceClient::listCryptoKeyVersionsAsync()} .
      *
      * @param ListCryptoKeyVersionsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -878,8 +871,7 @@ final class KeyManagementServiceClient
     /**
      * Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::listCryptoKeysAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::listCryptoKeysAsync()} .
      *
      * @param ListCryptoKeysRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -903,8 +895,7 @@ final class KeyManagementServiceClient
     /**
      * Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::listImportJobsAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::listImportJobsAsync()} .
      *
      * @param ListImportJobsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -928,8 +919,7 @@ final class KeyManagementServiceClient
     /**
      * Lists [KeyRings][google.cloud.kms.v1.KeyRing].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::listKeyRingsAsync()}
-     * .
+     * The async variant is {@see KeyManagementServiceClient::listKeyRingsAsync()} .
      *
      * @param ListKeyRingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -955,7 +945,7 @@ final class KeyManagementServiceClient
      * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] MAC,
      * producing a tag that can be verified by another source with the same key.
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::macSignAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::macSignAsync()} .
      *
      * @param MacSignRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -982,7 +972,7 @@ final class KeyManagementServiceClient
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] MAC, and returns
      * a response that indicates whether or not the verification was successful.
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::macVerifyAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::macVerifyAsync()} .
      *
      * @param MacVerifyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1009,7 +999,7 @@ final class KeyManagementServiceClient
      * must be
      * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::rawDecryptAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::rawDecryptAsync()} .
      *
      * @param RawDecryptRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1038,7 +1028,7 @@ final class KeyManagementServiceClient
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
      * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::rawEncryptAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::rawEncryptAsync()} .
      *
      * @param RawEncryptRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1071,7 +1061,7 @@ final class KeyManagementServiceClient
      * be cleared.
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::restoreCryptoKeyVersionAsync()} .
+     * {@see KeyManagementServiceClient::restoreCryptoKeyVersionAsync()} .
      *
      * @param RestoreCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1095,8 +1085,7 @@ final class KeyManagementServiceClient
     /**
      * Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::updateCryptoKeyAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::updateCryptoKeyAsync()} .
      *
      * @param UpdateCryptoKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1126,7 +1115,7 @@ final class KeyManagementServiceClient
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::updateCryptoKeyPrimaryVersionAsync()} .
+     * {@see KeyManagementServiceClient::updateCryptoKeyPrimaryVersionAsync()} .
      *
      * @param UpdateCryptoKeyPrimaryVersionRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -1162,7 +1151,7 @@ final class KeyManagementServiceClient
      * to move between other states.
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::updateCryptoKeyVersionAsync()} .
+     * {@see KeyManagementServiceClient::updateCryptoKeyVersionAsync()} .
      *
      * @param UpdateCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1186,8 +1175,7 @@ final class KeyManagementServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see KeyManagementServiceClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1211,8 +1199,7 @@ final class KeyManagementServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see KeyManagementServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see KeyManagementServiceClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1237,8 +1224,7 @@ final class KeyManagementServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see KeyManagementServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1266,8 +1252,7 @@ final class KeyManagementServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see KeyManagementServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see KeyManagementServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1298,7 +1283,7 @@ final class KeyManagementServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see KeyManagementServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see KeyManagementServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

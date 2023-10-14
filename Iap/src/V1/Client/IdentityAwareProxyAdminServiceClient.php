@@ -254,7 +254,7 @@ final class IdentityAwareProxyAdminServiceClient
      * Creates a new TunnelDestGroup.
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::createTunnelDestGroupAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::createTunnelDestGroupAsync()} .
      *
      * @param CreateTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -279,7 +279,7 @@ final class IdentityAwareProxyAdminServiceClient
      * Deletes a TunnelDestGroup.
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::deleteTunnelDestGroupAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::deleteTunnelDestGroupAsync()} .
      *
      * @param DeleteTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -305,7 +305,7 @@ final class IdentityAwareProxyAdminServiceClient
      * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::getIamPolicyAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -330,7 +330,7 @@ final class IdentityAwareProxyAdminServiceClient
      * Gets the IAP settings on a particular IAP protected resource.
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::getIapSettingsAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::getIapSettingsAsync()} .
      *
      * @param GetIapSettingsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -355,7 +355,7 @@ final class IdentityAwareProxyAdminServiceClient
      * Retrieves an existing TunnelDestGroup.
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::getTunnelDestGroupAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::getTunnelDestGroupAsync()} .
      *
      * @param GetTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -382,7 +382,7 @@ final class IdentityAwareProxyAdminServiceClient
      * `/v1/projects/123/iap_tunnel/locations/-/destGroups`
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::listTunnelDestGroupsAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::listTunnelDestGroupsAsync()} .
      *
      * @param ListTunnelDestGroupsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -410,7 +410,7 @@ final class IdentityAwareProxyAdminServiceClient
      * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::setIamPolicyAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -438,7 +438,7 @@ final class IdentityAwareProxyAdminServiceClient
      * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -464,7 +464,7 @@ final class IdentityAwareProxyAdminServiceClient
      * replaces all fields unless the `update_mask` is set.
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::updateIapSettingsAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::updateIapSettingsAsync()} .
      *
      * @param UpdateIapSettingsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -489,7 +489,7 @@ final class IdentityAwareProxyAdminServiceClient
      * Updates a TunnelDestGroup.
      *
      * The async variant is
-     * {@see IdentityAwareProxyAdminServiceGapicClient::updateTunnelDestGroupAsync()} .
+     * {@see IdentityAwareProxyAdminServiceClient::updateTunnelDestGroupAsync()} .
      *
      * @param UpdateTunnelDestGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
