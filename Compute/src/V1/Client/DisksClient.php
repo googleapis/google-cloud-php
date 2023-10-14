@@ -265,7 +265,7 @@ final class DisksClient
     /**
      * Adds existing resource policies to a disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation.
      *
-     * The async variant is {@see DisksGapicClient::addResourcePoliciesAsync()} .
+     * The async variant is {@see DisksClient::addResourcePoliciesAsync()} .
      *
      * @param AddResourcePoliciesDiskRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -289,7 +289,7 @@ final class DisksClient
     /**
      * Retrieves an aggregated list of persistent disks.
      *
-     * The async variant is {@see DisksGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see DisksClient::aggregatedListAsync()} .
      *
      * @param AggregatedListDisksRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -313,7 +313,7 @@ final class DisksClient
     /**
      * Bulk create a set of disks.
      *
-     * The async variant is {@see DisksGapicClient::bulkInsertAsync()} .
+     * The async variant is {@see DisksClient::bulkInsertAsync()} .
      *
      * @param BulkInsertDiskRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -337,7 +337,7 @@ final class DisksClient
     /**
      * Creates a snapshot of a specified persistent disk. For regular snapshot creation, consider using snapshots.insert instead, as that method supports more features, such as creating snapshots in a project different from the source disk project.
      *
-     * The async variant is {@see DisksGapicClient::createSnapshotAsync()} .
+     * The async variant is {@see DisksClient::createSnapshotAsync()} .
      *
      * @param CreateSnapshotDiskRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -361,7 +361,7 @@ final class DisksClient
     /**
      * Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
      *
-     * The async variant is {@see DisksGapicClient::deleteAsync()} .
+     * The async variant is {@see DisksClient::deleteAsync()} .
      *
      * @param DeleteDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -385,7 +385,7 @@ final class DisksClient
     /**
      * Returns the specified persistent disk.
      *
-     * The async variant is {@see DisksGapicClient::getAsync()} .
+     * The async variant is {@see DisksClient::getAsync()} .
      *
      * @param GetDiskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -409,7 +409,7 @@ final class DisksClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see DisksGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DisksClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -433,7 +433,7 @@ final class DisksClient
     /**
      * Creates a persistent disk in the specified project using the data in the request. You can create a disk from a source (sourceImage, sourceSnapshot, or sourceDisk) or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
      *
-     * The async variant is {@see DisksGapicClient::insertAsync()} .
+     * The async variant is {@see DisksClient::insertAsync()} .
      *
      * @param InsertDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -457,7 +457,7 @@ final class DisksClient
     /**
      * Retrieves a list of persistent disks contained within the specified zone.
      *
-     * The async variant is {@see DisksGapicClient::listAsync()} .
+     * The async variant is {@see DisksClient::listAsync()} .
      *
      * @param ListDisksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -481,7 +481,7 @@ final class DisksClient
     /**
      * Removes resource policies from a disk.
      *
-     * The async variant is {@see DisksGapicClient::removeResourcePoliciesAsync()} .
+     * The async variant is {@see DisksClient::removeResourcePoliciesAsync()} .
      *
      * @param RemoveResourcePoliciesDiskRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -505,7 +505,7 @@ final class DisksClient
     /**
      * Resizes the specified persistent disk. You can only increase the size of the disk.
      *
-     * The async variant is {@see DisksGapicClient::resizeAsync()} .
+     * The async variant is {@see DisksClient::resizeAsync()} .
      *
      * @param ResizeDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -529,7 +529,7 @@ final class DisksClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see DisksGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DisksClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -553,7 +553,7 @@ final class DisksClient
     /**
      * Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see DisksGapicClient::setLabelsAsync()} .
+     * The async variant is {@see DisksClient::setLabelsAsync()} .
      *
      * @param SetLabelsDiskRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -577,7 +577,7 @@ final class DisksClient
     /**
      * Starts asynchronous replication. Must be invoked on the primary disk.
      *
-     * The async variant is {@see DisksGapicClient::startAsyncReplicationAsync()} .
+     * The async variant is {@see DisksClient::startAsyncReplicationAsync()} .
      *
      * @param StartAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -601,7 +601,7 @@ final class DisksClient
     /**
      * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
      *
-     * The async variant is {@see DisksGapicClient::stopAsyncReplicationAsync()} .
+     * The async variant is {@see DisksClient::stopAsyncReplicationAsync()} .
      *
      * @param StopAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -625,7 +625,7 @@ final class DisksClient
     /**
      * Stops asynchronous replication for a consistency group of disks. Can be invoked either in the primary or secondary scope.
      *
-     * The async variant is {@see DisksGapicClient::stopGroupAsyncReplicationAsync()} .
+     * The async variant is {@see DisksClient::stopGroupAsyncReplicationAsync()} .
      *
      * @param StopGroupAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -649,7 +649,7 @@ final class DisksClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see DisksGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see DisksClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsDiskRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -673,7 +673,7 @@ final class DisksClient
     /**
      * Updates the specified disk with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
      *
-     * The async variant is {@see DisksGapicClient::updateAsync()} .
+     * The async variant is {@see DisksClient::updateAsync()} .
      *
      * @param UpdateDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

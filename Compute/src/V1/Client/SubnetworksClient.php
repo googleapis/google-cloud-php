@@ -253,7 +253,7 @@ final class SubnetworksClient
     /**
      * Retrieves an aggregated list of subnetworks.
      *
-     * The async variant is {@see SubnetworksGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see SubnetworksClient::aggregatedListAsync()} .
      *
      * @param AggregatedListSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -277,7 +277,7 @@ final class SubnetworksClient
     /**
      * Deletes the specified subnetwork.
      *
-     * The async variant is {@see SubnetworksGapicClient::deleteAsync()} .
+     * The async variant is {@see SubnetworksClient::deleteAsync()} .
      *
      * @param DeleteSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -301,7 +301,7 @@ final class SubnetworksClient
     /**
      * Expands the IP CIDR range of the subnetwork to a specified value.
      *
-     * The async variant is {@see SubnetworksGapicClient::expandIpCidrRangeAsync()} .
+     * The async variant is {@see SubnetworksClient::expandIpCidrRangeAsync()} .
      *
      * @param ExpandIpCidrRangeSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -325,7 +325,7 @@ final class SubnetworksClient
     /**
      * Returns the specified subnetwork.
      *
-     * The async variant is {@see SubnetworksGapicClient::getAsync()} .
+     * The async variant is {@see SubnetworksClient::getAsync()} .
      *
      * @param GetSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -349,7 +349,7 @@ final class SubnetworksClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see SubnetworksGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see SubnetworksClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicySubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -373,7 +373,7 @@ final class SubnetworksClient
     /**
      * Creates a subnetwork in the specified project using the data included in the request.
      *
-     * The async variant is {@see SubnetworksGapicClient::insertAsync()} .
+     * The async variant is {@see SubnetworksClient::insertAsync()} .
      *
      * @param InsertSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -397,7 +397,7 @@ final class SubnetworksClient
     /**
      * Retrieves a list of subnetworks available to the specified project.
      *
-     * The async variant is {@see SubnetworksGapicClient::listAsync()} .
+     * The async variant is {@see SubnetworksClient::listAsync()} .
      *
      * @param ListSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -421,7 +421,7 @@ final class SubnetworksClient
     /**
      * Retrieves an aggregated list of all usable subnetworks in the project.
      *
-     * The async variant is {@see SubnetworksGapicClient::listUsableAsync()} .
+     * The async variant is {@see SubnetworksClient::listUsableAsync()} .
      *
      * @param ListUsableSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -445,7 +445,7 @@ final class SubnetworksClient
     /**
      * Patches the specified subnetwork with the data included in the request. Only certain fields can be updated with a patch request as indicated in the field descriptions. You must specify the current fingerprint of the subnetwork resource being patched.
      *
-     * The async variant is {@see SubnetworksGapicClient::patchAsync()} .
+     * The async variant is {@see SubnetworksClient::patchAsync()} .
      *
      * @param PatchSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -469,7 +469,7 @@ final class SubnetworksClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see SubnetworksGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see SubnetworksClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicySubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -493,8 +493,7 @@ final class SubnetworksClient
     /**
      * Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access.
      *
-     * The async variant is
-     * {@see SubnetworksGapicClient::setPrivateIpGoogleAccessAsync()} .
+     * The async variant is {@see SubnetworksClient::setPrivateIpGoogleAccessAsync()} .
      *
      * @param SetPrivateIpGoogleAccessSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -518,7 +517,7 @@ final class SubnetworksClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see SubnetworksGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see SubnetworksClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

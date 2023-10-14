@@ -250,7 +250,7 @@ final class ImagesClient
     /**
      * Deletes the specified image.
      *
-     * The async variant is {@see ImagesGapicClient::deleteAsync()} .
+     * The async variant is {@see ImagesClient::deleteAsync()} .
      *
      * @param DeleteImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -274,7 +274,7 @@ final class ImagesClient
     /**
      * Sets the deprecation status of an image. If an empty request body is given, clears the deprecation status instead.
      *
-     * The async variant is {@see ImagesGapicClient::deprecateAsync()} .
+     * The async variant is {@see ImagesClient::deprecateAsync()} .
      *
      * @param DeprecateImageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -298,7 +298,7 @@ final class ImagesClient
     /**
      * Returns the specified image.
      *
-     * The async variant is {@see ImagesGapicClient::getAsync()} .
+     * The async variant is {@see ImagesClient::getAsync()} .
      *
      * @param GetImageRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -322,7 +322,7 @@ final class ImagesClient
     /**
      * Returns the latest image that is part of an image family and is not deprecated. For more information on image families, see Public image families documentation.
      *
-     * The async variant is {@see ImagesGapicClient::getFromFamilyAsync()} .
+     * The async variant is {@see ImagesClient::getFromFamilyAsync()} .
      *
      * @param GetFromFamilyImageRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -346,7 +346,7 @@ final class ImagesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
-     * The async variant is {@see ImagesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ImagesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -370,7 +370,7 @@ final class ImagesClient
     /**
      * Creates an image in the specified project using the data included in the request.
      *
-     * The async variant is {@see ImagesGapicClient::insertAsync()} .
+     * The async variant is {@see ImagesClient::insertAsync()} .
      *
      * @param InsertImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -394,7 +394,7 @@ final class ImagesClient
     /**
      * Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
-     * The async variant is {@see ImagesGapicClient::listAsync()} .
+     * The async variant is {@see ImagesClient::listAsync()} .
      *
      * @param ListImagesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -418,7 +418,7 @@ final class ImagesClient
     /**
      * Patches the specified image with the data included in the request. Only the following fields can be modified: family, description, deprecation status.
      *
-     * The async variant is {@see ImagesGapicClient::patchAsync()} .
+     * The async variant is {@see ImagesClient::patchAsync()} .
      *
      * @param PatchImageRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -442,7 +442,7 @@ final class ImagesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
-     * The async variant is {@see ImagesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ImagesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -466,7 +466,7 @@ final class ImagesClient
     /**
      * Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see ImagesGapicClient::setLabelsAsync()} .
+     * The async variant is {@see ImagesClient::setLabelsAsync()} .
      *
      * @param SetLabelsImageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -490,7 +490,7 @@ final class ImagesClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is {@see ImagesGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ImagesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsImageRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

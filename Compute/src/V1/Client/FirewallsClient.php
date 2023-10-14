@@ -238,7 +238,7 @@ final class FirewallsClient
     /**
      * Deletes the specified firewall.
      *
-     * The async variant is {@see FirewallsGapicClient::deleteAsync()} .
+     * The async variant is {@see FirewallsClient::deleteAsync()} .
      *
      * @param DeleteFirewallRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -262,7 +262,7 @@ final class FirewallsClient
     /**
      * Returns the specified firewall.
      *
-     * The async variant is {@see FirewallsGapicClient::getAsync()} .
+     * The async variant is {@see FirewallsClient::getAsync()} .
      *
      * @param GetFirewallRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -286,7 +286,7 @@ final class FirewallsClient
     /**
      * Creates a firewall rule in the specified project using the data included in the request.
      *
-     * The async variant is {@see FirewallsGapicClient::insertAsync()} .
+     * The async variant is {@see FirewallsClient::insertAsync()} .
      *
      * @param InsertFirewallRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -310,7 +310,7 @@ final class FirewallsClient
     /**
      * Retrieves the list of firewall rules available to the specified project.
      *
-     * The async variant is {@see FirewallsGapicClient::listAsync()} .
+     * The async variant is {@see FirewallsClient::listAsync()} .
      *
      * @param ListFirewallsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -334,7 +334,7 @@ final class FirewallsClient
     /**
      * Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
-     * The async variant is {@see FirewallsGapicClient::patchAsync()} .
+     * The async variant is {@see FirewallsClient::patchAsync()} .
      *
      * @param PatchFirewallRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -358,7 +358,7 @@ final class FirewallsClient
     /**
      * Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead.
      *
-     * The async variant is {@see FirewallsGapicClient::updateAsync()} .
+     * The async variant is {@see FirewallsClient::updateAsync()} .
      *
      * @param UpdateFirewallRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

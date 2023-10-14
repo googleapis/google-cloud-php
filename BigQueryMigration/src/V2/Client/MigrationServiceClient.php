@@ -268,7 +268,7 @@ final class MigrationServiceClient
      * Creates a migration workflow.
      *
      * The async variant is
-     * {@see MigrationServiceGapicClient::createMigrationWorkflowAsync()} .
+     * {@see MigrationServiceClient::createMigrationWorkflowAsync()} .
      *
      * @example samples/V2/MigrationServiceClient/create_migration_workflow.php
      *
@@ -295,7 +295,7 @@ final class MigrationServiceClient
      * Deletes a migration workflow by name.
      *
      * The async variant is
-     * {@see MigrationServiceGapicClient::deleteMigrationWorkflowAsync()} .
+     * {@see MigrationServiceClient::deleteMigrationWorkflowAsync()} .
      *
      * @example samples/V2/MigrationServiceClient/delete_migration_workflow.php
      *
@@ -319,8 +319,7 @@ final class MigrationServiceClient
     /**
      * Gets a previously created migration subtask.
      *
-     * The async variant is
-     * {@see MigrationServiceGapicClient::getMigrationSubtaskAsync()} .
+     * The async variant is {@see MigrationServiceClient::getMigrationSubtaskAsync()} .
      *
      * @example samples/V2/MigrationServiceClient/get_migration_subtask.php
      *
@@ -346,8 +345,8 @@ final class MigrationServiceClient
     /**
      * Gets a previously created migration workflow.
      *
-     * The async variant is
-     * {@see MigrationServiceGapicClient::getMigrationWorkflowAsync()} .
+     * The async variant is {@see MigrationServiceClient::getMigrationWorkflowAsync()}
+     * .
      *
      * @example samples/V2/MigrationServiceClient/get_migration_workflow.php
      *
@@ -373,8 +372,8 @@ final class MigrationServiceClient
     /**
      * Lists previously created migration subtasks.
      *
-     * The async variant is
-     * {@see MigrationServiceGapicClient::listMigrationSubtasksAsync()} .
+     * The async variant is {@see MigrationServiceClient::listMigrationSubtasksAsync()}
+     * .
      *
      * @example samples/V2/MigrationServiceClient/list_migration_subtasks.php
      *
@@ -401,7 +400,7 @@ final class MigrationServiceClient
      * Lists previously created migration workflow.
      *
      * The async variant is
-     * {@see MigrationServiceGapicClient::listMigrationWorkflowsAsync()} .
+     * {@see MigrationServiceClient::listMigrationWorkflowsAsync()} .
      *
      * @example samples/V2/MigrationServiceClient/list_migration_workflows.php
      *
@@ -431,7 +430,7 @@ final class MigrationServiceClient
      * RUNNING.
      *
      * The async variant is
-     * {@see MigrationServiceGapicClient::startMigrationWorkflowAsync()} .
+     * {@see MigrationServiceClient::startMigrationWorkflowAsync()} .
      *
      * @example samples/V2/MigrationServiceClient/start_migration_workflow.php
      *

@@ -239,7 +239,7 @@ final class VpnTunnelsClient
     /**
      * Retrieves an aggregated list of VPN tunnels.
      *
-     * The async variant is {@see VpnTunnelsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see VpnTunnelsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListVpnTunnelsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -263,7 +263,7 @@ final class VpnTunnelsClient
     /**
      * Deletes the specified VpnTunnel resource.
      *
-     * The async variant is {@see VpnTunnelsGapicClient::deleteAsync()} .
+     * The async variant is {@see VpnTunnelsClient::deleteAsync()} .
      *
      * @param DeleteVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -287,7 +287,7 @@ final class VpnTunnelsClient
     /**
      * Returns the specified VpnTunnel resource.
      *
-     * The async variant is {@see VpnTunnelsGapicClient::getAsync()} .
+     * The async variant is {@see VpnTunnelsClient::getAsync()} .
      *
      * @param GetVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -311,7 +311,7 @@ final class VpnTunnelsClient
     /**
      * Creates a VpnTunnel resource in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see VpnTunnelsGapicClient::insertAsync()} .
+     * The async variant is {@see VpnTunnelsClient::insertAsync()} .
      *
      * @param InsertVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -335,7 +335,7 @@ final class VpnTunnelsClient
     /**
      * Retrieves a list of VpnTunnel resources contained in the specified project and region.
      *
-     * The async variant is {@see VpnTunnelsGapicClient::listAsync()} .
+     * The async variant is {@see VpnTunnelsClient::listAsync()} .
      *
      * @param ListVpnTunnelsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -359,7 +359,7 @@ final class VpnTunnelsClient
     /**
      * Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see VpnTunnelsGapicClient::setLabelsAsync()} .
+     * The async variant is {@see VpnTunnelsClient::setLabelsAsync()} .
      *
      * @param SetLabelsVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

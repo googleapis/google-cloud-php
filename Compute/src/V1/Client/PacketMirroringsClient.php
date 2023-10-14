@@ -242,7 +242,7 @@ final class PacketMirroringsClient
     /**
      * Retrieves an aggregated list of packetMirrorings.
      *
-     * The async variant is {@see PacketMirroringsGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see PacketMirroringsClient::aggregatedListAsync()} .
      *
      * @param AggregatedListPacketMirroringsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -266,7 +266,7 @@ final class PacketMirroringsClient
     /**
      * Deletes the specified PacketMirroring resource.
      *
-     * The async variant is {@see PacketMirroringsGapicClient::deleteAsync()} .
+     * The async variant is {@see PacketMirroringsClient::deleteAsync()} .
      *
      * @param DeletePacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -290,7 +290,7 @@ final class PacketMirroringsClient
     /**
      * Returns the specified PacketMirroring resource.
      *
-     * The async variant is {@see PacketMirroringsGapicClient::getAsync()} .
+     * The async variant is {@see PacketMirroringsClient::getAsync()} .
      *
      * @param GetPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -314,7 +314,7 @@ final class PacketMirroringsClient
     /**
      * Creates a PacketMirroring resource in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see PacketMirroringsGapicClient::insertAsync()} .
+     * The async variant is {@see PacketMirroringsClient::insertAsync()} .
      *
      * @param InsertPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -338,7 +338,7 @@ final class PacketMirroringsClient
     /**
      * Retrieves a list of PacketMirroring resources available to the specified project and region.
      *
-     * The async variant is {@see PacketMirroringsGapicClient::listAsync()} .
+     * The async variant is {@see PacketMirroringsClient::listAsync()} .
      *
      * @param ListPacketMirroringsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -362,7 +362,7 @@ final class PacketMirroringsClient
     /**
      * Patches the specified PacketMirroring resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see PacketMirroringsGapicClient::patchAsync()} .
+     * The async variant is {@see PacketMirroringsClient::patchAsync()} .
      *
      * @param PatchPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -386,8 +386,7 @@ final class PacketMirroringsClient
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is
-     * {@see PacketMirroringsGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see PacketMirroringsClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {

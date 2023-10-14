@@ -240,7 +240,7 @@ final class RegionSslPoliciesClient
     /**
      * Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
      *
-     * The async variant is {@see RegionSslPoliciesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionSslPoliciesClient::deleteAsync()} .
      *
      * @param DeleteRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -264,7 +264,7 @@ final class RegionSslPoliciesClient
     /**
      * Lists all of the ordered rules present in a single specified policy.
      *
-     * The async variant is {@see RegionSslPoliciesGapicClient::getAsync()} .
+     * The async variant is {@see RegionSslPoliciesClient::getAsync()} .
      *
      * @param GetRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -288,7 +288,7 @@ final class RegionSslPoliciesClient
     /**
      * Creates a new policy in the specified project and region using the data included in the request.
      *
-     * The async variant is {@see RegionSslPoliciesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionSslPoliciesClient::insertAsync()} .
      *
      * @param InsertRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -312,7 +312,7 @@ final class RegionSslPoliciesClient
     /**
      * Lists all the SSL policies that have been configured for the specified project and region.
      *
-     * The async variant is {@see RegionSslPoliciesGapicClient::listAsync()} .
+     * The async variant is {@see RegionSslPoliciesClient::listAsync()} .
      *
      * @param ListRegionSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -337,7 +337,7 @@ final class RegionSslPoliciesClient
      * Lists all features that can be specified in the SSL policy when using custom profile.
      *
      * The async variant is
-     * {@see RegionSslPoliciesGapicClient::listAvailableFeaturesAsync()} .
+     * {@see RegionSslPoliciesClient::listAvailableFeaturesAsync()} .
      *
      * @param ListAvailableFeaturesRegionSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
@@ -361,7 +361,7 @@ final class RegionSslPoliciesClient
     /**
      * Patches the specified SSL policy with the data included in the request.
      *
-     * The async variant is {@see RegionSslPoliciesGapicClient::patchAsync()} .
+     * The async variant is {@see RegionSslPoliciesClient::patchAsync()} .
      *
      * @param PatchRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

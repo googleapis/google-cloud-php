@@ -530,7 +530,7 @@ final class CloudChannelServiceClient
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::activateEntitlementAsync()} .
+     * {@see CloudChannelServiceClient::activateEntitlementAsync()} .
      *
      * @param ActivateEntitlementRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -579,8 +579,8 @@ final class CloudChannelServiceClient
      * google.protobuf.Empty on success. The Operation metadata will contain an
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::cancelEntitlementAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::cancelEntitlementAsync()}
+     * .
      *
      * @param CancelEntitlementRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -624,7 +624,7 @@ final class CloudChannelServiceClient
      * CloudChannelOperationsService. The Operation metadata will contain an
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::changeOfferAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::changeOfferAsync()} .
      *
      * @param ChangeOfferRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -670,8 +670,7 @@ final class CloudChannelServiceClient
      * CloudChannelOperationsService. The Operation metadata will contain an
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::changeParametersAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::changeParametersAsync()} .
      *
      * @param ChangeParametersRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -718,7 +717,7 @@ final class CloudChannelServiceClient
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::changeRenewalSettingsAsync()} .
+     * {@see CloudChannelServiceClient::changeRenewalSettingsAsync()} .
      *
      * @param ChangeRenewalSettingsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -761,7 +760,7 @@ final class CloudChannelServiceClient
      * resources match the domain.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::checkCloudIdentityAccountsExistAsync()} .
+     * {@see CloudChannelServiceClient::checkCloudIdentityAccountsExistAsync()} .
      *
      * @param CheckCloudIdentityAccountsExistRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -808,7 +807,7 @@ final class CloudChannelServiceClient
      * resource.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::createChannelPartnerLinkAsync()} .
+     * {@see CloudChannelServiceClient::createChannelPartnerLinkAsync()} .
      *
      * @param CreateChannelPartnerLinkRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -875,8 +874,7 @@ final class CloudChannelServiceClient
      * resource, otherwise returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::createChannelPartnerRepricingConfigAsync()}
-     * .
+     * {@see CloudChannelServiceClient::createChannelPartnerRepricingConfigAsync()} .
      *
      * @param CreateChannelPartnerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -915,8 +913,7 @@ final class CloudChannelServiceClient
      * Return value:
      * The newly created [Customer][google.cloud.channel.v1.Customer] resource.
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::createCustomerAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::createCustomerAsync()} .
      *
      * @param CreateCustomerRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -982,7 +979,7 @@ final class CloudChannelServiceClient
      * resource, otherwise returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::createCustomerRepricingConfigAsync()} .
+     * {@see CloudChannelServiceClient::createCustomerRepricingConfigAsync()} .
      *
      * @param CreateCustomerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -1044,8 +1041,8 @@ final class CloudChannelServiceClient
      * CloudChannelOperationsService. The Operation metadata will contain an
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::createEntitlementAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::createEntitlementAsync()}
+     * .
      *
      * @param CreateEntitlementRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1086,8 +1083,7 @@ final class CloudChannelServiceClient
      * found for the name in the request.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::deleteChannelPartnerRepricingConfigAsync()}
-     * .
+     * {@see CloudChannelServiceClient::deleteChannelPartnerRepricingConfigAsync()} .
      *
      * @param DeleteChannelPartnerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -1118,8 +1114,7 @@ final class CloudChannelServiceClient
      * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
      * for the name in the request.
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::deleteCustomerAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::deleteCustomerAsync()} .
      *
      * @param DeleteCustomerRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1158,7 +1153,7 @@ final class CloudChannelServiceClient
      * found for the name in the request.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::deleteCustomerRepricingConfigAsync()} .
+     * {@see CloudChannelServiceClient::deleteCustomerRepricingConfigAsync()} .
      *
      * @param DeleteCustomerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -1195,7 +1190,7 @@ final class CloudChannelServiceClient
      * resource.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::getChannelPartnerLinkAsync()} .
+     * {@see CloudChannelServiceClient::getChannelPartnerLinkAsync()} .
      *
      * @param GetChannelPartnerLinkRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1236,7 +1231,7 @@ final class CloudChannelServiceClient
      * resource, otherwise returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::getChannelPartnerRepricingConfigAsync()} .
+     * {@see CloudChannelServiceClient::getChannelPartnerRepricingConfigAsync()} .
      *
      * @param GetChannelPartnerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -1272,7 +1267,7 @@ final class CloudChannelServiceClient
      * Return value:
      * The [Customer][google.cloud.channel.v1.Customer] resource.
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::getCustomerAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::getCustomerAsync()} .
      *
      * @param GetCustomerRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1313,7 +1308,7 @@ final class CloudChannelServiceClient
      * resource, otherwise returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::getCustomerRepricingConfigAsync()} .
+     * {@see CloudChannelServiceClient::getCustomerRepricingConfigAsync()} .
      *
      * @param GetCustomerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -1347,8 +1342,7 @@ final class CloudChannelServiceClient
      * Return value:
      * The requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::getEntitlementAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::getEntitlementAsync()} .
      *
      * @param GetEntitlementRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1391,8 +1385,7 @@ final class CloudChannelServiceClient
      * Return value:
      * The [Customer][google.cloud.channel.v1.Customer].
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::importCustomerAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::importCustomerAsync()} .
      *
      * @param ImportCustomerRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1428,7 +1421,7 @@ final class CloudChannelServiceClient
      * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listChannelPartnerLinksAsync()} .
+     * {@see CloudChannelServiceClient::listChannelPartnerLinksAsync()} .
      *
      * @param ListChannelPartnerLinksRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -1476,8 +1469,7 @@ final class CloudChannelServiceClient
      * If unsuccessful, returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listChannelPartnerRepricingConfigsAsync()}
-     * .
+     * {@see CloudChannelServiceClient::listChannelPartnerRepricingConfigsAsync()} .
      *
      * @param ListChannelPartnerRepricingConfigsRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -1526,7 +1518,7 @@ final class CloudChannelServiceClient
      * If unsuccessful, returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listCustomerRepricingConfigsAsync()} .
+     * {@see CloudChannelServiceClient::listCustomerRepricingConfigsAsync()} .
      *
      * @param ListCustomerRepricingConfigsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -1560,8 +1552,7 @@ final class CloudChannelServiceClient
      * List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
      * there are no customers.
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::listCustomersAsync()}
-     * .
+     * The async variant is {@see CloudChannelServiceClient::listCustomersAsync()} .
      *
      * @param ListCustomersRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1601,7 +1592,7 @@ final class CloudChannelServiceClient
      * List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listEntitlementChangesAsync()} .
+     * {@see CloudChannelServiceClient::listEntitlementChangesAsync()} .
      *
      * @param ListEntitlementChangesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1635,8 +1626,7 @@ final class CloudChannelServiceClient
      * A list of the customer's
      * [Entitlement][google.cloud.channel.v1.Entitlement]s.
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::listEntitlementsAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::listEntitlementsAsync()} .
      *
      * @param ListEntitlementsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1664,7 +1654,7 @@ final class CloudChannelServiceClient
      *
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::listOffersAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::listOffersAsync()} .
      *
      * @param ListOffersRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1692,8 +1682,7 @@ final class CloudChannelServiceClient
      *
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::listProductsAsync()}
-     * .
+     * The async variant is {@see CloudChannelServiceClient::listProductsAsync()} .
      *
      * @param ListProductsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1729,7 +1718,7 @@ final class CloudChannelServiceClient
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listPurchasableOffersAsync()} .
+     * {@see CloudChannelServiceClient::listPurchasableOffersAsync()} .
      *
      * @param ListPurchasableOffersRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1762,7 +1751,7 @@ final class CloudChannelServiceClient
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listPurchasableSkusAsync()} .
+     * {@see CloudChannelServiceClient::listPurchasableSkusAsync()} .
      *
      * @param ListPurchasableSkusRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1805,7 +1794,7 @@ final class CloudChannelServiceClient
      * If unsuccessful, returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listSkuGroupBillableSkusAsync()} .
+     * {@see CloudChannelServiceClient::listSkuGroupBillableSkusAsync()} .
      *
      * @param ListSkuGroupBillableSkusRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1847,8 +1836,7 @@ final class CloudChannelServiceClient
      *
      * If unsuccessful, returns an error.
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::listSkuGroupsAsync()}
-     * .
+     * The async variant is {@see CloudChannelServiceClient::listSkuGroupsAsync()} .
      *
      * @param ListSkuGroupsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1876,7 +1864,7 @@ final class CloudChannelServiceClient
      *
      * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::listSkusAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::listSkusAsync()} .
      *
      * @param ListSkusRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -1916,8 +1904,7 @@ final class CloudChannelServiceClient
      * Return value:
      * A list of service email addresses.
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::listSubscribersAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::listSubscribersAsync()} .
      *
      * @param ListSubscribersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1963,7 +1950,7 @@ final class CloudChannelServiceClient
      * the given customer and SKU.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listTransferableOffersAsync()} .
+     * {@see CloudChannelServiceClient::listTransferableOffersAsync()} .
      *
      * @param ListTransferableOffersRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -2006,7 +1993,7 @@ final class CloudChannelServiceClient
      * [TransferableSku][google.cloud.channel.v1.TransferableSku].
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::listTransferableSkusAsync()} .
+     * {@see CloudChannelServiceClient::listTransferableSkusAsync()} .
      *
      * @param ListTransferableSkusRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -2039,7 +2026,7 @@ final class CloudChannelServiceClient
      * Return value:
      * The [Offer][google.cloud.channel.v1.Offer] resource.
      *
-     * The async variant is {@see CloudChannelServiceGapicClient::lookupOfferAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::lookupOfferAsync()} .
      *
      * @param LookupOfferRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -2087,7 +2074,7 @@ final class CloudChannelServiceClient
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::provisionCloudIdentityAsync()} .
+     * {@see CloudChannelServiceClient::provisionCloudIdentityAsync()} .
      *
      * @param ProvisionCloudIdentityRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -2123,7 +2110,7 @@ final class CloudChannelServiceClient
      * eligible to purchase each SKU group.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::queryEligibleBillingAccountsAsync()} .
+     * {@see CloudChannelServiceClient::queryEligibleBillingAccountsAsync()} .
      *
      * @param QueryEligibleBillingAccountsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -2164,8 +2151,8 @@ final class CloudChannelServiceClient
      * Return value:
      * The topic name with the registered service email address.
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::registerSubscriberAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::registerSubscriberAsync()}
+     * .
      *
      * @param RegisterSubscriberRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -2212,8 +2199,7 @@ final class CloudChannelServiceClient
      * CloudChannelOperationsService. The Operation metadata will contain an
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::startPaidServiceAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::startPaidServiceAsync()} .
      *
      * @param StartPaidServiceRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -2257,8 +2243,8 @@ final class CloudChannelServiceClient
      * CloudChannelOperationsService. The Operation metadata will contain an
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::suspendEntitlementAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::suspendEntitlementAsync()}
+     * .
      *
      * @param SuspendEntitlementRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -2314,7 +2300,7 @@ final class CloudChannelServiceClient
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::transferEntitlementsAsync()} .
+     * {@see CloudChannelServiceClient::transferEntitlementsAsync()} .
      *
      * @param TransferEntitlementsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -2367,7 +2353,7 @@ final class CloudChannelServiceClient
      * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::transferEntitlementsToGoogleAsync()} .
+     * {@see CloudChannelServiceClient::transferEntitlementsToGoogleAsync()} .
      *
      * @param TransferEntitlementsToGoogleRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -2412,7 +2398,7 @@ final class CloudChannelServiceClient
      * with the topic.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::unregisterSubscriberAsync()} .
+     * {@see CloudChannelServiceClient::unregisterSubscriberAsync()} .
      *
      * @param UnregisterSubscriberRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -2458,7 +2444,7 @@ final class CloudChannelServiceClient
      * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::updateChannelPartnerLinkAsync()} .
+     * {@see CloudChannelServiceClient::updateChannelPartnerLinkAsync()} .
      *
      * @param UpdateChannelPartnerLinkRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -2514,8 +2500,7 @@ final class CloudChannelServiceClient
      * resource, otherwise returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::updateChannelPartnerRepricingConfigAsync()}
-     * .
+     * {@see CloudChannelServiceClient::updateChannelPartnerRepricingConfigAsync()} .
      *
      * @param UpdateChannelPartnerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -2551,8 +2536,7 @@ final class CloudChannelServiceClient
      * Return value:
      * The updated [Customer][google.cloud.channel.v1.Customer] resource.
      *
-     * The async variant is
-     * {@see CloudChannelServiceGapicClient::updateCustomerAsync()} .
+     * The async variant is {@see CloudChannelServiceClient::updateCustomerAsync()} .
      *
      * @param UpdateCustomerRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -2608,7 +2592,7 @@ final class CloudChannelServiceClient
      * resource, otherwise returns an error.
      *
      * The async variant is
-     * {@see CloudChannelServiceGapicClient::updateCustomerRepricingConfigAsync()} .
+     * {@see CloudChannelServiceClient::updateCustomerRepricingConfigAsync()} .
      *
      * @param UpdateCustomerRepricingConfigRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

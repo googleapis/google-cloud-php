@@ -236,7 +236,7 @@ final class RegionSslCertificatesClient
     /**
      * Deletes the specified SslCertificate resource in the region.
      *
-     * The async variant is {@see RegionSslCertificatesGapicClient::deleteAsync()} .
+     * The async variant is {@see RegionSslCertificatesClient::deleteAsync()} .
      *
      * @param DeleteRegionSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -260,7 +260,7 @@ final class RegionSslCertificatesClient
     /**
      * Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request.
      *
-     * The async variant is {@see RegionSslCertificatesGapicClient::getAsync()} .
+     * The async variant is {@see RegionSslCertificatesClient::getAsync()} .
      *
      * @param GetRegionSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -284,7 +284,7 @@ final class RegionSslCertificatesClient
     /**
      * Creates a SslCertificate resource in the specified project and region using the data included in the request
      *
-     * The async variant is {@see RegionSslCertificatesGapicClient::insertAsync()} .
+     * The async variant is {@see RegionSslCertificatesClient::insertAsync()} .
      *
      * @param InsertRegionSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -308,7 +308,7 @@ final class RegionSslCertificatesClient
     /**
      * Retrieves the list of SslCertificate resources available to the specified project in the specified region.
      *
-     * The async variant is {@see RegionSslCertificatesGapicClient::listAsync()} .
+     * The async variant is {@see RegionSslCertificatesClient::listAsync()} .
      *
      * @param ListRegionSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

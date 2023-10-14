@@ -369,7 +369,7 @@ final class RepositoryManagerClient
      * Creates multiple repositories inside a connection.
      *
      * The async variant is
-     * {@see RepositoryManagerGapicClient::batchCreateRepositoriesAsync()} .
+     * {@see RepositoryManagerClient::batchCreateRepositoriesAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/batch_create_repositories.php
      *
@@ -395,8 +395,7 @@ final class RepositoryManagerClient
     /**
      * Creates a Connection.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::createConnectionAsync()} .
+     * The async variant is {@see RepositoryManagerClient::createConnectionAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/create_connection.php
      *
@@ -422,8 +421,7 @@ final class RepositoryManagerClient
     /**
      * Creates a Repository.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::createRepositoryAsync()} .
+     * The async variant is {@see RepositoryManagerClient::createRepositoryAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/create_repository.php
      *
@@ -449,8 +447,7 @@ final class RepositoryManagerClient
     /**
      * Deletes a single connection.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::deleteConnectionAsync()} .
+     * The async variant is {@see RepositoryManagerClient::deleteConnectionAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/delete_connection.php
      *
@@ -476,8 +473,7 @@ final class RepositoryManagerClient
     /**
      * Deletes a single repository.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::deleteRepositoryAsync()} .
+     * The async variant is {@see RepositoryManagerClient::deleteRepositoryAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/delete_repository.php
      *
@@ -503,7 +499,7 @@ final class RepositoryManagerClient
     /**
      * Fetch the list of branches or tags for a given repository.
      *
-     * The async variant is {@see RepositoryManagerGapicClient::fetchGitRefsAsync()} .
+     * The async variant is {@see RepositoryManagerClient::fetchGitRefsAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/fetch_git_refs.php
      *
@@ -531,7 +527,7 @@ final class RepositoryManagerClient
      * accessible and could be added to the connection.
      *
      * The async variant is
-     * {@see RepositoryManagerGapicClient::fetchLinkableRepositoriesAsync()} .
+     * {@see RepositoryManagerClient::fetchLinkableRepositoriesAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/fetch_linkable_repositories.php
      *
@@ -557,8 +553,7 @@ final class RepositoryManagerClient
     /**
      * Fetches read token of a given repository.
      *
-     * The async variant is {@see RepositoryManagerGapicClient::fetchReadTokenAsync()}
-     * .
+     * The async variant is {@see RepositoryManagerClient::fetchReadTokenAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/fetch_read_token.php
      *
@@ -584,8 +579,8 @@ final class RepositoryManagerClient
     /**
      * Fetches read/write token of a given repository.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::fetchReadWriteTokenAsync()} .
+     * The async variant is {@see RepositoryManagerClient::fetchReadWriteTokenAsync()}
+     * .
      *
      * @example samples/V2/RepositoryManagerClient/fetch_read_write_token.php
      *
@@ -611,7 +606,7 @@ final class RepositoryManagerClient
     /**
      * Gets details of a single connection.
      *
-     * The async variant is {@see RepositoryManagerGapicClient::getConnectionAsync()} .
+     * The async variant is {@see RepositoryManagerClient::getConnectionAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/get_connection.php
      *
@@ -637,7 +632,7 @@ final class RepositoryManagerClient
     /**
      * Gets details of a single repository.
      *
-     * The async variant is {@see RepositoryManagerGapicClient::getRepositoryAsync()} .
+     * The async variant is {@see RepositoryManagerClient::getRepositoryAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/get_repository.php
      *
@@ -663,8 +658,7 @@ final class RepositoryManagerClient
     /**
      * Lists Connections in a given project and location.
      *
-     * The async variant is {@see RepositoryManagerGapicClient::listConnectionsAsync()}
-     * .
+     * The async variant is {@see RepositoryManagerClient::listConnectionsAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/list_connections.php
      *
@@ -690,8 +684,7 @@ final class RepositoryManagerClient
     /**
      * Lists Repositories in a given connection.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::listRepositoriesAsync()} .
+     * The async variant is {@see RepositoryManagerClient::listRepositoriesAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/list_repositories.php
      *
@@ -717,8 +710,7 @@ final class RepositoryManagerClient
     /**
      * Updates a single connection.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::updateConnectionAsync()} .
+     * The async variant is {@see RepositoryManagerClient::updateConnectionAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/update_connection.php
      *
@@ -745,7 +737,7 @@ final class RepositoryManagerClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see RepositoryManagerGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see RepositoryManagerClient::getIamPolicyAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/get_iam_policy.php
      *
@@ -775,7 +767,7 @@ final class RepositoryManagerClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see RepositoryManagerGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see RepositoryManagerClient::setIamPolicyAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/set_iam_policy.php
      *
@@ -807,8 +799,7 @@ final class RepositoryManagerClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see RepositoryManagerGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see RepositoryManagerClient::testIamPermissionsAsync()} .
      *
      * @example samples/V2/RepositoryManagerClient/test_iam_permissions.php
      *

@@ -242,7 +242,7 @@ final class LicensesClient
     /**
      * Deletes the specified license. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicensesGapicClient::deleteAsync()} .
+     * The async variant is {@see LicensesClient::deleteAsync()} .
      *
      * @param DeleteLicenseRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -266,7 +266,7 @@ final class LicensesClient
     /**
      * Returns the specified License resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicensesGapicClient::getAsync()} .
+     * The async variant is {@see LicensesClient::getAsync()} .
      *
      * @param GetLicenseRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -290,7 +290,7 @@ final class LicensesClient
     /**
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicensesGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see LicensesClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyLicenseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -314,7 +314,7 @@ final class LicensesClient
     /**
      * Create a License resource in the specified project. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicensesGapicClient::insertAsync()} .
+     * The async variant is {@see LicensesClient::insertAsync()} .
      *
      * @param InsertLicenseRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -338,7 +338,7 @@ final class LicensesClient
     /**
      * Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicensesGapicClient::listAsync()} .
+     * The async variant is {@see LicensesClient::listAsync()} .
      *
      * @param ListLicensesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -362,7 +362,7 @@ final class LicensesClient
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicensesGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see LicensesClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyLicenseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -386,7 +386,7 @@ final class LicensesClient
     /**
      * Returns permissions that a caller has on the specified resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
-     * The async variant is {@see LicensesGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see LicensesClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsLicenseRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

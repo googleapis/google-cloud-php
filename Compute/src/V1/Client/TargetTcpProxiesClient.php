@@ -240,7 +240,7 @@ final class TargetTcpProxiesClient
     /**
      * Retrieves the list of all TargetTcpProxy resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see TargetTcpProxiesGapicClient::aggregatedListAsync()} .
+     * The async variant is {@see TargetTcpProxiesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListTargetTcpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -264,7 +264,7 @@ final class TargetTcpProxiesClient
     /**
      * Deletes the specified TargetTcpProxy resource.
      *
-     * The async variant is {@see TargetTcpProxiesGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetTcpProxiesClient::deleteAsync()} .
      *
      * @param DeleteTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -288,7 +288,7 @@ final class TargetTcpProxiesClient
     /**
      * Returns the specified TargetTcpProxy resource.
      *
-     * The async variant is {@see TargetTcpProxiesGapicClient::getAsync()} .
+     * The async variant is {@see TargetTcpProxiesClient::getAsync()} .
      *
      * @param GetTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -312,7 +312,7 @@ final class TargetTcpProxiesClient
     /**
      * Creates a TargetTcpProxy resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see TargetTcpProxiesGapicClient::insertAsync()} .
+     * The async variant is {@see TargetTcpProxiesClient::insertAsync()} .
      *
      * @param InsertTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -336,7 +336,7 @@ final class TargetTcpProxiesClient
     /**
      * Retrieves the list of TargetTcpProxy resources available to the specified project.
      *
-     * The async variant is {@see TargetTcpProxiesGapicClient::listAsync()} .
+     * The async variant is {@see TargetTcpProxiesClient::listAsync()} .
      *
      * @param ListTargetTcpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -360,8 +360,7 @@ final class TargetTcpProxiesClient
     /**
      * Changes the BackendService for TargetTcpProxy.
      *
-     * The async variant is
-     * {@see TargetTcpProxiesGapicClient::setBackendServiceAsync()} .
+     * The async variant is {@see TargetTcpProxiesClient::setBackendServiceAsync()} .
      *
      * @param SetBackendServiceTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -385,7 +384,7 @@ final class TargetTcpProxiesClient
     /**
      * Changes the ProxyHeaderType for TargetTcpProxy.
      *
-     * The async variant is {@see TargetTcpProxiesGapicClient::setProxyHeaderAsync()} .
+     * The async variant is {@see TargetTcpProxiesClient::setProxyHeaderAsync()} .
      *
      * @param SetProxyHeaderTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

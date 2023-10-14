@@ -238,7 +238,7 @@ final class GlobalAddressesClient
     /**
      * Deletes the specified address resource.
      *
-     * The async variant is {@see GlobalAddressesGapicClient::deleteAsync()} .
+     * The async variant is {@see GlobalAddressesClient::deleteAsync()} .
      *
      * @param DeleteGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -262,7 +262,7 @@ final class GlobalAddressesClient
     /**
      * Returns the specified address resource.
      *
-     * The async variant is {@see GlobalAddressesGapicClient::getAsync()} .
+     * The async variant is {@see GlobalAddressesClient::getAsync()} .
      *
      * @param GetGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -286,7 +286,7 @@ final class GlobalAddressesClient
     /**
      * Creates an address resource in the specified project by using the data included in the request.
      *
-     * The async variant is {@see GlobalAddressesGapicClient::insertAsync()} .
+     * The async variant is {@see GlobalAddressesClient::insertAsync()} .
      *
      * @param InsertGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -310,7 +310,7 @@ final class GlobalAddressesClient
     /**
      * Retrieves a list of global addresses.
      *
-     * The async variant is {@see GlobalAddressesGapicClient::listAsync()} .
+     * The async variant is {@see GlobalAddressesClient::listAsync()} .
      *
      * @param ListGlobalAddressesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -334,7 +334,7 @@ final class GlobalAddressesClient
     /**
      * Moves the specified address resource from one project to another project.
      *
-     * The async variant is {@see GlobalAddressesGapicClient::moveAsync()} .
+     * The async variant is {@see GlobalAddressesClient::moveAsync()} .
      *
      * @param MoveGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -358,7 +358,7 @@ final class GlobalAddressesClient
     /**
      * Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
      *
-     * The async variant is {@see GlobalAddressesGapicClient::setLabelsAsync()} .
+     * The async variant is {@see GlobalAddressesClient::setLabelsAsync()} .
      *
      * @param SetLabelsGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

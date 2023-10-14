@@ -248,8 +248,7 @@ final class TargetHttpsProxiesClient
     /**
      * Retrieves the list of all TargetHttpsProxy resources, regional and global, available to the specified project.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::aggregatedListAsync()}
-     * .
+     * The async variant is {@see TargetHttpsProxiesClient::aggregatedListAsync()} .
      *
      * @param AggregatedListTargetHttpsProxiesRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -273,7 +272,7 @@ final class TargetHttpsProxiesClient
     /**
      * Deletes the specified TargetHttpsProxy resource.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::deleteAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::deleteAsync()} .
      *
      * @param DeleteTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -297,7 +296,7 @@ final class TargetHttpsProxiesClient
     /**
      * Returns the specified TargetHttpsProxy resource.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::getAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::getAsync()} .
      *
      * @param GetTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -321,7 +320,7 @@ final class TargetHttpsProxiesClient
     /**
      * Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::insertAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::insertAsync()} .
      *
      * @param InsertTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -345,7 +344,7 @@ final class TargetHttpsProxiesClient
     /**
      * Retrieves the list of TargetHttpsProxy resources available to the specified project.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::listAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::listAsync()} .
      *
      * @param ListTargetHttpsProxiesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -369,7 +368,7 @@ final class TargetHttpsProxiesClient
     /**
      * Patches the specified TargetHttpsProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::patchAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::patchAsync()} .
      *
      * @param PatchTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -393,8 +392,7 @@ final class TargetHttpsProxiesClient
     /**
      * Changes the Certificate Map for TargetHttpsProxy.
      *
-     * The async variant is
-     * {@see TargetHttpsProxiesGapicClient::setCertificateMapAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::setCertificateMapAsync()} .
      *
      * @param SetCertificateMapTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -418,8 +416,7 @@ final class TargetHttpsProxiesClient
     /**
      * Sets the QUIC override policy for TargetHttpsProxy.
      *
-     * The async variant is
-     * {@see TargetHttpsProxiesGapicClient::setQuicOverrideAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::setQuicOverrideAsync()} .
      *
      * @param SetQuicOverrideTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -443,8 +440,8 @@ final class TargetHttpsProxiesClient
     /**
      * Replaces SslCertificates for TargetHttpsProxy.
      *
-     * The async variant is
-     * {@see TargetHttpsProxiesGapicClient::setSslCertificatesAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::setSslCertificatesAsync()}
+     * .
      *
      * @param SetSslCertificatesTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -468,7 +465,7 @@ final class TargetHttpsProxiesClient
     /**
      * Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::setSslPolicyAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::setSslPolicyAsync()} .
      *
      * @param SetSslPolicyTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -492,7 +489,7 @@ final class TargetHttpsProxiesClient
     /**
      * Changes the URL map for TargetHttpsProxy.
      *
-     * The async variant is {@see TargetHttpsProxiesGapicClient::setUrlMapAsync()} .
+     * The async variant is {@see TargetHttpsProxiesClient::setUrlMapAsync()} .
      *
      * @param SetUrlMapTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
