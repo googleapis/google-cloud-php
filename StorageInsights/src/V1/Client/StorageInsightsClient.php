@@ -272,8 +272,7 @@ final class StorageInsightsClient
     /**
      * Creates a new ReportConfig in a given project and location.
      *
-     * The async variant is
-     * {@see StorageInsightsGapicClient::createReportConfigAsync()} .
+     * The async variant is {@see StorageInsightsClient::createReportConfigAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/create_report_config.php
      *
@@ -299,8 +298,7 @@ final class StorageInsightsClient
     /**
      * Deletes a single ReportConfig.
      *
-     * The async variant is
-     * {@see StorageInsightsGapicClient::deleteReportConfigAsync()} .
+     * The async variant is {@see StorageInsightsClient::deleteReportConfigAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/delete_report_config.php
      *
@@ -324,7 +322,7 @@ final class StorageInsightsClient
     /**
      * Gets details of a single ReportConfig.
      *
-     * The async variant is {@see StorageInsightsGapicClient::getReportConfigAsync()} .
+     * The async variant is {@see StorageInsightsClient::getReportConfigAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/get_report_config.php
      *
@@ -350,7 +348,7 @@ final class StorageInsightsClient
     /**
      * Gets details of a single ReportDetail.
      *
-     * The async variant is {@see StorageInsightsGapicClient::getReportDetailAsync()} .
+     * The async variant is {@see StorageInsightsClient::getReportDetailAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/get_report_detail.php
      *
@@ -376,8 +374,7 @@ final class StorageInsightsClient
     /**
      * Lists ReportConfigs in a given project and location.
      *
-     * The async variant is {@see StorageInsightsGapicClient::listReportConfigsAsync()}
-     * .
+     * The async variant is {@see StorageInsightsClient::listReportConfigsAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/list_report_configs.php
      *
@@ -403,8 +400,7 @@ final class StorageInsightsClient
     /**
      * Lists ReportDetails in a given project and location.
      *
-     * The async variant is {@see StorageInsightsGapicClient::listReportDetailsAsync()}
-     * .
+     * The async variant is {@see StorageInsightsClient::listReportDetailsAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/list_report_details.php
      *
@@ -430,8 +426,7 @@ final class StorageInsightsClient
     /**
      * Updates the parameters of a single ReportConfig.
      *
-     * The async variant is
-     * {@see StorageInsightsGapicClient::updateReportConfigAsync()} .
+     * The async variant is {@see StorageInsightsClient::updateReportConfigAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/update_report_config.php
      *
@@ -457,7 +452,7 @@ final class StorageInsightsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see StorageInsightsGapicClient::getLocationAsync()} .
+     * The async variant is {@see StorageInsightsClient::getLocationAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/get_location.php
      *
@@ -483,7 +478,7 @@ final class StorageInsightsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see StorageInsightsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see StorageInsightsClient::listLocationsAsync()} .
      *
      * @example samples/V1/StorageInsightsClient/list_locations.php
      *

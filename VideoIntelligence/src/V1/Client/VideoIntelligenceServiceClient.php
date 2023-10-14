@@ -202,8 +202,8 @@ final class VideoIntelligenceServiceClient
      * `Operation.metadata` contains `AnnotateVideoProgress` (progress).
      * `Operation.response` contains `AnnotateVideoResponse` (results).
      *
-     * The async variant is
-     * {@see VideoIntelligenceServiceGapicClient::annotateVideoAsync()} .
+     * The async variant is {@see VideoIntelligenceServiceClient::annotateVideoAsync()}
+     * .
      *
      * @param AnnotateVideoRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

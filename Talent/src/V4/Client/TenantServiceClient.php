@@ -236,7 +236,7 @@ final class TenantServiceClient
     /**
      * Creates a new tenant entity.
      *
-     * The async variant is {@see TenantServiceGapicClient::createTenantAsync()} .
+     * The async variant is {@see TenantServiceClient::createTenantAsync()} .
      *
      * @param CreateTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -260,7 +260,7 @@ final class TenantServiceClient
     /**
      * Deletes specified tenant.
      *
-     * The async variant is {@see TenantServiceGapicClient::deleteTenantAsync()} .
+     * The async variant is {@see TenantServiceClient::deleteTenantAsync()} .
      *
      * @param DeleteTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -282,7 +282,7 @@ final class TenantServiceClient
     /**
      * Retrieves specified tenant.
      *
-     * The async variant is {@see TenantServiceGapicClient::getTenantAsync()} .
+     * The async variant is {@see TenantServiceClient::getTenantAsync()} .
      *
      * @param GetTenantRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -306,7 +306,7 @@ final class TenantServiceClient
     /**
      * Lists all tenants associated with the project.
      *
-     * The async variant is {@see TenantServiceGapicClient::listTenantsAsync()} .
+     * The async variant is {@see TenantServiceClient::listTenantsAsync()} .
      *
      * @param ListTenantsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -330,7 +330,7 @@ final class TenantServiceClient
     /**
      * Updates specified tenant.
      *
-     * The async variant is {@see TenantServiceGapicClient::updateTenantAsync()} .
+     * The async variant is {@see TenantServiceClient::updateTenantAsync()} .
      *
      * @param UpdateTenantRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

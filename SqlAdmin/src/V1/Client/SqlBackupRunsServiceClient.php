@@ -170,7 +170,7 @@ final class SqlBackupRunsServiceClient
     /**
      * Deletes the backup taken by a backup run.
      *
-     * The async variant is {@see SqlBackupRunsServiceGapicClient::deleteAsync()} .
+     * The async variant is {@see SqlBackupRunsServiceClient::deleteAsync()} .
      *
      * @example samples/V1/SqlBackupRunsServiceClient/delete.php
      *
@@ -196,7 +196,7 @@ final class SqlBackupRunsServiceClient
     /**
      * Retrieves a resource containing information about a backup run.
      *
-     * The async variant is {@see SqlBackupRunsServiceGapicClient::getAsync()} .
+     * The async variant is {@see SqlBackupRunsServiceClient::getAsync()} .
      *
      * @example samples/V1/SqlBackupRunsServiceClient/get.php
      *
@@ -222,7 +222,7 @@ final class SqlBackupRunsServiceClient
     /**
      * Creates a new backup run on demand.
      *
-     * The async variant is {@see SqlBackupRunsServiceGapicClient::insertAsync()} .
+     * The async variant is {@see SqlBackupRunsServiceClient::insertAsync()} .
      *
      * @example samples/V1/SqlBackupRunsServiceClient/insert.php
      *
@@ -250,7 +250,7 @@ final class SqlBackupRunsServiceClient
      * and configuration in the reverse chronological order of the backup
      * initiation time.
      *
-     * The async variant is {@see SqlBackupRunsServiceGapicClient::listAsync()} .
+     * The async variant is {@see SqlBackupRunsServiceClient::listAsync()} .
      *
      * @example samples/V1/SqlBackupRunsServiceClient/list.php
      *

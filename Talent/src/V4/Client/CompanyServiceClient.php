@@ -240,7 +240,7 @@ final class CompanyServiceClient
     /**
      * Creates a new company entity.
      *
-     * The async variant is {@see CompanyServiceGapicClient::createCompanyAsync()} .
+     * The async variant is {@see CompanyServiceClient::createCompanyAsync()} .
      *
      * @param CreateCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -265,7 +265,7 @@ final class CompanyServiceClient
      * Deletes specified company.
      * Prerequisite: The company has no jobs associated with it.
      *
-     * The async variant is {@see CompanyServiceGapicClient::deleteCompanyAsync()} .
+     * The async variant is {@see CompanyServiceClient::deleteCompanyAsync()} .
      *
      * @param DeleteCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -287,7 +287,7 @@ final class CompanyServiceClient
     /**
      * Retrieves specified company.
      *
-     * The async variant is {@see CompanyServiceGapicClient::getCompanyAsync()} .
+     * The async variant is {@see CompanyServiceClient::getCompanyAsync()} .
      *
      * @param GetCompanyRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -311,7 +311,7 @@ final class CompanyServiceClient
     /**
      * Lists all companies associated with the project.
      *
-     * The async variant is {@see CompanyServiceGapicClient::listCompaniesAsync()} .
+     * The async variant is {@see CompanyServiceClient::listCompaniesAsync()} .
      *
      * @param ListCompaniesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -335,7 +335,7 @@ final class CompanyServiceClient
     /**
      * Updates specified company.
      *
-     * The async variant is {@see CompanyServiceGapicClient::updateCompanyAsync()} .
+     * The async variant is {@see CompanyServiceClient::updateCompanyAsync()} .
      *
      * @param UpdateCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

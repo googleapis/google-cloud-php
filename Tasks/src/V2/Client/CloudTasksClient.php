@@ -301,7 +301,7 @@ final class CloudTasksClient
      * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
      * this method.
      *
-     * The async variant is {@see CloudTasksGapicClient::createQueueAsync()} .
+     * The async variant is {@see CloudTasksClient::createQueueAsync()} .
      *
      * @param CreateQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -329,7 +329,7 @@ final class CloudTasksClient
      *
      * * The maximum task size is 100KB.
      *
-     * The async variant is {@see CloudTasksGapicClient::createTaskAsync()} .
+     * The async variant is {@see CloudTasksClient::createTaskAsync()} .
      *
      * @param CreateTaskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -365,7 +365,7 @@ final class CloudTasksClient
      * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
      * this method.
      *
-     * The async variant is {@see CloudTasksGapicClient::deleteQueueAsync()} .
+     * The async variant is {@see CloudTasksClient::deleteQueueAsync()} .
      *
      * @param DeleteQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -391,7 +391,7 @@ final class CloudTasksClient
      * cannot be deleted if it has executed successfully or permanently
      * failed.
      *
-     * The async variant is {@see CloudTasksGapicClient::deleteTaskAsync()} .
+     * The async variant is {@see CloudTasksClient::deleteTaskAsync()} .
      *
      * @param DeleteTaskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -421,7 +421,7 @@ final class CloudTasksClient
      *
      * * `cloudtasks.queues.getIamPolicy`
      *
-     * The async variant is {@see CloudTasksGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see CloudTasksClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -445,7 +445,7 @@ final class CloudTasksClient
     /**
      * Gets a queue.
      *
-     * The async variant is {@see CloudTasksGapicClient::getQueueAsync()} .
+     * The async variant is {@see CloudTasksClient::getQueueAsync()} .
      *
      * @param GetQueueRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -469,7 +469,7 @@ final class CloudTasksClient
     /**
      * Gets a task.
      *
-     * The async variant is {@see CloudTasksGapicClient::getTaskAsync()} .
+     * The async variant is {@see CloudTasksClient::getTaskAsync()} .
      *
      * @param GetTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -495,7 +495,7 @@ final class CloudTasksClient
      *
      * Queues are returned in lexicographical order.
      *
-     * The async variant is {@see CloudTasksGapicClient::listQueuesAsync()} .
+     * The async variant is {@see CloudTasksClient::listQueuesAsync()} .
      *
      * @param ListQueuesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -527,7 +527,7 @@ final class CloudTasksClient
      * The tasks may be returned in any order. The ordering may change at any
      * time.
      *
-     * The async variant is {@see CloudTasksGapicClient::listTasksAsync()} .
+     * The async variant is {@see CloudTasksClient::listTasksAsync()} .
      *
      * @param ListTasksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -558,7 +558,7 @@ final class CloudTasksClient
      * [state][google.cloud.tasks.v2.Queue.state] is
      * [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
      *
-     * The async variant is {@see CloudTasksGapicClient::pauseQueueAsync()} .
+     * The async variant is {@see CloudTasksClient::pauseQueueAsync()} .
      *
      * @param PauseQueueRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -587,7 +587,7 @@ final class CloudTasksClient
      * Purge operations can take up to one minute to take effect. Tasks
      * might be dispatched before the purge takes effect. A purge is irreversible.
      *
-     * The async variant is {@see CloudTasksGapicClient::purgeQueueAsync()} .
+     * The async variant is {@see CloudTasksClient::purgeQueueAsync()} .
      *
      * @param PurgeQueueRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -624,7 +624,7 @@ final class CloudTasksClient
      * [Managing Cloud Tasks Scaling
      * Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      *
-     * The async variant is {@see CloudTasksGapicClient::resumeQueueAsync()} .
+     * The async variant is {@see CloudTasksClient::resumeQueueAsync()} .
      *
      * @param ResumeQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -673,7 +673,7 @@ final class CloudTasksClient
      * [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
      * task that has already succeeded or permanently failed.
      *
-     * The async variant is {@see CloudTasksGapicClient::runTaskAsync()} .
+     * The async variant is {@see CloudTasksClient::runTaskAsync()} .
      *
      * @param RunTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -707,7 +707,7 @@ final class CloudTasksClient
      *
      * * `cloudtasks.queues.setIamPolicy`
      *
-     * The async variant is {@see CloudTasksGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see CloudTasksClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -738,7 +738,7 @@ final class CloudTasksClient
      * UIs and command-line tools, not for authorization checking. This operation
      * may "fail open" without warning.
      *
-     * The async variant is {@see CloudTasksGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see CloudTasksClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -776,7 +776,7 @@ final class CloudTasksClient
      * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
      * this method.
      *
-     * The async variant is {@see CloudTasksGapicClient::updateQueueAsync()} .
+     * The async variant is {@see CloudTasksClient::updateQueueAsync()} .
      *
      * @param UpdateQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -800,7 +800,7 @@ final class CloudTasksClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see CloudTasksGapicClient::getLocationAsync()} .
+     * The async variant is {@see CloudTasksClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -824,7 +824,7 @@ final class CloudTasksClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see CloudTasksGapicClient::listLocationsAsync()} .
+     * The async variant is {@see CloudTasksClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

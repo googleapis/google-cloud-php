@@ -217,8 +217,7 @@ final class ServiceUsageClient
      * any service fails, then the entire batch fails, and no state changes occur.
      * To enable a single service, use the `EnableService` method instead.
      *
-     * The async variant is {@see ServiceUsageGapicClient::batchEnableServicesAsync()}
-     * .
+     * The async variant is {@see ServiceUsageClient::batchEnableServicesAsync()} .
      *
      * @param BatchEnableServicesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -243,7 +242,7 @@ final class ServiceUsageClient
      * Returns the service configurations and enabled states for a given list of
      * services.
      *
-     * The async variant is {@see ServiceUsageGapicClient::batchGetServicesAsync()} .
+     * The async variant is {@see ServiceUsageClient::batchGetServicesAsync()} .
      *
      * @param BatchGetServicesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -273,7 +272,7 @@ final class ServiceUsageClient
      * currently enabled. Callers will receive a `FAILED_PRECONDITION` status if
      * the target service is not currently enabled.
      *
-     * The async variant is {@see ServiceUsageGapicClient::disableServiceAsync()} .
+     * The async variant is {@see ServiceUsageClient::disableServiceAsync()} .
      *
      * @param DisableServiceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -297,7 +296,7 @@ final class ServiceUsageClient
     /**
      * Enable a service so that it can be used with a project.
      *
-     * The async variant is {@see ServiceUsageGapicClient::enableServiceAsync()} .
+     * The async variant is {@see ServiceUsageClient::enableServiceAsync()} .
      *
      * @param EnableServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -321,7 +320,7 @@ final class ServiceUsageClient
     /**
      * Returns the service configuration and enabled state for a given service.
      *
-     * The async variant is {@see ServiceUsageGapicClient::getServiceAsync()} .
+     * The async variant is {@see ServiceUsageClient::getServiceAsync()} .
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -357,7 +356,7 @@ final class ServiceUsageClient
      * API](https://cloud.google.com/asset-inventory/docs/apis), which provides
      * higher throughput and richer filtering capability.
      *
-     * The async variant is {@see ServiceUsageGapicClient::listServicesAsync()} .
+     * The async variant is {@see ServiceUsageClient::listServicesAsync()} .
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
