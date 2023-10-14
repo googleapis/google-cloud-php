@@ -423,7 +423,7 @@ final class TensorboardServiceClient
      * Batch create TensorboardRuns.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::batchCreateTensorboardRunsAsync()} .
+     * {@see TensorboardServiceClient::batchCreateTensorboardRunsAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/batch_create_tensorboard_runs.php
      *
@@ -450,7 +450,7 @@ final class TensorboardServiceClient
      * Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::batchCreateTensorboardTimeSeriesAsync()} .
+     * {@see TensorboardServiceClient::batchCreateTensorboardTimeSeriesAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/batch_create_tensorboard_time_series.php
      *
@@ -481,8 +481,7 @@ final class TensorboardServiceClient
      * this time series and returned.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::batchReadTensorboardTimeSeriesDataAsync()}
-     * .
+     * {@see TensorboardServiceClient::batchReadTensorboardTimeSeriesDataAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/batch_read_tensorboard_time_series_data.php
      *
@@ -508,8 +507,7 @@ final class TensorboardServiceClient
     /**
      * Creates a Tensorboard.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::createTensorboardAsync()} .
+     * The async variant is {@see TensorboardServiceClient::createTensorboardAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/create_tensorboard.php
      *
@@ -536,7 +534,7 @@ final class TensorboardServiceClient
      * Creates a TensorboardExperiment.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::createTensorboardExperimentAsync()} .
+     * {@see TensorboardServiceClient::createTensorboardExperimentAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/create_tensorboard_experiment.php
      *
@@ -563,7 +561,7 @@ final class TensorboardServiceClient
      * Creates a TensorboardRun.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::createTensorboardRunAsync()} .
+     * {@see TensorboardServiceClient::createTensorboardRunAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/create_tensorboard_run.php
      *
@@ -590,7 +588,7 @@ final class TensorboardServiceClient
      * Creates a TensorboardTimeSeries.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::createTensorboardTimeSeriesAsync()} .
+     * {@see TensorboardServiceClient::createTensorboardTimeSeriesAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/create_tensorboard_time_series.php
      *
@@ -616,8 +614,7 @@ final class TensorboardServiceClient
     /**
      * Deletes a Tensorboard.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::deleteTensorboardAsync()} .
+     * The async variant is {@see TensorboardServiceClient::deleteTensorboardAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/delete_tensorboard.php
      *
@@ -644,7 +641,7 @@ final class TensorboardServiceClient
      * Deletes a TensorboardExperiment.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::deleteTensorboardExperimentAsync()} .
+     * {@see TensorboardServiceClient::deleteTensorboardExperimentAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/delete_tensorboard_experiment.php
      *
@@ -671,7 +668,7 @@ final class TensorboardServiceClient
      * Deletes a TensorboardRun.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::deleteTensorboardRunAsync()} .
+     * {@see TensorboardServiceClient::deleteTensorboardRunAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/delete_tensorboard_run.php
      *
@@ -698,7 +695,7 @@ final class TensorboardServiceClient
      * Deletes a TensorboardTimeSeries.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::deleteTensorboardTimeSeriesAsync()} .
+     * {@see TensorboardServiceClient::deleteTensorboardTimeSeriesAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/delete_tensorboard_time_series.php
      *
@@ -726,7 +723,7 @@ final class TensorboardServiceClient
      * responses.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::exportTensorboardTimeSeriesDataAsync()} .
+     * {@see TensorboardServiceClient::exportTensorboardTimeSeriesDataAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/export_tensorboard_time_series_data.php
      *
@@ -752,8 +749,7 @@ final class TensorboardServiceClient
     /**
      * Gets a Tensorboard.
      *
-     * The async variant is {@see TensorboardServiceGapicClient::getTensorboardAsync()}
-     * .
+     * The async variant is {@see TensorboardServiceClient::getTensorboardAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/get_tensorboard.php
      *
@@ -780,7 +776,7 @@ final class TensorboardServiceClient
      * Gets a TensorboardExperiment.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::getTensorboardExperimentAsync()} .
+     * {@see TensorboardServiceClient::getTensorboardExperimentAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/get_tensorboard_experiment.php
      *
@@ -806,8 +802,7 @@ final class TensorboardServiceClient
     /**
      * Gets a TensorboardRun.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::getTensorboardRunAsync()} .
+     * The async variant is {@see TensorboardServiceClient::getTensorboardRunAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/get_tensorboard_run.php
      *
@@ -834,7 +829,7 @@ final class TensorboardServiceClient
      * Gets a TensorboardTimeSeries.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::getTensorboardTimeSeriesAsync()} .
+     * {@see TensorboardServiceClient::getTensorboardTimeSeriesAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/get_tensorboard_time_series.php
      *
@@ -861,7 +856,7 @@ final class TensorboardServiceClient
      * Lists TensorboardExperiments in a Location.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::listTensorboardExperimentsAsync()} .
+     * {@see TensorboardServiceClient::listTensorboardExperimentsAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/list_tensorboard_experiments.php
      *
@@ -887,8 +882,8 @@ final class TensorboardServiceClient
     /**
      * Lists TensorboardRuns in a Location.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::listTensorboardRunsAsync()} .
+     * The async variant is {@see TensorboardServiceClient::listTensorboardRunsAsync()}
+     * .
      *
      * @example samples/V1/TensorboardServiceClient/list_tensorboard_runs.php
      *
@@ -915,7 +910,7 @@ final class TensorboardServiceClient
      * Lists TensorboardTimeSeries in a Location.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::listTensorboardTimeSeriesAsync()} .
+     * {@see TensorboardServiceClient::listTensorboardTimeSeriesAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/list_tensorboard_time_series.php
      *
@@ -941,8 +936,7 @@ final class TensorboardServiceClient
     /**
      * Lists Tensorboards in a Location.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::listTensorboardsAsync()} .
+     * The async variant is {@see TensorboardServiceClient::listTensorboardsAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/list_tensorboards.php
      *
@@ -993,8 +987,8 @@ final class TensorboardServiceClient
     /**
      * Returns the storage size for a given TensorBoard instance.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::readTensorboardSizeAsync()} .
+     * The async variant is {@see TensorboardServiceClient::readTensorboardSizeAsync()}
+     * .
      *
      * @example samples/V1/TensorboardServiceClient/read_tensorboard_size.php
      *
@@ -1025,7 +1019,7 @@ final class TensorboardServiceClient
      * greater than 10k.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::readTensorboardTimeSeriesDataAsync()} .
+     * {@see TensorboardServiceClient::readTensorboardTimeSeriesDataAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/read_tensorboard_time_series_data.php
      *
@@ -1052,7 +1046,7 @@ final class TensorboardServiceClient
      * Returns a list of monthly active users for a given TensorBoard instance.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::readTensorboardUsageAsync()} .
+     * {@see TensorboardServiceClient::readTensorboardUsageAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/read_tensorboard_usage.php
      *
@@ -1078,8 +1072,7 @@ final class TensorboardServiceClient
     /**
      * Updates a Tensorboard.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::updateTensorboardAsync()} .
+     * The async variant is {@see TensorboardServiceClient::updateTensorboardAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/update_tensorboard.php
      *
@@ -1106,7 +1099,7 @@ final class TensorboardServiceClient
      * Updates a TensorboardExperiment.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::updateTensorboardExperimentAsync()} .
+     * {@see TensorboardServiceClient::updateTensorboardExperimentAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/update_tensorboard_experiment.php
      *
@@ -1133,7 +1126,7 @@ final class TensorboardServiceClient
      * Updates a TensorboardRun.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::updateTensorboardRunAsync()} .
+     * {@see TensorboardServiceClient::updateTensorboardRunAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/update_tensorboard_run.php
      *
@@ -1160,7 +1153,7 @@ final class TensorboardServiceClient
      * Updates a TensorboardTimeSeries.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::updateTensorboardTimeSeriesAsync()} .
+     * {@see TensorboardServiceClient::updateTensorboardTimeSeriesAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/update_tensorboard_time_series.php
      *
@@ -1188,7 +1181,7 @@ final class TensorboardServiceClient
      * TensorboardRun's. If any data fail to be ingested, an error is returned.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::writeTensorboardExperimentDataAsync()} .
+     * {@see TensorboardServiceClient::writeTensorboardExperimentDataAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/write_tensorboard_experiment_data.php
      *
@@ -1216,7 +1209,7 @@ final class TensorboardServiceClient
      * a TensorboardRun. If any data fail to be ingested, an error is returned.
      *
      * The async variant is
-     * {@see TensorboardServiceGapicClient::writeTensorboardRunDataAsync()} .
+     * {@see TensorboardServiceClient::writeTensorboardRunDataAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/write_tensorboard_run_data.php
      *
@@ -1242,7 +1235,7 @@ final class TensorboardServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see TensorboardServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see TensorboardServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/get_location.php
      *
@@ -1268,8 +1261,7 @@ final class TensorboardServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see TensorboardServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see TensorboardServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/list_locations.php
      *
@@ -1296,7 +1288,7 @@ final class TensorboardServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see TensorboardServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see TensorboardServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/get_iam_policy.php
      *
@@ -1326,7 +1318,7 @@ final class TensorboardServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see TensorboardServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see TensorboardServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/TensorboardServiceClient/set_iam_policy.php
      *
@@ -1358,8 +1350,8 @@ final class TensorboardServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see TensorboardServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see TensorboardServiceClient::testIamPermissionsAsync()}
+     * .
      *
      * @example samples/V1/TensorboardServiceClient/test_iam_permissions.php
      *

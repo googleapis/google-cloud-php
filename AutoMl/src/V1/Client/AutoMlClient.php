@@ -380,7 +380,7 @@ final class AutoMlClient
     /**
      * Creates a dataset.
      *
-     * The async variant is {@see AutoMlGapicClient::createDatasetAsync()} .
+     * The async variant is {@see AutoMlClient::createDatasetAsync()} .
      *
      * @param CreateDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -408,7 +408,7 @@ final class AutoMlClient
      * When you create a model, several model evaluations are created for it:
      * a global evaluation, and one evaluation for each annotation spec.
      *
-     * The async variant is {@see AutoMlGapicClient::createModelAsync()} .
+     * The async variant is {@see AutoMlClient::createModelAsync()} .
      *
      * @param CreateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -436,7 +436,7 @@ final class AutoMlClient
      * and `delete_details` in the
      * [metadata][google.longrunning.Operation.metadata] field.
      *
-     * The async variant is {@see AutoMlGapicClient::deleteDatasetAsync()} .
+     * The async variant is {@see AutoMlClient::deleteDatasetAsync()} .
      *
      * @param DeleteDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -464,7 +464,7 @@ final class AutoMlClient
      * and `delete_details` in the
      * [metadata][google.longrunning.Operation.metadata] field.
      *
-     * The async variant is {@see AutoMlGapicClient::deleteModelAsync()} .
+     * The async variant is {@see AutoMlClient::deleteModelAsync()} .
      *
      * @param DeleteModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -498,7 +498,7 @@ final class AutoMlClient
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
-     * The async variant is {@see AutoMlGapicClient::deployModelAsync()} .
+     * The async variant is {@see AutoMlClient::deployModelAsync()} .
      *
      * @param DeployModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -524,7 +524,7 @@ final class AutoMlClient
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
-     * The async variant is {@see AutoMlGapicClient::exportDataAsync()} .
+     * The async variant is {@see AutoMlClient::exportDataAsync()} .
      *
      * @param ExportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -554,7 +554,7 @@ final class AutoMlClient
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
-     * The async variant is {@see AutoMlGapicClient::exportModelAsync()} .
+     * The async variant is {@see AutoMlClient::exportModelAsync()} .
      *
      * @param ExportModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -578,7 +578,7 @@ final class AutoMlClient
     /**
      * Gets an annotation spec.
      *
-     * The async variant is {@see AutoMlGapicClient::getAnnotationSpecAsync()} .
+     * The async variant is {@see AutoMlClient::getAnnotationSpecAsync()} .
      *
      * @param GetAnnotationSpecRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -602,7 +602,7 @@ final class AutoMlClient
     /**
      * Gets a dataset.
      *
-     * The async variant is {@see AutoMlGapicClient::getDatasetAsync()} .
+     * The async variant is {@see AutoMlClient::getDatasetAsync()} .
      *
      * @param GetDatasetRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -626,7 +626,7 @@ final class AutoMlClient
     /**
      * Gets a model.
      *
-     * The async variant is {@see AutoMlGapicClient::getModelAsync()} .
+     * The async variant is {@see AutoMlClient::getModelAsync()} .
      *
      * @param GetModelRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -650,7 +650,7 @@ final class AutoMlClient
     /**
      * Gets a model evaluation.
      *
-     * The async variant is {@see AutoMlGapicClient::getModelEvaluationAsync()} .
+     * The async variant is {@see AutoMlClient::getModelEvaluationAsync()} .
      *
      * @param GetModelEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -682,7 +682,7 @@ final class AutoMlClient
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
-     * The async variant is {@see AutoMlGapicClient::importDataAsync()} .
+     * The async variant is {@see AutoMlClient::importDataAsync()} .
      *
      * @param ImportDataRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -706,7 +706,7 @@ final class AutoMlClient
     /**
      * Lists datasets in a project.
      *
-     * The async variant is {@see AutoMlGapicClient::listDatasetsAsync()} .
+     * The async variant is {@see AutoMlClient::listDatasetsAsync()} .
      *
      * @param ListDatasetsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -730,7 +730,7 @@ final class AutoMlClient
     /**
      * Lists model evaluations.
      *
-     * The async variant is {@see AutoMlGapicClient::listModelEvaluationsAsync()} .
+     * The async variant is {@see AutoMlClient::listModelEvaluationsAsync()} .
      *
      * @param ListModelEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -754,7 +754,7 @@ final class AutoMlClient
     /**
      * Lists models.
      *
-     * The async variant is {@see AutoMlGapicClient::listModelsAsync()} .
+     * The async variant is {@see AutoMlClient::listModelsAsync()} .
      *
      * @param ListModelsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -784,7 +784,7 @@ final class AutoMlClient
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
-     * The async variant is {@see AutoMlGapicClient::undeployModelAsync()} .
+     * The async variant is {@see AutoMlClient::undeployModelAsync()} .
      *
      * @param UndeployModelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -808,7 +808,7 @@ final class AutoMlClient
     /**
      * Updates a dataset.
      *
-     * The async variant is {@see AutoMlGapicClient::updateDatasetAsync()} .
+     * The async variant is {@see AutoMlClient::updateDatasetAsync()} .
      *
      * @param UpdateDatasetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -832,7 +832,7 @@ final class AutoMlClient
     /**
      * Updates a model.
      *
-     * The async variant is {@see AutoMlGapicClient::updateModelAsync()} .
+     * The async variant is {@see AutoMlClient::updateModelAsync()} .
      *
      * @param UpdateModelRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

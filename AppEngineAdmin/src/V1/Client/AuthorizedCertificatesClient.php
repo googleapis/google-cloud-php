@@ -176,7 +176,7 @@ final class AuthorizedCertificatesClient
      * Uploads the specified SSL certificate.
      *
      * The async variant is
-     * {@see AuthorizedCertificatesGapicClient::createAuthorizedCertificateAsync()} .
+     * {@see AuthorizedCertificatesClient::createAuthorizedCertificateAsync()} .
      *
      * @param CreateAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -201,7 +201,7 @@ final class AuthorizedCertificatesClient
      * Deletes the specified SSL certificate.
      *
      * The async variant is
-     * {@see AuthorizedCertificatesGapicClient::deleteAuthorizedCertificateAsync()} .
+     * {@see AuthorizedCertificatesClient::deleteAuthorizedCertificateAsync()} .
      *
      * @param DeleteAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -224,7 +224,7 @@ final class AuthorizedCertificatesClient
      * Gets the specified SSL certificate.
      *
      * The async variant is
-     * {@see AuthorizedCertificatesGapicClient::getAuthorizedCertificateAsync()} .
+     * {@see AuthorizedCertificatesClient::getAuthorizedCertificateAsync()} .
      *
      * @param GetAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -249,7 +249,7 @@ final class AuthorizedCertificatesClient
      * Lists all SSL certificates the user is authorized to administer.
      *
      * The async variant is
-     * {@see AuthorizedCertificatesGapicClient::listAuthorizedCertificatesAsync()} .
+     * {@see AuthorizedCertificatesClient::listAuthorizedCertificatesAsync()} .
      *
      * @param ListAuthorizedCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -278,7 +278,7 @@ final class AuthorizedCertificatesClient
      * updated.
      *
      * The async variant is
-     * {@see AuthorizedCertificatesGapicClient::updateAuthorizedCertificateAsync()} .
+     * {@see AuthorizedCertificatesClient::updateAuthorizedCertificateAsync()} .
      *
      * @param UpdateAuthorizedCertificateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

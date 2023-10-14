@@ -436,7 +436,7 @@ final class ScheduleServiceClient
     /**
      * Creates a Schedule.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::createScheduleAsync()} .
+     * The async variant is {@see ScheduleServiceClient::createScheduleAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/create_schedule.php
      *
@@ -462,7 +462,7 @@ final class ScheduleServiceClient
     /**
      * Deletes a Schedule.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::deleteScheduleAsync()} .
+     * The async variant is {@see ScheduleServiceClient::deleteScheduleAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/delete_schedule.php
      *
@@ -488,7 +488,7 @@ final class ScheduleServiceClient
     /**
      * Gets a Schedule.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::getScheduleAsync()} .
+     * The async variant is {@see ScheduleServiceClient::getScheduleAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/get_schedule.php
      *
@@ -514,7 +514,7 @@ final class ScheduleServiceClient
     /**
      * Lists Schedules in a Location.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::listSchedulesAsync()} .
+     * The async variant is {@see ScheduleServiceClient::listSchedulesAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/list_schedules.php
      *
@@ -543,7 +543,7 @@ final class ScheduleServiceClient
      * the schedule is paused, no new runs will be created. Already created runs
      * will NOT be paused or canceled.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::pauseScheduleAsync()} .
+     * The async variant is {@see ScheduleServiceClient::pauseScheduleAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/pause_schedule.php
      *
@@ -574,7 +574,7 @@ final class ScheduleServiceClient
      * in the Schedule. If [Schedule.catchUp][] is set up true, all
      * missed runs will be scheduled for backfill first.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::resumeScheduleAsync()} .
+     * The async variant is {@see ScheduleServiceClient::resumeScheduleAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/resume_schedule.php
      *
@@ -604,7 +604,7 @@ final class ScheduleServiceClient
      * update time will be skipped while already created runs will NOT be paused
      * or canceled.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::updateScheduleAsync()} .
+     * The async variant is {@see ScheduleServiceClient::updateScheduleAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/update_schedule.php
      *
@@ -630,7 +630,7 @@ final class ScheduleServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see ScheduleServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/get_location.php
      *
@@ -656,7 +656,7 @@ final class ScheduleServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ScheduleServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/list_locations.php
      *
@@ -683,7 +683,7 @@ final class ScheduleServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ScheduleServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/get_iam_policy.php
      *
@@ -713,7 +713,7 @@ final class ScheduleServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see ScheduleServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ScheduleServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/set_iam_policy.php
      *
@@ -745,8 +745,7 @@ final class ScheduleServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see ScheduleServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ScheduleServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ScheduleServiceClient/test_iam_permissions.php
      *

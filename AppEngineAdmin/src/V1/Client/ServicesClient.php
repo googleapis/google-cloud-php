@@ -206,7 +206,7 @@ final class ServicesClient
     /**
      * Deletes the specified service and all enclosed versions.
      *
-     * The async variant is {@see ServicesGapicClient::deleteServiceAsync()} .
+     * The async variant is {@see ServicesClient::deleteServiceAsync()} .
      *
      * @param DeleteServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -230,7 +230,7 @@ final class ServicesClient
     /**
      * Gets the current configuration of the specified service.
      *
-     * The async variant is {@see ServicesGapicClient::getServiceAsync()} .
+     * The async variant is {@see ServicesClient::getServiceAsync()} .
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -254,7 +254,7 @@ final class ServicesClient
     /**
      * Lists all the services in the application.
      *
-     * The async variant is {@see ServicesGapicClient::listServicesAsync()} .
+     * The async variant is {@see ServicesClient::listServicesAsync()} .
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -278,7 +278,7 @@ final class ServicesClient
     /**
      * Updates the configuration of the specified service.
      *
-     * The async variant is {@see ServicesGapicClient::updateServiceAsync()} .
+     * The async variant is {@see ServicesClient::updateServiceAsync()} .
      *
      * @param UpdateServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

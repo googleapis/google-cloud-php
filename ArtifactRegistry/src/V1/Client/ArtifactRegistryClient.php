@@ -554,8 +554,7 @@ final class ArtifactRegistryClient
      * Creates a repository. The returned Operation will finish once the
      * repository has been created. Its response will be the created Repository.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::createRepositoryAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::createRepositoryAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/create_repository.php
      *
@@ -581,7 +580,7 @@ final class ArtifactRegistryClient
     /**
      * Creates a tag.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::createTagAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::createTagAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/create_tag.php
      *
@@ -608,7 +607,7 @@ final class ArtifactRegistryClient
      * Deletes a package and all of its versions and tags. The returned operation
      * will complete once the package has been deleted.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::deletePackageAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::deletePackageAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/delete_package.php
      *
@@ -636,8 +635,7 @@ final class ArtifactRegistryClient
      * finish once the repository has been deleted. It will not have any Operation
      * metadata and will return a google.protobuf.Empty response.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::deleteRepositoryAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::deleteRepositoryAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/delete_repository.php
      *
@@ -663,7 +661,7 @@ final class ArtifactRegistryClient
     /**
      * Deletes a tag.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::deleteTagAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::deleteTagAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/delete_tag.php
      *
@@ -688,7 +686,7 @@ final class ArtifactRegistryClient
      * Deletes a version and all of its content. The returned operation will
      * complete once the version has been deleted.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::deleteVersionAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::deleteVersionAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/delete_version.php
      *
@@ -714,7 +712,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a docker image.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getDockerImageAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getDockerImageAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_docker_image.php
      *
@@ -740,7 +738,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a file.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getFileAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getFileAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_file.php
      *
@@ -766,7 +764,7 @@ final class ArtifactRegistryClient
     /**
      * Gets the IAM policy for a given resource.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_iam_policy.php
      *
@@ -792,8 +790,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a maven artifact.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getMavenArtifactAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::getMavenArtifactAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_maven_artifact.php
      *
@@ -819,7 +816,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a npm package.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getNpmPackageAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getNpmPackageAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_npm_package.php
      *
@@ -845,7 +842,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a package.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getPackageAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getPackageAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_package.php
      *
@@ -871,8 +868,7 @@ final class ArtifactRegistryClient
     /**
      * Retrieves the Settings for the Project.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::getProjectSettingsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getProjectSettingsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_project_settings.php
      *
@@ -898,8 +894,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a python package.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getPythonPackageAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::getPythonPackageAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_python_package.php
      *
@@ -925,7 +920,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a repository.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getRepositoryAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getRepositoryAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_repository.php
      *
@@ -951,7 +946,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a tag.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getTagAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getTagAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_tag.php
      *
@@ -977,7 +972,7 @@ final class ArtifactRegistryClient
     /**
      * Retrieves the VPCSC Config for the Project.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getVPCSCConfigAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getVPCSCConfigAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_vpcsc_config.php
      *
@@ -1003,7 +998,7 @@ final class ArtifactRegistryClient
     /**
      * Gets a version
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getVersionAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getVersionAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_version.php
      *
@@ -1032,8 +1027,7 @@ final class ArtifactRegistryClient
      * based on the imported artifacts. Imported artifacts that conflict with
      * existing resources are ignored.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::importAptArtifactsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::importAptArtifactsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/import_apt_artifacts.php
      *
@@ -1062,8 +1056,7 @@ final class ArtifactRegistryClient
      * based on the imported artifacts. Imported artifacts that conflict with
      * existing resources are ignored.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::importYumArtifactsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::importYumArtifactsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/import_yum_artifacts.php
      *
@@ -1089,8 +1082,7 @@ final class ArtifactRegistryClient
     /**
      * Lists docker images.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listDockerImagesAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::listDockerImagesAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_docker_images.php
      *
@@ -1116,7 +1108,7 @@ final class ArtifactRegistryClient
     /**
      * Lists files.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listFilesAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::listFilesAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_files.php
      *
@@ -1142,8 +1134,7 @@ final class ArtifactRegistryClient
     /**
      * Lists maven artifacts.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::listMavenArtifactsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::listMavenArtifactsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_maven_artifacts.php
      *
@@ -1169,8 +1160,7 @@ final class ArtifactRegistryClient
     /**
      * Lists npm packages.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listNpmPackagesAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::listNpmPackagesAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_npm_packages.php
      *
@@ -1196,7 +1186,7 @@ final class ArtifactRegistryClient
     /**
      * Lists packages.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listPackagesAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::listPackagesAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_packages.php
      *
@@ -1222,8 +1212,7 @@ final class ArtifactRegistryClient
     /**
      * Lists python packages.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::listPythonPackagesAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::listPythonPackagesAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_python_packages.php
      *
@@ -1249,8 +1238,7 @@ final class ArtifactRegistryClient
     /**
      * Lists repositories.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listRepositoriesAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::listRepositoriesAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_repositories.php
      *
@@ -1276,7 +1264,7 @@ final class ArtifactRegistryClient
     /**
      * Lists tags.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listTagsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::listTagsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_tags.php
      *
@@ -1302,7 +1290,7 @@ final class ArtifactRegistryClient
     /**
      * Lists versions.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listVersionsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::listVersionsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_versions.php
      *
@@ -1328,7 +1316,7 @@ final class ArtifactRegistryClient
     /**
      * Updates the IAM policy for a given resource.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/set_iam_policy.php
      *
@@ -1354,8 +1342,7 @@ final class ArtifactRegistryClient
     /**
      * Tests if the caller has a list of permissions on a resource.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/test_iam_permissions.php
      *
@@ -1381,8 +1368,8 @@ final class ArtifactRegistryClient
     /**
      * Updates the Settings for the Project.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::updateProjectSettingsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::updateProjectSettingsAsync()}
+     * .
      *
      * @example samples/V1/ArtifactRegistryClient/update_project_settings.php
      *
@@ -1408,8 +1395,7 @@ final class ArtifactRegistryClient
     /**
      * Updates a repository.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::updateRepositoryAsync()}
-     * .
+     * The async variant is {@see ArtifactRegistryClient::updateRepositoryAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/update_repository.php
      *
@@ -1435,7 +1421,7 @@ final class ArtifactRegistryClient
     /**
      * Updates a tag.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::updateTagAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::updateTagAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/update_tag.php
      *
@@ -1461,8 +1447,7 @@ final class ArtifactRegistryClient
     /**
      * Updates the VPCSC Config for the Project.
      *
-     * The async variant is
-     * {@see ArtifactRegistryGapicClient::updateVPCSCConfigAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::updateVPCSCConfigAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/update_vpcsc_config.php
      *
@@ -1488,7 +1473,7 @@ final class ArtifactRegistryClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::getLocationAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::getLocationAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/get_location.php
      *
@@ -1514,7 +1499,7 @@ final class ArtifactRegistryClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ArtifactRegistryGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ArtifactRegistryClient::listLocationsAsync()} .
      *
      * @example samples/V1/ArtifactRegistryClient/list_locations.php
      *

@@ -168,7 +168,7 @@ final class AuthorizedDomainsClient
      * Lists all domains the user is authorized to administer.
      *
      * The async variant is
-     * {@see AuthorizedDomainsGapicClient::listAuthorizedDomainsAsync()} .
+     * {@see AuthorizedDomainsClient::listAuthorizedDomainsAsync()} .
      *
      * @param ListAuthorizedDomainsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
