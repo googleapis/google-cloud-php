@@ -315,7 +315,7 @@ final class IndexEndpointServiceClient
      * Creates an IndexEndpoint.
      *
      * The async variant is
-     * {@see IndexEndpointServiceGapicClient::createIndexEndpointAsync()} .
+     * {@see IndexEndpointServiceClient::createIndexEndpointAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/create_index_endpoint.php
      *
@@ -342,7 +342,7 @@ final class IndexEndpointServiceClient
      * Deletes an IndexEndpoint.
      *
      * The async variant is
-     * {@see IndexEndpointServiceGapicClient::deleteIndexEndpointAsync()} .
+     * {@see IndexEndpointServiceClient::deleteIndexEndpointAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/delete_index_endpoint.php
      *
@@ -370,8 +370,7 @@ final class IndexEndpointServiceClient
      * it.
      * Only non-empty Indexes can be deployed.
      *
-     * The async variant is {@see IndexEndpointServiceGapicClient::deployIndexAsync()}
-     * .
+     * The async variant is {@see IndexEndpointServiceClient::deployIndexAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/deploy_index.php
      *
@@ -397,8 +396,8 @@ final class IndexEndpointServiceClient
     /**
      * Gets an IndexEndpoint.
      *
-     * The async variant is
-     * {@see IndexEndpointServiceGapicClient::getIndexEndpointAsync()} .
+     * The async variant is {@see IndexEndpointServiceClient::getIndexEndpointAsync()}
+     * .
      *
      * @example samples/V1/IndexEndpointServiceClient/get_index_endpoint.php
      *
@@ -425,7 +424,7 @@ final class IndexEndpointServiceClient
      * Lists IndexEndpoints in a Location.
      *
      * The async variant is
-     * {@see IndexEndpointServiceGapicClient::listIndexEndpointsAsync()} .
+     * {@see IndexEndpointServiceClient::listIndexEndpointsAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/list_index_endpoints.php
      *
@@ -452,7 +451,7 @@ final class IndexEndpointServiceClient
      * Update an existing DeployedIndex under an IndexEndpoint.
      *
      * The async variant is
-     * {@see IndexEndpointServiceGapicClient::mutateDeployedIndexAsync()} .
+     * {@see IndexEndpointServiceClient::mutateDeployedIndexAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/mutate_deployed_index.php
      *
@@ -479,8 +478,7 @@ final class IndexEndpointServiceClient
      * Undeploys an Index from an IndexEndpoint, removing a DeployedIndex from it,
      * and freeing all resources it's using.
      *
-     * The async variant is
-     * {@see IndexEndpointServiceGapicClient::undeployIndexAsync()} .
+     * The async variant is {@see IndexEndpointServiceClient::undeployIndexAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/undeploy_index.php
      *
@@ -507,7 +505,7 @@ final class IndexEndpointServiceClient
      * Updates an IndexEndpoint.
      *
      * The async variant is
-     * {@see IndexEndpointServiceGapicClient::updateIndexEndpointAsync()} .
+     * {@see IndexEndpointServiceClient::updateIndexEndpointAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/update_index_endpoint.php
      *
@@ -533,8 +531,7 @@ final class IndexEndpointServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see IndexEndpointServiceGapicClient::getLocationAsync()}
-     * .
+     * The async variant is {@see IndexEndpointServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/get_location.php
      *
@@ -560,8 +557,7 @@ final class IndexEndpointServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see IndexEndpointServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see IndexEndpointServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/list_locations.php
      *
@@ -588,8 +584,7 @@ final class IndexEndpointServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see IndexEndpointServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see IndexEndpointServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/get_iam_policy.php
      *
@@ -619,8 +614,7 @@ final class IndexEndpointServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see IndexEndpointServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see IndexEndpointServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/set_iam_policy.php
      *
@@ -653,7 +647,7 @@ final class IndexEndpointServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see IndexEndpointServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see IndexEndpointServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/IndexEndpointServiceClient/test_iam_permissions.php
      *

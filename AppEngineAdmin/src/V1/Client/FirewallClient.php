@@ -189,8 +189,7 @@ final class FirewallClient
      * If the final rule does not match traffic with the '*' wildcard IP range,
      * then an "allow all" rule is explicitly added to the end of the list.
      *
-     * The async variant is {@see FirewallGapicClient::batchUpdateIngressRulesAsync()}
-     * .
+     * The async variant is {@see FirewallClient::batchUpdateIngressRulesAsync()} .
      *
      * @param BatchUpdateIngressRulesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -214,7 +213,7 @@ final class FirewallClient
     /**
      * Creates a firewall rule for the application.
      *
-     * The async variant is {@see FirewallGapicClient::createIngressRuleAsync()} .
+     * The async variant is {@see FirewallClient::createIngressRuleAsync()} .
      *
      * @param CreateIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -238,7 +237,7 @@ final class FirewallClient
     /**
      * Deletes the specified firewall rule.
      *
-     * The async variant is {@see FirewallGapicClient::deleteIngressRuleAsync()} .
+     * The async variant is {@see FirewallClient::deleteIngressRuleAsync()} .
      *
      * @param DeleteIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -260,7 +259,7 @@ final class FirewallClient
     /**
      * Gets the specified firewall rule.
      *
-     * The async variant is {@see FirewallGapicClient::getIngressRuleAsync()} .
+     * The async variant is {@see FirewallClient::getIngressRuleAsync()} .
      *
      * @param GetIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -284,7 +283,7 @@ final class FirewallClient
     /**
      * Lists the firewall rules of an application.
      *
-     * The async variant is {@see FirewallGapicClient::listIngressRulesAsync()} .
+     * The async variant is {@see FirewallClient::listIngressRulesAsync()} .
      *
      * @param ListIngressRulesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -308,7 +307,7 @@ final class FirewallClient
     /**
      * Updates the specified firewall rule.
      *
-     * The async variant is {@see FirewallGapicClient::updateIngressRuleAsync()} .
+     * The async variant is {@see FirewallClient::updateIngressRuleAsync()} .
      *
      * @param UpdateIngressRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

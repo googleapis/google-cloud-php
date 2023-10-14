@@ -358,8 +358,7 @@ final class VizierServiceClient
      * Adds a measurement of the objective metrics to a Trial. This measurement
      * is assumed to have been taken before the Trial is complete.
      *
-     * The async variant is {@see VizierServiceGapicClient::addTrialMeasurementAsync()}
-     * .
+     * The async variant is {@see VizierServiceClient::addTrialMeasurementAsync()} .
      *
      * @example samples/V1/VizierServiceClient/add_trial_measurement.php
      *
@@ -389,7 +388,7 @@ final class VizierServiceClient
      * [CheckTrialEarlyStoppingStateResponse][google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse].
      *
      * The async variant is
-     * {@see VizierServiceGapicClient::checkTrialEarlyStoppingStateAsync()} .
+     * {@see VizierServiceClient::checkTrialEarlyStoppingStateAsync()} .
      *
      * @example samples/V1/VizierServiceClient/check_trial_early_stopping_state.php
      *
@@ -415,7 +414,7 @@ final class VizierServiceClient
     /**
      * Marks a Trial as complete.
      *
-     * The async variant is {@see VizierServiceGapicClient::completeTrialAsync()} .
+     * The async variant is {@see VizierServiceClient::completeTrialAsync()} .
      *
      * @example samples/V1/VizierServiceClient/complete_trial.php
      *
@@ -442,7 +441,7 @@ final class VizierServiceClient
      * Creates a Study. A resource name will be generated after creation of the
      * Study.
      *
-     * The async variant is {@see VizierServiceGapicClient::createStudyAsync()} .
+     * The async variant is {@see VizierServiceClient::createStudyAsync()} .
      *
      * @example samples/V1/VizierServiceClient/create_study.php
      *
@@ -468,7 +467,7 @@ final class VizierServiceClient
     /**
      * Adds a user provided Trial to a Study.
      *
-     * The async variant is {@see VizierServiceGapicClient::createTrialAsync()} .
+     * The async variant is {@see VizierServiceClient::createTrialAsync()} .
      *
      * @example samples/V1/VizierServiceClient/create_trial.php
      *
@@ -494,7 +493,7 @@ final class VizierServiceClient
     /**
      * Deletes a Study.
      *
-     * The async variant is {@see VizierServiceGapicClient::deleteStudyAsync()} .
+     * The async variant is {@see VizierServiceClient::deleteStudyAsync()} .
      *
      * @example samples/V1/VizierServiceClient/delete_study.php
      *
@@ -518,7 +517,7 @@ final class VizierServiceClient
     /**
      * Deletes a Trial.
      *
-     * The async variant is {@see VizierServiceGapicClient::deleteTrialAsync()} .
+     * The async variant is {@see VizierServiceClient::deleteTrialAsync()} .
      *
      * @example samples/V1/VizierServiceClient/delete_trial.php
      *
@@ -542,7 +541,7 @@ final class VizierServiceClient
     /**
      * Gets a Study by name.
      *
-     * The async variant is {@see VizierServiceGapicClient::getStudyAsync()} .
+     * The async variant is {@see VizierServiceClient::getStudyAsync()} .
      *
      * @example samples/V1/VizierServiceClient/get_study.php
      *
@@ -568,7 +567,7 @@ final class VizierServiceClient
     /**
      * Gets a Trial.
      *
-     * The async variant is {@see VizierServiceGapicClient::getTrialAsync()} .
+     * The async variant is {@see VizierServiceClient::getTrialAsync()} .
      *
      * @example samples/V1/VizierServiceClient/get_trial.php
      *
@@ -597,7 +596,7 @@ final class VizierServiceClient
      * pareto-optimal can be checked in wiki page.
      * https://en.wikipedia.org/wiki/Pareto_efficiency
      *
-     * The async variant is {@see VizierServiceGapicClient::listOptimalTrialsAsync()} .
+     * The async variant is {@see VizierServiceClient::listOptimalTrialsAsync()} .
      *
      * @example samples/V1/VizierServiceClient/list_optimal_trials.php
      *
@@ -623,7 +622,7 @@ final class VizierServiceClient
     /**
      * Lists all the studies in a region for an associated project.
      *
-     * The async variant is {@see VizierServiceGapicClient::listStudiesAsync()} .
+     * The async variant is {@see VizierServiceClient::listStudiesAsync()} .
      *
      * @example samples/V1/VizierServiceClient/list_studies.php
      *
@@ -649,7 +648,7 @@ final class VizierServiceClient
     /**
      * Lists the Trials associated with a Study.
      *
-     * The async variant is {@see VizierServiceGapicClient::listTrialsAsync()} .
+     * The async variant is {@see VizierServiceClient::listTrialsAsync()} .
      *
      * @example samples/V1/VizierServiceClient/list_trials.php
      *
@@ -676,7 +675,7 @@ final class VizierServiceClient
      * Looks a study up using the user-defined display_name field instead of the
      * fully qualified resource name.
      *
-     * The async variant is {@see VizierServiceGapicClient::lookupStudyAsync()} .
+     * The async variant is {@see VizierServiceClient::lookupStudyAsync()} .
      *
      * @example samples/V1/VizierServiceClient/lookup_study.php
      *
@@ -702,7 +701,7 @@ final class VizierServiceClient
     /**
      * Stops a Trial.
      *
-     * The async variant is {@see VizierServiceGapicClient::stopTrialAsync()} .
+     * The async variant is {@see VizierServiceClient::stopTrialAsync()} .
      *
      * @example samples/V1/VizierServiceClient/stop_trial.php
      *
@@ -733,7 +732,7 @@ final class VizierServiceClient
      * a
      * [SuggestTrialsResponse][google.cloud.aiplatform.v1.SuggestTrialsResponse].
      *
-     * The async variant is {@see VizierServiceGapicClient::suggestTrialsAsync()} .
+     * The async variant is {@see VizierServiceClient::suggestTrialsAsync()} .
      *
      * @example samples/V1/VizierServiceClient/suggest_trials.php
      *
@@ -759,7 +758,7 @@ final class VizierServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see VizierServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see VizierServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/VizierServiceClient/get_location.php
      *
@@ -785,7 +784,7 @@ final class VizierServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see VizierServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see VizierServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/VizierServiceClient/list_locations.php
      *
@@ -812,7 +811,7 @@ final class VizierServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see VizierServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see VizierServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/VizierServiceClient/get_iam_policy.php
      *
@@ -842,7 +841,7 @@ final class VizierServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see VizierServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see VizierServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/VizierServiceClient/set_iam_policy.php
      *
@@ -874,8 +873,7 @@ final class VizierServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see VizierServiceGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see VizierServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/VizierServiceClient/test_iam_permissions.php
      *

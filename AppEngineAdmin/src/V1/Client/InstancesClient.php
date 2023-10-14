@@ -213,7 +213,7 @@ final class InstancesClient
      *
      * Only applicable for instances in App Engine flexible environment.
      *
-     * The async variant is {@see InstancesGapicClient::debugInstanceAsync()} .
+     * The async variant is {@see InstancesClient::debugInstanceAsync()} .
      *
      * @param DebugInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -248,7 +248,7 @@ final class InstancesClient
      * [`apps.services.versions.patch`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch)
      * method.
      *
-     * The async variant is {@see InstancesGapicClient::deleteInstanceAsync()} .
+     * The async variant is {@see InstancesClient::deleteInstanceAsync()} .
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -272,7 +272,7 @@ final class InstancesClient
     /**
      * Gets instance information.
      *
-     * The async variant is {@see InstancesGapicClient::getInstanceAsync()} .
+     * The async variant is {@see InstancesClient::getInstanceAsync()} .
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -299,7 +299,7 @@ final class InstancesClient
      * Tip: To aggregate details about instances over time, see the
      * [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
      *
-     * The async variant is {@see InstancesGapicClient::listInstancesAsync()} .
+     * The async variant is {@see InstancesClient::listInstancesAsync()} .
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

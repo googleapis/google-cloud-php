@@ -237,7 +237,7 @@ final class FeaturestoreOnlineServingServiceClient
      * StreamingReadFeatureValues.
      *
      * The async variant is
-     * {@see FeaturestoreOnlineServingServiceGapicClient::readFeatureValuesAsync()} .
+     * {@see FeaturestoreOnlineServingServiceClient::readFeatureValuesAsync()} .
      *
      * @example samples/V1/FeaturestoreOnlineServingServiceClient/read_feature_values.php
      *
@@ -292,7 +292,7 @@ final class FeaturestoreOnlineServingServiceClient
      * retention.
      *
      * The async variant is
-     * {@see FeaturestoreOnlineServingServiceGapicClient::writeFeatureValuesAsync()} .
+     * {@see FeaturestoreOnlineServingServiceClient::writeFeatureValuesAsync()} .
      *
      * @example samples/V1/FeaturestoreOnlineServingServiceClient/write_feature_values.php
      *
@@ -319,7 +319,7 @@ final class FeaturestoreOnlineServingServiceClient
      * Gets information about a location.
      *
      * The async variant is
-     * {@see FeaturestoreOnlineServingServiceGapicClient::getLocationAsync()} .
+     * {@see FeaturestoreOnlineServingServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/FeaturestoreOnlineServingServiceClient/get_location.php
      *
@@ -346,7 +346,7 @@ final class FeaturestoreOnlineServingServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is
-     * {@see FeaturestoreOnlineServingServiceGapicClient::listLocationsAsync()} .
+     * {@see FeaturestoreOnlineServingServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/FeaturestoreOnlineServingServiceClient/list_locations.php
      *
@@ -374,7 +374,7 @@ final class FeaturestoreOnlineServingServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is
-     * {@see FeaturestoreOnlineServingServiceGapicClient::getIamPolicyAsync()} .
+     * {@see FeaturestoreOnlineServingServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/FeaturestoreOnlineServingServiceClient/get_iam_policy.php
      *
@@ -405,7 +405,7 @@ final class FeaturestoreOnlineServingServiceClient
     errors.
      *
      * The async variant is
-     * {@see FeaturestoreOnlineServingServiceGapicClient::setIamPolicyAsync()} .
+     * {@see FeaturestoreOnlineServingServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/FeaturestoreOnlineServingServiceClient/set_iam_policy.php
      *
@@ -438,7 +438,7 @@ final class FeaturestoreOnlineServingServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see FeaturestoreOnlineServingServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see FeaturestoreOnlineServingServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/FeaturestoreOnlineServingServiceClient/test_iam_permissions.php
      *

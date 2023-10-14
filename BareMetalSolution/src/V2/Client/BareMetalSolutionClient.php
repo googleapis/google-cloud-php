@@ -618,8 +618,7 @@ final class BareMetalSolutionClient
     /**
      * Create an NFS share.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::createNfsShareAsync()}
-     * .
+     * The async variant is {@see BareMetalSolutionClient::createNfsShareAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/create_nfs_share.php
      *
@@ -646,7 +645,7 @@ final class BareMetalSolutionClient
      * Create new ProvisioningConfig.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::createProvisioningConfigAsync()} .
+     * {@see BareMetalSolutionClient::createProvisioningConfigAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/create_provisioning_config.php
      *
@@ -673,7 +672,7 @@ final class BareMetalSolutionClient
      * Register a public SSH key in the specified project for use with the
      * interactive serial console feature.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::createSSHKeyAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::createSSHKeyAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/create_ssh_key.php
      *
@@ -700,8 +699,8 @@ final class BareMetalSolutionClient
      * Takes a snapshot of a boot volume.
      * Returns INVALID_ARGUMENT if called for a non-boot volume.
      *
-     * The async variant is
-     * {@see BareMetalSolutionGapicClient::createVolumeSnapshotAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::createVolumeSnapshotAsync()}
+     * .
      *
      * @example samples/V2/BareMetalSolutionClient/create_volume_snapshot.php
      *
@@ -727,8 +726,7 @@ final class BareMetalSolutionClient
     /**
      * Delete an NFS share. The underlying volume is automatically deleted.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::deleteNfsShareAsync()}
-     * .
+     * The async variant is {@see BareMetalSolutionClient::deleteNfsShareAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/delete_nfs_share.php
      *
@@ -754,7 +752,7 @@ final class BareMetalSolutionClient
     /**
      * Deletes a public SSH key registered in the specified project.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::deleteSSHKeyAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::deleteSSHKeyAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/delete_ssh_key.php
      *
@@ -779,8 +777,8 @@ final class BareMetalSolutionClient
      * Deletes a volume snapshot.
      * Returns INVALID_ARGUMENT if called for a non-boot volume.
      *
-     * The async variant is
-     * {@see BareMetalSolutionGapicClient::deleteVolumeSnapshotAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::deleteVolumeSnapshotAsync()}
+     * .
      *
      * @example samples/V2/BareMetalSolutionClient/delete_volume_snapshot.php
      *
@@ -804,7 +802,7 @@ final class BareMetalSolutionClient
     /**
      * Detach LUN from Instance.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::detachLunAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::detachLunAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/detach_lun.php
      *
@@ -831,7 +829,7 @@ final class BareMetalSolutionClient
      * Disable the interactive serial console feature on an instance.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::disableInteractiveSerialConsoleAsync()} .
+     * {@see BareMetalSolutionClient::disableInteractiveSerialConsoleAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/disable_interactive_serial_console.php
      *
@@ -858,7 +856,7 @@ final class BareMetalSolutionClient
      * Enable the interactive serial console feature on an instance.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::enableInteractiveSerialConsoleAsync()} .
+     * {@see BareMetalSolutionClient::enableInteractiveSerialConsoleAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/enable_interactive_serial_console.php
      *
@@ -885,7 +883,7 @@ final class BareMetalSolutionClient
      * Skips lun's cooloff and deletes it now.
      * Lun must be in cooloff state.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::evictLunAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::evictLunAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/evict_lun.php
      *
@@ -912,7 +910,7 @@ final class BareMetalSolutionClient
      * Skips volume's cooloff and deletes it now.
      * Volume must be in cooloff state.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::evictVolumeAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::evictVolumeAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/evict_volume.php
      *
@@ -938,7 +936,7 @@ final class BareMetalSolutionClient
     /**
      * Get details about a single server.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::getInstanceAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::getInstanceAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_instance.php
      *
@@ -964,7 +962,7 @@ final class BareMetalSolutionClient
     /**
      * Get details of a single storage logical unit number(LUN).
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::getLunAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::getLunAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_lun.php
      *
@@ -990,7 +988,7 @@ final class BareMetalSolutionClient
     /**
      * Get details of a single network.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::getNetworkAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::getNetworkAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_network.php
      *
@@ -1016,7 +1014,7 @@ final class BareMetalSolutionClient
     /**
      * Get details of a single NFS share.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::getNfsShareAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::getNfsShareAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_nfs_share.php
      *
@@ -1043,7 +1041,7 @@ final class BareMetalSolutionClient
      * Get ProvisioningConfig by name.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::getProvisioningConfigAsync()} .
+     * {@see BareMetalSolutionClient::getProvisioningConfigAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_provisioning_config.php
      *
@@ -1069,7 +1067,7 @@ final class BareMetalSolutionClient
     /**
      * Get details of a single storage volume.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::getVolumeAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::getVolumeAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_volume.php
      *
@@ -1096,8 +1094,7 @@ final class BareMetalSolutionClient
      * Returns the specified snapshot resource.
      * Returns INVALID_ARGUMENT if called for a non-boot volume.
      *
-     * The async variant is
-     * {@see BareMetalSolutionGapicClient::getVolumeSnapshotAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::getVolumeSnapshotAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_volume_snapshot.php
      *
@@ -1123,7 +1120,7 @@ final class BareMetalSolutionClient
     /**
      * List servers in a given project and location.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listInstancesAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listInstancesAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_instances.php
      *
@@ -1149,7 +1146,7 @@ final class BareMetalSolutionClient
     /**
      * List storage volume luns for given storage volume.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listLunsAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listLunsAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_luns.php
      *
@@ -1176,8 +1173,7 @@ final class BareMetalSolutionClient
      * List all Networks (and used IPs for each Network) in the vendor account
      * associated with the specified project.
      *
-     * The async variant is
-     * {@see BareMetalSolutionGapicClient::listNetworkUsageAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listNetworkUsageAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_network_usage.php
      *
@@ -1203,7 +1199,7 @@ final class BareMetalSolutionClient
     /**
      * List network in a given project and location.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listNetworksAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listNetworksAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_networks.php
      *
@@ -1229,7 +1225,7 @@ final class BareMetalSolutionClient
     /**
      * List NFS shares.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listNfsSharesAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listNfsSharesAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_nfs_shares.php
      *
@@ -1255,7 +1251,7 @@ final class BareMetalSolutionClient
     /**
      * Retrieves the list of OS images which are currently approved.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listOSImagesAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listOSImagesAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_os_images.php
      *
@@ -1282,7 +1278,7 @@ final class BareMetalSolutionClient
      * List the budget details to provision resources on a given project.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::listProvisioningQuotasAsync()} .
+     * {@see BareMetalSolutionClient::listProvisioningQuotasAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_provisioning_quotas.php
      *
@@ -1309,7 +1305,7 @@ final class BareMetalSolutionClient
      * Lists the public SSH keys registered for the specified project.
      * These SSH keys are used only for the interactive serial console feature.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listSSHKeysAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listSSHKeysAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_ssh_keys.php
      *
@@ -1337,8 +1333,8 @@ final class BareMetalSolutionClient
      * Returns a response with an empty list of snapshots if called
      * for a non-boot volume.
      *
-     * The async variant is
-     * {@see BareMetalSolutionGapicClient::listVolumeSnapshotsAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listVolumeSnapshotsAsync()}
+     * .
      *
      * @example samples/V2/BareMetalSolutionClient/list_volume_snapshots.php
      *
@@ -1364,7 +1360,7 @@ final class BareMetalSolutionClient
     /**
      * List storage volumes in a given project and location.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listVolumesAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listVolumesAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_volumes.php
      *
@@ -1391,8 +1387,7 @@ final class BareMetalSolutionClient
      * RenameInstance sets a new name for an instance.
      * Use with caution, previous names become immediately invalidated.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::renameInstanceAsync()}
-     * .
+     * The async variant is {@see BareMetalSolutionClient::renameInstanceAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/rename_instance.php
      *
@@ -1419,7 +1414,7 @@ final class BareMetalSolutionClient
      * RenameNetwork sets a new name for a network.
      * Use with caution, previous names become immediately invalidated.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::renameNetworkAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::renameNetworkAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/rename_network.php
      *
@@ -1446,8 +1441,7 @@ final class BareMetalSolutionClient
      * RenameNfsShare sets a new name for an nfsshare.
      * Use with caution, previous names become immediately invalidated.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::renameNfsShareAsync()}
-     * .
+     * The async variant is {@see BareMetalSolutionClient::renameNfsShareAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/rename_nfs_share.php
      *
@@ -1474,7 +1468,7 @@ final class BareMetalSolutionClient
      * RenameVolume sets a new name for a volume.
      * Use with caution, previous names become immediately invalidated.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::renameVolumeAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::renameVolumeAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/rename_volume.php
      *
@@ -1501,7 +1495,7 @@ final class BareMetalSolutionClient
      * Perform an ungraceful, hard reset on a server. Equivalent to shutting the
      * power off and then turning it back on.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::resetInstanceAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::resetInstanceAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/reset_instance.php
      *
@@ -1527,7 +1521,7 @@ final class BareMetalSolutionClient
     /**
      * Emergency Volume resize.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::resizeVolumeAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::resizeVolumeAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/resize_volume.php
      *
@@ -1555,7 +1549,7 @@ final class BareMetalSolutionClient
      * Returns INVALID_ARGUMENT if called for a non-boot volume.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::restoreVolumeSnapshotAsync()} .
+     * {@see BareMetalSolutionClient::restoreVolumeSnapshotAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/restore_volume_snapshot.php
      *
@@ -1581,7 +1575,7 @@ final class BareMetalSolutionClient
     /**
      * Starts a server that was shutdown.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::startInstanceAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::startInstanceAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/start_instance.php
      *
@@ -1607,7 +1601,7 @@ final class BareMetalSolutionClient
     /**
      * Stop a running server.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::stopInstanceAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::stopInstanceAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/stop_instance.php
      *
@@ -1634,7 +1628,7 @@ final class BareMetalSolutionClient
      * Submit a provisiong configuration for a given project.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::submitProvisioningConfigAsync()} .
+     * {@see BareMetalSolutionClient::submitProvisioningConfigAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/submit_provisioning_config.php
      *
@@ -1660,8 +1654,7 @@ final class BareMetalSolutionClient
     /**
      * Update details of a single server.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::updateInstanceAsync()}
-     * .
+     * The async variant is {@see BareMetalSolutionClient::updateInstanceAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/update_instance.php
      *
@@ -1687,7 +1680,7 @@ final class BareMetalSolutionClient
     /**
      * Update details of a single network.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::updateNetworkAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::updateNetworkAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/update_network.php
      *
@@ -1713,8 +1706,7 @@ final class BareMetalSolutionClient
     /**
      * Update details of a single NFS share.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::updateNfsShareAsync()}
-     * .
+     * The async variant is {@see BareMetalSolutionClient::updateNfsShareAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/update_nfs_share.php
      *
@@ -1741,7 +1733,7 @@ final class BareMetalSolutionClient
      * Update existing ProvisioningConfig.
      *
      * The async variant is
-     * {@see BareMetalSolutionGapicClient::updateProvisioningConfigAsync()} .
+     * {@see BareMetalSolutionClient::updateProvisioningConfigAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/update_provisioning_config.php
      *
@@ -1767,7 +1759,7 @@ final class BareMetalSolutionClient
     /**
      * Update details of a single storage volume.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::updateVolumeAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::updateVolumeAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/update_volume.php
      *
@@ -1793,7 +1785,7 @@ final class BareMetalSolutionClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::getLocationAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::getLocationAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/get_location.php
      *
@@ -1819,7 +1811,7 @@ final class BareMetalSolutionClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see BareMetalSolutionGapicClient::listLocationsAsync()} .
+     * The async variant is {@see BareMetalSolutionClient::listLocationsAsync()} .
      *
      * @example samples/V2/BareMetalSolutionClient/list_locations.php
      *

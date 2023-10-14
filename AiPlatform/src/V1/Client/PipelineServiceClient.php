@@ -538,8 +538,7 @@ final class PipelineServiceClient
      * [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
      * `CANCELLED`.
      *
-     * The async variant is {@see PipelineServiceGapicClient::cancelPipelineJobAsync()}
-     * .
+     * The async variant is {@see PipelineServiceClient::cancelPipelineJobAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/cancel_pipeline_job.php
      *
@@ -576,8 +575,8 @@ final class PipelineServiceClient
      * [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state]
      * is set to `CANCELLED`.
      *
-     * The async variant is
-     * {@see PipelineServiceGapicClient::cancelTrainingPipelineAsync()} .
+     * The async variant is {@see PipelineServiceClient::cancelTrainingPipelineAsync()}
+     * .
      *
      * @example samples/V1/PipelineServiceClient/cancel_training_pipeline.php
      *
@@ -601,8 +600,7 @@ final class PipelineServiceClient
     /**
      * Creates a PipelineJob. A PipelineJob will run immediately when created.
      *
-     * The async variant is {@see PipelineServiceGapicClient::createPipelineJobAsync()}
-     * .
+     * The async variant is {@see PipelineServiceClient::createPipelineJobAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/create_pipeline_job.php
      *
@@ -629,8 +627,8 @@ final class PipelineServiceClient
      * Creates a TrainingPipeline. A created TrainingPipeline right away will be
      * attempted to be run.
      *
-     * The async variant is
-     * {@see PipelineServiceGapicClient::createTrainingPipelineAsync()} .
+     * The async variant is {@see PipelineServiceClient::createTrainingPipelineAsync()}
+     * .
      *
      * @example samples/V1/PipelineServiceClient/create_training_pipeline.php
      *
@@ -656,8 +654,7 @@ final class PipelineServiceClient
     /**
      * Deletes a PipelineJob.
      *
-     * The async variant is {@see PipelineServiceGapicClient::deletePipelineJobAsync()}
-     * .
+     * The async variant is {@see PipelineServiceClient::deletePipelineJobAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/delete_pipeline_job.php
      *
@@ -683,8 +680,8 @@ final class PipelineServiceClient
     /**
      * Deletes a TrainingPipeline.
      *
-     * The async variant is
-     * {@see PipelineServiceGapicClient::deleteTrainingPipelineAsync()} .
+     * The async variant is {@see PipelineServiceClient::deleteTrainingPipelineAsync()}
+     * .
      *
      * @example samples/V1/PipelineServiceClient/delete_training_pipeline.php
      *
@@ -710,7 +707,7 @@ final class PipelineServiceClient
     /**
      * Gets a PipelineJob.
      *
-     * The async variant is {@see PipelineServiceGapicClient::getPipelineJobAsync()} .
+     * The async variant is {@see PipelineServiceClient::getPipelineJobAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/get_pipeline_job.php
      *
@@ -736,8 +733,7 @@ final class PipelineServiceClient
     /**
      * Gets a TrainingPipeline.
      *
-     * The async variant is
-     * {@see PipelineServiceGapicClient::getTrainingPipelineAsync()} .
+     * The async variant is {@see PipelineServiceClient::getTrainingPipelineAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/get_training_pipeline.php
      *
@@ -763,8 +759,7 @@ final class PipelineServiceClient
     /**
      * Lists PipelineJobs in a Location.
      *
-     * The async variant is {@see PipelineServiceGapicClient::listPipelineJobsAsync()}
-     * .
+     * The async variant is {@see PipelineServiceClient::listPipelineJobsAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/list_pipeline_jobs.php
      *
@@ -790,8 +785,8 @@ final class PipelineServiceClient
     /**
      * Lists TrainingPipelines in a Location.
      *
-     * The async variant is
-     * {@see PipelineServiceGapicClient::listTrainingPipelinesAsync()} .
+     * The async variant is {@see PipelineServiceClient::listTrainingPipelinesAsync()}
+     * .
      *
      * @example samples/V1/PipelineServiceClient/list_training_pipelines.php
      *
@@ -817,7 +812,7 @@ final class PipelineServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see PipelineServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see PipelineServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/get_location.php
      *
@@ -843,7 +838,7 @@ final class PipelineServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see PipelineServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see PipelineServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/list_locations.php
      *
@@ -870,7 +865,7 @@ final class PipelineServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see PipelineServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see PipelineServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/get_iam_policy.php
      *
@@ -900,7 +895,7 @@ final class PipelineServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see PipelineServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see PipelineServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/set_iam_policy.php
      *
@@ -932,8 +927,7 @@ final class PipelineServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see PipelineServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see PipelineServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/PipelineServiceClient/test_iam_permissions.php
      *

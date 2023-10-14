@@ -393,7 +393,7 @@ final class EndpointServiceClient
     /**
      * Creates an Endpoint.
      *
-     * The async variant is {@see EndpointServiceGapicClient::createEndpointAsync()} .
+     * The async variant is {@see EndpointServiceClient::createEndpointAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/create_endpoint.php
      *
@@ -419,7 +419,7 @@ final class EndpointServiceClient
     /**
      * Deletes an Endpoint.
      *
-     * The async variant is {@see EndpointServiceGapicClient::deleteEndpointAsync()} .
+     * The async variant is {@see EndpointServiceClient::deleteEndpointAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/delete_endpoint.php
      *
@@ -445,7 +445,7 @@ final class EndpointServiceClient
     /**
      * Deploys a Model into this Endpoint, creating a DeployedModel within it.
      *
-     * The async variant is {@see EndpointServiceGapicClient::deployModelAsync()} .
+     * The async variant is {@see EndpointServiceClient::deployModelAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/deploy_model.php
      *
@@ -471,7 +471,7 @@ final class EndpointServiceClient
     /**
      * Gets an Endpoint.
      *
-     * The async variant is {@see EndpointServiceGapicClient::getEndpointAsync()} .
+     * The async variant is {@see EndpointServiceClient::getEndpointAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/get_endpoint.php
      *
@@ -497,7 +497,7 @@ final class EndpointServiceClient
     /**
      * Lists Endpoints in a Location.
      *
-     * The async variant is {@see EndpointServiceGapicClient::listEndpointsAsync()} .
+     * The async variant is {@see EndpointServiceClient::listEndpointsAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/list_endpoints.php
      *
@@ -526,8 +526,7 @@ final class EndpointServiceClient
      * `disable_container_logging` (v1 only), and `enable_container_logging`
      * (v1beta1 only).
      *
-     * The async variant is
-     * {@see EndpointServiceGapicClient::mutateDeployedModelAsync()} .
+     * The async variant is {@see EndpointServiceClient::mutateDeployedModelAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/mutate_deployed_model.php
      *
@@ -554,7 +553,7 @@ final class EndpointServiceClient
      * Undeploys a Model from an Endpoint, removing a DeployedModel from it, and
      * freeing all resources it's using.
      *
-     * The async variant is {@see EndpointServiceGapicClient::undeployModelAsync()} .
+     * The async variant is {@see EndpointServiceClient::undeployModelAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/undeploy_model.php
      *
@@ -580,7 +579,7 @@ final class EndpointServiceClient
     /**
      * Updates an Endpoint.
      *
-     * The async variant is {@see EndpointServiceGapicClient::updateEndpointAsync()} .
+     * The async variant is {@see EndpointServiceClient::updateEndpointAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/update_endpoint.php
      *
@@ -606,7 +605,7 @@ final class EndpointServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see EndpointServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see EndpointServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/get_location.php
      *
@@ -632,7 +631,7 @@ final class EndpointServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see EndpointServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see EndpointServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/list_locations.php
      *
@@ -659,7 +658,7 @@ final class EndpointServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see EndpointServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see EndpointServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/get_iam_policy.php
      *
@@ -689,7 +688,7 @@ final class EndpointServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see EndpointServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see EndpointServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/set_iam_policy.php
      *
@@ -721,8 +720,7 @@ final class EndpointServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see EndpointServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see EndpointServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/EndpointServiceClient/test_iam_permissions.php
      *

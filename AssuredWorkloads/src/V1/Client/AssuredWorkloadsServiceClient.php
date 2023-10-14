@@ -310,7 +310,7 @@ final class AssuredWorkloadsServiceClient
      * is a permanent operation and it cannot be reverted.
      *
      * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::acknowledgeViolationAsync()} .
+     * {@see AssuredWorkloadsServiceClient::acknowledgeViolationAsync()} .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/acknowledge_violation.php
      *
@@ -336,8 +336,8 @@ final class AssuredWorkloadsServiceClient
     /**
      * Creates Assured Workload.
      *
-     * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::createWorkloadAsync()} .
+     * The async variant is {@see AssuredWorkloadsServiceClient::createWorkloadAsync()}
+     * .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/create_workload.php
      *
@@ -365,8 +365,8 @@ final class AssuredWorkloadsServiceClient
      * in a deleted state, otherwise the request will fail with a
      * FAILED_PRECONDITION error.
      *
-     * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::deleteWorkloadAsync()} .
+     * The async variant is {@see AssuredWorkloadsServiceClient::deleteWorkloadAsync()}
+     * .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/delete_workload.php
      *
@@ -390,8 +390,7 @@ final class AssuredWorkloadsServiceClient
     /**
      * Retrieves Assured Workload Violation based on ID.
      *
-     * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::getViolationAsync()} .
+     * The async variant is {@see AssuredWorkloadsServiceClient::getViolationAsync()} .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/get_violation.php
      *
@@ -417,8 +416,7 @@ final class AssuredWorkloadsServiceClient
     /**
      * Gets Assured Workload associated with a CRM Node
      *
-     * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::getWorkloadAsync()} .
+     * The async variant is {@see AssuredWorkloadsServiceClient::getWorkloadAsync()} .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/get_workload.php
      *
@@ -448,8 +446,8 @@ final class AssuredWorkloadsServiceClient
      * character) as a wildcard character instead of workload-id in the parent.
      * Format `organizations/{org_id}/locations/{location}/workloads/-`
      *
-     * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::listViolationsAsync()} .
+     * The async variant is {@see AssuredWorkloadsServiceClient::listViolationsAsync()}
+     * .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/list_violations.php
      *
@@ -475,8 +473,8 @@ final class AssuredWorkloadsServiceClient
     /**
      * Lists Assured Workloads under a CRM Node.
      *
-     * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::listWorkloadsAsync()} .
+     * The async variant is {@see AssuredWorkloadsServiceClient::listWorkloadsAsync()}
+     * .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/list_workloads.php
      *
@@ -508,7 +506,7 @@ final class AssuredWorkloadsServiceClient
      * to use this functionality.
      *
      * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::restrictAllowedResourcesAsync()} .
+     * {@see AssuredWorkloadsServiceClient::restrictAllowedResourcesAsync()} .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/restrict_allowed_resources.php
      *
@@ -537,8 +535,8 @@ final class AssuredWorkloadsServiceClient
      * For force updates don't set etag field in the Workload.
      * Only one update operation per workload can be in progress.
      *
-     * The async variant is
-     * {@see AssuredWorkloadsServiceGapicClient::updateWorkloadAsync()} .
+     * The async variant is {@see AssuredWorkloadsServiceClient::updateWorkloadAsync()}
+     * .
      *
      * @example samples/V1/AssuredWorkloadsServiceClient/update_workload.php
      *

@@ -472,7 +472,7 @@ final class AssetServiceClient
      * Analyzes IAM policies to answer which identities have what accesses on
      * which resources.
      *
-     * The async variant is {@see AssetServiceGapicClient::analyzeIamPolicyAsync()} .
+     * The async variant is {@see AssetServiceClient::analyzeIamPolicyAsync()} .
      *
      * @param AnalyzeIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -506,7 +506,7 @@ final class AssetServiceClient
      * metadata contains the metadata for the long-running operation.
      *
      * The async variant is
-     * {@see AssetServiceGapicClient::analyzeIamPolicyLongrunningAsync()} .
+     * {@see AssetServiceClient::analyzeIamPolicyLongrunningAsync()} .
      *
      * @param AnalyzeIamPolicyLongrunningRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -534,7 +534,7 @@ final class AssetServiceClient
      * The policies and configuration are subject to change before the actual
      * resource migration takes place.
      *
-     * The async variant is {@see AssetServiceGapicClient::analyzeMoveAsync()} .
+     * The async variant is {@see AssetServiceClient::analyzeMoveAsync()} .
      *
      * @param AnalyzeMoveRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -558,7 +558,7 @@ final class AssetServiceClient
     /**
      * Analyzes organization policies under a scope.
      *
-     * The async variant is {@see AssetServiceGapicClient::analyzeOrgPoliciesAsync()} .
+     * The async variant is {@see AssetServiceClient::analyzeOrgPoliciesAsync()} .
      *
      * @param AnalyzeOrgPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -601,7 +601,7 @@ final class AssetServiceClient
      * or IAM policies.
      *
      * The async variant is
-     * {@see AssetServiceGapicClient::analyzeOrgPolicyGovernedAssetsAsync()} .
+     * {@see AssetServiceClient::analyzeOrgPolicyGovernedAssetsAsync()} .
      *
      * @param AnalyzeOrgPolicyGovernedAssetsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -627,7 +627,7 @@ final class AssetServiceClient
      * organization) under a scope.
      *
      * The async variant is
-     * {@see AssetServiceGapicClient::analyzeOrgPolicyGovernedContainersAsync()} .
+     * {@see AssetServiceClient::analyzeOrgPolicyGovernedContainersAsync()} .
      *
      * @param AnalyzeOrgPolicyGovernedContainersRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -657,8 +657,7 @@ final class AssetServiceClient
      * If a specified asset does not exist, this API returns an INVALID_ARGUMENT
      * error.
      *
-     * The async variant is
-     * {@see AssetServiceGapicClient::batchGetAssetsHistoryAsync()} .
+     * The async variant is {@see AssetServiceClient::batchGetAssetsHistoryAsync()} .
      *
      * @param BatchGetAssetsHistoryRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -683,7 +682,7 @@ final class AssetServiceClient
      * Gets effective IAM policies for a batch of resources.
      *
      * The async variant is
-     * {@see AssetServiceGapicClient::batchGetEffectiveIamPoliciesAsync()} .
+     * {@see AssetServiceClient::batchGetEffectiveIamPoliciesAsync()} .
      *
      * @param BatchGetEffectiveIamPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -708,7 +707,7 @@ final class AssetServiceClient
      * Creates a feed in a parent project/folder/organization to listen to its
      * asset updates.
      *
-     * The async variant is {@see AssetServiceGapicClient::createFeedAsync()} .
+     * The async variant is {@see AssetServiceClient::createFeedAsync()} .
      *
      * @param CreateFeedRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -732,7 +731,7 @@ final class AssetServiceClient
     /**
      * Creates a saved query in a parent project/folder/organization.
      *
-     * The async variant is {@see AssetServiceGapicClient::createSavedQueryAsync()} .
+     * The async variant is {@see AssetServiceClient::createSavedQueryAsync()} .
      *
      * @param CreateSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -756,7 +755,7 @@ final class AssetServiceClient
     /**
      * Deletes an asset feed.
      *
-     * The async variant is {@see AssetServiceGapicClient::deleteFeedAsync()} .
+     * The async variant is {@see AssetServiceClient::deleteFeedAsync()} .
      *
      * @param DeleteFeedRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -778,7 +777,7 @@ final class AssetServiceClient
     /**
      * Deletes a saved query.
      *
-     * The async variant is {@see AssetServiceGapicClient::deleteSavedQueryAsync()} .
+     * The async variant is {@see AssetServiceClient::deleteSavedQueryAsync()} .
      *
      * @param DeleteSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -810,7 +809,7 @@ final class AssetServiceClient
      * regular-size resource parent, the export operation usually finishes within
      * 5 minutes.
      *
-     * The async variant is {@see AssetServiceGapicClient::exportAssetsAsync()} .
+     * The async variant is {@see AssetServiceClient::exportAssetsAsync()} .
      *
      * @param ExportAssetsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -834,7 +833,7 @@ final class AssetServiceClient
     /**
      * Gets details about an asset feed.
      *
-     * The async variant is {@see AssetServiceGapicClient::getFeedAsync()} .
+     * The async variant is {@see AssetServiceClient::getFeedAsync()} .
      *
      * @param GetFeedRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -858,7 +857,7 @@ final class AssetServiceClient
     /**
      * Gets details about a saved query.
      *
-     * The async variant is {@see AssetServiceGapicClient::getSavedQueryAsync()} .
+     * The async variant is {@see AssetServiceClient::getSavedQueryAsync()} .
      *
      * @param GetSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -883,7 +882,7 @@ final class AssetServiceClient
      * Lists assets with time and resource types and returns paged results in
      * response.
      *
-     * The async variant is {@see AssetServiceGapicClient::listAssetsAsync()} .
+     * The async variant is {@see AssetServiceClient::listAssetsAsync()} .
      *
      * @param ListAssetsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -907,7 +906,7 @@ final class AssetServiceClient
     /**
      * Lists all asset feeds in a parent project/folder/organization.
      *
-     * The async variant is {@see AssetServiceGapicClient::listFeedsAsync()} .
+     * The async variant is {@see AssetServiceClient::listFeedsAsync()} .
      *
      * @param ListFeedsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -931,7 +930,7 @@ final class AssetServiceClient
     /**
      * Lists all saved queries in a parent project/folder/organization.
      *
-     * The async variant is {@see AssetServiceGapicClient::listSavedQueriesAsync()} .
+     * The async variant is {@see AssetServiceClient::listSavedQueriesAsync()} .
      *
      * @param ListSavedQueriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -966,7 +965,7 @@ final class AssetServiceClient
      * [BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-output).
      * Queries return larger results will result in errors.
      *
-     * The async variant is {@see AssetServiceGapicClient::queryAssetsAsync()} .
+     * The async variant is {@see AssetServiceClient::queryAssetsAsync()} .
      *
      * @param QueryAssetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -993,8 +992,7 @@ final class AssetServiceClient
      * `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
      * otherwise the request will be rejected.
      *
-     * The async variant is {@see AssetServiceGapicClient::searchAllIamPoliciesAsync()}
-     * .
+     * The async variant is {@see AssetServiceClient::searchAllIamPoliciesAsync()} .
      *
      * @param SearchAllIamPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1021,7 +1019,7 @@ final class AssetServiceClient
      * `cloudasset.assets.searchAllResources` permission on the desired scope,
      * otherwise the request will be rejected.
      *
-     * The async variant is {@see AssetServiceGapicClient::searchAllResourcesAsync()} .
+     * The async variant is {@see AssetServiceClient::searchAllResourcesAsync()} .
      *
      * @param SearchAllResourcesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1045,7 +1043,7 @@ final class AssetServiceClient
     /**
      * Updates an asset feed configuration.
      *
-     * The async variant is {@see AssetServiceGapicClient::updateFeedAsync()} .
+     * The async variant is {@see AssetServiceClient::updateFeedAsync()} .
      *
      * @param UpdateFeedRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1069,7 +1067,7 @@ final class AssetServiceClient
     /**
      * Updates a saved query.
      *
-     * The async variant is {@see AssetServiceGapicClient::updateSavedQueryAsync()} .
+     * The async variant is {@see AssetServiceClient::updateSavedQueryAsync()} .
      *
      * @param UpdateSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

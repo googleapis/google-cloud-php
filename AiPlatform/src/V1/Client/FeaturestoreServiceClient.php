@@ -369,7 +369,7 @@ final class FeaturestoreServiceClient
      * Creates a batch of Features in a given EntityType.
      *
      * The async variant is
-     * {@see FeaturestoreServiceGapicClient::batchCreateFeaturesAsync()} .
+     * {@see FeaturestoreServiceClient::batchCreateFeaturesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/batch_create_features.php
      *
@@ -401,7 +401,7 @@ final class FeaturestoreServiceClient
      * values of each read instance as of each instance's read timestamp.
      *
      * The async variant is
-     * {@see FeaturestoreServiceGapicClient::batchReadFeatureValuesAsync()} .
+     * {@see FeaturestoreServiceClient::batchReadFeatureValuesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/batch_read_feature_values.php
      *
@@ -427,8 +427,7 @@ final class FeaturestoreServiceClient
     /**
      * Creates a new EntityType in a given Featurestore.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::createEntityTypeAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::createEntityTypeAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/create_entity_type.php
      *
@@ -454,8 +453,7 @@ final class FeaturestoreServiceClient
     /**
      * Creates a new Feature in a given EntityType.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::createFeatureAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::createFeatureAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/create_feature.php
      *
@@ -481,8 +479,8 @@ final class FeaturestoreServiceClient
     /**
      * Creates a new Featurestore in a given project and location.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::createFeaturestoreAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::createFeaturestoreAsync()}
+     * .
      *
      * @example samples/V1/FeaturestoreServiceClient/create_featurestore.php
      *
@@ -509,8 +507,7 @@ final class FeaturestoreServiceClient
      * Deletes a single EntityType. The EntityType must not have any Features
      * or `force` must be set to true for the request to succeed.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::deleteEntityTypeAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::deleteEntityTypeAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/delete_entity_type.php
      *
@@ -536,8 +533,7 @@ final class FeaturestoreServiceClient
     /**
      * Deletes a single Feature.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::deleteFeatureAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::deleteFeatureAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/delete_feature.php
      *
@@ -573,7 +569,7 @@ final class FeaturestoreServiceClient
      * the new operation returned is marked as successfully done.
      *
      * The async variant is
-     * {@see FeaturestoreServiceGapicClient::deleteFeatureValuesAsync()} .
+     * {@see FeaturestoreServiceClient::deleteFeatureValuesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/delete_feature_values.php
      *
@@ -600,8 +596,8 @@ final class FeaturestoreServiceClient
      * Deletes a single Featurestore. The Featurestore must not contain any
      * EntityTypes or `force` must be set to true for the request to succeed.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::deleteFeaturestoreAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::deleteFeaturestoreAsync()}
+     * .
      *
      * @example samples/V1/FeaturestoreServiceClient/delete_featurestore.php
      *
@@ -628,7 +624,7 @@ final class FeaturestoreServiceClient
      * Exports Feature values from all the entities of a target EntityType.
      *
      * The async variant is
-     * {@see FeaturestoreServiceGapicClient::exportFeatureValuesAsync()} .
+     * {@see FeaturestoreServiceClient::exportFeatureValuesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/export_feature_values.php
      *
@@ -654,8 +650,7 @@ final class FeaturestoreServiceClient
     /**
      * Gets details of a single EntityType.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::getEntityTypeAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::getEntityTypeAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/get_entity_type.php
      *
@@ -681,7 +676,7 @@ final class FeaturestoreServiceClient
     /**
      * Gets details of a single Feature.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::getFeatureAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::getFeatureAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/get_feature.php
      *
@@ -707,8 +702,7 @@ final class FeaturestoreServiceClient
     /**
      * Gets details of a single Featurestore.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::getFeaturestoreAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::getFeaturestoreAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/get_featurestore.php
      *
@@ -754,7 +748,7 @@ final class FeaturestoreServiceClient
      * - Online serving cluster is under-provisioned.
      *
      * The async variant is
-     * {@see FeaturestoreServiceGapicClient::importFeatureValuesAsync()} .
+     * {@see FeaturestoreServiceClient::importFeatureValuesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/import_feature_values.php
      *
@@ -780,8 +774,7 @@ final class FeaturestoreServiceClient
     /**
      * Lists EntityTypes in a given Featurestore.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::listEntityTypesAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::listEntityTypesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/list_entity_types.php
      *
@@ -807,8 +800,7 @@ final class FeaturestoreServiceClient
     /**
      * Lists Features in a given EntityType.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::listFeaturesAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::listFeaturesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/list_features.php
      *
@@ -834,8 +826,8 @@ final class FeaturestoreServiceClient
     /**
      * Lists Featurestores in a given project and location.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::listFeaturestoresAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::listFeaturestoresAsync()}
+     * .
      *
      * @example samples/V1/FeaturestoreServiceClient/list_featurestores.php
      *
@@ -861,8 +853,7 @@ final class FeaturestoreServiceClient
     /**
      * Searches Features matching a query in a given project.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::searchFeaturesAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::searchFeaturesAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/search_features.php
      *
@@ -888,8 +879,7 @@ final class FeaturestoreServiceClient
     /**
      * Updates the parameters of a single EntityType.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::updateEntityTypeAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::updateEntityTypeAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/update_entity_type.php
      *
@@ -915,8 +905,7 @@ final class FeaturestoreServiceClient
     /**
      * Updates the parameters of a single Feature.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::updateFeatureAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::updateFeatureAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/update_feature.php
      *
@@ -942,8 +931,8 @@ final class FeaturestoreServiceClient
     /**
      * Updates the parameters of a single Featurestore.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::updateFeaturestoreAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::updateFeaturestoreAsync()}
+     * .
      *
      * @example samples/V1/FeaturestoreServiceClient/update_featurestore.php
      *
@@ -969,7 +958,7 @@ final class FeaturestoreServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/get_location.php
      *
@@ -995,8 +984,7 @@ final class FeaturestoreServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/list_locations.php
      *
@@ -1023,8 +1011,7 @@ final class FeaturestoreServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/get_iam_policy.php
      *
@@ -1054,8 +1041,7 @@ final class FeaturestoreServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see FeaturestoreServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see FeaturestoreServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/FeaturestoreServiceClient/set_iam_policy.php
      *
@@ -1087,8 +1073,8 @@ final class FeaturestoreServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see FeaturestoreServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see FeaturestoreServiceClient::testIamPermissionsAsync()}
+     * .
      *
      * @example samples/V1/FeaturestoreServiceClient/test_iam_permissions.php
      *
