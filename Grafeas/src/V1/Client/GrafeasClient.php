@@ -285,7 +285,7 @@ final class GrafeasClient
     /**
      * Creates new notes in batch.
      *
-     * The async variant is {@see GrafeasGapicClient::batchCreateNotesAsync()} .
+     * The async variant is {@see GrafeasClient::batchCreateNotesAsync()} .
      *
      * @example samples/V1/GrafeasClient/batch_create_notes.php
      *
@@ -311,7 +311,7 @@ final class GrafeasClient
     /**
      * Creates new occurrences in batch.
      *
-     * The async variant is {@see GrafeasGapicClient::batchCreateOccurrencesAsync()} .
+     * The async variant is {@see GrafeasClient::batchCreateOccurrencesAsync()} .
      *
      * @example samples/V1/GrafeasClient/batch_create_occurrences.php
      *
@@ -337,7 +337,7 @@ final class GrafeasClient
     /**
      * Creates a new note.
      *
-     * The async variant is {@see GrafeasGapicClient::createNoteAsync()} .
+     * The async variant is {@see GrafeasClient::createNoteAsync()} .
      *
      * @example samples/V1/GrafeasClient/create_note.php
      *
@@ -363,7 +363,7 @@ final class GrafeasClient
     /**
      * Creates a new occurrence.
      *
-     * The async variant is {@see GrafeasGapicClient::createOccurrenceAsync()} .
+     * The async variant is {@see GrafeasClient::createOccurrenceAsync()} .
      *
      * @example samples/V1/GrafeasClient/create_occurrence.php
      *
@@ -389,7 +389,7 @@ final class GrafeasClient
     /**
      * Deletes the specified note.
      *
-     * The async variant is {@see GrafeasGapicClient::deleteNoteAsync()} .
+     * The async variant is {@see GrafeasClient::deleteNoteAsync()} .
      *
      * @example samples/V1/GrafeasClient/delete_note.php
      *
@@ -415,7 +415,7 @@ final class GrafeasClient
      * occurrence when the occurrence is no longer applicable for the given
      * resource.
      *
-     * The async variant is {@see GrafeasGapicClient::deleteOccurrenceAsync()} .
+     * The async variant is {@see GrafeasClient::deleteOccurrenceAsync()} .
      *
      * @example samples/V1/GrafeasClient/delete_occurrence.php
      *
@@ -439,7 +439,7 @@ final class GrafeasClient
     /**
      * Gets the specified note.
      *
-     * The async variant is {@see GrafeasGapicClient::getNoteAsync()} .
+     * The async variant is {@see GrafeasClient::getNoteAsync()} .
      *
      * @example samples/V1/GrafeasClient/get_note.php
      *
@@ -465,7 +465,7 @@ final class GrafeasClient
     /**
      * Gets the specified occurrence.
      *
-     * The async variant is {@see GrafeasGapicClient::getOccurrenceAsync()} .
+     * The async variant is {@see GrafeasClient::getOccurrenceAsync()} .
      *
      * @example samples/V1/GrafeasClient/get_occurrence.php
      *
@@ -492,7 +492,7 @@ final class GrafeasClient
      * Gets the note attached to the specified occurrence. Consumer projects can
      * use this method to get a note that belongs to a provider project.
      *
-     * The async variant is {@see GrafeasGapicClient::getOccurrenceNoteAsync()} .
+     * The async variant is {@see GrafeasClient::getOccurrenceNoteAsync()} .
      *
      * @example samples/V1/GrafeasClient/get_occurrence_note.php
      *
@@ -520,7 +520,7 @@ final class GrafeasClient
      * this method to get all occurrences across consumer projects referencing the
      * specified note.
      *
-     * The async variant is {@see GrafeasGapicClient::listNoteOccurrencesAsync()} .
+     * The async variant is {@see GrafeasClient::listNoteOccurrencesAsync()} .
      *
      * @example samples/V1/GrafeasClient/list_note_occurrences.php
      *
@@ -546,7 +546,7 @@ final class GrafeasClient
     /**
      * Lists notes for the specified project.
      *
-     * The async variant is {@see GrafeasGapicClient::listNotesAsync()} .
+     * The async variant is {@see GrafeasClient::listNotesAsync()} .
      *
      * @example samples/V1/GrafeasClient/list_notes.php
      *
@@ -572,7 +572,7 @@ final class GrafeasClient
     /**
      * Lists occurrences for the specified project.
      *
-     * The async variant is {@see GrafeasGapicClient::listOccurrencesAsync()} .
+     * The async variant is {@see GrafeasClient::listOccurrencesAsync()} .
      *
      * @example samples/V1/GrafeasClient/list_occurrences.php
      *
@@ -598,7 +598,7 @@ final class GrafeasClient
     /**
      * Updates the specified note.
      *
-     * The async variant is {@see GrafeasGapicClient::updateNoteAsync()} .
+     * The async variant is {@see GrafeasClient::updateNoteAsync()} .
      *
      * @example samples/V1/GrafeasClient/update_note.php
      *
@@ -624,7 +624,7 @@ final class GrafeasClient
     /**
      * Updates the specified occurrence.
      *
-     * The async variant is {@see GrafeasGapicClient::updateOccurrenceAsync()} .
+     * The async variant is {@see GrafeasClient::updateOccurrenceAsync()} .
      *
      * @example samples/V1/GrafeasClient/update_occurrence.php
      *

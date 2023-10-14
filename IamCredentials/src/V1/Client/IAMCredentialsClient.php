@@ -228,8 +228,7 @@ final class IAMCredentialsClient
     /**
      * Generates an OAuth 2.0 access token for a service account.
      *
-     * The async variant is
-     * {@see IAMCredentialsGapicClient::generateAccessTokenAsync()} .
+     * The async variant is {@see IAMCredentialsClient::generateAccessTokenAsync()} .
      *
      * @param GenerateAccessTokenRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -253,7 +252,7 @@ final class IAMCredentialsClient
     /**
      * Generates an OpenID Connect ID token for a service account.
      *
-     * The async variant is {@see IAMCredentialsGapicClient::generateIdTokenAsync()} .
+     * The async variant is {@see IAMCredentialsClient::generateIdTokenAsync()} .
      *
      * @param GenerateIdTokenRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -277,7 +276,7 @@ final class IAMCredentialsClient
     /**
      * Signs a blob using a service account's system-managed private key.
      *
-     * The async variant is {@see IAMCredentialsGapicClient::signBlobAsync()} .
+     * The async variant is {@see IAMCredentialsClient::signBlobAsync()} .
      *
      * @param SignBlobRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -301,7 +300,7 @@ final class IAMCredentialsClient
     /**
      * Signs a JWT using a service account's system-managed private key.
      *
-     * The async variant is {@see IAMCredentialsGapicClient::signJwtAsync()} .
+     * The async variant is {@see IAMCredentialsClient::signJwtAsync()} .
      *
      * @param SignJwtRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {

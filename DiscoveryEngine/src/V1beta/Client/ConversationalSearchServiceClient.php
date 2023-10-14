@@ -426,7 +426,7 @@ final class ConversationalSearchServiceClient
      * Converses a conversation.
      *
      * The async variant is
-     * {@see ConversationalSearchServiceGapicClient::converseConversationAsync()} .
+     * {@see ConversationalSearchServiceClient::converseConversationAsync()} .
      *
      * @example samples/V1beta/ConversationalSearchServiceClient/converse_conversation.php
      *
@@ -458,7 +458,7 @@ final class ConversationalSearchServiceClient
      * create already exists, an ALREADY_EXISTS error is returned.
      *
      * The async variant is
-     * {@see ConversationalSearchServiceGapicClient::createConversationAsync()} .
+     * {@see ConversationalSearchServiceClient::createConversationAsync()} .
      *
      * @example samples/V1beta/ConversationalSearchServiceClient/create_conversation.php
      *
@@ -490,7 +490,7 @@ final class ConversationalSearchServiceClient
      * delete does not exist, a NOT_FOUND error is returned.
      *
      * The async variant is
-     * {@see ConversationalSearchServiceGapicClient::deleteConversationAsync()} .
+     * {@see ConversationalSearchServiceClient::deleteConversationAsync()} .
      *
      * @example samples/V1beta/ConversationalSearchServiceClient/delete_conversation.php
      *
@@ -517,7 +517,7 @@ final class ConversationalSearchServiceClient
      * Gets a Conversation.
      *
      * The async variant is
-     * {@see ConversationalSearchServiceGapicClient::getConversationAsync()} .
+     * {@see ConversationalSearchServiceClient::getConversationAsync()} .
      *
      * @example samples/V1beta/ConversationalSearchServiceClient/get_conversation.php
      *
@@ -547,7 +547,7 @@ final class ConversationalSearchServiceClient
      * [DataStore][google.cloud.discoveryengine.v1beta.DataStore].
      *
      * The async variant is
-     * {@see ConversationalSearchServiceGapicClient::listConversationsAsync()} .
+     * {@see ConversationalSearchServiceClient::listConversationsAsync()} .
      *
      * @example samples/V1beta/ConversationalSearchServiceClient/list_conversations.php
      *
@@ -581,7 +581,7 @@ final class ConversationalSearchServiceClient
      * does not exist, a NOT_FOUND error is returned.
      *
      * The async variant is
-     * {@see ConversationalSearchServiceGapicClient::updateConversationAsync()} .
+     * {@see ConversationalSearchServiceClient::updateConversationAsync()} .
      *
      * @example samples/V1beta/ConversationalSearchServiceClient/update_conversation.php
      *

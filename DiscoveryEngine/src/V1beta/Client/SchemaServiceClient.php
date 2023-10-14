@@ -387,7 +387,7 @@ final class SchemaServiceClient
     /**
      * Creates a [Schema][google.cloud.discoveryengine.v1beta.Schema].
      *
-     * The async variant is {@see SchemaServiceGapicClient::createSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::createSchemaAsync()} .
      *
      * @example samples/V1beta/SchemaServiceClient/create_schema.php
      *
@@ -415,7 +415,7 @@ final class SchemaServiceClient
     /**
      * Deletes a [Schema][google.cloud.discoveryengine.v1beta.Schema].
      *
-     * The async variant is {@see SchemaServiceGapicClient::deleteSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::deleteSchemaAsync()} .
      *
      * @example samples/V1beta/SchemaServiceClient/delete_schema.php
      *
@@ -443,7 +443,7 @@ final class SchemaServiceClient
     /**
      * Gets a [Schema][google.cloud.discoveryengine.v1beta.Schema].
      *
-     * The async variant is {@see SchemaServiceGapicClient::getSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::getSchemaAsync()} .
      *
      * @example samples/V1beta/SchemaServiceClient/get_schema.php
      *
@@ -471,7 +471,7 @@ final class SchemaServiceClient
     /**
      * Gets a list of [Schema][google.cloud.discoveryengine.v1beta.Schema]s.
      *
-     * The async variant is {@see SchemaServiceGapicClient::listSchemasAsync()} .
+     * The async variant is {@see SchemaServiceClient::listSchemasAsync()} .
      *
      * @example samples/V1beta/SchemaServiceClient/list_schemas.php
      *
@@ -499,7 +499,7 @@ final class SchemaServiceClient
     /**
      * Updates a [Schema][google.cloud.discoveryengine.v1beta.Schema].
      *
-     * The async variant is {@see SchemaServiceGapicClient::updateSchemaAsync()} .
+     * The async variant is {@see SchemaServiceClient::updateSchemaAsync()} .
      *
      * @example samples/V1beta/SchemaServiceClient/update_schema.php
      *

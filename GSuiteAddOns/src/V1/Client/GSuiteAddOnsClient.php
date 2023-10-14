@@ -306,7 +306,7 @@ final class GSuiteAddOnsClient
     /**
      * Creates a deployment with the specified name and configuration.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::createDeploymentAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::createDeploymentAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/create_deployment.php
      *
@@ -332,7 +332,7 @@ final class GSuiteAddOnsClient
     /**
      * Deletes the deployment with the given name.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::deleteDeploymentAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::deleteDeploymentAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/delete_deployment.php
      *
@@ -356,7 +356,7 @@ final class GSuiteAddOnsClient
     /**
      * Gets the authorization information for deployments in a given project.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::getAuthorizationAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::getAuthorizationAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/get_authorization.php
      *
@@ -382,7 +382,7 @@ final class GSuiteAddOnsClient
     /**
      * Gets the deployment with the specified name.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::getDeploymentAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::getDeploymentAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/get_deployment.php
      *
@@ -408,7 +408,7 @@ final class GSuiteAddOnsClient
     /**
      * Fetches the install status of a developer mode deployment.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::getInstallStatusAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::getInstallStatusAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/get_install_status.php
      *
@@ -436,7 +436,7 @@ final class GSuiteAddOnsClient
      * See:
      * https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::installDeploymentAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::installDeploymentAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/install_deployment.php
      *
@@ -460,7 +460,7 @@ final class GSuiteAddOnsClient
     /**
      * Lists all deployments in a particular project.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::listDeploymentsAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::listDeploymentsAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/list_deployments.php
      *
@@ -486,7 +486,7 @@ final class GSuiteAddOnsClient
     /**
      * Creates or replaces a deployment with the specified name.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::replaceDeploymentAsync()} .
+     * The async variant is {@see GSuiteAddOnsClient::replaceDeploymentAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/replace_deployment.php
      *
@@ -514,8 +514,7 @@ final class GSuiteAddOnsClient
      * See:
      * https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
      *
-     * The async variant is {@see GSuiteAddOnsGapicClient::uninstallDeploymentAsync()}
-     * .
+     * The async variant is {@see GSuiteAddOnsClient::uninstallDeploymentAsync()} .
      *
      * @example samples/V1/GSuiteAddOnsClient/uninstall_deployment.php
      *

@@ -485,7 +485,7 @@ final class BackupForGKEClient
     /**
      * Creates a Backup for the given BackupPlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::createBackupAsync()} .
+     * The async variant is {@see BackupForGKEClient::createBackupAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/create_backup.php
      *
@@ -511,7 +511,7 @@ final class BackupForGKEClient
     /**
      * Creates a new BackupPlan in a given location.
      *
-     * The async variant is {@see BackupForGKEGapicClient::createBackupPlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::createBackupPlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/create_backup_plan.php
      *
@@ -537,7 +537,7 @@ final class BackupForGKEClient
     /**
      * Creates a new Restore for the given RestorePlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::createRestoreAsync()} .
+     * The async variant is {@see BackupForGKEClient::createRestoreAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/create_restore.php
      *
@@ -563,7 +563,7 @@ final class BackupForGKEClient
     /**
      * Creates a new RestorePlan in a given location.
      *
-     * The async variant is {@see BackupForGKEGapicClient::createRestorePlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::createRestorePlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/create_restore_plan.php
      *
@@ -589,7 +589,7 @@ final class BackupForGKEClient
     /**
      * Deletes an existing Backup.
      *
-     * The async variant is {@see BackupForGKEGapicClient::deleteBackupAsync()} .
+     * The async variant is {@see BackupForGKEClient::deleteBackupAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/delete_backup.php
      *
@@ -615,7 +615,7 @@ final class BackupForGKEClient
     /**
      * Deletes an existing BackupPlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::deleteBackupPlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::deleteBackupPlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/delete_backup_plan.php
      *
@@ -641,7 +641,7 @@ final class BackupForGKEClient
     /**
      * Deletes an existing Restore.
      *
-     * The async variant is {@see BackupForGKEGapicClient::deleteRestoreAsync()} .
+     * The async variant is {@see BackupForGKEClient::deleteRestoreAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/delete_restore.php
      *
@@ -667,7 +667,7 @@ final class BackupForGKEClient
     /**
      * Deletes an existing RestorePlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::deleteRestorePlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::deleteRestorePlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/delete_restore_plan.php
      *
@@ -693,7 +693,7 @@ final class BackupForGKEClient
     /**
      * Retrieve the details of a single Backup.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getBackupAsync()} .
+     * The async variant is {@see BackupForGKEClient::getBackupAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_backup.php
      *
@@ -719,7 +719,7 @@ final class BackupForGKEClient
     /**
      * Retrieve the details of a single BackupPlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getBackupPlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::getBackupPlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_backup_plan.php
      *
@@ -745,7 +745,7 @@ final class BackupForGKEClient
     /**
      * Retrieves the details of a single Restore.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getRestoreAsync()} .
+     * The async variant is {@see BackupForGKEClient::getRestoreAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_restore.php
      *
@@ -771,7 +771,7 @@ final class BackupForGKEClient
     /**
      * Retrieve the details of a single RestorePlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getRestorePlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::getRestorePlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_restore_plan.php
      *
@@ -797,7 +797,7 @@ final class BackupForGKEClient
     /**
      * Retrieve the details of a single VolumeBackup.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getVolumeBackupAsync()} .
+     * The async variant is {@see BackupForGKEClient::getVolumeBackupAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_volume_backup.php
      *
@@ -823,7 +823,7 @@ final class BackupForGKEClient
     /**
      * Retrieve the details of a single VolumeRestore.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getVolumeRestoreAsync()} .
+     * The async variant is {@see BackupForGKEClient::getVolumeRestoreAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_volume_restore.php
      *
@@ -849,7 +849,7 @@ final class BackupForGKEClient
     /**
      * Lists BackupPlans in a given location.
      *
-     * The async variant is {@see BackupForGKEGapicClient::listBackupPlansAsync()} .
+     * The async variant is {@see BackupForGKEClient::listBackupPlansAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/list_backup_plans.php
      *
@@ -875,7 +875,7 @@ final class BackupForGKEClient
     /**
      * Lists the Backups for a given BackupPlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::listBackupsAsync()} .
+     * The async variant is {@see BackupForGKEClient::listBackupsAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/list_backups.php
      *
@@ -901,7 +901,7 @@ final class BackupForGKEClient
     /**
      * Lists RestorePlans in a given location.
      *
-     * The async variant is {@see BackupForGKEGapicClient::listRestorePlansAsync()} .
+     * The async variant is {@see BackupForGKEClient::listRestorePlansAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/list_restore_plans.php
      *
@@ -927,7 +927,7 @@ final class BackupForGKEClient
     /**
      * Lists the Restores for a given RestorePlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::listRestoresAsync()} .
+     * The async variant is {@see BackupForGKEClient::listRestoresAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/list_restores.php
      *
@@ -953,7 +953,7 @@ final class BackupForGKEClient
     /**
      * Lists the VolumeBackups for a given Backup.
      *
-     * The async variant is {@see BackupForGKEGapicClient::listVolumeBackupsAsync()} .
+     * The async variant is {@see BackupForGKEClient::listVolumeBackupsAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/list_volume_backups.php
      *
@@ -979,7 +979,7 @@ final class BackupForGKEClient
     /**
      * Lists the VolumeRestores for a given Restore.
      *
-     * The async variant is {@see BackupForGKEGapicClient::listVolumeRestoresAsync()} .
+     * The async variant is {@see BackupForGKEClient::listVolumeRestoresAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/list_volume_restores.php
      *
@@ -1005,7 +1005,7 @@ final class BackupForGKEClient
     /**
      * Update a Backup.
      *
-     * The async variant is {@see BackupForGKEGapicClient::updateBackupAsync()} .
+     * The async variant is {@see BackupForGKEClient::updateBackupAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/update_backup.php
      *
@@ -1031,7 +1031,7 @@ final class BackupForGKEClient
     /**
      * Update a BackupPlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::updateBackupPlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::updateBackupPlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/update_backup_plan.php
      *
@@ -1057,7 +1057,7 @@ final class BackupForGKEClient
     /**
      * Update a Restore.
      *
-     * The async variant is {@see BackupForGKEGapicClient::updateRestoreAsync()} .
+     * The async variant is {@see BackupForGKEClient::updateRestoreAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/update_restore.php
      *
@@ -1083,7 +1083,7 @@ final class BackupForGKEClient
     /**
      * Update a RestorePlan.
      *
-     * The async variant is {@see BackupForGKEGapicClient::updateRestorePlanAsync()} .
+     * The async variant is {@see BackupForGKEClient::updateRestorePlanAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/update_restore_plan.php
      *
@@ -1109,7 +1109,7 @@ final class BackupForGKEClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getLocationAsync()} .
+     * The async variant is {@see BackupForGKEClient::getLocationAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_location.php
      *
@@ -1135,7 +1135,7 @@ final class BackupForGKEClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see BackupForGKEGapicClient::listLocationsAsync()} .
+     * The async variant is {@see BackupForGKEClient::listLocationsAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/list_locations.php
      *
@@ -1162,7 +1162,7 @@ final class BackupForGKEClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see BackupForGKEGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see BackupForGKEClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/get_iam_policy.php
      *
@@ -1192,7 +1192,7 @@ final class BackupForGKEClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see BackupForGKEGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see BackupForGKEClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/set_iam_policy.php
      *
@@ -1224,7 +1224,7 @@ final class BackupForGKEClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see BackupForGKEGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see BackupForGKEClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/BackupForGKEClient/test_iam_permissions.php
      *
