@@ -499,7 +499,7 @@ final class DataLabelingServiceClient
      * Creates an annotation spec set by providing a set of labels.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::createAnnotationSpecSetAsync()} .
+     * {@see DataLabelingServiceClient::createAnnotationSpecSetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/create_annotation_spec_set.php
      *
@@ -527,8 +527,7 @@ final class DataLabelingServiceClient
     /**
      * Creates dataset. If success return a Dataset resource.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::createDatasetAsync()}
-     * .
+     * The async variant is {@see DataLabelingServiceClient::createDatasetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/create_dataset.php
      *
@@ -557,7 +556,7 @@ final class DataLabelingServiceClient
      * Creates an evaluation job.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::createEvaluationJobAsync()} .
+     * {@see DataLabelingServiceClient::createEvaluationJobAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/create_evaluation_job.php
      *
@@ -585,8 +584,8 @@ final class DataLabelingServiceClient
     /**
      * Creates an instruction for how data should be labeled.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::createInstructionAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::createInstructionAsync()}
+     * .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/create_instruction.php
      *
@@ -615,7 +614,7 @@ final class DataLabelingServiceClient
      * Deletes an annotated dataset by resource name.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::deleteAnnotatedDatasetAsync()} .
+     * {@see DataLabelingServiceClient::deleteAnnotatedDatasetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/delete_annotated_dataset.php
      *
@@ -642,7 +641,7 @@ final class DataLabelingServiceClient
      * Deletes an annotation spec set by resource name.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::deleteAnnotationSpecSetAsync()} .
+     * {@see DataLabelingServiceClient::deleteAnnotationSpecSetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/delete_annotation_spec_set.php
      *
@@ -668,8 +667,7 @@ final class DataLabelingServiceClient
     /**
      * Deletes a dataset by resource name.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::deleteDatasetAsync()}
-     * .
+     * The async variant is {@see DataLabelingServiceClient::deleteDatasetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/delete_dataset.php
      *
@@ -696,7 +694,7 @@ final class DataLabelingServiceClient
      * Stops and deletes an evaluation job.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::deleteEvaluationJobAsync()} .
+     * {@see DataLabelingServiceClient::deleteEvaluationJobAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/delete_evaluation_job.php
      *
@@ -722,8 +720,8 @@ final class DataLabelingServiceClient
     /**
      * Deletes an instruction object by resource name.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::deleteInstructionAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::deleteInstructionAsync()}
+     * .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/delete_instruction.php
      *
@@ -749,7 +747,7 @@ final class DataLabelingServiceClient
     /**
      * Exports data and annotations from dataset.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::exportDataAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::exportDataAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/export_data.php
      *
@@ -778,7 +776,7 @@ final class DataLabelingServiceClient
      * Gets an annotated dataset by resource name.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::getAnnotatedDatasetAsync()} .
+     * {@see DataLabelingServiceClient::getAnnotatedDatasetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_annotated_dataset.php
      *
@@ -807,7 +805,7 @@ final class DataLabelingServiceClient
      * Gets an annotation spec set by resource name.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::getAnnotationSpecSetAsync()} .
+     * {@see DataLabelingServiceClient::getAnnotationSpecSetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_annotation_spec_set.php
      *
@@ -836,7 +834,7 @@ final class DataLabelingServiceClient
      * Gets a data item in a dataset by resource name. This API can be
      * called after data are imported into dataset.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::getDataItemAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::getDataItemAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_data_item.php
      *
@@ -864,7 +862,7 @@ final class DataLabelingServiceClient
     /**
      * Gets dataset by resource name.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::getDatasetAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::getDatasetAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_dataset.php
      *
@@ -893,8 +891,7 @@ final class DataLabelingServiceClient
      * Gets an evaluation by resource name (to search, use
      * [projects.evaluations.search][google.cloud.datalabeling.v1beta1.DataLabelingService.SearchEvaluations]).
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::getEvaluationAsync()}
-     * .
+     * The async variant is {@see DataLabelingServiceClient::getEvaluationAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_evaluation.php
      *
@@ -922,8 +919,7 @@ final class DataLabelingServiceClient
     /**
      * Gets an evaluation job by resource name.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::getEvaluationJobAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::getEvaluationJobAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_evaluation_job.php
      *
@@ -951,7 +947,7 @@ final class DataLabelingServiceClient
     /**
      * Gets an example by resource name, including both data and annotation.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::getExampleAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::getExampleAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_example.php
      *
@@ -979,8 +975,7 @@ final class DataLabelingServiceClient
     /**
      * Gets an instruction by resource name.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::getInstructionAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::getInstructionAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/get_instruction.php
      *
@@ -1012,7 +1007,7 @@ final class DataLabelingServiceClient
      * labeling task (also long running operation) can be started while
      * importing is still ongoing. Vice versa.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::importDataAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::importDataAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/import_data.php
      *
@@ -1041,7 +1036,7 @@ final class DataLabelingServiceClient
      * Starts a labeling task for image. The type of image labeling task is
      * configured by feature in the request.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::labelImageAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::labelImageAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/label_image.php
      *
@@ -1070,7 +1065,7 @@ final class DataLabelingServiceClient
      * Starts a labeling task for text. The type of text labeling task is
      * configured by feature in the request.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::labelTextAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::labelTextAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/label_text.php
      *
@@ -1099,7 +1094,7 @@ final class DataLabelingServiceClient
      * Starts a labeling task for video. The type of video labeling task is
      * configured by feature in the request.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::labelVideoAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::labelVideoAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/label_video.php
      *
@@ -1128,7 +1123,7 @@ final class DataLabelingServiceClient
      * Lists annotated datasets for a dataset. Pagination is supported.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::listAnnotatedDatasetsAsync()} .
+     * {@see DataLabelingServiceClient::listAnnotatedDatasetsAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/list_annotated_datasets.php
      *
@@ -1157,7 +1152,7 @@ final class DataLabelingServiceClient
      * Lists annotation spec sets for a project. Pagination is supported.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::listAnnotationSpecSetsAsync()} .
+     * {@see DataLabelingServiceClient::listAnnotationSpecSetsAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/list_annotation_spec_sets.php
      *
@@ -1186,8 +1181,7 @@ final class DataLabelingServiceClient
      * Lists data items in a dataset. This API can be called after data
      * are imported into dataset. Pagination is supported.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::listDataItemsAsync()}
-     * .
+     * The async variant is {@see DataLabelingServiceClient::listDataItemsAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/list_data_items.php
      *
@@ -1215,8 +1209,7 @@ final class DataLabelingServiceClient
     /**
      * Lists datasets under a project. Pagination is supported.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::listDatasetsAsync()}
-     * .
+     * The async variant is {@see DataLabelingServiceClient::listDatasetsAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/list_datasets.php
      *
@@ -1245,8 +1238,8 @@ final class DataLabelingServiceClient
      * Lists all evaluation jobs within a project with possible filters.
      * Pagination is supported.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::listEvaluationJobsAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::listEvaluationJobsAsync()}
+     * .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/list_evaluation_jobs.php
      *
@@ -1274,8 +1267,7 @@ final class DataLabelingServiceClient
     /**
      * Lists examples in an annotated dataset. Pagination is supported.
      *
-     * The async variant is {@see DataLabelingServiceGapicClient::listExamplesAsync()}
-     * .
+     * The async variant is {@see DataLabelingServiceClient::listExamplesAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/list_examples.php
      *
@@ -1303,8 +1295,7 @@ final class DataLabelingServiceClient
     /**
      * Lists instructions for a project. Pagination is supported.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::listInstructionsAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::listInstructionsAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/list_instructions.php
      *
@@ -1333,8 +1324,8 @@ final class DataLabelingServiceClient
      * Pauses an evaluation job. Pausing an evaluation job that is already in a
      * `PAUSED` state is a no-op.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::pauseEvaluationJobAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::pauseEvaluationJobAsync()}
+     * .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/pause_evaluation_job.php
      *
@@ -1362,7 +1353,7 @@ final class DataLabelingServiceClient
      * Resuming a running or scheduled evaluation job is a no-op.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::resumeEvaluationJobAsync()} .
+     * {@see DataLabelingServiceClient::resumeEvaluationJobAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/resume_evaluation_job.php
      *
@@ -1388,8 +1379,8 @@ final class DataLabelingServiceClient
     /**
      * Searches [evaluations][google.cloud.datalabeling.v1beta1.Evaluation] within a project.
      *
-     * The async variant is
-     * {@see DataLabelingServiceGapicClient::searchEvaluationsAsync()} .
+     * The async variant is {@see DataLabelingServiceClient::searchEvaluationsAsync()}
+     * .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/search_evaluations.php
      *
@@ -1420,7 +1411,7 @@ final class DataLabelingServiceClient
      * a single input. Search by providing an evaluation ID.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::searchExampleComparisonsAsync()} .
+     * {@see DataLabelingServiceClient::searchExampleComparisonsAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/search_example_comparisons.php
      *
@@ -1454,7 +1445,7 @@ final class DataLabelingServiceClient
      * delete the job and create a new one.
      *
      * The async variant is
-     * {@see DataLabelingServiceGapicClient::updateEvaluationJobAsync()} .
+     * {@see DataLabelingServiceClient::updateEvaluationJobAsync()} .
      *
      * @example samples/V1beta1/DataLabelingServiceClient/update_evaluation_job.php
      *

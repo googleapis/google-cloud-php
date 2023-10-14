@@ -377,7 +377,7 @@ final class DocumentsClient
      * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
-     * The async variant is {@see DocumentsGapicClient::createDocumentAsync()} .
+     * The async variant is {@see DocumentsClient::createDocumentAsync()} .
      *
      * @param CreateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -410,7 +410,7 @@ final class DocumentsClient
      * - `response`: An [Empty
      * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
-     * The async variant is {@see DocumentsGapicClient::deleteDocumentAsync()} .
+     * The async variant is {@see DocumentsClient::deleteDocumentAsync()} .
      *
      * @param DeleteDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -443,7 +443,7 @@ final class DocumentsClient
      * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
-     * The async variant is {@see DocumentsGapicClient::exportDocumentAsync()} .
+     * The async variant is {@see DocumentsClient::exportDocumentAsync()} .
      *
      * @param ExportDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -467,7 +467,7 @@ final class DocumentsClient
     /**
      * Retrieves the specified document.
      *
-     * The async variant is {@see DocumentsGapicClient::getDocumentAsync()} .
+     * The async variant is {@see DocumentsClient::getDocumentAsync()} .
      *
      * @param GetDocumentRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -502,7 +502,7 @@ final class DocumentsClient
      * - `response`:
      * [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
      *
-     * The async variant is {@see DocumentsGapicClient::importDocumentsAsync()} .
+     * The async variant is {@see DocumentsClient::importDocumentsAsync()} .
      *
      * @param ImportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -526,7 +526,7 @@ final class DocumentsClient
     /**
      * Returns the list of all documents of the knowledge base.
      *
-     * The async variant is {@see DocumentsGapicClient::listDocumentsAsync()} .
+     * The async variant is {@see DocumentsClient::listDocumentsAsync()} .
      *
      * @param ListDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -564,7 +564,7 @@ final class DocumentsClient
      * Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
      * only use `projects.knowledgeBases.documents`.
      *
-     * The async variant is {@see DocumentsGapicClient::reloadDocumentAsync()} .
+     * The async variant is {@see DocumentsClient::reloadDocumentAsync()} .
      *
      * @param ReloadDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -596,7 +596,7 @@ final class DocumentsClient
      * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
      * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      *
-     * The async variant is {@see DocumentsGapicClient::updateDocumentAsync()} .
+     * The async variant is {@see DocumentsClient::updateDocumentAsync()} .
      *
      * @param UpdateDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -620,7 +620,7 @@ final class DocumentsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DocumentsGapicClient::getLocationAsync()} .
+     * The async variant is {@see DocumentsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -644,7 +644,7 @@ final class DocumentsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DocumentsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DocumentsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

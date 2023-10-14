@@ -200,8 +200,7 @@ final class Controller2Client
      * until the controller removes them from the active list to avoid
      * setting those breakpoints again.
      *
-     * The async variant is {@see Controller2GapicClient::listActiveBreakpointsAsync()}
-     * .
+     * The async variant is {@see Controller2Client::listActiveBreakpointsAsync()} .
      *
      * @param ListActiveBreakpointsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -234,7 +233,7 @@ final class Controller2Client
      * from data loss, or change the `debuggee_id` format. Agents must handle
      * `debuggee_id` value changing upon re-registration.
      *
-     * The async variant is {@see Controller2GapicClient::registerDebuggeeAsync()} .
+     * The async variant is {@see Controller2Client::registerDebuggeeAsync()} .
      *
      * @param RegisterDebuggeeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -265,8 +264,7 @@ final class Controller2Client
      * semantics. These may only make changes such as canonicalizing a value
      * or snapping the location to the correct line of code.
      *
-     * The async variant is
-     * {@see Controller2GapicClient::updateActiveBreakpointAsync()} .
+     * The async variant is {@see Controller2Client::updateActiveBreakpointAsync()} .
      *
      * @param UpdateActiveBreakpointRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

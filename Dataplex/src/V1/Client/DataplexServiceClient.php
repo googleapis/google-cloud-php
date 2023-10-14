@@ -467,7 +467,7 @@ final class DataplexServiceClient
     /**
      * Cancel jobs running for the task resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::cancelJobAsync()} .
+     * The async variant is {@see DataplexServiceClient::cancelJobAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/cancel_job.php
      *
@@ -491,7 +491,7 @@ final class DataplexServiceClient
     /**
      * Creates an asset resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::createAssetAsync()} .
+     * The async variant is {@see DataplexServiceClient::createAssetAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/create_asset.php
      *
@@ -517,8 +517,7 @@ final class DataplexServiceClient
     /**
      * Create an environment resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::createEnvironmentAsync()}
-     * .
+     * The async variant is {@see DataplexServiceClient::createEnvironmentAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/create_environment.php
      *
@@ -544,7 +543,7 @@ final class DataplexServiceClient
     /**
      * Creates a lake resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::createLakeAsync()} .
+     * The async variant is {@see DataplexServiceClient::createLakeAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/create_lake.php
      *
@@ -570,7 +569,7 @@ final class DataplexServiceClient
     /**
      * Creates a task resource within a lake.
      *
-     * The async variant is {@see DataplexServiceGapicClient::createTaskAsync()} .
+     * The async variant is {@see DataplexServiceClient::createTaskAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/create_task.php
      *
@@ -596,7 +595,7 @@ final class DataplexServiceClient
     /**
      * Creates a zone resource within a lake.
      *
-     * The async variant is {@see DataplexServiceGapicClient::createZoneAsync()} .
+     * The async variant is {@see DataplexServiceClient::createZoneAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/create_zone.php
      *
@@ -623,7 +622,7 @@ final class DataplexServiceClient
      * Deletes an asset resource. The referenced storage resource is detached
      * (default) or deleted based on the associated Lifecycle policy.
      *
-     * The async variant is {@see DataplexServiceGapicClient::deleteAssetAsync()} .
+     * The async variant is {@see DataplexServiceClient::deleteAssetAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/delete_asset.php
      *
@@ -650,8 +649,7 @@ final class DataplexServiceClient
      * Delete the environment resource. All the child resources must have been
      * deleted before environment deletion can be initiated.
      *
-     * The async variant is {@see DataplexServiceGapicClient::deleteEnvironmentAsync()}
-     * .
+     * The async variant is {@see DataplexServiceClient::deleteEnvironmentAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/delete_environment.php
      *
@@ -678,7 +676,7 @@ final class DataplexServiceClient
      * Deletes a lake resource. All zones within the lake must be deleted before
      * the lake can be deleted.
      *
-     * The async variant is {@see DataplexServiceGapicClient::deleteLakeAsync()} .
+     * The async variant is {@see DataplexServiceClient::deleteLakeAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/delete_lake.php
      *
@@ -704,7 +702,7 @@ final class DataplexServiceClient
     /**
      * Delete the task resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::deleteTaskAsync()} .
+     * The async variant is {@see DataplexServiceClient::deleteTaskAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/delete_task.php
      *
@@ -731,7 +729,7 @@ final class DataplexServiceClient
      * Deletes a zone resource. All assets within a zone must be deleted before
      * the zone can be deleted.
      *
-     * The async variant is {@see DataplexServiceGapicClient::deleteZoneAsync()} .
+     * The async variant is {@see DataplexServiceClient::deleteZoneAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/delete_zone.php
      *
@@ -757,7 +755,7 @@ final class DataplexServiceClient
     /**
      * Retrieves an asset resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getAssetAsync()} .
+     * The async variant is {@see DataplexServiceClient::getAssetAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_asset.php
      *
@@ -783,7 +781,7 @@ final class DataplexServiceClient
     /**
      * Get environment resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getEnvironmentAsync()} .
+     * The async variant is {@see DataplexServiceClient::getEnvironmentAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_environment.php
      *
@@ -809,7 +807,7 @@ final class DataplexServiceClient
     /**
      * Get job resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getJobAsync()} .
+     * The async variant is {@see DataplexServiceClient::getJobAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_job.php
      *
@@ -835,7 +833,7 @@ final class DataplexServiceClient
     /**
      * Retrieves a lake resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getLakeAsync()} .
+     * The async variant is {@see DataplexServiceClient::getLakeAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_lake.php
      *
@@ -861,7 +859,7 @@ final class DataplexServiceClient
     /**
      * Get task resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getTaskAsync()} .
+     * The async variant is {@see DataplexServiceClient::getTaskAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_task.php
      *
@@ -887,7 +885,7 @@ final class DataplexServiceClient
     /**
      * Retrieves a zone resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getZoneAsync()} .
+     * The async variant is {@see DataplexServiceClient::getZoneAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_zone.php
      *
@@ -913,8 +911,7 @@ final class DataplexServiceClient
     /**
      * Lists action resources in an asset.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listAssetActionsAsync()}
-     * .
+     * The async variant is {@see DataplexServiceClient::listAssetActionsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_asset_actions.php
      *
@@ -940,7 +937,7 @@ final class DataplexServiceClient
     /**
      * Lists asset resources in a zone.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listAssetsAsync()} .
+     * The async variant is {@see DataplexServiceClient::listAssetsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_assets.php
      *
@@ -966,8 +963,7 @@ final class DataplexServiceClient
     /**
      * Lists environments under the given lake.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listEnvironmentsAsync()}
-     * .
+     * The async variant is {@see DataplexServiceClient::listEnvironmentsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_environments.php
      *
@@ -993,7 +989,7 @@ final class DataplexServiceClient
     /**
      * Lists Jobs under the given task.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listJobsAsync()} .
+     * The async variant is {@see DataplexServiceClient::listJobsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_jobs.php
      *
@@ -1019,7 +1015,7 @@ final class DataplexServiceClient
     /**
      * Lists action resources in a lake.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listLakeActionsAsync()} .
+     * The async variant is {@see DataplexServiceClient::listLakeActionsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_lake_actions.php
      *
@@ -1045,7 +1041,7 @@ final class DataplexServiceClient
     /**
      * Lists lake resources in a project and location.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listLakesAsync()} .
+     * The async variant is {@see DataplexServiceClient::listLakesAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_lakes.php
      *
@@ -1071,7 +1067,7 @@ final class DataplexServiceClient
     /**
      * Lists session resources in an environment.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listSessionsAsync()} .
+     * The async variant is {@see DataplexServiceClient::listSessionsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_sessions.php
      *
@@ -1097,7 +1093,7 @@ final class DataplexServiceClient
     /**
      * Lists tasks under the given lake.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listTasksAsync()} .
+     * The async variant is {@see DataplexServiceClient::listTasksAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_tasks.php
      *
@@ -1123,7 +1119,7 @@ final class DataplexServiceClient
     /**
      * Lists action resources in a zone.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listZoneActionsAsync()} .
+     * The async variant is {@see DataplexServiceClient::listZoneActionsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_zone_actions.php
      *
@@ -1149,7 +1145,7 @@ final class DataplexServiceClient
     /**
      * Lists zone resources in a lake.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listZonesAsync()} .
+     * The async variant is {@see DataplexServiceClient::listZonesAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_zones.php
      *
@@ -1175,7 +1171,7 @@ final class DataplexServiceClient
     /**
      * Run an on demand execution of a Task.
      *
-     * The async variant is {@see DataplexServiceGapicClient::runTaskAsync()} .
+     * The async variant is {@see DataplexServiceClient::runTaskAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/run_task.php
      *
@@ -1201,7 +1197,7 @@ final class DataplexServiceClient
     /**
      * Updates an asset resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::updateAssetAsync()} .
+     * The async variant is {@see DataplexServiceClient::updateAssetAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/update_asset.php
      *
@@ -1227,8 +1223,7 @@ final class DataplexServiceClient
     /**
      * Update the environment resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::updateEnvironmentAsync()}
-     * .
+     * The async variant is {@see DataplexServiceClient::updateEnvironmentAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/update_environment.php
      *
@@ -1254,7 +1249,7 @@ final class DataplexServiceClient
     /**
      * Updates a lake resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::updateLakeAsync()} .
+     * The async variant is {@see DataplexServiceClient::updateLakeAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/update_lake.php
      *
@@ -1280,7 +1275,7 @@ final class DataplexServiceClient
     /**
      * Update the task resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::updateTaskAsync()} .
+     * The async variant is {@see DataplexServiceClient::updateTaskAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/update_task.php
      *
@@ -1306,7 +1301,7 @@ final class DataplexServiceClient
     /**
      * Updates a zone resource.
      *
-     * The async variant is {@see DataplexServiceGapicClient::updateZoneAsync()} .
+     * The async variant is {@see DataplexServiceClient::updateZoneAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/update_zone.php
      *
@@ -1333,7 +1328,7 @@ final class DataplexServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DataplexServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_iam_policy.php
      *
@@ -1363,7 +1358,7 @@ final class DataplexServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see DataplexServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DataplexServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/set_iam_policy.php
      *
@@ -1395,8 +1390,7 @@ final class DataplexServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see DataplexServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see DataplexServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/test_iam_permissions.php
      *
@@ -1422,7 +1416,7 @@ final class DataplexServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DataplexServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see DataplexServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/get_location.php
      *
@@ -1448,7 +1442,7 @@ final class DataplexServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DataplexServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DataplexServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/DataplexServiceClient/list_locations.php
      *

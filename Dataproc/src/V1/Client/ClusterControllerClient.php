@@ -337,7 +337,7 @@ final class ClusterControllerClient
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
      * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      *
-     * The async variant is {@see ClusterControllerGapicClient::createClusterAsync()} .
+     * The async variant is {@see ClusterControllerClient::createClusterAsync()} .
      *
      * @param CreateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -363,7 +363,7 @@ final class ClusterControllerClient
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
      * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      *
-     * The async variant is {@see ClusterControllerGapicClient::deleteClusterAsync()} .
+     * The async variant is {@see ClusterControllerClient::deleteClusterAsync()} .
      *
      * @param DeleteClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -393,8 +393,7 @@ final class ClusterControllerClient
      * contains
      * [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
      *
-     * The async variant is {@see ClusterControllerGapicClient::diagnoseClusterAsync()}
-     * .
+     * The async variant is {@see ClusterControllerClient::diagnoseClusterAsync()} .
      *
      * @param DiagnoseClusterRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -418,7 +417,7 @@ final class ClusterControllerClient
     /**
      * Gets the resource representation for a cluster in a project.
      *
-     * The async variant is {@see ClusterControllerGapicClient::getClusterAsync()} .
+     * The async variant is {@see ClusterControllerClient::getClusterAsync()} .
      *
      * @param GetClusterRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -442,7 +441,7 @@ final class ClusterControllerClient
     /**
      * Lists all regions/{region}/clusters in a project alphabetically.
      *
-     * The async variant is {@see ClusterControllerGapicClient::listClustersAsync()} .
+     * The async variant is {@see ClusterControllerClient::listClustersAsync()} .
      *
      * @param ListClustersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -466,7 +465,7 @@ final class ClusterControllerClient
     /**
      * Starts a cluster in a project.
      *
-     * The async variant is {@see ClusterControllerGapicClient::startClusterAsync()} .
+     * The async variant is {@see ClusterControllerClient::startClusterAsync()} .
      *
      * @param StartClusterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -490,7 +489,7 @@ final class ClusterControllerClient
     /**
      * Stops a cluster in a project.
      *
-     * The async variant is {@see ClusterControllerGapicClient::stopClusterAsync()} .
+     * The async variant is {@see ClusterControllerClient::stopClusterAsync()} .
      *
      * @param StopClusterRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -519,7 +518,7 @@ final class ClusterControllerClient
      * [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
      * is returned.
      *
-     * The async variant is {@see ClusterControllerGapicClient::updateClusterAsync()} .
+     * The async variant is {@see ClusterControllerClient::updateClusterAsync()} .
      *
      * @param UpdateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -544,7 +543,7 @@ final class ClusterControllerClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see ClusterControllerGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ClusterControllerClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -572,7 +571,7 @@ final class ClusterControllerClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see ClusterControllerGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ClusterControllerClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -602,8 +601,7 @@ final class ClusterControllerClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see ClusterControllerGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see ClusterControllerClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

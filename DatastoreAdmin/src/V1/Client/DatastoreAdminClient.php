@@ -269,7 +269,7 @@ final class DatastoreAdminClient
      *
      * Indexes with a single property cannot be created.
      *
-     * The async variant is {@see DatastoreAdminGapicClient::createIndexAsync()} .
+     * The async variant is {@see DatastoreAdminClient::createIndexAsync()} .
      *
      * @example samples/V1/DatastoreAdminClient/create_index.php
      *
@@ -305,7 +305,7 @@ final class DatastoreAdminClient
      * by fixing the data that caused the error, followed by calling
      * [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
      *
-     * The async variant is {@see DatastoreAdminGapicClient::deleteIndexAsync()} .
+     * The async variant is {@see DatastoreAdminClient::deleteIndexAsync()} .
      *
      * @example samples/V1/DatastoreAdminClient/delete_index.php
      *
@@ -338,7 +338,7 @@ final class DatastoreAdminClient
      * cancelled before completion it may leave partial data behind in Google
      * Cloud Storage.
      *
-     * The async variant is {@see DatastoreAdminGapicClient::exportEntitiesAsync()} .
+     * The async variant is {@see DatastoreAdminClient::exportEntitiesAsync()} .
      *
      * @example samples/V1/DatastoreAdminClient/export_entities.php
      *
@@ -364,7 +364,7 @@ final class DatastoreAdminClient
     /**
      * Gets an index.
      *
-     * The async variant is {@see DatastoreAdminGapicClient::getIndexAsync()} .
+     * The async variant is {@see DatastoreAdminClient::getIndexAsync()} .
      *
      * @example samples/V1/DatastoreAdminClient/get_index.php
      *
@@ -394,7 +394,7 @@ final class DatastoreAdminClient
      * created. If an ImportEntities operation is cancelled, it is possible
      * that a subset of the data has already been imported to Cloud Datastore.
      *
-     * The async variant is {@see DatastoreAdminGapicClient::importEntitiesAsync()} .
+     * The async variant is {@see DatastoreAdminClient::importEntitiesAsync()} .
      *
      * @example samples/V1/DatastoreAdminClient/import_entities.php
      *
@@ -422,7 +422,7 @@ final class DatastoreAdminClient
      * eventually consistent query to fetch the list of indexes and may
      * occasionally return stale results.
      *
-     * The async variant is {@see DatastoreAdminGapicClient::listIndexesAsync()} .
+     * The async variant is {@see DatastoreAdminClient::listIndexesAsync()} .
      *
      * @example samples/V1/DatastoreAdminClient/list_indexes.php
      *

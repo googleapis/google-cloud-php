@@ -285,7 +285,7 @@ final class ClusterManagerClient
     /**
      * Cancels the specified operation.
      *
-     * The async variant is {@see ClusterManagerGapicClient::cancelOperationAsync()} .
+     * The async variant is {@see ClusterManagerClient::cancelOperationAsync()} .
      *
      * @param CancelOperationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -309,7 +309,7 @@ final class ClusterManagerClient
      * compatibility issues.
      *
      * The async variant is
-     * {@see ClusterManagerGapicClient::checkAutopilotCompatibilityAsync()} .
+     * {@see ClusterManagerClient::checkAutopilotCompatibilityAsync()} .
      *
      * @param CheckAutopilotCompatibilityRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -333,8 +333,7 @@ final class ClusterManagerClient
     /**
      * Completes master IP rotation.
      *
-     * The async variant is {@see ClusterManagerGapicClient::completeIPRotationAsync()}
-     * .
+     * The async variant is {@see ClusterManagerClient::completeIPRotationAsync()} .
      *
      * @param CompleteIPRotationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -359,8 +358,8 @@ final class ClusterManagerClient
      * CompleteNodePoolUpgrade will signal an on-going node pool upgrade to
      * complete.
      *
-     * The async variant is
-     * {@see ClusterManagerGapicClient::completeNodePoolUpgradeAsync()} .
+     * The async variant is {@see ClusterManagerClient::completeNodePoolUpgradeAsync()}
+     * .
      *
      * @param CompleteNodePoolUpgradeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -395,7 +394,7 @@ final class ClusterManagerClient
      * Finally, an entry is added to the project's global metadata indicating
      * which CIDR range the cluster is using.
      *
-     * The async variant is {@see ClusterManagerGapicClient::createClusterAsync()} .
+     * The async variant is {@see ClusterManagerClient::createClusterAsync()} .
      *
      * @param CreateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -419,7 +418,7 @@ final class ClusterManagerClient
     /**
      * Creates a node pool for a cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::createNodePoolAsync()} .
+     * The async variant is {@see ClusterManagerClient::createNodePoolAsync()} .
      *
      * @param CreateNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -451,7 +450,7 @@ final class ClusterManagerClient
      * such as load balancer resources, are not deleted if they weren't present
      * when the cluster was initially created.
      *
-     * The async variant is {@see ClusterManagerGapicClient::deleteClusterAsync()} .
+     * The async variant is {@see ClusterManagerClient::deleteClusterAsync()} .
      *
      * @param DeleteClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -475,7 +474,7 @@ final class ClusterManagerClient
     /**
      * Deletes a node pool from a cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::deleteNodePoolAsync()} .
+     * The async variant is {@see ClusterManagerClient::deleteNodePoolAsync()} .
      *
      * @param DeleteNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -499,7 +498,7 @@ final class ClusterManagerClient
     /**
      * Gets the details of a specific cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::getClusterAsync()} .
+     * The async variant is {@see ClusterManagerClient::getClusterAsync()} .
      *
      * @param GetClusterRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -526,7 +525,7 @@ final class ClusterManagerClient
      * This API is not yet intended for general use, and is not available for all
      * clusters.
      *
-     * The async variant is {@see ClusterManagerGapicClient::getJSONWebKeysAsync()} .
+     * The async variant is {@see ClusterManagerClient::getJSONWebKeysAsync()} .
      *
      * @param GetJSONWebKeysRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -550,7 +549,7 @@ final class ClusterManagerClient
     /**
      * Retrieves the requested node pool.
      *
-     * The async variant is {@see ClusterManagerGapicClient::getNodePoolAsync()} .
+     * The async variant is {@see ClusterManagerClient::getNodePoolAsync()} .
      *
      * @param GetNodePoolRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -574,7 +573,7 @@ final class ClusterManagerClient
     /**
      * Gets the specified operation.
      *
-     * The async variant is {@see ClusterManagerGapicClient::getOperationAsync()} .
+     * The async variant is {@see ClusterManagerClient::getOperationAsync()} .
      *
      * @param GetOperationRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -598,7 +597,7 @@ final class ClusterManagerClient
     /**
      * Returns configuration info about the Google Kubernetes Engine service.
      *
-     * The async variant is {@see ClusterManagerGapicClient::getServerConfigAsync()} .
+     * The async variant is {@see ClusterManagerClient::getServerConfigAsync()} .
      *
      * @param GetServerConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -623,7 +622,7 @@ final class ClusterManagerClient
      * Lists all clusters owned by a project in either the specified zone or all
      * zones.
      *
-     * The async variant is {@see ClusterManagerGapicClient::listClustersAsync()} .
+     * The async variant is {@see ClusterManagerClient::listClustersAsync()} .
      *
      * @param ListClustersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -647,7 +646,7 @@ final class ClusterManagerClient
     /**
      * Lists the node pools for a cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::listNodePoolsAsync()} .
+     * The async variant is {@see ClusterManagerClient::listNodePoolsAsync()} .
      *
      * @param ListNodePoolsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -671,7 +670,7 @@ final class ClusterManagerClient
     /**
      * Lists all operations in a project in a specific zone or all zones.
      *
-     * The async variant is {@see ClusterManagerGapicClient::listOperationsAsync()} .
+     * The async variant is {@see ClusterManagerClient::listOperationsAsync()} .
      *
      * @param ListOperationsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -695,8 +694,7 @@ final class ClusterManagerClient
     /**
      * Lists subnetworks that are usable for creating clusters in a project.
      *
-     * The async variant is
-     * {@see ClusterManagerGapicClient::listUsableSubnetworksAsync()} .
+     * The async variant is {@see ClusterManagerClient::listUsableSubnetworksAsync()} .
      *
      * @param ListUsableSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -721,8 +719,8 @@ final class ClusterManagerClient
      * Rolls back a previously Aborted or Failed NodePool upgrade.
      * This makes no changes if the last upgrade successfully completed.
      *
-     * The async variant is
-     * {@see ClusterManagerGapicClient::rollbackNodePoolUpgradeAsync()} .
+     * The async variant is {@see ClusterManagerClient::rollbackNodePoolUpgradeAsync()}
+     * .
      *
      * @param RollbackNodePoolUpgradeRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -746,7 +744,7 @@ final class ClusterManagerClient
     /**
      * Sets the addons for a specific cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::setAddonsConfigAsync()} .
+     * The async variant is {@see ClusterManagerClient::setAddonsConfigAsync()} .
      *
      * @param SetAddonsConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -770,7 +768,7 @@ final class ClusterManagerClient
     /**
      * Sets labels on a cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::setLabelsAsync()} .
+     * The async variant is {@see ClusterManagerClient::setLabelsAsync()} .
      *
      * @param SetLabelsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -794,7 +792,7 @@ final class ClusterManagerClient
     /**
      * Enables or disables the ABAC authorization mechanism on a cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::setLegacyAbacAsync()} .
+     * The async variant is {@see ClusterManagerClient::setLegacyAbacAsync()} .
      *
      * @param SetLegacyAbacRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -821,7 +819,7 @@ final class ClusterManagerClient
      * [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update)
      * instead.
      *
-     * The async variant is {@see ClusterManagerGapicClient::setLocationsAsync()} .
+     * The async variant is {@see ClusterManagerClient::setLocationsAsync()} .
      *
      * @param SetLocationsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -847,8 +845,7 @@ final class ClusterManagerClient
     /**
      * Sets the logging service for a specific cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::setLoggingServiceAsync()}
-     * .
+     * The async variant is {@see ClusterManagerClient::setLoggingServiceAsync()} .
      *
      * @param SetLoggingServiceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -872,8 +869,7 @@ final class ClusterManagerClient
     /**
      * Sets the maintenance policy for a cluster.
      *
-     * The async variant is
-     * {@see ClusterManagerGapicClient::setMaintenancePolicyAsync()} .
+     * The async variant is {@see ClusterManagerClient::setMaintenancePolicyAsync()} .
      *
      * @param SetMaintenancePolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -899,7 +895,7 @@ final class ClusterManagerClient
      * or a specific cluster, either via password generation or explicitly setting
      * the password.
      *
-     * The async variant is {@see ClusterManagerGapicClient::setMasterAuthAsync()} .
+     * The async variant is {@see ClusterManagerClient::setMasterAuthAsync()} .
      *
      * @param SetMasterAuthRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -923,8 +919,7 @@ final class ClusterManagerClient
     /**
      * Sets the monitoring service for a specific cluster.
      *
-     * The async variant is
-     * {@see ClusterManagerGapicClient::setMonitoringServiceAsync()} .
+     * The async variant is {@see ClusterManagerClient::setMonitoringServiceAsync()} .
      *
      * @param SetMonitoringServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -948,7 +943,7 @@ final class ClusterManagerClient
     /**
      * Enables or disables Network Policy for a cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::setNetworkPolicyAsync()} .
+     * The async variant is {@see ClusterManagerClient::setNetworkPolicyAsync()} .
      *
      * @param SetNetworkPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -972,8 +967,8 @@ final class ClusterManagerClient
     /**
      * Sets the autoscaling settings for the specified node pool.
      *
-     * The async variant is
-     * {@see ClusterManagerGapicClient::setNodePoolAutoscalingAsync()} .
+     * The async variant is {@see ClusterManagerClient::setNodePoolAutoscalingAsync()}
+     * .
      *
      * @param SetNodePoolAutoscalingRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -997,8 +992,7 @@ final class ClusterManagerClient
     /**
      * Sets the NodeManagement options for a node pool.
      *
-     * The async variant is
-     * {@see ClusterManagerGapicClient::setNodePoolManagementAsync()} .
+     * The async variant is {@see ClusterManagerClient::setNodePoolManagementAsync()} .
      *
      * @param SetNodePoolManagementRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1024,7 +1018,7 @@ final class ClusterManagerClient
      * replicas, including future replicas created by modifying
      * [NodePool.locations][google.container.v1.NodePool.locations].
      *
-     * The async variant is {@see ClusterManagerGapicClient::setNodePoolSizeAsync()} .
+     * The async variant is {@see ClusterManagerClient::setNodePoolSizeAsync()} .
      *
      * @param SetNodePoolSizeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1048,7 +1042,7 @@ final class ClusterManagerClient
     /**
      * Starts master IP rotation.
      *
-     * The async variant is {@see ClusterManagerGapicClient::startIPRotationAsync()} .
+     * The async variant is {@see ClusterManagerClient::startIPRotationAsync()} .
      *
      * @param StartIPRotationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1072,7 +1066,7 @@ final class ClusterManagerClient
     /**
      * Updates the settings of a specific cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::updateClusterAsync()} .
+     * The async variant is {@see ClusterManagerClient::updateClusterAsync()} .
      *
      * @param UpdateClusterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1096,7 +1090,7 @@ final class ClusterManagerClient
     /**
      * Updates the master for a specific cluster.
      *
-     * The async variant is {@see ClusterManagerGapicClient::updateMasterAsync()} .
+     * The async variant is {@see ClusterManagerClient::updateMasterAsync()} .
      *
      * @param UpdateMasterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1120,7 +1114,7 @@ final class ClusterManagerClient
     /**
      * Updates the version and/or image type for the specified node pool.
      *
-     * The async variant is {@see ClusterManagerGapicClient::updateNodePoolAsync()} .
+     * The async variant is {@see ClusterManagerClient::updateNodePoolAsync()} .
      *
      * @param UpdateNodePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

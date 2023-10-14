@@ -576,7 +576,7 @@ final class ContactCenterInsightsClient
      * Analyzes multiple conversations in a single request.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::bulkAnalyzeConversationsAsync()} .
+     * {@see ContactCenterInsightsClient::bulkAnalyzeConversationsAsync()} .
      *
      * @param BulkAnalyzeConversationsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -601,7 +601,7 @@ final class ContactCenterInsightsClient
      * Gets an issue model's statistics.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::calculateIssueModelStatsAsync()} .
+     * {@see ContactCenterInsightsClient::calculateIssueModelStatsAsync()} .
      *
      * @param CalculateIssueModelStatsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -625,8 +625,7 @@ final class ContactCenterInsightsClient
     /**
      * Gets conversation statistics.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::calculateStatsAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::calculateStatsAsync()} .
      *
      * @param CalculateStatsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -651,8 +650,7 @@ final class ContactCenterInsightsClient
      * Creates an analysis. The long running operation is done when the analysis
      * has completed.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::createAnalysisAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::createAnalysisAsync()} .
      *
      * @param CreateAnalysisRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -677,7 +675,7 @@ final class ContactCenterInsightsClient
      * Creates a conversation.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::createConversationAsync()} .
+     * {@see ContactCenterInsightsClient::createConversationAsync()} .
      *
      * @param CreateConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -701,8 +699,8 @@ final class ContactCenterInsightsClient
     /**
      * Creates an issue model.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::createIssueModelAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::createIssueModelAsync()}
+     * .
      *
      * @param CreateIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -727,7 +725,7 @@ final class ContactCenterInsightsClient
      * Creates a phrase matcher.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::createPhraseMatcherAsync()} .
+     * {@see ContactCenterInsightsClient::createPhraseMatcherAsync()} .
      *
      * @param CreatePhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -751,8 +749,7 @@ final class ContactCenterInsightsClient
     /**
      * Creates a view.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::createViewAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::createViewAsync()} .
      *
      * @param CreateViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -776,8 +773,7 @@ final class ContactCenterInsightsClient
     /**
      * Deletes an analysis.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::deleteAnalysisAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::deleteAnalysisAsync()} .
      *
      * @param DeleteAnalysisRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -800,7 +796,7 @@ final class ContactCenterInsightsClient
      * Deletes a conversation.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::deleteConversationAsync()} .
+     * {@see ContactCenterInsightsClient::deleteConversationAsync()} .
      *
      * @param DeleteConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -822,8 +818,7 @@ final class ContactCenterInsightsClient
     /**
      * Deletes an issue.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::deleteIssueAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::deleteIssueAsync()} .
      *
      * @param DeleteIssueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -845,8 +840,8 @@ final class ContactCenterInsightsClient
     /**
      * Deletes an issue model.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::deleteIssueModelAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::deleteIssueModelAsync()}
+     * .
      *
      * @param DeleteIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -871,7 +866,7 @@ final class ContactCenterInsightsClient
      * Deletes a phrase matcher.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::deletePhraseMatcherAsync()} .
+     * {@see ContactCenterInsightsClient::deletePhraseMatcherAsync()} .
      *
      * @param DeletePhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -893,8 +888,7 @@ final class ContactCenterInsightsClient
     /**
      * Deletes a view.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::deleteViewAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::deleteViewAsync()} .
      *
      * @param DeleteViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -917,8 +911,8 @@ final class ContactCenterInsightsClient
      * Deploys an issue model. Returns an error if a model is already deployed.
      * An issue model can only be used in analysis after it has been deployed.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::deployIssueModelAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::deployIssueModelAsync()}
+     * .
      *
      * @param DeployIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -943,7 +937,7 @@ final class ContactCenterInsightsClient
      * Export insights data to a destination defined in the request body.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::exportInsightsDataAsync()} .
+     * {@see ContactCenterInsightsClient::exportInsightsDataAsync()} .
      *
      * @param ExportInsightsDataRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -967,8 +961,7 @@ final class ContactCenterInsightsClient
     /**
      * Gets an analysis.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::getAnalysisAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::getAnalysisAsync()} .
      *
      * @param GetAnalysisRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -992,8 +985,8 @@ final class ContactCenterInsightsClient
     /**
      * Gets a conversation.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::getConversationAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::getConversationAsync()}
+     * .
      *
      * @param GetConversationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1017,7 +1010,7 @@ final class ContactCenterInsightsClient
     /**
      * Gets an issue.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::getIssueAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::getIssueAsync()} .
      *
      * @param GetIssueRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -1041,8 +1034,7 @@ final class ContactCenterInsightsClient
     /**
      * Gets an issue model.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::getIssueModelAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::getIssueModelAsync()} .
      *
      * @param GetIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1066,8 +1058,8 @@ final class ContactCenterInsightsClient
     /**
      * Gets a phrase matcher.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::getPhraseMatcherAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::getPhraseMatcherAsync()}
+     * .
      *
      * @param GetPhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1091,8 +1083,7 @@ final class ContactCenterInsightsClient
     /**
      * Gets project-level settings.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::getSettingsAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::getSettingsAsync()} .
      *
      * @param GetSettingsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1116,7 +1107,7 @@ final class ContactCenterInsightsClient
     /**
      * Gets a view.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::getViewAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::getViewAsync()} .
      *
      * @param GetViewRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -1142,7 +1133,7 @@ final class ContactCenterInsightsClient
      * configuration.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::ingestConversationsAsync()} .
+     * {@see ContactCenterInsightsClient::ingestConversationsAsync()} .
      *
      * @param IngestConversationsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1166,8 +1157,7 @@ final class ContactCenterInsightsClient
     /**
      * Lists analyses.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::listAnalysesAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::listAnalysesAsync()} .
      *
      * @param ListAnalysesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1192,7 +1182,7 @@ final class ContactCenterInsightsClient
      * Lists conversations.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::listConversationsAsync()} .
+     * {@see ContactCenterInsightsClient::listConversationsAsync()} .
      *
      * @param ListConversationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1216,8 +1206,8 @@ final class ContactCenterInsightsClient
     /**
      * Lists issue models.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::listIssueModelsAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::listIssueModelsAsync()}
+     * .
      *
      * @param ListIssueModelsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1241,8 +1231,7 @@ final class ContactCenterInsightsClient
     /**
      * Lists issues.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::listIssuesAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::listIssuesAsync()} .
      *
      * @param ListIssuesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1267,7 +1256,7 @@ final class ContactCenterInsightsClient
      * Lists phrase matchers.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::listPhraseMatchersAsync()} .
+     * {@see ContactCenterInsightsClient::listPhraseMatchersAsync()} .
      *
      * @param ListPhraseMatchersRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1291,7 +1280,7 @@ final class ContactCenterInsightsClient
     /**
      * Lists views.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::listViewsAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::listViewsAsync()} .
      *
      * @param ListViewsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1317,7 +1306,7 @@ final class ContactCenterInsightsClient
      * An issue model can not be used in analysis after it has been undeployed.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::undeployIssueModelAsync()} .
+     * {@see ContactCenterInsightsClient::undeployIssueModelAsync()} .
      *
      * @param UndeployIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1342,7 +1331,7 @@ final class ContactCenterInsightsClient
      * Updates a conversation.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::updateConversationAsync()} .
+     * {@see ContactCenterInsightsClient::updateConversationAsync()} .
      *
      * @param UpdateConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -1366,8 +1355,7 @@ final class ContactCenterInsightsClient
     /**
      * Updates an issue.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::updateIssueAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::updateIssueAsync()} .
      *
      * @param UpdateIssueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1391,8 +1379,8 @@ final class ContactCenterInsightsClient
     /**
      * Updates an issue model.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::updateIssueModelAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::updateIssueModelAsync()}
+     * .
      *
      * @param UpdateIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1417,7 +1405,7 @@ final class ContactCenterInsightsClient
      * Updates a phrase matcher.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::updatePhraseMatcherAsync()} .
+     * {@see ContactCenterInsightsClient::updatePhraseMatcherAsync()} .
      *
      * @param UpdatePhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1441,8 +1429,7 @@ final class ContactCenterInsightsClient
     /**
      * Updates project-level settings.
      *
-     * The async variant is
-     * {@see ContactCenterInsightsGapicClient::updateSettingsAsync()} .
+     * The async variant is {@see ContactCenterInsightsClient::updateSettingsAsync()} .
      *
      * @param UpdateSettingsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1466,8 +1453,7 @@ final class ContactCenterInsightsClient
     /**
      * Updates a view.
      *
-     * The async variant is {@see ContactCenterInsightsGapicClient::updateViewAsync()}
-     * .
+     * The async variant is {@see ContactCenterInsightsClient::updateViewAsync()} .
      *
      * @param UpdateViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1494,7 +1480,7 @@ final class ContactCenterInsightsClient
      * redaction.
      *
      * The async variant is
-     * {@see ContactCenterInsightsGapicClient::uploadConversationAsync()} .
+     * {@see ContactCenterInsightsClient::uploadConversationAsync()} .
      *
      * @param UploadConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
