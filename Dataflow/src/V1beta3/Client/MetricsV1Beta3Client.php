@@ -176,8 +176,8 @@ final class MetricsV1Beta3Client
      *
      * EXPERIMENTAL.  This API is subject to change or removal without notice.
      *
-     * The async variant is
-     * {@see MetricsV1Beta3GapicClient::getJobExecutionDetailsAsync()} .
+     * The async variant is {@see MetricsV1Beta3Client::getJobExecutionDetailsAsync()}
+     * .
      *
      * @example samples/V1beta3/MetricsV1Beta3Client/get_job_execution_details.php
      *
@@ -211,7 +211,7 @@ final class MetricsV1Beta3Client
      * `projects.jobs.getMetrics` is not recommended, as you can only request the
      * status of jobs that are running in `us-central1`.
      *
-     * The async variant is {@see MetricsV1Beta3GapicClient::getJobMetricsAsync()} .
+     * The async variant is {@see MetricsV1Beta3Client::getJobMetricsAsync()} .
      *
      * @example samples/V1beta3/MetricsV1Beta3Client/get_job_metrics.php
      *
@@ -243,7 +243,7 @@ final class MetricsV1Beta3Client
      * EXPERIMENTAL.  This API is subject to change or removal without notice.
      *
      * The async variant is
-     * {@see MetricsV1Beta3GapicClient::getStageExecutionDetailsAsync()} .
+     * {@see MetricsV1Beta3Client::getStageExecutionDetailsAsync()} .
      *
      * @example samples/V1beta3/MetricsV1Beta3Client/get_stage_execution_details.php
      *

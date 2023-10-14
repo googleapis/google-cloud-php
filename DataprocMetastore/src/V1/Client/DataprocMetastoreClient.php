@@ -419,7 +419,7 @@ final class DataprocMetastoreClient
      * data to the new location.
      *
      * The async variant is
-     * {@see DataprocMetastoreGapicClient::alterMetadataResourceLocationAsync()} .
+     * {@see DataprocMetastoreClient::alterMetadataResourceLocationAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/alter_metadata_resource_location.php
      *
@@ -445,7 +445,7 @@ final class DataprocMetastoreClient
     /**
      * Creates a new backup in a given project and location.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::createBackupAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::createBackupAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/create_backup.php
      *
@@ -471,8 +471,8 @@ final class DataprocMetastoreClient
     /**
      * Creates a new MetadataImport in a given project and location.
      *
-     * The async variant is
-     * {@see DataprocMetastoreGapicClient::createMetadataImportAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::createMetadataImportAsync()}
+     * .
      *
      * @example samples/V1/DataprocMetastoreClient/create_metadata_import.php
      *
@@ -498,7 +498,7 @@ final class DataprocMetastoreClient
     /**
      * Creates a metastore service in a project and location.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::createServiceAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::createServiceAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/create_service.php
      *
@@ -524,7 +524,7 @@ final class DataprocMetastoreClient
     /**
      * Deletes a single backup.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::deleteBackupAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::deleteBackupAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/delete_backup.php
      *
@@ -550,7 +550,7 @@ final class DataprocMetastoreClient
     /**
      * Deletes a single service.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::deleteServiceAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::deleteServiceAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/delete_service.php
      *
@@ -576,8 +576,7 @@ final class DataprocMetastoreClient
     /**
      * Exports metadata from a service.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::exportMetadataAsync()}
-     * .
+     * The async variant is {@see DataprocMetastoreClient::exportMetadataAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/export_metadata.php
      *
@@ -603,7 +602,7 @@ final class DataprocMetastoreClient
     /**
      * Gets details of a single backup.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::getBackupAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::getBackupAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/get_backup.php
      *
@@ -629,8 +628,7 @@ final class DataprocMetastoreClient
     /**
      * Gets details of a single import.
      *
-     * The async variant is
-     * {@see DataprocMetastoreGapicClient::getMetadataImportAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::getMetadataImportAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/get_metadata_import.php
      *
@@ -656,7 +654,7 @@ final class DataprocMetastoreClient
     /**
      * Gets the details of a single service.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::getServiceAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::getServiceAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/get_service.php
      *
@@ -682,7 +680,7 @@ final class DataprocMetastoreClient
     /**
      * Lists backups in a service.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::listBackupsAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::listBackupsAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/list_backups.php
      *
@@ -708,8 +706,8 @@ final class DataprocMetastoreClient
     /**
      * Lists imports in a service.
      *
-     * The async variant is
-     * {@see DataprocMetastoreGapicClient::listMetadataImportsAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::listMetadataImportsAsync()}
+     * .
      *
      * @example samples/V1/DataprocMetastoreClient/list_metadata_imports.php
      *
@@ -735,7 +733,7 @@ final class DataprocMetastoreClient
     /**
      * Lists services in a project and location.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::listServicesAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::listServicesAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/list_services.php
      *
@@ -761,8 +759,8 @@ final class DataprocMetastoreClient
     /**
      * Move a table to another database.
      *
-     * The async variant is
-     * {@see DataprocMetastoreGapicClient::moveTableToDatabaseAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::moveTableToDatabaseAsync()}
+     * .
      *
      * @example samples/V1/DataprocMetastoreClient/move_table_to_database.php
      *
@@ -788,7 +786,7 @@ final class DataprocMetastoreClient
     /**
      * Query DPMS metadata.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::queryMetadataAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::queryMetadataAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/query_metadata.php
      *
@@ -814,8 +812,7 @@ final class DataprocMetastoreClient
     /**
      * Restores a service from a backup.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::restoreServiceAsync()}
-     * .
+     * The async variant is {@see DataprocMetastoreClient::restoreServiceAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/restore_service.php
      *
@@ -842,8 +839,8 @@ final class DataprocMetastoreClient
      * Updates a single import.
      * Only the description field of MetadataImport is supported to be updated.
      *
-     * The async variant is
-     * {@see DataprocMetastoreGapicClient::updateMetadataImportAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::updateMetadataImportAsync()}
+     * .
      *
      * @example samples/V1/DataprocMetastoreClient/update_metadata_import.php
      *
@@ -869,7 +866,7 @@ final class DataprocMetastoreClient
     /**
      * Updates the parameters of a single service.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::updateServiceAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::updateServiceAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/update_service.php
      *
@@ -895,7 +892,7 @@ final class DataprocMetastoreClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::getLocationAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::getLocationAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/get_location.php
      *
@@ -921,7 +918,7 @@ final class DataprocMetastoreClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::listLocationsAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::listLocationsAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/list_locations.php
      *
@@ -948,7 +945,7 @@ final class DataprocMetastoreClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/get_iam_policy.php
      *
@@ -978,7 +975,7 @@ final class DataprocMetastoreClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see DataprocMetastoreGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/set_iam_policy.php
      *
@@ -1010,8 +1007,7 @@ final class DataprocMetastoreClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see DataprocMetastoreGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see DataprocMetastoreClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/DataprocMetastoreClient/test_iam_permissions.php
      *

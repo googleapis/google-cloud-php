@@ -354,7 +354,7 @@ final class DataTaxonomyServiceClient
      * Create a DataAttribute resource.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::createDataAttributeAsync()} .
+     * {@see DataTaxonomyServiceClient::createDataAttributeAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/create_data_attribute.php
      *
@@ -381,7 +381,7 @@ final class DataTaxonomyServiceClient
      * Create a DataAttributeBinding resource.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::createDataAttributeBindingAsync()} .
+     * {@see DataTaxonomyServiceClient::createDataAttributeBindingAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/create_data_attribute_binding.php
      *
@@ -407,8 +407,8 @@ final class DataTaxonomyServiceClient
     /**
      * Create a DataTaxonomy resource.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::createDataTaxonomyAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::createDataTaxonomyAsync()}
+     * .
      *
      * @example samples/V1/DataTaxonomyServiceClient/create_data_taxonomy.php
      *
@@ -435,7 +435,7 @@ final class DataTaxonomyServiceClient
      * Deletes a Data Attribute resource.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::deleteDataAttributeAsync()} .
+     * {@see DataTaxonomyServiceClient::deleteDataAttributeAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/delete_data_attribute.php
      *
@@ -464,7 +464,7 @@ final class DataTaxonomyServiceClient
      * deleted.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::deleteDataAttributeBindingAsync()} .
+     * {@see DataTaxonomyServiceClient::deleteDataAttributeBindingAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/delete_data_attribute_binding.php
      *
@@ -491,8 +491,8 @@ final class DataTaxonomyServiceClient
      * Deletes a DataTaxonomy resource. All attributes within the DataTaxonomy
      * must be deleted before the DataTaxonomy can be deleted.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::deleteDataTaxonomyAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::deleteDataTaxonomyAsync()}
+     * .
      *
      * @example samples/V1/DataTaxonomyServiceClient/delete_data_taxonomy.php
      *
@@ -518,8 +518,7 @@ final class DataTaxonomyServiceClient
     /**
      * Retrieves a Data Attribute resource.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::getDataAttributeAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::getDataAttributeAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/get_data_attribute.php
      *
@@ -546,7 +545,7 @@ final class DataTaxonomyServiceClient
      * Retrieves a DataAttributeBinding resource.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::getDataAttributeBindingAsync()} .
+     * {@see DataTaxonomyServiceClient::getDataAttributeBindingAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/get_data_attribute_binding.php
      *
@@ -572,8 +571,7 @@ final class DataTaxonomyServiceClient
     /**
      * Retrieves a DataTaxonomy resource.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::getDataTaxonomyAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::getDataTaxonomyAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/get_data_taxonomy.php
      *
@@ -600,7 +598,7 @@ final class DataTaxonomyServiceClient
      * Lists DataAttributeBinding resources in a project and location.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::listDataAttributeBindingsAsync()} .
+     * {@see DataTaxonomyServiceClient::listDataAttributeBindingsAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/list_data_attribute_bindings.php
      *
@@ -626,8 +624,8 @@ final class DataTaxonomyServiceClient
     /**
      * Lists Data Attribute resources in a DataTaxonomy.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::listDataAttributesAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::listDataAttributesAsync()}
+     * .
      *
      * @example samples/V1/DataTaxonomyServiceClient/list_data_attributes.php
      *
@@ -653,8 +651,8 @@ final class DataTaxonomyServiceClient
     /**
      * Lists DataTaxonomy resources in a project and location.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::listDataTaxonomiesAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::listDataTaxonomiesAsync()}
+     * .
      *
      * @example samples/V1/DataTaxonomyServiceClient/list_data_taxonomies.php
      *
@@ -681,7 +679,7 @@ final class DataTaxonomyServiceClient
      * Updates a DataAttribute resource.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::updateDataAttributeAsync()} .
+     * {@see DataTaxonomyServiceClient::updateDataAttributeAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/update_data_attribute.php
      *
@@ -708,7 +706,7 @@ final class DataTaxonomyServiceClient
      * Updates a DataAttributeBinding resource.
      *
      * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::updateDataAttributeBindingAsync()} .
+     * {@see DataTaxonomyServiceClient::updateDataAttributeBindingAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/update_data_attribute_binding.php
      *
@@ -734,8 +732,8 @@ final class DataTaxonomyServiceClient
     /**
      * Updates a DataTaxonomy resource.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::updateDataTaxonomyAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::updateDataTaxonomyAsync()}
+     * .
      *
      * @example samples/V1/DataTaxonomyServiceClient/update_data_taxonomy.php
      *
@@ -762,8 +760,7 @@ final class DataTaxonomyServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is {@see DataTaxonomyServiceGapicClient::getIamPolicyAsync()}
-     * .
+     * The async variant is {@see DataTaxonomyServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/get_iam_policy.php
      *
@@ -793,8 +790,7 @@ final class DataTaxonomyServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is {@see DataTaxonomyServiceGapicClient::setIamPolicyAsync()}
-     * .
+     * The async variant is {@see DataTaxonomyServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/set_iam_policy.php
      *
@@ -826,8 +822,8 @@ final class DataTaxonomyServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see DataTaxonomyServiceGapicClient::testIamPermissionsAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::testIamPermissionsAsync()}
+     * .
      *
      * @example samples/V1/DataTaxonomyServiceClient/test_iam_permissions.php
      *
@@ -853,7 +849,7 @@ final class DataTaxonomyServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see DataTaxonomyServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see DataTaxonomyServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/get_location.php
      *
@@ -879,8 +875,7 @@ final class DataTaxonomyServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see DataTaxonomyServiceGapicClient::listLocationsAsync()}
-     * .
+     * The async variant is {@see DataTaxonomyServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/DataTaxonomyServiceClient/list_locations.php
      *

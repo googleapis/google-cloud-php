@@ -361,8 +361,7 @@ final class LineageClient
      * have the `datalineage.events.get` permission. The project provided in the
      * URL is used for Billing and Quota.
      *
-     * The async variant is {@see LineageGapicClient::batchSearchLinkProcessesAsync()}
-     * .
+     * The async variant is {@see LineageClient::batchSearchLinkProcessesAsync()} .
      *
      * @example samples/V1/LineageClient/batch_search_link_processes.php
      *
@@ -388,7 +387,7 @@ final class LineageClient
     /**
      * Creates a new lineage event.
      *
-     * The async variant is {@see LineageGapicClient::createLineageEventAsync()} .
+     * The async variant is {@see LineageClient::createLineageEventAsync()} .
      *
      * @example samples/V1/LineageClient/create_lineage_event.php
      *
@@ -414,7 +413,7 @@ final class LineageClient
     /**
      * Creates a new process.
      *
-     * The async variant is {@see LineageGapicClient::createProcessAsync()} .
+     * The async variant is {@see LineageClient::createProcessAsync()} .
      *
      * @example samples/V1/LineageClient/create_process.php
      *
@@ -440,7 +439,7 @@ final class LineageClient
     /**
      * Creates a new run.
      *
-     * The async variant is {@see LineageGapicClient::createRunAsync()} .
+     * The async variant is {@see LineageClient::createRunAsync()} .
      *
      * @example samples/V1/LineageClient/create_run.php
      *
@@ -466,7 +465,7 @@ final class LineageClient
     /**
      * Deletes the lineage event with the specified name.
      *
-     * The async variant is {@see LineageGapicClient::deleteLineageEventAsync()} .
+     * The async variant is {@see LineageClient::deleteLineageEventAsync()} .
      *
      * @example samples/V1/LineageClient/delete_lineage_event.php
      *
@@ -490,7 +489,7 @@ final class LineageClient
     /**
      * Deletes the process with the specified name.
      *
-     * The async variant is {@see LineageGapicClient::deleteProcessAsync()} .
+     * The async variant is {@see LineageClient::deleteProcessAsync()} .
      *
      * @example samples/V1/LineageClient/delete_process.php
      *
@@ -516,7 +515,7 @@ final class LineageClient
     /**
      * Deletes the run with the specified name.
      *
-     * The async variant is {@see LineageGapicClient::deleteRunAsync()} .
+     * The async variant is {@see LineageClient::deleteRunAsync()} .
      *
      * @example samples/V1/LineageClient/delete_run.php
      *
@@ -542,7 +541,7 @@ final class LineageClient
     /**
      * Gets details of a specified lineage event.
      *
-     * The async variant is {@see LineageGapicClient::getLineageEventAsync()} .
+     * The async variant is {@see LineageClient::getLineageEventAsync()} .
      *
      * @example samples/V1/LineageClient/get_lineage_event.php
      *
@@ -568,7 +567,7 @@ final class LineageClient
     /**
      * Gets the details of the specified process.
      *
-     * The async variant is {@see LineageGapicClient::getProcessAsync()} .
+     * The async variant is {@see LineageClient::getProcessAsync()} .
      *
      * @example samples/V1/LineageClient/get_process.php
      *
@@ -594,7 +593,7 @@ final class LineageClient
     /**
      * Gets the details of the specified run.
      *
-     * The async variant is {@see LineageGapicClient::getRunAsync()} .
+     * The async variant is {@see LineageClient::getRunAsync()} .
      *
      * @example samples/V1/LineageClient/get_run.php
      *
@@ -621,7 +620,7 @@ final class LineageClient
      * Lists lineage events in the given project and location. The list order is
      * not defined.
      *
-     * The async variant is {@see LineageGapicClient::listLineageEventsAsync()} .
+     * The async variant is {@see LineageClient::listLineageEventsAsync()} .
      *
      * @example samples/V1/LineageClient/list_lineage_events.php
      *
@@ -648,7 +647,7 @@ final class LineageClient
      * List processes in the given project and location. List order is descending
      * by insertion time.
      *
-     * The async variant is {@see LineageGapicClient::listProcessesAsync()} .
+     * The async variant is {@see LineageClient::listProcessesAsync()} .
      *
      * @example samples/V1/LineageClient/list_processes.php
      *
@@ -675,7 +674,7 @@ final class LineageClient
      * Lists runs in the given project and location. List order is descending by
      * `start_time`.
      *
-     * The async variant is {@see LineageGapicClient::listRunsAsync()} .
+     * The async variant is {@see LineageClient::listRunsAsync()} .
      *
      * @example samples/V1/LineageClient/list_runs.php
      *
@@ -709,7 +708,7 @@ final class LineageClient
      * `datalineage.events.get` permission. The project provided in the URL
      * is used for Billing and Quota.
      *
-     * The async variant is {@see LineageGapicClient::searchLinksAsync()} .
+     * The async variant is {@see LineageClient::searchLinksAsync()} .
      *
      * @example samples/V1/LineageClient/search_links.php
      *
@@ -735,7 +734,7 @@ final class LineageClient
     /**
      * Updates a process.
      *
-     * The async variant is {@see LineageGapicClient::updateProcessAsync()} .
+     * The async variant is {@see LineageClient::updateProcessAsync()} .
      *
      * @example samples/V1/LineageClient/update_process.php
      *
@@ -761,7 +760,7 @@ final class LineageClient
     /**
      * Updates a run.
      *
-     * The async variant is {@see LineageGapicClient::updateRunAsync()} .
+     * The async variant is {@see LineageClient::updateRunAsync()} .
      *
      * @example samples/V1/LineageClient/update_run.php
      *

@@ -298,8 +298,7 @@ final class KnowledgeBasesClient
     /**
      * Creates a knowledge base.
      *
-     * The async variant is
-     * {@see KnowledgeBasesGapicClient::createKnowledgeBaseAsync()} .
+     * The async variant is {@see KnowledgeBasesClient::createKnowledgeBaseAsync()} .
      *
      * @param CreateKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -323,8 +322,7 @@ final class KnowledgeBasesClient
     /**
      * Deletes the specified knowledge base.
      *
-     * The async variant is
-     * {@see KnowledgeBasesGapicClient::deleteKnowledgeBaseAsync()} .
+     * The async variant is {@see KnowledgeBasesClient::deleteKnowledgeBaseAsync()} .
      *
      * @param DeleteKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -346,7 +344,7 @@ final class KnowledgeBasesClient
     /**
      * Retrieves the specified knowledge base.
      *
-     * The async variant is {@see KnowledgeBasesGapicClient::getKnowledgeBaseAsync()} .
+     * The async variant is {@see KnowledgeBasesClient::getKnowledgeBaseAsync()} .
      *
      * @param GetKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -370,8 +368,7 @@ final class KnowledgeBasesClient
     /**
      * Returns the list of all knowledge bases of the specified agent.
      *
-     * The async variant is {@see KnowledgeBasesGapicClient::listKnowledgeBasesAsync()}
-     * .
+     * The async variant is {@see KnowledgeBasesClient::listKnowledgeBasesAsync()} .
      *
      * @param ListKnowledgeBasesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -395,8 +392,7 @@ final class KnowledgeBasesClient
     /**
      * Updates the specified knowledge base.
      *
-     * The async variant is
-     * {@see KnowledgeBasesGapicClient::updateKnowledgeBaseAsync()} .
+     * The async variant is {@see KnowledgeBasesClient::updateKnowledgeBaseAsync()} .
      *
      * @param UpdateKnowledgeBaseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -420,7 +416,7 @@ final class KnowledgeBasesClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see KnowledgeBasesGapicClient::getLocationAsync()} .
+     * The async variant is {@see KnowledgeBasesClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -444,7 +440,7 @@ final class KnowledgeBasesClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see KnowledgeBasesGapicClient::listLocationsAsync()} .
+     * The async variant is {@see KnowledgeBasesClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

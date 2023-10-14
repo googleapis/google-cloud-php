@@ -256,7 +256,7 @@ final class ContentServiceClient
     /**
      * Create a content.
      *
-     * The async variant is {@see ContentServiceGapicClient::createContentAsync()} .
+     * The async variant is {@see ContentServiceClient::createContentAsync()} .
      *
      * @example samples/V1/ContentServiceClient/create_content.php
      *
@@ -282,7 +282,7 @@ final class ContentServiceClient
     /**
      * Delete a content.
      *
-     * The async variant is {@see ContentServiceGapicClient::deleteContentAsync()} .
+     * The async variant is {@see ContentServiceClient::deleteContentAsync()} .
      *
      * @example samples/V1/ContentServiceClient/delete_content.php
      *
@@ -306,7 +306,7 @@ final class ContentServiceClient
     /**
      * Get a content resource.
      *
-     * The async variant is {@see ContentServiceGapicClient::getContentAsync()} .
+     * The async variant is {@see ContentServiceClient::getContentAsync()} .
      *
      * @example samples/V1/ContentServiceClient/get_content.php
      *
@@ -337,7 +337,7 @@ final class ContentServiceClient
      * Caller must have Google IAM `dataplex.content.getIamPolicy` permission
      * on the resource.
      *
-     * The async variant is {@see ContentServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see ContentServiceClient::getIamPolicyAsync()} .
      *
      * @example samples/V1/ContentServiceClient/get_iam_policy.php
      *
@@ -363,7 +363,7 @@ final class ContentServiceClient
     /**
      * List content.
      *
-     * The async variant is {@see ContentServiceGapicClient::listContentAsync()} .
+     * The async variant is {@see ContentServiceClient::listContentAsync()} .
      *
      * @example samples/V1/ContentServiceClient/list_content.php
      *
@@ -393,7 +393,7 @@ final class ContentServiceClient
      * Caller must have Google IAM `dataplex.content.setIamPolicy` permission
      * on the resource.
      *
-     * The async variant is {@see ContentServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see ContentServiceClient::setIamPolicyAsync()} .
      *
      * @example samples/V1/ContentServiceClient/set_iam_policy.php
      *
@@ -428,8 +428,7 @@ final class ContentServiceClient
      * UIs and command-line tools, not for authorization checking. This operation
      * may "fail open" without warning.
      *
-     * The async variant is {@see ContentServiceGapicClient::testIamPermissionsAsync()}
-     * .
+     * The async variant is {@see ContentServiceClient::testIamPermissionsAsync()} .
      *
      * @example samples/V1/ContentServiceClient/test_iam_permissions.php
      *
@@ -455,7 +454,7 @@ final class ContentServiceClient
     /**
      * Update a content. Only supports full resource update.
      *
-     * The async variant is {@see ContentServiceGapicClient::updateContentAsync()} .
+     * The async variant is {@see ContentServiceClient::updateContentAsync()} .
      *
      * @example samples/V1/ContentServiceClient/update_content.php
      *
@@ -481,7 +480,7 @@ final class ContentServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ContentServiceGapicClient::getLocationAsync()} .
+     * The async variant is {@see ContentServiceClient::getLocationAsync()} .
      *
      * @example samples/V1/ContentServiceClient/get_location.php
      *
@@ -507,7 +506,7 @@ final class ContentServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ContentServiceGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ContentServiceClient::listLocationsAsync()} .
      *
      * @example samples/V1/ContentServiceClient/list_locations.php
      *

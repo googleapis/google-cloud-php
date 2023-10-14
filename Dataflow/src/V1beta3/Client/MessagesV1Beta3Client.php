@@ -175,7 +175,7 @@ final class MessagesV1Beta3Client
      * `projects.jobs.messages.list` is not recommended, as you can only request
      * the status of jobs that are running in `us-central1`.
      *
-     * The async variant is {@see MessagesV1Beta3GapicClient::listJobMessagesAsync()} .
+     * The async variant is {@see MessagesV1Beta3Client::listJobMessagesAsync()} .
      *
      * @example samples/V1beta3/MessagesV1Beta3Client/list_job_messages.php
      *

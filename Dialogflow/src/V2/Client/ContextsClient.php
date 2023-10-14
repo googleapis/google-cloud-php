@@ -425,7 +425,7 @@ final class ContextsClient
      *
      * If the specified context already exists, overrides the context.
      *
-     * The async variant is {@see ContextsGapicClient::createContextAsync()} .
+     * The async variant is {@see ContextsClient::createContextAsync()} .
      *
      * @param CreateContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -449,7 +449,7 @@ final class ContextsClient
     /**
      * Deletes all active contexts in the specified session.
      *
-     * The async variant is {@see ContextsGapicClient::deleteAllContextsAsync()} .
+     * The async variant is {@see ContextsClient::deleteAllContextsAsync()} .
      *
      * @param DeleteAllContextsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -471,7 +471,7 @@ final class ContextsClient
     /**
      * Deletes the specified context.
      *
-     * The async variant is {@see ContextsGapicClient::deleteContextAsync()} .
+     * The async variant is {@see ContextsClient::deleteContextAsync()} .
      *
      * @param DeleteContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -493,7 +493,7 @@ final class ContextsClient
     /**
      * Retrieves the specified context.
      *
-     * The async variant is {@see ContextsGapicClient::getContextAsync()} .
+     * The async variant is {@see ContextsClient::getContextAsync()} .
      *
      * @param GetContextRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -517,7 +517,7 @@ final class ContextsClient
     /**
      * Returns the list of all contexts in the specified session.
      *
-     * The async variant is {@see ContextsGapicClient::listContextsAsync()} .
+     * The async variant is {@see ContextsClient::listContextsAsync()} .
      *
      * @param ListContextsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -541,7 +541,7 @@ final class ContextsClient
     /**
      * Updates the specified context.
      *
-     * The async variant is {@see ContextsGapicClient::updateContextAsync()} .
+     * The async variant is {@see ContextsClient::updateContextAsync()} .
      *
      * @param UpdateContextRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -565,7 +565,7 @@ final class ContextsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see ContextsGapicClient::getLocationAsync()} .
+     * The async variant is {@see ContextsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -589,7 +589,7 @@ final class ContextsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see ContextsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see ContextsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

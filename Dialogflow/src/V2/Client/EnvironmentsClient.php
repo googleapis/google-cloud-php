@@ -421,7 +421,7 @@ final class EnvironmentsClient
     /**
      * Creates an agent environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::createEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::createEnvironmentAsync()} .
      *
      * @param CreateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -445,7 +445,7 @@ final class EnvironmentsClient
     /**
      * Deletes the specified agent environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::deleteEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::deleteEnvironmentAsync()} .
      *
      * @param DeleteEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -467,7 +467,7 @@ final class EnvironmentsClient
     /**
      * Retrieves the specified agent environment.
      *
-     * The async variant is {@see EnvironmentsGapicClient::getEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::getEnvironmentAsync()} .
      *
      * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -491,8 +491,7 @@ final class EnvironmentsClient
     /**
      * Gets the history of the specified environment.
      *
-     * The async variant is
-     * {@see EnvironmentsGapicClient::getEnvironmentHistoryAsync()} .
+     * The async variant is {@see EnvironmentsClient::getEnvironmentHistoryAsync()} .
      *
      * @param GetEnvironmentHistoryRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -516,7 +515,7 @@ final class EnvironmentsClient
     /**
      * Returns the list of all non-default environments of the specified agent.
      *
-     * The async variant is {@see EnvironmentsGapicClient::listEnvironmentsAsync()} .
+     * The async variant is {@see EnvironmentsClient::listEnvironmentsAsync()} .
      *
      * @param ListEnvironmentsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -551,7 +550,7 @@ final class EnvironmentsClient
      * changes to the draft agent and can't be undone. You may want to save the
      * draft agent to a version before calling this method.
      *
-     * The async variant is {@see EnvironmentsGapicClient::updateEnvironmentAsync()} .
+     * The async variant is {@see EnvironmentsClient::updateEnvironmentAsync()} .
      *
      * @param UpdateEnvironmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -575,7 +574,7 @@ final class EnvironmentsClient
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see EnvironmentsGapicClient::getLocationAsync()} .
+     * The async variant is {@see EnvironmentsClient::getLocationAsync()} .
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -599,7 +598,7 @@ final class EnvironmentsClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see EnvironmentsGapicClient::listLocationsAsync()} .
+     * The async variant is {@see EnvironmentsClient::listLocationsAsync()} .
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

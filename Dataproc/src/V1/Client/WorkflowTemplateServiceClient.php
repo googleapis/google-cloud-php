@@ -410,7 +410,7 @@ final class WorkflowTemplateServiceClient
      * Creates new workflow template.
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::createWorkflowTemplateAsync()} .
+     * {@see WorkflowTemplateServiceClient::createWorkflowTemplateAsync()} .
      *
      * @param CreateWorkflowTemplateRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -435,7 +435,7 @@ final class WorkflowTemplateServiceClient
      * Deletes a workflow template. It does not cancel in-progress workflows.
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::deleteWorkflowTemplateAsync()} .
+     * {@see WorkflowTemplateServiceClient::deleteWorkflowTemplateAsync()} .
      *
      * @param DeleteWorkflowTemplateRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -461,7 +461,7 @@ final class WorkflowTemplateServiceClient
      * version parameter.
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::getWorkflowTemplateAsync()} .
+     * {@see WorkflowTemplateServiceClient::getWorkflowTemplateAsync()} .
      *
      * @param GetWorkflowTemplateRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -510,8 +510,7 @@ final class WorkflowTemplateServiceClient
      * [Empty][google.protobuf.Empty].
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::instantiateInlineWorkflowTemplateAsync()}
-     * .
+     * {@see WorkflowTemplateServiceClient::instantiateInlineWorkflowTemplateAsync()} .
      *
      * @param InstantiateInlineWorkflowTemplateRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -555,7 +554,7 @@ final class WorkflowTemplateServiceClient
      * [Empty][google.protobuf.Empty].
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::instantiateWorkflowTemplateAsync()} .
+     * {@see WorkflowTemplateServiceClient::instantiateWorkflowTemplateAsync()} .
      *
      * @param InstantiateWorkflowTemplateRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -580,7 +579,7 @@ final class WorkflowTemplateServiceClient
      * Lists workflows that match the specified filter in the request.
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::listWorkflowTemplatesAsync()} .
+     * {@see WorkflowTemplateServiceClient::listWorkflowTemplatesAsync()} .
      *
      * @param ListWorkflowTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -606,7 +605,7 @@ final class WorkflowTemplateServiceClient
      * must contain version that matches the current server version.
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::updateWorkflowTemplateAsync()} .
+     * {@see WorkflowTemplateServiceClient::updateWorkflowTemplateAsync()} .
      *
      * @param UpdateWorkflowTemplateRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -631,8 +630,7 @@ final class WorkflowTemplateServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::getIamPolicyAsync()} .
+     * The async variant is {@see WorkflowTemplateServiceClient::getIamPolicyAsync()} .
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -660,8 +658,7 @@ final class WorkflowTemplateServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::setIamPolicyAsync()} .
+     * The async variant is {@see WorkflowTemplateServiceClient::setIamPolicyAsync()} .
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -692,7 +689,7 @@ final class WorkflowTemplateServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is
-     * {@see WorkflowTemplateServiceGapicClient::testIamPermissionsAsync()} .
+     * {@see WorkflowTemplateServiceClient::testIamPermissionsAsync()} .
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
