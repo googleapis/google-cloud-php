@@ -122,6 +122,11 @@ class Result implements \IteratorAggregate
     private $call;
 
     /**
+     * @var string|array
+     */
+    private $transactionId;
+
+    /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
      * @param Session $session The session used for any operations executed.
      * @param callable $call A callable, yielding a generator filled with results.

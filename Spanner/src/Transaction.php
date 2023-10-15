@@ -82,6 +82,11 @@ class Transaction implements TransactionalReadInterface
     private $isRetry = false;
 
     /**
+     * @var array
+     */
+    private $options = [];
+
+    /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
@@ -96,7 +101,8 @@ class Transaction implements TransactionalReadInterface
         Session $session,
         $transactionId = null,
         $isRetry = false,
-        $tag = null
+        $tag = null,
+        $options = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -115,6 +121,7 @@ class Transaction implements TransactionalReadInterface
         $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->options = $options;
     }
 
     /**
@@ -631,6 +638,19 @@ class Transaction implements TransactionalReadInterface
     {
         if ($this->state !== self::STATE_ACTIVE) {
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
+        }
+
+        if (is_array($this->transactionId) and isset($this->transactionId['begin'])) {
+            unset($this->options['begin']);
+            $res = $this->operation->transaction($this->session, $this->options+[
+                'fromTransaction' => true
+            ]);
+            if (is_array($res) and isset($res['id'])) {
+                $this->transactionId = $res['id'];
+            } else {
+                // singleUse transaction
+                $this->transactionId = null;
+            }
         }
 
         if (!$this->singleUseState()) {

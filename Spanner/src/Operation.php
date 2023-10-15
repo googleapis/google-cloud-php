@@ -48,6 +48,7 @@ class Operation
     const OP_INSERT_OR_UPDATE = 'insertOrUpdate';
     const OP_REPLACE = 'replace';
     const OP_DELETE = 'delete';
+    const DEFAULT_RETRIES = 3;
 
     /**
      * @var ConnectionInterface
@@ -187,6 +188,11 @@ class Operation
      */
     public function rollback(Session $session, $transactionId, array $options = [])
     {
+        // TODO: Check with team on this and decide
+        if (is_array($transactionId) and isset($transactionId['begin'])) {
+            return;
+            // throw new \RuntimeException('Streaming calls must invoke rows() function');
+        }
         $this->connection->rollback([
             'transactionId' => $transactionId,
             'session' => $session->name(),
@@ -210,7 +216,7 @@ class Operation
      * }
      * @return Result
      */
-    public function execute(Session $session, $sql, array $options = [], string &$transactionId = null)
+    public function execute(Session $session, $sql, array $options = [], &$transactionId = null)
     {
         $options += [
             'parameters' => [],
@@ -228,7 +234,7 @@ class Operation
         // Once generated it will get populated from Result->rows()
         // Incase of stream failure, the transactionId is preserved here to reuse.
         $call = function ($resumeToken = null) use ($session, $sql, $options, &$transactionId) {
-            if ( !is_null($transactionId) ) {
+            if ( !is_null($transactionId) and !is_array($transactionId) ) {
                 $options['transaction'] = ['id' => $transactionId];
             }
             if ($resumeToken) {
@@ -242,7 +248,15 @@ class Operation
             ] + $options);
         };
 
-        return new Result($this, $session, $call, $context, $this->mapper, $transactionId);
+        return new Result(
+            $this,
+            $session,
+            $call,
+            $context,
+            $this->mapper,
+            self::DEFAULT_RETRIES,
+            $transactionId
+        );
     }
 
     /**
@@ -268,7 +282,7 @@ class Operation
         Transaction $transaction,
         $sql,
         array $options = [],
-        string &$transactionId = null
+        &$transactionId = null
     ) {
         if (!isset($options['begin'])) {
             $options += ['transactionId' => $transaction->id()];
@@ -453,10 +467,14 @@ class Operation
             $res = [];
         }
 
+        if (isset($options['fromTransaction'])) {
+            return $res;
+        }
+
         return $this->createTransaction(
             $session,
             $res,
-            ['tag' => $transactionTag, 'isRetry' => $options['isRetry']]
+            ['tag' => $transactionTag, 'isRetry' => $options['isRetry'], 'options' => $options]
         );
     }
 
@@ -474,7 +492,8 @@ class Operation
             'id' => null
         ];
         $options += [
-            'tag' => null
+            'tag' => null,
+            'options' => null
         ];
 
         $options['isRetry'] = $options['isRetry'] ?? false;
@@ -484,7 +503,8 @@ class Operation
             $session,
             $res['id'],
             $options['isRetry'],
-            $options['tag']
+            $options['tag'],
+            $options['options']
         );
     }
 

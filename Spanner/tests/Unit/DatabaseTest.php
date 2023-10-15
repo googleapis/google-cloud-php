@@ -628,6 +628,9 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
+        // Begin transaction RPC is skipped when begin is inlined
+        // and invoked only if `begin` fails or if commit is the
+        // sole operation in the transaction.
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
             Argument::withEntry(
@@ -639,7 +642,7 @@ class DatabaseTest extends TestCase
                 )
             )
         ))
-            ->shouldBeCalled()
+            ->shouldNotBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
         $this->connection->rollback(Argument::any())
@@ -839,7 +842,7 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $this->database->runTransaction(function ($t) use ($it) {
+        $this->database->runTransaction(function ($t) use (&$it) {
             if ($it > 0) {
                 $this->assertTrue($t->isRetry());
             } else {
@@ -893,7 +896,7 @@ class DatabaseTest extends TestCase
             ->will(function () use (&$it, $abort) {
                 $it++;
 
-                if ($it <= Database::MAX_RETRIES+1) {
+                if ($it <= Database::MAX_RETRIES + 1) {
                     throw $abort;
                 }
 
